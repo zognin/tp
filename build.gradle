@@ -78,4 +78,8 @@ shadowJar {
     archiveName = 'addressbook.jar'
 }
 
+jacoco {
+    toolVersion = "0.8.7"
+}
+
 defaultTasks 'clean', 'test'
