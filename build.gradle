@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
     id 'jacoco'
+    id 'com.github.jakemarsden.git-hooks' version '0.0.2'
 }
 
 mainClassName = 'seedu.address.Main'
@@ -38,6 +39,14 @@ task coverage(type: JacocoReport) {
         html.enabled = true
         xml.enabled = true
     }
+}
+
+gitHooks {
+    hooks = [
+            'pre-push': 'clean check && .github/run-checks.sh'
+    ]
+    hooksDirectory = file('.git/hooks')
+    gradleCommand = './gradlew'
 }
 
 dependencies {
