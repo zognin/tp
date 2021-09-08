@@ -19,6 +19,8 @@ repositories {
 
 checkstyle {
     toolVersion = '8.29'
+    ignoreFailures = false
+    maxWarnings = 0
 }
 
 test {
@@ -76,6 +78,10 @@ dependencies {
 
 shadowJar {
     archiveName = 'addressbook.jar'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
 }
 
 defaultTasks 'clean', 'test'
