@@ -73,9 +73,7 @@ public class CommandBox extends UiPart<Region> {
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
-    public interface CommandExecutor
-
-    {
+    public interface CommandExecutor {
         /**
          * Executes the command and returns the result.
          *
@@ -83,7 +81,6 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }
 
 
