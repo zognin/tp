@@ -82,7 +82,7 @@ Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_O
 
 </div>
 
-Examples:
+**Examples:**
 * `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04-03-1990 v/yes m/04-06-2021 pe/1m` Adds a client named Alex Yeoh, who is vaccinated and membership lasts for 1 month from 4 Jun 2021.
 
 ### Deleting a client: `delete client`
@@ -91,7 +91,7 @@ Deletes a client from the application.
 
 Format: `delete client INDEX`
 
-Examples:
+**Examples:**
 * `delete client 1` Deletes the client at index 1 in the client list currently shown.
 
 ### Finding clients by keywords: `find client`
@@ -115,7 +115,7 @@ e.g. <code>find client n/Al</code> can show clients with names like Alice and Al
 
 </div>
 
-Examples:
+**Examples:**
 * `find client n/al` Find clients with names matching 'al'. E.g. Alex, Alice, Al.
 * `find client n/al p/984` Find clients with names matching ‘al’ and phone numbers matching ‘984’.
 * `find client v/yes pe/1y` Find all clients who are vaccinated and whose memberships are expiring in 1 year or less.
@@ -149,7 +149,7 @@ Format: `add booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
 </div>
 
-Examples:
+**Examples:**
 * `add booking p/89653101 d/12-12-2021 s/1030` Adds a booking to the time slot nearest to 1030hrs on 12 December 2021.
 
 ### Deleting a booking: `delete booking`
@@ -158,7 +158,7 @@ Deletes a booking from the application.
 
 Format: `delete booking INDEX`
 
-Examples:
+**Examples:**
 * `delete booking 1` Deletes the booking at index 1 in the booking list currently shown.
 
 ### Finding booking by keywords: `find booking`
@@ -175,16 +175,18 @@ Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]`
 
 * There must be 1 or more search arguments.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> must follow the format specified [above](#features). 
-
 * Partial search will be allowed. <br>
   e.g. <code>find booking n/Al</code> can show bookings for clients with names like Alice and Alex.
 
 * <code>c/YES_OR_NO</code> represents the completion status of the booking.
 
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. It must follow the format specified [above](#features).
+
+* Please refer to the examples below.
+
 </div>
 
-Examples:
+**Examples:**
 * `find booking c/yes` Find all completed bookings.
 * `find booking n/al` Find bookings for clients with names matching 'al'. E.g. Alex, Alice, Al.
 * `find booking d/12-12-2021 s/1930` Find all bookings on 12 December 2021 which starts at 1930 hrs.
@@ -209,9 +211,11 @@ Format: `done booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
 * <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. It must follow the format specified [above](#features).
 
+* Please refer to the examples below.
+
 </div>
 
-Examples:
+**Examples:**
 * `done booking p/91231232 d/11-09-2021 s/1930` Marks booking on 11 September 2021, which starts at 1930hrs, made by client with phone number 91231232 as done
 
 ### Viewing help : `help`
