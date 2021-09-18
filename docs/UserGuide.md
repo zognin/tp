@@ -244,14 +244,14 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 ## Command summary
 
 Action                   | Format and Examples
--------------------------|---------------------------------------------------------------------------------------------------------------
-**Add client**           | `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE pe/PERIOD` <hr> e.g. `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04-03-1990 v/yes m/04-06-2021 pe/1m`
+-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add client**           | `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE pe/PERIOD` <br><br> e.g. `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04-03-1990 v/yes m/04-06-2021 pe/1m`
 **Delete client**        | `delete client INDEX`
-**Find client**          | `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]` <hr> e.g. `find client n/al p/984 v/yes pe/1y`
+**Find client**          | `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]` <br><br> e.g. `find client n/al p/984 v/yes pe/1y`
 **List client**          | `list client`
-**Add booking**          | `add booking p/PHONE_NUMBER d/DATE s/START_TIME` <hr> e.g. `add booking p/89653101 d/12-12-2021 s/1030`
+**Add booking**          | `add booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `add booking p/89653101 d/12-12-2021 s/1030`
 **Delete booking**       | `delete booking INDEX`
-**Find booking**         | `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]` <hr> e.g. `find booking d/12-12-2021 s/1930 n/al c/yes`
+**Find booking**         | `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]` <br><br> e.g. `find booking d/12-12-2021 s/1930 n/al c/yes`
 **List booking**         | `list booking`
-**Mark booking as done** | `done booking p/PHONE_NUMBER d/DATE s/START_TIME` <hr> e.g. `done booking p/91231232 d/11-09-2021 s/1930`
+**Mark booking as done** | `done booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `done booking p/91231232 d/11-09-2021 s/1930`
 **Help**                 | `help`
