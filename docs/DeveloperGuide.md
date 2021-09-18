@@ -312,16 +312,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
+1. Usability Requirements:
+    * Should work on systems with Java 11 and above
+    * Should work for colorblind individuals
+    
+2. Business/Domain Requirements:
+    * Booking slots in the app are fixed to be 1.5 hour
+    * Each booking has a max capacity (of clients)
+    
+3. Data Requirements:
+    * Data of clients and bookings should persist after the app closes
+    
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **BTBB**: BobTheBodyBuilder
+* **Client**: A member of the gym
+* **Booking**: A fixed time period (of 1.5 hours) that a client can use the gym’s facilities
+
+#### Prefix Glossary
+| Prefix | Parameter | Associated with |
+|  :-----:   | :-----       | :---: |
+| a/ | ADDRESS | Client |
+| b/ | BIRTH_DATE | Client |
+| c/ | IS_COMPLETED | Booking |
+| d/ | DATE | Booking |
+| e/ | EMAIL | Client |
+| m/ | START_DATE | Membership |
+| n/ | NAME | Client |
+| p/ | PHONE_NUMBER | Client |
+| pe/ | PERIOD | Membership |
+| s/ | START_TIME | Booking |
+| v/ | IS_VACCINATED | Client |
 
 --------------------------------------------------------------------------------------------------------------------
 
