@@ -187,7 +187,7 @@ Format: `find booking [d/DATE] [t/START_TIME] [n/NAME] [s/STATUS]`
 
 * There must be 1 or more search arguments.
 
-* Date and time must follow the format specified above. 
+* Date and time must follow the format specified [above](#features). 
 
 * Partial search will be allowed. <br>
   e.g. <code>find booking n/Al</code> can show bookings for clients with names like Alice and Alex.
@@ -217,7 +217,7 @@ Format: `done booking d/DATE s/SLOT_NUMBER p/PHONE_NUMBER`
 
 **:bookmark: Note:**<br>
 
-* Date must follow the format specified above.
+* Date must follow the format specified [above](#features).
 
 * <code>p/PHONE_NUMBER</code> is the client's phone number.
 
