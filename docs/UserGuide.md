@@ -93,7 +93,7 @@ Examples:
 
 ### Finding clients by keywords: `find client`
 
-Finds clients whose attribute(s) matches a keyword.
+Finds clients whose attribute(s) matches the keyword(s).
 
 Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [m/PERIOD_TO_EXP]`
 
@@ -175,7 +175,7 @@ Examples:
 
 ### Finding booking by keywords: `find booking`
 
-Finds booking whose attribute(s) matches a keyword.
+Finds booking whose attribute(s) matches the keyword(s).
 
 Format: `find booking [d/DATE] [t/START_TIME] [n/NAME] [s/STATUS]`
 
