@@ -24,7 +24,6 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
    * **`list client`** : Lists all clients.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -65,7 +64,9 @@ Adds a client to the app.
 
 Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE PERIOD`
 
-<div markdown="block" class="alert alert-primary">:bookmark: **Note:**
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
 
 * <code>v/YES_OR_NO</code> records the client's vaccination status.
 
@@ -96,7 +97,9 @@ Finds clients whose attribute(s) matches a keyword.
 
 Format: `find client [n/KEYWORD] [p/KEYWORD] [e/KEYWORD] [a/KEYWORD] [b/KEYWORD] [v/YES_OR_NO] [m/PERIOD_TO_EXP]`
 
-<div markdown="block" class="alert alert-primary">:bookmark:**Note:**
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
 
 * The search is case insensitive.
 
