@@ -268,18 +268,94 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to have)
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+<table>
+  <tr>
+   <th colspan="3"><h3><strong>A gym manager</strong></h3></th>
+  </tr>
+  <tr>
+    <th><h3><strong>Priority</strong></h3></th>
+    <th><h3><strong>I can...</strong></h3></th>
+    <th><h3><strong>So that...</strong></h3></th>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View client's details</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View client's preferred contact method</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View client's membership expiry date</td>
+    <td>I can encourage them to renew</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View a client's vaccination status</td>
+    <td>I am compliant with Covid-19 regulations</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Keep track of my client's phone number</td>
+    <td>I can call them to renew their gym membership</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Add memberships to clients by period</td>
+    <td>I do not have to manually key in the expiry date</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Search for client's name</td>
+    <td>I can confirm if they have a booking before letting them enter</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Delete clients</td>
+    <td>I will not clutter my app</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Make booking appointments for client</td>
+    <td>I know how many bookings I have in a day</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View the number of bookings at a given time</td>
+    <td>I will not exceed the maximum capacity</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View past bookings</td>
+    <td>I can help the contact tracing initiative</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Delete cancelled bookings</td>
+    <td>I can free up space for other clients</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Delete uncompleted bookings</td>
+    <td>I will not clutter my app</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Filter bookings based on time and date</td>
+    <td>I know how many bookings are made and who are the clients</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View the list of available commands</td>
+    <td>I know what the application </td>
+  </tr>
+</table>
 
-*{More to be added}*
 
 ### Use cases
 
