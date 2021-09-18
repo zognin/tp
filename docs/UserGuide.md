@@ -135,29 +135,27 @@ Format: `add booking p/PHONE_NUMBER s/SLOT_NUMBER`
 
 * <code>s/SLOT_NUMBER</code> is the time slot number which the client needs to specify.<br>
 
-* <details>
-  <summary>Click here for an exhaustive list of the time slots</summary>
+Exhaustive list of time slot numbers: 
 
-    Time slot number | Time period
-    :---------------:|:------------------:
-    1                | 0000 hrs - 0130 hrs
-    2                | 0130 hrs - 0300 hrs
-    3                | 0300 hrs - 0430 hrs
-    4                | 0430 hrs - 0600 hrs
-    5                | 0600 hrs - 0730 hrs
-    6                | 0730 hrs - 0900 hrs
-    7                | 0900 hrs - 1030 hrs
-    8                | 1030 hrs - 1200 hrs
-    9                | 1200 hrs - 1330 hrs
-    10               | 1330 hrs - 1500 hrs
-    11               | 1500 hrs - 1630 hrs
-    12               | 1630 hrs - 1800 hrs
-    13               | 1800 hrs - 1930 hrs
-    14               | 1930 hrs - 2100 hrs
-    15               | 2100 hrs - 2230 hrs
-    16               | 2230 hrs - 0000 hrs
+Time slot number | Time period
+:---------------:|:------------------:
+1                | 0000 hrs - 0130 hrs
+2                | 0130 hrs - 0300 hrs
+3                | 0300 hrs - 0430 hrs
+4                | 0430 hrs - 0600 hrs
+5                | 0600 hrs - 0730 hrs
+6                | 0730 hrs - 0900 hrs
+7                | 0900 hrs - 1030 hrs
+8                | 1030 hrs - 1200 hrs
+9                | 1200 hrs - 1330 hrs
+10               | 1330 hrs - 1500 hrs
+11               | 1500 hrs - 1630 hrs
+12               | 1630 hrs - 1800 hrs
+13               | 1800 hrs - 1930 hrs
+14               | 1930 hrs - 2100 hrs
+15               | 2100 hrs - 2230 hrs
+16               | 2230 hrs - 0000 hrs
 
-  </details>
 
 * Please refer to the examples below.
 
