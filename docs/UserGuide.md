@@ -52,9 +52,9 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 * Extraneous parameters for commands that do not take in parameters (such as `help`, and `list client`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-* The format of all date fields is `dd-mm-yyyy`
+* The format of all date fields is `dd-mm-yyyy`.
 
-* The format of all time fields is `HHmm`
+* The format of all time fields is `HHmm`.<br>
   e.g. 1340 is 1.40p.m.
 
 </div>
@@ -67,18 +67,19 @@ Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_O
 
 <div markdown="span" class="alert alert-primary">:bookmark: **Note:**
 
-<code>v/YES_OR_NO</code> records the client's vaccination status.
+* <code>v/YES_OR_NO</code> records the client's vaccination status.
 
-<code>m/START_DATE PERIOD</code> records the client's membership status. 
-Start date is the start of the membership. 
-Period is the time from the start date that the membership is valid in months or years. 
+* <code>m/START_DATE PERIOD</code> records the client's membership status.<br> 
+Start date is the start of the membership.<br> 
+Period is the time from the start date that the membership is valid in months or years.<br> 
 The period can be in number of months, suffixed by `m` or in years, suffixed by `y`.
 
-Please refer to the examples below.
+* Please refer to the examples below.
+
 </div>
 
 Examples:
-* `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04031990 v/yes m/04062021 1m` Adds a client named Alex Yeoh, who is vaccinated and membership lasts for 1 month from 4 Jun 2021
+* `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04031990 v/yes m/04062021 1m` Adds a client named Alex Yeoh, who is vaccinated and membership lasts for 1 month from 4 Jun 2021.
 
 ### Deleting a client: `delete client`
 
@@ -97,18 +98,19 @@ Format: `find client [n/KEYWORD] [p/KEYWORD] [e/KEYWORD] [a/KEYWORD] [b/KEYWORD]
 
 <div markdown="span" class="alert alert-primary">:bookmark: **Note:**
 
-The search is case insensitive.
+* The search is case insensitive.
 
-There must be 1 or more search arguments.
+* There must be 1 or more search arguments.
 
-Partial search will be allowed. For example, <code>find client n/Al</code> can show clients with names like Alice and Alex.
+* Partial search will be allowed. <br> 
+e.g. <code>find client n/Al</code> can show clients with names like Alice and Alex.
 
 </div>
 
 Examples:
-* `find client n/al` Find clients with names matching 'al'. E.g. Alex, Alice, Al
-* `find client n/al p/984` Find clients with names matching ‘al’ and phone numbers matching ‘984’
-* `find client v/y m/1y` Find all clients who are vaccinated and whose memberships are expiring in 1 year or less
+* `find client n/al` Find clients with names matching 'al'. E.g. Alex, Alice, Al.
+* `find client n/al p/984` Find clients with names matching ‘al’ and phone numbers matching ‘984’.
+* `find client v/y m/1y` Find all clients who are vaccinated and whose memberships are expiring in 1 year or less.
 
 ### Listing all clients `list`
 
@@ -149,6 +151,6 @@ Action | Format, Examples
 --------|------------------
 **Add client** | `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE PERIOD` <br> e.g. `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04031990 v/yes m/04062021 1m`
 **Delete client** | `delete client INDEX`
-**Find client** | `find client [n/KEYWORD] [p/KEYWORD] [e/KEYWORD] [a/KEYWORD] [b/KEYWORD] [v/YES_OR_NO] [m/PERIOD_TO_EXP]`
+**Find client** | `find client [n/KEYWORD] [p/KEYWORD] [e/KEYWORD] [a/KEYWORD] [b/KEYWORD] [v/YES_OR_NO] [m/PERIOD_TO_EXP]`<br> e.g. `find client n/al`
 **List client** | `list client`
 **Help** | `help`
