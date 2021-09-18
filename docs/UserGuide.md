@@ -115,11 +115,11 @@ Examples:
 * `find client n/al p/984` Find clients with names matching ‘al’ and phone numbers matching ‘984’.
 * `find client v/y m/1y` Find all clients who are vaccinated and whose memberships are expiring in 1 year or less.
 
-### Listing all clients `list`
+### Listing all clients `list client`
 
 Lists all clients in the application.
 
-Format: `list`
+Format: `list client`
 
 ### Adding a booking: `add booking`
 
