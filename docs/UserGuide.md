@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-BobTheBodyBuilder (BTBB) is a **desktop app for private gym managers to manage clients and bookings, optimized for use via a command line interface (CLI).** 
-Keeping track of information from memberships to booking records for contact tracing can be a hassle if you are a one man show. 
+BobTheBodyBuilder (BTBB) is a **desktop app for private gym managers to manage clients and bookings, optimized for use via a command line interface (CLI).**
+Keeping track of information from memberships to booking records for contact tracing can be a hassle if you are a one man show.
 That's why, our app centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and manoeuvre through client and booking details.
 If you are looking to keep your physique, down to your finger muscles, in shape, give BTBB a try!
 
@@ -51,7 +51,7 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, and `list client`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 * The format of all date fields is `dd-mm-yyyy`.
 
 * The format of all time fields is `HHmm`.<br>
@@ -65,13 +65,13 @@ Adds a client to the app.
 
 Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE PERIOD`
 
-<div markdown="span" class="alert alert-primary">:bookmark: **Note:**
+<div markdown="block" class="alert alert-primary">:bookmark: **Note:**
 
 * <code>v/YES_OR_NO</code> records the client's vaccination status.
 
-* <code>m/START_DATE PERIOD</code> records the client's membership status.<br> 
-Start date is the start of the membership.<br> 
-Period is the time from the start date that the membership is valid in months or years.<br> 
+* <code>m/START_DATE PERIOD</code> records the client's membership status.<br>
+Start date is the start of the membership.<br>
+Period is the time from the start date that the membership is valid in months or years.<br>
 The period can be in number of months, suffixed by `m` or in years, suffixed by `y`.
 
 * Please refer to the examples below.
@@ -96,7 +96,7 @@ Finds clients whose attribute(s) matches a keyword.
 
 Format: `find client [n/KEYWORD] [p/KEYWORD] [e/KEYWORD] [a/KEYWORD] [b/KEYWORD] [v/YES_OR_NO] [m/PERIOD_TO_EXP]`
 
-<div markdown="span" class="alert alert-primary">:bookmark: **Note:**
+<div markdown="block" class="alert alert-primary">:bookmark:**Note:**
 
 * The search is case insensitive.
 
