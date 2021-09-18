@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Han Geng Ning
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zognin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zognin)]
+[[portfolio](team/zognin.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
 
-### Johnny Doe
+### Ruppa Nagarajan Sivayoga Subramanian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sivayogasubramanian.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sivayogasubramanian)] [[portfolio](team/sivayogasubramanian.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing, Integration
 
-### James Doe
+### Muhammad Imran Bin Ridzuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/imranr2.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Imranr2)]
+[[portfolio](team/imranr2.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines, Documentation, Testing
+
+### Manoharan Ajay Anand
+
+<img src="images/manoharan-ajay-anand.png" width="200px">
+
+[[github](http://github.com/Manoharan-Ajay-Anand)]
+[[portfolio](team/manoharan-ajay-anand.md)]
+
+* Role: Developer
+* Responsibilities: Code quality
+
+### Sim Sing Yee, Eunice
+
+<img src="images/eunicesim142.png" width="200px">
+
+[[github](http://github.com/EuniceSim142)]
+[[portfolio](team/eunicesim142.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, Code quality
