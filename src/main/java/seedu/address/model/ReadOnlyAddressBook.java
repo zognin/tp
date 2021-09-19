@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.client.Client;
 
 /**
@@ -13,5 +14,11 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Client> getClientList();
+
+    /**
+     * Returns an unmodifiable view of the bookings list.
+     * This list will not contain any duplicate bookings.
+     */
+    ObservableList<Booking> getBookingList();
 
 }
