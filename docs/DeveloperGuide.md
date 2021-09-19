@@ -413,7 +413,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager chooses to delete a client.
 2.  Gym Manager enter details to delete a client.
 3.  BTBB deletes client.
-4.  BTBB informs Gym Manager that client is deleted.
+4.  BTBB informs Gym Manager that client has been deleted.
     
     Use case ends.
 
@@ -441,7 +441,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager chooses to add a booking.
 2.  Gym Manager enters details to create a booking.
 3.  BTBB adds new booking for client.
-4.  BTBB shows that new booking is added.
+4.  BTBB shows that new booking has been added.
     
     Use case ends.
 
@@ -459,7 +459,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager chooses to delete a booking.
 2.  Gym Manager enter details to delete a booking.
 3.  BTBB deletes booking.
-4.  BTBB informs Gym Manager that booking is deleted.
+4.  BTBB informs Gym Manager that booking has been deleted.
 
     Use case ends.
 
@@ -509,7 +509,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **MSS**
 
 1.  Gym Manager chooses to view all bookings.
-2.  Gym Manager chooses to view all bookings.
+2.  Gym Manager enters command to see all bookings.
 3.  BTBB displays all bookings.
 
     Use case ends.
