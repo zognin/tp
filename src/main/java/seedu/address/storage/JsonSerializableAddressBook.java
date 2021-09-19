@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.client.Client;
 
 /**
@@ -18,7 +19,6 @@ import seedu.address.model.client.Client;
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
-
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
@@ -51,6 +51,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
             if (addressBook.hasClient(client)) {
@@ -58,7 +59,14 @@ class JsonSerializableAddressBook {
             }
             addressBook.addClient(client);
         }
+
+        // Always convert clients to model type before bookings
+        // As bookings are dependent on clients
+        for (JsonAdaptedBooking jsonAdaptedBooking : bookings) {
+            Booking booking = jsonAdaptedBooking.toModelType(addressBook);
+            addressBook.addBooking(booking);
+        }
+
         return addressBook;
     }
-
 }

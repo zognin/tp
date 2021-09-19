@@ -13,6 +13,8 @@ import seedu.address.model.client.Phone;
  */
 public class Booking {
 
+    public static final String MESSAGE_CONSTRAINTS = "Bookings should belong to a client.";
+
     private final Client client;
 
     /**
