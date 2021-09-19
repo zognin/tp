@@ -318,15 +318,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Usability Requirements:
-    * Should work on systems with Java 11 and above
-    * Should work for colorblind individuals
+    * Should work on systems with Java 11 and above.
     
 2. Business/Domain Requirements:
-    * Booking slots in the app are fixed to be 1.5 hour
-    * Each booking has a max capacity (of clients)
+    * Booking slots in the app are fixed to be 1 hour 30 minutes.
+    * Each booking has a max capacity (of clients).
     
 3. Data Requirements:
-    * Data of clients and bookings should persist after the app closes
+    * Data of clients and bookings should persist after the app closes.
     
 ### Glossary
 
@@ -334,22 +333,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **BTBB**: BobTheBodyBuilder
 * **Client**: A member of the gym
-* **Booking**: A fixed time period (of 1.5 hours) that a client can use the gym’s facilities
+* **Booking**: A fixed time period (of 1 hour 30 minutes) that a client can use the gym’s facilities
 
 #### Prefix Glossary
-| Prefix | Parameter | Associated with |
-|  :-----:   | :-----       | :---: |
-| a/ | ADDRESS | Client |
-| b/ | BIRTH_DATE | Client |
-| c/ | IS_COMPLETED | Booking |
-| d/ | DATE | Booking |
-| e/ | EMAIL | Client |
-| m/ | START_DATE | Membership |
-| n/ | NAME | Client |
-| p/ | PHONE_NUMBER | Client |
-| pe/ | PERIOD | Membership |
-| s/ | START_TIME | Booking |
-| v/ | IS_VACCINATED | Client |
+| Prefix | Parameter     | Associated with |
+| :----: | :-----------  | :-------------: |
+| a/     | ADDRESS       | Client          |
+| b/     | BIRTH_DATE    | Client          |
+| c/     | IS_COMPLETED  | Booking         |
+| d/     | DATE          | Booking         |
+| e/     | EMAIL         | Client          |
+| m/     | START_DATE    | Membership      |
+| n/     | NAME          | Client          |
+| p/     | PHONE_NUMBER  | Client          |
+| pe/    | PERIOD        | Membership      |
+| s/     | START_TIME    | Booking         |
+| v/     | IS_VACCINATED | Client          |
 
 --------------------------------------------------------------------------------------------------------------------
 
