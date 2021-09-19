@@ -56,7 +56,7 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 * The format of all time fields is `HHmm`.<br>
   e.g. 1340 is 1.40p.m.
 
-* The format all period fields is number of months, suffixed by m or in years, suffixed by y.<br>
+* The format all period fields is number of months, suffixed by m, or in years, suffixed by y.<br>
   e.g. 1m is 1 month, 2y is 2 years.
 
 </div>
