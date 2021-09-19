@@ -111,7 +111,7 @@ Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DA
 * Partial search will be allowed. <br> 
 e.g. <code>find client n/Al</code> can show clients with names like Alice and Alex.
 
-* <code>[b/BIRTH_DATE]</code> must follow the format specified [above](#features).
+* <code>b/BIRTH_DATE</code> must follow the format specified [above](#features).
 
 </div>
 
@@ -143,7 +143,7 @@ Format: `add booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
 * <code>p/PHONE_NUMBER</code> is the phone number of the client.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. It must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
@@ -161,11 +161,11 @@ Format: `delete booking INDEX`
 **Examples:**
 * `delete booking 1` Deletes the booking at index 1 in the booking list currently shown.
 
-### Finding booking by keywords: `find booking`
+### Finding bookings by keywords: `find booking`
 
 Finds booking whose attribute(s) matches the keyword(s).
 
-Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]`
+Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -178,9 +178,11 @@ Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]`
 * Partial search will be allowed. <br>
   e.g. <code>find booking n/Al</code> can show bookings for clients with names like Alice and Alex.
 
+* <code>p/PHONE_NUMBER</code> is the client's phone number.
+
 * <code>c/YES_OR_NO</code> represents the completion status of the booking.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. It must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
@@ -190,6 +192,7 @@ Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]`
 * `find booking c/yes` Find all completed bookings.
 * `find booking n/al` Find bookings for clients with names matching 'al'. E.g. Alex, Alice, Al.
 * `find booking d/12-12-2021 s/1930` Find all bookings on 12 December 2021 which starts at 1930 hrs.
+* `find booking p/91234567` Find all bookings for client with 91234567 as their phone number.
 
 ### Listing all bookings: `list booking`
 
@@ -209,7 +212,7 @@ Format: `done booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
 * <code>p/PHONE_NUMBER</code> is the client's phone number.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. It must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
@@ -255,7 +258,7 @@ Action                   | Format and Examples
 **List client**          | `list client`
 **Add booking**          | `add booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `add booking p/89653101 d/12-12-2021 s/1030`
 **Delete booking**       | `delete booking INDEX`
-**Find booking**         | `find booking [d/DATE] [s/START_TIME] [n/NAME] [c/YES_OR_NO]` <br><br> e.g. `find booking d/12-12-2021 s/1930 n/al c/yes`
+**Find booking**         | `find booking [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]` <br><br> e.g. `find booking d/12-12-2021 s/1930 n/al c/yes`
 **List booking**         | `list booking`
 **Mark booking as done** | `done booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `done booking p/91231232 d/11-09-2021 s/1930`
 **Help**                 | `help`
