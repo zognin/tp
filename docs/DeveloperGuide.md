@@ -359,32 +359,165 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `BobTheBodyBuilder (BTBB)` and the **Actor** is the `Gym Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 Add a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Gym Manager chooses to add a client.
+2.  Gym Manager enters details in required format.
+3.  BTBB displays new client. 
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Phone number entered already exists in the system.
+    * 2a1. BTBB informs Gym Manager that client already exist.
+      
+      Use case ends.
 
-  Use case ends.
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Gym Manager why adding did not happen. 
+  
+      Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC02 Find a client**
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1.  Gym Manager wants to find a client by a field.
+2.  Gym Manager enters search terms in required format.
+3.  BTBB displays all clients that match the format.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why find did not happen.
+
+      Use case ends.
+
+**Use case: UC03 Delete a client**
+
+**MSS**
+
+1.  Gym Manager chooses to delete a client.
+2.  Gym Manager enter details to delete a client.
+3.  BTBB deletes client.
+4.  BTBB informs Gym Manager that client is deleted.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why deletion did not happen.
+
+      Use case ends.
+
+**Use case: UC04 View all clients**
+
+**MSS**
+
+1.  Gym Manager chooses to view all clients.
+2.  Gym Manager enters command to see all clients.
+3.  BTBB displays all clients.
+    
+    Use case ends.
+
+**Use case: UC05 Add a booking**
+
+**MSS**
+
+1.  Gym Manager chooses to add a booking.
+2.  Gym Manager enters details to create a booking.
+3.  BTBB adds new booking for client.
+4.  BTBB shows that new booking is added.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why adding did not happen.
+
+      Use case ends.
+
+**Use case: UC06 Delete a booking**
+
+**MSS**
+
+1.  Gym Manager chooses to delete a booking.
+2.  Gym Manager enter details to delete a booking.
+3.  BTBB deletes booking.
+4.  BTBB informs Gym Manager that booking is deleted.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why deletion did not happen.
+
+      Use case ends.
+
+**Use case: UC07 Find bookings**
+
+**MSS**
+
+1.  Gym Manager wants to find bookings in a certain time slot.
+2.  Gym Manager enters search terms in required format.
+3.  BTBB displays all bookings in the time slot.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why find did not happen.
+
+      Use case ends.
+
+**Use case: UC08 Mark booking as done**
+
+**MSS**
+
+1.  Gym Manager wants to mark a booking as done.
+2.  Gym Manager enters required data to mark a booking as done.
+3.  BTBB marks booking as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Gym Manager why booking could not be marked as done.
+
+      Use case ends.
+
+**Use case: UC09 View all bookings**
+
+**MSS**
+
+1.  Gym Manager chooses to view all bookings.
+2.  Gym Manager chooses to view all bookings.
+3.  BTBB displays all bookings.
+
+    Use case ends.
+
+**Use case: UC10 View all available commands**
+
+**MSS**
+
+1.  Gym Manager wants to find out all the available commands.
+2.  Gym Manager uses the help command.
+3.  BTBB displays all available commands.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
