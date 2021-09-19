@@ -272,7 +272,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 <table>
   <tr>
-   <th colspan="3"><h3><strong>A gym manager</strong></h3></th>
+   <th colspan="3"><h3><strong>As a gym manager</strong></h3></th>
   </tr>
   <tr>
     <th><h3><strong>Priority</strong></h3></th>
@@ -281,17 +281,17 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View client's details</td>
+    <td>View a client's details</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>MEDIUM</td>
+    <td>View a client's preferred contact method</td>
     <td></td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View client's preferred contact method</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>HIGH</td>
-    <td>View client's membership expiry date</td>
+    <td>View a client's membership expiry date</td>
     <td>I can encourage them to renew</td>
   </tr>
   <tr>
@@ -311,7 +311,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Search for client's name</td>
+    <td>Search for a booking by a client's name</td>
     <td>I can confirm if they have a booking before letting them enter</td>
   </tr>
   <tr>
@@ -321,7 +321,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Make booking appointments for client</td>
+    <td>Make booking appointments for clients</td>
     <td>I know how many bookings I have in a day</td>
   </tr>
   <tr>
@@ -347,12 +347,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   <tr>
     <td>HIGH</td>
     <td>Filter bookings based on time and date</td>
-    <td>I know how many bookings are made and who are the clients</td>
+    <td>I know how many bookings are made and who the clients are</td>
   </tr>
   <tr>
     <td>HIGH</td>
     <td>View the list of available commands</td>
-    <td>I know what the application </td>
+    <td>I can make full use of the application's features </td>
   </tr>
 </table>
 
