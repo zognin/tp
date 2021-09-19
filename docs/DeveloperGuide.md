@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. BTBB detects an error in the entered data.
     * 2a1. BTBB informs Gym Manager why deletion did not happen.
 
-  Use case ends.
+      Use case ends.
 
 **Use case: UC07 Find bookings**
 
