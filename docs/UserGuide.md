@@ -56,6 +56,9 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 * The format of all time fields is `HHmm`.<br>
   e.g. 1340 is 1.40p.m.
 
+* The format all period fields is number of months, suffixed by m or in years, suffixed by y.<br>
+  e.g. 1m is 1 month, 2y is 2 years.
+
 </div>
 
 ### Adding a client: `add client`
@@ -74,7 +77,7 @@ Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_O
 
 * <code>m/START_DATE</code> records the client's membership status. Start date is the start of the membership.
 
-* <code>pe/PERIOD</code> is the time from the start date that the membership is valid in months or years. The period can be in number of months, suffixed by `m` or in years, suffixed by `y`.
+* <code>pe/PERIOD</code> must follow the format specified [above](#features).
 
 * <code>b/BIRTH_DATE</code> and <code>m/START_DATE</code> must follow the format specified [above](#features).
 
@@ -112,6 +115,8 @@ Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DA
 e.g. <code>find client n/Al</code> can show clients with names like Alice and Alex.
 
 * <code>b/BIRTH_DATE</code> must follow the format specified [above](#features).
+
+* <code>pe/PERIOD_TO_EXP</code> must follow the format specified [above](#features).
 
 </div>
 
