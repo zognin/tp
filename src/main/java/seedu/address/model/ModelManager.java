@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Booking> filteredBookings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
     }
 
     public ModelManager() {
@@ -106,10 +111,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Client> getClientByPhone(Phone phone) {
+        return addressBook.getClientByPhone(phone);
+    }
+
+    @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
+    }
+
+    @Override
+    public void addBooking(Booking booking) {
+        addressBook.addBooking(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -127,6 +143,12 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
     }
 
     @Override

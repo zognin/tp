@@ -1,11 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 /**
  * The API of the Model component.
@@ -13,6 +16,7 @@ import seedu.address.model.client.Client;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -70,6 +74,14 @@ public interface Model {
     void addClient(Client client);
 
     /**
+     * Gets a client by phone.
+     *
+     * @param phone Phone of a client.
+     * @return An optional {@code client}.
+     */
+    Optional<Client> getClientByPhone(Phone phone);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -84,4 +96,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    /**
+     * Adds the given booking.
+     * {@code booking} must not already exist in the address book.
+     */
+    void addBooking(Booking booking);
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
 }

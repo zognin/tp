@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +47,18 @@ public class UniqueClientList implements Iterable<Client> {
             throw new DuplicateClientException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Gets a client by phone.
+     *
+     * @param phone Phone of the client.
+     * @return An optional {@code Client}.
+     */
+    public Optional<Client> getClientByPhone(Phone phone) {
+        return internalList.stream()
+                .filter(client -> client.getPhone().equals(phone))
+                .findFirst();
     }
 
     /**

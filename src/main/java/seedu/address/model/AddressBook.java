@@ -3,11 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.UniqueBookingList;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 import seedu.address.model.client.UniqueClientList;
 
 /**
@@ -86,6 +88,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addClient(Client p) {
         clients.add(p);
+    }
+
+    /**
+     * Gets a client by phone.
+     *
+     * @param phone Phone of a client.
+     * @return An optional {@code client}.
+     */
+    public Optional<Client> getClientByPhone(Phone phone) {
+        return clients.getClientByPhone(phone);
     }
 
     /**
