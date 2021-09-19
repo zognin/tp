@@ -8,7 +8,8 @@ title: BobTheBodyBuilder
 
 ![Ui](images/Ui.png)
 
-**BobTheBodyBuilder(BBTB) is a desktop application for gym managers to manage their clients and gym bookings.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and bookings, 
+optimized for use via a command line interface (CLI)**.
 
 * If you are interested in using BBTB, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing BBTB, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
