@@ -277,12 +277,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 <table>
   <tr>
-   <th colspan="3"><h3><strong>As a gym manager</strong></h3></th>
+   <th style="text-align: center" colspan="3"><h3><strong>As a gym manager</strong></h3></th>
   </tr>
   <tr>
-    <th><h3><strong>Priority</strong></h3></th>
-    <th><h3><strong>I can...</strong></h3></th>
-    <th><h3><strong>So that...</strong></h3></th>
+    <th style="text-align: center"><h3><strong>Priority</strong></h3></th>
+    <th style="text-align: center"><h3><strong>I can...</strong></h3></th>
+    <th style="text-align: center"><h3><strong>So that...</strong></h3></th>
   </tr>
   <tr>
     <td>HIGH</td>
@@ -545,8 +545,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 * **Booking**: A fixed time period (of 1 hour 30 minutes) that a client can use the gym’s facilities
 
 #### Prefix Glossary
+
 | Prefix | Parameter     | Associated with |
-| :----: | :-----------  | :-------------: |
+|:------:|:-------------:|:---------------:|
 | a/     | ADDRESS       | Client          |
 | b/     | BIRTH_DATE    | Client          |
 | c/     | IS_COMPLETED  | Booking         |
