@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.booking.EditBookingCommand.createEditedBooking;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,14 +14,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.booking.EditBookingCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -81,6 +85,22 @@ public class EditCommand extends Command {
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        // If the client's identity changes, bookings under the client has to reference the new identity
+        if (!clientToEdit.isSameClient(editedClient)) {
+            List<Booking> bookingsUnderClient = model.getFullBookingList().stream()
+                    .filter(booking -> booking.getClient().isSameClient(clientToEdit))
+                    .collect(Collectors.toList());
+
+            bookingsUnderClient.forEach(bookingToEdit -> {
+                EditBookingCommand.EditBookingDescriptor editBookingDescriptor =
+                        new EditBookingCommand.EditBookingDescriptor();
+                editBookingDescriptor.setClient(editedClient);
+
+                Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
+                model.setBooking(bookingToEdit, editedBooking);
+            });
         }
 
         model.setClient(clientToEdit, editedClient);

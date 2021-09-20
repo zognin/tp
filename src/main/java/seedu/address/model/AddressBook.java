@@ -59,7 +59,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBookings(List<Booking> bookings) {
         this.bookings.setBookings(bookings);
-
     }
 
     /**
@@ -127,6 +126,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addBooking(Booking booking) {
         bookings.add(booking);
+    }
+
+    /**
+     * Replaces the given booking {@code target} in the list with {@code editedBooking}.
+     * {@code target} must exist in the address book.
+     * The booking identity of {@code editedBooking} must not be the same as
+     * another existing booking in the address book.
+     */
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireNonNull(editedBooking);
+
+        bookings.setBooking(target, editedBooking);
     }
 
     //// util methods

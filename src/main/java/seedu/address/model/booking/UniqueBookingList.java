@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.booking.exceptions.BookingNotFoundException;
 
 public class UniqueBookingList implements Iterable<Booking> {
 
@@ -22,6 +23,22 @@ public class UniqueBookingList implements Iterable<Booking> {
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the booking {@code target} in the list with {@code editedBooking}.
+     * {@code target} must exist in the list.
+     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the list.
+     */
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireAllNonNull(target, editedBooking);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new BookingNotFoundException();
+        }
+
+        internalList.set(index, editedBooking);
     }
 
     /**

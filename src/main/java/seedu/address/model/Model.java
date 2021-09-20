@@ -91,6 +91,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Client> getFilteredClientList();
 
+    /** Returns an the full booking list */
+    ObservableList<Booking> getFullBookingList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -102,6 +105,14 @@ public interface Model {
      * {@code booking} must not already exist in the address book.
      */
     void addBooking(Booking booking);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedBooking}.
+     * {@code target} must exist in the address book.
+     * The booking identity of {@code editedBooking} must not be the same as
+     * another existing booking in the address book.
+     */
+    void setBooking(Booking target, Booking editedBooking);
 
     /**
      * Updates the filter of the filtered booking list to filter by the given {@code predicate}.

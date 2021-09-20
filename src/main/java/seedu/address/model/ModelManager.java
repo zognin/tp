@@ -128,6 +128,13 @@ public class ModelManager implements Model {
         updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
+    @Override
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireAllNonNull(target, editedBooking);
+
+        addressBook.setBooking(target, editedBooking);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -137,6 +144,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
+    }
+
+    @Override
+    public ObservableList<Booking> getFullBookingList() {
+        return addressBook.getBookingList();
     }
 
     @Override
@@ -169,5 +181,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients);
     }
-
 }
