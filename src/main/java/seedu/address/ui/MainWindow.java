@@ -13,9 +13,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.exception.CommandException;
+import seedu.address.exception.ParseException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing
