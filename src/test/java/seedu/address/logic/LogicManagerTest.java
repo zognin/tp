@@ -19,9 +19,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.exception.CommandException;
 import seedu.address.exception.ParseException;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.client.AddCommand;
+import seedu.address.logic.commands.client.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;

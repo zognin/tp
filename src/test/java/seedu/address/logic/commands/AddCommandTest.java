@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.exception.CommandException;
+import seedu.address.logic.commands.client.AddCommand;
 import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;

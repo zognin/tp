@@ -1,17 +1,22 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.client;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
 import seedu.address.exception.ParseException;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.client.AddCommand;
 import seedu.address.logic.descriptors.PersonDescriptor;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.util.ArgumentMultimap;
+import seedu.address.logic.parser.util.ArgumentTokenizer;
+import seedu.address.logic.parser.util.ParserUtil;
+import seedu.address.logic.parser.util.Prefix;
 
 /**
  * Parses input arguments and creates a new AddCommand object

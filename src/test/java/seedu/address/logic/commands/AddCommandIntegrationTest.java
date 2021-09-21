@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.client.AddCommand;
 import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

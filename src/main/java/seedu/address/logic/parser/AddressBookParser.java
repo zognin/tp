@@ -7,14 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.exception.ParseException;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.client.AddCommand;
+import seedu.address.logic.commands.client.DeleteCommand;
+import seedu.address.logic.commands.client.EditCommand;
+import seedu.address.logic.commands.client.FindCommand;
+import seedu.address.logic.commands.client.ListCommand;
+import seedu.address.logic.commands.general.ExitCommand;
+import seedu.address.logic.commands.general.HelpCommand;
+import seedu.address.logic.parser.client.AddCommandParser;
+import seedu.address.logic.parser.client.DeleteCommandParser;
+import seedu.address.logic.parser.client.EditCommandParser;
+import seedu.address.logic.parser.client.FindCommandParser;
 
 /**
  * Parses user input.
