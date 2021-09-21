@@ -2,10 +2,7 @@ package seedu.address.logic.descriptors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.Address;
@@ -13,7 +10,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -24,7 +20,6 @@ public class PersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
 
     public PersonDescriptor() {
     }
@@ -38,14 +33,13 @@ public class PersonDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
-        setTags(toCopy.tags);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address);
     }
 
     public void setName(Name name) {
@@ -81,31 +75,14 @@ public class PersonDescriptor {
     }
 
     /**
-     * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
-     */
-    public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
-    }
-
-    /**
-     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     * Returns {@code Optional#empty()} if {@code tags} is null.
-     */
-    public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-    }
-
-    /**
      * Converts a Person Descriptor to a Person model type.
      * All non null fields must be present before conversion.
      *
      * @return {@code Person}.
      */
     public Person toModelType() {
-        requireAllNonNull(name, phone, email, address, tags);
-        return new Person(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address);
+        return new Person(name, phone, email, address);
     }
 
     /**
@@ -122,9 +99,8 @@ public class PersonDescriptor {
         Phone updatedPhone = getPhone().orElse(existingPerson.getPhone());
         Email updatedEmail = getEmail().orElse(existingPerson.getEmail());
         Address updatedAddress = getAddress().orElse(existingPerson.getAddress());
-        Set<Tag> updatedTags = getTags().orElse(existingPerson.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress);
     }
 
     @Override
@@ -145,7 +121,6 @@ public class PersonDescriptor {
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                && getAddress().equals(e.getAddress());
     }
 }
