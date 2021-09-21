@@ -1,7 +1,5 @@
 package seedu.address.exception;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 /**
  * Represents a parse error encountered by a parser.
  */
