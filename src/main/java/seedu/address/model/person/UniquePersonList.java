@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.exception.NotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -49,12 +49,12 @@ public class UniquePersonList implements Iterable<Person> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws NotFoundException {
         requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new NotFoundException(Person.class.getName());
         }
 
         internalList.set(index, editedPerson);
@@ -64,10 +64,10 @@ public class UniquePersonList implements Iterable<Person> {
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Person toRemove) throws NotFoundException {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new NotFoundException(Person.class.getName());
         }
     }
 

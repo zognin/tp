@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.exception.NotFoundException;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -35,7 +36,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws NotFoundException {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -49,7 +50,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws NotFoundException {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
@@ -82,7 +83,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws NotFoundException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());

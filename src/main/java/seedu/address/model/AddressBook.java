@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.exception.NotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -79,7 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws NotFoundException {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
@@ -89,7 +90,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Person key) throws NotFoundException {
         persons.remove(key);
     }
 

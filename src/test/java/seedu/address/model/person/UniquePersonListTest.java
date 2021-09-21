@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.exception.NotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -62,11 +62,11 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(NotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setPerson_editedPersonIsSamePerson_success() throws NotFoundException {
         uniquePersonList.add(ALICE);
         uniquePersonList.setPerson(ALICE, ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -75,7 +75,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setPerson_editedPersonHasSameIdentity_success() throws NotFoundException {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -86,7 +86,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setPerson_editedPersonHasDifferentIdentity_success() throws NotFoundException {
         uniquePersonList.add(ALICE);
         uniquePersonList.setPerson(ALICE, BOB);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -101,11 +101,11 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(NotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingPerson_removesPerson() throws NotFoundException {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
