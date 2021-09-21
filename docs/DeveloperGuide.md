@@ -266,8 +266,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: Our product allows fast tracking of visitors to a particular gym, including bookings made by 
-clients and the max number of people in the gym at one time. It also keeps contact and membership details for easy 
+**Value proposition**: Our product allows fast tracking of visitors to a particular gym, including bookings made by
+clients and the max number of people in the gym at one time. It also keeps contact and membership details for easy
 client follow-up. It can record additional information like vaccination status.
 
 
@@ -372,7 +372,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Gym Manager chooses to add a client.
 2.  Gym Manager enters details in required format.
-3.  BTBB displays new client. 
+3.  BTBB displays new client.
 
     Use case ends.
 
@@ -380,12 +380,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 * 2a. Phone number entered already exists in the system.
     * 2a1. BTBB informs Gym Manager that client already exist.
-      
+
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2b1. BTBB informs Gym Manager why adding did not happen. 
-  
+    * 2b1. BTBB informs Gym Manager why adding did not happen.
+
       Use case ends.
 
 
@@ -396,7 +396,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager wants to find a client by a field.
 2.  Gym Manager enters search terms in required format.
 3.  BTBB displays all clients that match the format.
-    
+
     Use case ends.
 
 **Extensions**
@@ -414,7 +414,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 2.  Gym Manager enter details to delete a client.
 3.  BTBB deletes client.
 4.  BTBB informs Gym Manager that client has been deleted.
-    
+
     Use case ends.
 
 **Extensions**
@@ -431,7 +431,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager chooses to view all clients.
 2.  Gym Manager enters command to see all clients.
 3.  BTBB displays all clients.
-    
+
     Use case ends.
 
 **Use case: UC05 Add a booking**
@@ -442,7 +442,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 2.  Gym Manager enters details to create a booking.
 3.  BTBB adds new booking for client.
 4.  BTBB shows that new booking has been added.
-    
+
     Use case ends.
 
 **Extensions**
@@ -477,7 +477,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1.  Gym Manager wants to find bookings in a certain time slot.
 2.  Gym Manager enters search terms in required format.
 3.  BTBB displays all bookings in the time slot.
-    
+
     Use case ends.
 
 **Extensions**
@@ -528,14 +528,14 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1. Usability Requirements:
     * Should work on systems with Java 11 and above.
-    
+
 2. Business/Domain Requirements:
     * Booking slots in the app are fixed to be 1 hour 30 minutes.
     * Each booking has a max capacity (of clients).
-    
+
 3. Data Requirements:
     * Data of clients and bookings should persist after the app closes.
-    
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X

@@ -111,7 +111,7 @@ Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DA
 
 * There must be 1 or more search arguments.
 
-* Partial search will be allowed. <br> 
+* Partial search will be allowed. <br>
 e.g. <code>find client n/Al</code> can show clients with names like Alice and Alex.
 
 * <code>b/BIRTH_DATE</code> must follow the format specified [above](#features).
@@ -133,7 +133,7 @@ Format: `list client`
 
 ### Adding a booking: `add booking`
 
-Adds a booking for a client to the application. 
+Adds a booking for a client to the application.
 
 Format: `add booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
