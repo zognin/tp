@@ -12,8 +12,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 /**
- * Stores the details to edit the person with. Each non-empty field value will replace the
- * corresponding field value of the person.
+ * Stores the details to relevant to a person.
+ * Some details have to be converted to their model representations before converting to a Person model type.
  */
 public class PersonDescriptor {
     private Name name;

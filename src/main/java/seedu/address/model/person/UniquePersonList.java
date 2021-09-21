@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,19 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Gets a person by phone.
+     * The phone may not belong to any person.
+     *
+     * @param phone Phone of the person.
+     * @return An optional person.
+     */
+    public Optional<Person> getPersonByPhone(Phone phone) {
+        return internalList.stream()
+                .filter(person -> person.getPhone().equals(phone))
+                .findFirst();
     }
 
     /**
