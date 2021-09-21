@@ -543,7 +543,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 * **BTBB**: BobTheBodyBuilder
 * **Client**: A member of the gym
 * **Booking**: A fixed time period (of 1 hour 30 minutes) that a client can use the gym’s facilities
-
+  
 #### Prefix Glossary
 
 | Prefix | Parameter     | Associated with |
