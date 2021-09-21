@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,11 +30,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Booking[] getSampleBookings() {
+        Person[] people = getSamplePersons();
+        Booking[] bookings = new Booking[people.length];
+
+        for (int i = 0; i < bookings.length; i++) {
+            bookings[i] = new Booking(people[i]);
+        }
+
+        return bookings;
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+
+        for (Booking sampleBooking : getSampleBookings()) {
+            sampleAb.addBooking(sampleBooking);
+        }
+
         return sampleAb;
     }
 
