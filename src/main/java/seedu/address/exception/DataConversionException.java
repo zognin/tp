@@ -1,4 +1,4 @@
-package seedu.address.commons.exceptions;
+package seedu.address.exception;
 
 /**
  * Represents an error during conversion of data from one format to another
