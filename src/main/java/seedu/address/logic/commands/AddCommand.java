@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.exception.CommandException;
+import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -36,32 +37,33 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final PersonDescriptor personDescriptor;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(PersonDescriptor personDescriptor) {
+        requireNonNull(personDescriptor);
+        this.personDescriptor = personDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Person person = personDescriptor.toModelType();
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasPerson(person)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addPerson(person);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, person));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && personDescriptor.equals(((AddCommand) other).personDescriptor));
     }
 }

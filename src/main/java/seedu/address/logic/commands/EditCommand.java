@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.exception.CommandException;
 import seedu.address.exception.NotFoundException;
-import seedu.address.logic.params.PersonDescriptor;
+import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 

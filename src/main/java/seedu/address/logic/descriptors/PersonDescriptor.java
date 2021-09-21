@@ -1,4 +1,4 @@
-package seedu.address.logic.params;
+package seedu.address.logic.descriptors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

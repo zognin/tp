@@ -16,7 +16,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.exception.ParseException;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.params.PersonDescriptor;
+import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.model.tag.Tag;
 
 /**
