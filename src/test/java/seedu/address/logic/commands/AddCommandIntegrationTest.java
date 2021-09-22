@@ -20,7 +20,6 @@ import seedu.address.testutil.PersonDescriptorBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
-
     private Model model;
 
     @BeforeEach
@@ -46,5 +45,4 @@ public class AddCommandIntegrationTest {
         PersonDescriptor personInListDescriptor = new PersonDescriptorBuilder(personInList).build();
         assertCommandFailure(new AddCommand(personInListDescriptor), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
-
 }

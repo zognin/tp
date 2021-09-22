@@ -10,7 +10,6 @@ import seedu.address.model.person.Phone;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     private static final String DEFAULT_NAME = "Amy Bee";
     private static final String DEFAULT_PHONE = "85355255";
     private static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -76,5 +75,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, address);
     }
-
 }

@@ -20,7 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
-
     private final AddressBook addressBook = new AddressBook();
 
     @Test
@@ -89,5 +88,4 @@ public class AddressBookTest {
             return bookings;
         }
     }
-
 }

@@ -11,7 +11,6 @@ import seedu.address.model.person.Phone;
  * A utility class to help with building EditPersonDescriptor objects.
  */
 public class PersonDescriptorBuilder {
-
     private PersonDescriptor descriptor;
 
     public PersonDescriptorBuilder() {

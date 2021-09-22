@@ -47,5 +47,4 @@ public class AddBookingCommand extends Command {
             throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
         }
     }
-
 }

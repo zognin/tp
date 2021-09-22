@@ -12,7 +12,6 @@ import seedu.address.logic.parser.util.ArgumentTokenizer;
 import seedu.address.logic.parser.util.Prefix;
 
 public class ArgumentTokenizerTest {
-
     private final Prefix unknownPrefix = new Prefix("--u");
     private final Prefix pSlash = new Prefix("p/");
     private final Prefix dashT = new Prefix("-t");
@@ -150,5 +149,4 @@ public class ArgumentTokenizerTest {
         assertNotEquals(aaa, "aaa");
         assertNotEquals(aaa, new Prefix("aab"));
     }
-
 }

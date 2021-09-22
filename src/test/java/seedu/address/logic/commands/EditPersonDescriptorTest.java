@@ -15,7 +15,6 @@ import seedu.address.logic.descriptors.PersonDescriptor;
 import seedu.address.testutil.PersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
-
     @Test
     public void equals() {
         // same values -> returns true
