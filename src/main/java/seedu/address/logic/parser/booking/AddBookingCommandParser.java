@@ -2,7 +2,6 @@ package seedu.address.logic.parser.booking;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.util.ParserUtil.arePrefixesPresent;
 
 import seedu.address.exception.ParseException;
 import seedu.address.logic.commands.booking.AddBookingCommand;
@@ -17,7 +16,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
     public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PHONE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookingCommand.MESSAGE_USAGE));
         }
 

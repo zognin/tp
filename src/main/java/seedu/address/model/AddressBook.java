@@ -121,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// person-level operations
+    //// booking-level operations
 
     /**
      * Adds a booking to the address book.
