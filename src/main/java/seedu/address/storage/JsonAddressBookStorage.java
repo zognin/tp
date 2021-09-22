@@ -18,7 +18,6 @@ import seedu.address.model.ReadOnlyAddressBook;
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
-
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
@@ -76,5 +75,4 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
-
 }

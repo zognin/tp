@@ -18,7 +18,6 @@ import seedu.address.logic.parser.client.DeleteCommandParser;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DeleteCommandParserTest {
-
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test

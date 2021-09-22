@@ -30,7 +30,6 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonDescriptorBuilder;
 
 public class AddCommandTest {
-
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
@@ -213,5 +212,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

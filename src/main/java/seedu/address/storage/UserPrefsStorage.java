@@ -12,7 +12,6 @@ import seedu.address.model.UserPrefs;
  * Represents a storage for {@link seedu.address.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
-
     /**
      * Returns the file path of the UserPrefs data file.
      */
@@ -32,5 +31,4 @@ public interface UserPrefsStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
-
 }

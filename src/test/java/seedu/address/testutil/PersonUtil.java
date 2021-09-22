@@ -13,7 +13,6 @@ import seedu.address.model.person.Person;
  * A utility class for Person.
  */
 public class PersonUtil {
-
     /**
      * Returns an add command string for adding the {@code person}.
      */

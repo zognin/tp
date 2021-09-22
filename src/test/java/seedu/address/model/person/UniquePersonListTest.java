@@ -17,7 +17,6 @@ import seedu.address.exception.NotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
-
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 
     @Test
