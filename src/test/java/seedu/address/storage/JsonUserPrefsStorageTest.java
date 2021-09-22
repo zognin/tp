@@ -21,7 +21,7 @@ public class JsonUserPrefsStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
 
     @TempDir
-    private Path testFolder;
+    public Path testFolder;
 
     @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
