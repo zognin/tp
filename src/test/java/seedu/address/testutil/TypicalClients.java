@@ -20,7 +20,6 @@ import seedu.address.model.client.Client;
  * A utility class containing a list of {@code Client} objects to be used in tests.
  */
 public class TypicalClients {
-
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").build();

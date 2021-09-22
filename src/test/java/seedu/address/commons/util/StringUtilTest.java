@@ -9,9 +9,7 @@ import java.io.FileNotFoundException;
 import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
-
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
-
     @Test
     public void isNonZeroUnsignedInteger() {
 
@@ -139,5 +137,4 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
-
 }

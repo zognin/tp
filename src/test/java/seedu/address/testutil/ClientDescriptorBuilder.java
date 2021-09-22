@@ -11,7 +11,6 @@ import seedu.address.model.client.Phone;
  * A utility class to help with building EditClientDescriptor objects.
  */
 public class ClientDescriptorBuilder {
-
     private ClientDescriptor descriptor;
 
     public ClientDescriptorBuilder() {

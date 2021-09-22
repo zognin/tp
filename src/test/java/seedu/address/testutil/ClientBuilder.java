@@ -10,7 +10,6 @@ import seedu.address.model.client.Phone;
  * A utility class to help with building Client objects.
  */
 public class ClientBuilder {
-
     private static final String DEFAULT_NAME = "Amy Bee";
     private static final String DEFAULT_PHONE = "85355255";
     private static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -76,5 +75,4 @@ public class ClientBuilder {
     public Client build() {
         return new Client(name, phone, email, address);
     }
-
 }

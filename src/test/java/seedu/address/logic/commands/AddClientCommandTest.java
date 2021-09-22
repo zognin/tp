@@ -30,7 +30,6 @@ import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientDescriptorBuilder;
 
 public class AddClientCommandTest {
-
     @Test
     public void constructor_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddClientCommand(null));
@@ -214,5 +213,4 @@ public class AddClientCommandTest {
             return new AddressBook();
         }
     }
-
 }

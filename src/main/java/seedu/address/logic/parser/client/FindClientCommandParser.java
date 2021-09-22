@@ -13,7 +13,6 @@ import seedu.address.model.client.NameContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindClientCommand object
  */
 public class FindClientCommandParser implements Parser<FindClientCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindClientCommand
      * and returns a FindClientCommand object for execution.
@@ -30,5 +29,4 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         return new FindClientCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
-
 }

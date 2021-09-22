@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
-
     @Test
     public void isSameClient() {
         // same object -> returns true

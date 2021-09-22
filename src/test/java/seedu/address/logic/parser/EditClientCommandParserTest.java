@@ -38,7 +38,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.testutil.ClientDescriptorBuilder;
 
 public class EditClientCommandParserTest {
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
 
@@ -174,5 +173,4 @@ public class EditClientCommandParserTest {
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
 }

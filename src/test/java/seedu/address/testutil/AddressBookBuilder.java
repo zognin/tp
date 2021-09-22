@@ -9,7 +9,6 @@ import seedu.address.model.client.Client;
  *     {@code AddressBook ab = new AddressBookBuilder().withClient("John", "Doe").build();}
  */
 public class AddressBookBuilder {
-
     private AddressBook addressBook;
 
     public AddressBookBuilder() {

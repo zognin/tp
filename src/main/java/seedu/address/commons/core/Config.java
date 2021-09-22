@@ -9,7 +9,6 @@ import java.util.logging.Level;
  * Config values used by the app
  */
 public class Config {
-
     public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
 
     // Config values customizable through config file
@@ -59,5 +58,4 @@ public class Config {
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         return sb.toString();
     }
-
 }

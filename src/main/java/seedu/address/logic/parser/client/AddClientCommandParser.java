@@ -18,7 +18,6 @@ import seedu.address.logic.parser.util.ParserUtil;
  * Parses input arguments and creates a new AddClientCommand object
  */
 public class AddClientCommandParser implements Parser<AddClientCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddClientCommand
      * and returns an AddClientCommand object for execution.
@@ -41,5 +40,4 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
 
         return new AddClientCommand(clientDescriptor);
     }
-
 }

@@ -28,7 +28,6 @@ import seedu.address.testutil.ClientDescriptorBuilder;
 import seedu.address.testutil.ClientUtil;
 
 public class AddressBookParserTest {
-
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test

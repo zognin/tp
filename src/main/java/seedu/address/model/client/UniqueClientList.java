@@ -23,7 +23,6 @@ import seedu.address.exception.NotFoundException;
  * @see Client#isSameClient(Client)
  */
 public class UniqueClientList implements Iterable<Client> {
-
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

@@ -18,7 +18,6 @@ import seedu.address.model.client.UniqueClientList;
  * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
     private final UniqueClientList clients;
     private final UniqueBookingList bookings;
 

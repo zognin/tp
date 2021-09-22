@@ -15,7 +15,6 @@ import seedu.address.logic.descriptors.ClientDescriptor;
 import seedu.address.testutil.ClientDescriptorBuilder;
 
 public class EditClientDescriptorTest {
-
     @Test
     public void equals() {
         // same values -> returns true

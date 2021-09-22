@@ -19,7 +19,6 @@ import seedu.address.model.client.Client;
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
-
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
@@ -70,5 +69,4 @@ class JsonSerializableAddressBook {
 
         return addressBook;
     }
-
 }

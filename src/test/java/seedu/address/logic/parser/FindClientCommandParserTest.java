@@ -13,7 +13,6 @@ import seedu.address.logic.parser.client.FindClientCommandParser;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {
-
     private FindClientCommandParser parser = new FindClientCommandParser();
 
     @Test
@@ -32,5 +31,4 @@ public class FindClientCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindClientCommand);
     }
-
 }

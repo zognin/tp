@@ -17,7 +17,6 @@ import seedu.address.exception.NotFoundException;
 import seedu.address.testutil.ClientBuilder;
 
 public class UniqueClientListTest {
-
     private final UniqueClientList uniqueClientList = new UniqueClientList();
 
     @Test

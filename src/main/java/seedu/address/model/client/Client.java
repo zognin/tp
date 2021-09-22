@@ -9,7 +9,6 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -98,5 +97,4 @@ public class Client {
 
         return builder.toString();
     }
-
 }

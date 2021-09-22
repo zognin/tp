@@ -23,7 +23,6 @@ import seedu.address.model.client.Client;
  * Edits the details of an existing client in the address book.
  */
 public class EditClientCommand extends Command {
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
@@ -100,5 +99,4 @@ public class EditClientCommand extends Command {
         return index.equals(e.index)
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
-
 }

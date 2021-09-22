@@ -19,7 +19,6 @@ import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
-
     private ModelManager modelManager = new ModelManager();
 
     @Test

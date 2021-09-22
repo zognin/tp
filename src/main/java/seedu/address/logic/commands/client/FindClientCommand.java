@@ -13,7 +13,6 @@ import seedu.address.model.client.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindClientCommand extends Command {
-
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "

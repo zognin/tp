@@ -33,7 +33,6 @@ import seedu.address.testutil.ClientDescriptorBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditClientCommand.
  */
 public class EditClientCommandTest {
-
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -170,5 +169,4 @@ public class EditClientCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditClientCommand(INDEX_FIRST_CLIENT, DESC_BOB)));
     }
-
 }

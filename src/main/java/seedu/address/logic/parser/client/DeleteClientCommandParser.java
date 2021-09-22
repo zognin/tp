@@ -12,7 +12,6 @@ import seedu.address.logic.parser.util.ParserUtil;
  * Parses input arguments and creates a new DeleteClientCommand object
  */
 public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteClientCommand
      * and returns a DeleteClientCommand object for execution.
@@ -27,5 +26,4 @@ public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

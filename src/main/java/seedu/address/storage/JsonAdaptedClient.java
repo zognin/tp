@@ -14,7 +14,6 @@ import seedu.address.model.client.Phone;
  * Jackson-friendly version of {@link Client}.
  */
 class JsonAdaptedClient {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
@@ -84,5 +83,4 @@ class JsonAdaptedClient {
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress);
     }
-
 }

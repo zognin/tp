@@ -25,7 +25,6 @@ import seedu.address.model.client.Client;
  * {@code DeleteClientCommand}.
  */
 public class DeleteClientCommandTest {
-
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test

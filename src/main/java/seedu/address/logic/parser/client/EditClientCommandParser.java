@@ -20,7 +20,6 @@ import seedu.address.logic.parser.util.ParserUtil;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditClientCommandParser implements Parser<EditClientCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditClientCommand
      * and returns an EditClientCommand object for execution.
@@ -60,5 +59,4 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
 
         return new EditClientCommand(index, editClientDescriptor);
     }
-
 }

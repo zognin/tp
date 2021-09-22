@@ -13,7 +13,6 @@ import seedu.address.model.client.Client;
  * A utility class for Client.
  */
 public class ClientUtil {
-
     /**
      * Returns an add command string for adding the {@code client}.
      */

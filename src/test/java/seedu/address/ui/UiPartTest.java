@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import seedu.address.MainApp;
 
 public class UiPartTest {
-
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
     private static final String INVALID_FILE_PATH = "UiPartTest/invalidFile.fxml";
     private static final String VALID_FILE_PATH = "UiPartTest/validFile.fxml";
@@ -84,10 +83,9 @@ public class UiPartTest {
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link VALID_FILE_PATH}.
+     * It should only be used with invalid FXML files or the valid file located at {@link #VALID_FILE_PATH}.
      */
     private static class TestUiPart<T> extends UiPart<T> {
-
         @FXML
         private TestFxmlObject validFileRoot; // Check that @FXML annotations work
 
@@ -108,7 +106,5 @@ public class UiPartTest {
             super(fxmlFileName);
             assertEquals(VALID_FILE_ROOT, validFileRoot);
         }
-
     }
-
 }

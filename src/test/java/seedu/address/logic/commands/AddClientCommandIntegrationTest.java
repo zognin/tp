@@ -20,7 +20,6 @@ import seedu.address.testutil.ClientDescriptorBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddClientCommand}.
  */
 public class AddClientCommandIntegrationTest {
-
     private Model model;
 
     @BeforeEach
@@ -47,5 +46,4 @@ public class AddClientCommandIntegrationTest {
         assertCommandFailure(new AddClientCommand(clientInListDescriptor), model,
                 AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
-
 }
