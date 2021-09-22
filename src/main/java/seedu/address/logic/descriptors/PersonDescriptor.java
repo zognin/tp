@@ -21,8 +21,7 @@ public class PersonDescriptor {
     private Email email;
     private Address address;
 
-    public PersonDescriptor() {
-    }
+    public PersonDescriptor() {}
 
     /**
      * Copy constructor.

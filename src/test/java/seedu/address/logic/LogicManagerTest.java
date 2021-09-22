@@ -36,7 +36,7 @@ public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir
-    public Path temporaryFolder;
+    private Path temporaryFolder;
 
     private Model model = new ModelManager();
     private Logic logic;

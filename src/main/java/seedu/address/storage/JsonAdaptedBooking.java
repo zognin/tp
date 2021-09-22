@@ -32,7 +32,7 @@ public class JsonAdaptedBooking {
      * Converts a given {@code Booking} into this class for Jackson use.
      */
     public JsonAdaptedBooking(Booking source) {
-        phone = source.getPhone().value;
+        phone = source.getPhone().toString();
     }
 
     /**

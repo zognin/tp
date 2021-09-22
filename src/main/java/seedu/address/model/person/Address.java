@@ -15,9 +15,9 @@ public class Address {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private final String address;
 
     /**
      * Constructs an {@code Address}.
@@ -27,7 +27,7 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        this.address = address;
     }
 
     /**
@@ -39,19 +39,19 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return address;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                && address.equals(((Address) other).address)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return address.hashCode();
     }
 
 }
