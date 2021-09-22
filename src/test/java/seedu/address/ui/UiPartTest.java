@@ -86,7 +86,6 @@ public class UiPartTest {
      * It should only be used with invalid FXML files or the valid file located at {@link #VALID_FILE_PATH}.
      */
     private static class TestUiPart<T> extends UiPart<T> {
-
         @FXML
         private TestFxmlObject validFileRoot; // Check that @FXML annotations work
 
@@ -107,6 +106,5 @@ public class UiPartTest {
             super(fxmlFileName);
             assertEquals(VALID_FILE_ROOT, validFileRoot);
         }
-
     }
 }
