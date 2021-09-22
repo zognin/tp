@@ -4,32 +4,32 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 /**
  * Represents a Booking in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Booking {
-    private final Person person;
+    private final Client client;
 
     /**
      * Constructs a booking.
      *
-     * @param person Person to whom this booking belongs to.
+     * @param client Person to whom this booking belongs to.
      */
-    public Booking(Person person) {
-        requireAllNonNull(person);
-        this.person = person;
+    public Booking(Client client) {
+        requireAllNonNull(client);
+        this.client = client;
     }
 
-    private Person getPerson() {
-        return person;
+    private Client getClient() {
+        return client;
     }
 
     public Phone getPhone() {
-        return getPerson().getPhone();
+        return getClient().getPhone();
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Booking {
         }
 
         Booking otherBooking = (Booking) other;
-        return otherBooking.getPerson().equals(getPerson());
+        return otherBooking.getClient().equals(getClient());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(person);
+        return Objects.hash(client);
     }
 
     @Override

@@ -14,8 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.exception.NotFoundException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +25,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
     private final FilteredList<Booking> filteredBookings;
 
     /**
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
     }
 
@@ -95,33 +95,33 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
     }
 
     @Override
-    public Optional<Person> getPersonByPhone(Phone phone) {
+    public Optional<Client> getClientByPhone(Phone phone) {
         requireNonNull(phone);
-        return addressBook.getPersonByPhone(phone);
+        return addressBook.getClientByPhone(phone);
     }
 
     @Override
-    public void deletePerson(Person target) throws NotFoundException {
-        addressBook.removePerson(target);
+    public void deleteClient(Client target) throws NotFoundException {
+        addressBook.removeClient(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) throws NotFoundException {
-        requireAllNonNull(target, editedPerson);
+    public void setClient(Client target, Client editedClient) throws NotFoundException {
+        requireAllNonNull(target, editedClient);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setClient(target, editedClient);
     }
 
     @Override
@@ -130,21 +130,21 @@ public class ModelManager implements Model {
         updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered CLient List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredClients.setPredicate(predicate);
     }
 
     @Override
@@ -169,6 +169,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredClients.equals(other.filteredClients);
     }
 }

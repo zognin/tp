@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.exception.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 /**
  * Jackson-friendly version of {@link Booking}.
@@ -50,12 +50,12 @@ public class JsonAdaptedBooking {
         }
         final Phone modelPhone = new Phone(phone);
 
-        Optional<Person> optionalModelPerson = addressBook.getPersonByPhone(modelPhone);
-        if (!(optionalModelPerson.isPresent())) {
+        Optional<Client> optionalModelClient = addressBook.getClientByPhone(modelPhone);
+        if (!(optionalModelClient.isPresent())) {
             throw new IllegalValueException(
                     String.format(INVALID_CLIENT_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
 
-        return new Booking(optionalModelPerson.get());
+        return new Booking(optionalModelClient.get());
     }
 }

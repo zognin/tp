@@ -7,8 +7,8 @@ import java.util.Optional;
 import seedu.address.exception.NotFoundException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Phone;
 
 public class BookingDescriptor {
     private Phone phone;
@@ -36,11 +36,11 @@ public class BookingDescriptor {
      */
     public Booking toModelType(Model model) throws NotFoundException {
         requireAllNonNull(phone);
-        Optional<Person> optionalPerson = model.getPersonByPhone(phone);
-        if (!(optionalPerson.isPresent())) {
+        Optional<Client> optionalClient = model.getClientByPhone(phone);
+        if (!(optionalClient.isPresent())) {
             throw new NotFoundException(Phone.class.getName());
         }
 
-        return new Booking(optionalPerson.get());
+        return new Booking(optionalClient.get());
     }
 }
