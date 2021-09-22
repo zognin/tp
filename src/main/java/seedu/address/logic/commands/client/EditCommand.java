@@ -99,5 +99,4 @@ public class EditCommand extends Command {
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
-
 }
