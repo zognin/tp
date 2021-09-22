@@ -3,9 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.exception.NotFoundException;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.UniqueBookingList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -15,6 +20,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueBookingList bookings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        bookings = new UniqueBookingList();
     }
 
     public AddressBook() {}
@@ -48,12 +55,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the bookings list with {@code bookings}
+     * {@code bookings} must not contain duplicate bookings.
+     *
+     * @param bookings Bookings to replace the list with.
+     */
+    public void setBookings(List<Booking> bookings) {
+        this.bookings.setBookings(bookings);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBookings(newData.getBookingList());
     }
 
     //// person-level operations
@@ -64,6 +82,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Gets a person by phone.
+     *
+     * @param phone Phone of a person.
+     * @return An optional person.
+     */
+    public Optional<Person> getPersonByPhone(Phone phone) {
+        return persons.getPersonByPhone(phone);
     }
 
     /**
@@ -79,7 +107,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws NotFoundException {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
@@ -89,8 +117,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Person key) throws NotFoundException {
         persons.remove(key);
+    }
+
+    //// booking-level operations
+
+    /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     *
+     * @param booking Booking to be added.
+     */
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
     }
 
     //// util methods
@@ -104,6 +144,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Booking> getBookingList() {
+        return bookings.asUnmodifiableObservableList();
     }
 
     @Override
