@@ -38,8 +38,8 @@ task coverage(type: JacocoReport) {
         })
     }
     reports {
-        html.enabled = true
-        xml.enabled = true
+        html.required = true
+        xml.required = true
     }
 }
 
@@ -77,7 +77,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveFileName = 'addressbook.jar'
 }
 
 jacoco {
