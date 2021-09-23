@@ -1,0 +1,34 @@
+package seedu.btbb.logic.parser;
+
+import static seedu.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.btbb.logic.commands.client.FindClientCommand;
+import seedu.btbb.logic.parser.client.FindClientCommandParser;
+import seedu.btbb.model.client.NameContainsKeywordsPredicate;
+
+public class FindClientCommandParserTest {
+    private FindClientCommandParser parser = new FindClientCommandParser();
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindClientCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindClientCommand() {
+        // no leading and trailing whitespaces
+        FindClientCommand expectedFindClientCommand =
+                new FindClientCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice Bob", expectedFindClientCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindClientCommand);
+    }
+}
