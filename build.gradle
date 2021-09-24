@@ -7,7 +7,7 @@ plugins {
     id 'com.github.jakemarsden.git-hooks' version '0.0.2'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'ay2122s1_cs2103t_w16_2.btbb.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -77,7 +77,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'btbb.jar'
 }
 
 jacoco {
