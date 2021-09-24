@@ -146,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 

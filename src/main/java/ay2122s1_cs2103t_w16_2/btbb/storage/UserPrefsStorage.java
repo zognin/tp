@@ -9,7 +9,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 
 /**
- * Represents a storage for {@link UserPrefs}.
+ * Represents a storage for {@link ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
     /**

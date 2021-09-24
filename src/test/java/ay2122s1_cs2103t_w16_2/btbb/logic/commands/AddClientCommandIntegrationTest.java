@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 
@@ -42,7 +43,7 @@ public class AddClientCommandIntegrationTest {
     public void execute_duplicateClient_throwsCommandException() {
         Client clientInList = model.getAddressBook().getClientList().get(0);
         ClientDescriptor clientInListDescriptor = new ClientDescriptorBuilder(clientInList).build();
-        CommandTestUtil.assertCommandFailure(new AddClientCommand(clientInListDescriptor), model,
+        assertCommandFailure(new AddClientCommand(clientInListDescriptor), model,
                 AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 }
