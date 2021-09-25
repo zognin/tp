@@ -71,21 +71,21 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Booking> bookings = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
         }
 
         @Override
-        public ObservableList<Client> getClientList() {
-            return clients;
+        public ObservableList<Booking> getBookingList() {
+            return bookings;
         }
 
         @Override
-        public ObservableList<Booking> getBookingList() {
-            return bookings;
+        public ObservableList<Client> getClientList() {
+            return clients;
         }
     }
 }
