@@ -10,6 +10,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -33,12 +37,39 @@
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <HBox VBox.vgrow="ALWAYS">
+          <GridPane fx:id="listPanelsPlaceholder" HBox.hgrow="ALWAYS">
+            <children>
+              <VBox fx:id="clientList"
+                    GridPane.columnIndex="0"
+                    styleClass="pane-with-border"
+                    minWidth="340"
+                    GridPane.vgrow="ALWAYS">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+
+              <VBox fx:id="bookingList"
+                    GridPane.columnIndex="1"
+                    styleClass="pane-with-border"
+                    minWidth="340"
+                    GridPane.vgrow="ALWAYS"
+              >
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="bookingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </children>
+
+            <columnConstraints>
+              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="60.0" />
+              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="40.0" />
+            </columnConstraints>
+          </GridPane>
+        </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">

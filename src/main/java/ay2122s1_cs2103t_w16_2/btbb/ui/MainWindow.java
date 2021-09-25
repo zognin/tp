@@ -14,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -30,15 +31,22 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private BookingListPanel bookingListPanel;
     private ClientListPanel clientListPanel;
-    private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ResultDisplay resultDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private GridPane listPanelsPlaceholder;
+
+    @FXML
+    private StackPane bookingListPanelPlaceholder;
 
     @FXML
     private StackPane clientListPanelPlaceholder;
@@ -110,6 +118,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        listPanelsPlaceholder = new GridPane();
+
+        bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
+        bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 

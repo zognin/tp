@@ -89,6 +89,9 @@ public interface Model {
      */
     void setClient(Client target, Client editedClient) throws NotFoundException;
 
+    /** Returns an unmodifiable view of the filtered booking list */
+    ObservableList<Booking> getFilteredBookingList();
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 

@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 
 /**
@@ -26,6 +27,10 @@ public class Booking {
 
     private Client getClient() {
         return client;
+    }
+
+    public Name getName() {
+        return getClient().getName();
     }
 
     public Phone getPhone() {
