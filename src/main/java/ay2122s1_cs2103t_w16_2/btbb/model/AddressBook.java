@@ -18,8 +18,8 @@ import javafx.collections.ObservableList;
  * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-    private final UniqueClientList clients;
     private final UniqueBookingList bookings;
+    private final UniqueClientList clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,8 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        clients = new UniqueClientList();
         bookings = new UniqueBookingList();
+        clients = new UniqueClientList();
     }
 
     public AddressBook() {}
@@ -46,14 +46,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the client list with {@code clients}.
-     * {@code clients} must not contain duplicate clients.
-     */
-    public void setClients(List<Client> clients) {
-        this.clients.setClients(clients);
-    }
-
-    /**
      * Replaces the contents of the bookings list with {@code bookings}
      * {@code bookings} must not contain duplicate bookings.
      *
@@ -64,13 +56,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setClients(newData.getClientList());
         setBookings(newData.getBookingList());
+        setClients(newData.getClientList());
+    }
+
+    //// booking-level operations
+
+    /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     *
+     * @param booking Booking to be added.
+     */
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
     }
 
     //// client-level operations
@@ -120,18 +132,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
-    //// booking-level operations
-
-    /**
-     * Adds a booking to the address book.
-     * The booking must not already exist in the address book.
-     *
-     * @param booking Booking to be added.
-     */
-    public void addBooking(Booking booking) {
-        bookings.add(booking);
-    }
-
     //// util methods
 
     @Override
@@ -141,13 +141,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
+    public ObservableList<Booking> getBookingList() {
+        return bookings.asUnmodifiableObservableList();
     }
 
     @Override
-    public ObservableList<Booking> getBookingList() {
-        return bookings.asUnmodifiableObservableList();
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override

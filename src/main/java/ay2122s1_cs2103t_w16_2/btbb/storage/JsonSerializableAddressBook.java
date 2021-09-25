@@ -21,17 +21,17 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
-    private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedBooking> bookings = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients,
-                                       @JsonProperty("bookings") List<JsonAdaptedBooking> bookings) {
-        this.clients.addAll(clients);
+    public JsonSerializableAddressBook(@JsonProperty("bookings") List<JsonAdaptedBooking> bookings,
+                                       @JsonProperty("clients") List<JsonAdaptedClient> clients) {
         this.bookings.addAll(bookings);
+        this.clients.addAll(clients);
     }
 
     /**
@@ -40,8 +40,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
         bookings.addAll(source.getBookingList().stream().map(JsonAdaptedBooking::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
 
     /**

@@ -24,9 +24,9 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final UserPrefs userPrefs;
-    private final FilteredList<Client> filteredClients;
     private final FilteredList<Booking> filteredBookings;
+    private final FilteredList<Client> filteredClients;
+    private final UserPrefs userPrefs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,8 +38,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
     }
 
     public ModelManager() {
@@ -93,6 +93,22 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== Booking ====================================================================================
+
+    @Override
+    public void addBooking(Booking booking) {
+        addressBook.addBooking(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
+    }
+
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
+    }
+
+    //=========== Client ====================================================================================
+
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -123,14 +139,6 @@ public class ModelManager implements Model {
         addressBook.setClient(target, editedClient);
     }
 
-    @Override
-    public void addBooking(Booking booking) {
-        addressBook.addBooking(booking);
-        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
-    }
-
-    //=========== Filtered CLient List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
      * {@code versionedAddressBook}
@@ -144,12 +152,6 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredBookingList(Predicate<Booking> predicate) {
-        requireNonNull(predicate);
-        filteredBookings.setPredicate(predicate);
     }
 
     @Override
