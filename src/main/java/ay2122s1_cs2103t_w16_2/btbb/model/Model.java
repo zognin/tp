@@ -16,8 +16,10 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+
+    //=========== UserPref ===================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -49,6 +51,8 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    //=========== AddressBook ================================================================================
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -56,6 +60,23 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    //=========== Booking ====================================================================================
+
+    /**
+     * Adds the given booking.
+     * {@code booking} must not already exist in the address book.
+     */
+    void addBooking(Booking booking);
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
+
+    //=========== Client =====================================================================================
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
@@ -98,17 +119,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
-
-    /**
-     * Adds the given booking.
-     * {@code booking} must not already exist in the address book.
-     */
-    void addBooking(Booking booking);
-
-    /**
-     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredBookingList(Predicate<Booking> predicate);
 }
