@@ -117,11 +117,6 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public void addClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -138,6 +133,11 @@ public class AddClientCommandTest {
 
         @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 

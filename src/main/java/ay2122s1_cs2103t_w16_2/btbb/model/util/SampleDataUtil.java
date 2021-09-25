@@ -13,6 +13,17 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    public static Booking[] getSampleBookings() {
+        Client[] people = getSampleClients();
+        Booking[] bookings = new Booking[people.length];
+
+        for (int i = 0; i < bookings.length; i++) {
+            bookings[i] = new Booking(people[i]);
+        }
+
+        return bookings;
+    }
+
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -28,17 +39,6 @@ public class SampleDataUtil {
             new Client(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"))
         };
-    }
-
-    public static Booking[] getSampleBookings() {
-        Client[] people = getSampleClients();
-        Booking[] bookings = new Booking[people.length];
-
-        for (int i = 0; i < bookings.length; i++) {
-            bookings[i] = new Booking(people[i]);
-        }
-
-        return bookings;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
