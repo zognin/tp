@@ -10,6 +10,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.EditClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
@@ -17,6 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.FindClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
 
@@ -54,6 +56,9 @@ public class AddressBookParser {
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
+
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
 
         case FindClientCommand.COMMAND_WORD:
             return new FindClientCommandParser().parse(arguments);
