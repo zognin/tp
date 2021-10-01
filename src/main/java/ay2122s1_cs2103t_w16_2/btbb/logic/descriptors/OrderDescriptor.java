@@ -34,4 +34,22 @@ public class OrderDescriptor {
         requireAllNonNull(phone);
         return new Order(phone);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof OrderDescriptor)) {
+            return false;
+        }
+
+        // state check
+        OrderDescriptor otherOrderDescriptor = (OrderDescriptor) other;
+
+        return getPhone().equals(otherOrderDescriptor.getPhone());
+    }
 }
