@@ -1,14 +1,12 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 
 /**
@@ -16,8 +14,8 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     //=========== UserPref ===================================================================================
 
@@ -61,35 +59,12 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    //=========== Booking ====================================================================================
-
-    /**
-     * Adds the given booking.
-     * {@code booking} must not already exist in the address book.
-     */
-    void addBooking(Booking booking);
-
-    /**
-     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredBookingList(Predicate<Booking> predicate);
-
     //=========== Client =====================================================================================
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     boolean hasClient(Client client);
-
-    /**
-     * Gets a client by their phone.
-     *
-     * @param phone Phone.
-     * @return Client.
-     */
-    Optional<Client> getClientByPhone(Phone phone);
 
     /**
      * Deletes the given client.
@@ -119,4 +94,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    //=========== Order ======================================================================================
+
+    /**
+     * Adds the given order.
+     * {@code order} must not already exist in the address book.
+     */
+    void addOrder(Order order);
+
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
 }

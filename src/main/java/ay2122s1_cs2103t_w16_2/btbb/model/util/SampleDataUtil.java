@@ -2,28 +2,17 @@ package ay2122s1_cs2103t_w16_2.btbb.model.util;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Booking[] getSampleBookings() {
-        Client[] people = getSampleClients();
-        Booking[] bookings = new Booking[people.length];
-
-        for (int i = 0; i < bookings.length; i++) {
-            bookings[i] = new Booking(people[i]);
-        }
-
-        return bookings;
-    }
-
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -41,6 +30,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Order[] getSampleOrders() {
+        Client[] people = getSampleClients();
+        Order[] orders = new Order[people.length];
+
+        for (int i = 0; i < orders.length; i++) {
+            orders[i] = new Order(people[i].getPhone());
+        }
+
+        return orders;
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
 
@@ -48,8 +48,8 @@ public class SampleDataUtil {
             sampleAb.addClient(sampleClient);
         }
 
-        for (Booking sampleBooking : getSampleBookings()) {
-            sampleAb.addBooking(sampleBooking);
+        for (Order sampleOrder : getSampleOrders()) {
+            sampleAb.addOrder(sampleOrder);
         }
 
         return sampleAb;

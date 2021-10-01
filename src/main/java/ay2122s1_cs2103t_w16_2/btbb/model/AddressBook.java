@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.UniqueBookingList;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
 import javafx.collections.ObservableList;
 
 /**
@@ -18,8 +18,8 @@ import javafx.collections.ObservableList;
  * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-    private final UniqueBookingList bookings;
     private final UniqueClientList clients;
+    private final UniqueOrderList orders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,8 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        bookings = new UniqueBookingList();
         clients = new UniqueClientList();
+        orders = new UniqueOrderList();
     }
 
     public AddressBook() {}
@@ -46,16 +46,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the bookings list with {@code bookings}
-     * {@code bookings} must not contain duplicate bookings.
-     *
-     * @param bookings Bookings to replace the list with.
-     */
-    public void setBookings(List<Booking> bookings) {
-        this.bookings.setBookings(bookings);
-    }
-
-    /**
      * Replaces the contents of the client list with {@code clients}.
      * {@code clients} must not contain duplicate clients.
      */
@@ -64,25 +54,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the orders list with {@code orders}
+     * {@code orders} must not contain duplicate orders.
+     *
+     * @param orders Orders to replace the list with.
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setBookings(newData.getBookingList());
         setClients(newData.getClientList());
-    }
-
-    //// booking-level operations
-
-    /**
-     * Adds a booking to the address book.
-     * The booking must not already exist in the address book.
-     *
-     * @param booking Booking to be added.
-     */
-    public void addBooking(Booking booking) {
-        bookings.add(booking);
+        setOrders(newData.getOrderList());
     }
 
     //// client-level operations
@@ -132,6 +120,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    //// order-level operations
+
+    /**
+     * Adds an order to the address book.
+     * The order must not already exist in the address book.
+     *
+     * @param order Order to be added.
+     */
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
     //// util methods
 
     @Override
@@ -141,13 +141,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Booking> getBookingList() {
-        return bookings.asUnmodifiableObservableList();
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
     }
 
     @Override

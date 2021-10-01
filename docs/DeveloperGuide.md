@@ -266,7 +266,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: Our product allows fast tracking of visitors to a particular gym, including bookings made by
+**Value proposition**: Our product allows fast tracking of visitors to a particular gym, including orders made by
 clients and the max number of people in the gym at one time. It also keeps contact and membership details for easy
 client follow-up. It can record additional information like vaccination status.
 
@@ -316,8 +316,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Search for a booking by a client's name</td>
-    <td>I can confirm if they have a booking before letting them enter</td>
+    <td>Search for a order by a client's name</td>
+    <td>I can confirm if they have a order before letting them enter</td>
   </tr>
   <tr>
     <td>HIGH</td>
@@ -326,33 +326,33 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Make booking appointments for clients</td>
-    <td>I know how many bookings I have in a day</td>
+    <td>Make order appointments for clients</td>
+    <td>I know how many orders I have in a day</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View the number of bookings at a given time</td>
+    <td>View the number of orders at a given time</td>
     <td>I will not exceed the maximum capacity</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View past bookings</td>
+    <td>View past orders</td>
     <td>I can help the contact tracing initiative</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Delete cancelled bookings</td>
+    <td>Delete cancelled orders</td>
     <td>I can free up space for other clients</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Delete uncompleted bookings</td>
+    <td>Delete uncompleted orders</td>
     <td>I will not clutter my app</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Filter bookings based on time and date</td>
-    <td>I know how many bookings are made and who the clients are</td>
+    <td>Filter orders based on time and date</td>
+    <td>I know how many orders are made and who the clients are</td>
   </tr>
   <tr>
     <td>HIGH</td>
@@ -434,14 +434,14 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
     Use case ends.
 
-**Use case: UC05 Add a booking**
+**Use case: UC05 Add a order**
 
 **MSS**
 
-1.  Gym Manager chooses to add a booking.
-2.  Gym Manager enters details to create a booking.
-3.  BTBB adds new booking for client.
-4.  BTBB shows that new booking has been added.
+1.  Gym Manager chooses to add a order.
+2.  Gym Manager enters details to create a order.
+3.  BTBB adds new order for client.
+4.  BTBB shows that new order has been added.
 
     Use case ends.
 
@@ -452,14 +452,14 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC06 Delete a booking**
+**Use case: UC06 Delete a order**
 
 **MSS**
 
-1.  Gym Manager chooses to delete a booking.
-2.  Gym Manager enter details to delete a booking.
-3.  BTBB deletes booking.
-4.  BTBB informs Gym Manager that booking has been deleted.
+1.  Gym Manager chooses to delete a order.
+2.  Gym Manager enter details to delete a order.
+3.  BTBB deletes order.
+4.  BTBB informs Gym Manager that order has been deleted.
 
     Use case ends.
 
@@ -470,13 +470,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC07 Find bookings**
+**Use case: UC07 Find orders**
 
 **MSS**
 
-1.  Gym Manager wants to find bookings in a certain time slot.
+1.  Gym Manager wants to find orders in a certain time slot.
 2.  Gym Manager enters search terms in required format.
-3.  BTBB displays all bookings in the time slot.
+3.  BTBB displays all orders in the time slot.
 
     Use case ends.
 
@@ -487,30 +487,30 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC08 Mark booking as done**
+**Use case: UC08 Mark order as done**
 
 **MSS**
 
-1.  Gym Manager wants to mark a booking as done.
-2.  Gym Manager enters required data to mark a booking as done.
-3.  BTBB marks booking as done.
+1.  Gym Manager wants to mark a order as done.
+2.  Gym Manager enters required data to mark a order as done.
+3.  BTBB marks order as done.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why booking could not be marked as done.
+    * 2a1. BTBB informs Gym Manager why order could not be marked as done.
 
       Use case ends.
 
-**Use case: UC09 View all bookings**
+**Use case: UC09 View all orders**
 
 **MSS**
 
-1.  Gym Manager chooses to view all bookings.
-2.  Gym Manager enters command to see all bookings.
-3.  BTBB displays all bookings.
+1.  Gym Manager chooses to view all orders.
+2.  Gym Manager enters command to see all orders.
+3.  BTBB displays all orders.
 
     Use case ends.
 
@@ -531,10 +531,10 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 2. Business/Domain Requirements:
     * Booking slots in the app are fixed to be 1 hour 30 minutes.
-    * Each booking has a max capacity (of clients).
+    * Each order has a max capacity (of clients).
 
 3. Data Requirements:
-    * Data of clients and bookings should persist after the app closes.
+    * Data of clients and orders should persist after the app closes.
 
 ### Glossary
 

@@ -5,7 +5,7 @@ title: Sivayogasubramanian's Project Portfolio Page
 
 ### Project: BobTheBodyBuilder
 
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and bookings, optimized for use via a command line interface (CLI).**
+BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders, optimized for use via a command line interface (CLI).**
 It has a GUI (Graphical User Interface) created with JavaFX. It is written in Java, and has about ?? kLoC.
 
 

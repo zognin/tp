@@ -2,9 +2,9 @@
 layout: page
 title: User Guide
 ---
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and bookings, optimized for use via a command line interface (CLI).**
-Keeping track of information from memberships to booking records for contact tracing can be a hassle if you are a one-man show.
-That's why, our application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and manoeuvre through client and booking details.
+BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders, optimized for use via a command line interface (CLI).**
+Keeping track of information from memberships to order records for contact tracing can be a hassle if you are a one-man show.
+That's why, our application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and manoeuvre through client and order details.
 If you are looking to keep your physique, down to your finger muscles, in shape, give BTBB a try!
 
 * Table of Contents
@@ -131,46 +131,46 @@ Lists all clients in the application.
 
 Format: `list client`
 
-### Adding a booking: `add booking`
+### Adding a order: `add order`
 
-Adds a booking for a client to the application.
+Adds a order for a client to the application.
 
-Format: `add booking p/PHONE_NUMBER d/DATE s/START_TIME`
+Format: `add order p/PHONE_NUMBER d/DATE s/START_TIME`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* Each booking is associated to one time slot. Time slots are 1 hour 30 minute blocks starting from 0000 hrs. <br>
+* Each order is associated to one time slot. Time slots are 1 hour 30 minute blocks starting from 0000 hrs. <br>
   e.g. 1st time slot: 0000hrs to 0130hrs, 2nd time slot: 0130hrs to 0300hrs, etc.
 
-* When a booking is added, the nearest time slot to the specified start time is taken as the booking's time slot. <br>
+* When a order is added, the nearest time slot to the specified start time is taken as the order's time slot. <br>
 
 * <code>p/PHONE_NUMBER</code> is the phone number of the client.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the order date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-* `add booking p/89653101 d/12-12-2021 s/1030` Adds a booking to the time slot nearest to 1030hrs on 12 December 2021.
+* `add order p/89653101 d/12-12-2021 s/1030` Adds a order to the time slot nearest to 1030hrs on 12 December 2021.
 
-### Deleting a booking: `delete booking`
+### Deleting a order: `delete order`
 
-Deletes a booking from the application.
+Deletes a order from the application.
 
-Format: `delete booking INDEX`
+Format: `delete order INDEX`
 
 **Examples:**
-* `delete booking 1` Deletes the booking at index 1 in the booking list currently shown.
+* `delete order 1` Deletes the order at index 1 in the order list currently shown.
 
-### Finding bookings by keywords: `find booking`
+### Finding orders by keywords: `find order`
 
-Finds booking whose attribute(s) matches the keyword(s).
+Finds order whose attribute(s) matches the keyword(s).
 
-Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]`
+Format: `find order [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -181,35 +181,35 @@ Format: `find booking [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_O
 * There must be 1 or more search arguments.
 
 * Partial search will be allowed. <br>
-  e.g. <code>find booking n/Al</code> can show bookings for clients with names like Alice and Alex.
+  e.g. <code>find order n/Al</code> can show orders for clients with names like Alice and Alex.
 
 * <code>p/PHONE_NUMBER</code> is the client's phone number.
 
-* <code>c/YES_OR_NO</code> represents the completion status of the booking.
+* <code>c/YES_OR_NO</code> represents the completion status of the order.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the order date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-* `find booking c/yes` Find all completed bookings.
-* `find booking n/al` Find bookings for clients with names matching 'al'. E.g. Alex, Alice, Al.
-* `find booking d/12-12-2021 s/1930` Find all bookings on 12 December 2021 which starts at 1930 hrs.
-* `find booking p/91234567` Find all bookings for client with 91234567 as their phone number.
+* `find order c/yes` Find all completed orders.
+* `find order n/al` Find orders for clients with names matching 'al'. E.g. Alex, Alice, Al.
+* `find order d/12-12-2021 s/1930` Find all orders on 12 December 2021 which starts at 1930 hrs.
+* `find order p/91234567` Find all orders for client with 91234567 as their phone number.
 
-### Listing all bookings: `list booking`
+### Listing all orders: `list order`
 
-Lists all bookings in the application.
+Lists all orders in the application.
 
-Format: `list booking`
+Format: `list order`
 
-### Mark booking as done: `done booking`
+### Mark order as done: `done order`
 
-Mark booking as done once the client has entered the gym on their booking date and time.
+Mark order as done once the client has entered the gym on their order date and time.
 
-Format: `done booking p/PHONE_NUMBER d/DATE s/START_TIME`
+Format: `done order p/PHONE_NUMBER d/DATE s/START_TIME`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -217,14 +217,14 @@ Format: `done booking p/PHONE_NUMBER d/DATE s/START_TIME`
 
 * <code>p/PHONE_NUMBER</code> is the client's phone number.
 
-* <code>d/DATE</code> and <code>s/START_TIME</code> represents the booking date and time. They must follow the format specified [above](#features).
+* <code>d/DATE</code> and <code>s/START_TIME</code> represents the order date and time. They must follow the format specified [above](#features).
 
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-* `done booking p/91231232 d/11-09-2021 s/1930` Marks booking on 11 September 2021, which starts at 1930hrs, made by client with phone number 91231232 as done
+* `done order p/91231232 d/11-09-2021 s/1930` Marks order on 11 September 2021, which starts at 1930hrs, made by client with phone number 91231232 as done
 
 ### Viewing help : `help`
 
@@ -261,9 +261,9 @@ Action                   | Format and Examples
 **Delete client**        | `delete client INDEX`
 **Find client**          | `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]` <br><br> e.g. `find client n/al p/984 v/yes pe/1y`
 **List client**          | `list client`
-**Add booking**          | `add booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `add booking p/89653101 d/12-12-2021 s/1030`
-**Delete booking**       | `delete booking INDEX`
-**Find booking**         | `find booking [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]` <br><br> e.g. `find booking d/12-12-2021 s/1930 n/al c/yes`
-**List booking**         | `list booking`
-**Mark booking as done** | `done booking p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `done booking p/91231232 d/11-09-2021 s/1930`
+**Add order**          | `add order p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `add order p/89653101 d/12-12-2021 s/1030`
+**Delete order**       | `delete order INDEX`
+**Find order**         | `find order [d/DATE] [s/START_TIME] [n/NAME] [p/PHONE_NUMBER] [c/YES_OR_NO]` <br><br> e.g. `find order d/12-12-2021 s/1930 n/al c/yes`
+**List order**         | `list order`
+**Mark order as done** | `done order p/PHONE_NUMBER d/DATE s/START_TIME` <br><br> e.g. `done order p/91231232 d/11-09-2021 s/1930`
 **Help**                 | `help`

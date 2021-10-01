@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,9 +21,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import javafx.collections.ObservableList;
@@ -127,12 +125,7 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public void addBooking(Booking booking) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -143,11 +136,6 @@ public class AddClientCommandTest {
 
         @Override
         public boolean hasClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Optional<Client> getClientByPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -168,6 +156,11 @@ public class AddClientCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
     }

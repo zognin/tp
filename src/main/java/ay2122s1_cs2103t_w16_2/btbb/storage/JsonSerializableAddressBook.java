@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -21,17 +21,17 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
-    private final List<JsonAdaptedBooking> bookings = new ArrayList<>();
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("bookings") List<JsonAdaptedBooking> bookings,
-                                       @JsonProperty("clients") List<JsonAdaptedClient> clients) {
-        this.bookings.addAll(bookings);
+    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.clients.addAll(clients);
+        this.orders.addAll(orders);
     }
 
     /**
@@ -40,8 +40,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        bookings.addAll(source.getBookingList().stream().map(JsonAdaptedBooking::new).collect(Collectors.toList()));
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -60,11 +60,9 @@ class JsonSerializableAddressBook {
             addressBook.addClient(client);
         }
 
-        // Convert clients to model type before bookings
-        // As bookings are dependent on clients
-        for (JsonAdaptedBooking jsonAdaptedBooking : bookings) {
-            Booking booking = jsonAdaptedBooking.toModelType(addressBook);
-            addressBook.addBooking(booking);
+        for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
+            Order order = jsonAdaptedOrder.toModelType();
+            addressBook.addOrder(order);
         }
 
         return addressBook;

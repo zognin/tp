@@ -13,8 +13,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,21 +71,21 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Booking> bookings = FXCollections.observableArrayList();
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Order> orders = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
         }
 
         @Override
-        public ObservableList<Booking> getBookingList() {
-            return bookings;
+        public ObservableList<Client> getClientList() {
+            return clients;
         }
 
         @Override
-        public ObservableList<Client> getClientList() {
-            return clients;
+        public ObservableList<Order> getOrderList() {
+            return orders;
         }
     }
 }
