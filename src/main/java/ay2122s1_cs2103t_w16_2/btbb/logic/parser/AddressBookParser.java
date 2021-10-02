@@ -8,17 +8,19 @@ import java.util.regex.Pattern;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
-import ay2122s1_cs2103t_w16_2.btbb.logic.commands.booking.AddBookingCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.EditClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.booking.AddBookingCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.FindClientCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
 
 /**
  * Parses user input.
@@ -46,14 +48,17 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddBookingCommand.COMMAND_WORD:
-            return new AddBookingCommandParser().parse(arguments);
-
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
 
+        case AddOrderCommand.COMMAND_WORD:
+            return new AddOrderCommandParser().parse(arguments);
+
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
+
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
 
         case FindClientCommand.COMMAND_WORD:
             return new FindClientCommandParser().parse(arguments);

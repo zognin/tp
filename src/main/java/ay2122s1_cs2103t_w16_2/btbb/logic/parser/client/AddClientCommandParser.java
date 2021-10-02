@@ -1,10 +1,10 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ADDRESS;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_EMAIL;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_NAME;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
@@ -25,20 +25,21 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddClientCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ADDRESS);
 
 
-        if (!ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!ParserUtil.areAllPrefixesPresent(argMultimap,
+                PREFIX_CLIENT_NAME, PREFIX_CLIENT_ADDRESS, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
         }
 
         ClientDescriptor clientDescriptor = new ClientDescriptor();
-        clientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        clientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        clientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        clientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        clientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
+        clientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));
+        clientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get()));
+        clientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
 
         return new AddClientCommand(clientDescriptor);
     }

@@ -4,16 +4,14 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -24,8 +22,8 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final FilteredList<Booking> filteredBookings;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Order> filteredOrders;
     private final UserPrefs userPrefs;
 
     /**
@@ -38,8 +36,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -93,32 +91,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    //=========== Booking ====================================================================================
-
-    @Override
-    public void addBooking(Booking booking) {
-        addressBook.addBooking(booking);
-        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
-    }
-
-    @Override
-    public void updateFilteredBookingList(Predicate<Booking> predicate) {
-        requireNonNull(predicate);
-        filteredBookings.setPredicate(predicate);
-    }
-
     //=========== Client ====================================================================================
 
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
-    }
-
-    @Override
-    public Optional<Client> getClientByPhone(Phone phone) {
-        requireNonNull(phone);
-        return addressBook.getClientByPhone(phone);
     }
 
     @Override
@@ -154,6 +132,26 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    //=========== Order ====================================================================================
+
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -170,6 +168,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && filteredClients.equals(other.filteredClients)
+                && filteredOrders.equals(other.filteredOrders);
     }
 }

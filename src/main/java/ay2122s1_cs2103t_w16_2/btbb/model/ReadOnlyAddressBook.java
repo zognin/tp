@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.booking.Booking;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,14 +9,14 @@ import javafx.collections.ObservableList;
  */
 public interface ReadOnlyAddressBook {
     /**
-     * Returns an unmodifiable view of the bookings list.
-     * This list will not contain any duplicate bookings.
-     */
-    ObservableList<Booking> getBookingList();
-
-    /**
      * Returns an unmodifiable view of the clients list.
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
+
+    /**
+     * Returns an unmodifiable view of the orders list.
+     * This list will not contain any duplicate orders.
+     */
+    ObservableList<Order> getOrderList();
 }

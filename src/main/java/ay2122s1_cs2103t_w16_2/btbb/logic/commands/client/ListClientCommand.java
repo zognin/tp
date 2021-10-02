@@ -11,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
  * Lists all clients in the address book to the user.
  */
 public class ListClientCommand extends Command {
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "list-c";
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 

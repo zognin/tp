@@ -5,8 +5,8 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
  */
 public class CliSyntax {
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_PHONE = new Prefix("p/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
+    public static final Prefix PREFIX_CLIENT_NAME = new Prefix("cn/");
+    public static final Prefix PREFIX_CLIENT_PHONE = new Prefix("cp/");
+    public static final Prefix PREFIX_CLIENT_EMAIL = new Prefix("ce/");
+    public static final Prefix PREFIX_CLIENT_ADDRESS = new Prefix("ca/");
 }

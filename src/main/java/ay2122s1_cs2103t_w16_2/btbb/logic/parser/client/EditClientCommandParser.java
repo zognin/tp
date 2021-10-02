@@ -1,10 +1,10 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ADDRESS;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_EMAIL;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_NAME;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static java.util.Objects.requireNonNull;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -28,8 +28,8 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
      */
     public EditClientCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ADDRESS);
 
         Index index;
 
@@ -41,17 +41,17 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         }
 
         ClientDescriptor editClientDescriptor = new ClientDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
+            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_CLIENT_PHONE).isPresent()) {
+            editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editClientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
+            editClientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_CLIENT_ADDRESS).isPresent()) {
+            editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
         }
 
         if (!editClientDescriptor.isAnyFieldEdited()) {

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.EditClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
@@ -43,6 +44,15 @@ public class AddressBookParserTest {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
         assertEquals(new DeleteClientCommand(INDEX_FIRST_CLIENT), command);
+    }
+
+    @Test
+    public void parseCommand_edit() throws Exception {
+        Client person = new ClientBuilder().build();
+        ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
+        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test
