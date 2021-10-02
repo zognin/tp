@@ -1,6 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static java.util.Objects.requireNonNull;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
@@ -18,7 +18,7 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book. "
             + "Parameters: "
-            + PREFIX_PHONE + "PHONE ";
+            + PREFIX_CLIENT_PHONE + "CLIENT_PHONE ";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
