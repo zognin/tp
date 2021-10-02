@@ -20,6 +20,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate order(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
@@ -62,6 +63,9 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType();
+            if (addressBook.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
             addressBook.addOrder(order);
         }
 

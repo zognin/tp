@@ -25,6 +25,14 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
+     * Returns true if the list contains an equivalent order as the given argument.
+     */
+    public boolean contains(Order toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameOrder);
+    }
+
+    /**
      * Replaces the contents of this list with {@code orders}.
      *
      * @param orders Orders of the list.

@@ -28,6 +28,19 @@ public class Order {
     }
 
     /**
+     * Returns true if both orders have the same client fields, recipe fields, deadline and finished status.
+     * This defines a weaker notion of equality between two orders.
+     */
+    public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.getPhone().equals(getPhone());
+    }
+
+    /**
      * Returns true if both orders have the same identity and data fields.
      * This defines a stronger notion of equality between two orders.
      *

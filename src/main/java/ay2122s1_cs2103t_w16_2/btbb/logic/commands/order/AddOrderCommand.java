@@ -21,6 +21,7 @@ public class AddOrderCommand extends Command {
             + PREFIX_PHONE + "PHONE ";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
 
     private final OrderDescriptor orderDescriptor;
 
@@ -35,10 +36,14 @@ public class AddOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Order order = orderDescriptor.toModelType();
 
-        Order orderToAdd = orderDescriptor.toModelType();
-        model.addOrder(orderToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, orderToAdd));
+        if (model.hasOrder(order)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
+        model.addOrder(order);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, order));
     }
 
     @Override

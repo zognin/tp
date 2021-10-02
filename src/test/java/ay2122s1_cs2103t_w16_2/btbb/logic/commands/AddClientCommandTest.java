@@ -163,6 +163,11 @@ public class AddClientCommandTest {
         public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
