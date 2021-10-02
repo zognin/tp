@@ -37,18 +37,18 @@
     "address" : "4th street"
   } ],
   "orders": [{
-    "phone": "94351253"
+    "clientPhone": "94351253"
   }, {
-    "phone": "98765432"
+    "clientPhone": "98765432"
   }, {
-    "phone": "95352563"
+    "clientPhone": "95352563"
   }, {
-    "phone": "87652533"
+    "clientPhone": "87652533"
   }, {
-    "phone": "9482224"
+    "clientPhone": "9482224"
   }, {
-    "phone": "9482427"
+    "clientPhone": "9482427"
   }, {
-    "phone": "9482442"
+    "clientPhone": "9482442"
   } ]
 }

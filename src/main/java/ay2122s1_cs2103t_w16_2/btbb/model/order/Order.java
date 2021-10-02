@@ -11,20 +11,20 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order {
-    private final Phone phone;
+    private final Phone clientPhone;
 
     /**
      * Constructs an order.
      *
-     * @param phone Phone number for the order.
+     * @param clientPhone Phone number for the order.
      */
-    public Order(Phone phone) {
-        requireAllNonNull(phone);
-        this.phone = phone;
+    public Order(Phone clientPhone) {
+        requireAllNonNull(clientPhone);
+        this.clientPhone = clientPhone;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Phone getClientPhone() {
+        return clientPhone;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Order {
         }
 
         return otherOrder != null
-                && otherOrder.getPhone().equals(getPhone());
+                && otherOrder.getClientPhone().equals(getClientPhone());
     }
 
     /**
@@ -58,19 +58,19 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getPhone().equals(getPhone());
+        return otherOrder.getClientPhone().equals(getClientPhone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(phone);
+        return Objects.hash(clientPhone);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Phone: ")
-                .append(getPhone());
+                .append(getClientPhone());
 
         return builder.toString();
     }

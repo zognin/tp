@@ -13,21 +13,21 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
-    private final String phone;
+    private final String clientPhone;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("phone") String phone) {
-        this.phone = phone;
+    public JsonAdaptedOrder(@JsonProperty("clientPhone") String clientPhone) {
+        this.clientPhone = clientPhone;
     }
 
     /**
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        phone = source.getPhone().toString();
+        clientPhone = source.getClientPhone().toString();
     }
 
     /**
@@ -37,14 +37,14 @@ public class JsonAdaptedOrder {
      * @throws IllegalValueException If there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        if (phone == null) {
+        if (clientPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!Phone.isValidPhone(clientPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelClientPhone = new Phone(clientPhone);
 
-        return new Order(modelPhone);
+        return new Order(modelClientPhone);
     }
 }

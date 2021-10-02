@@ -11,8 +11,8 @@
     "address": "4th street"
   } ],
   "orders" : [ {
-    "phone" : "9482424"
+    "clientPhone" : "9482424"
   }, {
-    "phone" : "948asdf2424"
+    "clientPhone" : "948asdf2424"
   }]
 }
