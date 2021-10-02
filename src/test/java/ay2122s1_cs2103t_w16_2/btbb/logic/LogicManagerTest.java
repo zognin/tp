@@ -21,6 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
@@ -58,7 +59,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = DeleteClientCommand.COMMAND_WORD + " 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 

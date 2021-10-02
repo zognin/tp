@@ -23,7 +23,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
  * Edits the details of an existing client in the address book.
  */
 public class EditClientCommand extends Command {
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "

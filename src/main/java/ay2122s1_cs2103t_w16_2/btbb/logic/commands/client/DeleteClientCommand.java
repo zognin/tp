@@ -17,7 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
  * Deletes a client identified using it's displayed index from the address book.
  */
 public class DeleteClientCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the client identified by the index number used in the displayed client list.\n"

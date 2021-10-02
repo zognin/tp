@@ -13,7 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindClientCommand extends Command {
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find-c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

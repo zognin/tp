@@ -17,7 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
  * Adds a client to the address book.
  */
 public class AddClientCommand extends Command {
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
