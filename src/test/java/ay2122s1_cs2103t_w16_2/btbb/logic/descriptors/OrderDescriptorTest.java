@@ -30,8 +30,8 @@ class OrderDescriptorTest {
         assertFalse(DESC_ORDER_AMY.equals(DESC_ORDER_BOB));
 
         // different phone -> returns false
-        OrderDescriptor editedOrder = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+        OrderDescriptor editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
                 .withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_ORDER_AMY.equals(editedOrder));
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
     }
 }

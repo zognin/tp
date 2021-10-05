@@ -31,8 +31,8 @@ class OrderTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Order randomOrderCopy = new OrderBuilder(ORDER_BY_DANIEL).build();
-        assertTrue(ORDER_BY_DANIEL.equals(randomOrderCopy));
+        Order orderCopy = new OrderBuilder(ORDER_BY_DANIEL).build();
+        assertTrue(ORDER_BY_DANIEL.equals(orderCopy));
 
         // same object -> returns true
         assertTrue(ORDER_BY_ALICE.equals(ORDER_BY_ALICE));
@@ -47,7 +47,7 @@ class OrderTest {
         assertFalse(ORDER_BY_ALICE.equals(ORDER_BY_ELLE));
 
         // different phone -> returns false
-        Order editedRandomOrder = new OrderBuilder(ORDER_BY_CARL).withPhone(new Phone(VALID_PHONE_BOB)).build();
-        assertFalse(ORDER_BY_CARL.equals(editedRandomOrder));
+        Order editedOrder = new OrderBuilder(ORDER_BY_CARL).withPhone(new Phone(VALID_PHONE_BOB)).build();
+        assertFalse(ORDER_BY_CARL.equals(editedOrder));
     }
 }
