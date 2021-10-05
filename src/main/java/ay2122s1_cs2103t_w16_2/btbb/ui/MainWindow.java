@@ -8,9 +8,14 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.Logic;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
+import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.HomeTabContent;
+import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.StatTabContent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -30,9 +35,17 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab homeTab;
+
+    @FXML
+    private Tab statTab;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -110,9 +123,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -121,6 +131,22 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Initializes the tabs.
+     */
+    void initializeTabs() {
+        // Initialise tabs with content
+        HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(), logic.getFilteredOrderList());
+        homeTab.setContent(homeTabContent.getRoot());
+
+        StatTabContent statTabContent = new StatTabContent();
+        statTab.setContent(statTabContent.getRoot());
+
+        // Select default tab
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(homeTab);
     }
 
     /**
@@ -161,10 +187,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public ClientListPanel getClientListPanel() {
-        return clientListPanel;
     }
 
     /**
