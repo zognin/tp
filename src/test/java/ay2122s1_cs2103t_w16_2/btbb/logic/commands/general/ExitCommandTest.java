@@ -1,11 +1,11 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.commands;
+package ay2122s1_cs2103t_w16_2.btbb.logic.commands.general;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 
