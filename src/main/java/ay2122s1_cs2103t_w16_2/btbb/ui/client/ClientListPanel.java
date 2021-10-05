@@ -1,9 +1,10 @@
-package ay2122s1_cs2103t_w16_2.btbb.ui;
+package ay2122s1_cs2103t_w16_2.btbb.ui.client;
 
 import java.util.logging.Logger;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
