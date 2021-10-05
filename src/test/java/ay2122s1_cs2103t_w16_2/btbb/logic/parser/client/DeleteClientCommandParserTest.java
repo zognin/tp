@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
+package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,7 +8,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST_CL
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

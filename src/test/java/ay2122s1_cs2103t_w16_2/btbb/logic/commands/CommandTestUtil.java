@@ -15,11 +15,13 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -54,6 +56,9 @@ public class CommandTestUtil {
     public static final ClientDescriptor DESC_AMY;
     public static final ClientDescriptor DESC_BOB;
 
+    public static final OrderDescriptor DESC_ORDER_AMY;
+    public static final OrderDescriptor DESC_ORDER_BOB;
+
     static {
         DESC_AMY = new ClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -61,6 +66,8 @@ public class CommandTestUtil {
         DESC_BOB = new ClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+        DESC_ORDER_AMY = new OrderDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        DESC_ORDER_BOB = new OrderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
     }
 
     /**
