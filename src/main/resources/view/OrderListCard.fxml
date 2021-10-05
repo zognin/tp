@@ -23,7 +23,7 @@
                     </minWidth>
                 </Label>
             </HBox>
-            <Label text="Client Details"/>
+            <Label text="Client Details" styleClass="cell_small_label_header"/>
             <Label fx:id="clientPhone" styleClass="cell_small_label" text="\$phone" />
         </VBox>
     </GridPane>

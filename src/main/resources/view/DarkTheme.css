@@ -5,8 +5,8 @@
 }
 
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #121212;
+    background-color: #121212; /* Used in the default.html file */
 }
 
 .label {
@@ -58,8 +58,8 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
+    -fx-base: #121212;
+    -fx-control-inner-background: #121212;
     -fx-background-color: #121212;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
@@ -102,40 +102,42 @@
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #121212;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+.list-cell:filled {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 10 10 10 0;
+    -fx-border-insets: 10 10 10 0;
+    -fx-background-insets: 10 10 10 0;
+    -fx-background-radius: 20;
+    -fx-background-color: #222222;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #9870AB;
     -fx-border-width: 1;
-}
-
-.list-cell .label {
-    -fx-text-fill: white;
+    -fx-border-radius: 20;
 }
 
 .cell_big_label {
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #BB86FC;
+}
+
+.cell_small_label_header {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #03DAC5;
 }
 
 .cell_small_label {
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #FFFFFF;
 }
 
 .stack-pane {
@@ -144,7 +146,6 @@
 
 .pane-with-border {
      -fx-background-color: #121212;
-     -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
@@ -161,7 +162,7 @@
 
 .grid-pane {
     -fx-background-color: #121212;
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-color: #121212;
     -fx-border-width: 1px;
 }
 
@@ -219,11 +220,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
 }
 
 .dialog-pane > *.label.content {
