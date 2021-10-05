@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.commands;
+package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
-import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
