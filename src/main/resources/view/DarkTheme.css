@@ -1,3 +1,9 @@
+.root {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Open Sans Regular", "Arial";
+    -fx-background: #121212;
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -29,20 +35,32 @@
     -fx-font-family: "Open Sans Semibold";
 }
 
-.tab-pane {
-    -fx-padding: 0 0 0 1;
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #121212;
+    -fx-effect: null;
 }
 
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab {
+    -fx-background-color: #121212;
+}
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-opacity: 50%;
+}
+
+.tab:selected .tab-label {
+    -fx-opacity: 100%;
 }
 
 .table-view {
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -76,21 +94,10 @@
     -fx-background-color: -fx-focus-color;
 }
 
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #121212;
 }
 
 .list-cell {
@@ -121,7 +128,6 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
@@ -133,17 +139,13 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #121212;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #121212;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
-}
-
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
 }
 
 .result-display {
@@ -157,54 +159,14 @@
     -fx-text-fill: black !important;
 }
 
-.status-bar .label {
-    -fx-font-family: "Open Sans Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
-}
-
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #121212;
     -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Open Sans Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #121212;
 }
 
 /*
@@ -217,7 +179,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -243,7 +205,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
     -fx-text-fill: white;
 }
 
@@ -271,7 +233,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: #121212;
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -282,11 +244,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #121212;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#121212, 50%);
     -fx-background-insets: 3;
 }
 
