@@ -149,8 +149,12 @@
      -fx-border-top-width: 1px;
 }
 
+.pane-with-border-secondary {
+    -fx-background-color: #3E3E3E;
+}
+
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #2E2E2E;
     -fx-font-family: "Open Sans Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -283,7 +287,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #121212;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Open Sans Light";
@@ -296,6 +300,6 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #2E2E2E, transparent, #2E2E2E;
     -fx-background-radius: 0;
 }
