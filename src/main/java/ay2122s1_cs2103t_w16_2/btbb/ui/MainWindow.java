@@ -175,6 +175,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switches tabs.
+     *
+     * @param tab Tab to switch to.
+     */
+    void switchTabs(UiTab tab) {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(tab.getTabIndex());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see ay2122s1_cs2103t_w16_2.btbb.logic.Logic#execute(String)
@@ -191,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitchTab()) {
+                switchTabs(commandResult.getSelectedTab());
             }
 
             return commandResult;

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
+
 /**
  * Represents the result of a command execution.
  */
@@ -15,6 +17,9 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+
+    /** Sets selectedTab if there is one, null by default unless set intentionally */
+    private UiTab selectedTab = null;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -43,6 +48,33 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Determines whether the command requires a tab switch.
+     *
+     * @return True if there is a need to switch tab, false otherwise.
+     */
+    public boolean isSwitchTab() {
+        return selectedTab != null;
+    }
+
+    /**
+     * Gets the selected tab to switch to.
+     *
+     * @return {@code UiTab}.
+     */
+    public UiTab getSelectedTab() {
+        return selectedTab;
+    }
+
+    /**
+     * Sets a selected tab to swtich to.
+     *
+     * @param selectedTab Selected tab to switch to.
+     */
+    public void setSelectedTab(UiTab selectedTab) {
+        this.selectedTab = selectedTab;
     }
 
     @Override
