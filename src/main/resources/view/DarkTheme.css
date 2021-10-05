@@ -249,12 +249,13 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #121212;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: derive(#121212, 50%);
     -fx-background-insets: 3;
+    -fx-background-radius: 20;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
