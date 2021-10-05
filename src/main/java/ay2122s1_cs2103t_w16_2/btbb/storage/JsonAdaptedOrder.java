@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 
@@ -14,13 +16,19 @@ public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final String clientPhone;
+    private final String clientName;
+    private final String clientAddress;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("clientPhone") String clientPhone) {
+    public JsonAdaptedOrder(@JsonProperty("clientPhone") String clientPhone,
+                            @JsonProperty("clientName") String clientName,
+                            @JsonProperty("clientAddress") String clientAddress) {
         this.clientPhone = clientPhone;
+        this.clientName = clientName;
+        this.clientAddress = clientAddress;
     }
 
     /**
@@ -28,6 +36,8 @@ public class JsonAdaptedOrder {
      */
     public JsonAdaptedOrder(Order source) {
         clientPhone = source.getClientPhone().toString();
+        clientName = source.getClientName().toString();
+        clientAddress = source.getClientAddress().toString();
     }
 
     /**
@@ -45,6 +55,22 @@ public class JsonAdaptedOrder {
         }
         final Phone modelClientPhone = new Phone(clientPhone);
 
-        return new Order(modelClientPhone);
+        if (clientName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(clientName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelClientName = new Name(clientName);
+
+        if (clientAddress == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(clientAddress)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelClientAddress = new Address(clientAddress);
+
+        return new Order(modelClientPhone, modelClientName, modelClientAddress);
     }
 }

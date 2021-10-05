@@ -2,26 +2,59 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Optional;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.model.Model;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 
 public class OrderDescriptor {
-    private Phone phone;
+    private Index clientIndex;
+    private Phone clientPhone;
+    private Name clientName;
+    private Address clientAddress;
 
     public OrderDescriptor() {};
 
     public OrderDescriptor(OrderDescriptor toCopy) {
-        setPhone(toCopy.phone);
+        setClientPhone(toCopy.clientPhone);
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setClientPhone(Phone clientPhone) {
+        this.clientPhone = clientPhone;
     }
 
-    public Optional<Phone> getPhone() {
-        return Optional.ofNullable(phone);
+    public Optional<Phone> getClientPhone() {
+        return Optional.ofNullable(clientPhone);
+    }
+
+    public void setClientIndex(Index clientIndex) {
+        this.clientIndex = clientIndex;
+    }
+
+    public Optional<Index> getClientIndex() {
+        return Optional.ofNullable(clientIndex);
+    }
+
+    public void setClientName(Name clientName) {
+        this.clientName = clientName;
+    }
+
+    public Optional<Name> getClientName() {
+        return Optional.ofNullable(clientName);
+    }
+
+    public void setClientAddress(Address clientAddress) {
+        this.clientAddress = clientAddress;
+    }
+
+    public Optional<Address> getClientAddress() {
+        return Optional.ofNullable(clientAddress);
     }
 
     /**
@@ -30,9 +63,14 @@ public class OrderDescriptor {
      *
      * @return {@code Order}.
      */
-    public Order toModelType() {
-        requireAllNonNull(phone);
-        return new Order(phone);
+    public Order toModelType(Model model) {
+        requireAllNonNull(clientPhone);
+        List<Client> clientList = model.getFilteredClientList();
+        Client client = getClientIndex().isPresent() ? clientList.get(clientIndex.getZeroBased()) : null;
+        Name clientName = getClientName().orElse(client.getName());
+        Phone clientPhone = getClientPhone().orElse(client.getPhone());
+        Address clientAddress = getClientAddress().orElse(client.getAddress());
+        return new Order(clientPhone, clientName, clientAddress);
     }
 
     @Override
@@ -50,6 +88,9 @@ public class OrderDescriptor {
         // state check
         OrderDescriptor otherOrderDescriptor = (OrderDescriptor) other;
 
-        return getPhone().equals(otherOrderDescriptor.getPhone());
+        return getClientIndex().equals(otherOrderDescriptor.getClientIndex())
+                && getClientPhone().equals(otherOrderDescriptor.getClientPhone())
+                && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
+                && getClientName().equals(otherOrderDescriptor.getClientName());
     }
 }

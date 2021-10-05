@@ -4,6 +4,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.util.Objects;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 
 /**
@@ -12,19 +14,31 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
  */
 public class Order {
     private final Phone clientPhone;
+    private final Name clientName;
+    private final Address clientAddress;
 
     /**
      * Constructs an order.
      *
      * @param clientPhone Phone number for the order.
      */
-    public Order(Phone clientPhone) {
-        requireAllNonNull(clientPhone);
+    public Order(Phone clientPhone, Name clientName, Address clientAddress) {
+        requireAllNonNull(clientPhone, clientName, clientAddress);
         this.clientPhone = clientPhone;
+        this.clientName = clientName;
+        this.clientAddress = clientAddress;
     }
 
     public Phone getClientPhone() {
         return clientPhone;
+    }
+
+    public Name getClientName() {
+        return clientName;
+    }
+
+    public Address getClientAddress() {
+        return clientAddress;
     }
 
     /**
@@ -37,7 +51,9 @@ public class Order {
         }
 
         return otherOrder != null
-                && otherOrder.getClientPhone().equals(getClientPhone());
+                && otherOrder.getClientPhone().equals(getClientPhone())
+                && otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientAddress().equals(getClientAddress());
     }
 
     /**
@@ -58,7 +74,9 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getClientPhone().equals(getClientPhone());
+        return otherOrder.getClientPhone().equals(getClientPhone())
+                && otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientAddress().equals(getClientAddress());
     }
 
     @Override
@@ -70,7 +88,11 @@ public class Order {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Phone: ")
-                .append(getClientPhone());
+                .append(getClientPhone())
+                .append("Name: ")
+                .append(getClientName())
+                .append("Address: ")
+                .append(getClientAddress());
 
         return builder.toString();
     }

@@ -36,7 +36,7 @@ public class AddOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Order order = orderDescriptor.toModelType();
+        Order order = orderDescriptor.toModelType(model);
 
         if (model.hasOrder(order)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
