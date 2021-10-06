@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
+package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 
 public class ArgumentTokenizerTest {
     private final Prefix unknownPrefix = new Prefix("--u");

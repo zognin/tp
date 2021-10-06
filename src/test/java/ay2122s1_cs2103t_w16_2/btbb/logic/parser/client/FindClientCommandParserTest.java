@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
+package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.FindClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {

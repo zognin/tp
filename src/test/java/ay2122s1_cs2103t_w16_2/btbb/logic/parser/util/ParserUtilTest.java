@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
+package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
