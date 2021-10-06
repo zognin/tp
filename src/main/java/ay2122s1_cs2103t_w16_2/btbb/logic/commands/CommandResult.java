@@ -18,7 +18,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Sets selectedTab if there is one*/
+    /** Sets selectedTab if there is one. */
     private UiTab selectedTab;
 
     /**
