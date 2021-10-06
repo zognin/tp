@@ -108,6 +108,9 @@ public interface Model {
      */
     boolean hasOrder(Order order);
 
+    /** Returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList();
+
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      *

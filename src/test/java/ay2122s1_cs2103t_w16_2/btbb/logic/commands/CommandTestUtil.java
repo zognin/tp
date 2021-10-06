@@ -25,6 +25,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains helper methods for testing commands.
@@ -100,6 +101,24 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}
+     * and a selected tab to change to.
+     *
+     * @param command Command to execute.
+     * @param actualModel Actual model after executing the command.
+     * @param expectedMessage Expected message after executing the command.
+     * @param expectedModel Expected model after executing the command.
+     * @param selectedTab Selected tab to change to.
+     */
+    public static void assertCommandSuccessWithTabChange(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel, UiTab selectedTab) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        expectedCommandResult.setSelectedTab(selectedTab);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

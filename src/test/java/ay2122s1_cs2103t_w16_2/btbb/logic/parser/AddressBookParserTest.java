@@ -21,6 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
@@ -93,6 +94,13 @@ public class AddressBookParserTest {
         OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
         assertEquals(new AddOrderCommand(orderDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_tab() throws Exception {
+        TabCommand command = (TabCommand) parser.parseCommand(
+                TabCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new TabCommand(INDEX_FIRST), command);
     }
 
     @Test

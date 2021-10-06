@@ -1,6 +1,12 @@
+.root {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Open Sans Regular", "Arial";
+    -fx-background: #121212;
+}
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #121212;
+    background-color: #121212; /* Used in the default.html file */
 }
 
 .label {
@@ -29,20 +35,32 @@
     -fx-font-family: "Open Sans Semibold";
 }
 
-.tab-pane {
-    -fx-padding: 0 0 0 1;
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #121212;
+    -fx-effect: null;
 }
 
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab {
+    -fx-background-color: #121212;
+}
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-opacity: 50%;
+}
+
+.tab:selected .tab-label {
+    -fx-opacity: 100%;
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #121212;
+    -fx-control-inner-background: #121212;
+    -fx-background-color: #121212;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -76,78 +94,74 @@
     -fx-background-color: -fx-focus-color;
 }
 
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+.list-header {
+    -fx-padding: 0 0 0 10;
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #121212;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #121212;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+.list-cell:filled {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 10 10 10 0;
+    -fx-border-insets: 10 10 10 0;
+    -fx-background-insets: 10 10 10 0;
+    -fx-background-radius: 20;
+    -fx-background-color: #222222;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #9870AB;
     -fx-border-width: 1;
-}
-
-.list-cell .label {
-    -fx-text-fill: white;
+    -fx-border-radius: 20;
 }
 
 .cell_big_label {
-    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #BB86FC;
+}
+
+.cell_small_label_header {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #03DAC5;
 }
 
 .cell_small_label {
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #FFFFFF;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #121212;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: #121212;
      -fx-border-top-width: 1px;
 }
 
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+.pane-with-border-secondary {
+    -fx-background-color: #3E3E3E;
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #2E2E2E;
     -fx-font-family: "Open Sans Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -157,54 +171,14 @@
     -fx-text-fill: black !important;
 }
 
-.status-bar .label {
-    -fx-font-family: "Open Sans Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
-}
-
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #121212;
+    -fx-border-color: #121212;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Open Sans Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #121212;
 }
 
 /*
@@ -213,15 +187,15 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
+    -fx-padding: 12 22 5 22;
     -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
+    -fx-border-width: 0;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
 }
 
 .button:hover {
@@ -229,21 +203,12 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+  -fx-background-color: #696969;
 }
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
     -fx-text-fill: white;
 }
 
@@ -256,12 +221,16 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #121212;
 }
 
 .dialog-pane > *.label.content {
@@ -271,7 +240,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: #121212;
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -282,12 +251,13 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#121212, 50%);
     -fx-background-insets: 3;
+    -fx-background-radius: 20;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -320,7 +290,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #121212;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Open Sans Light";
@@ -333,6 +303,6 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #2E2E2E, transparent, #2E2E2E;
     -fx-background-radius: 0;
 }
