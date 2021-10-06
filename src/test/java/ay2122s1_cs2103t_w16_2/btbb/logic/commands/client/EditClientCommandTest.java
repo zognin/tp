@@ -8,8 +8,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertC
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.showClientAtIndex;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,7 +37,7 @@ public class EditClientCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws NotFoundException {
         Client editedClient = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(editedClient).build();
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT, descriptor);
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
@@ -69,8 +69,8 @@ public class EditClientCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT, new ClientDescriptor());
-        Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST, new ClientDescriptor());
+        Client editedClient = model.getFilteredClientList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
@@ -81,11 +81,11 @@ public class EditClientCommandTest {
 
     @Test
     public void execute_filteredList_success() throws NotFoundException {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST);
 
-        Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST.getZeroBased());
         Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT,
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST,
                 new ClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
@@ -98,20 +98,20 @@ public class EditClientCommandTest {
 
     @Test
     public void execute_duplicateClientUnfilteredList_failure() {
-        Client firstClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        Client firstClient = model.getFilteredClientList().get(INDEX_FIRST.getZeroBased());
         ClientDescriptor descriptor = new ClientDescriptorBuilder(firstClient).build();
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_CLIENT, descriptor);
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
     public void execute_duplicateClientFilteredList_failure() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST);
 
         // edit client in filtered list into a duplicate in address book
-        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT,
+        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND.getZeroBased());
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST,
                 new ClientDescriptorBuilder(clientInList).build());
 
         assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
@@ -132,8 +132,8 @@ public class EditClientCommandTest {
      */
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
-        Index outOfBoundIndex = INDEX_SECOND_CLIENT;
+        showClientAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
@@ -145,11 +145,11 @@ public class EditClientCommandTest {
 
     @Test
     public void equals() {
-        final EditClientCommand standardCommand = new EditClientCommand(INDEX_FIRST_CLIENT, DESC_AMY);
+        final EditClientCommand standardCommand = new EditClientCommand(INDEX_FIRST, DESC_AMY);
 
         // same values -> returns true
         ClientDescriptor copyDescriptor = new ClientDescriptor(DESC_AMY);
-        EditClientCommand commandWithSameValues = new EditClientCommand(INDEX_FIRST_CLIENT, copyDescriptor);
+        EditClientCommand commandWithSameValues = new EditClientCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -162,9 +162,9 @@ public class EditClientCommandTest {
         assertFalse(standardCommand.equals(new ListClientCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_SECOND_CLIENT, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_SECOND, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_FIRST_CLIENT, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_FIRST, DESC_BOB)));
     }
 }

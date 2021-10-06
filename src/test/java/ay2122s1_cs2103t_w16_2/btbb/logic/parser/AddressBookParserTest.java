@@ -3,7 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
@@ -42,8 +43,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
-                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
-        assertEquals(new DeleteClientCommand(INDEX_FIRST_CLIENT), command);
+                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -51,8 +52,8 @@ public class AddressBookParserTest {
         Client person = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -79,6 +80,13 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD) instanceof ListClientCommand);
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD + " 3") instanceof ListClientCommand);
+    }
+
+    @Test
+    public void parseCommand_tab() throws Exception {
+        TabCommand command = (TabCommand) parser.parseCommand(
+                TabCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new TabCommand(INDEX_FIRST), command);
     }
 
     @Test

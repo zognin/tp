@@ -1,0 +1,23 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import javafx.scene.control.Label?>
+<GridPane xmlns="http://javafx.com/javafx/8">
+    <children>
+        <VBox styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+
+            <Label text="Inventory" styleClass="list-header"/>
+            <StackPane VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </children>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0"/>
+    </columnConstraints>
+</GridPane>

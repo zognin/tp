@@ -1,6 +1,7 @@
-package ay2122s1_cs2103t_w16_2.btbb.ui;
+package ay2122s1_cs2103t_w16_2.btbb.ui.client;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
