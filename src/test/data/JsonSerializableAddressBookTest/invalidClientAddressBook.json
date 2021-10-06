@@ -7,5 +7,10 @@
   } ],
   "orders": [{
     "clientPhone": "9482424"
+  }],
+  "ingredients": [{
+    "ingredient name": "Chicken",
+    "quantity": "15",
+    "unit": "whole"
   }]
 }

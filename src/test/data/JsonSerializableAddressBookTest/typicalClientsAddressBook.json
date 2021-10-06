@@ -50,5 +50,30 @@
     "clientPhone": "9482427"
   }, {
     "clientPhone": "9482442"
-  } ]
+  } ],
+  "ingredients": [{
+    "ingredient name": "Chicken",
+    "quantity": "15",
+    "unit": "whole"
+  }, {
+    "ingredient name": "Eggs",
+    "quantity": "10",
+    "unit": "whole"
+  }, {
+    "ingredient name": "Carrot",
+    "quantity": "20",
+    "unit": "whole"
+  }, {
+    "ingredient name": "Flour",
+    "quantity": "1000",
+    "unit": "g"
+  }, {
+    "ingredient name": "Sugar",
+    "quantity": "9000",
+    "unit": "g"
+  }, {
+    "ingredient name": "Fish",
+    "quantity": "50",
+    "unit": "g"
+  }]
 }
