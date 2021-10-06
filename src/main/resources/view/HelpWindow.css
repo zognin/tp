@@ -1,3 +1,39 @@
 #copyButton, #helpMessage {
     -fx-font-family: "Open Sans";
 }
+
+.background {
+    -fx-background-color: #121212;
+    background-color: #121212; /* Used in the default.html file */
+}
+
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Open Sans Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #696969;
+}
+
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: #121212;
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+}

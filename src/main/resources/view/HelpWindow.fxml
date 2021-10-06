@@ -20,14 +20,14 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" styleClass="background">
         <children>
-          <Label fx:id="helpMessage" text="Label">
+          <Label fx:id="helpMessage" styleClass="label-bright" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+          <Button fx:id="copyButton" styleClass="button" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
               <Insets left="5.0" />
             </HBox.margin>
