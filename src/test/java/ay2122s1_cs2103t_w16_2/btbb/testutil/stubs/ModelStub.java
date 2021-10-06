@@ -8,6 +8,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 
@@ -97,6 +98,20 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasOrder(Order order) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // ingredient
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    public boolean hasIngredient(Ingredient ingredient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

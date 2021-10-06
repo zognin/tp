@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Collection;
 import java.util.Collections;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
@@ -73,6 +74,7 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
+        private final ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
@@ -86,6 +88,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Order> getOrderList() {
             return orders;
+        }
+
+        @Override
+        public ObservableList<Ingredient> getIngredientList() {
+            return ingredients;
         }
     }
 }
