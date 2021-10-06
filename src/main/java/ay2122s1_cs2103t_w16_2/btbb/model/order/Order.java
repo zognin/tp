@@ -89,9 +89,9 @@ public class Order {
         final StringBuilder builder = new StringBuilder();
         builder.append("Phone: ")
                 .append(getClientPhone())
-                .append("Name: ")
+                .append(" Name: ")
                 .append(getClientName())
-                .append("Address: ")
+                .append(" Address: ")
                 .append(getClientAddress());
 
         return builder.toString();

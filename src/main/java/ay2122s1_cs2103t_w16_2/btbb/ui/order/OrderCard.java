@@ -17,6 +17,10 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label clientAddress;
+    @FXML
+    private Label clientName;
+    @FXML
     private Label clientPhone;
 
     /**
@@ -26,6 +30,8 @@ public class OrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
+        clientAddress.setText(order.getClientAddress().toString());
+        clientName.setText(order.getClientName().toString());
         clientPhone.setText(order.getClientPhone().toString());
     }
 
