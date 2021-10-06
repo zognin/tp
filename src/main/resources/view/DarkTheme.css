@@ -222,6 +222,10 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 .dialog-pane {
     -fx-background-color: #121212;
 }
