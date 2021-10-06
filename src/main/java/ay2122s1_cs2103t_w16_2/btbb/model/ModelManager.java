@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Ingredient> filteredIngredients;
     private final UserPrefs userPrefs;
 
     /**
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
     }
 
     public ModelManager() {
@@ -152,6 +155,24 @@ public class ModelManager implements Model {
         filteredOrders.setPredicate(predicate);
     }
 
+    //=========== Ingredient ======================================================================================
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        addressBook.addIngredient(ingredient);
+        updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+    }
+
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return addressBook.hasIngredient(ingredient);
+    }
+    @Override
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -169,6 +190,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
-                && filteredOrders.equals(other.filteredOrders);
+                && filteredOrders.equals(other.filteredOrders)
+                && filteredIngredients.equals(other.filteredIngredients);
     }
 }

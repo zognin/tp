@@ -9,6 +9,8 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
     private final UniqueOrderList orders;
+    private final UniqueIngredientList ingredients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         clients = new UniqueClientList();
         orders = new UniqueOrderList();
+        ingredients = new UniqueIngredientList();
     }
 
     public AddressBook() {}
@@ -140,6 +144,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         return orders.contains(order);
     }
 
+    //// ingredient-level operations
+    /**
+     * Adds an ingredient to the address book.
+     * The ingredient must not already exist in the address book.
+     *
+     * @param ingredient Ingredient to be added.
+     */
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
+
+    /**
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.contains(ingredient);
+    }
+
     //// util methods
 
     @Override
@@ -156,6 +179,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getIngredientList() {
+        return ingredients.asUnmodifiableObservableList();
     }
 
     @Override

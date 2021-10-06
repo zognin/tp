@@ -11,6 +11,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -90,6 +93,52 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    // Ingredient-level parsers:
+    /**
+     * Parses a {@code String ingredientName} into a {@code IngredientName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ingredientName} is invalid.
+     */
+    public static IngredientName parseIngredientName(String ingredientName) throws ParseException {
+        requireNonNull(ingredientName);
+        String trimmedIngredientName = ingredientName.trim();
+        if (!IngredientName.isValidIngredientName(trimmedIngredientName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new IngredientName(trimmedIngredientName);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String unit} into a {@code Unit}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code unit} is invalid.
+     */
+    public static Unit parseUnit(String unit) throws ParseException {
+        requireNonNull(unit);
+        String trimmedUnit = unit.trim();
+        if (!Unit.isValidUnit(trimmedUnit)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Unit(trimmedUnit);
     }
 
     /**
