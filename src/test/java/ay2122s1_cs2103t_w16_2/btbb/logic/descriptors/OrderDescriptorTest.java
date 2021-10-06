@@ -31,7 +31,7 @@ class OrderDescriptorTest {
 
         // different phone -> returns false
         OrderDescriptor editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withClientPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
     }
 }

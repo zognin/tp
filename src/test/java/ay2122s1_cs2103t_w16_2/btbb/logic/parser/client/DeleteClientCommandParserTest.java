@@ -3,7 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteClientCommand() {
-        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST_CLIENT));
+        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST));
     }
 
     @Test
