@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
+package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.EditClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
