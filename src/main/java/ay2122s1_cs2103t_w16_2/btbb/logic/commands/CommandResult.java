@@ -89,9 +89,14 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
+        boolean isSameSelectedTab = (selectedTab == null || otherCommandResult.selectedTab == null)
+                ? selectedTab == otherCommandResult.selectedTab
+                : selectedTab.equals(otherCommandResult.selectedTab);
+
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isSameSelectedTab;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.general;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
@@ -28,7 +28,7 @@ public class TabCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(tabCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(tabCommand, model, expectedMessage, expectedModel, tabToChangeTo);
     }
 
     @Test
