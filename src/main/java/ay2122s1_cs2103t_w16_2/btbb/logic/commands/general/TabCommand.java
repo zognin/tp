@@ -45,7 +45,7 @@ public class TabCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_TAB_INDEX);
         }
 
-        UiTab selectedTab = UiTab.values()[targetIndex.getZeroBased()];
+        UiTab selectedTab = tabList[targetIndex.getZeroBased()];
 
         CommandResult commandResult =
                 new CommandResult(String.format(MESSAGE_CHANGE_TAB_SUCCESS, selectedTab.toString()));

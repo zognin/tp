@@ -18,8 +18,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Sets selectedTab if there is one, null by default unless set intentionally */
-    private UiTab selectedTab = null;
+    /** Sets selectedTab if there is one*/
+    private UiTab selectedTab;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -69,7 +69,7 @@ public class CommandResult {
     }
 
     /**
-     * Sets a selected tab to swtich to.
+     * Sets a selected tab to switch to.
      *
      * @param selectedTab Selected tab to switch to.
      */

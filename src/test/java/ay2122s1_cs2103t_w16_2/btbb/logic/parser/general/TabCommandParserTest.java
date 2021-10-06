@@ -22,4 +22,10 @@ public class TabCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 TabCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_negativeIndex_throwsParseException() {
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TabCommand.MESSAGE_USAGE));
+    }
 }

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class UiTabTest {
     @Test
-    public void getTabIndex_validIndex_zeroBasedIndex() {
+    public void getZeroBasedTabIndex_validIndex_zeroBasedIndex() {
         UiTab tab = UiTab.values()[INDEX_FIRST.getZeroBased()];
-        assertEquals(tab.getTabIndex(), INDEX_FIRST.getZeroBased());
+        assertEquals(tab.getZeroBasedTabIndex(), INDEX_FIRST.getZeroBased());
     }
 }

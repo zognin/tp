@@ -33,7 +33,7 @@ public enum UiTab {
      *
      * @return An index number.
      */
-    public int getTabIndex() {
+    public int getZeroBasedTabIndex() {
         return index.getZeroBased();
     }
 }

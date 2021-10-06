@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void switchTabs(UiTab tab) {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        selectionModel.select(tab.getTabIndex());
+        selectionModel.select(tab.getZeroBasedTabIndex());
     }
 
     /**
