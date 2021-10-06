@@ -26,7 +26,7 @@
       </stylesheets>
 
       <VBox>
-        <AnchorPane>
+        <AnchorPane VBox.vgrow="ALWAYS">
           <children>
             <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS"
                      AnchorPane.leftAnchor="0.0"
