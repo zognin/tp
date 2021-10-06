@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Region?>
 
+<?import javafx.scene.shape.Circle?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -13,18 +14,40 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets top="10" right="15" bottom="10" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-            </HBox>
+
+            <GridPane>
+                <children>
+                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" spacing="4">
+                        <Label fx:id="id" styleClass="cell_big_label">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
+                        <Label fx:id="recipeName" styleClass="cell_big_label" text="\$recipe name"/>
+                        <Label fx:id="orderQuantity" styleClass="cell_big_label" text="x $qty"/>
+                        <Label fx:id="orderPrice" styleClass="cell_big_label" text="- $price"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" spacing="4">
+                        <Label fx:id="orderDeadline" styleClass="cell_small_label" text="\$deadline"/>
+                        <Circle fx:id="orderIsFinished" id="doneCircle" radius="8" fill="transparent" stroke="white"/>
+                    </HBox>
+                </children>
+
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="80.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="20.0"/>
+                </columnConstraints>
+            </GridPane>
+
+            <Label text="Ingredients" styleClass="cell_small_label_header"/>
             <Label text="Client Details" styleClass="cell_small_label_header"/>
-            <Label fx:id="clientPhone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="clientName" styleClass="cell_small_label" text="\$client name" />
+            <Label fx:id="clientPhone" styleClass="cell_small_label" text="\$client phone" />
+            <Label fx:id="clientAddress" styleClass="cell_small_label" text="\$client address" />
         </VBox>
     </GridPane>
 </HBox>
