@@ -6,8 +6,8 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
  * Represents a Ui tab.
  */
 public enum UiTab {
-    Home(0, "Home"),
-    Stat(1, "Inventory & Statistics");
+    HOME(0, "Home"),
+    STAT(1, "Inventory & Statistics");
 
     private Index index;
     private String label;

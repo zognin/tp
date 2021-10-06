@@ -22,7 +22,7 @@ public class TabCommand extends Command {
 
     public static final String MESSAGE_CHANGE_TAB_SUCCESS = "Changed tab to: %1$s tab";
 
-    private static final String MESSAGE_INVALID_TAB_INDEX = "The tab index provided is invalid. "
+    public static final String MESSAGE_INVALID_TAB_INDEX = "The tab index provided is invalid. "
             + "The index can only be 1 or 2.";
 
     private final Index targetIndex;
