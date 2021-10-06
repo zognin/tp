@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BENSON;
@@ -11,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
@@ -26,6 +29,15 @@ class OrderTest {
         // different phone -> returns false
         Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
         assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
+
+        // different name -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientName(new Name(VALID_NAME_AMY)).build();
+        assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
+
+        // different address -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address("Choa Chu Kang")).build();
+        assertFalse(ORDER_FOR_ELLE.equals(editedRandomOrder));
+
     }
 
     @Test
