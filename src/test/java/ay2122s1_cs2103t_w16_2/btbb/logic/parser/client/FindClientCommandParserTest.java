@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {
     private FindClientCommandParser parser = new FindClientCommandParser();

@@ -24,7 +24,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientUtil;

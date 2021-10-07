@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
