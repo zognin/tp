@@ -1,8 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands;
 
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String INDEX_DESC_AMY = " " + PREFIX_CLIENT + INDEX_SECOND.getOneBased();
-    public static final String INDEX_DESC_BOB = " " + PREFIX_CLIENT + INDEX_FIRST.getOneBased();
+    public static final String INDEX_DESC_AMY = " " + PREFIX_CLIENT_INDEX + INDEX_SECOND.getOneBased();
+    public static final String INDEX_DESC_BOB = " " + PREFIX_CLIENT_INDEX + INDEX_FIRST.getOneBased();
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_CLIENT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CLIENT_PHONE + "911a"; // 'a' not allowed in phones
