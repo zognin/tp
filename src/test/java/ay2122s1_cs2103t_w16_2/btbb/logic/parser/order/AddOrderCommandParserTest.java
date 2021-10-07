@@ -34,9 +34,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
 class AddOrderCommandParserTest {
-
     private AddOrderCommandParser parser = new AddOrderCommandParser();
-
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -102,13 +100,16 @@ class AddOrderCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PHONE_DESC,
-                Phone.MESSAGE_CONSTRAINTS);
+        // invalid index
+        assertParseFailure(parser, INVALID_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB + PHONE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
+
+        // invalid phone
+        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC + PHONE_DESC_BOB,
@@ -117,8 +118,5 @@ class AddOrderCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PHONE_DESC_BOB + NAME_DESC_BOB + ADDRESS_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
-
-        // invalid index
-        assertParseFailure(parser, INVALID_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

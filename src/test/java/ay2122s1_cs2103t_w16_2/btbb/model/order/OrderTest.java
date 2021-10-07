@@ -24,28 +24,28 @@ class OrderTest {
     @Test
     public void isSameOrder() {
         // same object -> returns true
-        assertTrue(ORDER_FOR_ALICE.equals(ORDER_FOR_ALICE));
+        assertTrue(ORDER_FOR_ALICE.isSameOrder(ORDER_FOR_ALICE));
 
         // null -> returns false
-        assertFalse(ORDER_FOR_BENSON.equals(null));
+        assertFalse(ORDER_FOR_BENSON.isSameOrder(null));
 
         Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB))
                 .withClientPhone(new Phone(VALID_PHONE_BOB))
                 .withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
         // different object, same client name, same client phone and same client address -> returns true
-        assertTrue(ORDER_FOR_BOB.equals(editedRandomOrder));
+        assertTrue(ORDER_FOR_BOB.isSameOrder(editedRandomOrder));
 
         // different client phone -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
-        assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
+        assertFalse(ORDER_FOR_CARL.isSameOrder(editedRandomOrder));
 
         // different client name -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientName(new Name(VALID_NAME_AMY)).build();
-        assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
+        assertFalse(ORDER_FOR_DANIEL.isSameOrder(editedRandomOrder));
 
         // different client address -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address("Choa Chu Kang")).build();
-        assertFalse(ORDER_FOR_ELLE.equals(editedRandomOrder));
+        assertFalse(ORDER_FOR_ELLE.isSameOrder(editedRandomOrder));
 
     }
 

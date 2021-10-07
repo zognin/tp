@@ -19,12 +19,14 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add-o";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book.\n"
             + "Parameters: "
-            + PREFIX_CLIENT_INDEX + "CLIENT_INDEX "
-            + PREFIX_CLIENT_NAME + "CLIENT_NAME "
-            + PREFIX_CLIENT_PHONE + "CLIENT_PHONE "
-            + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS ";
+            + "[" + PREFIX_CLIENT_INDEX + "CLIENT_INDEX (must be a positive integer)] "
+            + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
+            + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
+            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS]\n"
+            + "Additional Info: If CLIENT_INDEX is not present, CLIENT_NAME, CLIENT_PHONE and CLIENT_ADDRESS must be"
+            + " present";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";

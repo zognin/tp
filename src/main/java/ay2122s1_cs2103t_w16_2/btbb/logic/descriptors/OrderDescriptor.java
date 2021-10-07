@@ -76,14 +76,7 @@ public class OrderDescriptor {
      * @throws CommandException if both the client and its details are missing.
      */
     public Order toModelType(Model model) throws CommandException {
-        List<Client> lastShownClientList = model.getFilteredClientList();
-
-        if (getClientIndex().isPresent() && getClientIndex().get().getZeroBased() >= lastShownClientList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-        }
-        Optional<Client> client = getClientIndex().isPresent()
-                ? Optional.of(lastShownClientList.get(clientIndex.getZeroBased()))
-                : Optional.empty();
+        Optional<Client> client = getClientFromModel(model);
 
         try {
             Name clientName = getClientName().orElseGet(() -> client.get().getName());
@@ -93,6 +86,19 @@ public class OrderDescriptor {
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
+    }
+
+    public Optional<Client> getClientFromModel(Model model) throws CommandException {
+        List<Client> lastShownClientList = model.getFilteredClientList();
+
+        if (getClientIndex().isPresent() && getClientIndex().get().getZeroBased() >= lastShownClientList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        Optional<Client> client = getClientIndex().isPresent()
+                ? Optional.of(lastShownClientList.get(clientIndex.getZeroBased()))
+                : Optional.empty();
+        return client;
     }
 
     @Override

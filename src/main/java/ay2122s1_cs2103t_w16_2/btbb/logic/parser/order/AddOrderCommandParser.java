@@ -21,20 +21,26 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_CLIENT_NAME,
                 PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
 
+        if (!areArgumentsValid(argMultimap)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
+        OrderDescriptor orderDescriptor = new OrderDescriptor();
+        fillOrderDescriptorClientFields(orderDescriptor, argMultimap);
+        return new AddOrderCommand(orderDescriptor);
+    }
+
+    private boolean areArgumentsValid(ArgumentMultimap argMultimap) {
         boolean isClientIndexPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX);
         boolean areClientFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap,
                 PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
         boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
 
-        if (!isClientIndexPresent && !areClientFieldsPresent) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        }
+        return (isClientIndexPresent || areClientFieldsPresent) && isPreambleEmpty;
+    }
 
-        if (!isPreambleEmpty) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        }
-
-        OrderDescriptor orderDescriptor = new OrderDescriptor();
+    private void fillOrderDescriptorClientFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (argMultimap.getValue(PREFIX_CLIENT_INDEX).isPresent()) {
             orderDescriptor.setClientIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get()));
         }
@@ -48,7 +54,5 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             orderDescriptor
                     .setClientAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
         }
-
-        return new AddOrderCommand(orderDescriptor);
     }
 }

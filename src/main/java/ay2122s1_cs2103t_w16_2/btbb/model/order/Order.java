@@ -88,11 +88,11 @@ public class Order {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Name: ")
+        builder.append(" Client Name: ")
                 .append(getClientName())
-                .append("Phone: ")
+                .append(" Client Phone: ")
                 .append(getClientPhone())
-                .append(" Address: ")
+                .append(" Client Address: ")
                 .append(getClientAddress());
 
         return builder.toString();
