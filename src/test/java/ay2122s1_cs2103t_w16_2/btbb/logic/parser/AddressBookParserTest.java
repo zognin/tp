@@ -47,6 +47,14 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addOrder() throws Exception {
+        Order order = new OrderBuilder().build();
+        OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
+        assertEquals(new AddOrderCommand(orderDescriptor), command);
+    }
+
+    @Test
     public void parseCommand_deleteClient() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
@@ -88,13 +96,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD + " 3") instanceof ListClientCommand);
     }
 
-    @Test
-    public void parseCommand_addOrder() throws Exception {
-        Order order = new OrderBuilder().build();
-        OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
-        assertEquals(new AddOrderCommand(orderDescriptor), command);
-    }
 
     @Test
     public void parseCommand_tab() throws Exception {

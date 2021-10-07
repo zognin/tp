@@ -38,7 +38,7 @@ class UniqueOrderListTest {
 
     @Test
     public void setOrders_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrders((List<Order>) null));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrders(null));
     }
 
     @Test

@@ -1,9 +1,12 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BENSON;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_DANIEL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
@@ -26,15 +29,21 @@ class OrderTest {
         // null -> returns false
         assertFalse(ORDER_FOR_BENSON.equals(null));
 
-        // different phone -> returns false
-        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB))
+                .withClientPhone(new Phone(VALID_PHONE_BOB))
+                .withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
+        // different object, same client name, same client phone and same client address -> returns true
+        assertTrue(ORDER_FOR_BOB.equals(editedRandomOrder));
+
+        // different client phone -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
         assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
 
-        // different name -> returns false
+        // different client name -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientName(new Name(VALID_NAME_AMY)).build();
         assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
 
-        // different address -> returns false
+        // different client address -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address("Choa Chu Kang")).build();
         assertFalse(ORDER_FOR_ELLE.equals(editedRandomOrder));
 
@@ -58,8 +67,22 @@ class OrderTest {
         // different order -> returns false
         assertFalse(ORDER_FOR_ALICE.equals(ORDER_FOR_ELLE));
 
-        // different phone -> returns false
-        Order editedOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
-        assertFalse(ORDER_FOR_CARL.equals(editedOrder));
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB))
+                .withClientPhone(new Phone(VALID_PHONE_BOB))
+                .withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
+        // different object, same client name, same client phone and same client address -> returns true
+        assertTrue(ORDER_FOR_BOB.equals(editedRandomOrder));
+
+        // different client name -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB)).build();
+        assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
+
+        // different client phone -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
+        assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
+
+        // different client address -> returns false
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
+        assertFalse(ORDER_FOR_ELLE.equals(editedRandomOrder));
     }
 }

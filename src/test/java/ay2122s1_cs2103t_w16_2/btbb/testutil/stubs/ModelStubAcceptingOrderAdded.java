@@ -49,6 +49,4 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     public ReadOnlyAddressBook getAddressBook() {
         return new AddressBook();
     }
-
-
 }

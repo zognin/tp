@@ -1,6 +1,5 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
-import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
@@ -10,12 +9,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
  * A utility class to help with building Order objects.
  */
 public class OrderBuilder {
-    private static final String DEFAULT_PHONE = "85355255";
-    private static final String DEFAULT_NAME = "Amy Bee";
-    private static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    private static final int DEFAULT_INDEX = 1;
+    private static final String DEFAULT_CLIENT_NAME = "Amy Bee";
+    private static final String DEFAULT_CLIENT_PHONE = "85355255";
+    private static final String DEFAULT_CLIENT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Index clientIndex;
     private Name clientName;
     private Phone clientPhone;
     private Address clientAddress;
@@ -24,10 +21,9 @@ public class OrderBuilder {
      * Creates a {@code OrderBuilder} with the default details.
      */
     public OrderBuilder() {
-        clientIndex = Index.fromOneBased(DEFAULT_INDEX);
-        clientName = new Name(DEFAULT_NAME);
-        clientPhone = new Phone(DEFAULT_PHONE);
-        clientAddress = new Address(DEFAULT_ADDRESS);
+        clientName = new Name(DEFAULT_CLIENT_NAME);
+        clientPhone = new Phone(DEFAULT_CLIENT_PHONE);
+        clientAddress = new Address(DEFAULT_CLIENT_ADDRESS);
     }
 
     /**
