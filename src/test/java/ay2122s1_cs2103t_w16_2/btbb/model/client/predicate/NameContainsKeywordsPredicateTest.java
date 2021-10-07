@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.client;
+package ay2122s1_cs2103t_w16_2.btbb.model.client.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 
 public class NameContainsKeywordsPredicateTest {

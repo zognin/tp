@@ -21,14 +21,13 @@ public class FindClientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds clients by either "
             + "name, phone number, email or address fields. \n"
-            + "Parameters: "
+            + "Parameters (at least one must be provided): "
             + "[" + PREFIX_CLIENT_NAME + "NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "PHONE] "
             + "[" + PREFIX_CLIENT_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " PREFIX_CLIENT_NAME alice";
 
-    public static final String MESSAGE_NOT_FOUND = "At least one field must be provided to find for.";
     private final ClientComboPredicate predicate;
 
     public FindClientCommand(ClientComboPredicate predicate) {

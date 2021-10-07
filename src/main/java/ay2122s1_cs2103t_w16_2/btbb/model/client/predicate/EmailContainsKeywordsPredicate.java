@@ -18,7 +18,7 @@ public class EmailContainsKeywordsPredicate implements Predicate<Client> {
     @Override
     public boolean test(Client client) {
         return keywords.stream()
-                .anyMatch(keyword -> client.getEmail().toString().contains(keyword));
+                .anyMatch(keyword -> !keyword.isEmpty() && client.getEmail().toString().contains(keyword));
     }
 
     @Override

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 
 /**
@@ -29,10 +30,10 @@ public class FindClientCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        ClientComboPredicate firstPredicate = new ClientComboPredicate();
+        firstPredicate.addClientPredicate(new NameContainsKeywordsPredicate(Collections.singletonList("first")));
+        ClientComboPredicate secondPredicate = new ClientComboPredicate();
+        secondPredicate.addClientPredicate(new NameContainsKeywordsPredicate(Collections.singletonList("second")));
 
         FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate);
         FindClientCommand findSecondCommand = new FindClientCommand(secondPredicate);
@@ -58,7 +59,9 @@ public class FindClientCommandTest {
     public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindClientCommand command = new FindClientCommand(predicate);
+        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
+        clientComboPredicate.addClientPredicate(predicate);
+        FindClientCommand command = new FindClientCommand(clientComboPredicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
@@ -68,7 +71,9 @@ public class FindClientCommandTest {
     public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindClientCommand command = new FindClientCommand(predicate);
+        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
+        clientComboPredicate.addClientPredicate(predicate);
+        FindClientCommand command = new FindClientCommand(clientComboPredicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());

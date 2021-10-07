@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand.MESSAGE_NOT_FOUND;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
@@ -62,7 +62,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
                            PREFIX_CLIENT_ADDRESS, AddressContainsKeywordsPredicate::new);
 
         if (clientComboPredicate.hasNoPredicate()) {
-            throw new ParseException(MESSAGE_NOT_FOUND);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
 
         return new FindClientCommand(clientComboPredicate);

@@ -12,6 +12,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 public class ClientComboPredicate implements Predicate<Client> {
     private final List<Predicate<Client>> predicates = new ArrayList<>();
 
+    private boolean isSamePredicates(List<Predicate<Client>> otherPredicates) {
+        return predicates.containsAll(otherPredicates) && otherPredicates.containsAll(predicates);
+    }
+
     /**
      * Adds a client predicate to the list of client predicates to test against.
      * @param clientPredicate the predicate to add to the list.
@@ -40,6 +44,6 @@ public class ClientComboPredicate implements Predicate<Client> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClientComboPredicate // instanceof handles nulls
-                && predicates.equals(((ClientComboPredicate) other).predicates)); // state check
+                && isSamePredicates(((ClientComboPredicate) other).predicates)); // state check
     }
 }
