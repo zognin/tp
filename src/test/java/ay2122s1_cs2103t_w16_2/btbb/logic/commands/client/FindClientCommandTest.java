@@ -12,14 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -58,11 +65,21 @@ public class FindClientCommandTest {
     @Test
     public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(predicate);
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate(" ", NameContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate(" ", AddressContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate(" ", EmailContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate(" ", PhoneContainsKeywordsPredicate::new)
+        );
         FindClientCommand command = new FindClientCommand(clientComboPredicate);
-        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(clientComboPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
@@ -70,19 +87,31 @@ public class FindClientCommandTest {
     @Test
     public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(predicate);
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate("Kurz Elle Kunz", NameContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate("9535 9482 2427", PhoneContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate("wall michegan tokyo", AddressContainsKeywordsPredicate::new)
+        );
+        clientComboPredicate.addClientPredicate(
+                prepareClientPredicate("heinz werner lydia", EmailContainsKeywordsPredicate::new)
+        );
         FindClientCommand command = new FindClientCommand(clientComboPredicate);
-        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(clientComboPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code Predicate<Client>}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private Predicate<Client> prepareClientPredicate(String input,
+                                                     Function<List<String>, Predicate<Client>> predicateFunction) {
+        List<String> keywords = List.of(input.trim().split("\\s+"));
+        return predicateFunction.apply(keywords);
     }
 }
