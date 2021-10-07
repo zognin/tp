@@ -17,32 +17,32 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
  */
 public class TypicalOrders {
     public static final Order ORDER_FOR_ALICE =
-            new OrderBuilder().withClientPhone(ALICE.getPhone()).withClientName(ALICE.getName())
+            new OrderBuilder().withClientName(ALICE.getName()).withClientPhone(ALICE.getPhone())
                     .withClientAddress(ALICE.getAddress()).build();
     public static final Order ORDER_FOR_BENSON =
-            new OrderBuilder().withClientPhone(BENSON.getPhone()).withClientName(BENSON.getName())
+            new OrderBuilder().withClientName(BENSON.getName()).withClientPhone(BENSON.getPhone())
                     .withClientAddress(BENSON.getAddress()).build();
     public static final Order ORDER_FOR_CARL =
-            new OrderBuilder().withClientPhone(CARL.getPhone()).withClientName(CARL.getName())
+            new OrderBuilder().withClientName(CARL.getName()).withClientPhone(CARL.getPhone())
                     .withClientAddress(CARL.getAddress()).build();
     public static final Order ORDER_FOR_DANIEL =
-            new OrderBuilder().withClientPhone(DANIEL.getPhone()).withClientName(DANIEL.getName())
+            new OrderBuilder().withClientName(DANIEL.getName()).withClientPhone(DANIEL.getPhone())
                     .withClientAddress(DANIEL.getAddress()).build();
     public static final Order ORDER_FOR_ELLE =
-            new OrderBuilder().withClientPhone(ELLE.getPhone()).withClientName(ELLE.getName())
+            new OrderBuilder().withClientName(ELLE.getName()).withClientPhone(ELLE.getPhone())
                     .withClientAddress(ELLE.getAddress()).build();
     public static final Order ORDER_FOR_FIONA =
-            new OrderBuilder().withClientPhone(FIONA.getPhone()).withClientName(FIONA.getName())
+            new OrderBuilder().withClientName(FIONA.getName()).withClientPhone(FIONA.getPhone())
                     .withClientAddress(FIONA.getAddress()).build();
     public static final Order ORDER_FOR_GEORGE =
-            new OrderBuilder().withClientPhone(GEORGE.getPhone()).withClientName(GEORGE.getName())
+            new OrderBuilder().withClientName(GEORGE.getName()).withClientPhone(GEORGE.getPhone())
                     .withClientAddress(GEORGE.getAddress()).build();
 
     // Manually added - Order's details found in {@code TypicalClients} and {@code CommandTestUtil}
     public static final Order ORDER_FOR_AMY =
-            new OrderBuilder().withClientPhone(AMY.getPhone()).withClientName(AMY.getName())
+            new OrderBuilder().withClientName(AMY.getName()).withClientPhone(AMY.getPhone())
                     .withClientAddress(AMY.getAddress()).build();
     public static final Order ORDER_FOR_BOB =
-            new OrderBuilder().withClientPhone(BOB.getPhone()).withClientName(BOB.getName())
+            new OrderBuilder().withClientName(BOB.getName()).withClientPhone(BOB.getPhone())
                     .withClientAddress(BOB.getAddress()).build();
 }

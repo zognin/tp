@@ -36,20 +36,9 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder(Order order) {
         descriptor = new OrderDescriptor();
-        descriptor.setClientPhone(order.getClientPhone());
         descriptor.setClientName(order.getClientName());
+        descriptor.setClientPhone(order.getClientPhone());
         descriptor.setClientAddress(order.getClientAddress());
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code OrderDescriptor} that we are building.
-     *
-     * @param clientPhone The phone that should be set.
-     * @return A OrderDescriptorBuilder object that contains the new phone details.
-     */
-    public OrderDescriptorBuilder withClientPhone(String clientPhone) {
-        descriptor.setClientPhone(new Phone(clientPhone));
-        return this;
     }
 
     /**
@@ -60,6 +49,17 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder withClientName(String clientName) {
         descriptor.setClientName(new Name(clientName));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param clientPhone The phone that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new phone details.
+     */
+    public OrderDescriptorBuilder withClientPhone(String clientPhone) {
+        descriptor.setClientPhone(new Phone(clientPhone));
         return this;
     }
 

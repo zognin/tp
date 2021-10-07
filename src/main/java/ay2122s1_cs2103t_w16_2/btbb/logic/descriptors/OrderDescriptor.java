@@ -18,8 +18,8 @@ public class OrderDescriptor {
     public static final String MESSAGE_MISSING_CLIENT_DETAILS = "Both client and client details cannot be found";
 
     private Index clientIndex;
-    private Phone clientPhone;
     private Name clientName;
+    private Phone clientPhone;
     private Address clientAddress;
 
     public OrderDescriptor() {};
@@ -31,17 +31,9 @@ public class OrderDescriptor {
      */
     public OrderDescriptor(OrderDescriptor toCopy) {
         setClientIndex(toCopy.clientIndex);
-        setClientPhone(toCopy.clientPhone);
         setClientName(toCopy.clientName);
+        setClientPhone(toCopy.clientPhone);
         setClientAddress(toCopy.clientAddress);
-    }
-
-    public void setClientPhone(Phone clientPhone) {
-        this.clientPhone = clientPhone;
-    }
-
-    public Optional<Phone> getClientPhone() {
-        return Optional.ofNullable(clientPhone);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -58,6 +50,14 @@ public class OrderDescriptor {
 
     public Optional<Name> getClientName() {
         return Optional.ofNullable(clientName);
+    }
+
+    public void setClientPhone(Phone clientPhone) {
+        this.clientPhone = clientPhone;
+    }
+
+    public Optional<Phone> getClientPhone() {
+        return Optional.ofNullable(clientPhone);
     }
 
     public void setClientAddress(Address clientAddress) {
@@ -89,7 +89,7 @@ public class OrderDescriptor {
             Name clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
-            return new Order(clientPhone, clientName, clientAddress);
+            return new Order(clientName, clientPhone, clientAddress);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -111,8 +111,8 @@ public class OrderDescriptor {
         OrderDescriptor otherOrderDescriptor = (OrderDescriptor) other;
 
         return getClientIndex().equals(otherOrderDescriptor.getClientIndex())
+                && getClientName().equals(otherOrderDescriptor.getClientName())
                 && getClientPhone().equals(otherOrderDescriptor.getClientPhone())
-                && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
-                && getClientName().equals(otherOrderDescriptor.getClientName());
+                && getClientAddress().equals(otherOrderDescriptor.getClientAddress());
     }
 }

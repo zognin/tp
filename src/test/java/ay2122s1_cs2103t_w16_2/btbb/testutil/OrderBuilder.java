@@ -16,8 +16,8 @@ public class OrderBuilder {
     private static final int DEFAULT_INDEX = 1;
 
     private Index clientIndex;
-    private Phone clientPhone;
     private Name clientName;
+    private Phone clientPhone;
     private Address clientAddress;
 
     /**
@@ -25,8 +25,8 @@ public class OrderBuilder {
      */
     public OrderBuilder() {
         clientIndex = Index.fromOneBased(DEFAULT_INDEX);
-        clientPhone = new Phone(DEFAULT_PHONE);
         clientName = new Name(DEFAULT_NAME);
+        clientPhone = new Phone(DEFAULT_PHONE);
         clientAddress = new Address(DEFAULT_ADDRESS);
     }
 
@@ -36,20 +36,9 @@ public class OrderBuilder {
      * @param orderToCopy The data from which to copy from to create a new order.
      */
     public OrderBuilder(Order orderToCopy) {
-        clientPhone = orderToCopy.getClientPhone();
         clientName = orderToCopy.getClientName();
+        clientPhone = orderToCopy.getClientPhone();
         clientAddress = orderToCopy.getClientAddress();
-    }
-
-    /**
-     * Sets the {@code clientPhone} of the {@code OrderBuilder} that we are building.
-     *
-     * @param clientPhone The client's phone associated with the order we are building.
-     * @return The {@code OrderBuilder} object.
-     */
-    public OrderBuilder withClientPhone(Phone clientPhone) {
-        this.clientPhone = clientPhone;
-        return this;
     }
 
     /**
@@ -60,6 +49,17 @@ public class OrderBuilder {
      */
     public OrderBuilder withClientName(Name clientName) {
         this.clientName = clientName;
+        return this;
+    }
+
+    /**
+     * Sets the {@code clientPhone} of the {@code OrderBuilder} that we are building.
+     *
+     * @param clientPhone The client's phone associated with the order we are building.
+     * @return The {@code OrderBuilder} object.
+     */
+    public OrderBuilder withClientPhone(Phone clientPhone) {
+        this.clientPhone = clientPhone;
         return this;
     }
 
@@ -75,6 +75,6 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        return new Order(clientPhone, clientName, clientAddress);
+        return new Order(clientName, clientPhone, clientAddress);
     }
 }

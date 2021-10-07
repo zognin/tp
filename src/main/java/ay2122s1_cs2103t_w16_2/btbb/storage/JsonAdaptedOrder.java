@@ -15,19 +15,19 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
-    private final String clientPhone;
     private final String clientName;
+    private final String clientPhone;
     private final String clientAddress;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("clientPhone") String clientPhone,
-                            @JsonProperty("clientName") String clientName,
+    public JsonAdaptedOrder(@JsonProperty("clientName") String clientName,
+                            @JsonProperty("clientPhone") String clientPhone,
                             @JsonProperty("clientAddress") String clientAddress) {
-        this.clientPhone = clientPhone;
         this.clientName = clientName;
+        this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
     }
 
@@ -35,8 +35,8 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        clientPhone = source.getClientPhone().toString();
         clientName = source.getClientName().toString();
+        clientPhone = source.getClientPhone().toString();
         clientAddress = source.getClientAddress().toString();
     }
 
@@ -47,14 +47,6 @@ public class JsonAdaptedOrder {
      * @throws IllegalValueException If there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        if (clientPhone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(clientPhone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelClientPhone = new Phone(clientPhone);
-
         if (clientName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -62,6 +54,14 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelClientName = new Name(clientName);
+
+        if (clientPhone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(clientPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelClientPhone = new Phone(clientPhone);
 
         if (clientAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -71,6 +71,6 @@ public class JsonAdaptedOrder {
         }
         final Address modelClientAddress = new Address(clientAddress);
 
-        return new Order(modelClientPhone, modelClientName, modelClientAddress);
+        return new Order(modelClientName, modelClientPhone, modelClientAddress);
     }
 }

@@ -6,7 +6,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_N
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -36,8 +35,6 @@ public class AddOrderCommandTest {
         Order validOrder = new OrderBuilder(ORDER_FOR_ALICE).build();
         OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(validOrder).build();
 
-        modelStub.addClient(ALICE);
-
         CommandResult commandResult = new AddOrderCommand(validOrderDescriptor).execute(modelStub);
 
         assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
@@ -47,10 +44,10 @@ public class AddOrderCommandTest {
     @Test
     public void equals() {
         OrderDescriptor orderDescriptorForAmy =
-                new OrderDescriptorBuilder().withClientPhone(VALID_PHONE_AMY).withClientName(VALID_NAME_AMY)
+                new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
                         .withClientAddress(VALID_ADDRESS_AMY).build();
         OrderDescriptor orderDescriptorForBob =
-                new OrderDescriptorBuilder().withClientPhone(VALID_PHONE_BOB).withClientName(VALID_NAME_BOB)
+                new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                         .withClientAddress(VALID_ADDRESS_BOB).build();
         AddOrderCommand addOrderForAmyCommand = new AddOrderCommand(orderDescriptorForAmy);
         AddOrderCommand addOrderForBobCommand = new AddOrderCommand(orderDescriptorForBob);

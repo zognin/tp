@@ -13,8 +13,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order {
-    private final Phone clientPhone;
     private final Name clientName;
+    private final Phone clientPhone;
     private final Address clientAddress;
 
     /**
@@ -22,19 +22,19 @@ public class Order {
      *
      * @param clientPhone Phone number for the order.
      */
-    public Order(Phone clientPhone, Name clientName, Address clientAddress) {
-        requireAllNonNull(clientPhone, clientName, clientAddress);
-        this.clientPhone = clientPhone;
+    public Order(Name clientName, Phone clientPhone, Address clientAddress) {
+        requireAllNonNull(clientName, clientPhone, clientAddress);
         this.clientName = clientName;
+        this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
-    }
-
-    public Phone getClientPhone() {
-        return clientPhone;
     }
 
     public Name getClientName() {
         return clientName;
+    }
+
+    public Phone getClientPhone() {
+        return clientPhone;
     }
 
     public Address getClientAddress() {
@@ -51,8 +51,8 @@ public class Order {
         }
 
         return otherOrder != null
-                && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress());
     }
 
@@ -74,8 +74,9 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getClientPhone().equals(getClientPhone())
-                && otherOrder.getClientName().equals(getClientName())
+
+        return otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress());
     }
 
@@ -87,10 +88,10 @@ public class Order {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Phone: ")
-                .append(getClientPhone())
-                .append(" Name: ")
+        builder.append(" Name: ")
                 .append(getClientName())
+                .append("Phone: ")
+                .append(getClientPhone())
                 .append(" Address: ")
                 .append(getClientAddress());
 

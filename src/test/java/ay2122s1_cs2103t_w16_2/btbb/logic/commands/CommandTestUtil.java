@@ -72,9 +72,9 @@ public class CommandTestUtil {
         DESC_BOB = new ClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
-        DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientPhone(VALID_PHONE_AMY).withClientName(VALID_NAME_AMY)
+        DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
                 .withClientAddress(VALID_ADDRESS_AMY).build();
-        DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientPhone(VALID_PHONE_BOB).withClientName(VALID_NAME_BOB)
+        DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                 .withClientAddress(VALID_ADDRESS_BOB).build();
     }
 

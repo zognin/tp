@@ -30,7 +30,7 @@ public class JsonAdaptedOrderTest {
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(INVALID_PHONE, INVALID_NAME, INVALID_ADDRESS);
+        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, INVALID_PHONE, VALID_ADDRESS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -38,7 +38,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         // Type cast here to avoid conflict with the other JsonAdaptedOrder constructor
-        JsonAdaptedOrder order = new JsonAdaptedOrder((String) null, VALID_NAME, VALID_ADDRESS);
+        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, (String) null, VALID_ADDRESS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -46,14 +46,14 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedOrder order =
-                new JsonAdaptedOrder(VALID_PHONE, INVALID_NAME, VALID_ADDRESS);
+                new JsonAdaptedOrder(INVALID_NAME, VALID_PHONE, VALID_ADDRESS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_PHONE, (String) null, VALID_ADDRESS);
+        JsonAdaptedOrder order = new JsonAdaptedOrder((String) null, VALID_PHONE, VALID_ADDRESS);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -62,14 +62,14 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order =
-                new JsonAdaptedOrder(VALID_PHONE, VALID_NAME, INVALID_ADDRESS);
+                new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, INVALID_ADDRESS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_PHONE, VALID_NAME, (String) null);
+        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, (String) null);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
