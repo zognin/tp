@@ -46,7 +46,6 @@ class OrderTest {
         // different client address -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address("Choa Chu Kang")).build();
         assertFalse(ORDER_FOR_ELLE.isSameOrder(editedRandomOrder));
-
     }
 
     @Test
