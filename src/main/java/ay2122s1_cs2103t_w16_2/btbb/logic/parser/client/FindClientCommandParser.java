@@ -28,15 +28,15 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsP
  * Parses input arguments and creates a new FindClientCommand object
  */
 public class FindClientCommandParser implements Parser<FindClientCommand> {
-    private void addPredicate(ClientComboPredicate clientComboPredicate, ArgumentMultimap argMultimap,
-                              Prefix prefix, Function<List<String>, Predicate<Client>> predicateFunction) {
-        if (argMultimap.getValue(prefix).isPresent()) {
-            clientComboPredicate.addClientPredicate(
-                    predicateFunction.apply(
-                            List.of(argMultimap.getValue(prefix).get().trim().split("\\s+"))
-                    )
-            );
+    private void addClientPredicate(ClientComboPredicate clientComboPredicate, ArgumentMultimap argMultimap,
+                                    Prefix prefix, Function<List<String>, Predicate<Client>> predicateFunction) {
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return;
         }
+
+        List<String> keywords = List.of(argMultimap.getValue(prefix).get().trim().split("\\s+"));
+        Predicate<Client> clientPredicate = predicateFunction.apply(keywords);
+        clientComboPredicate.addClientPredicate(clientPredicate);
     }
 
     /**
@@ -52,10 +52,14 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
 
-        addPredicate(clientComboPredicate, argMultimap, PREFIX_CLIENT_NAME, NameContainsKeywordsPredicate::new);
-        addPredicate(clientComboPredicate, argMultimap, PREFIX_CLIENT_EMAIL, EmailContainsKeywordsPredicate::new);
-        addPredicate(clientComboPredicate, argMultimap, PREFIX_CLIENT_PHONE, PhoneContainsKeywordsPredicate::new);
-        addPredicate(clientComboPredicate, argMultimap, PREFIX_CLIENT_ADDRESS, AddressContainsKeywordsPredicate::new);
+        addClientPredicate(clientComboPredicate, argMultimap,
+                           PREFIX_CLIENT_NAME, NameContainsKeywordsPredicate::new);
+        addClientPredicate(clientComboPredicate, argMultimap,
+                           PREFIX_CLIENT_EMAIL, EmailContainsKeywordsPredicate::new);
+        addClientPredicate(clientComboPredicate, argMultimap,
+                           PREFIX_CLIENT_PHONE, PhoneContainsKeywordsPredicate::new);
+        addClientPredicate(clientComboPredicate, argMultimap,
+                           PREFIX_CLIENT_ADDRESS, AddressContainsKeywordsPredicate::new);
 
         if (clientComboPredicate.hasNoPredicate()) {
             throw new ParseException(MESSAGE_NOT_FOUND);

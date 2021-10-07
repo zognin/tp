@@ -6,13 +6,15 @@ import java.util.function.Predicate;
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.StringUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 
+/**
+ * Tests that a {@code Client}'s {@code Address} matches any of the keywords given.
+ */
 public class AddressContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
     public AddressContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
-
 
     @Override
     public boolean test(Client client) {

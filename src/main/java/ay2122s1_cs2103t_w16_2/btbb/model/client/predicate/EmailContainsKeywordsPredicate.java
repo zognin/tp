@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 
+/**
+ * Tests that a {@code Client}'s {@code Email} matches any of the keywords given.
+ */
 public class EmailContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
