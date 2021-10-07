@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 
 public class IngredientName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Ingredient Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the ingredient name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -16,18 +16,18 @@ public class IngredientName {
     private final String ingredientName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code IngredientName}.
      *
-     * @param name A valid name.
+     * @param ingredientName A valid ingredient name.
      */
-    public IngredientName(String name) {
-        requireNonNull(name);
-        checkArgument(isValidIngredientName(name), MESSAGE_CONSTRAINTS);
-        ingredientName = name;
+    public IngredientName(String ingredientName) {
+        requireNonNull(ingredientName);
+        checkArgument(isValidIngredientName(ingredientName), MESSAGE_CONSTRAINTS);
+        this.ingredientName = ingredientName;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid ingredient name.
      */
     public static boolean isValidIngredientName(String test) {
         return test.matches(VALIDATION_REGEX);

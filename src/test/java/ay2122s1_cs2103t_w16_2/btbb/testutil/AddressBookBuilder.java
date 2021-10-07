@@ -2,6 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -24,6 +25,14 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withClient(Client client) {
         addressBook.addClient(client);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Ingredient} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withIngredient(Ingredient ingredient) {
+        addressBook.addIngredient(ingredient);
         return this;
     }
 

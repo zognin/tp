@@ -6,7 +6,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
 public class IngredientBuilder {
-    private static final String DEFAULT_INGREDIENT_NAME = "Chicken";
+    private static final String DEFAULT_INGREDIENT_NAME = "Cauliflower";
     private static final String DEFAULT_QUANTITY = "14";
     private static final String DEFAULT_UNIT = "whole";
 

@@ -1,13 +1,13 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
-import static java.util.Objects.requireNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * A list of ingrdients that enforces uniqueness between its elements and does not allow nulls.

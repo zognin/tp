@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameClient comparison)
+ * Duplicates are not allowed (by .isSameClient and .isSameIngredient comparisons)
  */
 public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
@@ -40,7 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Clients in the {@code toBeCopied}
+     * Creates an AddressBook using the Clients, Orders and Ingredients in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -68,6 +68,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the ingredients list with {@code ingredients}
+     * {@code ingredients} must not contain duplicate orders.
+     *
+     * @param ingredients Ingredients to replace the list with.
+     */
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients.setIngredients(ingredients);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -75,6 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setClients(newData.getClientList());
         setOrders(newData.getOrderList());
+        setIngredients(newData.getIngredientList());
     }
 
     //// client-level operations

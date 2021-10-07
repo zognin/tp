@@ -11,7 +11,7 @@ public class Unit {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    private static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final String unit;
 

@@ -1,14 +1,14 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Optional;
+
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
-
-import java.util.Optional;
-
-import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
 public class IngredientDescriptor {
     private IngredientName ingredientName;

@@ -1,12 +1,13 @@
 package ay2122s1_cs2103t_w16_2.btbb.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JsonAdaptedIngredient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ingredient's %s field is missing!";
@@ -19,7 +20,7 @@ public class JsonAdaptedIngredient {
      * Constructs a {@code JsonAdaptedIngredient} with the given ingredient details.
      */
     @JsonCreator
-    public JsonAdaptedIngredient(@JsonProperty("ingredient name") String ingredientName,
+    public JsonAdaptedIngredient(@JsonProperty("ingredientName") String ingredientName,
                                  @JsonProperty("quantity") String quantity, @JsonProperty("unit") String unit) {
         this.ingredientName = ingredientName;
         this.quantity = quantity;

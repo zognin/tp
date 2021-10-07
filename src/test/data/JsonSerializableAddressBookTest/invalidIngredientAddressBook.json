@@ -2,15 +2,15 @@
   "clients": [ {
     "name": "Hans Muster",
     "phone": "9482424",
-    "email": "invalid@email!3e",
+    "email": "muster@gmail.com",
     "address": "4th street"
   } ],
   "orders": [{
     "clientPhone": "9482424"
   }],
   "ingredients": [{
-    "ingredientName": "Chicken",
-    "quantity": "15",
+    "ingredientName": "Chi!ccken",
+    "quantity": "30",
     "unit": "whole"
   }]
 }

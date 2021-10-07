@@ -114,4 +114,10 @@ public class ModelStub implements Model {
     public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }

@@ -1,9 +1,11 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,12 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Collection;
 import java.util.Collections;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -66,6 +69,34 @@ public class AddressBookTest {
     @Test
     public void getCLientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
+    }
+
+    @Test
+    public void hasIngredient_nullIngredient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasIngredient(null));
+    }
+
+    @Test
+    public void hasIngredient_ingredientNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasIngredient(APPLE));
+    }
+
+    @Test
+    public void hasIngredient_ingredientInAddressBook_returnsTrue() {
+        addressBook.addIngredient(APPLE);
+        assertTrue(addressBook.hasIngredient(APPLE));
+    }
+
+    @Test
+    public void hasIngredient_ingredientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addIngredient(APPLE);
+        Ingredient editedApple = new IngredientBuilder(APPLE).withQuantity(VALID_QUANTITY_BEEF).build();
+        assertTrue(addressBook.hasIngredient(editedApple));
+    }
+
+    @Test
+    public void getIngredientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getIngredientList().remove(0));
     }
 
     /**

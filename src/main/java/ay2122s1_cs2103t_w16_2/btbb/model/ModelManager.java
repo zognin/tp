@@ -173,6 +173,15 @@ public class ModelManager implements Model {
         filteredIngredients.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return filteredIngredients;
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

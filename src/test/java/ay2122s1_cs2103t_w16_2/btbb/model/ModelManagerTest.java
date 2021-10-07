@@ -4,6 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.Model.PREDICATE_SHOW_ALL_CLIENTS
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BENSON;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -90,6 +91,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
+    }
+
+    @Test
+    public void hasIngredient_nullIngredient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasIngredient(null));
+    }
+
+    @Test
+    public void hasIngredient_ingredientNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasIngredient(APPLE));
+    }
+
+    @Test
+    public void hasIngredient_ingredientInAddressBook_returnsTrue() {
+        modelManager.addIngredient(APPLE);
+        assertTrue(modelManager.hasIngredient(APPLE));
+    }
+
+    @Test
+    public void getFilteredIngredientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredIngredientList().remove(0));
     }
 
     @Test

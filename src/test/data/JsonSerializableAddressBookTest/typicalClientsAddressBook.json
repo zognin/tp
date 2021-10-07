@@ -52,27 +52,27 @@
     "clientPhone": "9482442"
   } ],
   "ingredients": [{
-    "ingredient name": "Chicken",
+    "ingredientName": "Chicken",
     "quantity": "15",
     "unit": "whole"
   }, {
-    "ingredient name": "Eggs",
+    "ingredientName": "Eggs",
     "quantity": "10",
     "unit": "whole"
   }, {
-    "ingredient name": "Carrot",
+    "ingredientName": "Carrot",
     "quantity": "20",
     "unit": "whole"
   }, {
-    "ingredient name": "Flour",
+    "ingredientName": "Flour",
     "quantity": "1000",
     "unit": "g"
   }, {
-    "ingredient name": "Sugar",
+    "ingredientName": "Sugar",
     "quantity": "9000",
     "unit": "g"
   }, {
-    "ingredient name": "Fish",
+    "ingredientName": "Fish",
     "quantity": "50",
     "unit": "g"
   }]

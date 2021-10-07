@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers and it should be non-negative.";
-    private static final String VALIDATION_REGEX = "\\d*"; //any number ≥ 0
-    private final String quantity;
+    private static final String VALIDATION_REGEX = "^[1-9]\\d*$";
+    private final int quantity;
 
     /**
      * Constructs a {@code Quantity}.
@@ -17,11 +17,11 @@ public class Quantity {
     public Quantity(String quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
-        this.quantity = quantity;
+        this.quantity = Integer.parseInt(quantity);
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -29,18 +29,18 @@ public class Quantity {
 
     @Override
     public String toString() {
-        return quantity;
+        return Integer.toString(quantity);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Quantity // instanceof handles nulls
-                && quantity.equals(((Quantity) other).quantity)); // state check
+                && quantity == ((Quantity) other).quantity); // state check
     }
 
     @Override
     public int hashCode() {
-        return quantity.hashCode();
+        return quantity;
     }
 }

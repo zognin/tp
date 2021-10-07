@@ -12,6 +12,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -19,10 +22,18 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
 
+    private static final String INVALID_INGREDIENT_NAME = "Apric!t";
+    private static final String INVALID_QUANTITY = "-3";
+    private static final String INVALID_UNIT = "#mg";
+
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+
+    private static final String VALID_INGREDIENT_NAME = "Apricot";
+    private static final String VALID_QUANTITY = "30";
+    private static final String VALID_UNIT = "nuts";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -136,5 +147,75 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    // Ingredient:
+    @Test
+    public void parseIngredientName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredientName((String) null));
+    }
+
+    @Test
+    public void parseIngredientName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredientName(INVALID_INGREDIENT_NAME));
+    }
+
+    @Test
+    public void parseIngredientName_validValueWithoutWhitespace_returnsIngredientName() throws Exception {
+        IngredientName expectedIngredientName = new IngredientName(VALID_INGREDIENT_NAME);
+        assertEquals(expectedIngredientName, ParserUtil.parseIngredientName(VALID_INGREDIENT_NAME));
+    }
+
+    @Test
+    public void parseIngredientName_validValueWithWhitespace_returnsTrimmedIngredientName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_INGREDIENT_NAME + WHITESPACE;
+        IngredientName expectedIngredientName = new IngredientName(VALID_INGREDIENT_NAME);
+        assertEquals(expectedIngredientName, ParserUtil.parseIngredientName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity((String) null));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY));
+    }
+
+    @Test
+    public void parseQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY));
+    }
+
+    @Test
+    public void parseQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY + WHITESPACE;
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
+    }
+
+    @Test
+    public void parseUnit_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnit((String) null));
+    }
+
+    @Test
+    public void parseUnit_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUnit(INVALID_UNIT));
+    }
+
+    @Test
+    public void parseUnit_validValueWithoutWhitespace_returnsUnit() throws Exception {
+        Unit expectedUnit = new Unit(VALID_UNIT);
+        assertEquals(expectedUnit, ParserUtil.parseUnit(VALID_UNIT));
+    }
+
+    @Test
+    public void parseUnit_validValueWithWhitespace_returnsTrimmedUnit() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_UNIT + WHITESPACE;
+        Unit expectedUnit = new Unit(VALID_UNIT);
+        assertEquals(expectedUnit, ParserUtil.parseUnit(nameWithWhitespace));
     }
 }

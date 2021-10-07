@@ -2,6 +2,12 @@ package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
+/**
+ * Represents an Ingredient in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Ingredient {
     private IngredientName ingredientName;
     private Quantity quantity;
@@ -31,8 +37,8 @@ public class Ingredient {
 
 
     /**
-     * Returns true if both ingredients have the same name and units.
-     * This defines a weaker notion of equality between two clients.
+     * Returns true if both ingredients have the same ingredient name and units.
+     * This defines a weaker notion of equality between two ingredients.
      */
     public boolean isSameIngredient(Ingredient otherIngredient) {
         if (otherIngredient == this) {
@@ -46,8 +52,8 @@ public class Ingredient {
 
 
     /**
-     * Returns true if both ingredients have the same name, unit and quantity.
-     * This defines a stronger notion of equality between two clients.
+     * Returns true if both ingredients have the same ingredient name, unit and quantity.
+     * This defines a stronger notion of equality between two ingredients.
      */
     @Override
     public boolean equals(Object other) {
@@ -63,5 +69,23 @@ public class Ingredient {
         return otherIngredient.getIngredientName().equals(getIngredientName())
                 && otherIngredient.getQuantity().equals(getQuantity())
                 && otherIngredient.getUnit().equals(getUnit());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(ingredientName, quantity, unit);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getIngredientName())
+                .append("; Quantity: ")
+                .append(getQuantity())
+                .append("; Unit: ")
+                .append(getUnit());
+
+        return builder.toString();
     }
 }

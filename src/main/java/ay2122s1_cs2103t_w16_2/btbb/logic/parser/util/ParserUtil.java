@@ -106,7 +106,7 @@ public class ParserUtil {
         requireNonNull(ingredientName);
         String trimmedIngredientName = ingredientName.trim();
         if (!IngredientName.isValidIngredientName(trimmedIngredientName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(IngredientName.MESSAGE_CONSTRAINTS);
         }
         return new IngredientName(trimmedIngredientName);
     }
@@ -121,7 +121,7 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedQuantity);
     }
@@ -136,7 +136,7 @@ public class ParserUtil {
         requireNonNull(unit);
         String trimmedUnit = unit.trim();
         if (!Unit.isValidUnit(trimmedUnit)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Unit.MESSAGE_CONSTRAINTS);
         }
         return new Unit(trimmedUnit);
     }
