@@ -26,7 +26,7 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
         }
 
         IngredientDescriptor ingredientDescriptor = new IngredientDescriptor();
-        ingredientDescriptor.setIngredientName(ParserUtil.parseIngredientName(
+        ingredientDescriptor.setName(ParserUtil.parseIngredientName(
                 argMultimap.getValue(PREFIX_INGREDIENT_NAME).get()));
         ingredientDescriptor.setQuantity(ParserUtil.parseQuantity(
                 argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));

@@ -9,7 +9,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Ingredient {
-    private IngredientName ingredientName;
+    private IngredientName name;
     private Quantity quantity;
     private Unit unit;
 
@@ -18,13 +18,13 @@ public class Ingredient {
      */
     public Ingredient(IngredientName ingredientName, Quantity quantity, Unit unit) {
         requireAllNonNull(ingredientName, quantity, unit);
-        this.ingredientName = ingredientName;
+        this.name = ingredientName;
         this.quantity = quantity;
         this.unit = unit;
     }
 
-    public IngredientName getIngredientName() {
-        return ingredientName;
+    public IngredientName getName() {
+        return name;
     }
 
     public Quantity getQuantity() {
@@ -46,7 +46,7 @@ public class Ingredient {
         }
 
         return otherIngredient != null
-                && otherIngredient.getIngredientName().equals(getIngredientName())
+                && otherIngredient.getName().equals(getName())
                 && otherIngredient.getUnit().equals(getUnit());
     }
 
@@ -66,7 +66,7 @@ public class Ingredient {
         }
 
         Ingredient otherIngredient = (Ingredient) other;
-        return otherIngredient.getIngredientName().equals(getIngredientName())
+        return otherIngredient.getName().equals(getName())
                 && otherIngredient.getQuantity().equals(getQuantity())
                 && otherIngredient.getUnit().equals(getUnit());
     }
@@ -74,13 +74,13 @@ public class Ingredient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(ingredientName, quantity, unit);
+        return Objects.hash(name, quantity, unit);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getIngredientName())
+        builder.append(getName())
                 .append("; Quantity: ")
                 .append(getQuantity())
                 .append("; Unit: ")

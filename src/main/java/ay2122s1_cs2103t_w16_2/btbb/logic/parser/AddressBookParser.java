@@ -55,11 +55,11 @@ public class AddressBookParser {
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
 
-        case AddOrderCommand.COMMAND_WORD:
-            return new AddOrderCommandParser().parse(arguments);
-
         case AddIngredientCommand.COMMAND_WORD:
             return new AddIngredientCommandParser().parse(arguments);
+
+        case AddOrderCommand.COMMAND_WORD:
+            return new AddOrderCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);

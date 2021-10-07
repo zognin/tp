@@ -22,7 +22,7 @@ public class IngredientDescriptorBuilder {
      */
     public IngredientDescriptorBuilder(Ingredient ingredient) {
         descriptor = new IngredientDescriptor();
-        descriptor.setIngredientName(ingredient.getIngredientName());
+        descriptor.setName(ingredient.getName());
         descriptor.setQuantity(ingredient.getQuantity());
         descriptor.setUnit(ingredient.getUnit());
     }
@@ -31,7 +31,7 @@ public class IngredientDescriptorBuilder {
      * Sets the {@code IngredientName} of the {@code EditIngredientDescriptor} that we are building.
      */
     public IngredientDescriptorBuilder withIngredientName(String ingredientName) {
-        descriptor.setIngredientName(new IngredientName(ingredientName));
+        descriptor.setName(new IngredientName(ingredientName));
         return this;
     }
 
@@ -44,7 +44,7 @@ public class IngredientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code IngredientName} of the {@code EditIngredientDescriptor} that we are building.
+     * Sets the {@code Unit} of the {@code EditIngredientDescriptor} that we are building.
      */
     public IngredientDescriptorBuilder withUnit(String unit) {
         descriptor.setUnit(new Unit(unit));

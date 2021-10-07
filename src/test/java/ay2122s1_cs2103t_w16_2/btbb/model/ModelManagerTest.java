@@ -1,10 +1,12 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
 import static ay2122s1_cs2103t_w16_2.btbb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static ay2122s1_cs2103t_w16_2.btbb.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BENSON;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -121,7 +123,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON)
+                .withIngredient(APPLE).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -142,13 +145,18 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different filteredClientList -> returns false
         String[] keywords = ALICE.getName().toString().split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
+        // different filteredIngredientList -> returns false
+        modelManager.addIngredient(BEEF);
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        modelManager.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

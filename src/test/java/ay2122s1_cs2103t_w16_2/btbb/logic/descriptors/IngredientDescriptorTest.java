@@ -36,7 +36,7 @@ public class IngredientDescriptorTest {
                 .withIngredientName(VALID_INGREDIENT_NAME_BEEF).build();
         assertFalse(DESC_APPLE.equals(editedIngredientDescriptor));
 
-        // different quantity -> returns true
+        // different quantity -> returns false
         editedIngredientDescriptor = new IngredientDescriptorBuilder(DESC_APPLE)
                 .withQuantity(VALID_QUANTITY_BEEF).build();
         assertFalse(DESC_APPLE.equals(editedIngredientDescriptor));

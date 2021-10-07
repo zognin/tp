@@ -156,6 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// ingredient-level operations
+
     /**
      * Adds an ingredient to the address book.
      * The ingredient must not already exist in the address book.

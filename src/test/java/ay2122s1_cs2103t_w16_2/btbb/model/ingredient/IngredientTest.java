@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 
 public class IngredientTest {
-
     @Test
     public void isSameIngredient() {
         // same object -> returns true

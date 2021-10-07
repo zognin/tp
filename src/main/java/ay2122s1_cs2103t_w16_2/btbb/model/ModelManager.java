@@ -161,6 +161,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Ingredient ======================================================================================
+
     @Override
     public void addIngredient(Ingredient ingredient) {
         addressBook.addIngredient(ingredient);
@@ -179,7 +180,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override

@@ -38,7 +38,6 @@ public class AddIngredientCommandTest {
         assertEquals(Arrays.asList(validIngredient), modelStub.getIngredientsAdded());
     }
 
-    // change here
     @Test
     public void execute_duplicateIngredient_throwsCommandException() {
         Ingredient validIngredient = new IngredientBuilder().build();
@@ -70,7 +69,7 @@ public class AddIngredientCommandTest {
         // null -> returns false
         assertFalse(addAppleCommand.equals(null));
 
-        // different ingredients -> returns false
+        // different ingredient -> returns false
         assertFalse(addAppleCommand.equals(addBeefCommand));
     }
 }

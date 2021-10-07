@@ -20,9 +20,9 @@ public class AddIngredientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the address book. "
             + "Parameters: "
-            + PREFIX_INGREDIENT_NAME + "INGREDIENT_NAME "
-            + PREFIX_INGREDIENT_QUANTITY + "INGREDIENT_QUANTITY "
-            + PREFIX_INGREDIENT_UNIT + "INGREDIENT_UNIT\n"
+            + PREFIX_INGREDIENT_NAME + "NAME "
+            + PREFIX_INGREDIENT_QUANTITY + "QUANTITY "
+            + PREFIX_INGREDIENT_UNIT + "UNIT\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT_NAME + "Rice "
             + PREFIX_INGREDIENT_QUANTITY + "400 "

@@ -121,8 +121,12 @@ public interface Model {
     void updateFilteredOrderList(Predicate<Order> predicate);
 
     //=========== Ingredient ======================================================================================
+
     void addIngredient(Ingredient ingredient);
+
     boolean hasIngredient(Ingredient ingredient);
+
     void updateFilteredIngredientList(Predicate<Ingredient> predicate);
+
     ObservableList<Ingredient> getFilteredIngredientList();
 }

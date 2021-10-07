@@ -27,7 +27,7 @@ public class IngredientBuilder {
      * Initializes the IngredientBuilder with the data of {@code ingredientToCopy}.
      */
     public IngredientBuilder(Ingredient ingredientToCopy) {
-        ingredientName = ingredientToCopy.getIngredientName();
+        ingredientName = ingredientToCopy.getName();
         quantity = ingredientToCopy.getQuantity();
         unit = ingredientToCopy.getUnit();
     }

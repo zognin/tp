@@ -59,7 +59,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -152,7 +152,7 @@ public class ParserUtilTest {
     // Ingredient:
     @Test
     public void parseIngredientName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredientName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredientName(null));
     }
 
     @Test
@@ -175,7 +175,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuantity_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
     }
 
     @Test
@@ -198,7 +198,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseUnit_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnit((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnit(null));
     }
 
     @Test

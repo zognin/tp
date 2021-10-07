@@ -4,14 +4,13 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.util.Optional;
 
-import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
 public class IngredientDescriptor {
-    private IngredientName ingredientName;
+    private IngredientName name;
     private Quantity quantity;
     private Unit unit;
 
@@ -22,24 +21,17 @@ public class IngredientDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public IngredientDescriptor(IngredientDescriptor toCopy) {
-        setIngredientName(toCopy.ingredientName);
+        setName(toCopy.name);
         setQuantity(toCopy.quantity);
         setUnit(toCopy.unit);
     }
 
-    /**
-     * Returns true if at least one field is edited.
-     */
-    public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(ingredientName, quantity, unit);
+    public void setName(IngredientName name) {
+        this.name = name;
     }
 
-    public void setIngredientName(IngredientName name) {
-        this.ingredientName = name;
-    }
-
-    public Optional<IngredientName> getIngredientName() {
-        return Optional.ofNullable(ingredientName);
+    public Optional<IngredientName> getName() {
+        return Optional.ofNullable(name);
     }
 
     public void setQuantity(Quantity quantity) {
@@ -65,8 +57,8 @@ public class IngredientDescriptor {
      * @return {@code Ingredient}.
      */
     public Ingredient toModelType() {
-        requireAllNonNull(ingredientName, quantity, unit);
-        return new Ingredient(ingredientName, quantity, unit);
+        requireAllNonNull(name, quantity, unit);
+        return new Ingredient(name, quantity, unit);
     }
 
     @Override
@@ -84,7 +76,7 @@ public class IngredientDescriptor {
         // state check
         IngredientDescriptor e = (IngredientDescriptor) other;
 
-        return getIngredientName().equals(e.getIngredientName())
+        return getName().equals(e.getName())
                 && getQuantity().equals(e.getQuantity())
                 && getUnit().equals(e.getUnit());
     }

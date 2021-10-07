@@ -22,7 +22,6 @@ import javafx.collections.ObservableList;
  * @see Ingredient#isSameIngredient(Ingredient)
  */
 public class UniqueIngredientList implements Iterable<Ingredient> {
-
     private final ObservableList<Ingredient> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ingredient> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -80,19 +79,5 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code ingredients} contains only unique ingredients.
-     */
-    private boolean ingredientsAreUnique(List<Ingredient> ingredients) {
-        for (int i = 0; i < ingredients.size() - 1; i++) {
-            for (int j = i + 1; j < ingredients.size(); j++) {
-                if (ingredients.get(i).isSameIngredient(ingredients.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

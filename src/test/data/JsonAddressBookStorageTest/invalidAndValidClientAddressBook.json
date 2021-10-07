@@ -14,10 +14,10 @@
     "clientPhone" : "9482424"
   }, {
     "clientPhone" : "948asdf2424"
-  }],
-  "ingredients": [{
+  } ],
+  "ingredients": [ {
   "ingredient name": "Chicken",
   "quantity": "15",
   "unit": "whole"
-}]
+  } ]
 }

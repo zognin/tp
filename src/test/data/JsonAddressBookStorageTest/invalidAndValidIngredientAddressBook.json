@@ -14,8 +14,8 @@
     "clientPhone" : "9482424"
   }, {
     "clientPhone" : "94822424"
-  }],
-  "ingredients": [{
+  } ],
+  "ingredients": [ {
     "ingredient name": "Valid Ingredient",
     "quantity": "15",
     "unit": "whole"
@@ -23,5 +23,5 @@
       "ingredient name": "inValid Ingredient",
       "quantity": "15",
       "unit": "whole@@"
-    }]
+  } ]
 }

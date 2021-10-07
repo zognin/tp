@@ -17,7 +17,7 @@ public class JsonAdaptedIngredientTest {
     private static final String INVALID_QUANTITY = "-20";
     private static final String INVALID_UNIT = "gr@ms";
 
-    private static final String VALID_INGREDIENT_NAME = BUTTER.getIngredientName().toString();
+    private static final String VALID_INGREDIENT_NAME = BUTTER.getName().toString();
     private static final String VALID_QUANTITY = BUTTER.getQuantity().toString();
     private static final String VALID_UNIT = BUTTER.getUnit().toString();
 
