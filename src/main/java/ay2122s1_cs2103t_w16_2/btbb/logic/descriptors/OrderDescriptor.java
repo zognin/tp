@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
@@ -75,9 +76,13 @@ public class OrderDescriptor {
      * @throws CommandException if both the client and its details are missing.
      */
     public Order toModelType(Model model) throws CommandException {
-        List<Client> clientList = model.getFilteredClientList();
+        List<Client> lastShownClientList = model.getFilteredClientList();
+
+        if (getClientIndex().isPresent() && getClientIndex().get().getZeroBased() >= lastShownClientList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
         Optional<Client> client = getClientIndex().isPresent()
-                ? Optional.of(clientList.get(clientIndex.getZeroBased()))
+                ? Optional.of(lastShownClientList.get(clientIndex.getZeroBased()))
                 : Optional.empty();
 
         try {
