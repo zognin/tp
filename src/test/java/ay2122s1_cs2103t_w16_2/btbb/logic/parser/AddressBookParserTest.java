@@ -22,18 +22,24 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.ListClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientUtil;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderUtil;
 
 public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addClient() throws Exception {
         Client client = new ClientBuilder().build();
         ClientDescriptor clientDescriptor = new ClientDescriptorBuilder(client).build();
         AddClientCommand command = (AddClientCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
@@ -41,14 +47,22 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_addOrder() throws Exception {
+        Order order = new OrderBuilder().build();
+        OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
+        assertEquals(new AddOrderCommand(orderDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_deleteClient() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editClient() throws Exception {
         Client person = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
@@ -63,7 +77,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findClient() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindClientCommand command = (FindClientCommand) parser.parseCommand(
                 FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
@@ -81,6 +95,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD) instanceof ListClientCommand);
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD + " 3") instanceof ListClientCommand);
     }
+
 
     @Test
     public void parseCommand_tab() throws Exception {

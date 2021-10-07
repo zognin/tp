@@ -35,7 +35,7 @@ public class SampleDataUtil {
         Order[] orders = new Order[people.length];
 
         for (int i = 0; i < orders.length; i++) {
-            orders[i] = new Order(people[i].getPhone());
+            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress());
         }
 
         return orders;

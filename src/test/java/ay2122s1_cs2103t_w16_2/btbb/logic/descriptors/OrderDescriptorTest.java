@@ -2,7 +2,10 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_ORDER_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_ORDER_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,9 +32,23 @@ class OrderDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_ORDER_AMY.equals(DESC_ORDER_BOB));
 
-        // different phone -> returns false
         OrderDescriptor editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withClientIndex(INDEX_SECOND).build();
+        // different client index -> returns false
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different client name -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY).withClientName(VALID_NAME_BOB).build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different client phone -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withClientPhone(VALID_PHONE_BOB).build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different client address -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withClientAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
     }
 }
