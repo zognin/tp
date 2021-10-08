@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(), logic.getFilteredOrderList());
         homeTab.setContent(homeTabContent.getRoot());
 
-        StatTabContent statTabContent = new StatTabContent();
+        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList());
         statTab.setContent(statTabContent.getRoot());
 
         // Select default tab
