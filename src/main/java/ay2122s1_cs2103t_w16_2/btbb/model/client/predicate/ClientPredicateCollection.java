@@ -12,7 +12,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 public class ClientPredicateCollection implements Predicate<Client> {
     private final List<Predicate<Client>> predicates = new ArrayList<>();
 
-    private boolean isSamePredicates(List<Predicate<Client>> otherPredicates) {
+    private boolean hasSamePredicates(List<Predicate<Client>> otherPredicates) {
         return predicates.containsAll(otherPredicates) && otherPredicates.containsAll(predicates);
     }
 
@@ -28,7 +28,7 @@ public class ClientPredicateCollection implements Predicate<Client> {
     /**
      * Checks if there are no predicates to test against.
      *
-     * @return true if there are no predicates to test against
+     * @return True if there are no predicates to test against. False otherwise.
      */
     public boolean hasNoPredicates() {
         return predicates.isEmpty();
@@ -45,6 +45,6 @@ public class ClientPredicateCollection implements Predicate<Client> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClientPredicateCollection // instanceof handles nulls
-                && isSamePredicates(((ClientPredicateCollection) other).predicates)); // state check
+                && hasSamePredicates(((ClientPredicateCollection) other).predicates)); // state check
     }
 }
