@@ -95,13 +95,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_invalidFindCommand_exceptionThrown() {
-        assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE),
-                () -> parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE),
-                () -> parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
-                        + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
+        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
+        assertThrows(ParseException.class, errorMessage, () ->
+                parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
+        assertThrows(ParseException.class, errorMessage, () ->
+                parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
+                    + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
     }
 
     @Test
