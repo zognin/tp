@@ -30,7 +30,7 @@ public class ClientPredicateCollection implements Predicate<Client> {
      *
      * @return true if there are no predicates to test against
      */
-    public boolean hasNoPredicate() {
+    public boolean hasNoPredicates() {
         return predicates.isEmpty();
     }
 

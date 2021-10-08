@@ -111,7 +111,7 @@ public class FindClientCommandTest {
      */
     private Predicate<Client> prepareClientPredicate(String input,
                                                      Function<List<String>, Predicate<Client>> predicateFunction) {
-        List<String> keywords = List.of(input.trim().split("\\s+"));
+        List<String> keywords = List.of(input.split("\\s+"));
         return predicateFunction.apply(keywords);
     }
 }

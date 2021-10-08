@@ -34,7 +34,12 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
             return;
         }
 
-        List<String> keywords = List.of(argMultimap.getValue(prefix).get().trim().split("\\s+"));
+        String trimmedArgs = argMultimap.getValue(prefix).get().trim();
+        if (trimmedArgs.isEmpty()) {
+            return;
+        }
+
+        List<String> keywords = List.of(trimmedArgs.split("\\s+"));
         Predicate<Client> clientPredicate = predicateFunction.apply(keywords);
         clientPredicateCollection.addClientPredicate(clientPredicate);
     }
@@ -61,7 +66,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         addClientPredicate(clientPredicateCollection, argMultimap,
                            PREFIX_CLIENT_ADDRESS, AddressContainsKeywordsPredicate::new);
 
-        if (clientPredicateCollection.hasNoPredicate()) {
+        if (clientPredicateCollection.hasNoPredicates()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
 
