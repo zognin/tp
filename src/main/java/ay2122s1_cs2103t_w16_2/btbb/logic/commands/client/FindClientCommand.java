@@ -28,16 +28,16 @@ public class FindClientCommand extends Command {
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + " alice";
 
-    private final ClientPredicateCollection clientPredicateCollection;
+    private final ClientPredicateCollection predicateCollection;
 
-    public FindClientCommand(ClientPredicateCollection clientPredicateCollection) {
-        this.clientPredicateCollection = clientPredicateCollection;
+    public FindClientCommand(ClientPredicateCollection predicateCollection) {
+        this.predicateCollection = predicateCollection;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredClientList(clientPredicateCollection);
+        model.updateFilteredClientList(predicateCollection);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
     }
@@ -46,6 +46,6 @@ public class FindClientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindClientCommand // instanceof handles nulls
-                && clientPredicateCollection.equals(((FindClientCommand) other).clientPredicateCollection)); // state check
+                && predicateCollection.equals(((FindClientCommand) other).predicateCollection)); // state check
     }
 }
