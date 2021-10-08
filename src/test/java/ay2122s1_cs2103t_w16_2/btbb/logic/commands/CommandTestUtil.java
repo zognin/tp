@@ -5,6 +5,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
@@ -18,12 +21,15 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
@@ -31,6 +37,7 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    // Valid descriptions:
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -40,6 +47,14 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
 
+    public static final String VALID_INGREDIENT_NAME_APPLE = "Apple";
+    public static final String VALID_INGREDIENT_NAME_BEEF = "Beef";
+    public static final String VALID_QUANTITY_APPLE = "10";
+    public static final String VALID_QUANTITY_BEEF = "30";
+    public static final String VALID_UNIT_APPLE = "whole";
+    public static final String VALID_UNIT_BEEF = "cuts";
+
+    // prefix + desciption (valid):
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_AMY;
@@ -51,32 +66,57 @@ public class CommandTestUtil {
     public static final String INDEX_DESC_AMY = " " + PREFIX_CLIENT_INDEX + INDEX_SECOND.getOneBased();
     public static final String INDEX_DESC_BOB = " " + PREFIX_CLIENT_INDEX + INDEX_FIRST.getOneBased();
 
+    public static final String INGREDIENT_NAME_DESC_APPLE = " " + PREFIX_INGREDIENT_NAME + VALID_INGREDIENT_NAME_APPLE;
+    public static final String INGREDIENT_NAME_DESC_BEEF = " " + PREFIX_INGREDIENT_NAME + VALID_INGREDIENT_NAME_BEEF;
+    public static final String QUANTITY_DESC_APPLE = " " + PREFIX_INGREDIENT_QUANTITY + VALID_QUANTITY_APPLE;
+    public static final String QUANTITY_DESC_BEEF = " " + PREFIX_INGREDIENT_QUANTITY + VALID_QUANTITY_BEEF;
+    public static final String UNIT_DESC_APPLE = " " + PREFIX_INGREDIENT_UNIT + VALID_UNIT_APPLE;
+    public static final String UNIT_DESC_BEEF = " " + PREFIX_INGREDIENT_UNIT + VALID_UNIT_BEEF;
+
+    // prefix + desciption (invalid):
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";
     public static final String INVALID_NAME_DESC = " " + PREFIX_CLIENT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CLIENT_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_CLIENT_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_CLIENT_ADDRESS; // no empty string for addresses
 
+    public static final String INVALID_INGREDIENT_NAME_DESC = " " + PREFIX_INGREDIENT_NAME + "Rice&"; // '&' not allowed
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_INGREDIENT_QUANTITY + "-30"; // 'e' not allowed
+    public static final String INVALID_UNIT_DESC = " " + PREFIX_INGREDIENT_UNIT; // no empty string for unit
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    // Descriptors:
     public static final ClientDescriptor DESC_AMY;
     public static final ClientDescriptor DESC_BOB;
 
     public static final OrderDescriptor DESC_ORDER_AMY;
     public static final OrderDescriptor DESC_ORDER_BOB;
 
+    public static final IngredientDescriptor DESC_APPLE;
+    public static final IngredientDescriptor DESC_BEEF;
+
     static {
+        // Client
         DESC_AMY = new ClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .build();
         DESC_BOB = new ClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+
+        // Order
         DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
                 .withClientAddress(VALID_ADDRESS_AMY).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                 .withClientAddress(VALID_ADDRESS_BOB).build();
+
+        // Ingredient
+        DESC_APPLE = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)
+                .withQuantity(VALID_QUANTITY_APPLE).withUnit(VALID_UNIT_APPLE).build();
+        DESC_BEEF = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_BEEF)
+                .withQuantity(VALID_QUANTITY_BEEF).withUnit(VALID_UNIT_BEEF).build();
     }
 
     /**
@@ -133,11 +173,13 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
+        List<Client> expectedClientFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
+        List<Ingredient> expectedIngredientFilteredList = new ArrayList<>(actualModel.getFilteredIngredientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
+        assertEquals(expectedClientFilteredList, actualModel.getFilteredClientList());
+        assertEquals(expectedIngredientFilteredList, actualModel.getFilteredIngredientList());
     }
 
     /**

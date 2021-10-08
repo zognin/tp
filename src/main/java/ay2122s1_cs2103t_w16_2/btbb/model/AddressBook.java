@@ -9,16 +9,19 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameClient comparison)
+ * Duplicates are not allowed (by .isSameClient and .isSameIngredient comparisons)
  */
 public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
+    private final UniqueIngredientList ingredients;
     private final UniqueOrderList orders;
 
     /*
@@ -30,13 +33,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         clients = new UniqueClientList();
+        ingredients = new UniqueIngredientList();
         orders = new UniqueOrderList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Clients in the {@code toBeCopied}
+     * Creates an AddressBook using the Clients, Orders and Ingredients in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -51,6 +55,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
+    }
+
+    /**
+     * Replaces the contents of the ingredients list with {@code ingredients}
+     * {@code ingredients} must not contain duplicate orders.
+     *
+     * @param ingredients Ingredients to replace the list with.
+     */
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients.setIngredients(ingredients);
     }
 
     /**
@@ -70,6 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setClients(newData.getClientList());
+        setIngredients(newData.getIngredientList());
         setOrders(newData.getOrderList());
     }
 
@@ -108,7 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setClient(Client target, Client editedClient) throws NotFoundException {
         requireNonNull(editedClient);
-
         clients.setClient(target, editedClient);
     }
 
@@ -118,6 +132,28 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) throws NotFoundException {
         clients.remove(key);
+    }
+
+    //// ingredient-level operations
+
+    /**
+     * Adds an ingredient to the address book.
+     * The ingredient must not already exist in the address book.
+     *
+     * @param ingredient Ingredient to be added.
+     */
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
+
+    /**
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     *
+     * @param ingredient to check.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.contains(ingredient);
     }
 
     //// order-level operations
@@ -139,7 +175,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
-
     //// util methods
 
     @Override
@@ -156,6 +191,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getIngredientList() {
+        return ingredients.asUnmodifiableObservableList();
     }
 
     @Override

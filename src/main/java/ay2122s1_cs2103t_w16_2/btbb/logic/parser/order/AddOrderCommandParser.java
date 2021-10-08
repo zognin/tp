@@ -15,6 +15,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
+/**
+ * Parses input arguments and creates a new AddOrderCommand object.
+ */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     @Override
     public AddOrderCommand parse(String args) throws ParseException {
@@ -45,7 +48,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             orderDescriptor.setClientIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get()));
         }
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
-            orderDescriptor.setClientName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
+            orderDescriptor.setClientName(ParserUtil
+                    .parseGenericString(argMultimap.getValue(PREFIX_CLIENT_NAME).get(), "Name"));
         }
         if (argMultimap.getValue(PREFIX_CLIENT_PHONE).isPresent()) {
             orderDescriptor.setClientPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));

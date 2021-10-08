@@ -1,0 +1,16 @@
+{
+  "clients": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "muster@gmail.com",
+    "address": "4th street"
+  } ],
+  "ingredients": [ {
+    "ingredientName": "Chi!ccken",
+    "quantity": "30",
+    "unit": "whole"
+  } ],
+  "orders": [ {
+    "clientPhone": "9482424"
+  } ]
+}

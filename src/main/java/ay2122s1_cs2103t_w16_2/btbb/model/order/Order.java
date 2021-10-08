@@ -5,15 +5,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order {
-    private final Name clientName;
+    private final GenericString clientName;
     private final Phone clientPhone;
     private final Address clientAddress;
 
@@ -22,14 +22,14 @@ public class Order {
      *
      * @param clientPhone Phone number for the order.
      */
-    public Order(Name clientName, Phone clientPhone, Address clientAddress) {
+    public Order(GenericString clientName, Phone clientPhone, Address clientAddress) {
         requireAllNonNull(clientName, clientPhone, clientAddress);
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
     }
 
-    public Name getClientName() {
+    public GenericString getClientName() {
         return clientName;
     }
 

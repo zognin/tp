@@ -8,15 +8,15 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Stores the details to relevant to a client.
  * Some details have to be converted to their model representations before converting to a Client model type.
  */
 public class ClientDescriptor {
-    private Name name;
+    private GenericString name;
     private Phone phone;
     private Email email;
     private Address address;
@@ -41,11 +41,11 @@ public class ClientDescriptor {
         return CollectionUtil.isAnyNonNull(name, phone, email, address);
     }
 
-    public void setName(Name name) {
+    public void setName(GenericString name) {
         this.name = name;
     }
 
-    public Optional<Name> getName() {
+    public Optional<GenericString> getName() {
         return Optional.ofNullable(name);
     }
 
@@ -94,7 +94,7 @@ public class ClientDescriptor {
     public Client toModelTypeFrom(Client existingClient) {
         assert existingClient != null;
 
-        Name updatedName = getName().orElse(existingClient.getName());
+        GenericString updatedName = getName().orElse(existingClient.getName());
         Phone updatedPhone = getPhone().orElse(existingClient.getPhone());
         Email updatedEmail = getEmail().orElse(existingClient.getEmail());
         Address updatedAddress = getAddress().orElse(existingClient.getAddress());

@@ -10,15 +10,15 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class OrderDescriptor {
     public static final String MESSAGE_MISSING_CLIENT_DETAILS = "Both client and client details cannot be found";
 
     private Index clientIndex;
-    private Name clientName;
+    private GenericString clientName;
     private Phone clientPhone;
     private Address clientAddress;
 
@@ -44,11 +44,11 @@ public class OrderDescriptor {
         return Optional.ofNullable(clientIndex);
     }
 
-    public void setClientName(Name clientName) {
+    public void setClientName(GenericString clientName) {
         this.clientName = clientName;
     }
 
-    public Optional<Name> getClientName() {
+    public Optional<GenericString> getClientName() {
         return Optional.ofNullable(clientName);
     }
 
@@ -79,7 +79,7 @@ public class OrderDescriptor {
         Optional<Client> client = getClientFromModel(model);
 
         try {
-            Name clientName = getClientName().orElseGet(() -> client.get().getName());
+            GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
             return new Order(clientName, clientPhone, clientAddress);

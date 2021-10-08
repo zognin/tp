@@ -18,8 +18,10 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     private final ArrayList<Client> clientsAdded = new ArrayList<>();
     private final ArrayList<Order> ordersAdded = new ArrayList<>();
 
-    public ArrayList<Order> getOrdersAdded() {
-        return ordersAdded;
+    @Override
+    public void addClient(Client client) {
+        requireNonNull(client);
+        clientsAdded.add(client);
     }
 
     @Override
@@ -27,10 +29,8 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
         return FXCollections.observableList(clientsAdded);
     }
 
-    @Override
-    public void addClient(Client client) {
-        requireNonNull(client);
-        clientsAdded.add(client);
+    public ArrayList<Order> getOrdersAdded() {
+        return ordersAdded;
     }
 
     @Override

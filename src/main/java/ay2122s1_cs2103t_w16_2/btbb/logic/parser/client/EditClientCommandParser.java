@@ -42,7 +42,8 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
 
         ClientDescriptor editClientDescriptor = new ClientDescriptor();
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
-            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
+            editClientDescriptor.setName(ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_CLIENT_NAME).get(),
+                    "Name"));
         }
         if (argMultimap.getValue(PREFIX_CLIENT_PHONE).isPresent()) {
             editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));

@@ -1,0 +1,16 @@
+{
+  "clients": [ {
+    "name": "Hans Muster",
+    "phone": "94822424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ],
+  "ingredients": [ {
+    "ingredient name": "Invalid Ingredient!@",
+    "quantity": "15",
+    "unit": "whole"
+  } ],
+  "orders": [ {
+    "clientPhone": "9482424"
+  } ]
+}
