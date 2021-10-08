@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Predicate;
 
-import ay2122s1_cs2103t_w16_2.btbb.commons.util.StringUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 
 /**
