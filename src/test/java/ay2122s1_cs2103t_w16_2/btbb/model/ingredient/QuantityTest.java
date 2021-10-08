@@ -30,6 +30,7 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("qty")); // non-numeric
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("9312 1534")); // spaces within digits
+        assertFalse(Quantity.isValidQuantity("9312333333331534")); // int out of range
 
         // valid quantity
         assertTrue(Quantity.isValidQuantity("50"));

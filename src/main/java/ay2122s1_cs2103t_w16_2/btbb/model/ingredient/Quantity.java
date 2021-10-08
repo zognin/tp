@@ -32,7 +32,13 @@ public class Quantity {
      * @return boolean of whether name is valid.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+        Boolean isMatch = test.matches(VALIDATION_REGEX);
+        try {
+            Integer.parseInt(test);
+            return isMatch;
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
     }
 
     /**

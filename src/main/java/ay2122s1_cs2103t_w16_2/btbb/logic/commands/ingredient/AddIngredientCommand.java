@@ -29,7 +29,7 @@ public class AddIngredientCommand extends Command {
             + PREFIX_INGREDIENT_UNIT + "g";
 
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in your inventory.";
 
     private final IngredientDescriptor ingredientDescriptor;
 
