@@ -26,7 +26,7 @@ public class FindClientCommand extends Command {
             + "[" + PREFIX_CLIENT_PHONE + "PHONE] "
             + "[" + PREFIX_CLIENT_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + " alice";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
     private final ClientPredicateCollection predicateCollection;
 
