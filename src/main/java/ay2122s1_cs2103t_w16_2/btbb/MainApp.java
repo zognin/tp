@@ -166,7 +166,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting BTBB " + MainApp.VERSION);
+        logger.info("Starting Address Book " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
