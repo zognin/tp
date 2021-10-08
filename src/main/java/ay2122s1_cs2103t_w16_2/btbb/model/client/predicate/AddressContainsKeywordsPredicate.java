@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.client.predicate;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.StringUtil;
@@ -18,8 +19,9 @@ public class AddressContainsKeywordsPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
+        String lowercaseAddress = client.getAddress().toString().toLowerCase(Locale.ROOT);
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getAddress().toString(), keyword));
+                .anyMatch(keyword -> lowercaseAddress.contains(keyword.toLowerCase(Locale.ROOT)));
     }
 
     @Override
