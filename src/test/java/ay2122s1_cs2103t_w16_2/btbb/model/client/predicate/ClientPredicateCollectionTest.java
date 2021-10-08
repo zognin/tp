@@ -35,26 +35,45 @@ public class ClientPredicateCollectionTest {
         ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
         addPredicates(clientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
                 PHONE_9427_3217_PREDICATE, ADDRESS_YISHUN_GEYLANG_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
+
+        ClientPredicateCollection sameOrderClientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(sameOrderClientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
+                PHONE_9427_3217_PREDICATE, ADDRESS_YISHUN_GEYLANG_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
+
         ClientPredicateCollection diffOrderClientPredicateCollection = new ClientPredicateCollection();
         addPredicates(diffOrderClientPredicateCollection, List.of(PHONE_9427_3217_PREDICATE,
                 ADDRESS_YISHUN_GEYLANG_PREDICATE, NAME_ALICE_BOB_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
+
         ClientPredicateCollection incompleteClientPredicateCollection = new ClientPredicateCollection();
         addPredicates(incompleteClientPredicateCollection, List.of(PHONE_9427_3217_PREDICATE,
                 ADDRESS_YISHUN_GEYLANG_PREDICATE));
+
         ClientPredicateCollection emptyClientPredicateCollection = new ClientPredicateCollection();
 
-        // same order - must be equal
+        // different types -> returns false
+        assertFalse(clientPredicateCollection.equals(1));
+
+        // null -> returns false
+        assertFalse(clientPredicateCollection.equals(null));
+
+        // same object - must be equal
         assertEquals(clientPredicateCollection, clientPredicateCollection);
+
+        // same order - must be equal
+        assertEquals(clientPredicateCollection, sameOrderClientPredicateCollection);
+
         // diff order - must be equal
         assertEquals(clientPredicateCollection, diffOrderClientPredicateCollection);
+
         // Different No. of predicates - not equal
         assertNotEquals(clientPredicateCollection, incompleteClientPredicateCollection);
+
         // One has no predicates - not equal
         assertNotEquals(clientPredicateCollection, emptyClientPredicateCollection);
     }
 
     @Test
-    public void test_clients() {
+    public void test() {
         ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
         addPredicates(clientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
                 PHONE_9427_3217_PREDICATE, ADDRESS_YISHUN_GEYLANG_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));

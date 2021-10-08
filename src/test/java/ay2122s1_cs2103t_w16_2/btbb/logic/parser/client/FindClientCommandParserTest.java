@@ -35,13 +35,13 @@ public class FindClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindClientCommand() {
-        // no leading and trailing whitespaces
         ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
         clientPredicateCollection.addClientPredicate(NAME_ALICE_BOB_PREDICATE);
         clientPredicateCollection.addClientPredicate(ADDRESS_YISHUN_GEYLANG_PREDICATE);
         clientPredicateCollection.addClientPredicate(EMAIL_ALICE_BOB_GMAIL_PREDICATE);
         clientPredicateCollection.addClientPredicate(PHONE_9427_3217_PREDICATE);
         FindClientCommand expectedFindClientCommand = new FindClientCommand(clientPredicateCollection);
+
         assertParseSuccess(parser, " " + PREFIX_CLIENT_NAME + "Alice Bob "
                 + PREFIX_CLIENT_ADDRESS + "Yishun Geylang " + PREFIX_CLIENT_PHONE + "9427 3217 "
                 + PREFIX_CLIENT_EMAIL + "alice@gmail.com bob@gmail.com", expectedFindClientCommand);
