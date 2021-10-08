@@ -11,7 +11,6 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 2147483647.";
-    private static final String VALIDATION_REGEX = "^[1-9]\\d*$";
     private final int quantity;
 
     /**
@@ -32,10 +31,9 @@ public class Quantity {
      * @return boolean of whether name is valid.
      */
     public static boolean isValidQuantity(String test) {
-        Boolean isMatch = test.matches(VALIDATION_REGEX);
         try {
-            Integer.parseInt(test);
-            return isMatch;
+            int quantity = Integer.parseInt(test);
+            return quantity > 0;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }

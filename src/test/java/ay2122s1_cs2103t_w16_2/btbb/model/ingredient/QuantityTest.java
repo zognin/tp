@@ -21,7 +21,7 @@ public class QuantityTest {
     @Test
     public void isValidQuantity() {
         // null quantity
-        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
+        assertFalse(Quantity.isValidQuantity(null));
 
         // invalid quantity
         assertFalse(Quantity.isValidQuantity("")); // empty string
