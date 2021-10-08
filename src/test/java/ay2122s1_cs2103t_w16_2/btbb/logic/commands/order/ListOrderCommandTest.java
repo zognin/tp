@@ -10,6 +10,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ListOrderCommand.
+ */
 public class ListOrderCommandTest {
     private Model model;
     private Model expectedModel;

@@ -7,6 +7,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 
+/**
+ * Lists all orders in the address book to the user.
+ */
 public class ListOrderCommand extends Command {
     public static final String COMMAND_WORD = "list-o";
 
