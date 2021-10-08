@@ -27,7 +27,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
@@ -81,12 +81,12 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_findClient() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(new NameContainsKeywordsPredicate(keywords));
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(new NameContainsKeywordsPredicate(keywords));
         FindClientCommand command = (FindClientCommand) parser.parseCommand(
                 FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindClientCommand(clientComboPredicate), command);
+        assertEquals(new FindClientCommand(clientPredicateCollection), command);
     }
 
     @Test

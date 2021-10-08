@@ -11,10 +11,11 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 
-public class ClientComboPredicateTest {
-    private void addPredicates(ClientComboPredicate clientComboPredicate, Predicate<Client> ...clientPredicates) {
+public class ClientPredicateCollectionTest {
+    private void addPredicates(ClientPredicateCollection clientPredicateCollection,
+                               List<Predicate<Client>> clientPredicates) {
         for (Predicate<Client> clientPredicate : clientPredicates) {
-            clientComboPredicate.addClientPredicate(clientPredicate);
+            clientPredicateCollection.addClientPredicate(clientPredicate);
         }
     }
 
@@ -28,17 +29,17 @@ public class ClientComboPredicateTest {
                 new AddressContainsKeywordsPredicate(List.of("Yishun", "Geylang"));
         EmailContainsKeywordsPredicate emailContainsKeywordsPredicate =
                 new EmailContainsKeywordsPredicate(List.of("alice@gmail.com", "bob@gmail.com"));
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        addPredicates(clientComboPredicate, nameContainsKeywordsPredicate,
-                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate);
-        ClientComboPredicate diffOrderClientComboPredicate = new ClientComboPredicate();
-        addPredicates(diffOrderClientComboPredicate, phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate,
-                nameContainsKeywordsPredicate, emailContainsKeywordsPredicate);
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(clientPredicateCollection, List.of(nameContainsKeywordsPredicate,
+                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate));
+        ClientPredicateCollection diffOrderClientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(diffOrderClientPredicateCollection, List.of(phoneContainsKeywordsPredicate,
+                addressContainsKeywordsPredicate, nameContainsKeywordsPredicate, emailContainsKeywordsPredicate));
 
         // same order - must be equal
-        assertEquals(clientComboPredicate, clientComboPredicate);
+        assertEquals(clientPredicateCollection, clientPredicateCollection);
         // diff order - must be equal
-        assertEquals(clientComboPredicate, diffOrderClientComboPredicate);
+        assertEquals(clientPredicateCollection, diffOrderClientPredicateCollection);
     }
 
     @Test
@@ -51,17 +52,18 @@ public class ClientComboPredicateTest {
                 new AddressContainsKeywordsPredicate(List.of("Yishun", "Geylang"));
         EmailContainsKeywordsPredicate emailContainsKeywordsPredicate =
                 new EmailContainsKeywordsPredicate(List.of("alice@gmail.com", "bob@gmail.com"));
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        addPredicates(clientComboPredicate, nameContainsKeywordsPredicate,
-                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate);
-        ClientComboPredicate incompleteClientComboPredicate = new ClientComboPredicate();
-        addPredicates(incompleteClientComboPredicate, phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate);
-        ClientComboPredicate emptyClientComboPredicate = new ClientComboPredicate();
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(clientPredicateCollection, List.of(nameContainsKeywordsPredicate,
+                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate));
+        ClientPredicateCollection incompleteClientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(incompleteClientPredicateCollection, List.of(phoneContainsKeywordsPredicate,
+                addressContainsKeywordsPredicate));
+        ClientPredicateCollection emptyClientPredicateCollection = new ClientPredicateCollection();
 
         // Different No. of predicates - not equal
-        assertNotEquals(clientComboPredicate, incompleteClientComboPredicate);
+        assertNotEquals(clientPredicateCollection, incompleteClientPredicateCollection);
         // One has no predicates - not equal
-        assertNotEquals(clientComboPredicate, emptyClientComboPredicate);
+        assertNotEquals(clientPredicateCollection, emptyClientPredicateCollection);
     }
 
     @Test
@@ -76,12 +78,12 @@ public class ClientComboPredicateTest {
                 new AddressContainsKeywordsPredicate(List.of("Yishun", "Geylang"));
         EmailContainsKeywordsPredicate emailContainsKeywordsPredicate =
                 new EmailContainsKeywordsPredicate(List.of("alice@gmail.com", "bob@gmail.com"));
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        addPredicates(clientComboPredicate, nameContainsKeywordsPredicate,
-                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate);
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(clientPredicateCollection, List.of(nameContainsKeywordsPredicate,
+                phoneContainsKeywordsPredicate, addressContainsKeywordsPredicate, emailContainsKeywordsPredicate));
         boolean expectedResult = nameContainsKeywordsPredicate.test(client)
                 && phoneContainsKeywordsPredicate.test(client) && addressContainsKeywordsPredicate.test(client)
                 && emailContainsKeywordsPredicate.test(client);
-        assertEquals(expectedResult, clientComboPredicate.test(client));
+        assertEquals(expectedResult, clientPredicateCollection.test(client));
     }
 }

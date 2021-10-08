@@ -9,7 +9,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 /**
  * Tests that a {@code Client} matches all the predicates given.
  */
-public class ClientComboPredicate implements Predicate<Client> {
+public class ClientPredicateCollection implements Predicate<Client> {
     private final List<Predicate<Client>> predicates = new ArrayList<>();
 
     private boolean isSamePredicates(List<Predicate<Client>> otherPredicates) {
@@ -18,6 +18,7 @@ public class ClientComboPredicate implements Predicate<Client> {
 
     /**
      * Adds a client predicate to the list of client predicates to test against.
+     *
      * @param clientPredicate the predicate to add to the list.
      */
     public void addClientPredicate(Predicate<Client> clientPredicate) {
@@ -43,7 +44,7 @@ public class ClientComboPredicate implements Predicate<Client> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClientComboPredicate // instanceof handles nulls
-                && isSamePredicates(((ClientComboPredicate) other).predicates)); // state check
+                || (other instanceof ClientPredicateCollection // instanceof handles nulls
+                && isSamePredicates(((ClientPredicateCollection) other).predicates)); // state check
     }
 }

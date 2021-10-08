@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
@@ -31,16 +31,16 @@ public class FindClientCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindClientCommand() {
         // no leading and trailing whitespaces
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 new AddressContainsKeywordsPredicate(Arrays.asList("Yishun", "Geylang")));
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 new EmailContainsKeywordsPredicate(Arrays.asList("alice@gmail.com", "bob@gmail.com")));
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 new PhoneContainsKeywordsPredicate(Arrays.asList("94573217", "82162616")));
-        FindClientCommand expectedFindClientCommand = new FindClientCommand(clientComboPredicate);
+        FindClientCommand expectedFindClientCommand = new FindClientCommand(clientPredicateCollection);
         assertParseSuccess(parser, " " + PREFIX_CLIENT_NAME + "Alice Bob "
                 + PREFIX_CLIENT_ADDRESS + "Yishun Geylang " + PREFIX_CLIENT_PHONE + "94573217 82162616 "
                 + PREFIX_CLIENT_EMAIL + "alice@gmail.com bob@gmail.com", expectedFindClientCommand);

@@ -23,7 +23,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
@@ -37,9 +37,9 @@ public class FindClientCommandTest {
 
     @Test
     public void equals() {
-        ClientComboPredicate firstPredicate = new ClientComboPredicate();
+        ClientPredicateCollection firstPredicate = new ClientPredicateCollection();
         firstPredicate.addClientPredicate(new NameContainsKeywordsPredicate(Collections.singletonList("first")));
-        ClientComboPredicate secondPredicate = new ClientComboPredicate();
+        ClientPredicateCollection secondPredicate = new ClientPredicateCollection();
         secondPredicate.addClientPredicate(new NameContainsKeywordsPredicate(Collections.singletonList("second")));
 
         FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate);
@@ -65,21 +65,21 @@ public class FindClientCommandTest {
     @Test
     public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate(" ", NameContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate(" ", AddressContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate(" ", EmailContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate(" ", PhoneContainsKeywordsPredicate::new)
         );
-        FindClientCommand command = new FindClientCommand(clientComboPredicate);
-        expectedModel.updateFilteredClientList(clientComboPredicate);
+        FindClientCommand command = new FindClientCommand(clientPredicateCollection);
+        expectedModel.updateFilteredClientList(clientPredicateCollection);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
@@ -87,21 +87,21 @@ public class FindClientCommandTest {
     @Test
     public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
-        clientComboPredicate.addClientPredicate(
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate("Kurz Elle Kunz", NameContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate("9535 9482 2427", PhoneContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate("wall michegan tokyo", AddressContainsKeywordsPredicate::new)
         );
-        clientComboPredicate.addClientPredicate(
+        clientPredicateCollection.addClientPredicate(
                 prepareClientPredicate("heinz werner lydia", EmailContainsKeywordsPredicate::new)
         );
-        FindClientCommand command = new FindClientCommand(clientComboPredicate);
-        expectedModel.updateFilteredClientList(clientComboPredicate);
+        FindClientCommand command = new FindClientCommand(clientPredicateCollection);
+        expectedModel.updateFilteredClientList(clientPredicateCollection);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }

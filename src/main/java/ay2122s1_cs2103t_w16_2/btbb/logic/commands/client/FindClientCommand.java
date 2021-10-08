@@ -10,34 +10,34 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all clients in the address book whose name, phone number,
+ * email or address matches the provided parameters.
  */
 public class FindClientCommand extends Command {
     public static final String COMMAND_WORD = "find-c";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds clients by either "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds clients by "
             + "name, phone number, email or address fields. \n"
             + "Parameters (at least one must be provided): "
             + "[" + PREFIX_CLIENT_NAME + "NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "PHONE] "
             + "[" + PREFIX_CLIENT_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
-            + "Example: " + COMMAND_WORD + " PREFIX_CLIENT_NAME alice";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + " alice";
 
-    private final ClientComboPredicate predicate;
+    private final ClientPredicateCollection clientPredicateCollection;
 
-    public FindClientCommand(ClientComboPredicate predicate) {
-        this.predicate = predicate;
+    public FindClientCommand(ClientPredicateCollection clientPredicateCollection) {
+        this.clientPredicateCollection = clientPredicateCollection;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredClientList(predicate);
+        model.updateFilteredClientList(clientPredicateCollection);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
     }
@@ -46,6 +46,6 @@ public class FindClientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindClientCommand // instanceof handles nulls
-                && predicate.equals(((FindClientCommand) other).predicate)); // state check
+                && clientPredicateCollection.equals(((FindClientCommand) other).clientPredicateCollection)); // state check
     }
 }

@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientComboPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
@@ -28,7 +28,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsP
  * Parses input arguments and creates a new FindClientCommand object
  */
 public class FindClientCommandParser implements Parser<FindClientCommand> {
-    private void addClientPredicate(ClientComboPredicate clientComboPredicate, ArgumentMultimap argMultimap,
+    private void addClientPredicate(ClientPredicateCollection clientPredicateCollection, ArgumentMultimap argMultimap,
                                     Prefix prefix, Function<List<String>, Predicate<Client>> predicateFunction) {
         if (argMultimap.getValue(prefix).isEmpty()) {
             return;
@@ -36,7 +36,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         List<String> keywords = List.of(argMultimap.getValue(prefix).get().trim().split("\\s+"));
         Predicate<Client> clientPredicate = predicateFunction.apply(keywords);
-        clientComboPredicate.addClientPredicate(clientPredicate);
+        clientPredicateCollection.addClientPredicate(clientPredicate);
     }
 
     /**
@@ -50,21 +50,21 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ADDRESS);
 
-        ClientComboPredicate clientComboPredicate = new ClientComboPredicate();
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
 
-        addClientPredicate(clientComboPredicate, argMultimap,
+        addClientPredicate(clientPredicateCollection, argMultimap,
                            PREFIX_CLIENT_NAME, NameContainsKeywordsPredicate::new);
-        addClientPredicate(clientComboPredicate, argMultimap,
+        addClientPredicate(clientPredicateCollection, argMultimap,
                            PREFIX_CLIENT_EMAIL, EmailContainsKeywordsPredicate::new);
-        addClientPredicate(clientComboPredicate, argMultimap,
+        addClientPredicate(clientPredicateCollection, argMultimap,
                            PREFIX_CLIENT_PHONE, PhoneContainsKeywordsPredicate::new);
-        addClientPredicate(clientComboPredicate, argMultimap,
+        addClientPredicate(clientPredicateCollection, argMultimap,
                            PREFIX_CLIENT_ADDRESS, AddressContainsKeywordsPredicate::new);
 
-        if (clientComboPredicate.hasNoPredicate()) {
+        if (clientPredicateCollection.hasNoPredicate()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
 
-        return new FindClientCommand(clientComboPredicate);
+        return new FindClientCommand(clientPredicateCollection);
     }
 }
