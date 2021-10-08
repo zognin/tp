@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.client;
+package ay2122s1_cs2103t_w16_2.btbb.model.client.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,7 +33,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different client -> returns false
+        // different keywords -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -63,12 +63,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ClientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Carol"));
         assertFalse(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 }
