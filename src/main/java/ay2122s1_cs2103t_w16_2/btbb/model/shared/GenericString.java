@@ -26,7 +26,7 @@ public class GenericString {
      */
     public GenericString(String genericString) {
         requireNonNull(genericString);
-        checkArgument(isValidGenericString(genericString), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidGenericString(genericString), getMessageConstraints("Generic String"));
         this.genericString = genericString;
     }
 
