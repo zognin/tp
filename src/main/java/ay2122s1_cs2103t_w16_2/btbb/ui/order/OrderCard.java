@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * Encapsulates a UI component that displays information of a {@code Order}.
+ */
 public class OrderCard extends UiPart<Region> {
     private static final String FXML = "OrderListCard.fxml";
 
@@ -25,6 +28,9 @@ public class OrderCard extends UiPart<Region> {
 
     /**
      * Creates a {@code OrderCard} with the given {@code Order} and index to display.
+     *
+     * @param order Order to display.
+     * @param displayedIndex Index of the order in the currently shown list.
      */
     public OrderCard(Order order, int displayedIndex) {
         super(FXML);
