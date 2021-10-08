@@ -2,6 +2,11 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.ADDRESS_YISHUN_GEYLANG_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.EMAIL_ALICE_BOB_GMAIL_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.NAME_ALICE_BOB_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.PHONE_9427_3217_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.addPredicates;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.FIONA;
@@ -11,14 +16,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
@@ -30,55 +42,70 @@ public class FindClientCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(clientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
+                PHONE_9427_3217_PREDICATE, ADDRESS_YISHUN_GEYLANG_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
 
-        FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate);
-        FindClientCommand findSecondCommand = new FindClientCommand(secondPredicate);
+        ClientPredicateCollection diffOrderClientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(diffOrderClientPredicateCollection, List.of(PHONE_9427_3217_PREDICATE,
+                ADDRESS_YISHUN_GEYLANG_PREDICATE, NAME_ALICE_BOB_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
+
+        ClientPredicateCollection diffAmountClientPredicateCollection = new ClientPredicateCollection();
+        addPredicates(diffOrderClientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
+                EMAIL_ALICE_BOB_GMAIL_PREDICATE));
+
+        FindClientCommand findCommand = new FindClientCommand(clientPredicateCollection);
+        FindClientCommand diffOrderFindCommand = new FindClientCommand(diffOrderClientPredicateCollection);
+        FindClientCommand diffAmountFindCommand = new FindClientCommand(diffAmountClientPredicateCollection);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findCommand.equals(findCommand));
 
         // same values -> returns true
-        FindClientCommand findFirstCommandCopy = new FindClientCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindClientCommand findCommandCopy = new FindClientCommand(clientPredicateCollection);
+        assertTrue(findCommand.equals(findCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(findCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(findCommand.equals(null));
 
-        // different client -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
-    }
+        // different order of client predicates -> returns true
+        assertTrue(findCommand.equals(diffOrderFindCommand));
 
-    @Test
-    public void execute_zeroKeywords_noClientFound() {
-        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindClientCommand command = new FindClientCommand(predicate);
-        expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
-        assertEquals(Collections.emptyList(), model.getFilteredClientList());
+        // different amount of client predicates -> returns false
+        assertFalse(findCommand.equals(diffAmountFindCommand));
     }
 
     @Test
     public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindClientCommand command = new FindClientCommand(predicate);
-        expectedModel.updateFilteredClientList(predicate);
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(
+                prepareAndGetClientPredicate("Kurz Elle Kunz", NameContainsKeywordsPredicate::new)
+        );
+        clientPredicateCollection.addClientPredicate(
+                prepareAndGetClientPredicate("9535 9482 2427", PhoneContainsKeywordsPredicate::new)
+        );
+        clientPredicateCollection.addClientPredicate(
+                prepareAndGetClientPredicate("wall michegan tokyo", AddressContainsKeywordsPredicate::new)
+        );
+        clientPredicateCollection.addClientPredicate(
+                prepareAndGetClientPredicate("heinz werner lydia", EmailContainsKeywordsPredicate::new)
+        );
+        FindClientCommand command = new FindClientCommand(clientPredicateCollection);
+        expectedModel.updateFilteredClientList(clientPredicateCollection);
         assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code Predicate<Client>}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private Predicate<Client> prepareAndGetClientPredicate(String input,
+                                                         Function<List<String>, Predicate<Client>> predicateFunction) {
+        List<String> keywords = List.of(input.split("\\s+"));
+        return predicateFunction.apply(keywords);
     }
 }

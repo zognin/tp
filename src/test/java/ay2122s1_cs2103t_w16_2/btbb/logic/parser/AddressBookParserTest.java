@@ -2,14 +2,18 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.ADDRESS_YISHUN_GEYLANG_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.EMAIL_ALICE_BOB_GMAIL_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.NAME_ALICE_BOB_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.PHONE_9427_3217_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +34,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
@@ -95,10 +99,25 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findClient() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindClientCommand command = (FindClientCommand) parser.parseCommand(
-                FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
+        clientPredicateCollection.addClientPredicate(NAME_ALICE_BOB_PREDICATE);
+        clientPredicateCollection.addClientPredicate(ADDRESS_YISHUN_GEYLANG_PREDICATE);
+        clientPredicateCollection.addClientPredicate(EMAIL_ALICE_BOB_GMAIL_PREDICATE);
+        clientPredicateCollection.addClientPredicate(PHONE_9427_3217_PREDICATE);
+        FindClientCommand command = (FindClientCommand) parser.parseCommand(FindClientCommand.COMMAND_WORD
+                + " " + PREFIX_CLIENT_NAME + "Alice Bob " + PREFIX_CLIENT_ADDRESS + "Yishun Geylang "
+                + PREFIX_CLIENT_PHONE + "9427 3217 " + PREFIX_CLIENT_EMAIL + "alice@gmail.com bob@gmail.com");
+        assertEquals(new FindClientCommand(clientPredicateCollection), command);
+    }
+
+    @Test
+    public void parseCommand_invalidFindCommand_exceptionThrown() {
+        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
+        assertThrows(ParseException.class, errorMessage, () ->
+                parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
+        assertThrows(ParseException.class, errorMessage, () ->
+                parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
+                    + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
     }
 
     @Test
