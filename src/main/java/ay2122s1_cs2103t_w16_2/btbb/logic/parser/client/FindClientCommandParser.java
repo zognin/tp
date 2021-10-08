@@ -34,12 +34,12 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
             return;
         }
 
-        String trimmedArgs = argMultimap.getValue(prefix).get().trim();
-        if (trimmedArgs.isEmpty()) {
+        String trimmedSearchArg = argMultimap.getValue(prefix).get().trim();
+        if (trimmedSearchArg.isEmpty()) {
             return;
         }
 
-        List<String> keywords = List.of(trimmedArgs.split("\\s+"));
+        List<String> keywords = List.of(trimmedSearchArg.split("\\s+"));
         Predicate<Client> clientPredicate = predicateFunction.apply(keywords);
         clientPredicateCollection.addClientPredicate(clientPredicate);
     }
