@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddClientCommand}.
@@ -34,8 +35,8 @@ public class AddClientCommandIntegrationTest {
         expectedModel.addClient(validClient);
         ClientDescriptor validClientDescriptor = new ClientDescriptorBuilder(validClient).build();
 
-        assertCommandSuccess(new AddClientCommand(validClientDescriptor), model,
-                String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel);
+        assertCommandSuccessWithTabChange(new AddClientCommand(validClientDescriptor), model,
+                String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel, UiTab.HOME);
     }
 
     @Test

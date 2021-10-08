@@ -154,12 +154,11 @@ public class CommandTestUtil {
      * @param actualModel Actual model after executing the command.
      * @param expectedMessage Expected message after executing the command.
      * @param expectedModel Expected model after executing the command.
-     * @param selectedTab Selected tab to change to.
+     * @param tabToSwitchTo Tab to switch to.
      */
     public static void assertCommandSuccessWithTabChange(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel, UiTab selectedTab) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        expectedCommandResult.setSelectedTab(selectedTab);
+            Model expectedModel, UiTab tabToSwitchTo) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tabToSwitchTo);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

@@ -18,8 +18,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Sets selectedTab if there is one. */
-    private UiTab selectedTab;
+    /** Sets tab to switch to if there is one. */
+    private UiTab tabToSwitchTo;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -36,6 +36,19 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * a tab to switch to,
+     * and other fields set to their default value.
+     *
+     * @param feedbackToUser Feedback to show to user.
+     * @param tabToSwitchTo Tab to switch to.
+     */
+    public CommandResult(String feedbackToUser, UiTab tabToSwitchTo) {
+        this(feedbackToUser, false, false);
+        this.tabToSwitchTo = tabToSwitchTo;
     }
 
     public String getFeedbackToUser() {
@@ -56,7 +69,7 @@ public class CommandResult {
      * @return True if there is a need to switch tab, false otherwise.
      */
     public boolean isSwitchTab() {
-        return selectedTab != null;
+        return tabToSwitchTo != null;
     }
 
     /**
@@ -64,17 +77,8 @@ public class CommandResult {
      *
      * @return {@code UiTab}.
      */
-    public UiTab getSelectedTab() {
-        return selectedTab;
-    }
-
-    /**
-     * Sets a selected tab to switch to.
-     *
-     * @param selectedTab Selected tab to switch to.
-     */
-    public void setSelectedTab(UiTab selectedTab) {
-        this.selectedTab = selectedTab;
+    public UiTab getTabToSwitchTo() {
+        return tabToSwitchTo;
     }
 
     @Override
@@ -89,18 +93,18 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        boolean isSameSelectedTab = (selectedTab == null || otherCommandResult.selectedTab == null)
-                ? selectedTab == otherCommandResult.selectedTab
-                : selectedTab.equals(otherCommandResult.selectedTab);
+        boolean isSameTabToSwitchTo = (tabToSwitchTo == null || otherCommandResult.tabToSwitchTo == null)
+                ? tabToSwitchTo == otherCommandResult.tabToSwitchTo
+                : tabToSwitchTo.equals(otherCommandResult.tabToSwitchTo);
 
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && isSameSelectedTab;
+                && isSameTabToSwitchTo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, tabToSwitchTo);
     }
 }

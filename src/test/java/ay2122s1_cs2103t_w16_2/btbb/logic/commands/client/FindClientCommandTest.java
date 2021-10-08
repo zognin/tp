@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.FIONA;
@@ -19,6 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -60,7 +61,7 @@ public class FindClientCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
@@ -70,7 +71,7 @@ public class FindClientCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 

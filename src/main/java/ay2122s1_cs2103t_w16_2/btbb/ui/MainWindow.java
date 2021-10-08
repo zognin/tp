@@ -204,7 +204,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isSwitchTab()) {
-                switchTabs(commandResult.getSelectedTab());
+                switchTabs(commandResult.getTabToSwitchTo());
             }
 
             return commandResult;

@@ -7,6 +7,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Finds and lists all clients in address book whose name contains any of the argument keywords.
@@ -31,7 +32,8 @@ public class FindClientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
+                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()),
+                UiTab.HOME);
     }
 
     @Override
