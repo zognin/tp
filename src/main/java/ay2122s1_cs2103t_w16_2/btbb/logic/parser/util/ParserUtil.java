@@ -9,14 +9,17 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.util.StringUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    // Client-level parsers:
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -30,21 +33,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(trimmedName);
     }
 
     /**
@@ -90,6 +78,45 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    // Ingredient-level parsers:
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    // Shared-level parsers:
+
+    /**
+     * Parses a {@code String genericString} into a {@code GenericString}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param genericString String input to parse.
+     * @param attributeName name of attribute that the generic String represents (Unit, Name).
+     * @return GenericString object.
+     * @throws ParseException if the given {@code genericString} is invalid.
+     */
+    public static GenericString parseGenericString(String genericString, String attributeName) throws ParseException {
+        requireNonNull(genericString);
+        String trimmedGenericString = genericString.trim();
+        if (!GenericString.isValidGenericString(trimmedGenericString)) {
+            throw new ParseException(GenericString.getMessageConstraints(attributeName));
+        }
+        return new GenericString(trimmedGenericString);
     }
 
     /**

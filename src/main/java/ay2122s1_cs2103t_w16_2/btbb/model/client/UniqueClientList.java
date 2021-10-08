@@ -121,18 +121,4 @@ public class UniqueClientList implements Iterable<Client> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
-    /**
-     * Returns true if {@code clients} contains only unique clients.
-     */
-    private boolean clientsAreUnique(List<Client> clients) {
-        for (int i = 0; i < clients.size() - 1; i++) {
-            for (int j = i + 1; j < clients.size(); j++) {
-                if (clients.get(i).isSameClient(clients.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }

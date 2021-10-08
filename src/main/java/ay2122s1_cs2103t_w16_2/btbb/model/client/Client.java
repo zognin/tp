@@ -4,13 +4,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.util.Objects;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+
 /**
  * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
     // Identity fields
-    private final Name name;
+    private final GenericString name;
     private final Phone phone;
     private final Email email;
 
@@ -20,7 +22,7 @@ public class Client {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address) {
+    public Client(GenericString name, Phone phone, Email email, Address address) {
         requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
@@ -28,7 +30,7 @@ public class Client {
         this.address = address;
     }
 
-    public Name getName() {
+    public GenericString getName() {
         return name;
     }
 

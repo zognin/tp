@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class JsonAdaptedOrderTest {
     private static final String INVALID_CLIENT_NAME = "R@chel";
@@ -46,7 +46,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(INVALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.getMessageConstraints("Name");
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -54,7 +54,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(null, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS);
         String expectedMessage = String
-                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, GenericString.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

@@ -3,8 +3,8 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * A utility class to help with building Client objects.
@@ -15,7 +15,7 @@ public class ClientBuilder {
     private static final String DEFAULT_EMAIL = "amy@gmail.com";
     private static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private GenericString name;
     private Phone phone;
     private Email email;
     private Address address;
@@ -24,7 +24,7 @@ public class ClientBuilder {
      * Creates a {@code ClientBuilder} with the default details.
      */
     public ClientBuilder() {
-        name = new Name(DEFAULT_NAME);
+        name = new GenericString(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -44,7 +44,7 @@ public class ClientBuilder {
      * Sets the {@code Name} of the {@code Client} that we are building.
      */
     public ClientBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new GenericString(name);
         return this;
     }
 

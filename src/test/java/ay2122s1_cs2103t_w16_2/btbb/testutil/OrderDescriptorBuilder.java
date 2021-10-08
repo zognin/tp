@@ -3,9 +3,9 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * A utility class to help with building OrderDescriptorBuilder objects.
@@ -48,7 +48,7 @@ public class OrderDescriptorBuilder {
      * @return A OrderDescriptorBuilder object that contains the new name details.
      */
     public OrderDescriptorBuilder withClientName(String clientName) {
-        descriptor.setClientName(new Name(clientName));
+        descriptor.setClientName(new GenericString(clientName));
         return this;
     }
 

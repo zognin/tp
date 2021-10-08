@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Ingredient> filteredIngredients;
     private final FilteredList<Order> filteredOrders;
     private final UserPrefs userPrefs;
 
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
@@ -132,6 +135,53 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    //=========== Ingredient ======================================================================================
+
+    /**
+     * Implements addIngredient method.
+     * {@code ingredient} must not already exist in the address book.
+     *
+     * @param ingredient to add.
+     */
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        addressBook.addIngredient(ingredient);
+        updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+    }
+
+    /**
+     * Implements hasIngredient method.
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     *
+     * @param ingredient to check.
+     */
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return addressBook.hasIngredient(ingredient);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return filteredIngredients;
+    }
+
+    /**
+     * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     *
+     * @param predicate given filter to filter list by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    @Override
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
+    }
+
     //=========== Order ====================================================================================
 
     @Override
@@ -174,6 +224,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
-                && filteredOrders.equals(other.filteredOrders);
+                && filteredOrders.equals(other.filteredOrders)
+                && filteredIngredients.equals(other.filteredIngredients);
     }
 }

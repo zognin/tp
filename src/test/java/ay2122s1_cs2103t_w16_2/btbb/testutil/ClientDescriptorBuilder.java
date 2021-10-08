@@ -4,8 +4,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * A utility class to help with building EditClientDescriptor objects.
@@ -36,7 +36,7 @@ public class ClientDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditClientDescriptor} that we are building.
      */
     public ClientDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new GenericString(name));
         return this;
     }
 

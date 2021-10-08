@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import javafx.collections.ObservableList;
 
@@ -15,6 +16,7 @@ import javafx.collections.ObservableList;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     //=========== UserPref ===================================================================================
@@ -95,6 +97,33 @@ public interface Model {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    //=========== Ingredient ======================================================================================
+
+    /**
+     * Adds the given ingredient.
+     * {@code ingredient} must not already exist in the address book.
+     *
+     * @param ingredient to add.
+     */
+    void addIngredient(Ingredient ingredient);
+
+    /**
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     *
+     * @param ingredient to check.
+     */
+    boolean hasIngredient(Ingredient ingredient);
+
+    /** Returns an unmodifiable view of the filtered ingredient list */
+    ObservableList<Ingredient> getFilteredIngredientList();
+
+    /**
+     * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
+
     //=========== Order ======================================================================================
 
     /**
@@ -117,4 +146,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
+
+
 }
