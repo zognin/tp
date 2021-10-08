@@ -7,17 +7,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
-
-import java.util.Arrays;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.ADDRESS_YISHUN_GEYLANG_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.EMAIL_ALICE_BOB_GMAIL_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.NAME_ALICE_BOB_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollectionTest.PHONE_9427_3217_PREDICATE;
 
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.AddressContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.EmailContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.PhoneContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {
     private FindClientCommandParser parser = new FindClientCommandParser();
@@ -29,25 +27,28 @@ public class FindClientCommandParserTest {
     }
 
     @Test
+    public void parse_noKeywords_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_CLIENT_NAME + " " + PREFIX_CLIENT_ADDRESS
+                + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindClientCommand() {
         // no leading and trailing whitespaces
         ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
-        clientPredicateCollection.addClientPredicate(
-                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        clientPredicateCollection.addClientPredicate(
-                new AddressContainsKeywordsPredicate(Arrays.asList("Yishun", "Geylang")));
-        clientPredicateCollection.addClientPredicate(
-                new EmailContainsKeywordsPredicate(Arrays.asList("alice@gmail.com", "bob@gmail.com")));
-        clientPredicateCollection.addClientPredicate(
-                new PhoneContainsKeywordsPredicate(Arrays.asList("94573217", "82162616")));
+        clientPredicateCollection.addClientPredicate(NAME_ALICE_BOB_PREDICATE);
+        clientPredicateCollection.addClientPredicate(ADDRESS_YISHUN_GEYLANG_PREDICATE);
+        clientPredicateCollection.addClientPredicate(EMAIL_ALICE_BOB_GMAIL_PREDICATE);
+        clientPredicateCollection.addClientPredicate(PHONE_9427_3217_PREDICATE);
         FindClientCommand expectedFindClientCommand = new FindClientCommand(clientPredicateCollection);
         assertParseSuccess(parser, " " + PREFIX_CLIENT_NAME + "Alice Bob "
-                + PREFIX_CLIENT_ADDRESS + "Yishun Geylang " + PREFIX_CLIENT_PHONE + "94573217 82162616 "
+                + PREFIX_CLIENT_ADDRESS + "Yishun Geylang " + PREFIX_CLIENT_PHONE + "9427 3217 "
                 + PREFIX_CLIENT_EMAIL + "alice@gmail.com bob@gmail.com", expectedFindClientCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_CLIENT_NAME + "Alice \n \t Bob "
-                + PREFIX_CLIENT_ADDRESS + "Yishun  \n \t Geylang " + PREFIX_CLIENT_PHONE + "94573217  \n \t 82162616 "
+                + PREFIX_CLIENT_ADDRESS + "Yishun  \n \t Geylang " + PREFIX_CLIENT_PHONE + "9427 \n \t 3217 "
                 + PREFIX_CLIENT_EMAIL + "alice@gmail.com  \n \t bob@gmail.com", expectedFindClientCommand);
     }
 }

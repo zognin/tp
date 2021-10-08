@@ -34,7 +34,7 @@ public class EmailContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different client -> returns false
+        // different keywords -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -52,6 +52,10 @@ public class EmailContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("jacob", "carol"));
         assertTrue(predicate.test(new ClientBuilder().withEmail("alicejacob@gmail.com").build()));
+
+        // Mixed-case keywords
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("aLiCe", "jAcOb"));
+        assertTrue(predicate.test(new ClientBuilder().withEmail("alicejacob@gmail.com").build()));
     }
 
     @Test
@@ -67,6 +71,6 @@ public class EmailContainsKeywordsPredicateTest {
         // Keywords match phone, name and address, but does not match email
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("12345", "Alice", "Main", "Street"));
         assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alicejacob@gmail.com").withAddress("Main Street").build()));
+                .withEmail("alexia@gmail.com").withAddress("Main Street").build()));
     }
 }

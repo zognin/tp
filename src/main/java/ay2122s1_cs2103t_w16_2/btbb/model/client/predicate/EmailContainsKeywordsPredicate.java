@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.client.predicate;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
@@ -17,8 +18,9 @@ public class EmailContainsKeywordsPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
+        String lowercaseEmail = client.getEmail().toString().toLowerCase(Locale.ROOT);
         return keywords.stream()
-                .anyMatch(keyword -> client.getEmail().toString().contains(keyword));
+                .anyMatch(keyword -> lowercaseEmail.contains(keyword.toLowerCase(Locale.ROOT)));
     }
 
     @Override
