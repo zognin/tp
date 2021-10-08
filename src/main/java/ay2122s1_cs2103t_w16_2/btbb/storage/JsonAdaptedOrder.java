@@ -52,7 +52,7 @@ public class JsonAdaptedOrder {
                     GenericString.class.getSimpleName()));
         }
         if (!GenericString.isValidGenericString(clientName)) {
-            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GenericString.getMessageConstraints("Name"));
         }
         final GenericString modelClientName = new GenericString(clientName);
 

@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class GenericString {
     public static final String MESSAGE_CONSTRAINTS =
-            "Generic Strings should only contain alphanumeric characters and spaces, and it should not be blank";
+            " should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -38,6 +38,16 @@ public class GenericString {
      */
     public static boolean isValidGenericString(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the Message Constraints for different classes that extend GenericString.
+     *
+     * @param attributeName name of class that extends Generic String.
+     * @return Message Constraint.
+     */
+    public static String getMessageConstraints(String attributeName) {
+        return attributeName + MESSAGE_CONSTRAINTS;
     }
 
     @Override

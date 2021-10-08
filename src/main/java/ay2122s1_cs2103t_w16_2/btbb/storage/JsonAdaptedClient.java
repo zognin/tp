@@ -54,7 +54,7 @@ class JsonAdaptedClient {
                     GenericString.class.getSimpleName()));
         }
         if (!GenericString.isValidGenericString(name)) {
-            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GenericString.getMessageConstraints("Name"));
         }
         final GenericString modelName = new GenericString(name);
 

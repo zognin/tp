@@ -49,7 +49,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         }
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
             orderDescriptor.setClientName(ParserUtil
-                    .parseGenericString(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
+                    .parseGenericString(argMultimap.getValue(PREFIX_CLIENT_NAME).get(), "Name"));
         }
         if (argMultimap.getValue(PREFIX_CLIENT_PHONE).isPresent()) {
             orderDescriptor.setClientPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));

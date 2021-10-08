@@ -153,24 +153,27 @@ public class ParserUtilTest {
 
     @Test
     public void parseGenericString_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseGenericString(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGenericString(null,
+                "Name"));
     }
 
     @Test
     public void parseGenericString_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseGenericString(INVALID_GENERIC_STRING));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGenericString(INVALID_GENERIC_STRING,
+                "Name"));
     }
 
     @Test
     public void parseGenericString_validValueWithoutWhitespace_returnsGenericString() throws Exception {
         GenericString expectedName = new GenericString(VALID_GENERIC_STRING);
-        assertEquals(expectedName, ParserUtil.parseGenericString(VALID_GENERIC_STRING));
+        assertEquals(expectedName, ParserUtil.parseGenericString(VALID_GENERIC_STRING, "Name"));
     }
 
     @Test
     public void parseGenericString_validValueWithWhitespace_returnsTrimmedGenericString() throws Exception {
         String genericStringWithWhitespace = WHITESPACE + VALID_GENERIC_STRING + WHITESPACE;
         GenericString expectedGenericString = new GenericString(VALID_GENERIC_STRING);
-        assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace));
+        assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace,
+                "Name"));
     }
 }

@@ -105,7 +105,7 @@ class AddOrderCommandParserTest {
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB + PHONE_DESC_BOB,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Name"));
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PHONE_DESC,

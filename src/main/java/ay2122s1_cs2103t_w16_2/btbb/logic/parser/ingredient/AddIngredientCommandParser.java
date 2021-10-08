@@ -38,10 +38,11 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
 
         IngredientDescriptor ingredientDescriptor = new IngredientDescriptor();
         ingredientDescriptor.setName(ParserUtil.parseGenericString(
-                argMultimap.getValue(PREFIX_INGREDIENT_NAME).get()));
+                argMultimap.getValue(PREFIX_INGREDIENT_NAME).get(), "Name"));
         ingredientDescriptor.setQuantity(ParserUtil.parseQuantity(
                 argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));
-        ingredientDescriptor.setUnit(ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_UNIT).get()));
+        ingredientDescriptor.setUnit(ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_UNIT).get(),
+                "Unit"));
 
         return new AddIngredientCommand(ingredientDescriptor);
     }

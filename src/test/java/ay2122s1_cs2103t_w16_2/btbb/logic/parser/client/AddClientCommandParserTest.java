@@ -90,7 +90,7 @@ public class AddClientCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Name"));
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -106,7 +106,7 @@ public class AddClientCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Name"));
 
         // non-empty preamble
         assertParseFailure(parser,

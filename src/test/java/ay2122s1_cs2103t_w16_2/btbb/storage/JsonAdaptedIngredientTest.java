@@ -30,7 +30,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidIngredientName_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient =
                 new JsonAdaptedIngredient(INVALID_INGREDIENT_NAME, VALID_QUANTITY, VALID_UNIT);
-        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.getMessageConstraints("Name");
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
@@ -60,7 +60,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidUnit_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient =
                 new JsonAdaptedIngredient(VALID_INGREDIENT_NAME, VALID_QUANTITY, INVALID_UNIT);
-        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.getMessageConstraints("Unit");
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 

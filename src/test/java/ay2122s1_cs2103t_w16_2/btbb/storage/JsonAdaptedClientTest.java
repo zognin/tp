@@ -34,7 +34,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
-        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.getMessageConstraints("Name");
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 

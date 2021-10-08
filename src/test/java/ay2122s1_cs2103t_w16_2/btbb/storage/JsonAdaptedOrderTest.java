@@ -46,7 +46,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(INVALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS);
-        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.getMessageConstraints("Name");
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

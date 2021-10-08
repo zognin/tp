@@ -51,7 +51,7 @@ public class JsonAdaptedIngredient {
                     GenericString.class.getSimpleName()));
         }
         if (!GenericString.isValidGenericString(name)) {
-            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GenericString.getMessageConstraints("Name"));
         }
         final GenericString modelIngredientName = new GenericString(name);
 
@@ -71,7 +71,7 @@ public class JsonAdaptedIngredient {
                     GenericString.class.getSimpleName()));
         }
         if (!GenericString.isValidGenericString(unit)) {
-            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GenericString.getMessageConstraints("Unit"));
         }
         final GenericString modelUnit = new GenericString(unit);
 

@@ -76,7 +76,7 @@ public class AddIngredientCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid ingredient name
         assertParseFailure(parser, INVALID_INGREDIENT_NAME_DESC + QUANTITY_DESC_BEEF + UNIT_DESC_BEEF,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Name"));
 
         // invalid quantity
         assertParseFailure(parser, INGREDIENT_NAME_DESC_BEEF + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,
@@ -84,12 +84,12 @@ public class AddIngredientCommandParserTest {
 
         // invalid unit
         assertParseFailure(parser, INGREDIENT_NAME_DESC_BEEF + QUANTITY_DESC_BEEF + INVALID_UNIT_DESC,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Unit"));
 
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_INGREDIENT_NAME_DESC + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,
-                GenericString.MESSAGE_CONSTRAINTS);
+                GenericString.getMessageConstraints("Name"));
 
         // non-empty preamble
         assertParseFailure(parser,

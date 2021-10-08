@@ -106,14 +106,15 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param genericString String input to parse.
+     * @param attributeName name of attribute that the generic String represents (Unit, Name).
      * @return GenericString object.
      * @throws ParseException if the given {@code genericString} is invalid.
      */
-    public static GenericString parseGenericString(String genericString) throws ParseException {
+    public static GenericString parseGenericString(String genericString, String attributeName) throws ParseException {
         requireNonNull(genericString);
         String trimmedGenericString = genericString.trim();
         if (!GenericString.isValidGenericString(trimmedGenericString)) {
-            throw new ParseException(GenericString.MESSAGE_CONSTRAINTS);
+            throw new ParseException(GenericString.getMessageConstraints(attributeName));
         }
         return new GenericString(trimmedGenericString);
     }
