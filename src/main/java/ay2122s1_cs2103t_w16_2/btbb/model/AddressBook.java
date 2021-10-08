@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
-    private final UniqueOrderList orders;
     private final UniqueIngredientList ingredients;
+    private final UniqueOrderList orders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,8 +33,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         clients = new UniqueClientList();
-        orders = new UniqueOrderList();
         ingredients = new UniqueIngredientList();
+        orders = new UniqueOrderList();
     }
 
     public AddressBook() {}
@@ -58,16 +58,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the orders list with {@code orders}
-     * {@code orders} must not contain duplicate orders.
-     *
-     * @param orders Orders to replace the list with.
-     */
-    public void setOrders(List<Order> orders) {
-        this.orders.setOrders(orders);
-    }
-
-    /**
      * Replaces the contents of the ingredients list with {@code ingredients}
      * {@code ingredients} must not contain duplicate orders.
      *
@@ -78,14 +68,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the orders list with {@code orders}
+     * {@code orders} must not contain duplicate orders.
+     *
+     * @param orders Orders to replace the list with.
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setClients(newData.getClientList());
-        setOrders(newData.getOrderList());
         setIngredients(newData.getIngredientList());
+        setOrders(newData.getOrderList());
     }
 
     //// client-level operations
@@ -123,7 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setClient(Client target, Client editedClient) throws NotFoundException {
         requireNonNull(editedClient);
-
         clients.setClient(target, editedClient);
     }
 
@@ -133,6 +132,28 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) throws NotFoundException {
         clients.remove(key);
+    }
+
+    //// ingredient-level operations
+
+    /**
+     * Adds an ingredient to the address book.
+     * The ingredient must not already exist in the address book.
+     *
+     * @param ingredient Ingredient to be added.
+     */
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
+
+    /**
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     *
+     * @param ingredient to check.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.contains(ingredient);
     }
 
     //// order-level operations
@@ -154,27 +175,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
-
-    //// ingredient-level operations
-
-    /**
-     * Adds an ingredient to the address book.
-     * The ingredient must not already exist in the address book.
-     *
-     * @param ingredient Ingredient to be added.
-     */
-    public void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
-    }
-
-    /**
-     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
-     */
-    public boolean hasIngredient(Ingredient ingredient) {
-        requireNonNull(ingredient);
-        return ingredients.contains(ingredient);
-    }
-
     //// util methods
 
     @Override

@@ -28,6 +28,9 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
     /**
      * Returns true if the list contains an equivalent ingredient as the given argument.
+     *
+     * @param toCheck Ingredient.
+     * @return true if ingredient is already in the internalList, false otherwise.
      */
     public boolean contains(Ingredient toCheck) {
         requireNonNull(toCheck);
@@ -37,12 +40,20 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     /**
      * Adds an ingredient to the list.
      * The ingredient must not already exist in the list.
+     *
+     * @param toAdd Ingredient to add to internalList.
      */
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the contents of this list with {@code ingredients}.
+     * {@code ingredients} must not contain duplicate ingredients.
+     *
+     * @param replacement another ingredient list to copy from.
+     */
     public void setIngredients(UniqueIngredientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -51,6 +62,8 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     /**
      * Replaces the contents of this list with {@code ingredients}.
      * {@code ingredients} must not contain duplicate ingredients.
+     *
+     * @param ingredients another ingredient list to copy from.
      */
     public void setIngredients(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
@@ -59,6 +72,8 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return unmodifiable ingredient list.
      */
     public ObservableList<Ingredient> asUnmodifiableObservableList() {
         return internalUnmodifiableList;

@@ -21,6 +21,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    // Client-level parsers:
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -96,10 +98,13 @@ public class ParserUtil {
     }
 
     // Ingredient-level parsers:
+
     /**
      * Parses a {@code String ingredientName} into a {@code IngredientName}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param ingredientName String input to parse.
+     * @return IngredientName object.
      * @throws ParseException if the given {@code ingredientName} is invalid.
      */
     public static IngredientName parseIngredientName(String ingredientName) throws ParseException {
@@ -115,6 +120,8 @@ public class ParserUtil {
      * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param quantity String input to parse.
+     * @return Quantity object.
      * @throws ParseException if the given {@code quantity} is invalid.
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
@@ -130,6 +137,8 @@ public class ParserUtil {
      * Parses a {@code String unit} into a {@code Unit}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param unit String input to parse.
+     * @return Unit object.
      * @throws ParseException if the given {@code unit} is invalid.
      */
     public static Unit parseUnit(String unit) throws ParseException {

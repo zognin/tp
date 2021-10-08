@@ -13,7 +13,18 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
+/**
+ * Parses input arguments and creates a new AddIngredientCommand object.
+ */
 public class AddIngredientCommandParser implements Parser<AddIngredientCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddIngredientCommand
+     * and returns an AddIngredientCommand object for execution.
+     *
+     * @param args String input.
+     * @return AddIngredientCommand object.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     @Override
     public AddIngredientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INGREDIENT_NAME,

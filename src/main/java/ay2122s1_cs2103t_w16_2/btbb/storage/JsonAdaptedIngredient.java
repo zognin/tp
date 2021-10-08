@@ -9,6 +9,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
+/**
+ * Jackson-friendly version of {@link Ingredient}.
+ */
 public class JsonAdaptedIngredient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ingredient's %s field is missing!";
 

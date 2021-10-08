@@ -4,9 +4,8 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111"
-  }],
-  "orders": [],
-  "ingredients": [{
+  } ],
+  "ingredients": [ {
     "ingredientName": "Chicken",
     "quantity": "15",
     "unit": "whole"
@@ -14,5 +13,6 @@
     "ingredientName": "Chicken",
     "quantity": "15",
     "unit": "whole"
-  }]
+  } ],
+  "orders": []
 }

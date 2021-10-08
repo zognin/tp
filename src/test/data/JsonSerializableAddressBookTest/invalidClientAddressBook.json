@@ -5,12 +5,12 @@
     "email": "invalid@email!3e",
     "address": "4th street"
   } ],
-  "orders": [{
-    "clientPhone": "9482424"
-  }],
-  "ingredients": [{
+  "ingredients": [ {
     "ingredientName": "Chicken",
     "quantity": "15",
     "unit": "whole"
-  }]
+  } ],
+  "orders": [ {
+    "clientPhone": "9482424"
+  } ]
 }

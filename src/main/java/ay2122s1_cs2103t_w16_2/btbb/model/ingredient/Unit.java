@@ -3,6 +3,10 @@ package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the unit of an Ingredient in btbb.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Unit {
     public static final String MESSAGE_CONSTRAINTS =
             "Units should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -28,11 +32,13 @@ public class Unit {
 
     /**
      * Returns true if a given string is a valid unit.
+     *
+     * @param test String input to check.
+     * @return boolean of whether name is valid.
      */
     public static boolean isValidUnit(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

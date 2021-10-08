@@ -36,43 +36,7 @@
     "email" : "anna@example.com",
     "address" : "4th street"
   } ],
-  "orders": [
-    {
-      "clientPhone": "94351253",
-      "clientName": "Alice Pauline",
-      "clientAddress": "123, Jurong West Ave 6, #08-111"
-    },
-    {
-      "clientPhone": "98765432",
-      "clientName": "Benson Meier",
-      "clientAddress": "311, Clementi Ave 2, #02-25"
-    },
-    {
-      "clientPhone": "95352563",
-      "clientName": "Carl Kurz",
-      "clientAddress": "wall street"
-    },
-    {
-      "clientPhone": "87652533",
-      "clientName": "Daniel Meier",
-      "clientAddress": "10th street"
-    },
-    {
-      "clientPhone": "9482224",
-      "clientName": "Elle Meyer",
-      "clientAddress": "michegan ave"
-    },
-    {
-      "clientPhone": "9482427",
-      "clientName": "Fiona Kunz",
-      "clientAddress": "little tokyo"
-    },
-    {
-      "clientPhone": "9482442",
-      "clientName": "George Best",
-      "clientAddress": "4th street"
-    }],
-  "ingredients": [{
+  "ingredients": [ {
     "ingredientName": "Chicken",
     "quantity": "15",
     "unit": "whole"
@@ -96,5 +60,34 @@
     "ingredientName": "Fish",
     "quantity": "50",
     "unit": "g"
-  }]
+  } ],
+  "orders": [{
+    "clientPhone": "94351253",
+    "clientName": "Alice Pauline",
+    "clientAddress": "123, Jurong West Ave 6, #08-111"
+  }, {
+    "clientPhone": "98765432",
+    "clientName": "Benson Meier",
+    "clientAddress": "311, Clementi Ave 2, #02-25"
+  }, {
+    "clientPhone": "95352563",
+    "clientName": "Carl Kurz",
+    "clientAddress": "wall street"
+  }, {
+    "clientPhone": "87652533",
+    "clientName": "Daniel Meier",
+    "clientAddress": "10th street"
+  }, {
+    "clientPhone": "9482224",
+    "clientName": "Elle Meyer",
+    "clientAddress": "michegan ave"
+  }, {
+    "clientPhone": "9482427",
+    "clientName": "Fiona Kunz",
+    "clientAddress": "little tokyo"
+  }, {
+    "clientPhone": "9482442",
+    "clientName": "George Best",
+    "clientAddress": "4th street"
+  } ]
 }

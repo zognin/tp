@@ -34,17 +34,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static Order[] getSampleOrders() {
-        Client[] people = getSampleClients();
-        Order[] orders = new Order[people.length];
-
-        for (int i = 0; i < orders.length; i++) {
-            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress());
-        }
-
-        return orders;
-    }
-
     public static Ingredient[] getSampleIngredients() {
         return new Ingredient[] {
             new Ingredient(new IngredientName("Almond"), new Quantity("3"), new Unit("bags")),
@@ -56,6 +45,17 @@ public class SampleDataUtil {
             new Ingredient(new IngredientName("Garlic"), new Quantity("30"), new Unit("whole")),
             new Ingredient(new IngredientName("Ham"), new Quantity("10"), new Unit("packs"))
         };
+    }
+
+    public static Order[] getSampleOrders() {
+        Client[] people = getSampleClients();
+        Order[] orders = new Order[people.length];
+
+        for (int i = 0; i < orders.length; i++) {
+            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress());
+        }
+
+        return orders;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

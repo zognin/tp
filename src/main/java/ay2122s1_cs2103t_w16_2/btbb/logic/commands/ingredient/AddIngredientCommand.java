@@ -34,13 +34,22 @@ public class AddIngredientCommand extends Command {
     private final IngredientDescriptor ingredientDescriptor;
 
     /**
-     * Creates an AddCommand to add the specified {@code Ingredient}
+     * Creates an AddIngredientCommand to add the specified {@code Ingredient}.
+     *
+     * @param ingredientDescriptor given ingredient descriptor.
      */
     public AddIngredientCommand(IngredientDescriptor ingredientDescriptor) {
         requireNonNull(ingredientDescriptor);
         this.ingredientDescriptor = ingredientDescriptor;
     }
 
+    /**
+     * Executes this AddIngredientCommand and returns a CommandResult object.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

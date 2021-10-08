@@ -9,6 +9,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
 
+/**
+ * Stores the details to relevant to a ingredient.
+ * Some details have to be converted to their model representations before converting to a Ingredient model type.
+ */
 public class IngredientDescriptor {
     private IngredientName name;
     private Quantity quantity;
@@ -18,7 +22,6 @@ public class IngredientDescriptor {
 
     /**
      * Copy constructor.
-     * A defensive copy of {@code tags} is used internally.
      */
     public IngredientDescriptor(IngredientDescriptor toCopy) {
         setName(toCopy.name);
@@ -26,26 +29,56 @@ public class IngredientDescriptor {
         setUnit(toCopy.unit);
     }
 
+    /**
+     * Sets the name of this ingredient descriptor.
+     *
+     * @param name to change to.
+     */
     public void setName(IngredientName name) {
         this.name = name;
     }
 
+    /**
+     * Gets the name of this ingredient descriptor.
+     *
+     * @return name of ingredient, if it is not null.
+     */
     public Optional<IngredientName> getName() {
         return Optional.ofNullable(name);
     }
 
+    /**
+     * Sets the quantity of this ingredient descriptor.
+     *
+     * @param quantity to change to.
+     */
     public void setQuantity(Quantity quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Gets the quantity of this ingredient descriptor.
+     *
+     * @return quantity of ingredient, if it is not null.
+     */
     public Optional<Quantity> getQuantity() {
         return Optional.ofNullable(quantity);
     }
 
+    /**
+     * Sets the unit of this ingredient descriptor.
+     *
+     * @param unit to change to.
+     */
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
+    /**
+     * Gets the unit of this ingredient descriptor.
+     *
+     * @return unit of ingredient, if it is not null.
+     */
     public Optional<Unit> getUnit() {
         return Optional.ofNullable(unit);
     }

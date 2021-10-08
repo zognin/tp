@@ -14,31 +14,53 @@ public class Ingredient {
     private Unit unit;
 
     /**
+     * Constructs a {@code Ingredient}.
      * Every field must be present and not null.
+     *
+     * @param name of ingredient.
+     * @param quantity of ingredient.
+     * @param unit that quantity is measured in.
      */
-    public Ingredient(IngredientName ingredientName, Quantity quantity, Unit unit) {
-        requireAllNonNull(ingredientName, quantity, unit);
-        this.name = ingredientName;
+    public Ingredient(IngredientName name, Quantity quantity, Unit unit) {
+        requireAllNonNull(name, quantity, unit);
+        this.name = name;
         this.quantity = quantity;
         this.unit = unit;
     }
 
+    /**
+     * Gets name of this ingredient.
+     *
+     * @return name of this ingredient.
+     */
     public IngredientName getName() {
         return name;
     }
 
+    /**
+     * Getter for ingredient quantity.
+     *
+     * @return quantity of this ingredient.
+     */
     public Quantity getQuantity() {
         return quantity;
     }
 
+    /**
+     * Getter for ingredient unit.
+     *
+     * @return unit of this ingredient.
+     */
     public Unit getUnit() {
         return unit;
     }
 
-
     /**
      * Returns true if both ingredients have the same ingredient name and units.
      * This defines a weaker notion of equality between two ingredients.
+     *
+     * @param otherIngredient to compare this ingredient to.
+     * @return boolean of whether the two ingredients match.
      */
     public boolean isSameIngredient(Ingredient otherIngredient) {
         if (otherIngredient == this) {
@@ -54,6 +76,9 @@ public class Ingredient {
     /**
      * Returns true if both ingredients have the same ingredient name, unit and quantity.
      * This defines a stronger notion of equality between two ingredients.
+     *
+     * @param other object to compare this ingredient to.
+     * @return boolean of whether ingredient and other object match.
      */
     @Override
     public boolean equals(Object other) {
@@ -71,15 +96,25 @@ public class Ingredient {
                 && otherIngredient.getUnit().equals(getUnit());
     }
 
+    /**
+     * Implements hashcode for ingredients.
+     *
+     * @return hashcode of ingredient.
+     */
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, quantity, unit);
     }
 
+    /**
+     * Converts ingredient object into its String representation.
+     *
+     * @return String representation of ingredient.
+     */
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Quantity: ")
                 .append(getQuantity())

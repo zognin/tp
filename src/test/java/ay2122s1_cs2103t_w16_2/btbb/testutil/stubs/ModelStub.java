@@ -86,17 +86,8 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public void addOrder(Order order) {
-        throw new AssertionError("This method should not be called.");
-    }
+    // Ingredient-level
 
-    @Override
-    public boolean hasOrder(Order order) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    // ingredient
     @Override
     public void addIngredient(Ingredient ingredient) {
         throw new AssertionError("This method should not be called.");
@@ -107,17 +98,29 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // Order-level
+
+    @Override
+    public void addOrder(Order order) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasOrder(Order order) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
         throw new AssertionError("This method should not be called.");
     }
 

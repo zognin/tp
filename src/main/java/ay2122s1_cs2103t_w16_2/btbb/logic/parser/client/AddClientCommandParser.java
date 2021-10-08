@@ -15,14 +15,14 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
 /**
- * Parses input arguments and creates a new AddClientCommand object
+ * Parses input arguments and creates a new AddClientCommand object.
  */
 public class AddClientCommandParser implements Parser<AddClientCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddClientCommand
      * and returns an AddClientCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddClientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
