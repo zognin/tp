@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidGenericString(String)}
  */
 public class GenericString {
-    public static final String MESSAGE_CONSTRAINTS =
+    private static final String MESSAGE_CONSTRAINTS =
             " should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
