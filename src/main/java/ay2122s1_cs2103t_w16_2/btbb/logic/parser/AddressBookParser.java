@@ -17,6 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
@@ -73,6 +74,9 @@ public class AddressBookParser {
 
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();
+
+        case ListIngredientCommand.COMMAND_WORD:
+            return new ListIngredientCommand();
 
         case ListOrderCommand.COMMAND_WORD:
             return new ListOrderCommand();
