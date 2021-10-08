@@ -19,7 +19,7 @@ public class ClientPredicateCollection implements Predicate<Client> {
     /**
      * Adds a client predicate to the list of client predicates to test against.
      *
-     * @param clientPredicate the predicate to add to the list.
+     * @param clientPredicate The ClientPredicate to add to the list.
      */
     public void addClientPredicate(Predicate<Client> clientPredicate) {
         predicates.add(clientPredicate);
