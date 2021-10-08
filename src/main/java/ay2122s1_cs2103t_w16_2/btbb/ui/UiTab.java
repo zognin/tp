@@ -7,7 +7,7 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
  */
 public enum UiTab {
     HOME(0, "Home"),
-    STAT(1, "Inventory & Statistics");
+    INVENTORY(1, "Inventory");
 
     private Index index;
     private String label;
