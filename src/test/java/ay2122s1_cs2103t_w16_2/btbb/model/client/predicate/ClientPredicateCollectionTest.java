@@ -1,7 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.client.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -52,15 +54,29 @@ public class ClientPredicateCollectionTest {
     }
 
     @Test
-    public void test_comboTestResult() {
-        Client client = new ClientBuilder().withName("Alice").withPhone("94273415")
-                .withEmail("alice@gmail.com").withAddress("Main Street").build();
+    public void test_clients() {
         ClientPredicateCollection clientPredicateCollection = new ClientPredicateCollection();
         addPredicates(clientPredicateCollection, List.of(NAME_ALICE_BOB_PREDICATE,
                 PHONE_9427_3217_PREDICATE, ADDRESS_YISHUN_GEYLANG_PREDICATE, EMAIL_ALICE_BOB_GMAIL_PREDICATE));
-        boolean expectedResult = NAME_ALICE_BOB_PREDICATE.test(client)
-                && PHONE_9427_3217_PREDICATE.test(client) && ADDRESS_YISHUN_GEYLANG_PREDICATE.test(client)
-                && EMAIL_ALICE_BOB_GMAIL_PREDICATE.test(client);
-        assertEquals(expectedResult, clientPredicateCollection.test(client));
+
+        // Client with everything matching
+        assertTrue(clientPredicateCollection.test(new ClientBuilder().withName("Alice").withPhone("94273217")
+                .withEmail("alice@gmail.com").withAddress("Yishun Ave 2").build()));
+
+        // Client with matching email, phone, address but not name
+        assertFalse(clientPredicateCollection.test(new ClientBuilder().withName("Ben").withPhone("94273217")
+                .withEmail("alice@gmail.com").withAddress("Yishun Ave 2").build()));
+
+        // Client with matching name, phone, address but not email
+        assertFalse(clientPredicateCollection.test(new ClientBuilder().withName("Alice").withPhone("94273217")
+                .withEmail("alexia@gmail.com").withAddress("Yishun Ave 2").build()));
+
+        // Client with matching email, name, address but not phone
+        assertFalse(clientPredicateCollection.test(new ClientBuilder().withName("Alice").withPhone("95774321")
+                .withEmail("alice@gmail.com").withAddress("Yishun Ave 2").build()));
+
+        // Client with matching email, phone, name but not address
+        assertFalse(clientPredicateCollection.test(new ClientBuilder().withName("Alice").withPhone("94273217")
+                .withEmail("alice@gmail.com").withAddress("Bukit Batok Ave 2").build()));
     }
 }

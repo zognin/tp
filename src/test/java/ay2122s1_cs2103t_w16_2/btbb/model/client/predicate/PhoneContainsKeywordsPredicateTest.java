@@ -63,12 +63,7 @@ public class PhoneContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ClientBuilder().withPhone("91232467").build()));
 
         // Non-matching keyword
-        predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("4536"));
+        predicate = new PhoneContainsKeywordsPredicate(Collections.singletonList("4536"));
         assertFalse(predicate.test(new ClientBuilder().withPhone("91232467").build()));
-
-        // Keywords match name, email and address, but does not match phone
-        predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("Alice", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("91232467")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 }
