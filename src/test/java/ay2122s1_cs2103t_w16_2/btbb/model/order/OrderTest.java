@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
 class OrderTest {
@@ -29,7 +29,7 @@ class OrderTest {
         // null -> returns false
         assertFalse(ORDER_FOR_BENSON.isSameOrder(null));
 
-        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB))
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB))
                 .withClientPhone(new Phone(VALID_PHONE_BOB))
                 .withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
         // different object, same client name, same client phone and same client address -> returns true
@@ -40,7 +40,8 @@ class OrderTest {
         assertFalse(ORDER_FOR_CARL.isSameOrder(editedRandomOrder));
 
         // different client name -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientName(new Name(VALID_NAME_AMY)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL)
+                .withClientName(new GenericString(VALID_NAME_AMY)).build();
         assertFalse(ORDER_FOR_DANIEL.isSameOrder(editedRandomOrder));
 
         // different client address -> returns false
@@ -66,14 +67,14 @@ class OrderTest {
         // different order -> returns false
         assertFalse(ORDER_FOR_ALICE.equals(ORDER_FOR_ELLE));
 
-        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB))
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB))
                 .withClientPhone(new Phone(VALID_PHONE_BOB))
                 .withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
         // different object, same client name, same client phone and same client address -> returns true
         assertTrue(ORDER_FOR_BOB.equals(editedRandomOrder));
 
         // different client name -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new Name(VALID_NAME_BOB)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB)).build();
         assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
 
         // different client phone -> returns false

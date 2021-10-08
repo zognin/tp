@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -48,12 +48,13 @@ public class JsonAdaptedOrder {
      */
     public Order toModelType() throws IllegalValueException {
         if (clientName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GenericString.class.getSimpleName()));
         }
-        if (!Name.isValidName(clientName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!GenericString.isValidGenericString(clientName)) {
+            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
         }
-        final Name modelClientName = new Name(clientName);
+        final GenericString modelClientName = new GenericString(clientName);
 
         if (clientPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

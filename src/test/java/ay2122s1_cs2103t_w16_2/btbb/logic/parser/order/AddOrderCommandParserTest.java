@@ -29,8 +29,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
 class AddOrderCommandParserTest {
@@ -105,7 +105,7 @@ class AddOrderCommandParserTest {
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB + PHONE_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
+                GenericString.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PHONE_DESC,

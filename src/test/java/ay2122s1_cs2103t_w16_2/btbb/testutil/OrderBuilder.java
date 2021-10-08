@@ -1,9 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * A utility class to help with building Order objects.
@@ -13,7 +13,7 @@ public class OrderBuilder {
     private static final String DEFAULT_CLIENT_PHONE = "85355255";
     private static final String DEFAULT_CLIENT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name clientName;
+    private GenericString clientName;
     private Phone clientPhone;
     private Address clientAddress;
 
@@ -21,7 +21,7 @@ public class OrderBuilder {
      * Creates a {@code OrderBuilder} with the default details.
      */
     public OrderBuilder() {
-        clientName = new Name(DEFAULT_CLIENT_NAME);
+        clientName = new GenericString(DEFAULT_CLIENT_NAME);
         clientPhone = new Phone(DEFAULT_CLIENT_PHONE);
         clientAddress = new Address(DEFAULT_CLIENT_ADDRESS);
     }
@@ -43,7 +43,7 @@ public class OrderBuilder {
      * @param clientName The client's name associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withClientName(Name clientName) {
+    public OrderBuilder withClientName(GenericString clientName) {
         this.clientName = clientName;
         return this;
     }

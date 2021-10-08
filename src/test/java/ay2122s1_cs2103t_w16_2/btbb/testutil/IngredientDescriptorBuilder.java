@@ -2,9 +2,8 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class IngredientDescriptorBuilder {
     private IngredientDescriptor descriptor;
@@ -31,7 +30,7 @@ public class IngredientDescriptorBuilder {
      * Sets the {@code IngredientName} of the {@code EditIngredientDescriptor} that we are building.
      */
     public IngredientDescriptorBuilder withIngredientName(String ingredientName) {
-        descriptor.setName(new IngredientName(ingredientName));
+        descriptor.setName(new GenericString(ingredientName));
         return this;
     }
 
@@ -47,7 +46,7 @@ public class IngredientDescriptorBuilder {
      * Sets the {@code Unit} of the {@code EditIngredientDescriptor} that we are building.
      */
     public IngredientDescriptorBuilder withUnit(String unit) {
-        descriptor.setUnit(new Unit(unit));
+        descriptor.setUnit(new GenericString(unit));
         return this;
     }
 

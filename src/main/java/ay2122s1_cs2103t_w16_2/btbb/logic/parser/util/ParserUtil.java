@@ -9,11 +9,9 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.util.StringUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -35,21 +33,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(trimmedName);
     }
 
     /**
@@ -100,23 +83,6 @@ public class ParserUtil {
     // Ingredient-level parsers:
 
     /**
-     * Parses a {@code String ingredientName} into a {@code IngredientName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @param ingredientName String input to parse.
-     * @return IngredientName object.
-     * @throws ParseException if the given {@code ingredientName} is invalid.
-     */
-    public static IngredientName parseIngredientName(String ingredientName) throws ParseException {
-        requireNonNull(ingredientName);
-        String trimmedIngredientName = ingredientName.trim();
-        if (!IngredientName.isValidIngredientName(trimmedIngredientName)) {
-            throw new ParseException(IngredientName.MESSAGE_CONSTRAINTS);
-        }
-        return new IngredientName(trimmedIngredientName);
-    }
-
-    /**
      * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -133,21 +99,23 @@ public class ParserUtil {
         return new Quantity(trimmedQuantity);
     }
 
+    // Shared-level parsers:
+
     /**
-     * Parses a {@code String unit} into a {@code Unit}.
+     * Parses a {@code String genericString} into a {@code GenericString}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param unit String input to parse.
-     * @return Unit object.
-     * @throws ParseException if the given {@code unit} is invalid.
+     * @param genericString String input to parse.
+     * @return GenericString object.
+     * @throws ParseException if the given {@code genericString} is invalid.
      */
-    public static Unit parseUnit(String unit) throws ParseException {
-        requireNonNull(unit);
-        String trimmedUnit = unit.trim();
-        if (!Unit.isValidUnit(trimmedUnit)) {
-            throw new ParseException(Unit.MESSAGE_CONSTRAINTS);
+    public static GenericString parseGenericString(String genericString) throws ParseException {
+        requireNonNull(genericString);
+        String trimmedGenericString = genericString.trim();
+        if (!GenericString.isValidGenericString(trimmedGenericString)) {
+            throw new ParseException(GenericString.MESSAGE_CONSTRAINTS);
         }
-        return new Unit(trimmedUnit);
+        return new GenericString(trimmedGenericString);
     }
 
     /**

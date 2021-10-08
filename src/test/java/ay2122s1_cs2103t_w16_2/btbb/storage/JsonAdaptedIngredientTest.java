@@ -8,9 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class JsonAdaptedIngredientTest {
     private static final String INVALID_INGREDIENT_NAME = "Ch@co!late";
@@ -31,14 +30,14 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidIngredientName_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient =
                 new JsonAdaptedIngredient(INVALID_INGREDIENT_NAME, VALID_QUANTITY, VALID_UNIT);
-        String expectedMessage = IngredientName.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
     @Test
     public void toModelType_nullIngredientName_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient = new JsonAdaptedIngredient(null, VALID_QUANTITY, VALID_UNIT);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, IngredientName.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GenericString.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
@@ -61,14 +60,14 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidUnit_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient =
                 new JsonAdaptedIngredient(VALID_INGREDIENT_NAME, VALID_QUANTITY, INVALID_UNIT);
-        String expectedMessage = Unit.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
     @Test
     public void toModelType_nullUnit_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient = new JsonAdaptedIngredient(VALID_INGREDIENT_NAME, VALID_QUANTITY, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GenericString.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 }

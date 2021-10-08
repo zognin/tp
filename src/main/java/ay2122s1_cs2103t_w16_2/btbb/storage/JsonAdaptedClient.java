@@ -7,8 +7,8 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -50,12 +50,13 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GenericString.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!GenericString.isValidGenericString(name)) {
+            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final GenericString modelName = new GenericString(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

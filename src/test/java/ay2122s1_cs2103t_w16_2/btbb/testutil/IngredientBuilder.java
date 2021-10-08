@@ -1,26 +1,25 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class IngredientBuilder {
     private static final String DEFAULT_INGREDIENT_NAME = "Cauliflower";
     private static final String DEFAULT_QUANTITY = "14";
     private static final String DEFAULT_UNIT = "whole";
 
-    private IngredientName ingredientName;
+    private GenericString ingredientName;
     private Quantity quantity;
-    private Unit unit;
+    private GenericString unit;
 
     /**
      * Creates a {@code IngredientBuilder} with the default details.
      */
     public IngredientBuilder() {
-        ingredientName = new IngredientName(DEFAULT_INGREDIENT_NAME);
+        ingredientName = new GenericString(DEFAULT_INGREDIENT_NAME);
         quantity = new Quantity(DEFAULT_QUANTITY);
-        unit = new Unit(DEFAULT_UNIT);
+        unit = new GenericString(DEFAULT_UNIT);
     }
 
     /**
@@ -33,10 +32,10 @@ public class IngredientBuilder {
     }
 
     /**
-     * Sets the {@code IngredientName} of the {@code Ingredient} that we are building.
+     * Sets the {@code ingredientName} of the {@code Ingredient} that we are building.
      */
     public IngredientBuilder withIngredientName(String ingredientName) {
-        this.ingredientName = new IngredientName(ingredientName);
+        this.ingredientName = new GenericString(ingredientName);
         return this;
     }
 
@@ -52,7 +51,7 @@ public class IngredientBuilder {
      * Sets the {@code Unit} of the {@code Ingredient} that we are building.
      */
     public IngredientBuilder withUnit(String unit) {
-        this.unit = new Unit(unit);
+        this.unit = new GenericString(unit);
         return this;
     }
 

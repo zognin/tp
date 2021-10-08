@@ -10,30 +10,26 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
 
-    private static final String INVALID_INGREDIENT_NAME = "Apric!t";
     private static final String INVALID_QUANTITY = "-3";
-    private static final String INVALID_UNIT = "#mg";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String INVALID_GENERIC_STRING = "R@chel";
+
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
 
-    private static final String VALID_INGREDIENT_NAME = "Apricot";
     private static final String VALID_QUANTITY = "30";
-    private static final String VALID_UNIT = "nuts";
+
+    private static final String VALID_GENERIC_STRING = "Rachel Walker";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -57,28 +53,7 @@ public class ParserUtilTest {
         assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
-    @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
-    }
-
-    @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
-    }
-
-    @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
-    }
-
-    @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
-    }
+    // Client parsers
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
@@ -149,29 +124,7 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-    // Ingredient:
-    @Test
-    public void parseIngredientName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredientName(null));
-    }
-
-    @Test
-    public void parseIngredientName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredientName(INVALID_INGREDIENT_NAME));
-    }
-
-    @Test
-    public void parseIngredientName_validValueWithoutWhitespace_returnsIngredientName() throws Exception {
-        IngredientName expectedIngredientName = new IngredientName(VALID_INGREDIENT_NAME);
-        assertEquals(expectedIngredientName, ParserUtil.parseIngredientName(VALID_INGREDIENT_NAME));
-    }
-
-    @Test
-    public void parseIngredientName_validValueWithWhitespace_returnsTrimmedIngredientName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_INGREDIENT_NAME + WHITESPACE;
-        IngredientName expectedIngredientName = new IngredientName(VALID_INGREDIENT_NAME);
-        assertEquals(expectedIngredientName, ParserUtil.parseIngredientName(nameWithWhitespace));
-    }
+    // Ingredient parsers
 
     @Test
     public void parseQuantity_null_throwsNullPointerException() {
@@ -196,26 +149,28 @@ public class ParserUtilTest {
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
+    // Shared parsers
+
     @Test
-    public void parseUnit_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnit(null));
+    public void parseGenericString_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGenericString(null));
     }
 
     @Test
-    public void parseUnit_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseUnit(INVALID_UNIT));
+    public void parseGenericString_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGenericString(INVALID_GENERIC_STRING));
     }
 
     @Test
-    public void parseUnit_validValueWithoutWhitespace_returnsUnit() throws Exception {
-        Unit expectedUnit = new Unit(VALID_UNIT);
-        assertEquals(expectedUnit, ParserUtil.parseUnit(VALID_UNIT));
+    public void parseGenericString_validValueWithoutWhitespace_returnsGenericString() throws Exception {
+        GenericString expectedName = new GenericString(VALID_GENERIC_STRING);
+        assertEquals(expectedName, ParserUtil.parseGenericString(VALID_GENERIC_STRING));
     }
 
     @Test
-    public void parseUnit_validValueWithWhitespace_returnsTrimmedUnit() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_UNIT + WHITESPACE;
-        Unit expectedUnit = new Unit(VALID_UNIT);
-        assertEquals(expectedUnit, ParserUtil.parseUnit(nameWithWhitespace));
+    public void parseGenericString_validValueWithWhitespace_returnsTrimmedGenericString() throws Exception {
+        String genericStringWithWhitespace = WHITESPACE + VALID_GENERIC_STRING + WHITESPACE;
+        GenericString expectedGenericString = new GenericString(VALID_GENERIC_STRING);
+        assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace));
     }
 }

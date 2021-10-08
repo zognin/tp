@@ -36,7 +36,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         }
 
         ClientDescriptor clientDescriptor = new ClientDescriptor();
-        clientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
+        clientDescriptor.setName(ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
         clientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get()));
         clientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get()));
         clientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));

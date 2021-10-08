@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -34,14 +34,14 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GenericString.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GenericString.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 

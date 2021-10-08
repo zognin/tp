@@ -29,8 +29,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.AddClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Name;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 
 public class AddClientCommandParserTest {
@@ -90,7 +90,7 @@ public class AddClientCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
+                GenericString.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -106,7 +106,7 @@ public class AddClientCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+                GenericString.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser,

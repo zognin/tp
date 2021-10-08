@@ -5,18 +5,17 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Stores the details to relevant to a ingredient.
  * Some details have to be converted to their model representations before converting to a Ingredient model type.
  */
 public class IngredientDescriptor {
-    private IngredientName name;
+    private GenericString name;
     private Quantity quantity;
-    private Unit unit;
+    private GenericString unit;
 
     public IngredientDescriptor() {}
 
@@ -34,7 +33,7 @@ public class IngredientDescriptor {
      *
      * @param name to change to.
      */
-    public void setName(IngredientName name) {
+    public void setName(GenericString name) {
         this.name = name;
     }
 
@@ -43,7 +42,7 @@ public class IngredientDescriptor {
      *
      * @return name of ingredient, if it is not null.
      */
-    public Optional<IngredientName> getName() {
+    public Optional<GenericString> getName() {
         return Optional.ofNullable(name);
     }
 
@@ -70,7 +69,7 @@ public class IngredientDescriptor {
      *
      * @param unit to change to.
      */
-    public void setUnit(Unit unit) {
+    public void setUnit(GenericString unit) {
         this.unit = unit;
     }
 
@@ -79,7 +78,7 @@ public class IngredientDescriptor {
      *
      * @return unit of ingredient, if it is not null.
      */
-    public Optional<Unit> getUnit() {
+    public Optional<GenericString> getUnit() {
         return Optional.ofNullable(unit);
     }
 

@@ -23,9 +23,8 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 
 public class AddIngredientCommandParserTest {
@@ -77,7 +76,7 @@ public class AddIngredientCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid ingredient name
         assertParseFailure(parser, INVALID_INGREDIENT_NAME_DESC + QUANTITY_DESC_BEEF + UNIT_DESC_BEEF,
-                IngredientName.MESSAGE_CONSTRAINTS);
+                GenericString.MESSAGE_CONSTRAINTS);
 
         // invalid quantity
         assertParseFailure(parser, INGREDIENT_NAME_DESC_BEEF + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,
@@ -85,12 +84,12 @@ public class AddIngredientCommandParserTest {
 
         // invalid unit
         assertParseFailure(parser, INGREDIENT_NAME_DESC_BEEF + QUANTITY_DESC_BEEF + INVALID_UNIT_DESC,
-                Unit.MESSAGE_CONSTRAINTS);
+                GenericString.MESSAGE_CONSTRAINTS);
 
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_INGREDIENT_NAME_DESC + QUANTITY_DESC_BEEF + INVALID_UNIT_DESC,
-                IngredientName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_INGREDIENT_NAME_DESC + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,
+                GenericString.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser,

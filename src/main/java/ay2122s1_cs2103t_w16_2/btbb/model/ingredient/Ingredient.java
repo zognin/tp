@@ -4,14 +4,16 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.util.Objects;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+
 /**
  * Represents an Ingredient in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Ingredient {
-    private IngredientName name;
+    private GenericString name;
     private Quantity quantity;
-    private Unit unit;
+    private GenericString unit;
 
     /**
      * Constructs a {@code Ingredient}.
@@ -21,7 +23,7 @@ public class Ingredient {
      * @param quantity of ingredient.
      * @param unit that quantity is measured in.
      */
-    public Ingredient(IngredientName name, Quantity quantity, Unit unit) {
+    public Ingredient(GenericString name, Quantity quantity, GenericString unit) {
         requireAllNonNull(name, quantity, unit);
         this.name = name;
         this.quantity = quantity;
@@ -33,12 +35,12 @@ public class Ingredient {
      *
      * @return name of this ingredient.
      */
-    public IngredientName getName() {
+    public GenericString getName() {
         return name;
     }
 
     /**
-     * Getter for ingredient quantity.
+     * Gets quantity for ingredient.
      *
      * @return quantity of this ingredient.
      */
@@ -47,11 +49,11 @@ public class Ingredient {
     }
 
     /**
-     * Getter for ingredient unit.
+     * Gets the unit for ingredient.
      *
      * @return unit of this ingredient.
      */
-    public Unit getUnit() {
+    public GenericString getUnit() {
         return unit;
     }
 
@@ -71,7 +73,6 @@ public class Ingredient {
                 && otherIngredient.getName().equals(getName())
                 && otherIngredient.getUnit().equals(getUnit());
     }
-
 
     /**
      * Returns true if both ingredients have the same ingredient name, unit and quantity.

@@ -5,9 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.IngredientName;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Unit;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
@@ -49,12 +48,12 @@ public class JsonAdaptedIngredient {
         // Ingredient Name:
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    IngredientName.class.getSimpleName()));
+                    GenericString.class.getSimpleName()));
         }
-        if (!IngredientName.isValidIngredientName(name)) {
-            throw new IllegalValueException(IngredientName.MESSAGE_CONSTRAINTS);
+        if (!GenericString.isValidGenericString(name)) {
+            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
         }
-        final IngredientName modelIngredientName = new IngredientName(name);
+        final GenericString modelIngredientName = new GenericString(name);
 
         // Quantity:
         if (quantity == null) {
@@ -68,12 +67,13 @@ public class JsonAdaptedIngredient {
 
         // Unit:
         if (unit == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GenericString.class.getSimpleName()));
         }
-        if (!Unit.isValidUnit(unit)) {
-            throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
+        if (!GenericString.isValidGenericString(unit)) {
+            throw new IllegalValueException(GenericString.MESSAGE_CONSTRAINTS);
         }
-        final Unit modelUnit = new Unit(unit);
+        final GenericString modelUnit = new GenericString(unit);
 
         return new Ingredient(modelIngredientName, modelQuantity, modelUnit);
     }
