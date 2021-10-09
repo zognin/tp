@@ -211,7 +211,7 @@ Suppose the first client in the list has the following details
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order will be scheduled to be
   delivered by 15 December 2021 at 1630 hrs.
 
-### 3.4.2 Editing an order: `edit-o`
+#### 3.4.2 Editing an order: `edit-o`
 
 Edits an order in the application
 
@@ -235,7 +235,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 1 cn/David`
 * `edit-o 2 cn/Carol cp/98765432`
 
-### 3.4.3 Deleting a order: `delete-o`
+#### 3.4.3 Deleting a order: `delete-o`
 
 Deletes an order from the application.
 
@@ -244,7 +244,7 @@ Format: `delete-o INDEX`
 **Examples:**
 * `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
-### 3.4.4 Finding orders by keywords: `find-o`
+#### 3.4.4 Finding orders by keywords: `find-o`
 
 Finds order whose attribute(s) matches the keyword(s).
 
@@ -276,13 +276,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 * `find order cn/al` Find orders for clients with names matching 'al'. E.g. Alex, Alice, Al.
 * `find order cp/91234567` Find orders for clients with 91234567 as their phone number.
 
-### 3.4.5 Listing all orders: `list-o`
+#### 3.4.5 Listing all orders: `list-o`
 
 Lists all orders in the application.
 
 Format: `list-o`
 
-### 3.4.6 Mark order as done: `done-o`
+#### 3.4.6 Mark order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -291,7 +291,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-### 3.4.7 Mark order as undone: `undone-o`
+#### 3.4.7 Mark order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -300,17 +300,17 @@ Format: `undone-o INDEX`
 **Examples:**
 * `undone-o 1` Marks the order at index 1 in the order list currently shown as undone.
 
-### 3.5 Exiting the program: `exit`
+#### 3.5 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.6 Saving the data
+#### 3.6 Saving the data
 
 BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.7 Editing the data file
+#### 3.7 Editing the data file
 
 BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
