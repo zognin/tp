@@ -162,6 +162,20 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements deleteIngredient method.
+     * Deletes the given ingredient from the address book. The given ingredient
+     * must exist in the address book.
+     *
+     * @param target The ingredient to delete.
+     * @throws NotFoundException when the ingredient given does not exist in the address book.
+     */
+    @Override
+    public void deleteIngredient(Ingredient target) throws NotFoundException {
+        requireNonNull(target);
+        addressBook.removeIngredient(target);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedAddressBook}
      */
