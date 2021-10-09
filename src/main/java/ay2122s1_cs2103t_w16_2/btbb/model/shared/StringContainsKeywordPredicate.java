@@ -10,7 +10,7 @@ import java.util.function.Predicate;
  *
  * @param <T> Type of the predicate.
  */
-public class GenericStringPredicate<T> implements Predicate<T> {
+public class StringContainsKeywordPredicate<T> implements Predicate<T> {
     private final Function<T, ?> getter;
     private final List<String> keywords;
 
@@ -20,7 +20,7 @@ public class GenericStringPredicate<T> implements Predicate<T> {
      * @param getter Function to get the string to be tested.
      * @param keywords List of keywords to be checked against.
      */
-    public GenericStringPredicate(Function<T, ?> getter, List<String> keywords) {
+    public StringContainsKeywordPredicate(Function<T, ?> getter, List<String> keywords) {
         this.getter = getter;
         this.keywords = keywords;
     }
@@ -34,7 +34,7 @@ public class GenericStringPredicate<T> implements Predicate<T> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GenericStringPredicate) // instanceof handles nulls
-                && keywords.equals(((GenericStringPredicate) other).keywords); // state check
+                || (other instanceof StringContainsKeywordPredicate) // instanceof handles nulls
+                && keywords.equals(((StringContainsKeywordPredicate) other).keywords); // state check
     }
 }

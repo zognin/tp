@@ -25,8 +25,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericStringPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -100,8 +100,9 @@ public class FindClientCommandTest {
     /**
      * Parses {@code userInput} into a {@code Predicate<Client>}.
      */
-    private GenericStringPredicate<Client> prepareAndGetClientPredicate(String input, Function<Client, ?> getter) {
+    private StringContainsKeywordPredicate<Client> prepareAndGetClientPredicate(String input,
+                                                                                Function<Client, ?> getter) {
         List<String> keywords = List.of(input.split("\\s+"));
-        return new GenericStringPredicate<>(getter, keywords);
+        return new StringContainsKeywordPredicate<>(getter, keywords);
     }
 }

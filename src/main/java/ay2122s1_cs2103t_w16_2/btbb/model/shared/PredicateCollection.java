@@ -2,10 +2,16 @@ package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
+
 /**
- * Test that all given predicates matches.
+ * Tests that all given predicates match.
  *
  * @param <T> Type of the predicate.
  */
@@ -23,6 +29,22 @@ public class PredicateCollection<T> implements Predicate<T> {
      */
     public void addPredicate(Predicate<T> predicate) {
         predicates.add(predicate);
+    }
+
+    /**
+     * Adds a {@code StringContainsKeywordsPredicate} to the list of predicates.
+     *
+     * @param prefix Prefix of keyword.
+     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
+     * @param getter Function to get the string to be tested.
+     * @throws ParseException if the given keywords is invalid.
+     */
+    public void addStringContainsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
+                                                   Function<T, ?> getter) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            predicates.add(new StringContainsKeywordPredicate<T>(getter,
+                    ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));
+        }
     }
 
     /**

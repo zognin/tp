@@ -6,9 +6,13 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_ALICE_BOB_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9427_3217_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -28,6 +32,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
@@ -110,13 +115,35 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_invalidFindCommand_exceptionThrown() {
+    public void parseCommand_findOrder() throws Exception {
+        PredicateCollection<Order> predicateCollection = new PredicateCollection<>();
+        predicateCollection.addPredicate(CLIENT_NAME_CAROL_DAVID_PREDICATE);
+        predicateCollection.addPredicate(CLIENT_PHONE_9110_3216_PREDICATE);
+        predicateCollection.addPredicate(CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE);
+        FindOrderCommand command = (FindOrderCommand) parser.parseCommand(FindOrderCommand.COMMAND_WORD
+                + " " + PREFIX_CLIENT_NAME + "Carol David " + PREFIX_CLIENT_PHONE + "9110 3216 "
+                + PREFIX_CLIENT_ADDRESS + "Eunos Bishan");
+        assertEquals(new FindOrderCommand(predicateCollection), command);
+    }
+
+    @Test
+    public void parseCommand_invalidFindClientCommand_exceptionThrown() {
         String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
         assertThrows(ParseException.class, errorMessage, () ->
                 parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class, errorMessage, () ->
+        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
                 parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
                     + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
+    }
+
+    @Test
+    public void parseCommand_invalidFindOrderCommand_exceptionThrown() {
+        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE);
+        assertThrows(ParseException.class, errorMessage, () ->
+                parser.parseCommand(FindOrderCommand.COMMAND_WORD + "\t \n"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
+                parser.parseCommand(FindOrderCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
+                        + " " + PREFIX_CLIENT_PHONE + " " + PREFIX_CLIENT_ADDRESS));
     }
 
     @Test

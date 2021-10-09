@@ -24,8 +24,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericStringPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordPredicate;
 
 public class FindOrderCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -90,8 +90,8 @@ public class FindOrderCommandTest {
     /**
      * Parses {@code userInput} into a {@code Predicate<Order>}.
      */
-    private GenericStringPredicate<Order> prepareAndGetOrderPredicate(String input, Function<Order, ?> getter) {
+    private StringContainsKeywordPredicate<Order> prepareAndGetOrderPredicate(String input, Function<Order, ?> getter) {
         List<String> keywords = List.of(input.split("\\s+"));
-        return new GenericStringPredicate<>(getter, keywords);
+        return new StringContainsKeywordPredicate<>(getter, keywords);
     }
 }

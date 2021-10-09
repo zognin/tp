@@ -7,38 +7,18 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 
-import java.util.List;
-import java.util.function.Function;
-
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.FindClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.Parser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericStringPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
  */
 public class FindClientCommandParser implements Parser<FindClientCommand> {
-    private void addClientPredicate(PredicateCollection<Client> predicateCollection, ArgumentMultimap argMultimap,
-                                    Prefix prefix, Function<Client, ?> getter) {
-        if (argMultimap.getValue(prefix).isEmpty()) {
-            return;
-        }
-
-        String trimmedSearchArg = argMultimap.getValue(prefix).get().trim();
-        if (trimmedSearchArg.isEmpty()) {
-            return;
-        }
-
-        List<String> keywords = List.of(trimmedSearchArg.split("\\s+"));
-        predicateCollection.addPredicate(new GenericStringPredicate<>(getter, keywords));
-    }
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindClientCommand
      * and returns a FindClientCommand object for execution.
@@ -51,13 +31,20 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
                 PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ADDRESS);
 
         PredicateCollection<Client> predicateCollection = new PredicateCollection<>();
+        predicateCollection.addStringContainsKeywordsPredicate(
+                PREFIX_CLIENT_NAME, argMultimap, Client::getName
+        );
+        predicateCollection.addStringContainsKeywordsPredicate(
+                PREFIX_CLIENT_ADDRESS, argMultimap, Client::getAddress
+        );
+        predicateCollection.addStringContainsKeywordsPredicate(
+                PREFIX_CLIENT_PHONE, argMultimap, Client::getPhone
+        );
+        predicateCollection.addStringContainsKeywordsPredicate(
+                PREFIX_CLIENT_EMAIL, argMultimap, Client::getEmail
+        );
 
-        addClientPredicate(predicateCollection, argMultimap, PREFIX_CLIENT_NAME, Client::getName);
-        addClientPredicate(predicateCollection, argMultimap, PREFIX_CLIENT_EMAIL, Client::getEmail);
-        addClientPredicate(predicateCollection, argMultimap, PREFIX_CLIENT_PHONE, Client::getPhone);
-        addClientPredicate(predicateCollection, argMultimap, PREFIX_CLIENT_ADDRESS, Client::getAddress);
-
-        if (predicateCollection.hasNoPredicates()) {
+        if (predicateCollection.hasNoPredicates() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
 

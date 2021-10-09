@@ -6,6 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.ass
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
@@ -28,8 +29,7 @@ public class FindOrderCommandParserTest {
     @Test
     public void parse_noKeywords_throwsParseException() {
         assertParseFailure(parser, " " + PREFIX_CLIENT_NAME + " " + PREFIX_CLIENT_ADDRESS
-                        + " " + PREFIX_CLIENT_PHONE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
+                        + " " + PREFIX_CLIENT_PHONE, MESSAGE_INVALID_KEYWORD);
     }
 
     @Test
