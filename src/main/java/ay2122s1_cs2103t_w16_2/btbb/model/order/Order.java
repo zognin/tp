@@ -7,6 +7,7 @@ import java.util.Objects;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Represents an Order in the address book.
@@ -16,17 +17,32 @@ public class Order {
     private final GenericString clientName;
     private final Phone clientPhone;
     private final Address clientAddress;
+    private final GenericString recipeName;
+    private final Price price;
+    private final Deadline deadline;
+    private final Quantity quantity;
 
     /**
-     * Constructs an order.
+     * Constructs an order object.
      *
-     * @param clientPhone Phone number for the order.
+     * @param clientName The client's name.
+     * @param clientPhone The client's phone number.
+     * @param clientAddress The client's address.
+     * @param recipeName The name of the recipe chosen.
+     * @param price The price of the order.
+     * @param deadline The deadline for this order.
+     * @param quantity The quantity of this order.
      */
-    public Order(GenericString clientName, Phone clientPhone, Address clientAddress) {
-        requireAllNonNull(clientName, clientPhone, clientAddress);
+    public Order(GenericString clientName, Phone clientPhone, Address clientAddress,
+                 GenericString recipeName, Price price, Deadline deadline, Quantity quantity) {
+        requireAllNonNull(clientName, clientPhone, clientAddress, recipeName, recipeName, deadline, quantity);
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
+        this.recipeName = recipeName;
+        this.price = price;
+        this.deadline = deadline;
+        this.quantity = quantity;
     }
 
     public GenericString getClientName() {
@@ -41,6 +57,22 @@ public class Order {
         return clientAddress;
     }
 
+    public GenericString getRecipeName() {
+        return recipeName;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    public Quantity getQuantity() {
+        return quantity;
+    }
+
     /**
      * Returns true if both orders have the same client fields, recipe fields, deadline and finished status.
      * This defines a weaker notion of equality between two orders.
@@ -53,7 +85,11 @@ public class Order {
         return otherOrder != null
                 && otherOrder.getClientName().equals(getClientName())
                 && otherOrder.getClientPhone().equals(getClientPhone())
-                && otherOrder.getClientAddress().equals(getClientAddress());
+                && otherOrder.getClientAddress().equals(getClientAddress())
+                && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getPrice().equals(getPrice())
+                && otherOrder.getDeadline().equals(getDeadline())
+                && otherOrder.getQuantity().equals(getQuantity());
     }
 
     /**
@@ -77,7 +113,11 @@ public class Order {
 
         return otherOrder.getClientName().equals(getClientName())
                 && otherOrder.getClientPhone().equals(getClientPhone())
-                && otherOrder.getClientAddress().equals(getClientAddress());
+                && otherOrder.getClientAddress().equals(getClientAddress())
+                && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getPrice().equals(getPrice())
+                && otherOrder.getDeadline().equals(getDeadline())
+                && otherOrder.getQuantity().equals(getQuantity());
     }
 
     @Override
@@ -93,7 +133,15 @@ public class Order {
                 .append("; Client Phone: ")
                 .append(getClientPhone())
                 .append("; Client Address: ")
-                .append(getClientAddress());
+                .append(getClientAddress())
+                .append("; Recipe Name: ")
+                .append(getRecipeName())
+                .append("; Order Price: ")
+                .append(getPrice())
+                .append("; Order Deadline: ")
+                .append(getDeadline())
+                .append("; Order Quantity: ")
+                .append(getQuantity());
 
         return builder.toString();
     }

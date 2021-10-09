@@ -6,8 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -18,6 +21,10 @@ public class JsonAdaptedOrder {
     private final String clientName;
     private final String clientPhone;
     private final String clientAddress;
+    private final String recipeName;
+    private final String price;
+    private final String deadline;
+    private final String quantity;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -25,10 +32,18 @@ public class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("clientName") String clientName,
                             @JsonProperty("clientPhone") String clientPhone,
-                            @JsonProperty("clientAddress") String clientAddress) {
+                            @JsonProperty("clientAddress") String clientAddress,
+                            @JsonProperty("recipeName") String recipeName,
+                            @JsonProperty("price") String price,
+                            @JsonProperty("deadline") String deadline,
+                            @JsonProperty("quantity") String quantity) {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
+        this.recipeName = recipeName;
+        this.price = price;
+        this.deadline = deadline;
+        this.quantity = quantity;
     }
 
     /**
@@ -38,6 +53,10 @@ public class JsonAdaptedOrder {
         clientName = source.getClientName().toString();
         clientPhone = source.getClientPhone().toString();
         clientAddress = source.getClientAddress().toString();
+        recipeName = source.getRecipeName().toString();
+        price = source.getPrice().toString();
+        deadline = source.getDeadline().toJsonStorageString();
+        quantity = source.getQuantity().toString();
     }
 
     /**
@@ -72,6 +91,45 @@ public class JsonAdaptedOrder {
         }
         final Address modelClientAddress = new Address(clientAddress);
 
-        return new Order(modelClientName, modelClientPhone, modelClientAddress);
+        if (recipeName == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, GenericString.getMessageConstraints("Recipe Name")
+            ));
+        }
+        if (!GenericString.isValidGenericString(recipeName)) {
+            throw new IllegalValueException(GenericString.getMessageConstraints("Recipe Name"));
+        }
+        final GenericString modelRecipeName = new GenericString(recipeName);
+
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(price)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelPrice = new Price(price);
+
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()
+            ));
+        }
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        final Deadline modelDeadline = new Deadline(deadline);
+
+        if (quantity == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()
+            ));
+        }
+        if (!Quantity.isValidQuantity(quantity)) {
+            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        final Quantity modelQuantity = new Quantity(quantity);
+
+        return new Order(modelClientName, modelClientPhone, modelClientAddress,
+                modelRecipeName, modelPrice, modelDeadline, modelQuantity);
     }
 }

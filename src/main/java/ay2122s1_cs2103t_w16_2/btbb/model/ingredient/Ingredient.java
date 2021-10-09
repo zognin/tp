@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Represents an Ingredient in the address book.

@@ -5,6 +5,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -22,7 +26,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     @Override
     public AddOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_CLIENT_NAME,
-                PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
+                PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_NAME, PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
 
         if (!areArgumentsValid(argMultimap)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -30,6 +35,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
         OrderDescriptor orderDescriptor = new OrderDescriptor();
         fillOrderDescriptorClientFields(orderDescriptor, argMultimap);
+        fillOrderDescriptorOrderDetailFields(orderDescriptor, argMultimap);
+        fillOrderDescriptorRecipeFields(orderDescriptor, argMultimap);
         return new AddOrderCommand(orderDescriptor);
     }
 
@@ -37,9 +44,16 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         boolean isClientIndexPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX);
         boolean areClientFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap,
                 PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
+        boolean areRecipeFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_RECIPE_NAME,
+                PREFIX_ORDER_PRICE);
+        boolean areOrderDetailsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ORDER_DEADLINE,
+                PREFIX_ORDER_QUANTITY);
         boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
 
-        return (isClientIndexPresent || areClientFieldsPresent) && isPreambleEmpty;
+        return (isClientIndexPresent || areClientFieldsPresent)
+                && areRecipeFieldsPresent
+                && areOrderDetailsPresent
+                && isPreambleEmpty;
     }
 
     private void fillOrderDescriptorClientFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)
@@ -58,5 +72,18 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             orderDescriptor
                     .setClientAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
         }
+    }
+
+    private void fillOrderDescriptorOrderDetailFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
+        orderDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
+        orderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
+        orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
+    }
+
+    private void fillOrderDescriptorRecipeFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
+        orderDescriptor.setRecipeName(ParserUtil
+                .parseGenericString(argMultimap.getValue(PREFIX_RECIPE_NAME).get(), "Recipe Name"));
     }
 }

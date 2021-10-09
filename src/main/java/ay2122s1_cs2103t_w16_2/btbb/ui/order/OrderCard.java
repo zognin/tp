@@ -22,6 +22,14 @@ public class OrderCard extends UiPart<Region> {
     private Label clientPhone;
     @FXML
     private Label clientAddress;
+    @FXML
+    private Label recipeName;
+    @FXML
+    private Label orderPrice;
+    @FXML
+    private Label orderDeadline;
+    @FXML
+    private Label orderQuantity;
 
     /**
      * Creates a {@code OrderCard} with the given {@code Order} and index to display.
@@ -33,6 +41,10 @@ public class OrderCard extends UiPart<Region> {
         clientName.setText(order.getClientName().toString());
         clientPhone.setText(order.getClientPhone().toString());
         clientAddress.setText(order.getClientAddress().toString());
+        recipeName.setText(order.getRecipeName().toString());
+        orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
+        orderDeadline.setText(order.getDeadline().toString());
+        orderQuantity.setText("x " + order.getQuantity().toString());
     }
 
     @Override

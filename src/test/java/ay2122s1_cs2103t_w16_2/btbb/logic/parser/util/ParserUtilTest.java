@@ -11,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class ParserUtilTest {

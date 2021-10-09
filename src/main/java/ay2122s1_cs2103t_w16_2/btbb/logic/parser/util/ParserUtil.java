@@ -10,7 +10,9 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
@@ -80,23 +82,40 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-    // Ingredient-level parsers:
+    // Order-level parsers:
 
     /**
-     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param quantity String input to parse.
-     * @return Quantity object.
-     * @throws ParseException if the given {@code quantity} is invalid.
+     * @param deadline String input to parse.
+     * @return Deadline object.
+     * @throws ParseException If the given {@code deadline} is invalid.
      */
-    public static Quantity parseQuantity(String quantity) throws ParseException {
-        requireNonNull(quantity);
-        String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidQuantity(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(trimmedQuantity);
+        return new Deadline(deadline);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param price String input to parse.
+     * @return Price object.
+     * @throws ParseException If the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(price);
     }
 
     // Shared-level parsers:
@@ -117,6 +136,23 @@ public class ParserUtil {
             throw new ParseException(GenericString.getMessageConstraints(attributeName));
         }
         return new GenericString(trimmedGenericString);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
     }
 
     /**

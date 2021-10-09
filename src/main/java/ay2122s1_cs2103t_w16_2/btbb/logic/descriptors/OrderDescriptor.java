@@ -11,8 +11,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class OrderDescriptor {
     public static final String MESSAGE_MISSING_CLIENT_DETAILS = "Both client and client details cannot be found";
@@ -21,6 +24,10 @@ public class OrderDescriptor {
     private GenericString clientName;
     private Phone clientPhone;
     private Address clientAddress;
+    private GenericString recipeName;
+    private Price price;
+    private Deadline deadline;
+    private Quantity quantity;
 
     public OrderDescriptor() {};
 
@@ -34,6 +41,10 @@ public class OrderDescriptor {
         setClientName(toCopy.clientName);
         setClientPhone(toCopy.clientPhone);
         setClientAddress(toCopy.clientAddress);
+        setRecipeName(toCopy.recipeName);
+        setPrice(toCopy.price);
+        setDeadline(toCopy.deadline);
+        setQuantity(toCopy.quantity);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -68,6 +79,38 @@ public class OrderDescriptor {
         return Optional.ofNullable(clientAddress);
     }
 
+    public void setRecipeName(GenericString recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public Optional<GenericString> getRecipeName() {
+        return Optional.ofNullable(recipeName);
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public Optional<Price> getPrice() {
+        return Optional.ofNullable(price);
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
+    }
+
+    public void setQuantity(Quantity quantity) {
+        this.quantity = quantity;
+    }
+
+    public Optional<Quantity> getQuantity() {
+        return Optional.ofNullable(quantity);
+    }
+
     /**
      * Converts an Order Descriptor to an Order model type.
      *
@@ -82,7 +125,7 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
-            return new Order(clientName, clientPhone, clientAddress);
+            return new Order(clientName, clientPhone, clientAddress, recipeName, price, deadline, quantity);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -119,6 +162,10 @@ public class OrderDescriptor {
         return getClientIndex().equals(otherOrderDescriptor.getClientIndex())
                 && getClientName().equals(otherOrderDescriptor.getClientName())
                 && getClientPhone().equals(otherOrderDescriptor.getClientPhone())
-                && getClientAddress().equals(otherOrderDescriptor.getClientAddress());
+                && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
+                && getRecipeName().equals(otherOrderDescriptor.getRecipeName())
+                && getPrice().equals(otherOrderDescriptor.getPrice())
+                && getDeadline().equals(otherOrderDescriptor.getDeadline())
+                && getQuantity().equals(otherOrderDescriptor.getQuantity());
     }
 }

@@ -2,7 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 public class IngredientDescriptorBuilder {

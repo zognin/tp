@@ -1,5 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.util;
 
+import java.time.LocalDateTime;
+import java.util.Random;
+
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
@@ -7,7 +10,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
@@ -45,12 +50,34 @@ public class SampleDataUtil {
         };
     }
 
+    public static String[] getSampleRecipes() {
+        return new String[] {
+                "Chicken Rice",
+                "Nasi Lemak",
+                "Prata",
+                "Char kuay teow",
+                "Hokkien prawn mee",
+                "Laksa",
+                "Kaya toast",
+                "Satay"
+        };
+    }
+
     public static Order[] getSampleOrders() {
         Client[] people = getSampleClients();
+        String[] recipes = getSampleRecipes();
+
         Order[] orders = new Order[people.length];
 
-        for (int i = 0; i < orders.length; i++) {
-            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress());
+        Random randomNumberGenerator = new Random();
+
+        for (int i = 0; i < Math.min(orders.length, recipes.length); i++) {
+            float randomPrice = Math.round(randomNumberGenerator.nextFloat() * 1000) / 100.0f;
+            int randomQuantity = randomNumberGenerator.nextInt(1000);
+            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
+                    new GenericString(recipes[i]), new Price(Float.toString(randomPrice)),
+                    new Deadline(getRandomDateTimeString(i + 1)),
+                    new Quantity(Integer.toString(randomQuantity)));
         }
 
         return orders;
@@ -72,5 +99,11 @@ public class SampleDataUtil {
         }
 
         return sampleAb;
+    }
+
+    private static String getRandomDateTimeString(int dayOffset) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime dateTimeWithOffset = currentDateTime.plusDays(dayOffset);
+        return dateTimeWithOffset.format(Deadline.INPUT_DATETIME_FORMATTER);
     }
 }
