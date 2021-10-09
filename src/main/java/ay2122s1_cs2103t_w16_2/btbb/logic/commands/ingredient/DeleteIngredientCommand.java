@@ -10,7 +10,6 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
-import ay2122s1_cs2103t_w16_2.btbb.logic.commands.client.DeleteClientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
@@ -48,8 +47,7 @@ public class DeleteIngredientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete),
-                                 UiTab.INVENTORY);
+        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), UiTab.INVENTORY);
     }
 
     @Override

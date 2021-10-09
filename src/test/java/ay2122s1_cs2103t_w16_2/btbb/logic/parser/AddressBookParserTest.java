@@ -27,6 +27,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
@@ -136,6 +137,13 @@ public class AddressBookParserTest {
     public void parseCommand_listIngredient() throws Exception {
         assertTrue(parser.parseCommand(ListIngredientCommand.COMMAND_WORD) instanceof ListIngredientCommand);
         assertTrue(parser.parseCommand(ListIngredientCommand.COMMAND_WORD + " 3") instanceof ListIngredientCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteIngredient() throws Exception {
+        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
+                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
     }
 
     @Test
