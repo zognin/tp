@@ -257,18 +257,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* is a gym manager of a private gym
-* values maintaining good relationships with his clients
-* works solo as his business is small, so he does not have the funds to hire employees
-* prefers desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Home chef
+* Prepares meal orders at home
+* Sells meals to clients through delivery
+* Individual business owner
+* Tracks orders, inventory and revenue
+* Types quickly
+* Prefers typing to mouse interactions
+* Comfortable with CLI applications
 
 
-**Value proposition**: Our product allows fast tracking of visitors to a particular gym, including orders made by
-clients and the max number of people in the gym at one time. It also keeps contact and membership details for easy
-client follow-up. It can record additional information like vaccination status.
+**Value proposition**: The application allows home chefs who are individual business owners to track orders and revenue.
+They can easily and quickly create new orders by copying bookmarked client and recipe details.
+They can also use the app to track the status of their inventory.
+Some business statistics are available to help home chefs make business plans.
 
 
 ### User stories
@@ -277,7 +279,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 <table>
   <tr>
-   <th style="text-align: center" colspan="3"><h3><strong>As a gym manager</strong></h3></th>
+   <th style="text-align: center" colspan="3"><h3><strong>As a home chef</strong></h3></th>
   </tr>
   <tr>
     <th style="text-align: center"><h3><strong>Priority</strong></h3></th>
@@ -286,78 +288,158 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View a client's details</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>MEDIUM</td>
-    <td>View a client's preferred contact method</td>
-    <td></td>
+    <td>Add an ingredient and quantity to the inventory</td>
+    <td>I can keep track of my inventory</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View a client's membership expiry date</td>
-    <td>I can encourage them to renew</td>
+    <td>Delete ingredients from the inventory</td>
+    <td>My inventory is always up to date</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View a client's vaccination status</td>
-    <td>I am compliant with Covid-19 regulations</td>
+    <td>Edit ingredients in the inventory</td>
+    <td>I can update my inventory with ingredients that I recently bought or used.</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Keep track of my client's phone number</td>
-    <td>I can call them to renew their gym membership</td>
+    <td>Find ingredients by keywords</td>
+    <td>I know the quantity of a specific ingredient</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Add memberships to clients by period</td>
-    <td>I do not have to manually key in the expiry date</td>
+    <td>View all ingredients in my inventory</td>
+    <td>I can see the remaining quantity of all my ingredients</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Search for a order by a client's name</td>
-    <td>I can confirm if they have a order before letting them enter</td>
+    <td>Detect duplicate ingredients</td>
+    <td>I do not clutter the application with duplicate ingredients</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Add a client</td>
+    <td>I can copy details from a client to easily fill up the details of an order</td>
   </tr>
   <tr>
     <td>HIGH</td>
     <td>Delete clients</td>
-    <td>I will not clutter my app</td>
+    <td>I can remove former clients</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Make order appointments for clients</td>
-    <td>I know how many orders I have in a day</td>
+    <td>Edit client details</td>
+    <td>I can update their contact information</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View the number of orders at a given time</td>
-    <td>I will not exceed the maximum capacity</td>
+    <td>Find clients by keywords</td>
+    <td>I can find client information to fill up the details of an order</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View past orders</td>
-    <td>I can help the contact tracing initiative</td>
+    <td>View all clients</td>
+    <td>I can view all my current clients</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Delete cancelled orders</td>
-    <td>I can free up space for other clients</td>
+    <td>Detect duplicate clients</td>
+    <td>I do not clutter the application with duplicate clients</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Delete uncompleted orders</td>
-    <td>I will not clutter my app</td>
+    <td>Add an order</td>
+    <td>I can keep track of my orders</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Filter orders based on time and date</td>
-    <td>I know how many orders are made and who the clients are</td>
+    <td>Add a quantity to an order</td>
+    <td>I can create multiple orders for the same client</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View the list of available commands</td>
-    <td>I can make full use of the application's features </td>
+    <td>Add a price to an order</td>
+    <td>I can keep track of my revenue</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Delete orders</td>
+    <td>I can delete cancelled orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Edit orders</td>
+    <td>I can update the details of my orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Find orders by keywords</td>
+    <td>I can find a specific order</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View all orders</td>
+    <td>I can view all my current orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Mark an order as done</td>
+    <td>I can set the status of an order</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Mark an order as undone</td>
+    <td>I can reverse the changes made to the status of an order</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Add a recipe</td>
+    <td>I can copy details from a recipe to easily fill up the details of an order</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Delete recipes</td>
+    <td>I can delete unused recipes</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Edit recipes</td>
+    <td>I can update recipe details, like changing the ingredients used or recipe name</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Find recipes by keywords</td>
+    <td>I can reference certain recipes when creating an order</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View all recipes</td>
+    <td>I can see all the current recipes used</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>Detect duplicate recipes</td>
+    <td>I do not clutter the application with duplicate recipes</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View my most popular recipes</td>
+    <td>I can focus on growing my business with the popular recipes</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View my least popular recipes</td>
+    <td>I can spend less time refining my skills for those recipes</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View my monthly revenue</td>
+    <td>I can tell if my business is growing</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
+    <td>View my most popular clients</td>
+    <td>I can reinforce business relationships with my popular clients</td>
   </tr>
 </table>
 

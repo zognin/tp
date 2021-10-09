@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders,
+BobTheBistroBoss (BTBB) is a **desktop application for home chefs to manage their orders and inventory,
 optimized for use via a command line interface (CLI)**.
 
 * If you are interested in using BBTB, head over to the [_Quick Start_ section of the **User Guide**](https://ay2122s1-cs2103t-w16-2.github.io/tp/UserGuide.html).
