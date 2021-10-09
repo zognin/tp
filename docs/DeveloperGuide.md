@@ -270,7 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: The application allows home chefs who are individual business owners to track orders and revenue.
 They can easily and quickly create new orders by copying bookmarked client and recipe details.
 They can also use the app to track the status of their inventory.
-Some business statistics are available to help the home chef make business plans.
+Some business statistics are available to help home chefs make business plans.
 
 
 ### User stories
