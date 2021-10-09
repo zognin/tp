@@ -18,7 +18,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericStringPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -147,7 +148,7 @@ public class ModelManagerTest {
 
         // different filteredClientList -> returns false
         String[] keywords = ALICE.getName().toString().split("\\s+");
-        modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredClientList(new GenericStringPredicate<>(Client::getName, Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // different filteredIngredientList -> returns false
