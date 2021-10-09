@@ -114,6 +114,15 @@ public interface Model {
      */
     boolean hasIngredient(Ingredient ingredient);
 
+    /**
+     * Replaces the existing target Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient does not exist in the address book.
+     */
+    void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException;
+
     /** Returns an unmodifiable view of the filtered ingredient list */
     ObservableList<Ingredient> getFilteredIngredientList();
 

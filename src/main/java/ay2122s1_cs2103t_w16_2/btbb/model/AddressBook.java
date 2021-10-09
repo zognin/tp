@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -154,6 +155,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredients.contains(ingredient);
+    }
+
+    /**
+     * Replaces the existing target Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient does not exist in the address book.
+     */
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+        ingredients.setIngredient(target, editedIngredient);
     }
 
     //// order-level operations

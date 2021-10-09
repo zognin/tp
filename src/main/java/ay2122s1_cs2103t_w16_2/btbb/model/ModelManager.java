@@ -162,6 +162,20 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements setIngredient method.
+     * Replaces the existing Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient was not found in the address book.
+     */
+    @Override
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+        addressBook.setIngredient(target, editedIngredient);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedAddressBook}
      */

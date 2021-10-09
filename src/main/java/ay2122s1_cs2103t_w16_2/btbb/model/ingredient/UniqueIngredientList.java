@@ -6,6 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -68,6 +70,24 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void setIngredients(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         internalList.setAll(ingredients);
+    }
+
+    /**
+     * Replaces the existing target Ingredient in the list with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target Ingredient does not exist in the list.
+     */
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new NotFoundException(Client.class.getName());
+        }
+
+        internalList.set(index, editedIngredient);
     }
 
     /**
