@@ -6,9 +6,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -26,8 +27,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     @Override
     public AddOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_CLIENT_NAME,
-                PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_NAME, PREFIX_ORDER_PRICE,
-                PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
+                PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_NAME, PREFIX_RECIPE_INGREDIENT,
+                PREFIX_ORDER_PRICE, PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
 
         if (!areArgumentsValid(argMultimap)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -44,15 +45,14 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         boolean isClientIndexPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX);
         boolean areClientFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap,
                 PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
-        boolean areRecipeFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_RECIPE_NAME,
-                PREFIX_ORDER_PRICE);
-        boolean areOrderDetailsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ORDER_DEADLINE,
-                PREFIX_ORDER_QUANTITY);
+        boolean areCompulsoryRecipeFieldsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_RECIPE_NAME);
+        boolean areCompulsoryOrderDetailsPresent = ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_DEADLINE);
         boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
 
         return (isClientIndexPresent || areClientFieldsPresent)
-                && areRecipeFieldsPresent
-                && areOrderDetailsPresent
+                && areCompulsoryRecipeFieldsPresent
+                && areCompulsoryOrderDetailsPresent
                 && isPreambleEmpty;
     }
 
@@ -78,12 +78,18 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throws ParseException {
         orderDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
         orderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
-        orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
+        if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isPresent()) {
+            orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
+        }
     }
 
     private void fillOrderDescriptorRecipeFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)
             throws ParseException {
         orderDescriptor.setRecipeName(ParserUtil
                 .parseGenericString(argMultimap.getValue(PREFIX_RECIPE_NAME).get(), "Recipe Name"));
+        if (argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).isPresent()) {
+            orderDescriptor.setRecipeIngredients(ParserUtil
+                    .parseRecipeIngredients(argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).get()));
+        }
     }
 }

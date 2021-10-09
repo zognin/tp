@@ -9,6 +9,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -22,6 +23,7 @@ public class JsonAdaptedOrder {
     private final String clientPhone;
     private final String clientAddress;
     private final String recipeName;
+    private final String recipeIngredients;
     private final String price;
     private final String deadline;
     private final String quantity;
@@ -34,6 +36,7 @@ public class JsonAdaptedOrder {
                             @JsonProperty("clientPhone") String clientPhone,
                             @JsonProperty("clientAddress") String clientAddress,
                             @JsonProperty("recipeName") String recipeName,
+                            @JsonProperty("recipeIngredients") String recipeIngredients,
                             @JsonProperty("price") String price,
                             @JsonProperty("deadline") String deadline,
                             @JsonProperty("quantity") String quantity) {
@@ -41,6 +44,7 @@ public class JsonAdaptedOrder {
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
         this.recipeName = recipeName;
+        this.recipeIngredients = recipeIngredients;
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
@@ -54,6 +58,7 @@ public class JsonAdaptedOrder {
         clientPhone = source.getClientPhone().toString();
         clientAddress = source.getClientAddress().toString();
         recipeName = source.getRecipeName().toString();
+        recipeIngredients = source.getRecipeIngredients().toJsonStorageString();
         price = source.getPrice().toString();
         deadline = source.getDeadline().toJsonStorageString();
         quantity = source.getQuantity().toString();
@@ -101,6 +106,17 @@ public class JsonAdaptedOrder {
         }
         final GenericString modelRecipeName = new GenericString(recipeName);
 
+        if (recipeIngredients == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, RecipeIngredientList.class.getSimpleName()
+            ));
+        }
+        if (!recipeIngredients.equals("") && !RecipeIngredientList.isValidRecipeIngredientList(recipeIngredients)) {
+            throw new IllegalValueException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
+        }
+        final RecipeIngredientList modelRecipeIngredients = recipeIngredients.equals("")
+                ? new RecipeIngredientList() : new RecipeIngredientList(recipeIngredients);
+
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
@@ -130,6 +146,6 @@ public class JsonAdaptedOrder {
         final Quantity modelQuantity = new Quantity(quantity);
 
         return new Order(modelClientName, modelClientPhone, modelClientAddress,
-                modelRecipeName, modelPrice, modelDeadline, modelQuantity);
+                modelRecipeName, modelRecipeIngredients, modelPrice, modelDeadline, modelQuantity);
     }
 }

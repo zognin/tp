@@ -8,6 +8,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
 /**
@@ -116,6 +117,14 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered ingredient list */
     ObservableList<Ingredient> getFilteredIngredientList();
+
+    /**
+     * Reduces the quantity of the ingredient that is the same as the {@code target} ingredient if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    void minusIngredientQuantity(Ingredient target, Quantity multiplier);
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.

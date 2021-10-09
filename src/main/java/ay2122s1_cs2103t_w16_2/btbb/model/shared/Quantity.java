@@ -10,8 +10,15 @@ import static java.util.Objects.requireNonNull;
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
-                    + "and the largest acceptable quantity is 2147483647.";
+                    + "and the largest acceptable quantity is 1000.";
     private final int quantity;
+
+    /**
+     * Constructs a {@code Quantity} with a default value of 1.
+     */
+    public Quantity() {
+        quantity = 1;
+    }
 
     /**
      * Constructs a {@code Quantity}.
@@ -33,10 +40,21 @@ public class Quantity {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity > 0;
+            return quantity >= 0 && quantity <= 1000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
+    }
+
+    /**
+     * Returns a new {@code Quantity} object with its quantity reduced by amount * multiplier.
+     *
+     * @param amount The amount to decrease.
+     * @param multiplier The multiplier.
+     * @return A new {@code Quantity} object.
+     */
+    public Quantity minusQuantityBy(Quantity amount, Quantity multiplier) {
+        return new Quantity(Integer.toString(Math.max(quantity - amount.quantity * multiplier.quantity, 0)));
     }
 
     /**

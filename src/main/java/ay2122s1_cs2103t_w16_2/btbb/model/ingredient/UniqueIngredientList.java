@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -68,6 +69,36 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void setIngredients(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         internalList.setAll(ingredients);
+    }
+
+    /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
+     * by the quantity times the multiplier in {@code target} if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireNonNull(target);
+
+        int index = -1;
+        Ingredient similarToTarget = null;
+        for (int i = 0; i < internalList.size(); i++) {
+            Ingredient currentIngredient = internalList.get(i);
+            if (currentIngredient.isSameIngredient(target)) {
+                index = i;
+                similarToTarget = currentIngredient;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            return;
+        }
+
+        internalList.set(index, new Ingredient(similarToTarget.getName(),
+                        similarToTarget.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
+                        similarToTarget.getUnit()));
     }
 
     /**

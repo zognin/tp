@@ -36,6 +36,6 @@ public class QuantityTest {
 
         // valid quantity
         assertTrue(Quantity.isValidQuantity("50"));
-        assertTrue(Quantity.isValidQuantity("1242938")); // large quantities
+        assertTrue(Quantity.isValidQuantity("1000")); // large quantities
     }
 }

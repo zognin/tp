@@ -118,9 +118,9 @@ public class Ingredient {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Quantity: ")
+                .append(" x ")
                 .append(getQuantity())
-                .append("; Unit: ")
+                .append(" ")
                 .append(getUnit());
 
         return builder.toString();

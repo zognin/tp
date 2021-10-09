@@ -12,8 +12,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -98,7 +99,7 @@ public class ParserUtil {
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(deadline);
+        return new Deadline(trimmedDeadline);
     }
 
     /**
@@ -115,7 +116,24 @@ public class ParserUtil {
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Price(price);
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String recipeIngredients} into a {@code RecipeIngredientList}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param recipeIngredients String input to parse.
+     * @return RecipeIngredientList object.
+     * @throws ParseException If the given {@code recipeIngredients} is invalid.
+     */
+    public static RecipeIngredientList parseRecipeIngredients(String recipeIngredients) throws ParseException {
+        requireNonNull(recipeIngredients);
+        String trimmedRecipeIngredients = recipeIngredients.trim();
+        if (!RecipeIngredientList.isValidRecipeIngredientList(trimmedRecipeIngredients)) {
+            throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
+        }
+        return new RecipeIngredientList(trimmedRecipeIngredients);
     }
 
     // Shared-level parsers:

@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -25,6 +26,7 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
+    private RecipeIngredientList recipeIngredients;
     private Price price;
     private Deadline deadline;
     private Quantity quantity;
@@ -42,6 +44,7 @@ public class OrderDescriptor {
         setClientPhone(toCopy.clientPhone);
         setClientAddress(toCopy.clientAddress);
         setRecipeName(toCopy.recipeName);
+        setRecipeIngredients(toCopy.recipeIngredients);
         setPrice(toCopy.price);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
@@ -87,6 +90,14 @@ public class OrderDescriptor {
         return Optional.ofNullable(recipeName);
     }
 
+    public void setRecipeIngredients(RecipeIngredientList recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    public Optional<RecipeIngredientList> getRecipeIngredients() {
+        return Optional.ofNullable(recipeIngredients);
+    }
+
     public void setPrice(Price price) {
         this.price = price;
     }
@@ -125,7 +136,10 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
-            return new Order(clientName, clientPhone, clientAddress, recipeName, price, deadline, quantity);
+            RecipeIngredientList recipeIngredients = getRecipeIngredients().orElseGet(RecipeIngredientList::new);
+            Quantity quantity = getQuantity().orElseGet(Quantity::new);
+            return new Order(clientName, clientPhone, clientAddress,
+                    recipeName, recipeIngredients, price, deadline, quantity);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -164,6 +178,7 @@ public class OrderDescriptor {
                 && getClientPhone().equals(otherOrderDescriptor.getClientPhone())
                 && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
                 && getRecipeName().equals(otherOrderDescriptor.getRecipeName())
+                && getRecipeIngredients().equals(otherOrderDescriptor.getRecipeIngredients())
                 && getPrice().equals(otherOrderDescriptor.getPrice())
                 && getDeadline().equals(otherOrderDescriptor.getDeadline())
                 && getQuantity().equals(otherOrderDescriptor.getQuantity());

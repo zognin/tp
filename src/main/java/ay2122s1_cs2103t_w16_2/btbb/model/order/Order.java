@@ -18,6 +18,7 @@ public class Order {
     private final Phone clientPhone;
     private final Address clientAddress;
     private final GenericString recipeName;
+    private final RecipeIngredientList recipeIngredients;
     private final Price price;
     private final Deadline deadline;
     private final Quantity quantity;
@@ -29,17 +30,21 @@ public class Order {
      * @param clientPhone The client's phone number.
      * @param clientAddress The client's address.
      * @param recipeName The name of the recipe chosen.
+     * @param recipeIngredients The list of ingredients used the for recipe in the order.
      * @param price The price of the order.
      * @param deadline The deadline for this order.
      * @param quantity The quantity of this order.
      */
     public Order(GenericString clientName, Phone clientPhone, Address clientAddress,
-                 GenericString recipeName, Price price, Deadline deadline, Quantity quantity) {
-        requireAllNonNull(clientName, clientPhone, clientAddress, recipeName, recipeName, deadline, quantity);
+                 GenericString recipeName, RecipeIngredientList recipeIngredients, Price price,
+                 Deadline deadline, Quantity quantity) {
+        requireAllNonNull(clientName, clientPhone, clientAddress,
+                recipeName, recipeIngredients, recipeName, deadline, quantity);
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
         this.recipeName = recipeName;
+        this.recipeIngredients = recipeIngredients;
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
@@ -59,6 +64,10 @@ public class Order {
 
     public GenericString getRecipeName() {
         return recipeName;
+    }
+
+    public RecipeIngredientList getRecipeIngredients() {
+        return recipeIngredients;
     }
 
     public Price getPrice() {
@@ -87,6 +96,7 @@ public class Order {
                 && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress())
                 && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getQuantity().equals(getQuantity());
@@ -115,6 +125,7 @@ public class Order {
                 && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress())
                 && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getQuantity().equals(getQuantity());
@@ -136,6 +147,8 @@ public class Order {
                 .append(getClientAddress())
                 .append("; Recipe Name: ")
                 .append(getRecipeName())
+                .append("; Recipe Ingredients: ")
+                .append(getRecipeIngredients())
                 .append("; Order Price: ")
                 .append(getPrice())
                 .append("; Order Deadline: ")

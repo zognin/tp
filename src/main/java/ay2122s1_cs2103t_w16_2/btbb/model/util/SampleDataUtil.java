@@ -11,10 +11,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -52,30 +53,47 @@ public class SampleDataUtil {
 
     public static String[] getSampleRecipes() {
         return new String[] {
-                "Chicken Rice",
-                "Nasi Lemak",
-                "Prata",
-                "Char kuay teow",
-                "Hokkien prawn mee",
-                "Laksa",
-                "Kaya toast",
-                "Satay"
+            "Chicken Rice",
+            "Nasi Lemak",
+            "Prata",
+            "Char kuay teow",
+            "Hokkien prawn mee",
+            "Laksa",
+            "Kaya toast",
+            "Satay"
+        };
+    }
+
+    public static String[] getRecipeIngredientList() {
+        return new String[] {
+            "Almond-1-bags, Corn-2-whole",
+            "Chicken Eggs-2-whole",
+            "Garlic-1-whole, Ham-1-packs, Fig-5-whole",
+            "Bamboo-2-shoots, Edamame-1-bag",
+            "Edamame-1-bag",
+            "Duck Eggs-1-whole, Ham-1-packs, Fig-5-whole, Garlic-1-whole",
+            "Corn-1-whole",
+            "Fig-1-whole"
         };
     }
 
     public static Order[] getSampleOrders() {
         Client[] people = getSampleClients();
         String[] recipes = getSampleRecipes();
+        String[] ingredients = getRecipeIngredientList();
 
         Order[] orders = new Order[people.length];
 
         Random randomNumberGenerator = new Random();
 
-        for (int i = 0; i < Math.min(orders.length, recipes.length); i++) {
+        int loopCount = Math.min(orders.length, Math.min(recipes.length, ingredients.length));
+
+        for (int i = 0; i < loopCount; i++) {
             float randomPrice = Math.round(randomNumberGenerator.nextFloat() * 1000) / 100.0f;
             int randomQuantity = randomNumberGenerator.nextInt(1000);
             orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
-                    new GenericString(recipes[i]), new Price(Float.toString(randomPrice)),
+                    new GenericString(recipes[i]), new RecipeIngredientList(ingredients[i]),
+                    new Price(Float.toString(randomPrice)),
                     new Deadline(getRandomDateTimeString(i + 1)),
                     new Quantity(Integer.toString(randomQuantity)));
         }
