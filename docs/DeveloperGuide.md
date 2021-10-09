@@ -389,7 +389,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   <tr>
     <td>HIGH</td>
     <td>Mark an order as undone</td>
-    <td>I can reverse the changes to made to the status of an order</td>
+    <td>I can reverse the changes made to the status of an order</td>
   </tr>
   <tr>
     <td>HIGH</td>
@@ -404,7 +404,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   <tr>
     <td>HIGH</td>
     <td>Edit recipes</td>
-    <td>I can update the ingredients used in recipes</td>
+    <td>I can update recipe details, like changing the ingredients used or recipe name</td>
   </tr>
   <tr>
     <td>HIGH</td>
