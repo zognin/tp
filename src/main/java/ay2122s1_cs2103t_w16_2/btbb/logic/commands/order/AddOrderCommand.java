@@ -17,6 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Adds an order to the address book.
@@ -61,7 +62,7 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(order);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, order));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, order), UiTab.HOME);
     }
 
     @Override

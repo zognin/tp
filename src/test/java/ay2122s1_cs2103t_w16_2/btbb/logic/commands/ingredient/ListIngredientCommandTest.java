@@ -1,7 +1,7 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
+package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.getTypicalAddressBook;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,9 +12,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListOrderCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListIngredientCommand.
  */
-public class ListOrderCommandTest {
+public class ListIngredientCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -26,14 +26,14 @@ public class ListOrderCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccessWithTabChange(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS,
-                expectedModel, UiTab.HOME);
+        assertCommandSuccessWithTabChange(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS,
+                expectedModel, UiTab.INVENTORY);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        model.updateFilteredOrderList(unused -> false);
-        assertCommandSuccessWithTabChange(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS,
-                expectedModel, UiTab.HOME);
+        model.updateFilteredIngredientList(unused -> false);
+        assertCommandSuccessWithTabChange(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS,
+                expectedModel, UiTab.INVENTORY);
     }
 }
