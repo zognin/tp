@@ -160,7 +160,7 @@ Format: `list client`
 
 ### 3.4 Order
 
-#### 3.4.1 Adding a order: `add-o`
+#### 3.4.1 Adding an order: `add-o`
 
 Adds an order to the application.
 
@@ -235,7 +235,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 1 cn/David`
 * `edit-o 2 cn/Carol cp/98765432`
 
-#### 3.4.3 Deleting a order: `delete-o`
+#### 3.4.3 Deleting an order: `delete-o`
 
 Deletes an order from the application.
 
