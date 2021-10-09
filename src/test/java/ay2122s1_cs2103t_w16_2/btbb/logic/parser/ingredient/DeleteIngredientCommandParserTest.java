@@ -20,7 +20,7 @@ public class DeleteIngredientCommandParserTest {
     private DeleteIngredientCommandParser parser = new DeleteIngredientCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteClientCommand() {
+    public void parse_validArgs_returnsDeleteIngredientCommand() {
         assertParseSuccess(parser, "1", new DeleteIngredientCommand(INDEX_FIRST));
     }
 

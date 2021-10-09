@@ -42,7 +42,7 @@ public class DeleteIngredientCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different client -> returns false
+        // different ingredient -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

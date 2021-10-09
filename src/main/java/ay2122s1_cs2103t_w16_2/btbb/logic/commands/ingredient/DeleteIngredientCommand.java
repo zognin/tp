@@ -44,7 +44,7 @@ public class DeleteIngredientCommand extends Command {
         try {
             model.deleteIngredient(ingredientToDelete);
         } catch (NotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), UiTab.INVENTORY);
