@@ -58,7 +58,7 @@ public class GenericString {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString // instanceof handles nulls
+                || (other instanceof GenericString // instanceof handles nulls
                 && genericString.equals(((GenericString) other).genericString)); // state check
     }
 
