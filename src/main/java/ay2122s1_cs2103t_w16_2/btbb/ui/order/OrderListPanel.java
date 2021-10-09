@@ -11,6 +11,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
+/**
+ * Panel containing the list of orders.
+ */
 public class OrderListPanel extends UiPart<Region> {
     private static final String FXML = "OrderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(OrderListPanel.class);
@@ -20,6 +23,8 @@ public class OrderListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
+     *
+     * @param orderList Order list to display.
      */
     public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);

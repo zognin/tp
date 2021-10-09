@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <?import javafx.scene.control.Label?>
-<GridPane xmlns="http://javafx.com/javafx/8">
+<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
             <padding>
@@ -13,7 +13,7 @@
             </padding>
 
             <Label text="Inventory" styleClass="list-header"/>
-            <StackPane VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="ingredientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
     </children>
 

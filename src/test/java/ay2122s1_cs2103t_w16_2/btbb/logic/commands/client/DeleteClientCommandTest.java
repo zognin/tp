@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.showClientAtIndex;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -18,6 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -36,7 +37,7 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(deleteClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoClient(expectedModel);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(deleteClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test
