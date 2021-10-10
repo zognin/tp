@@ -18,14 +18,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_FROM_5_TO_600_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_TO_600_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
+
+import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
-import org.junit.jupiter.api.Test;
 
 public class FindIngredientCommandParserTest {
     private FindIngredientCommandParser parser = new FindIngredientCommandParser();
@@ -52,7 +53,7 @@ public class FindIngredientCommandParserTest {
         PredicateCollection<Ingredient> predicateCollection = new PredicateCollection<>();
         predicateCollection.addPredicate(INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE);
         predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_550_PREDICATE);
-        predicateCollection.addPredicate(INGREDIENT_QUANTITY_FROM_5_TO_600_PREDICATE);
+        predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_TO_600_PREDICATE);
         predicateCollection.addPredicate(INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE);
         FindIngredientCommand expectedFindIngredientCommand = new FindIngredientCommand(predicateCollection);
 
@@ -60,8 +61,7 @@ public class FindIngredientCommandParserTest {
                 + PREFIX_INGREDIENT_NAME + "Avocado Butter "
                 + PREFIX_INGREDIENT_QUANTITY + "5 550 "
                 + PREFIX_INGREDIENT_QUANTITY_FROM + "5 " + PREFIX_INGREDIENT_QUANTITY_TO + "600 "
-                + PREFIX_INGREDIENT_UNIT + "whole grams"
-                , expectedFindIngredientCommand);
+                + PREFIX_INGREDIENT_UNIT + "whole grams", expectedFindIngredientCommand);
     }
 
     @Test

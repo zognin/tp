@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.Test;
+
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityEqualsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
-import org.junit.jupiter.api.Test;
-
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericStub;
 
@@ -33,8 +33,9 @@ public class PredicateCollectionTest {
     public static final StringContainsKeywordsPredicate<Ingredient> INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE =
             new StringContainsKeywordsPredicate<>(Ingredient::getName, List.of("Avocado", "Butter"));
     public static final QuantityEqualsKeywordsPredicate<Ingredient> INGREDIENT_QUANTITY_5_550_PREDICATE =
-            new QuantityEqualsKeywordsPredicate<>(Ingredient::getQuantity, List.of(new Quantity("5"), new Quantity("550")));
-    public static final QuantityWithinRangePredicate<Ingredient> INGREDIENT_QUANTITY_FROM_5_TO_600_PREDICATE =
+            new QuantityEqualsKeywordsPredicate<>(Ingredient::getQuantity,
+                    List.of(new Quantity("5"), new Quantity("550")));
+    public static final QuantityWithinRangePredicate<Ingredient> INGREDIENT_QUANTITY_5_TO_600_PREDICATE =
             new QuantityWithinRangePredicate<>(Ingredient::getQuantity, new Quantity("5"), new Quantity("600"));
     public static final StringContainsKeywordsPredicate<Ingredient> INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE =
             new StringContainsKeywordsPredicate<>(Ingredient::getUnit, List.of("whole", "grams"));

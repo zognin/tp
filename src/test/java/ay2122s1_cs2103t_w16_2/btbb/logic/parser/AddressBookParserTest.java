@@ -2,7 +2,6 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
@@ -22,14 +21,13 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.C
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9427_3217_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_FROM_5_TO_600_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_TO_600_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -43,6 +41,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -139,7 +138,7 @@ public class AddressBookParserTest {
         PredicateCollection<Ingredient> predicateCollection = new PredicateCollection<>();
         predicateCollection.addPredicate(INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE);
         predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_550_PREDICATE);
-        predicateCollection.addPredicate(INGREDIENT_QUANTITY_FROM_5_TO_600_PREDICATE);
+        predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_TO_600_PREDICATE);
         predicateCollection.addPredicate(INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE);
         FindIngredientCommand command = (FindIngredientCommand) parser.parseCommand(FindIngredientCommand.COMMAND_WORD
                 + " "

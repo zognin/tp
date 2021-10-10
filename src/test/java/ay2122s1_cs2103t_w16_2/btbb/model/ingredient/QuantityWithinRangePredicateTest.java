@@ -3,8 +3,9 @@ package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericQuantityStub;
 import org.junit.jupiter.api.Test;
+
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericQuantityStub;
 
 public class QuantityWithinRangePredicateTest {
     @Test
@@ -14,11 +15,11 @@ public class QuantityWithinRangePredicateTest {
         Quantity secondPredicateMinQuantity = new Quantity("3");
         Quantity secondPredicateMaxQuantity = new Quantity("7");
 
-        QuantityWithinRangePredicate<GenericQuantityStub> firstPredicate
-                = new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity,
+        QuantityWithinRangePredicate<GenericQuantityStub> firstPredicate =
+                new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity,
                 firstPredicateMinQuantity, firstPredicateMaxQuantity);
-        QuantityWithinRangePredicate<GenericQuantityStub> secondPredicate
-                = new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity,
+        QuantityWithinRangePredicate<GenericQuantityStub> secondPredicate =
+                new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity,
                 secondPredicateMinQuantity, secondPredicateMaxQuantity);
 
         // same object -> returns true
@@ -44,8 +45,8 @@ public class QuantityWithinRangePredicateTest {
     public void test_quantityWithinRange_returnsTrue() {
         Quantity minQuantity = new Quantity("3");
         Quantity maxQuantity = new Quantity("7");
-        QuantityWithinRangePredicate<GenericQuantityStub> predicate
-                = new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity, minQuantity, maxQuantity);
+        QuantityWithinRangePredicate<GenericQuantityStub> predicate =
+                new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity, minQuantity, maxQuantity);
         GenericQuantityStub genericQuantityStub = new GenericQuantityStub(new Quantity("5"));
         assertTrue(predicate.test(genericQuantityStub));
 
@@ -62,8 +63,8 @@ public class QuantityWithinRangePredicateTest {
     public void test_quantityOutOfRange_returnsFalse() {
         Quantity minQuantity = new Quantity("3");
         Quantity maxQuantity = new Quantity("7");
-        QuantityWithinRangePredicate<GenericQuantityStub> predicate
-                = new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity, minQuantity, maxQuantity);
+        QuantityWithinRangePredicate<GenericQuantityStub> predicate =
+                new QuantityWithinRangePredicate<>(GenericQuantityStub::getQuantity, minQuantity, maxQuantity);
 
         // Less than min
         GenericQuantityStub genericQuantityStub = new GenericQuantityStub(new Quantity("1"));

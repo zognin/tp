@@ -21,13 +21,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
-import org.junit.jupiter.api.Test;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindIngredientCommand}.
@@ -87,8 +88,8 @@ public class FindIngredientCommandTest {
                         Ingredient::getName)
         );
         predicateCollection.addPredicate(
-                makeQuantityEqualsKeywordsPredicate(
-                        makeSpaceSeparatedStringKeywords(AVOCADO.getQuantity(), BUTTER.getQuantity(), CHICKEN.getQuantity()),
+                makeQuantityEqualsKeywordsPredicate(makeSpaceSeparatedStringKeywords(AVOCADO.getQuantity(),
+                        BUTTER.getQuantity(), CHICKEN.getQuantity()),
                         Ingredient::getQuantity)
         );
         predicateCollection.addPredicate(

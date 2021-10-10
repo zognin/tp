@@ -230,14 +230,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuantityKeywords_invalidValues_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseQuantityKeywords(INVALID_INTERNAL_QUANTITY));
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + INVALID_INTERNAL_QUANTITY));
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseQuantityKeywords(INVALID_QUANTITY + " " + VALID_QUANTITY_2));
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseQuantityKeywords(VALID_GENERIC_STRING + " " + VALID_QUANTITY_2));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQuantityKeywords(INVALID_INTERNAL_QUANTITY));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + INVALID_INTERNAL_QUANTITY));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQuantityKeywords(INVALID_QUANTITY + " " + VALID_QUANTITY_2));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseQuantityKeywords(VALID_GENERIC_STRING + " " + VALID_QUANTITY_2));
     }
 
     @Test

@@ -7,18 +7,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericQuantityStub;
 import org.junit.jupiter.api.Test;
+
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericQuantityStub;
 
 public class QuantityEqualsKeywordPredicateTest {
     @Test
     public void equals() {
         List<Quantity> firstPredicateQuantityList = Collections.singletonList(new Quantity("5"));
         List<Quantity> secondPredicateQuantityList = Arrays.asList(new Quantity("5"), new Quantity("10"));
-        QuantityEqualsKeywordsPredicate<GenericQuantityStub> firstPredicate
-                = new QuantityEqualsKeywordsPredicate<>(GenericQuantityStub::getQuantity, firstPredicateQuantityList);
-        QuantityEqualsKeywordsPredicate<GenericQuantityStub> secondPredicate
-                = new QuantityEqualsKeywordsPredicate<>(GenericQuantityStub::getQuantity, secondPredicateQuantityList);
+        QuantityEqualsKeywordsPredicate<GenericQuantityStub> firstPredicate =
+                new QuantityEqualsKeywordsPredicate<>(GenericQuantityStub::getQuantity, firstPredicateQuantityList);
+        QuantityEqualsKeywordsPredicate<GenericQuantityStub> secondPredicate =
+                new QuantityEqualsKeywordsPredicate<>(GenericQuantityStub::getQuantity, secondPredicateQuantityList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));

@@ -47,7 +47,7 @@ public class PredicateCollection<T> implements Predicate<T> {
      * @throws ParseException if the given keywords is invalid.
      */
     public void addQuantityEqualsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
-                                                   Function<T, Quantity> getter) throws ParseException {
+            Function<T, Quantity> getter) throws ParseException {
         if (argMultimap.getValue(prefix).isPresent()) {
             addPredicate(new QuantityEqualsKeywordsPredicate<>(getter,
                     ParserUtil.parseQuantityKeywords(argMultimap.getValue(prefix).get())));
@@ -66,7 +66,7 @@ public class PredicateCollection<T> implements Predicate<T> {
      * @throws ParseException if the given keywords is invalid.
      */
     public void addQuantityWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
-                                                ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
+            ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
         Optional<String> optionalMinQuantityKeyword = argMultimap.getValue(fromPrefix);
         Optional<String> optionalMaxQuantityKeyword = argMultimap.getValue(toPrefix);
 
@@ -92,7 +92,7 @@ public class PredicateCollection<T> implements Predicate<T> {
      * @throws ParseException if the given keywords is invalid.
      */
     public void addStringContainsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
-                                                   Function<T, ?> getter) throws ParseException {
+            Function<T, ?> getter) throws ParseException {
         if (argMultimap.getValue(prefix).isPresent()) {
             addPredicate(new StringContainsKeywordsPredicate<>(getter,
                     ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));

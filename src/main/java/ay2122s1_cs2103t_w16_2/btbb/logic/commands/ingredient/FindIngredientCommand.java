@@ -2,6 +2,8 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static java.util.Objects.requireNonNull;
 
@@ -25,10 +27,17 @@ public class FindIngredientCommand extends Command {
             + "Parameters (at least one must be provided): "
             + "[" + PREFIX_INGREDIENT_NAME + "NAME] "
             + "[" + PREFIX_INGREDIENT_QUANTITY + "QUANTITY] "
+            + "[" + PREFIX_INGREDIENT_QUANTITY_FROM + "QUANTITY_FROM] "
+            + "[" + PREFIX_INGREDIENT_QUANTITY_TO + "QUANTITY_TO] "
             + "[" + PREFIX_INGREDIENT_UNIT + "UNIT]\n"
-            + "Additional Info: Multiple space separated quantities can be provided.\n"
+            + "Additional Info: For " + PREFIX_INGREDIENT_QUANTITY
+            + ", multiple space separated quantities can be provided."
+            + " If both " + PREFIX_INGREDIENT_QUANTITY
+            + " and (" + PREFIX_INGREDIENT_QUANTITY_FROM
+            + " or " + PREFIX_INGREDIENT_QUANTITY_TO + ") are provided,"
+            + " the found ingredients must fulfill all 3 conditions.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_INGREDIENT_NAME + "corn"
-            + " " + PREFIX_INGREDIENT_QUANTITY+ "30 20 15";
+            + " " + PREFIX_INGREDIENT_QUANTITY + "30 20 15";
 
     private final PredicateCollection<Ingredient> predicateCollection;
 

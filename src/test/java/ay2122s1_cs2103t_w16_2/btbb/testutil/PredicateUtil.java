@@ -29,6 +29,14 @@ public class PredicateUtil {
         return sb.toString().trim();
     }
 
+    /**
+     * Makes a {@code QuantityEqualsKeywordsPredicate}.
+     *
+     * @param input String input to get keywords from.
+     * @param getter Getter to get item to test predicate with.
+     * @param <T> Type of predicate.
+     * @return {@code QuantityEqualsKeywordsPredicate}.
+     */
     public static <T> QuantityEqualsKeywordsPredicate<T> makeQuantityEqualsKeywordsPredicate(String input,
             Function<T, Quantity> getter) {
         List<String> keywords = List.of(input.split("\\s+"));
@@ -39,6 +47,15 @@ public class PredicateUtil {
         return new QuantityEqualsKeywordsPredicate<>(getter, quantityKeywords);
     }
 
+    /**
+     * Makes a {@code QuantityWithinRangePredicate}.
+     *
+     * @param minQuantityKeyword Minimum quantity to form the lower bound of the range.
+     * @param maxQuantityKeyword Maximum quantity to form the upper bound of the range.
+     * @param getter Getter to get item to test predicate with.
+     * @param <T> Type of predicate.
+     * @return {@code QuantityWithinRangePredicate}.
+     */
     public static <T> QuantityWithinRangePredicate<T> makeQuantityWithinRangePredicate(
             String minQuantityKeyword,
             String maxQuantityKeyword,
