@@ -2,6 +2,9 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -10,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
@@ -134,6 +138,58 @@ public class ParserUtil {
             throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
         return new RecipeIngredientList(trimmedRecipeIngredients);
+    }
+
+    /**
+     * Parses the ingredient list to a {@code List<Ingredient>}.
+     *
+     * @param ingredientList The ingredient list to parse.
+     * @return A list of ingredients.
+     */
+    public static List<Ingredient> parseRecipeIngredientsToList(String ingredientList) {
+        requireNonNull(ingredientList);
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+
+        String[] ingredientListArray = ingredientList.split(", ");
+        for (String individualIngredient : ingredientListArray) {
+            Optional<Ingredient> ingredient = parseRecipeIngredient(individualIngredient);
+            if (ingredient.isEmpty()) {
+                return new ArrayList<>();
+            }
+            listOfIngredients.add(ingredient.get());
+        }
+
+        return listOfIngredients;
+    }
+
+    /**
+     * Parses the individual ingredient to a {@code Ingredient}.
+     *
+     * @param individualIngredient The ingredient to parse.
+     * @return An {@code Optional<Ingredient>} object.
+     */
+    private static Optional<Ingredient> parseRecipeIngredient(String individualIngredient) {
+        String[] individualIngredientArray = individualIngredient.split("-", 3);
+
+        if (individualIngredientArray.length != 3) {
+            return Optional.empty();
+        }
+
+        String recipeName = individualIngredientArray[0];
+        String quantity = individualIngredientArray[1];
+        String unit = individualIngredientArray[2];
+
+        boolean isValidIngredient = GenericString.isValidGenericString(recipeName)
+                && Quantity.isValidQuantity(quantity)
+                && GenericString.isValidGenericString(unit);
+
+        if (!isValidIngredient) {
+            return Optional.empty();
+        }
+
+        return Optional.of(new
+                Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit))
+        );
     }
 
     // Shared-level parsers:

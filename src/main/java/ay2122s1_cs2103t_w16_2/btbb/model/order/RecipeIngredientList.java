@@ -5,12 +5,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class RecipeIngredientList {
     public static final String MESSAGE_CONSTRAINTS = "The ingredient list should contain at least one ingredient.\n"
@@ -33,7 +31,7 @@ public class RecipeIngredientList {
     public RecipeIngredientList(String ingredients) {
         requireNonNull(ingredients);
         checkArgument(isValidRecipeIngredientList(ingredients), MESSAGE_CONSTRAINTS);
-        this.ingredients = RecipeIngredientList.parseRecipeIngredients(ingredients);
+        this.ingredients = ParserUtil.parseRecipeIngredientsToList(ingredients);
     }
 
     public List<Ingredient> getIngredients() {
@@ -51,60 +49,8 @@ public class RecipeIngredientList {
             return false;
         }
 
-        List<Ingredient> ingredients = RecipeIngredientList.parseRecipeIngredients(test);
+        List<Ingredient> ingredients = ParserUtil.parseRecipeIngredientsToList(test);
         return ingredients.size() > 0;
-    }
-
-    /**
-     * Parses the ingredient list to a {@code List<Ingredient>}.
-     *
-     * @param ingredientList The ingredient list to parse.
-     * @return A list of ingredients.
-     */
-    private static List<Ingredient> parseRecipeIngredients(String ingredientList) {
-        requireNonNull(ingredientList);
-        List<Ingredient> listOfIngredients = new ArrayList<>();
-
-        String[] ingredientListArray = ingredientList.split(", ");
-        for (String individualIngredient : ingredientListArray) {
-            Optional<Ingredient> ingredient = parseRecipeIngredient(individualIngredient);
-            if (ingredient.isEmpty()) {
-                return new ArrayList<>();
-            }
-            listOfIngredients.add(ingredient.get());
-        }
-
-        return listOfIngredients;
-    }
-
-    /**
-     * Parses the individual ingredient to a {@code Ingredient}.
-     *
-     * @param individualIngredient The ingredient to parse.
-     * @return An {@code Optional<Ingredient>} object.
-     */
-    private static Optional<Ingredient> parseRecipeIngredient(String individualIngredient) {
-        String[] individualIngredientArray = individualIngredient.split("-", 3);
-
-        if (individualIngredientArray.length != 3) {
-            return Optional.empty();
-        }
-
-        String recipeName = individualIngredientArray[0];
-        String quantity = individualIngredientArray[1];
-        String unit = individualIngredientArray[2];
-
-        boolean isValidIngredient = GenericString.isValidGenericString(recipeName)
-                && Quantity.isValidQuantity(quantity)
-                && GenericString.isValidGenericString(unit);
-
-        if (!isValidIngredient) {
-            return Optional.empty();
-        }
-
-        return Optional.of(new
-                Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit))
-        );
     }
 
     /**
