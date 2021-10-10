@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericStub;
 
-
 public class StringContainsKeywordsPredicateTest {
     @Test
     public void equals() {
