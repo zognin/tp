@@ -20,7 +20,7 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the jar file of the application
+1. Download the jar file of the application.
 
 1. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
 
@@ -61,9 +61,6 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 * The format of all time fields is `HHmm`.<br>
   e.g. 1340 is 1.40p.m.
 
-* The format for all ingredients is `NAME-QTY-UNIT`. <br>
-  e.g. Garlic-1-whole.
-
 </div>
 
 ### 3.1 View help : `help`
@@ -78,13 +75,13 @@ Switches to the specified tab.
 
 Format: `tab INDEX`
 
-* Switches to the tab corresponding to the specified INDEX. INDEX must be 1 or 2
-  * Index 1 corresponds to the Home tab
-  * Index 2 corresponds to the Inventory tab
+* Switches to the tab corresponding to the specified INDEX. INDEX must be 1 or 2.
+  * Index 1 corresponds to the Home tab.
+  * Index 2 corresponds to the Inventory tab.
 
 Example:
 
-* `tab 1` switches to the Home tab
+* `tab 1` switches to the Home tab.
 
 ### 3.3 Client
 
@@ -164,7 +161,7 @@ Format: `list client`
 
 Adds an order to the application.
 
-Format: `add-o order c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME
+Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME
 [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
@@ -173,7 +170,8 @@ Format: `add-o order c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADD
 
 * `c/CLIENT_INDEX` will copy over the details of the client at the given index into the order.
 
-* `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` will override any details copied over by `c/CLIENT_INDEX`
+* `cn/CLIENT_NAME`, `cp/CLIENT_PHONE` and `ca/CLIENT_ADDRESS` will override any details copied over by
+  `c/CLIENT_INDEX`.
 
 * If `c/CLIENT_INDEX` is not specified all of `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` must be
   specified.
@@ -190,12 +188,15 @@ Format: `add-o order c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADD
 
 * `od/DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#features).
 
+* The format for ingredients `ri/` is `NAME-QTY-UNIT`. <br>
+  e.g. Garlic-1-whole.
+
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-Suppose the first client in the list has the following details
+Suppose the first client in the list has the following details:
 * Name: John Doe
 * Phone: 98765432
 * Address: Happy Funland Street 12
@@ -216,7 +217,7 @@ Suppose the first client in the list has the following details
 
 #### 3.4.2 Editing an order: `edit-o`
 
-Edits an order in the application
+Edits an order in the application.
 
 Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME]
 [rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
@@ -235,8 +236,9 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 
 **Examples:**
 
-* `edit-o 1 cn/David`
-* `edit-o 2 cn/Carol cp/98765432`
+* `edit-o 1 cn/David` Edits the first order in the list currently shown by changing the client's name to David.
+* `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
+  to Carol and the client's phone number to 98765432.
 
 #### 3.4.3 Deleting an order: `delete-o`
 
@@ -249,7 +251,7 @@ Format: `delete-o INDEX`
 
 #### 3.4.4 Finding orders by keywords: `find-o`
 
-Finds order whose attribute(s) matches the keyword(s).
+Find order(s) with attribute(s) that match the keyword(s).
 
 Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
 
@@ -279,9 +281,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 **Examples:**
 * `find-o cn/al` Find orders for clients with names matching 'al'. E.g. Alex, Alice, Al.
-* `find-o cp/91234567` Find orders for clients with 91234567 as their phone number .
+* `find-o cp/91234567` Find orders for clients with 91234567 as their phone number.
 * `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone matches at least 1 of the
-  keywords for each prefix.
+  keywords for each prefix. Any orders with the following client details will be matched:
+  * Alex 91231100
+  * David 91234567
+  * Alex 92315697
+  * David 92316612
 
 #### 3.4.5 Listing all orders: `list-o`
 
@@ -342,7 +348,7 @@ Action                   | Format and Examples
 **Delete client**        | `delete client INDEX`
 **Find client**          | `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]`
 **List client**          | `list client`
-**Add order**          | `add-o order c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+**Add order**          | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
 **Edit order**         | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
 **Delete order**       | `delete-o INDEX`
 **Find order**         | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
