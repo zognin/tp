@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
-                    + "and the largest acceptable quantity is 1000.";
+                    + "and the largest acceptable quantity is 40000.";
     private final int quantity;
 
     /**
@@ -40,7 +40,7 @@ public class Quantity {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity >= 0 && quantity <= 1000;
+            return quantity >= 0 && quantity <= 40000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }

@@ -154,7 +154,7 @@ class OrderTest {
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order quantity -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("1000")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("40000")).build();
         assertFalse(ORDER_FOR_ALICE.equals(editedRandomOrder));
 
         // empty order quantity (sets to default quantity of 1) -> returns false
