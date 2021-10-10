@@ -31,9 +31,13 @@ public class Price {
      * @return True if the price is valid. False otherwise.
      */
     public static boolean isValidPrice(String test) {
+        if (test == null) {
+            return  false;
+        }
+
         try {
             float price = Float.parseFloat(test);
-            return price > 0;
+            return price > 0 && price <= Float.MAX_VALUE;
         } catch (NumberFormatException e) {
             return false;
         }

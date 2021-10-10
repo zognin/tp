@@ -47,6 +47,10 @@ public class RecipeIngredientList {
      * @return True if the recipe ingredient list is valid. False otherwise.
      */
     public static boolean isValidRecipeIngredientList(String test) {
+        if (test == null) {
+            return false;
+        }
+
         List<Ingredient> ingredients = RecipeIngredientList.parseRecipeIngredients(test);
         return ingredients.size() > 0;
     }

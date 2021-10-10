@@ -39,6 +39,10 @@ public class Deadline {
      * @return True if the deadline is valid. False otherwise.
      */
     public static boolean isValidDeadline(String test) {
+        if (test == null) {
+            return false;
+        }
+
         try {
             LocalDateTime dateTime = LocalDateTime.parse(test, INPUT_DATETIME_FORMATTER);
             return dateTime.isAfter(LocalDateTime.now());
