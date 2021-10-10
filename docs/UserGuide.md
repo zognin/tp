@@ -55,7 +55,7 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 * Extraneous parameters for commands that do not take in parameters (such as `help`, and `list client`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* The format of all date fields is `dd-mm-yyyy`.
+* The format of all date fields is `dd-MM-yyyy`.
   e.g. 21-10-1998 is 21 October 1998.
 
 * The format of all time fields is `HHmm`.<br>
@@ -181,7 +181,10 @@ Format: `add-o order c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADD
 * If `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` are all specified, `c/CLIENT_INDEX` does not need to
   be specified.
 
-* Quantity of ingredients in the inventory will be decreased by the amount specified if it exists in the inventory.
+* Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
+
+* Quantity of ingredients in the inventory will be decreased by the amount specified after `ri/` if it exists in the
+  inventory.
 
 * All orders will be uncompleted upon addition.
 
@@ -264,6 +267,8 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
 
+* It will find orders that match at least one keyword, for each prefix.
+
 * `od/DEADLINE` represents the order date and time. They must follow the format specified [above](#features).
 
 * `of/YES_OR_NO` represents whether the order is completed.
@@ -273,8 +278,10 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 </div>
 
 **Examples:**
-* `find order cn/al` Find orders for clients with names matching 'al'. E.g. Alex, Alice, Al.
-* `find order cp/91234567` Find orders for clients with 91234567 as their phone number.
+* `find-o cn/al` Find orders for clients with names matching 'al'. E.g. Alex, Alice, Al.
+* `find-o cp/91234567` Find orders for clients with 91234567 as their phone number .
+* `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone matches at least 1 of the
+  keywords for each prefix.
 
 #### 3.4.5 Listing all orders: `list-o`
 
