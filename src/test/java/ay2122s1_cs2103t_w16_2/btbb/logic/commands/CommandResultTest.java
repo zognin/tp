@@ -12,8 +12,7 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 public class CommandResultTest {
     @Test
     public void isSwitchTab_hasTabToSwitchTo_true() {
-        CommandResult commandResult = new CommandResult("feedback");
-        commandResult.setSelectedTab(UiTab.HOME);
+        CommandResult commandResult = new CommandResult("feedback", UiTab.HOME);
         assertTrue(commandResult.isSwitchTab());
     }
 
@@ -24,24 +23,24 @@ public class CommandResultTest {
     }
 
     @Test
-    public void setSelectedTabTest() {
-        CommandResult commandResult = new CommandResult("feedback");
-        commandResult.setSelectedTab(UiTab.HOME);
-        assertEquals(commandResult.getSelectedTab(), UiTab.HOME);
+    public void getTabToSwitchToTest() {
+        CommandResult commandResultWithTabToSwitchTo = new CommandResult("feedback", UiTab.HOME);
+        assertEquals(commandResultWithTabToSwitchTo.getTabToSwitchTo(), UiTab.HOME);
+
+        CommandResult commandResultWithoutTabToSwitchTo = new CommandResult("feedback");
+        assertEquals(commandResultWithoutTabToSwitchTo.getTabToSwitchTo(), null);
     }
 
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
-        CommandResult commandResultWithSelectedTab = new CommandResult("feedback");
-        commandResultWithSelectedTab.setSelectedTab(UiTab.HOME);
-        CommandResult otherCommandResultWithSameSelectedTab = new CommandResult("feedback");
-        otherCommandResultWithSameSelectedTab.setSelectedTab(UiTab.HOME);
+        CommandResult commandResultWithTabToSwitchTo = new CommandResult("feedback", UiTab.HOME);
+        CommandResult otherCommandResultWithSameTabToSwitchTo = new CommandResult("feedback", UiTab.HOME);
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
-        assertTrue(commandResultWithSelectedTab.equals(otherCommandResultWithSameSelectedTab));
+        assertTrue(commandResultWithTabToSwitchTo.equals(otherCommandResultWithSameTabToSwitchTo));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -61,8 +60,8 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
 
-        // different selectedTab value -> returns false
-        assertFalse(commandResult.equals(commandResultWithSelectedTab));
+        // different tabToSwitchTo value -> returns false
+        assertFalse(commandResult.equals(commandResultWithTabToSwitchTo));
     }
 
     @Test
@@ -80,5 +79,8 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+
+        // different tab to switch to value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", UiTab.HOME).hashCode());
     }
 }

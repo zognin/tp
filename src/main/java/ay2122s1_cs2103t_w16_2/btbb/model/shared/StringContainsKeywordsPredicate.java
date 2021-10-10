@@ -15,7 +15,7 @@ public class StringContainsKeywordsPredicate<T> implements Predicate<T> {
     private final List<String> keywords;
 
     /**
-     * Constructs a {@code GenericStringPredicate}.
+     * Constructs a {@code StringContainsKeywordsPredicate}.
      *
      * @param getter Function to get the string to be tested.
      * @param keywords List of keywords to be checked against.

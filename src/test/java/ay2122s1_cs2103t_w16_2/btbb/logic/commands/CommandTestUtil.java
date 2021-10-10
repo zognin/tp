@@ -154,12 +154,11 @@ public class CommandTestUtil {
      * @param actualModel Actual model after executing the command.
      * @param expectedMessage Expected message after executing the command.
      * @param expectedModel Expected model after executing the command.
-     * @param selectedTab Selected tab to change to.
+     * @param tabToSwitchTo Tab to switch to.
      */
     public static void assertCommandSuccessWithTabChange(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel, UiTab selectedTab) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        expectedCommandResult.setSelectedTab(selectedTab);
+            Model expectedModel, UiTab tabToSwitchTo) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tabToSwitchTo);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -196,5 +195,18 @@ public class CommandTestUtil {
         );
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the ingredient at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showIngredientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredIngredientList().size());
+
+        Ingredient ingredientToShow = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
+        model.updateFilteredIngredientList(ingredient -> ingredient.equals(ingredientToShow));
+
+        assertEquals(1, model.getFilteredIngredientList().size());
     }
 }

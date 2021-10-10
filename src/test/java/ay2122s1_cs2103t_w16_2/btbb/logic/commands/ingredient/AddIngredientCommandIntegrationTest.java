@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 public class AddIngredientCommandIntegrationTest {
     private Model model;
@@ -31,8 +32,8 @@ public class AddIngredientCommandIntegrationTest {
         expectedModel.addIngredient(validIngredient);
         IngredientDescriptor validIngredientDescriptor = new IngredientDescriptorBuilder(validIngredient).build();
 
-        assertCommandSuccess(new AddIngredientCommand(validIngredientDescriptor), model,
-                String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient), expectedModel);
+        assertCommandSuccessWithTabChange(new AddIngredientCommand(validIngredientDescriptor), model,
+                String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient), expectedModel, UiTab.INVENTORY);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
@@ -25,6 +25,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindOrderCommand}.
@@ -85,7 +86,7 @@ public class FindOrderCommandTest {
         );
         FindOrderCommand command = new FindOrderCommand(predicateCollection);
         expectedModel.updateFilteredOrderList(predicateCollection);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
         assertEquals(Arrays.asList(ORDER_FOR_CARL, ORDER_FOR_ELLE, ORDER_FOR_FIONA), model.getFilteredOrderList());
     }
 }

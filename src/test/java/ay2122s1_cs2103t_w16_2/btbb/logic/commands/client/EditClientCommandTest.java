@@ -5,7 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BO
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.showClientAtIndex;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -26,6 +26,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditClientCommand.
@@ -44,7 +45,7 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(editClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test
@@ -64,7 +65,7 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(editClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test
@@ -76,7 +77,7 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(editClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test
@@ -93,7 +94,7 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(editClientCommand, model, expectedMessage, expectedModel, UiTab.HOME);
     }
 
     @Test

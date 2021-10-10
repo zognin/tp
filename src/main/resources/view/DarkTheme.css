@@ -135,6 +135,11 @@
     -fx-text-fill: #BB86FC;
 }
 
+.cell_big_label_secondary {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
 .cell_small_label_header {
     -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 13px;

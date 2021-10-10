@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Finds and lists all orders in the address book whose client name, client phone number,
@@ -38,7 +39,8 @@ public class FindOrderCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOrderList(predicateCollection);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
+                UiTab.HOME);
     }
 
     @Override

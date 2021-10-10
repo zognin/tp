@@ -3,14 +3,14 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
- * A default predicate stub.
+ * A generic stub class to test methods using generics.
  */
 public class GenericStub {
     private GenericString name;
     private GenericString address;
 
     /**
-     * Constructs a PredicateUtil class.
+     * Constructs a GenericStub class.
      *
      * @param name Name of dummy.
      * @param address Address of dummy.

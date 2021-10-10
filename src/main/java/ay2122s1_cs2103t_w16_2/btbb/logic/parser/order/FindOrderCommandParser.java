@@ -26,8 +26,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
      */
     public FindOrderCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
-        ArgumentMultimap
-                argMultimap =
+        ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
 
         PredicateCollection<Order> predicateCollection = new PredicateCollection<>();

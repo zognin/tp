@@ -50,8 +50,11 @@ public class TypicalOrders {
     public static final Order ORDER_FOR_BOB =
             new OrderBuilder().withClientName(BOB.getName()).withClientPhone(BOB.getPhone())
                     .withClientAddress(BOB.getAddress()).build();
+
     /**
      * Returns an {@code AddressBook} with all the typical orders.
+     *
+     * @return {@code AddressBook} with all the typical orders.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -61,6 +64,11 @@ public class TypicalOrders {
         return ab;
     }
 
+    /**
+     * Returns a list of typical orders.
+     *
+     * @return List of typical orders.
+     */
     public static List<Order> getTypicalOrders() {
         return new ArrayList<>(Arrays.asList(ORDER_FOR_ALICE, ORDER_FOR_BENSON, ORDER_FOR_CARL, ORDER_FOR_DANIEL,
                 ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE));

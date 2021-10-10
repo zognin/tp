@@ -1,6 +1,6 @@
 ---
 layout: page
-title: BobTheBodyBuilder
+title: BobTheBistroBoss
 ---
 
 [![CI Status](https://github.com/AY2122S1-CS2103T-W16-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S1-CS2103T-W16-2/tp/actions)
@@ -8,7 +8,7 @@ title: BobTheBodyBuilder
 
 ![Ui](images/Ui.png)
 
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders,
+BobTheBistroBoss (BTBB) is a **desktop application for home chefs to manage their orders and inventory,
 optimized for use via a command line interface (CLI)**.
 
 * If you are interested in using BBTB, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

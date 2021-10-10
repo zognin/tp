@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_ALICE_BOB_PREDICATE;
@@ -26,6 +26,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -92,7 +94,7 @@ public class FindClientCommandTest {
         );
         FindClientCommand command = new FindClientCommand(predicateCollection);
         expectedModel.updateFilteredClientList(predicateCollection);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 }

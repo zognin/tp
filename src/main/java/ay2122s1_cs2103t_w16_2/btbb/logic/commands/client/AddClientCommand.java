@@ -12,6 +12,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
  * Adds a client to the address book.
@@ -54,7 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(client);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, client));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, client), UiTab.HOME);
     }
 
     @Override
