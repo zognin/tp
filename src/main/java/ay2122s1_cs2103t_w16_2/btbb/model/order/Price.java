@@ -32,7 +32,7 @@ public class Price {
      */
     public static boolean isValidPrice(String test) {
         if (test == null) {
-            return  false;
+            return false;
         }
 
         try {
