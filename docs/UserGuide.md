@@ -181,7 +181,7 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
 
-* Quantity of ingredients in the inventory will be decreased by the amount specified after `ri/` if it exists in the
+* Quantity of ingredients in the inventory will decrease by the amount specified after `ri/` if it exists in the
   inventory.
 
 * All orders will be uncompleted upon addition.
@@ -205,15 +205,15 @@ Suppose the first client in the list has the following details:
 * `add-o c/1 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams rp/3 od/15-11-2021 1830 oq/1` Adds an order to the
   application where the client's name, phone and address matches the first client in the list shown above. The
   order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
-  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order will be scheduled to be
-  delivered by 15 November 2021 at 1830 hrs.
+  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
+  scheduled to be delivered by 15 November 2021 at 1830 hrs.
 
 * `add-o cn/Alex cp/98765432 ca/Hogwarts Blk 68 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams rp/3 od/15-12-2021
   1630 oq/1` Adds an order to the
   application where the client's name, phone and address are Alex, 98765432 and Hogwarts Blk 68 respectively. The
   order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
-  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order will be scheduled to be
-  delivered by 15 December 2021 at 1630 hrs.
+  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
+  scheduled to be delivered by 15 December 2021 at 1630 hrs.
 
 #### 3.4.2 Editing an order: `edit-o`
 
