@@ -13,7 +13,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListClientCommand.
  */

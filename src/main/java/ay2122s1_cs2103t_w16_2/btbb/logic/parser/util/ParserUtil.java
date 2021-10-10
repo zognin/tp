@@ -24,6 +24,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
 
     // Client-level parsers:
 
@@ -258,6 +259,23 @@ public class ParserUtil {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param keywords Keywords to be parsed.
+     * @return List of strings containing all the keywords.
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_KEYWORD);
+        }
+        return List.of(trimmedKeywords.split("\\s+"));
     }
 
     /**
