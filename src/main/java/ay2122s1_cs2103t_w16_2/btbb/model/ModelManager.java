@@ -179,7 +179,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
-        requireNonNull(target);
+        requireAllNonNull(target, multiplier);
         addressBook.minusIngredientQuantity(target, multiplier);
     }
 

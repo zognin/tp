@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 
 public class UniqueIngredientListTest {
@@ -73,6 +75,29 @@ public class UniqueIngredientListTest {
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
         expectedUniqueIngredientList.add(BEEF);
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
+    }
+
+    @Test
+    public void minusIngredientQuantity_ingredientInList_reducesQuantity() {
+        GenericString name = new GenericString("Garlic");
+        GenericString unit = new GenericString("whole");
+        Ingredient toAdd = new Ingredient(name, new Quantity("100"), unit);
+        Ingredient target = new Ingredient(name, new Quantity("10"), unit);
+        Ingredient expected = new Ingredient(name, new Quantity("90"), unit);
+        Ingredient expected2 = new Ingredient(name, new Quantity("50"), unit);
+
+        UniqueIngredientList uniqueIngredientList = new UniqueIngredientList();
+        uniqueIngredientList.add(toAdd);
+        UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
+        expectedUniqueIngredientList.add(expected);
+        UniqueIngredientList expectedUniqueIngredientList2 = new UniqueIngredientList();
+        expectedUniqueIngredientList2.add(expected2);
+
+        uniqueIngredientList.minusIngredientQuantity(target, new Quantity());
+        assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
+
+        uniqueIngredientList.minusIngredientQuantity(target, new Quantity("4"));
+        assertEquals(expectedUniqueIngredientList2, uniqueIngredientList);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -165,7 +166,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param multiplier The multiplier.
      */
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
-        requireNonNull(target);
+        requireAllNonNull(target, multiplier);
         ingredients.minusIngredientQuantity(target, multiplier);
     }
 

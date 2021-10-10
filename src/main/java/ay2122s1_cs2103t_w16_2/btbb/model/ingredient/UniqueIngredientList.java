@@ -79,7 +79,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      * @param multiplier The multiplier.
      */
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
-        requireNonNull(target);
+        requireAllNonNull(target, multiplier);
 
         int index = -1;
         Ingredient similarToTarget = null;

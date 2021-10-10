@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -18,12 +19,19 @@ import javafx.collections.ObservableList;
  */
 public class ModelStubAcceptingOrderAdded extends ModelStub {
     private final ArrayList<Client> clientsAdded = new ArrayList<>();
+    private final ArrayList<Ingredient> ingredientsAdded = new ArrayList<>();
     private final ArrayList<Order> ordersAdded = new ArrayList<>();
 
     @Override
     public void addClient(Client client) {
         requireNonNull(client);
         clientsAdded.add(client);
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        ingredientsAdded.add(ingredient);
     }
 
     @Override
@@ -41,6 +49,10 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
         return ordersAdded;
     }
 
+    public ArrayList<Ingredient> getIngredientsAdded() {
+        return ingredientsAdded;
+    }
+
     @Override
     public boolean hasOrder(Order order) {
         requireNonNull(order);
@@ -49,7 +61,26 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
 
     @Override
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
-        // Do nothing
+        requireAllNonNull(target, multiplier);
+
+        int index = -1;
+        Ingredient similarToTarget = null;
+        for (int i = 0; i < ingredientsAdded.size(); i++) {
+            Ingredient currentIngredient = ingredientsAdded.get(i);
+            if (currentIngredient.isSameIngredient(target)) {
+                index = i;
+                similarToTarget = currentIngredient;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            return;
+        }
+
+        ingredientsAdded.set(index, new Ingredient(similarToTarget.getName(),
+                similarToTarget.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
+                similarToTarget.getUnit()));
     }
 
     @Override
