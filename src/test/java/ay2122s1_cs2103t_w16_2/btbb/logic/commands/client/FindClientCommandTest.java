@@ -7,6 +7,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.C
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_ALICE_BOB_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9427_3217_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.addPredicates;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeStringContainsKeywordsPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.FIONA;
@@ -17,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -80,29 +79,20 @@ public class FindClientCommandTest {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
         PredicateCollection<Client> predicateCollection = new PredicateCollection<>();
         predicateCollection.addPredicate(
-                prepareAndGetClientPredicate("Kurz Elle Kunz", Client::getName)
+                makeStringContainsKeywordsPredicate("Kurz Elle Kunz", Client::getName)
         );
         predicateCollection.addPredicate(
-                prepareAndGetClientPredicate("9535 9482 2427", Client::getPhone)
+                makeStringContainsKeywordsPredicate("9535 9482 2427", Client::getPhone)
         );
         predicateCollection.addPredicate(
-                prepareAndGetClientPredicate("wall michegan tokyo", Client::getAddress)
+                makeStringContainsKeywordsPredicate("wall michegan tokyo", Client::getAddress)
         );
         predicateCollection.addPredicate(
-                prepareAndGetClientPredicate("heinz werner lydia", Client::getEmail)
+                makeStringContainsKeywordsPredicate("heinz werner lydia", Client::getEmail)
         );
         FindClientCommand command = new FindClientCommand(predicateCollection);
         expectedModel.updateFilteredClientList(predicateCollection);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code Predicate<Client>}.
-     */
-    private StringContainsKeywordPredicate<Client> prepareAndGetClientPredicate(String input,
-                                                                                Function<Client, ?> getter) {
-        List<String> keywords = List.of(input.split("\\s+"));
-        return new StringContainsKeywordPredicate<>(getter, keywords);
     }
 }

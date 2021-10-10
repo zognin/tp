@@ -6,6 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.C
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.addPredicates;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeStringContainsKeywordsPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_FIONA;
@@ -16,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +25,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordPredicate;
 
+/**
+ * Contains integration tests (interaction with the Model) for {@code FindOrderCommand}.
+ */
 public class FindOrderCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -73,25 +75,17 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
         PredicateCollection<Order> predicateCollection = new PredicateCollection<>();
         predicateCollection.addPredicate(
-                prepareAndGetOrderPredicate("Kurz Elle Kunz", Order::getClientName)
+                makeStringContainsKeywordsPredicate("Kurz Elle Kunz", Order::getClientName)
         );
         predicateCollection.addPredicate(
-                prepareAndGetOrderPredicate("9535 9482 2427", Order::getClientPhone)
+                makeStringContainsKeywordsPredicate("9535 9482 2427", Order::getClientPhone)
         );
         predicateCollection.addPredicate(
-                prepareAndGetOrderPredicate("wall michegan tokyo", Order::getClientAddress)
+                makeStringContainsKeywordsPredicate("wall michegan tokyo", Order::getClientAddress)
         );
         FindOrderCommand command = new FindOrderCommand(predicateCollection);
         expectedModel.updateFilteredOrderList(predicateCollection);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ORDER_FOR_CARL, ORDER_FOR_ELLE, ORDER_FOR_FIONA), model.getFilteredOrderList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code Predicate<Order>}.
-     */
-    private StringContainsKeywordPredicate<Order> prepareAndGetOrderPredicate(String input, Function<Order, ?> getter) {
-        List<String> keywords = List.of(input.split("\\s+"));
-        return new StringContainsKeywordPredicate<>(getter, keywords);
     }
 }

@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_KEYWORD = "You did not specify any keywords for one or more prefixes";
+    public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
 
     // Client-level parsers:
 

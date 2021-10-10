@@ -12,32 +12,32 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.testutil.GenericDummy;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericStub;
 
 public class PredicateCollectionTest {
     // Client predicates
-    public static final StringContainsKeywordPredicate<Client> CLIENT_NAME_ALICE_BOB_PREDICATE =
-            new StringContainsKeywordPredicate<>(Client::getName, List.of("Alice", "Bob"));
-    public static final StringContainsKeywordPredicate<Client> CLIENT_PHONE_9427_3217_PREDICATE =
-            new StringContainsKeywordPredicate<>(Client::getPhone, List.of("9427", "3217"));
-    public static final StringContainsKeywordPredicate<Client> CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE =
-            new StringContainsKeywordPredicate<>(Client::getAddress, List.of("Yishun", "Geylang"));
-    public static final StringContainsKeywordPredicate<Client> CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE =
-            new StringContainsKeywordPredicate<>(Client::getEmail, List.of("alice@gmail.com", "bob@gmail.com"));
+    public static final StringContainsKeywordsPredicate<Client> CLIENT_NAME_ALICE_BOB_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Client::getName, List.of("Alice", "Bob"));
+    public static final StringContainsKeywordsPredicate<Client> CLIENT_PHONE_9427_3217_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Client::getPhone, List.of("9427", "3217"));
+    public static final StringContainsKeywordsPredicate<Client> CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Client::getAddress, List.of("Yishun", "Geylang"));
+    public static final StringContainsKeywordsPredicate<Client> CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Client::getEmail, List.of("alice@gmail.com", "bob@gmail.com"));
 
     // Order predicates
-    public static final StringContainsKeywordPredicate<Order> CLIENT_NAME_CAROL_DAVID_PREDICATE =
-            new StringContainsKeywordPredicate<>(Order::getClientName, List.of("Carol", "David"));
-    public static final StringContainsKeywordPredicate<Order> CLIENT_PHONE_9110_3216_PREDICATE =
-            new StringContainsKeywordPredicate<>(Order::getClientPhone, List.of("9110", "3216"));
-    public static final StringContainsKeywordPredicate<Order> CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE =
-            new StringContainsKeywordPredicate<>(Order::getClientAddress, List.of("Eunos", "Bishan"));
+    public static final StringContainsKeywordsPredicate<Order> CLIENT_NAME_CAROL_DAVID_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Order::getClientName, List.of("Carol", "David"));
+    public static final StringContainsKeywordsPredicate<Order> CLIENT_PHONE_9110_3216_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Order::getClientPhone, List.of("9110", "3216"));
+    public static final StringContainsKeywordsPredicate<Order> CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Order::getClientAddress, List.of("Eunos", "Bishan"));
 
-    // Dummy predicates
-    public static final StringContainsKeywordPredicate<GenericDummy> GENERIC_DUMMY_NAME_ALICE_BOB_PREDICATE =
-            new StringContainsKeywordPredicate<>(GenericDummy::getName, List.of("Alice", "Bob"));
-    public static final StringContainsKeywordPredicate<GenericDummy> GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE =
-            new StringContainsKeywordPredicate<>(GenericDummy::getAddress, List.of("Yishun", "Geylang"));
+    // Generic stub predicates
+    public static final StringContainsKeywordsPredicate<GenericStub> GENERIC_STUB_NAME_ALICE_BOB_PREDICATE =
+            new StringContainsKeywordsPredicate<>(GenericStub::getName, List.of("Alice", "Bob"));
+    public static final StringContainsKeywordsPredicate<GenericStub> GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE =
+            new StringContainsKeywordsPredicate<>(GenericStub::getAddress, List.of("Yishun", "Geylang"));
 
     public static <T> void addPredicates(PredicateCollection<T> predicateCollection,
                                          List<Predicate<T>> predicates) {
@@ -48,62 +48,62 @@ public class PredicateCollectionTest {
 
     @Test
     public void equals() {
-        PredicateCollection<GenericDummy> genericDummyPredicateCollection = new PredicateCollection<>();
-        addPredicates(genericDummyPredicateCollection, List.of(GENERIC_DUMMY_NAME_ALICE_BOB_PREDICATE,
-                GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE));
+        PredicateCollection<GenericStub> predicateCollection = new PredicateCollection<>();
+        addPredicates(predicateCollection, List.of(GENERIC_STUB_NAME_ALICE_BOB_PREDICATE,
+                GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE));
 
-        PredicateCollection<GenericDummy> sameOrderGenericDummyPredicateCollection = new PredicateCollection<>();
-        addPredicates(sameOrderGenericDummyPredicateCollection, List.of(GENERIC_DUMMY_NAME_ALICE_BOB_PREDICATE,
-                GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE));
+        PredicateCollection<GenericStub> sameOrderPredicateCollection = new PredicateCollection<>();
+        addPredicates(sameOrderPredicateCollection, List.of(GENERIC_STUB_NAME_ALICE_BOB_PREDICATE,
+                GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE));
 
-        PredicateCollection<GenericDummy> diffOrderGenericDummyPredicateCollection = new PredicateCollection<>();
-        addPredicates(diffOrderGenericDummyPredicateCollection, List.of(GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE,
-                GENERIC_DUMMY_NAME_ALICE_BOB_PREDICATE));
+        PredicateCollection<GenericStub> diffOrderPredicateCollection = new PredicateCollection<>();
+        addPredicates(diffOrderPredicateCollection, List.of(GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE,
+                GENERIC_STUB_NAME_ALICE_BOB_PREDICATE));
 
-        PredicateCollection<GenericDummy> incompleteGenericDummyPredicateCollection = new PredicateCollection<>();
-        addPredicates(incompleteGenericDummyPredicateCollection,
-                List.of(GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE));
+        PredicateCollection<GenericStub> incompletePredicateCollection = new PredicateCollection<>();
+        addPredicates(incompletePredicateCollection,
+                List.of(GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE));
 
-        PredicateCollection<GenericDummy> emptyGenericDummyPredicateCollection = new PredicateCollection<>();
+        PredicateCollection<GenericStub> emptyGenericStubPredicateCollection = new PredicateCollection<>();
 
         // different types -> returns false
-        assertFalse(genericDummyPredicateCollection.equals(1));
+        assertFalse(predicateCollection.equals(1));
 
         // null -> returns false
-        assertFalse(genericDummyPredicateCollection.equals(null));
+        assertFalse(predicateCollection.equals(null));
 
         // same object - must be equal
-        assertEquals(genericDummyPredicateCollection, genericDummyPredicateCollection);
+        assertEquals(predicateCollection, predicateCollection);
 
         // same order - must be equal
-        assertEquals(genericDummyPredicateCollection, sameOrderGenericDummyPredicateCollection);
+        assertEquals(predicateCollection, sameOrderPredicateCollection);
 
         // diff order - must be equal
-        assertEquals(genericDummyPredicateCollection, diffOrderGenericDummyPredicateCollection);
+        assertEquals(predicateCollection, diffOrderPredicateCollection);
 
         // Different No. of predicates - not equal
-        assertNotEquals(genericDummyPredicateCollection, incompleteGenericDummyPredicateCollection);
+        assertNotEquals(predicateCollection, incompletePredicateCollection);
 
         // One has no predicates - not equal
-        assertNotEquals(genericDummyPredicateCollection, emptyGenericDummyPredicateCollection);
+        assertNotEquals(predicateCollection, emptyGenericStubPredicateCollection);
     }
 
     @Test
     public void test() {
-        PredicateCollection<GenericDummy> genericDummyPredicateCollection = new PredicateCollection<>();
-        addPredicates(genericDummyPredicateCollection, List.of(GENERIC_DUMMY_NAME_ALICE_BOB_PREDICATE,
-                GENERIC_DUMMY_ADDRESS_YISHUN_GEYLANG_PREDICATE));
+        PredicateCollection<GenericStub> genericStubPredicateCollection = new PredicateCollection<>();
+        addPredicates(genericStubPredicateCollection, List.of(GENERIC_STUB_NAME_ALICE_BOB_PREDICATE,
+                GENERIC_STUB_ADDRESS_YISHUN_GEYLANG_PREDICATE));
 
-        // GenericDummy with everything matching
-        assertTrue(genericDummyPredicateCollection.test(new GenericDummy(new GenericString("Alice"),
+        // GenericStub with everything matching
+        assertTrue(genericStubPredicateCollection.test(new GenericStub(new GenericString("Alice"),
                 new GenericString("Yishun"))));
 
-        // GenericDummy with matching name but not address
-        assertFalse(genericDummyPredicateCollection.test(new GenericDummy(new GenericString("Alice"),
+        // GenericStub with matching name but not address
+        assertFalse(genericStubPredicateCollection.test(new GenericStub(new GenericString("Alice"),
                 new GenericString("Serangoon"))));
 
-        // GenericDummy with matching address but not name
-        assertFalse(genericDummyPredicateCollection.test(new GenericDummy(new GenericString("Carol"),
+        // GenericStub with matching address but not name
+        assertFalse(genericStubPredicateCollection.test(new GenericStub(new GenericString("Carol"),
                 new GenericString("Yishun"))));
     }
 }

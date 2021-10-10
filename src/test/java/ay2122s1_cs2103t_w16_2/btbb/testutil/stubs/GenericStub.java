@@ -1,21 +1,21 @@
-package ay2122s1_cs2103t_w16_2.btbb.testutil;
+package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 
 /**
- * Dummy utility class to test generic classes.
+ * A default predicate stub.
  */
-public class GenericDummy {
+public class GenericStub {
     private GenericString name;
     private GenericString address;
 
     /**
-     * Constructs a dummy utility class.
+     * Constructs a PredicateUtil class.
      *
      * @param name Name of dummy.
      * @param address Address of dummy.
      */
-    public GenericDummy(GenericString name, GenericString address) {
+    public GenericStub(GenericString name, GenericString address) {
         this.name = name;
         this.address = address;
     }

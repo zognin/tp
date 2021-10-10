@@ -42,7 +42,7 @@ public class PredicateCollection<T> implements Predicate<T> {
     public void addStringContainsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
                                                    Function<T, ?> getter) throws ParseException {
         if (argMultimap.getValue(prefix).isPresent()) {
-            predicates.add(new StringContainsKeywordPredicate<T>(getter,
+            addPredicate(new StringContainsKeywordsPredicate<T>(getter,
                     ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));
         }
     }

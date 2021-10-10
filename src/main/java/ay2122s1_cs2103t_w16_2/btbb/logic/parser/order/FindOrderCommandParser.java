@@ -3,7 +3,6 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 
@@ -27,8 +26,9 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
      */
     public FindOrderCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ADDRESS);
+        ArgumentMultimap
+                argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS);
 
         PredicateCollection<Order> predicateCollection = new PredicateCollection<>();
         predicateCollection.addStringContainsKeywordsPredicate(
@@ -47,6 +47,4 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
 
         return new FindOrderCommand(predicateCollection);
     }
-
-
 }
