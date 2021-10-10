@@ -39,22 +39,6 @@ public class PredicateCollection<T> implements Predicate<T> {
     }
 
     /**
-     * Adds a {@code StringContainsKeywordsPredicate} to the list of predicates.
-     *
-     * @param prefix Prefix of keyword.
-     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
-     * @param getter Function to get the string to be tested.
-     * @throws ParseException if the given keywords is invalid.
-     */
-    public void addStringContainsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
-                                                   Function<T, ?> getter) throws ParseException {
-        if (argMultimap.getValue(prefix).isPresent()) {
-            addPredicate(new StringContainsKeywordsPredicate<>(getter,
-                    ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));
-        }
-    }
-
-    /**
      * Adds a {@code QuantityEqualsKeywordsPredicate} to the list of predicates.
      *
      * @param prefix Prefix of keyword.
@@ -82,7 +66,7 @@ public class PredicateCollection<T> implements Predicate<T> {
      * @throws ParseException if the given keywords is invalid.
      */
     public void addQuantityWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
-            ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
+                                                ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
         Optional<String> optionalMinQuantityKeyword = argMultimap.getValue(fromPrefix);
         Optional<String> optionalMaxQuantityKeyword = argMultimap.getValue(toPrefix);
 
@@ -97,6 +81,22 @@ public class PredicateCollection<T> implements Predicate<T> {
                 getter,
                 ParserUtil.parseInternalQuantity(minQuantityKeyword),
                 ParserUtil.parseInternalQuantity(maxQuantityKeyword)));
+    }
+
+    /**
+     * Adds a {@code StringContainsKeywordsPredicate} to the list of predicates.
+     *
+     * @param prefix Prefix of keyword.
+     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
+     * @param getter Function to get the string to be tested.
+     * @throws ParseException if the given keywords is invalid.
+     */
+    public void addStringContainsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
+                                                   Function<T, ?> getter) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            addPredicate(new StringContainsKeywordsPredicate<>(getter,
+                    ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));
+        }
     }
 
     /**

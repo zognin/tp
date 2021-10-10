@@ -5,6 +5,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -19,17 +21,22 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
 
+    private static final String INVALID_INTERNAL_QUANTITY = "-3";
     private static final String INVALID_QUANTITY = "-3";
 
     private static final String INVALID_GENERIC_STRING = "R@chel";
+    private static final String INVALID_KEYWORD = "";
 
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
 
-    private static final String VALID_QUANTITY = "30";
+    private static final String VALID_QUANTITY_1 = "30";
+    private static final String VALID_QUANTITY_2 = "10";
 
     private static final String VALID_GENERIC_STRING = "Rachel Walker";
+    private static final String VALID_KEYWORD_1 = "Hello";
+    private static final String VALID_KEYWORD_2 = "Goodbye";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -127,6 +134,29 @@ public class ParserUtilTest {
     // Ingredient parsers
 
     @Test
+    public void parseInternalQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseInternalQuantity(null));
+    }
+
+    @Test
+    public void parseInternalQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INTERNAL_QUANTITY));
+    }
+
+    @Test
+    public void parseInternalQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY_1));
+    }
+
+    @Test
+    public void parseInternalQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
+    }
+
+    @Test
     public void parseQuantity_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
     }
@@ -138,14 +168,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
-        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
-        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY));
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY_1));
     }
 
     @Test
     public void parseQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
-        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY + WHITESPACE;
-        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
@@ -175,5 +205,44 @@ public class ParserUtilTest {
         GenericString expectedGenericString = new GenericString(VALID_GENERIC_STRING);
         assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace,
                 "Name"));
+    }
+
+    @Test
+    public void parseKeywords_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
+    }
+
+    @Test
+    public void parseKeywords_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseKeywords(INVALID_KEYWORD));
+    }
+
+    @Test
+    public void parseKeywords_validValues_returnsListOfStrings() throws Exception {
+        List<String> expectedList = List.of(VALID_KEYWORD_1, VALID_KEYWORD_2);
+        assertEquals(expectedList, ParserUtil.parseKeywords(VALID_KEYWORD_1 + " " + VALID_KEYWORD_2));
+    }
+
+    @Test
+    public void parseQuantityKeywords_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantityKeywords(null));
+    }
+
+    @Test
+    public void parseQuantityKeywords_invalidValues_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseQuantityKeywords(INVALID_INTERNAL_QUANTITY));
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + INVALID_INTERNAL_QUANTITY));
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseQuantityKeywords(INVALID_QUANTITY + " " + VALID_QUANTITY_2));
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseQuantityKeywords(VALID_GENERIC_STRING + " " + VALID_QUANTITY_2));
+    }
+
+    @Test
+    public void parseQuantityKeywords_validValues_returnsListOfQuantities() throws Exception {
+        List<Quantity> expectedList = List.of(new Quantity(VALID_QUANTITY_1), new Quantity(VALID_QUANTITY_2));
+        assertEquals(expectedList, ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + VALID_QUANTITY_2));
     }
 }

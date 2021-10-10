@@ -46,8 +46,7 @@ public class QuantityWithinRangePredicate<T> implements Predicate<T> {
         }
 
         QuantityWithinRangePredicate<?> otherPredicate = (QuantityWithinRangePredicate<?>) other;
-        return otherPredicate.getter.equals(getter)
-                && otherPredicate.minQuantity.equals(minQuantity)
+        return otherPredicate.minQuantity.equals(minQuantity)
                 && otherPredicate.maxQuantity.equals(maxQuantity);
     }
 }
