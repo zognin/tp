@@ -28,7 +28,7 @@ public class Quantity {
      * Returns true if a given string is a valid quantity.
      *
      * @param test String input to check.
-     * @return boolean of whether name is valid.
+     * @return boolean of whether quantity is valid.
      */
     public static boolean isValidQuantity(String test) {
         try {
