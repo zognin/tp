@@ -2,7 +2,9 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -20,6 +22,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
+    public static final String MESSAGE_INVALID_INTEGER_KEYWORD = "Keyword for %1$s is not a valid integer";
 
     // Client-level parsers:
 
@@ -136,6 +139,22 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_KEYWORD);
         }
         return List.of(trimmedKeywords.split("\\s+"));
+    }
+
+    /**
+     * Parses a {code String keywords} into a {@code List<Quantity>}.
+     *
+     * @param keywords Keywords to be parsed into Quantity.
+     * @return List of strings containing all the keywords.
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<Quantity> parseQuantityKeywords(String keywords)
+            throws ParseException {
+        ArrayList<Quantity> quantityKeywords = new ArrayList<>();
+        for (String stringKeyword : parseKeywords(keywords)) {
+            quantityKeywords.add(parseQuantity(stringKeyword));
+        }
+        return quantityKeywords;
     }
 
     /**
