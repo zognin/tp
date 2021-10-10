@@ -14,6 +14,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
+/**
+ * Deletes an ingredient identified using it's displayed index from the address book.
+ */
 public class DeleteIngredientCommand extends Command {
     public static final String COMMAND_WORD = "delete-i";
 

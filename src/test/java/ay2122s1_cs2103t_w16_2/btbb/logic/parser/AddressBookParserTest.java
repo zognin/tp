@@ -84,6 +84,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteIngredient() throws Exception {
+        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
+                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
+    }
+
+    @Test
     public void parseCommand_editClient() throws Exception {
         Client person = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
@@ -112,7 +119,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_invalidFindCommand_exceptionThrown() {
+    public void parseCommand_findClientNoKeywords_exceptionThrown() {
         String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
         assertThrows(ParseException.class, errorMessage, () ->
                 parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
@@ -137,13 +144,6 @@ public class AddressBookParserTest {
     public void parseCommand_listIngredient() throws Exception {
         assertTrue(parser.parseCommand(ListIngredientCommand.COMMAND_WORD) instanceof ListIngredientCommand);
         assertTrue(parser.parseCommand(ListIngredientCommand.COMMAND_WORD + " 3") instanceof ListIngredientCommand);
-    }
-
-    @Test
-    public void parseCommand_deleteIngredient() throws Exception {
-        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
-                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
     }
 
     @Test
