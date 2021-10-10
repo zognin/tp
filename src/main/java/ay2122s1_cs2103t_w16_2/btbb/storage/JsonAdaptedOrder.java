@@ -117,7 +117,15 @@ public class JsonAdaptedOrder {
 
         final List<Ingredient> ingredients = new ArrayList<>();
         for (JsonAdaptedIngredient ingredient : recipeIngredients) {
-            ingredients.add(ingredient.toModelType());
+            Ingredient i = ingredient.toModelType();
+
+            boolean hasValidName = GenericString.isValidGenericString(i.getName().toString());
+            boolean hasValidQuantity = Quantity.isValidQuantity(i.getQuantity().toString());
+            boolean hasValidUnit = GenericString.isValidGenericString(i.getUnit().toString());
+
+            if (hasValidName && hasValidQuantity && hasValidUnit) {
+                ingredients.add(i);
+            }
         }
         final RecipeIngredientList modelRecipeIngredients = ingredients.size() > 0
                 ? new RecipeIngredientList(ingredients) : new RecipeIngredientList();
@@ -145,7 +153,7 @@ public class JsonAdaptedOrder {
                     MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()
             ));
         }
-        if (!Quantity.isValidInternalQuantity(quantity)) {
+        if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);

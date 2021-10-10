@@ -107,24 +107,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
-     * Leading and trailing whitespaces will be trimmed.
-     * For internal use where there is a wider definition of a valid deadline.
-     *
-     * @param deadline String input to parse.
-     * @return Deadline object.
-     * @throws ParseException If the given {@code deadline} is invalid.
-     */
-    public static Deadline parseInternalDeadline(String deadline) throws ParseException {
-        requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidInternalDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
-        }
-        return new Deadline(trimmedDeadline);
-    }
-
-    /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -238,24 +220,6 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
-        }
-        return new Quantity(trimmedQuantity);
-    }
-
-    /**
-     * Parses a {@code String quantity} into a {@code Quantity}.
-     * Leading and trailing whitespaces will be trimmed.
-     * For internal use where there is a wider definition of a valid quantity.
-     *
-     * @param quantity String input to parse.
-     * @return Quantity object.
-     * @throws ParseException if the given {@code quantity} is invalid.
-     */
-    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
-        requireNonNull(quantity);
-        String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedQuantity);

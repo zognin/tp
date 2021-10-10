@@ -20,7 +20,7 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalQuantity(quantity), MESSAGE_CONSTRAINTS);
         this.quantity = Integer.parseInt(quantity);
     }
 
@@ -33,7 +33,7 @@ public class Quantity {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity >= 0 && quantity <= 40000;
+            return quantity > 0 && quantity <= 40000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
@@ -49,7 +49,7 @@ public class Quantity {
     public static boolean isValidInternalQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity > 0 && quantity <= 40000;
+            return quantity >= 0 && quantity <= 40000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }

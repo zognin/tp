@@ -60,7 +60,7 @@ public class JsonAdaptedIngredient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
         }
-        if (!Quantity.isValidQuantity(quantity)) {
+        if (!Quantity.isValidInternalQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
