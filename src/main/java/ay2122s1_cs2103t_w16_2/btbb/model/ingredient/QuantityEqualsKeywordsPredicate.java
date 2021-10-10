@@ -15,6 +15,7 @@ public class QuantityEqualsKeywordsPredicate<T> implements Predicate<T> {
 
     /**
      * Constructs a {@code QuantityEqualsKeywordsPredicate}.
+     *
      * @param getter Function to get the {@code Quantity} to be tested.
      * @param keywords List of quantity keywords to be checked against.
      */

@@ -22,7 +22,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
-    public static final String MESSAGE_INVALID_INTEGER_KEYWORD = "Keyword for %1$s is not a valid integer";
 
     // Client-level parsers:
 
@@ -89,6 +88,23 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String quantity} into a {@code Quantity}.
+     * For internal use there is a wider definition of a valid quantity.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param quantity String input to parse.
@@ -152,7 +168,7 @@ public class ParserUtil {
             throws ParseException {
         ArrayList<Quantity> quantityKeywords = new ArrayList<>();
         for (String stringKeyword : parseKeywords(keywords)) {
-            quantityKeywords.add(parseQuantity(stringKeyword));
+            quantityKeywords.add(parseInternalQuantity(stringKeyword));
         }
         return quantityKeywords;
     }

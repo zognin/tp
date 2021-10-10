@@ -11,6 +11,9 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 2147483647.";
+    public static final String MESSAGE_INTERNAL_CONSTRAINTS =
+            "Quantity should only contain numbers, it should be non negative "
+                    + "and the largest acceptable quantity is 2147483647.";
     private final int quantity;
 
     /**
@@ -20,7 +23,7 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalQuantity(quantity), MESSAGE_CONSTRAINTS);
         this.quantity = Integer.parseInt(quantity);
     }
 
@@ -37,6 +40,34 @@ public class Quantity {
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid internal quantity.
+     * For internal use there is a wider definition of a valid quantity.
+     *
+     * @param test String input to check.
+     * @return boolean of whether quantity is valid.
+     */
+    public static boolean isValidInternalQuantity(String test) {
+        try {
+            int quantity = Integer.parseInt(test);
+            return quantity >= 0;
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if this quantity is within the range of the provided minimum and maximum quantities,
+     * inclusive of both minimum and maximum quantities.
+     *
+     * @param minQuantity Lower bound of range check.
+     * @param maxQuantity Upper bound of range check.
+     * @return True if this quantity is within the range, false otherwise.
+     */
+    public boolean isWithinRange(Quantity minQuantity, Quantity maxQuantity) {
+        return this.quantity >= minQuantity.quantity && this.quantity <= maxQuantity.quantity;
     }
 
     /**

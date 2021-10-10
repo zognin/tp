@@ -4,6 +4,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -29,7 +31,9 @@ public class FindIngredientCommandParser implements Parser<FindIngredientCommand
     public FindIngredientCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_INGREDIENT_NAME, PREFIX_INGREDIENT_QUANTITY, PREFIX_INGREDIENT_UNIT);
+                PREFIX_INGREDIENT_NAME, PREFIX_INGREDIENT_QUANTITY,
+                PREFIX_INGREDIENT_QUANTITY_FROM, PREFIX_INGREDIENT_QUANTITY_TO,
+                PREFIX_INGREDIENT_UNIT);
 
         PredicateCollection<Ingredient> predicateCollection = new PredicateCollection<>();
         predicateCollection.addStringContainsKeywordsPredicate(
@@ -37,6 +41,9 @@ public class FindIngredientCommandParser implements Parser<FindIngredientCommand
         );
         predicateCollection.addQuantityEqualsKeywordsPredicate(
                 PREFIX_INGREDIENT_QUANTITY, argMultimap, Ingredient::getQuantity
+        );
+        predicateCollection.addQuantityWithinRangePredicate(
+                PREFIX_INGREDIENT_QUANTITY_FROM, PREFIX_INGREDIENT_QUANTITY_TO, argMultimap, Ingredient::getQuantity
         );
         predicateCollection.addStringContainsKeywordsPredicate(
                 PREFIX_INGREDIENT_UNIT, argMultimap, Ingredient::getUnit

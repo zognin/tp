@@ -1,7 +1,11 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
+import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate.DEFAULT_KEYWORD_MAX_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate.DEFAULT_KEYWORD_MIN_QUANTITY;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -11,6 +15,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityEqualsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
 
 /**
  * Tests that all given predicates match.
@@ -63,6 +68,35 @@ public class PredicateCollection<T> implements Predicate<T> {
             addPredicate(new QuantityEqualsKeywordsPredicate<>(getter,
                     ParserUtil.parseQuantityKeywords(argMultimap.getValue(prefix).get())));
         }
+    }
+
+    /**
+     * Adds a {@code QuantityWithinRangePredicate} to the list of predicates.
+     * It adds the predicate as long as either the lower or upper bound of the range is provided,
+     * and fills the unprovided bound with a default value.
+     *
+     * @param fromPrefix Prefix for the lower bound of the range.
+     * @param toPrefix Prefix for the upper bound of the range.
+     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
+     * @param getter Function to get the quantity to be tested.
+     * @throws ParseException if the given keywords is invalid.
+     */
+    public void addQuantityWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
+            ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
+        Optional<String> optionalMinQuantityKeyword = argMultimap.getValue(fromPrefix);
+        Optional<String> optionalMaxQuantityKeyword = argMultimap.getValue(toPrefix);
+
+        if (optionalMinQuantityKeyword.isEmpty() && optionalMaxQuantityKeyword.isEmpty()) {
+            return;
+        }
+
+        String minQuantityKeyword = optionalMinQuantityKeyword.orElse(DEFAULT_KEYWORD_MIN_QUANTITY);
+        String maxQuantityKeyword = optionalMaxQuantityKeyword.orElse(DEFAULT_KEYWORD_MAX_QUANTITY);
+
+        addPredicate(new QuantityWithinRangePredicate<>(
+                getter,
+                ParserUtil.parseInternalQuantity(minQuantityKeyword),
+                ParserUtil.parseInternalQuantity(maxQuantityKeyword)));
     }
 
     /**
