@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
@@ -95,6 +96,11 @@ public class ModelStub implements Model {
     }
 
     public boolean hasIngredient(Ingredient ingredient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) throws NotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 

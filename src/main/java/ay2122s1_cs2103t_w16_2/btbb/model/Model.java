@@ -115,6 +115,14 @@ public interface Model {
      */
     boolean hasIngredient(Ingredient ingredient);
 
+    /**
+     * Deletes the given ingredient.
+     *
+     * @param target The ingredient to delete.
+     * @throws NotFoundException when the ingredient does not exist in the address book.
+     */
+    void deleteIngredient(Ingredient target) throws NotFoundException;
+
     /** Returns an unmodifiable view of the filtered ingredient list */
     ObservableList<Ingredient> getFilteredIngredientList();
 

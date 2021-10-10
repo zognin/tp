@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,6 +100,20 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         internalList.set(index, new Ingredient(similarToTarget.getName(),
                         similarToTarget.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
                         similarToTarget.getUnit()));
+    }
+
+    /**
+     * Removes the equivalent ingredient from the list of ingredients.
+     * The ingredient must exist in the list.
+     *
+     * @param toRemove The ingredient to remove from the list.
+     * @throws NotFoundException when there is no equivalent ingredient found in the list.
+     */
+    public void remove(Ingredient toRemove) throws NotFoundException {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new NotFoundException(Ingredient.class.getName());
+        }
     }
 
     /**

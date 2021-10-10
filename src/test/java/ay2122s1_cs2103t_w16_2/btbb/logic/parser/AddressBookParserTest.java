@@ -27,6 +27,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
@@ -83,6 +84,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteIngredient() throws Exception {
+        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
+                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
+    }
+
+    @Test
     public void parseCommand_editClient() throws Exception {
         Client person = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
@@ -111,7 +119,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_invalidFindCommand_exceptionThrown() {
+    public void parseCommand_findClientNoKeywords_exceptionThrown() {
         String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
         assertThrows(ParseException.class, errorMessage, () ->
                 parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
