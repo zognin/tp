@@ -17,9 +17,11 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.ExitCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
@@ -27,8 +29,10 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.FindClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.general.TabCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.AddIngredientCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.DeleteIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.EditIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.FindOrderCommandParser;
 
 /**
  * Parses user input.
@@ -77,11 +81,17 @@ public class AddressBookParser {
         case FindClientCommand.COMMAND_WORD:
             return new FindClientCommandParser().parse(arguments);
 
+        case FindOrderCommand.COMMAND_WORD:
+            return new FindOrderCommandParser().parse(arguments);
+
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();
 
         case ListIngredientCommand.COMMAND_WORD:
             return new ListIngredientCommand();
+
+        case DeleteIngredientCommand.COMMAND_WORD:
+            return new DeleteIngredientCommandParser().parse(arguments);
 
         case ListOrderCommand.COMMAND_WORD:
             return new ListOrderCommand();

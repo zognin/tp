@@ -115,6 +115,14 @@ public interface Model {
     boolean hasIngredient(Ingredient ingredient);
 
     /**
+     * Deletes the given ingredient.
+     *
+     * @param target The ingredient to delete.
+     * @throws NotFoundException when the ingredient does not exist in the address book.
+     */
+    void deleteIngredient(Ingredient target) throws NotFoundException;
+
+    /**
      * Replaces the existing target Ingredient in the address book with an edited Ingredient.
      *
      * @param target The target ingredient to replace.

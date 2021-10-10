@@ -99,6 +99,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void deleteIngredient(Ingredient target) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
         throw new AssertionError("This method should not be called.");
     }

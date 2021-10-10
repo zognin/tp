@@ -10,7 +10,8 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.ClientPredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
@@ -29,9 +30,9 @@ public class FindClientCommand extends Command {
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
-    private final ClientPredicateCollection predicateCollection;
+    private final PredicateCollection<Client> predicateCollection;
 
-    public FindClientCommand(ClientPredicateCollection predicateCollection) {
+    public FindClientCommand(PredicateCollection<Client> predicateCollection) {
         this.predicateCollection = predicateCollection;
     }
 
