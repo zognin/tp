@@ -54,8 +54,8 @@
     "unit": "g"
   }, {
     "ingredientName": "Sugar",
-    "quantity": "9000",
-    "unit": "g"
+    "quantity": "9",
+    "unit": "kg"
   }, {
     "ingredientName": "Fish",
     "quantity": "50",
@@ -64,30 +64,65 @@
   "orders": [{
     "clientPhone": "94351253",
     "clientName": "Alice Pauline",
-    "clientAddress": "123, Jurong West Ave 6, #08-111"
+    "clientAddress": "123, Jurong West Ave 6, #08-111",
+    "recipeName" : "Chicken Rice",
+    "recipeIngredients" : "Chicken-1-whole, Rice-200-grams",
+    "price" : "4.50",
+    "deadline" : "12-12-2021 1900",
+    "quantity" : "4"
   }, {
     "clientPhone": "98765432",
     "clientName": "Benson Meier",
-    "clientAddress": "311, Clementi Ave 2, #02-25"
+    "clientAddress": "311, Clementi Ave 2, #02-25",
+    "recipeName" : "Nasi Lemak",
+    "recipeIngredients" : "Fish-1-whole, Rice-200-grams",
+    "price" : "5.50",
+    "deadline" : "13-12-2021 1300",
+    "quantity" : "2"
   }, {
     "clientPhone": "95352563",
     "clientName": "Carl Kurz",
-    "clientAddress": "wall street"
+    "clientAddress": "wall street",
+    "recipeName" : "Prata",
+    "recipeIngredients" : "",
+    "price" : "6.50",
+    "deadline" : "14-12-2021 1020",
+    "quantity" : "1"
   }, {
     "clientPhone": "87652533",
     "clientName": "Daniel Meier",
-    "clientAddress": "10th street"
+    "clientAddress": "10th street",
+    "recipeName" : "Char kuay teow",
+    "recipeIngredients" : "Noodles-500-grams",
+    "price" : "7.0",
+    "deadline" : "15-12-2021 1510",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482224",
     "clientName": "Elle Meyer",
-    "clientAddress": "michegan ave"
+    "clientAddress": "michegan ave",
+    "recipeName" : "Hokkien prawn mee",
+    "recipeIngredients" : "Prawn-5-whole, Noodles-300-grams",
+    "price" : "8.5",
+    "deadline" : "16-12-2021 1900",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482427",
     "clientName": "Fiona Kunz",
-    "clientAddress": "little tokyo"
+    "clientAddress": "little tokyo",
+    "recipeName" : "Kaya toast",
+    "recipeIngredients" : "Bread-2-slices, Kaya-50-grams",
+    "price" : "9.57",
+    "deadline" : "17-12-2021 2100",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482442",
     "clientName": "George Best",
-    "clientAddress": "4th street"
+    "clientAddress": "4th street",
+    "recipeName" : "Satay",
+    "recipeIngredients" : "Chicken-1-whole",
+    "price" : "10",
+    "deadline" : "18-12-2021 2359",
+    "quantity" : "2"
   } ]
 }

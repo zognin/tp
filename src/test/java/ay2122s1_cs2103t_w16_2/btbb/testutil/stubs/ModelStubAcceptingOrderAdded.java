@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,6 +24,12 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     public void addClient(Client client) {
         requireNonNull(client);
         clientsAdded.add(client);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        requireNonNull(order);
+        ordersAdded.add(order);
     }
 
     @Override
@@ -40,9 +48,8 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     }
 
     @Override
-    public void addOrder(Order order) {
-        requireNonNull(order);
-        ordersAdded.add(order);
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        // Do nothing
     }
 
     @Override

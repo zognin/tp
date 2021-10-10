@@ -42,7 +42,7 @@ public class TypicalOrders {
                     .withClientAddress(ALICE.getAddress()).withRecipeName(new GenericString("Chicken Rice"))
                     .withRecipeIngredients(new RecipeIngredientList("Chicken-1-whole, Rice-200-grams"))
                     .withPrice(new Price("4.50")).withDeadline(new Deadline("12-12-2021 1200"))
-                    .withQuantity(new Quantity("1"))
+                    .withQuantity(new Quantity("4"))
                     .build();
     public static final Order ORDER_FOR_BENSON =
             new OrderBuilder().withClientName(BENSON.getName()).withClientPhone(BENSON.getPhone())

@@ -1,0 +1,19 @@
+{
+  "clients": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111"
+  } ],
+  "ingredients": [],
+  "orders": [ {
+    "clientPhone": "94351253",
+    "clientName": "Alice@$$Pauline",
+    "clientAddress": "123, Jurong West Ave 6, #08-111",
+    "recipeName" : "Chicken Rice",
+    "recipeIngredients" : "Chicken-1-whole, Rice-200-grams",
+    "price" : "4.50",
+    "deadline" : "12-12-2021 1900",
+    "quantity" : "4"
+  } ]
+}
