@@ -27,8 +27,7 @@ public class OrderUtil {
         sb.append(wrapAroundPrefixAndSpace(PREFIX_CLIENT_PHONE, order.getClientPhone().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_CLIENT_ADDRESS, order.getClientAddress().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_RECIPE_NAME, order.getRecipeName().toString()));
-        sb.append(wrapAroundPrefixAndSpace(PREFIX_RECIPE_INGREDIENT,
-                order.getRecipeIngredients().toJsonStorageString()));
+        sb.append(wrapAroundPrefixAndSpace(PREFIX_RECIPE_INGREDIENT, order.getRecipeIngredients().toUserInputString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_PRICE, order.getPrice().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_DEADLINE, order.getDeadline().toJsonStorageString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_QUANTITY, order.getQuantity().toString()));

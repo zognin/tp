@@ -63,24 +63,18 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
         requireAllNonNull(target, multiplier);
 
-        int index = -1;
-        Ingredient similarToTarget = null;
-        for (int i = 0; i < ingredientsAdded.size(); i++) {
-            Ingredient currentIngredient = ingredientsAdded.get(i);
-            if (currentIngredient.isSameIngredient(target)) {
-                index = i;
-                similarToTarget = currentIngredient;
-                break;
-            }
-        }
+        Ingredient currentIngredient = ingredientsAdded.stream()
+                .filter(ingredient -> ingredient.isSameIngredient(target)).findFirst().orElse(null);
 
-        if (index == -1) {
-            return;
-        }
+        if (currentIngredient != null) {
+            Ingredient ingredientWithNewQuantity = new Ingredient(
+                    currentIngredient.getName(),
+                    currentIngredient.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
+                    currentIngredient.getUnit());
 
-        ingredientsAdded.set(index, new Ingredient(similarToTarget.getName(),
-                similarToTarget.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
-                similarToTarget.getUnit()));
+            int index = ingredientsAdded.indexOf(currentIngredient);
+            ingredientsAdded.set(index, ingredientWithNewQuantity);
+        }
     }
 
     @Override

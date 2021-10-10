@@ -98,11 +98,11 @@ public class SampleDataUtil {
         int loopCount = Math.min(orders.length, Math.min(recipes.length, ingredients.size()));
 
         for (int i = 0; i < loopCount; i++) {
-            float randomPrice = Math.round(randomNumberGenerator.nextFloat() * 1000) / 100.0f;
-            int randomQuantity = randomNumberGenerator.nextInt(1000);
+            float randomPrice = randomNumberGenerator.nextFloat();
+            int randomQuantity = randomNumberGenerator.nextInt(40000);
             orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
                     new GenericString(recipes[i]), new RecipeIngredientList(ingredients.get(i)),
-                    new Price(Float.toString(randomPrice)),
+                    new Price(String.format("%.2f", randomPrice)),
                     new Deadline(getSampleDateTimeString(i + 1)),
                     new Quantity(Integer.toString(randomQuantity)));
         }

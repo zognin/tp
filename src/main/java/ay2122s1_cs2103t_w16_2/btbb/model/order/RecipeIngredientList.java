@@ -44,7 +44,7 @@ public class RecipeIngredientList {
      * @return True if the recipe ingredient list is valid. False otherwise.
      */
     public static boolean isValidRecipeIngredientList(List<Ingredient> test) {
-        return test.size() > 0;
+        return test != null && test.size() > 0;
     }
 
     /**
@@ -79,11 +79,11 @@ public class RecipeIngredientList {
     }
 
     /**
-     * Converts a RecipeIngredientList object into its JSON storage String representation.
+     * Converts a RecipeIngredientList object into its user input String representation.
      *
-     * @return JSON String representation of a RecipeIngredientList object.
+     * @return User Input String representation of a RecipeIngredientList object.
      */
-    public String toJsonStorageString() {
+    public String toUserInputString() {
         return ingredients.stream()
                 .map(ingredient -> ingredient.getName() + "-" + ingredient.getQuantity() + "-" + ingredient.getUnit())
                 .collect(Collectors.joining(", "));
