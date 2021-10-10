@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 
 public class RecipeIngredientList {
@@ -28,10 +27,10 @@ public class RecipeIngredientList {
      *
      * @param ingredients A valid ingredient list.
      */
-    public RecipeIngredientList(String ingredients) {
+    public RecipeIngredientList(List<Ingredient> ingredients) {
         requireNonNull(ingredients);
         checkArgument(isValidRecipeIngredientList(ingredients), MESSAGE_CONSTRAINTS);
-        this.ingredients = ParserUtil.parseRecipeIngredientsToList(ingredients);
+        this.ingredients = ingredients;
     }
 
     public List<Ingredient> getIngredients() {
@@ -41,16 +40,11 @@ public class RecipeIngredientList {
     /**
      * Returns true if a given string is a valid recipe ingredient list.
      *
-     * @param test String input to check.
+     * @param test List to check.
      * @return True if the recipe ingredient list is valid. False otherwise.
      */
-    public static boolean isValidRecipeIngredientList(String test) {
-        if (test == null) {
-            return false;
-        }
-
-        List<Ingredient> ingredients = ParserUtil.parseRecipeIngredientsToList(test);
-        return ingredients.size() > 0;
+    public static boolean isValidRecipeIngredientList(List<Ingredient> test) {
+        return test.size() > 0;
     }
 
     /**

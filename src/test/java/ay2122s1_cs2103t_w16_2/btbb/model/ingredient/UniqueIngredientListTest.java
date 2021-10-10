@@ -93,7 +93,7 @@ public class UniqueIngredientListTest {
         UniqueIngredientList expectedUniqueIngredientList2 = new UniqueIngredientList();
         expectedUniqueIngredientList2.add(expected2);
 
-        uniqueIngredientList.minusIngredientQuantity(target, new Quantity());
+        uniqueIngredientList.minusIngredientQuantity(target, new Quantity("1"));
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
 
         uniqueIngredientList.minusIngredientQuantity(target, new Quantity("4"));

@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.util;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
@@ -64,37 +65,45 @@ public class SampleDataUtil {
         };
     }
 
-    public static String[] getRecipeIngredientList() {
-        return new String[] {
-            "Almond-1-bags, Corn-2-whole",
-            "Chicken Eggs-2-whole",
-            "Garlic-1-whole, Ham-1-packs, Fig-5-whole",
-            "Bamboo-2-shoots, Edamame-1-bag",
-            "Edamame-1-bag",
-            "Duck Eggs-1-whole, Ham-1-packs, Fig-5-whole, Garlic-1-whole",
-            "Corn-1-whole",
-            "Fig-1-whole"
-        };
+    public static List<List<Ingredient>> getRecipeIngredientList() {
+        return List.of(
+                List.of(new Ingredient(new GenericString("Almond"), new Quantity("1"), new GenericString("bags")),
+                        new Ingredient(new GenericString("Corn"), new Quantity("2"), new GenericString("whole"))),
+                List.of(new Ingredient(
+                        new GenericString("Chicken Eggs"), new Quantity("2"), new GenericString("whole"))),
+                List.of(new Ingredient(new GenericString("Garlic"), new Quantity("1"), new GenericString("whole")),
+                        new Ingredient(new GenericString("Ham"), new Quantity("1"), new GenericString("packs")),
+                        new Ingredient(new GenericString("Fig"), new Quantity("5"), new GenericString("whole"))),
+                List.of(new Ingredient(new GenericString("Bamboo"), new Quantity("2"), new GenericString("shoots")),
+                        new Ingredient(new GenericString("Edamame"), new Quantity("1"), new GenericString("bag"))),
+                List.of(new Ingredient(new GenericString("Edamame"), new Quantity("1"), new GenericString("bag"))),
+                List.of(new Ingredient(new GenericString("Ducks Eggs"), new Quantity("1"), new GenericString("whole")),
+                        new Ingredient(new GenericString("Ham"), new Quantity("1"), new GenericString("packs")),
+                        new Ingredient(new GenericString("Fig"), new Quantity("5"), new GenericString("whole")),
+                        new Ingredient(new GenericString("Garlic"), new Quantity("1"), new GenericString("whole"))),
+                List.of(new Ingredient(new GenericString("Corn"), new Quantity("1"), new GenericString("whole"))),
+                List.of(new Ingredient(new GenericString("Fig"), new Quantity("1"), new GenericString("whole")))
+        );
     }
 
     public static Order[] getSampleOrders() {
         Client[] people = getSampleClients();
         String[] recipes = getSampleRecipes();
-        String[] ingredients = getRecipeIngredientList();
+        List<List<Ingredient>> ingredients = getRecipeIngredientList();
 
         Order[] orders = new Order[people.length];
 
         Random randomNumberGenerator = new Random();
 
-        int loopCount = Math.min(orders.length, Math.min(recipes.length, ingredients.length));
+        int loopCount = Math.min(orders.length, Math.min(recipes.length, ingredients.size()));
 
         for (int i = 0; i < loopCount; i++) {
             float randomPrice = Math.round(randomNumberGenerator.nextFloat() * 1000) / 100.0f;
             int randomQuantity = randomNumberGenerator.nextInt(1000);
             orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
-                    new GenericString(recipes[i]), new RecipeIngredientList(ingredients[i]),
+                    new GenericString(recipes[i]), new RecipeIngredientList(ingredients.get(i)),
                     new Price(Float.toString(randomPrice)),
-                    new Deadline(getRandomDateTimeString(i + 1)),
+                    new Deadline(getSampleDateTimeString(i + 1)),
                     new Quantity(Integer.toString(randomQuantity)));
         }
 
@@ -119,7 +128,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    private static String getRandomDateTimeString(int dayOffset) {
+    private static String getSampleDateTimeString(int dayOffset) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         LocalDateTime dateTimeWithOffset = currentDateTime.plusDays(dayOffset);
         return dateTimeWithOffset.format(Deadline.INPUT_DATETIME_FORMATTER);

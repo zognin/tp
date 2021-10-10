@@ -2,14 +2,18 @@ package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_DEADLINE_DECEMBER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_DEADLINE_MARCH;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_2;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_INGREDIENT_LIST_1;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_INGREDIENT_LIST_2;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_CHICKEN_RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_LAKSA;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BENSON;
@@ -20,12 +24,22 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.GEORGE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.IMRAN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BREAD;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.CHICKEN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.FISH;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.KAYA;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.NOODLES;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.PRAWN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.RICE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -40,49 +54,48 @@ public class TypicalOrders {
     public static final Order ORDER_FOR_ALICE =
             new OrderBuilder().withClientName(ALICE.getName()).withClientPhone(ALICE.getPhone())
                     .withClientAddress(ALICE.getAddress()).withRecipeName(new GenericString("Chicken Rice"))
-                    .withRecipeIngredients(new RecipeIngredientList("Chicken-1-whole, Rice-200-grams"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ALICE)))
                     .withPrice(new Price("4.50")).withDeadline(new Deadline("12-12-2021 1200"))
                     .withQuantity(new Quantity("4"))
                     .build();
     public static final Order ORDER_FOR_BENSON =
             new OrderBuilder().withClientName(BENSON.getName()).withClientPhone(BENSON.getPhone())
                     .withClientAddress(BENSON.getAddress()).withRecipeName(new GenericString("Nasi Lemak"))
-                    .withRecipeIngredients(new RecipeIngredientList("Fish-1-whole, Rice-200-grams"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(BENSON)))
                     .withPrice(new Price("5.50")).withDeadline(new Deadline("13-12-2021 1300"))
                     .withQuantity(new Quantity("2"))
                     .build();
     public static final Order ORDER_FOR_CARL =
             new OrderBuilder().withClientName(CARL.getName()).withClientPhone(CARL.getPhone())
                     .withClientAddress(CARL.getAddress()).withRecipeName(new GenericString("Prata"))
-                    .withRecipeIngredients(new RecipeIngredientList())
                     .withPrice(new Price("6.50")).withDeadline(new Deadline("14-12-2021 1020"))
                     .withQuantity(new Quantity("1"))
                     .build();
     public static final Order ORDER_FOR_DANIEL =
             new OrderBuilder().withClientName(DANIEL.getName()).withClientPhone(DANIEL.getPhone())
                     .withClientAddress(DANIEL.getAddress()).withRecipeName(new GenericString("Char kuay teow"))
-                    .withRecipeIngredients(new RecipeIngredientList("Noodles-500-grams"))
-                    .withPrice(new Price("7.0")).withDeadline(new Deadline("15-12-2021 1510"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(DANIEL)))
+                    .withPrice(new Price("7.00")).withDeadline(new Deadline("15-12-2021 1510"))
                     .withQuantity(new Quantity("2"))
                     .build();
     public static final Order ORDER_FOR_ELLE =
             new OrderBuilder().withClientName(ELLE.getName()).withClientPhone(ELLE.getPhone())
                     .withClientAddress(ELLE.getAddress()).withRecipeName(new GenericString("Hokkien prawn mee"))
-                    .withRecipeIngredients(new RecipeIngredientList("Prawn-5-whole, Noodles-300-grams"))
-                    .withPrice(new Price("8.5")).withDeadline(new Deadline("16-12-2021 1900"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ELLE)))
+                    .withPrice(new Price("8.50")).withDeadline(new Deadline("16-12-2021 1900"))
                     .withQuantity(new Quantity("2"))
                     .build();
     public static final Order ORDER_FOR_FIONA =
             new OrderBuilder().withClientName(FIONA.getName()).withClientPhone(FIONA.getPhone())
                     .withClientAddress(FIONA.getAddress()).withRecipeName(new GenericString("Kaya toast"))
-                    .withRecipeIngredients(new RecipeIngredientList("Bread-2-slices, Kaya-50-grams"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(FIONA)))
                     .withPrice(new Price("9.57")).withDeadline(new Deadline("17-12-2021 2100"))
                     .withQuantity(new Quantity("2"))
                     .build();
     public static final Order ORDER_FOR_GEORGE =
             new OrderBuilder().withClientName(GEORGE.getName()).withClientPhone(GEORGE.getPhone())
                     .withClientAddress(GEORGE.getAddress()).withRecipeName(new GenericString("Satay"))
-                    .withRecipeIngredients(new RecipeIngredientList("Chicken-1-whole"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(GEORGE)))
                     .withPrice(new Price("10")).withDeadline(new Deadline("18-12-2021 2359"))
                     .withQuantity(new Quantity("2"))
                     .build();
@@ -92,7 +105,7 @@ public class TypicalOrders {
             new OrderBuilder().withClientName(AMY.getName()).withClientPhone(AMY.getPhone())
                     .withClientAddress(AMY.getAddress())
                     .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
-                    .withRecipeIngredients(new RecipeIngredientList()).withPrice(new Price(VALID_PRICE_1))
+                    .withPrice(new Price(VALID_PRICE_1))
                     .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
                     .withQuantity(new Quantity(VALID_ORDER_QUANTITY_1))
                     .build();
@@ -100,13 +113,17 @@ public class TypicalOrders {
             new OrderBuilder().withClientName(IMRAN.getName()).withClientPhone(IMRAN.getPhone())
                     .withClientAddress(IMRAN.getAddress())
                     .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
-                    .withRecipeIngredients(new RecipeIngredientList(VALID_RECIPE_INGREDIENT_LIST_1))
+                    .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
+                            new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
+                            new GenericString(VALID_UNIT_APPLE)))))
                     .withPrice(new Price(VALID_PRICE_1)).withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
-                    .withQuantity(new Quantity()).build();
+                    .build();
     public static final Order ORDER_FOR_BOB =
             new OrderBuilder().withClientName(BOB.getName()).withClientPhone(BOB.getPhone())
                     .withClientAddress(BOB.getAddress()).withRecipeName(new GenericString(VALID_RECIPE_NAME_LAKSA))
-                    .withRecipeIngredients(new RecipeIngredientList(VALID_RECIPE_INGREDIENT_LIST_2))
+                    .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
+                            new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
+                            new GenericString(VALID_UNIT_BEEF)))))
                     .withPrice(new Price(VALID_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
                     .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
                     .build();
@@ -132,5 +149,35 @@ public class TypicalOrders {
     public static List<Order> getTypicalOrders() {
         return new ArrayList<>(Arrays.asList(ORDER_FOR_ALICE, ORDER_FOR_BENSON, ORDER_FOR_CARL, ORDER_FOR_DANIEL,
                 ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE));
+    }
+
+    private static List<Ingredient> getRecipeIngredientListForClient(Client client) {
+        HashMap<Client, List<Ingredient>> recipeIngredientsMap = getRecipeIngredientsMapForClient();
+        if (!recipeIngredientsMap.containsKey(client)) {
+            return List.of();
+        }
+        return recipeIngredientsMap.get(client);
+    }
+
+    private static HashMap<Client, List<Ingredient>> getRecipeIngredientsMapForClient() {
+        HashMap<Client, List<Ingredient>> recipeIngredientsMap = new HashMap<>();
+
+        Ingredient breadUsage = new Ingredient(BREAD.getName(), new Quantity("2"), BREAD.getUnit());
+        Ingredient chickenUsage = new Ingredient(CHICKEN.getName(), new Quantity("1"), CHICKEN.getUnit());
+        Ingredient fishUsage = new Ingredient(FISH.getName(), new Quantity("1"), FISH.getUnit());
+        Ingredient kayaUsage = new Ingredient(KAYA.getName(), new Quantity("100"), KAYA.getUnit());
+        Ingredient noodlesUsage = new Ingredient(NOODLES.getName(), new Quantity("200"), NOODLES.getUnit());
+        Ingredient prawnUsage = new Ingredient(PRAWN.getName(), new Quantity("10"), PRAWN.getUnit());
+        Ingredient riceUsage = new Ingredient(RICE.getName(), new Quantity("200"), RICE.getUnit());
+
+
+        recipeIngredientsMap.put(ALICE, List.of(chickenUsage, riceUsage));
+        recipeIngredientsMap.put(BENSON, List.of(fishUsage, riceUsage));
+        recipeIngredientsMap.put(DANIEL, List.of(noodlesUsage));
+        recipeIngredientsMap.put(ELLE, List.of(noodlesUsage, prawnUsage));
+        recipeIngredientsMap.put(FIONA, List.of(breadUsage, kayaUsage));
+        recipeIngredientsMap.put(GEORGE, List.of(chickenUsage));
+
+        return recipeIngredientsMap;
     }
 }

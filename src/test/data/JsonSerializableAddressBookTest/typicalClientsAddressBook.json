@@ -61,12 +61,20 @@
     "quantity": "50",
     "unit": "g"
   } ],
-  "orders": [{
+  "orders": [ {
     "clientPhone": "94351253",
     "clientName": "Alice Pauline",
     "clientAddress": "123, Jurong West Ave 6, #08-111",
     "recipeName" : "Chicken Rice",
-    "recipeIngredients" : "Chicken-1-whole, Rice-200-grams",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Chicken"
+    }, {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Rice"
+    } ],
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4"
@@ -75,7 +83,15 @@
     "clientName": "Benson Meier",
     "clientAddress": "311, Clementi Ave 2, #02-25",
     "recipeName" : "Nasi Lemak",
-    "recipeIngredients" : "Fish-1-whole, Rice-200-grams",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Fish"
+    }, {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Rice"
+    } ],
     "price" : "5.50",
     "deadline" : "13-12-2021 1300",
     "quantity" : "2"
@@ -84,7 +100,7 @@
     "clientName": "Carl Kurz",
     "clientAddress": "wall street",
     "recipeName" : "Prata",
-    "recipeIngredients" : "",
+    "recipeIngredients" : [],
     "price" : "6.50",
     "deadline" : "14-12-2021 1020",
     "quantity" : "1"
@@ -93,8 +109,12 @@
     "clientName": "Daniel Meier",
     "clientAddress": "10th street",
     "recipeName" : "Char kuay teow",
-    "recipeIngredients" : "Noodles-500-grams",
-    "price" : "7.0",
+    "recipeIngredients" : [ {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Noodles"
+    } ],
+    "price" : "7.00",
     "deadline" : "15-12-2021 1510",
     "quantity" : "2"
   }, {
@@ -102,8 +122,16 @@
     "clientName": "Elle Meyer",
     "clientAddress": "michegan ave",
     "recipeName" : "Hokkien prawn mee",
-    "recipeIngredients" : "Prawn-5-whole, Noodles-300-grams",
-    "price" : "8.5",
+    "recipeIngredients" : [ {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Noodles"
+    }, {
+      "quantity" : "20",
+      "unit" : "whole",
+      "name" : "Prawn"
+    } ],
+    "price" : "8.50",
     "deadline" : "16-12-2021 1900",
     "quantity" : "2"
   }, {
@@ -111,7 +139,15 @@
     "clientName": "Fiona Kunz",
     "clientAddress": "little tokyo",
     "recipeName" : "Kaya toast",
-    "recipeIngredients" : "Bread-2-slices, Kaya-50-grams",
+    "recipeIngredients" : [ {
+      "quantity" : "2",
+      "unit" : "slice",
+      "name" : "Bread"
+    }, {
+      "quantity" : "100",
+      "unit" : "grams",
+      "name" : "Kaya"
+    } ],
     "price" : "9.57",
     "deadline" : "17-12-2021 2100",
     "quantity" : "2"
@@ -120,7 +156,11 @@
     "clientName": "George Best",
     "clientAddress": "4th street",
     "recipeName" : "Satay",
-    "recipeIngredients" : "Chicken-1-whole",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Chicken"
+    } ],
     "price" : "10",
     "deadline" : "18-12-2021 2359",
     "quantity" : "2"

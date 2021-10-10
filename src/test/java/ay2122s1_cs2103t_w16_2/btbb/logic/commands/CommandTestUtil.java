@@ -34,6 +34,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.predicate.NameContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
@@ -81,7 +83,7 @@ public class CommandTestUtil {
     public static final String VALID_RECIPE_INGREDIENT_LIST_2 = VALID_INGREDIENT_NAME_BEEF + "-"
             + VALID_QUANTITY_BEEF + "-" + VALID_UNIT_BEEF;
 
-    // prefix + desciption (valid):
+    // prefix + description (valid):
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_IMRAN = " " + PREFIX_CLIENT_NAME + VALID_NAME_IMRAN;
@@ -172,11 +174,15 @@ public class CommandTestUtil {
         // Order
         DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
                 .withClientAddress(VALID_ADDRESS_AMY).withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
-                .withRecipeIngredients(VALID_RECIPE_INGREDIENT_LIST_1).withPrice(VALID_PRICE_1)
+                .withRecipeIngredients(List.of(new Ingredient(
+                                new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
+                                new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
                 .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                 .withClientAddress(VALID_ADDRESS_BOB).withRecipeName(VALID_RECIPE_NAME_LAKSA)
-                .withRecipeIngredients(VALID_RECIPE_INGREDIENT_LIST_2).withPrice(VALID_PRICE_2)
+                .withRecipeIngredients(List.of(new Ingredient(
+                        new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
+                        new GenericString(VALID_UNIT_BEEF)))).withPrice(VALID_PRICE_2)
                 .withDeadline(VALID_DEADLINE_MARCH).withQuantity(VALID_ORDER_QUANTITY_2).build();
 
         // Ingredient

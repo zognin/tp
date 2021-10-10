@@ -11,7 +11,15 @@
     "clientName": "Alice Pauline",
     "clientAddress": "123, Jurong West Ave 6, #08-111",
     "recipeName" : "Chicken Rice",
-    "recipeIngredients" : "Chicken-whole-1, Rice-grams-200",
+    "recipeIngredients" : [ {
+      "quantity" : "1we",
+      "unit" : "whole",
+      "name" : "Chicken"
+    }, {
+      "quantity" : "200",
+      "unit" : "",
+      "name" : "Rice"
+    } ],
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4"

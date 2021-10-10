@@ -82,24 +82,18 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
         requireAllNonNull(target, multiplier);
 
-        int index = -1;
-        Ingredient similarToTarget = null;
-        for (int i = 0; i < internalList.size(); i++) {
-            Ingredient currentIngredient = internalList.get(i);
-            if (currentIngredient.isSameIngredient(target)) {
-                index = i;
-                similarToTarget = currentIngredient;
-                break;
-            }
-        }
+        Ingredient currentIngredient = internalList.stream()
+                .filter(ingredient -> ingredient.isSameIngredient(target)).findFirst().orElse(null);
 
-        if (index == -1) {
-            return;
-        }
+        if (currentIngredient != null) {
+            Ingredient ingredientWithNewQuantity = new Ingredient(
+                    currentIngredient.getName(),
+                    currentIngredient.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
+                    currentIngredient.getUnit());
 
-        internalList.set(index, new Ingredient(similarToTarget.getName(),
-                        similarToTarget.getQuantity().minusQuantityBy(target.getQuantity(), multiplier),
-                        similarToTarget.getUnit()));
+            int index = internalList.indexOf(currentIngredient);
+            internalList.set(index, ingredientWithNewQuantity);
+        }
     }
 
     /**

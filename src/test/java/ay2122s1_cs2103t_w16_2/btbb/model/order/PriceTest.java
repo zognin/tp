@@ -30,17 +30,8 @@ class PriceTest {
         String validInteger = "1";
         assertEquals("1.00", new Price(validInteger).toString());
 
-        String validFloatWith1dp = "1.5";
-        assertEquals("1.50", new Price(validFloatWith1dp).toString());
-
         String validFloatWith2dp = "1.51";
         assertEquals("1.51", new Price(validFloatWith2dp).toString());
-
-        String validFloatWith3dp = "1.519"; // test whether it's rounded up
-        assertEquals("1.52", new Price(validFloatWith3dp).toString());
-
-        String validFloatWith4dp = "1.5141"; // test whether it's rounded down
-        assertEquals("1.51", new Price(validFloatWith4dp).toString());
     }
 
     @Test
@@ -54,11 +45,10 @@ class PriceTest {
         assertFalse(Price.isValidPrice("$1.0")); // '$' not allowed
         assertFalse(Price.isValidPrice("-1")); // negative price
         assertFalse(Price.isValidPrice(Double.toString(Double.MAX_VALUE))); // price too large
+        assertFalse(Price.isValidPrice("1.5")); // only 1dp is not allowed
 
         // valid price
         assertTrue(Price.isValidPrice("1"));
-        assertTrue(Price.isValidPrice("1.5"));
         assertTrue(Price.isValidPrice("1.51"));
-        assertTrue(Price.isValidPrice("1.501"));
     }
 }

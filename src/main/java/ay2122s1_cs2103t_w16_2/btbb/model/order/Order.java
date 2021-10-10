@@ -98,8 +98,7 @@ public class Order {
                 && otherOrder.getRecipeName().equals(getRecipeName())
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getPrice().equals(getPrice())
-                && otherOrder.getDeadline().equals(getDeadline())
-                && otherOrder.getQuantity().equals(getQuantity());
+                && otherOrder.getDeadline().equals(getDeadline());
     }
 
     /**

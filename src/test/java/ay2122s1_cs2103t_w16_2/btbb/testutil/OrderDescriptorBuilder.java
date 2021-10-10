@@ -1,9 +1,12 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
+import java.util.List;
+
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -106,17 +109,17 @@ public class OrderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code recipeIngredients} of the {@code OrderDescriptor} that we are building.
+     * Sets the {@code ingredients} of the {@code OrderDescriptor} that we are building.
      *
-     * @param recipeIngredients The recipeIngredients that should be set.
-     * @return A OrderDescriptorBuilder object that contains the new recipeIngredients details.
+     * @param ingredients The ingredients that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new ingredients details.
      */
-    public OrderDescriptorBuilder withRecipeIngredients(String recipeIngredients) {
-        if (recipeIngredients == null) {
-            descriptor.setRecipeIngredients(null);
+    public OrderDescriptorBuilder withRecipeIngredients(List<Ingredient> ingredients) {
+        if (ingredients.isEmpty()) {
+            descriptor.setRecipeIngredients(new RecipeIngredientList());
             return this;
         }
-        descriptor.setRecipeIngredients(new RecipeIngredientList(recipeIngredients));
+        descriptor.setRecipeIngredients(new RecipeIngredientList(ingredients));
         return this;
     }
 
@@ -149,10 +152,6 @@ public class OrderDescriptorBuilder {
      * @return A OrderDescriptorBuilder object that contains the new quantity details.
      */
     public OrderDescriptorBuilder withQuantity(String quantity) {
-        if (quantity == null) {
-            descriptor.setQuantity(null);
-            return this;
-        }
         descriptor.setQuantity(new Quantity(quantity));
         return this;
     }

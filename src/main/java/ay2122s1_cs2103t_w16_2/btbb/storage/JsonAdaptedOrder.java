@@ -1,11 +1,16 @@
 package ay2122s1_cs2103t_w16_2.btbb.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -23,7 +28,7 @@ public class JsonAdaptedOrder {
     private final String clientPhone;
     private final String clientAddress;
     private final String recipeName;
-    private final String recipeIngredients;
+    private final List<JsonAdaptedIngredient> recipeIngredients = new ArrayList<>();
     private final String price;
     private final String deadline;
     private final String quantity;
@@ -36,7 +41,7 @@ public class JsonAdaptedOrder {
                             @JsonProperty("clientPhone") String clientPhone,
                             @JsonProperty("clientAddress") String clientAddress,
                             @JsonProperty("recipeName") String recipeName,
-                            @JsonProperty("recipeIngredients") String recipeIngredients,
+                            @JsonProperty("recipeIngredients") List<JsonAdaptedIngredient> recipeIngredients,
                             @JsonProperty("price") String price,
                             @JsonProperty("deadline") String deadline,
                             @JsonProperty("quantity") String quantity) {
@@ -44,10 +49,13 @@ public class JsonAdaptedOrder {
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
         this.recipeName = recipeName;
-        this.recipeIngredients = recipeIngredients;
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
+
+        if (recipeIngredients != null) {
+            this.recipeIngredients.addAll(recipeIngredients);
+        }
     }
 
     /**
@@ -58,7 +66,8 @@ public class JsonAdaptedOrder {
         clientPhone = source.getClientPhone().toString();
         clientAddress = source.getClientAddress().toString();
         recipeName = source.getRecipeName().toString();
-        recipeIngredients = source.getRecipeIngredients().toJsonStorageString();
+        recipeIngredients.addAll(source.getRecipeIngredients().getIngredients().stream()
+                .map(JsonAdaptedIngredient::new).collect(Collectors.toList()));
         price = source.getPrice().toString();
         deadline = source.getDeadline().toJsonStorageString();
         quantity = source.getQuantity().toString();
@@ -106,16 +115,12 @@ public class JsonAdaptedOrder {
         }
         final GenericString modelRecipeName = new GenericString(recipeName);
 
-        if (recipeIngredients == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, RecipeIngredientList.class.getSimpleName()
-            ));
+        final List<Ingredient> ingredients = new ArrayList<>();
+        for (JsonAdaptedIngredient ingredient : recipeIngredients) {
+            ingredients.add(ingredient.toModelType());
         }
-        if (!recipeIngredients.equals("") && !RecipeIngredientList.isValidRecipeIngredientList(recipeIngredients)) {
-            throw new IllegalValueException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
-        }
-        final RecipeIngredientList modelRecipeIngredients = recipeIngredients.equals("")
-                ? new RecipeIngredientList() : new RecipeIngredientList(recipeIngredients);
+        final RecipeIngredientList modelRecipeIngredients = ingredients.size() > 0
+                ? new RecipeIngredientList(ingredients) : new RecipeIngredientList();
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
@@ -130,7 +135,7 @@ public class JsonAdaptedOrder {
                     MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()
             ));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
+        if (!Deadline.isValidInternalDeadline(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
@@ -140,7 +145,7 @@ public class JsonAdaptedOrder {
                     MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()
             ));
         }
-        if (!Quantity.isValidQuantity(quantity)) {
+        if (!Quantity.isValidInternalQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);

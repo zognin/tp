@@ -14,13 +14,6 @@ public class Quantity {
     private final int quantity;
 
     /**
-     * Constructs a {@code Quantity} with a default value of 1.
-     */
-    public Quantity() {
-        quantity = 1;
-    }
-
-    /**
      * Constructs a {@code Quantity}.
      *
      * @param quantity A valid quantity number.
@@ -41,6 +34,22 @@ public class Quantity {
         try {
             int quantity = Integer.parseInt(test);
             return quantity >= 0 && quantity <= 40000;
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid quantity.
+     * For internal use where there is a wider definition of a valid quantity.
+     *
+     * @param test String input to check.
+     * @return boolean of whether name is valid.
+     */
+    public static boolean isValidInternalQuantity(String test) {
+        try {
+            int quantity = Integer.parseInt(test);
+            return quantity > 0 && quantity <= 40000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }

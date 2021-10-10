@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -107,6 +106,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     * For internal use where there is a wider definition of a valid deadline.
+     *
+     * @param deadline String input to parse.
+     * @return Deadline object.
+     * @throws ParseException If the given {@code deadline} is invalid.
+     */
+    public static Deadline parseInternalDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidInternalDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
+    /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -134,10 +151,11 @@ public class ParserUtil {
     public static RecipeIngredientList parseRecipeIngredients(String recipeIngredients) throws ParseException {
         requireNonNull(recipeIngredients);
         String trimmedRecipeIngredients = recipeIngredients.trim();
-        if (!RecipeIngredientList.isValidRecipeIngredientList(trimmedRecipeIngredients)) {
+        List<Ingredient> ingredients = parseRecipeIngredientsToList(trimmedRecipeIngredients);
+        if (!RecipeIngredientList.isValidRecipeIngredientList(ingredients)) {
             throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
-        return new RecipeIngredientList(trimmedRecipeIngredients);
+        return new RecipeIngredientList(ingredients);
     }
 
     /**
@@ -146,17 +164,14 @@ public class ParserUtil {
      * @param ingredientList The ingredient list to parse.
      * @return A list of ingredients.
      */
-    public static List<Ingredient> parseRecipeIngredientsToList(String ingredientList) {
+    private static List<Ingredient> parseRecipeIngredientsToList(String ingredientList) throws ParseException {
         requireNonNull(ingredientList);
         List<Ingredient> listOfIngredients = new ArrayList<>();
 
-        String[] ingredientListArray = ingredientList.split(", ");
+        String[] ingredientListArray = ingredientList.split(",");
         for (String individualIngredient : ingredientListArray) {
-            Optional<Ingredient> ingredient = parseRecipeIngredient(individualIngredient);
-            if (ingredient.isEmpty()) {
-                return new ArrayList<>();
-            }
-            listOfIngredients.add(ingredient.get());
+            Ingredient ingredient = parseRecipeIngredient(individualIngredient.trim());
+            listOfIngredients.add(ingredient);
         }
 
         return listOfIngredients;
@@ -168,11 +183,11 @@ public class ParserUtil {
      * @param individualIngredient The ingredient to parse.
      * @return An {@code Optional<Ingredient>} object.
      */
-    private static Optional<Ingredient> parseRecipeIngredient(String individualIngredient) {
+    private static Ingredient parseRecipeIngredient(String individualIngredient) throws ParseException {
         String[] individualIngredientArray = individualIngredient.split("-", 3);
 
         if (individualIngredientArray.length != 3) {
-            return Optional.empty();
+            throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
 
         String recipeName = individualIngredientArray[0];
@@ -184,12 +199,10 @@ public class ParserUtil {
                 && GenericString.isValidGenericString(unit);
 
         if (!isValidIngredient) {
-            return Optional.empty();
+            throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
 
-        return Optional.of(new
-                Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit))
-        );
+        return new Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit));
     }
 
     // Shared-level parsers:
@@ -224,6 +237,24 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     * For internal use where there is a wider definition of a valid quantity.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedQuantity);

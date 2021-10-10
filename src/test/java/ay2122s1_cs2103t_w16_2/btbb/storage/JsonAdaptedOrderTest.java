@@ -3,9 +3,13 @@ package ay2122s1_cs2103t_w16_2.btbb.storage;
 import static ay2122s1_cs2103t_w16_2.btbb.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BENSON;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.CHICKEN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BENSON;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_CARL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +18,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -23,7 +26,6 @@ public class JsonAdaptedOrderTest {
     private static final String INVALID_CLIENT_PHONE = "+651234";
     private static final String INVALID_CLIENT_ADDRESS = " ";
     private static final String INVALID_RECIPE_NAME = "Chicken@Rice";
-    private static final String INVALID_RECIPE_INGREDIENT_LIST = "sugar-grams-4";
     private static final String INVALID_ORDER_PRICE = "$1.50";
     private static final String INVALID_ORDER_DEADLINE = "2021-12-12 1900";
     private static final String INVALID_ORDER_QUANTITY = "-1";
@@ -32,7 +34,11 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_CLIENT_PHONE = BENSON.getPhone().toString();
     private static final String VALID_CLIENT_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_RECIPE_NAME = "Chicken Rice";
-    private static final String VALID_RECIPE_INGREDIENT_LIST = "Chicken-1-whole, Rice-100-grams";
+    private static final List<JsonAdaptedIngredient> VALID_RECIPE_INGREDIENT_LIST = List.of(
+            new JsonAdaptedIngredient(
+                    CHICKEN.getName().toString(), new Quantity("1").toString(), CHICKEN.getUnit().toString()),
+            new JsonAdaptedIngredient(
+                    RICE.getName().toString(), new Quantity("100").toString(), RICE.getUnit().toString()));
     private static final String VALID_ORDER_PRICE = "4.50";
     private static final String VALID_ORDER_DEADLINE = "20-12-2021 1200";
     private static final String VALID_ORDER_QUANTITY = "2";
@@ -123,24 +129,6 @@ public class JsonAdaptedOrderTest {
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT,
                         GenericString.getMessageConstraints("Recipe Name"));
-        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
-    }
-
-    @Test void toModelType_invalidRecipeIngredients_throwsIllegalValueException() {
-        JsonAdaptedOrder order =
-                new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
-                        VALID_RECIPE_NAME, INVALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
-        String expectedMessage = RecipeIngredientList.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
-    }
-
-    @Test void toModelType_nullRecipeIngredients_throwsIllegalValueException() {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
-                VALID_RECIPE_NAME, null, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
-        String expectedMessage = String
-                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, RecipeIngredientList.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

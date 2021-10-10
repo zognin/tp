@@ -3,15 +3,17 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigDecimal;
+
 /**
  * Represents the price of a recipe in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, it should be positive "
-                    + "and the largest acceptable price is " + Float.MAX_VALUE + ".";
-    private final float price;
+            "Price should only contain positive numbers up to 8 digits, with an optional 2 decimal places.";
+    public static final String VALIDATION_REGEX = "^\\d{1,8}(\\.\\d{2})?$";
+    private final BigDecimal price;
 
     /**
      * Constructs a {@code Price}.
@@ -21,7 +23,7 @@ public class Price {
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = Float.parseFloat(price);
+        this.price = new BigDecimal(price);
     }
 
     /**
@@ -31,16 +33,7 @@ public class Price {
      * @return True if the price is valid. False otherwise.
      */
     public static boolean isValidPrice(String test) {
-        if (test == null) {
-            return false;
-        }
-
-        try {
-            float price = Float.parseFloat(test);
-            return price > 0 && price <= Float.MAX_VALUE;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return test != null && test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -63,7 +56,7 @@ public class Price {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Price // instanceof handles nulls
-                && price == ((Price) other).price); // state check
+                && price.equals(((Price) other).price)); // state check
     }
 
     /**
@@ -73,6 +66,6 @@ public class Price {
      */
     @Override
     public int hashCode() {
-        return Float.hashCode(price);
+        return price.hashCode();
     }
 }

@@ -1,7 +1,10 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
+import java.util.List;
+
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -17,7 +20,9 @@ public class OrderBuilder {
     private static final String DEFAULT_CLIENT_PHONE = "85355255";
     private static final String DEFAULT_CLIENT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     private static final String DEFAULT_RECIPE_NAME = "Egg Prata";
-    private static final String DEFAULT_RECIPE_INGREDIENT_LIST = "Flour-100-grams, Egg-1-whole";
+    private static final List<Ingredient> DEFAULT_RECIPE_INGREDIENT_LIST = List.of(
+            new Ingredient(new GenericString("Flour"), new Quantity("200"), new GenericString("grams")),
+            new Ingredient(new GenericString("Eggs"), new Quantity("1"), new GenericString("whole")));
     private static final String DEFAULT_ORDER_PRICE = "1.50";
     private static final String DEFAULT_ORDER_DEADLINE = "12-12-2021 1500";
     private static final String DEFAULT_ORDER_QUANTITY = "1";
