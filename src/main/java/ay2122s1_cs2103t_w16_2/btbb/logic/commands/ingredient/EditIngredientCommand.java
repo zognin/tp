@@ -35,7 +35,7 @@ public class EditIngredientCommand extends Command {
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the address book.";
 
     private final Index index;
     private final IngredientDescriptor editIngredientDescriptor;
@@ -58,7 +58,7 @@ public class EditIngredientCommand extends Command {
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
         Ingredient ingredientToEdit = lastShownList.get(index.getZeroBased());
@@ -71,7 +71,7 @@ public class EditIngredientCommand extends Command {
         try {
             model.setIngredient(ingredientToEdit, editedIngredient);
         } catch (NotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);

@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 
 /**
@@ -32,6 +33,20 @@ public class IngredientUtil {
         sb.append(PREFIX_INGREDIENT_NAME + ingredient.getName().toString() + " ");
         sb.append(PREFIX_INGREDIENT_QUANTITY + ingredient.getQuantity().toString() + " ");
         sb.append(PREFIX_INGREDIENT_UNIT + ingredient.getUnit().toString() + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditIngredientDescriptor}'s details.
+     */
+    public static String getEditIngredientDescriptorDetails(IngredientDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name ->
+                sb.append(PREFIX_INGREDIENT_NAME).append(name).append(" "));
+        descriptor.getQuantity().ifPresent(quantity ->
+                sb.append(PREFIX_INGREDIENT_QUANTITY).append(quantity).append(" "));
+        descriptor.getUnit().ifPresent(unit ->
+                sb.append(PREFIX_INGREDIENT_UNIT).append(unit).append(" "));
         return sb.toString();
     }
 }
