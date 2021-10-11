@@ -37,8 +37,8 @@ public class PredicateUtil {
      * @param <T> Type of predicate.
      * @return {@code ValueInListPredicate} for quantity values.
      */
-    public static <T> ValueInListPredicate<T, Quantity> makeQuantityEqualsKeywordsPredicate(String input,
-            Function<T, Quantity> getter) {
+    public static <T> ValueInListPredicate<T, Quantity> makeQuantityInListPredicate(String input,
+                                                                                    Function<T, Quantity> getter) {
         List<String> keywords = List.of(input.split("\\s+"));
         List<Quantity> quantities = new ArrayList<>();
         for (String keyword : keywords) {

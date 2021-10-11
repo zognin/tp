@@ -11,7 +11,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE;
@@ -159,26 +158,6 @@ public class AddressBookParserTest {
                 + " " + PREFIX_CLIENT_NAME + "Carol David " + PREFIX_CLIENT_PHONE + "9110 3216 "
                 + PREFIX_CLIENT_ADDRESS + "Eunos Bishan");
         assertEquals(new FindOrderCommand(predicateCollection), command);
-    }
-
-    @Test
-    public void parseCommand_findClientNoKeywords_exceptionThrown() {
-        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, errorMessage, () ->
-                parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
-                parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
-                    + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
-    }
-
-    @Test
-    public void parseCommand_invalidFindOrderCommand_exceptionThrown() {
-        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, errorMessage, () ->
-                parser.parseCommand(FindOrderCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
-                parser.parseCommand(FindOrderCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
-                        + " " + PREFIX_CLIENT_PHONE + " " + PREFIX_CLIENT_ADDRESS));
     }
 
     @Test

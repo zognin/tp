@@ -6,7 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTes
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.addPredicates;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeQuantityEqualsKeywordsPredicate;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeQuantityInListPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeQuantityWithinRangePredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeSpaceSeparatedStringKeywords;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeStringContainsKeywordsPredicate;
@@ -88,7 +88,7 @@ public class FindIngredientCommandTest {
                         Ingredient::getName)
         );
         predicateCollection.addPredicate(
-                makeQuantityEqualsKeywordsPredicate(makeSpaceSeparatedStringKeywords(AVOCADO.getQuantity(),
+                makeQuantityInListPredicate(makeSpaceSeparatedStringKeywords(AVOCADO.getQuantity(),
                         BUTTER.getQuantity(), CHICKEN.getQuantity()),
                         Ingredient::getQuantity)
         );
