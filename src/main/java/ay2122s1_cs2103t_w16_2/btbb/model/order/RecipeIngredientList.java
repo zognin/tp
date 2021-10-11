@@ -14,6 +14,9 @@ public class RecipeIngredientList {
             + PREFIX_RECIPE_INGREDIENT + " is provided.\n"
             + "All ingredients should have the format NAME-QUANTITY-UNIT and should be comma separated.\n"
             + "Example: ri/Chicken Eggs-1-whole, Corn-1-whole";
+    public static final String MESSAGE_INTERNAL_CONSTRAINTS = "All ingredients in the ingredient list "
+            + " should have the format NAME-QUANTITY-UNIT and should be comma separated. The internal ingredient list "
+            + "can be empty.";
     private final List<Ingredient> ingredients;
 
     /**
@@ -23,7 +26,7 @@ public class RecipeIngredientList {
      */
     public RecipeIngredientList(List<Ingredient> ingredients) {
         requireNonNull(ingredients);
-        checkArgument(isValidInternalRecipeIngredientList(ingredients), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalRecipeIngredientList(ingredients), MESSAGE_INTERNAL_CONSTRAINTS);
         this.ingredients = ingredients;
     }
 

@@ -11,6 +11,8 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 40000.";
+    public static final String MESSAGE_INTERNAL_CONSTRAINTS = "Quantity should only contain numbers, "
+            + "it should be non-negative and the largest acceptable quantity is 40000.";
     private final int quantity;
 
     /**
@@ -20,7 +22,7 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        checkArgument(isValidInternalQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalQuantity(quantity), MESSAGE_INTERNAL_CONSTRAINTS);
         this.quantity = Integer.parseInt(quantity);
     }
 

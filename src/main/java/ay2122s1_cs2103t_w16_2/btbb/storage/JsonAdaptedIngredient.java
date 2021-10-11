@@ -61,7 +61,7 @@ public class JsonAdaptedIngredient {
                     Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidInternalQuantity(quantity)) {
-            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
 

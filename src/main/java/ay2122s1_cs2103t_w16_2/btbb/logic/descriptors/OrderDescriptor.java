@@ -19,6 +19,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
+/**
+ * Stores the details relevant to an order.
+ * Some details have to be converted to their model representations before converting to a Order model type.
+ */
 public class OrderDescriptor {
     public static final String MESSAGE_MISSING_CLIENT_DETAILS = "Both client and client details cannot be found";
 

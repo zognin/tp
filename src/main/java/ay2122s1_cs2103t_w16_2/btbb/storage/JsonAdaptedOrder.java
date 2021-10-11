@@ -120,9 +120,11 @@ public class JsonAdaptedOrder {
             Ingredient i = ingredient.toModelType();
             boolean hasValidQuantity = Quantity.isValidQuantity(i.getQuantity().toString());
 
-            if (hasValidQuantity) {
-                ingredients.add(i);
+            if (!hasValidQuantity) {
+                throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
             }
+
+            ingredients.add(i);
         }
         final RecipeIngredientList modelRecipeIngredients = new RecipeIngredientList(ingredients);
 
@@ -140,7 +142,7 @@ public class JsonAdaptedOrder {
             ));
         }
         if (!Deadline.isValidInternalDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Deadline.MESSAGE_INTERNAL_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
 

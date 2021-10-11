@@ -74,7 +74,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
     /**
      * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
-     * by the quantity times the multiplier in {@code target} if it exists.
+     * by the quantity in {@code target} times the multiplier if it exists.
      *
      * @param target The target ingredient.
      * @param multiplier The multiplier.

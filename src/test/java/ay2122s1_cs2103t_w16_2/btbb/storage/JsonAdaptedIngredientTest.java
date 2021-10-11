@@ -45,7 +45,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient =
                 new JsonAdaptedIngredient(VALID_INGREDIENT_NAME, INVALID_QUANTITY, VALID_UNIT);
-        String expectedMessage = Quantity.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Quantity.MESSAGE_INTERNAL_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
