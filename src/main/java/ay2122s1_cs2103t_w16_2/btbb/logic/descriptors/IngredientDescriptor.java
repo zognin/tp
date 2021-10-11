@@ -4,9 +4,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.util.Optional;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Stores the details to relevant to a ingredient.
@@ -26,6 +27,13 @@ public class IngredientDescriptor {
         setName(toCopy.name);
         setQuantity(toCopy.quantity);
         setUnit(toCopy.unit);
+    }
+
+    /**
+     * Returns true if at least one field is edited.
+     */
+    public boolean isAnyFieldEdited() {
+        return CollectionUtil.isAnyNonNull(name, quantity, unit);
     }
 
     /**
@@ -91,6 +99,23 @@ public class IngredientDescriptor {
     public Ingredient toModelType() {
         requireAllNonNull(name, quantity, unit);
         return new Ingredient(name, quantity, unit);
+    }
+
+    /**
+     * Converts a Ingredient Descriptor to a Ingredient model type.
+     * Missing fields are filled with an existing ingredient.
+     *
+     * @param existingIngredient An existing Ingredient that is not null.
+     * @return {@code Ingredient}.
+     */
+    public Ingredient toModelTypeFrom(Ingredient existingIngredient) {
+        assert existingIngredient != null;
+
+        GenericString updatedName = getName().orElse(existingIngredient.getName());
+        Quantity updatedQuantity = getQuantity().orElse(existingIngredient.getQuantity());
+        GenericString updatedUnit = getUnit().orElse(existingIngredient.getUnit());
+
+        return new Ingredient(updatedName, updatedQuantity, updatedUnit);
     }
 
     @Override

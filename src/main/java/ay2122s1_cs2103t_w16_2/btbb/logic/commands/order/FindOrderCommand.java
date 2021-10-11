@@ -10,7 +10,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**

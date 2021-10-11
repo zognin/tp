@@ -1,7 +1,10 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_BEEF;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.AVOCADO;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
@@ -32,6 +35,23 @@ public class IngredientTest {
         // different ingredient name, all other attributes same -> returns false
         editedAvocado = new IngredientBuilder(AVOCADO).withUnit(VALID_UNIT_BEEF).build();
         assertFalse(AVOCADO.isSameIngredient(editedAvocado));
+    }
+
+    @Test
+    public void isValidIngredient() {
+        // valid
+        assertTrue(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_APPLE, VALID_QUANTITY_APPLE, VALID_UNIT_APPLE));
+        assertTrue(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_BEEF, VALID_QUANTITY_BEEF, VALID_UNIT_BEEF));
+
+        // invalid
+        assertFalse(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_APPLE + "$",
+                VALID_QUANTITY_APPLE, VALID_UNIT_APPLE)); // name invalid
+        assertFalse(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_APPLE,
+                VALID_QUANTITY_APPLE + '$', VALID_UNIT_APPLE)); // quantity invalid
+        assertFalse(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_APPLE,
+                "0", VALID_UNIT_APPLE)); // quantity zero invalid
+        assertFalse(Ingredient.isValidIngredient(VALID_INGREDIENT_NAME_APPLE,
+                VALID_QUANTITY_APPLE + '$', VALID_UNIT_APPLE + '$')); // quantity invalid
     }
 
     @Test

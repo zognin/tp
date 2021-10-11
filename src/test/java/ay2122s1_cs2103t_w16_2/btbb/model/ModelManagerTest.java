@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
+package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -7,10 +7,15 @@ import static java.util.Objects.requireNonNull;
  * Represents the quantity of an Ingredient in btbb.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Quantity {
+public class Quantity implements Comparable<Quantity> {
+    public static final String DEFAULT_MIN_QUANTITY_STRING = String.valueOf(0);
+    public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(40000);
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
-                    + "and the largest acceptable quantity is 2147483647.";
+                    + "and the largest acceptable quantity is 40000.";
+
+    public static final String MESSAGE_INTERNAL_CONSTRAINTS = "Quantity should only contain numbers, "
+            + "it should be non-negative and the largest acceptable quantity is 40000.";
     private final int quantity;
 
     /**
@@ -20,7 +25,7 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalQuantity(quantity), MESSAGE_INTERNAL_CONSTRAINTS);
         this.quantity = Integer.parseInt(quantity);
     }
 
@@ -33,10 +38,37 @@ public class Quantity {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity > 0;
+            return quantity > 0 && quantity <= 40000;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid internal quantity.
+     * For internal use there is a wider definition of a valid quantity.
+     *
+     * @param test String input to check.
+     * @return boolean of whether quantity is valid.
+     */
+    public static boolean isValidInternalQuantity(String test) {
+        try {
+            int quantity = Integer.parseInt(test);
+            return quantity >= 0 && quantity <= 40000;
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns a new {@code Quantity} object with its quantity reduced by amount * multiplier.
+     *
+     * @param amount The amount to decrease.
+     * @param multiplier The multiplier.
+     * @return A new {@code Quantity} object.
+     */
+    public Quantity minusQuantityBy(Quantity amount, Quantity multiplier) {
+        return new Quantity(Integer.toString(Math.max(quantity - amount.quantity * multiplier.quantity, 0)));
     }
 
     /**
@@ -70,5 +102,10 @@ public class Quantity {
     @Override
     public int hashCode() {
         return quantity;
+    }
+
+    @Override
+    public int compareTo(Quantity otherQuantity) {
+        return this.quantity - otherQuantity.quantity;
     }
 }
