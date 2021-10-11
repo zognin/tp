@@ -165,6 +165,8 @@ Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
   * client names containing 'Be' with phone numbers containing '34'.
   * client names containing 'Be' with phone numbers containing '22312'.
 
+</div>
+
 #### 3.3.5 Listing all clients: `list-c`
 
 Lists all clients in the application.
@@ -250,6 +252,8 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * ingredient names containing 'Fl' with units containing 'p'
   * ingredient names containing 'Fl' with units containing 'k'
   
+</div>
+
 #### 3.4.5 Listing all ingredients: `list-i`
 
 Lists all ingredients in the application.
