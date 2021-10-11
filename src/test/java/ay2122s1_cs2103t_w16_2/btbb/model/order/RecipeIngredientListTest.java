@@ -29,4 +29,18 @@ class RecipeIngredientListTest {
         assertTrue(RecipeIngredientList.isValidRecipeIngredientList(List.of(AVOCADO))); // single element list
         assertTrue(RecipeIngredientList.isValidRecipeIngredientList(List.of(BREAD, BUTTER))); // multi element list
     }
+
+    @Test
+    public void isValidInternalRecipeIngredientList() {
+        // null list
+        assertFalse(RecipeIngredientList.isValidInternalRecipeIngredientList(null));
+
+        // valid list
+        assertTrue(RecipeIngredientList
+                .isValidInternalRecipeIngredientList(List.of())); // zero element list allowed internally
+        assertTrue(RecipeIngredientList
+                .isValidInternalRecipeIngredientList(List.of(AVOCADO))); // single element list
+        assertTrue(RecipeIngredientList
+                .isValidInternalRecipeIngredientList(List.of(BREAD, BUTTER))); // multi element list
+    }
 }
