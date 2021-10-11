@@ -253,7 +253,7 @@ Format: `delete-o INDEX`
 
 #### 3.4.4 Finding orders by their attributes: `find-o`
 
-Find order(s) with attribute(s) that contains the keyword(s).
+Find the most relevant order(s) in the application by their attribute(s).
 
 Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
 
@@ -284,8 +284,8 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 **Examples:**
 * `find-o cn/al` Find orders for clients with names containing 'al'. E.g. Alex, Alice, Al.
 * `find-o cp/91234567` Find orders for clients with 91234567 as their phone number.
-* `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone contains at least 1 of the
-  keywords for each prefix. Any orders with the following client details will be matched:
+* `find-o cn/Alex David cp/9123 9231` Find orders for clients whose names contain either 'Alex' or 'David' 
+  and phone numbers contain either '9123' or '9231'. For example, the following client details will be matched:
   * Alex 91231100
   * David 91234567
   * Alex 92315697
