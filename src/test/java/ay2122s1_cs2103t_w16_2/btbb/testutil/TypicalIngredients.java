@@ -17,6 +17,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 public class TypicalIngredients {
     public static final Ingredient AVOCADO = new IngredientBuilder().withIngredientName("Avocado")
             .withQuantity("5").withUnit("whole").build();
+    public static final Ingredient BREAD = new IngredientBuilder().withIngredientName("Bread")
+            .withQuantity("1000").withUnit("slice").build();
     public static final Ingredient BUTTER = new IngredientBuilder().withIngredientName("Butter")
             .withQuantity("550").withUnit("grams").build();
     public static final Ingredient CHICKEN = new IngredientBuilder().withIngredientName("Chicken")
@@ -25,10 +27,20 @@ public class TypicalIngredients {
             .withQuantity("300").withUnit("grams").build();
     public static final Ingredient EGG = new IngredientBuilder().withIngredientName("Egg")
             .withQuantity("2").withUnit("dozen").build();
-    public static final Ingredient FLOUR = new IngredientBuilder().withIngredientName("Dark Chocolate")
+    public static final Ingredient FISH = new IngredientBuilder().withIngredientName("FISH")
+            .withQuantity("20").withUnit("whole").build();
+    public static final Ingredient FLOUR = new IngredientBuilder().withIngredientName("FLOUR")
             .withQuantity("4").withUnit("kg").build();
     public static final Ingredient GINGER = new IngredientBuilder().withIngredientName("Ginger")
             .withQuantity("8").withUnit("whole").build();
+    public static final Ingredient KAYA = new IngredientBuilder().withIngredientName("Kaya")
+            .withQuantity("1000").withUnit("grams").build();
+    public static final Ingredient NOODLES = new IngredientBuilder().withIngredientName("Noodles")
+            .withQuantity("4000").withUnit("grams").build();
+    public static final Ingredient PRAWN = new IngredientBuilder().withIngredientName("Prawn")
+            .withQuantity("200").withUnit("whole").build();
+    public static final Ingredient RICE = new IngredientBuilder().withIngredientName("Rice")
+            .withQuantity("5000").withUnit("grams").build();
 
 
     public static final Ingredient APPLE = new IngredientBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)

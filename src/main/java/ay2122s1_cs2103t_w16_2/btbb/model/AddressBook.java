@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.model;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
 /**
@@ -154,6 +156,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredients.contains(ingredient);
+    }
+
+    /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
+     * by the quantity in {@code target} if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        ingredients.minusIngredientQuantity(target, multiplier);
     }
 
     /**

@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Represents an Ingredient in the address book.
@@ -28,6 +29,20 @@ public class Ingredient {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
+    }
+
+    /**
+     * Returns true if the given strings can be used to create a valid ingredients.
+     *
+     * @param name The name of the ingredient.
+     * @param quantity The quantity of the ingredient.
+     * @param unit The unit of the ingredient.
+     * @return True if it is a valid ingredient. False otherwise.
+     */
+    public static boolean isValidIngredient(String name, String quantity, String unit) {
+        return GenericString.isValidGenericString(name)
+                && Quantity.isValidQuantity(quantity)
+                && GenericString.isValidGenericString(unit);
     }
 
     /**
@@ -117,9 +132,9 @@ public class Ingredient {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Quantity: ")
+                .append(" x ")
                 .append(getQuantity())
-                .append("; Unit: ")
+                .append(" ")
                 .append(getUnit());
 
         return builder.toString();
