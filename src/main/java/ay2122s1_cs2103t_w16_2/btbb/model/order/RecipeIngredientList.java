@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.stream.Collectors;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 
 public class RecipeIngredientList {
-    public static final String MESSAGE_CONSTRAINTS = "The ingredient list should contain at least one ingredient.\n"
+    public static final String MESSAGE_CONSTRAINTS = "The ingredient list should contain at least one ingredient if "
+            + PREFIX_RECIPE_INGREDIENT + " is provided.\n"
             + "All ingredients should have the format NAME-QUANTITY-UNIT and should be comma separated.\n"
             + "Example: ri/Chicken Eggs-1-whole, Corn-1-whole";
     private final List<Ingredient> ingredients;
@@ -77,18 +79,6 @@ public class RecipeIngredientList {
         }
         return stringBuilder.toString();
     }
-
-    /**
-     * Converts a RecipeIngredientList object into its user input String representation.
-     *
-     * @return User Input String representation of a RecipeIngredientList object.
-     */
-    public String toUserInputString() {
-        return ingredients.stream()
-                .map(ingredient -> ingredient.getName() + "-" + ingredient.getQuantity() + "-" + ingredient.getUnit())
-                .collect(Collectors.joining(", "));
-    }
-
 
     /**
      * Returns true if object and this RecipeIngredientList are the same.

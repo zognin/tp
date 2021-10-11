@@ -177,11 +177,7 @@ public class ParserUtil {
         String quantity = individualIngredientArray[1];
         String unit = individualIngredientArray[2];
 
-        boolean isValidIngredient = GenericString.isValidGenericString(recipeName)
-                && Quantity.isValidQuantity(quantity)
-                && GenericString.isValidGenericString(unit);
-
-        if (!isValidIngredient) {
+        if (!Ingredient.isValidIngredient(recipeName, quantity, unit)) {
             throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
 

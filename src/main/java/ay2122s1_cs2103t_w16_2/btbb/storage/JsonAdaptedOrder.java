@@ -118,12 +118,9 @@ public class JsonAdaptedOrder {
         final List<Ingredient> ingredients = new ArrayList<>();
         for (JsonAdaptedIngredient ingredient : recipeIngredients) {
             Ingredient i = ingredient.toModelType();
-
-            boolean hasValidName = GenericString.isValidGenericString(i.getName().toString());
             boolean hasValidQuantity = Quantity.isValidQuantity(i.getQuantity().toString());
-            boolean hasValidUnit = GenericString.isValidGenericString(i.getUnit().toString());
 
-            if (hasValidName && hasValidQuantity && hasValidUnit) {
+            if (hasValidQuantity) {
                 ingredients.add(i);
             }
         }

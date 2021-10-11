@@ -32,6 +32,20 @@ public class Ingredient {
     }
 
     /**
+     * Returns true if the given strings can be used to create a valid ingredients.
+     *
+     * @param name The name of the ingredient.
+     * @param quantity The quantity of the ingredient.
+     * @param unit The unit of the ingredient.
+     * @return True if it is a valid ingredient. False otherwise.
+     */
+    public static boolean isValidIngredient(String name, String quantity, String unit) {
+        return GenericString.isValidGenericString(name)
+                && Quantity.isValidQuantity(quantity)
+                && GenericString.isValidGenericString(unit);
+    }
+
+    /**
      * Gets name of this ingredient.
      *
      * @return name of this ingredient.

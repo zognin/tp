@@ -83,7 +83,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         requireAllNonNull(target, multiplier);
 
         Ingredient currentIngredient = internalList.stream()
-                .filter(ingredient -> ingredient.isSameIngredient(target)).findFirst().orElse(null);
+                .filter(target::isSameIngredient).findFirst().orElse(null);
 
         if (currentIngredient != null) {
             Ingredient ingredientWithNewQuantity = new Ingredient(

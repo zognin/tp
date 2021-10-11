@@ -64,7 +64,7 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
         requireAllNonNull(target, multiplier);
 
         Ingredient currentIngredient = ingredientsAdded.stream()
-                .filter(ingredient -> ingredient.isSameIngredient(target)).findFirst().orElse(null);
+                .filter(target::isSameIngredient).findFirst().orElse(null);
 
         if (currentIngredient != null) {
             Ingredient ingredientWithNewQuantity = new Ingredient(
