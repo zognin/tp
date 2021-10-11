@@ -55,7 +55,7 @@ public class PredicateCollection<T> implements Predicate<T> {
      * @param prefix Prefix of keyword.
      * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
      * @param getter Function to get the quantity to be tested.
-     * @param parser Parser to parse the input to a list of values.
+     * @param parser ParserFunction to parse the input to a list of values.
      * @param <S> Type of the values in the list.
      * @throws ParseException if the given input is invalid.
      */
@@ -73,10 +73,10 @@ public class PredicateCollection<T> implements Predicate<T> {
      *
      * @param fromPrefix Prefix for the lower bound of the range.
      * @param toPrefix Prefix for the upper bound of the range.
-     * @param defaultMin Default upper bound of the range.
-     * @param defaultMax Default lower bound of the range.
+     * @param defaultMin Default lower bound of the range.
+     * @param defaultMax Default upper bound of the range.
      * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
-     * @param parser Parser to parse the inputs.
+     * @param parser ParserFunction to parse the inputs.
      * @param getter Function to get the value to be tested.
      * @param <S> Type of the values.
      * @throws ParseException if the given input is invalid.
@@ -94,7 +94,8 @@ public class PredicateCollection<T> implements Predicate<T> {
         String minQuantity = optionalMinValue.orElse(defaultMin);
         String maxQuantity = optionalMaxValue.orElse(defaultMax);
 
-        addPredicate(new ValueWithinRangePredicate<>(getter, parser.apply(minQuantity), parser.apply(maxQuantity)));
+        addPredicate(new ValueWithinRangePredicate<>(getter,
+                parser.apply(minQuantity), parser.apply(maxQuantity)));
     }
 
     /**

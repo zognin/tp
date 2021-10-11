@@ -140,20 +140,20 @@ public class ParserUtilTest {
 
     @Test
     public void parseInternalQuantity_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INTERNAL_QUANTITY));
+        assertThrows(ParseException.class, () -> ParserUtil.parseInternalQuantity(INVALID_INTERNAL_QUANTITY));
     }
 
     @Test
     public void parseInternalQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
-        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY_1));
+        assertEquals(expectedQuantity, ParserUtil.parseInternalQuantity(VALID_QUANTITY_1));
     }
 
     @Test
     public void parseInternalQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
         String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
-        assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
+        assertEquals(expectedQuantity, ParserUtil.parseInternalQuantity(quantityWithWhitespace));
     }
 
     @Test
