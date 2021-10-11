@@ -11,26 +11,28 @@ title: User Guide
 
 ### 1.1 About BobTheBistroBoss
 
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders, optimized for use via a command line interface (CLI).**
-Keeping track of information from memberships to order records for contact tracing can be a hassle if you are a one-man show.
-That's why, our application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and manoeuvre through client and order details.
-If you are looking to keep your physique, down to your finger muscles, in shape, give BTBB a try!
+BobTheBistroBoss (BTBB) is a **desktop application that aims to help F&B businesses, by keeping track of logistics as well as 
+providing valuable data visualizations, via a user-friendly command line interface (CLI).** Keeping track of 
+information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our 
+application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and 
+manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
 
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java version 11 or above installed in your Computer. You may install the latest version of Java [here](https://www.oracle.com/java/technologies/downloads/).
 
-1. Download the jar file of the application.
+2. Download the jar file of the application.
 
-1. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
+3. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
 
-1. Double-click the file to start the application.
+4. Double-click the file to start the application.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type any command in the command box and press the Enter key to execute it.<br>
    Some example commands you can try:
-   * **`list client`** : Lists all clients.
+   * **`help`** : Opens the help window
+   * **`list-c`** : Lists all clients.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +251,7 @@ Format: `delete-o INDEX`
 **Examples:**
 * `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
-#### 3.4.4 Finding orders by keywords: `find-o`
+#### 3.4.4 Finding orders by their attributes: `find-o`
 
 Find order(s) with attribute(s) that contains the keyword(s).
 
