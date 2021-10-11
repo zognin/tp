@@ -8,6 +8,7 @@ import java.util.function.Predicate;
  * Tests if a value is in a list of values.
  *
  * @param <T> Type of the predicate.
+ * @param <S> Type of the values to be tested.
  */
 public class ValueInListPredicate<T, S> implements Predicate<T> {
     private final Function<T, S> getter;

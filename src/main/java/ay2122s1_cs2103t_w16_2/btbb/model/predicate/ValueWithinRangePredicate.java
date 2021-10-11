@@ -8,6 +8,7 @@ import java.util.function.Predicate;
  * The value must implement the comparable interface.
  *
  * @param <T> Type of the predicate.
+ * @param <S> Type of the values to be tested.
  */
 public class ValueWithinRangePredicate<T, S extends Comparable<S>> implements Predicate<T> {
     private final Function<T, S> getter;
