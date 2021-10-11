@@ -101,12 +101,11 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 </div>
 
 **Examples:**
-* `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` 
-  Adds a client with the following attributes: 
-    * Name: Alex Yeoh 
-    * Phone number:89653101
-    * Email: 'alexyeoh@gmail.com' 
-    * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
+* `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the following attributes:
+  * Name: Alex Yeoh
+  * Phone number:89653101
+  * Email: 'alexyeoh@gmail.com'
+  * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
 
 #### 3.3.2 Deleting a client: `delete-c`
 
@@ -135,8 +134,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 </div>
 
 **Examples:**
-*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in currently shown client list by changing the 
-   name to 'Amy' and the email to 'Amy1234@gmail.com'.
+*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in currently shown client list by changing the name to 'Amy' and the email to 'Amy1234@gmail.com'.
 
 #### 3.3.4 Finding clients by keywords: `find-c`
 
@@ -251,7 +249,6 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * ingredient names containing 'Ap' with units containing 'k'
   * ingredient names containing 'Fl' with units containing 'p'
   * ingredient names containing 'Fl' with units containing 'k'
-  
 </div>
 
 #### 3.4.5 Listing all ingredients: `list-i`
