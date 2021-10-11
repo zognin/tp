@@ -31,8 +31,8 @@ public class PredicateCollectionTest {
     // Ingredient predicates
     public static final StringContainsKeywordsPredicate<Ingredient> INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE =
             new StringContainsKeywordsPredicate<>(Ingredient::getName, List.of("Avocado", "Butter"));
-    public static final ValueEqualsKeywordsPredicate<Ingredient, Quantity> INGREDIENT_QUANTITY_5_550_PREDICATE =
-            new ValueEqualsKeywordsPredicate<>(Ingredient::getQuantity,
+    public static final ValueInListPredicate<Ingredient, Quantity> INGREDIENT_QUANTITY_5_550_PREDICATE =
+            new ValueInListPredicate<>(Ingredient::getQuantity,
                     List.of(new Quantity("5"), new Quantity("550")));
     public static final ValueWithinRangePredicate<Ingredient, Quantity> INGREDIENT_QUANTITY_5_TO_600_PREDICATE =
             new ValueWithinRangePredicate<>(Ingredient::getQuantity, new Quantity("5"), new Quantity("600"));

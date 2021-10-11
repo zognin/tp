@@ -157,19 +157,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {code String keywords} into a {@code List<Quantity>}.
+     * Parses a {@code String quantities} into a {@code List<Quantity>}.
      *
-     * @param keywords Keywords to be parsed into Quantity.
-     * @return List of strings containing all the keywords.
-     * @throws ParseException if the given {@code keywords} is invalid.
+     * @param quantities String input to be parsed into a list of quantities.
+     * @return List of quantities.
+     * @throws ParseException if the given {@code quantities} is invalid.
      */
-    public static List<Quantity> parseQuantityKeywords(String keywords)
-            throws ParseException {
-        ArrayList<Quantity> quantityKeywords = new ArrayList<>();
-        for (String stringKeyword : parseKeywords(keywords)) {
-            quantityKeywords.add(parseInternalQuantity(stringKeyword));
+    public static List<Quantity> parseQuantities(String quantities) throws ParseException {
+        ArrayList<Quantity> quantityList = new ArrayList<>();
+        for (String stringKeyword : parseKeywords(quantities)) {
+            quantityList.add(parseInternalQuantity(stringKeyword));
         }
-        return quantityKeywords;
+        return quantityList;
     }
 
     /**

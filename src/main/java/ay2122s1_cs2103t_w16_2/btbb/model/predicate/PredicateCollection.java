@@ -34,7 +34,7 @@ public class PredicateCollection<T> implements Predicate<T> {
     }
 
     /**
-     * Adds a {@code ValueEqualsKeywordsPredicate} for quantity values to the list of predicates.
+     * Adds a {@code ValueInListPredicate} for quantity values to the list of predicates.
      *
      * @param prefix Prefix of keyword.
      * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
@@ -44,8 +44,8 @@ public class PredicateCollection<T> implements Predicate<T> {
     public void addQuantityEqualsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
             Function<T, Quantity> getter) throws ParseException {
         if (argMultimap.getValue(prefix).isPresent()) {
-            addPredicate(new ValueEqualsKeywordsPredicate<>(getter,
-                    ParserUtil.parseQuantityKeywords(argMultimap.getValue(prefix).get())));
+            addPredicate(new ValueInListPredicate<>(getter,
+                    ParserUtil.parseQuantities(argMultimap.getValue(prefix).get())));
         }
     }
 
@@ -62,23 +62,23 @@ public class PredicateCollection<T> implements Predicate<T> {
      */
     public void addQuantityWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
             ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
-        Optional<String> optionalMinQuantityKeyword = argMultimap.getValue(fromPrefix);
-        Optional<String> optionalMaxQuantityKeyword = argMultimap.getValue(toPrefix);
+        Optional<String> optionalMinQuantity = argMultimap.getValue(fromPrefix);
+        Optional<String> optionalMaxQuantity = argMultimap.getValue(toPrefix);
 
-        if (optionalMinQuantityKeyword.isEmpty() && optionalMaxQuantityKeyword.isEmpty()) {
+        if (optionalMinQuantity.isEmpty() && optionalMaxQuantity.isEmpty()) {
             return;
         }
 
-        String defaultKeywordMinQuantity = String.valueOf(Integer.MIN_VALUE);
-        String defaultKeywordMaxQuantity = String.valueOf(Integer.MAX_VALUE);
+        String defaultMinQuantity = String.valueOf(Integer.MIN_VALUE);
+        String defaultMaxQuantity = String.valueOf(Integer.MAX_VALUE);
 
-        String minQuantityKeyword = optionalMinQuantityKeyword.orElse(defaultKeywordMinQuantity);
-        String maxQuantityKeyword = optionalMaxQuantityKeyword.orElse(defaultKeywordMaxQuantity);
+        String minQuantity = optionalMinQuantity.orElse(defaultMinQuantity);
+        String maxQuantity = optionalMaxQuantity.orElse(defaultMaxQuantity);
 
         addPredicate(new ValueWithinRangePredicate<>(
                 getter,
-                ParserUtil.parseInternalQuantity(minQuantityKeyword),
-                ParserUtil.parseInternalQuantity(maxQuantityKeyword)));
+                ParserUtil.parseInternalQuantity(minQuantity),
+                ParserUtil.parseInternalQuantity(maxQuantity)));
     }
 
     /**

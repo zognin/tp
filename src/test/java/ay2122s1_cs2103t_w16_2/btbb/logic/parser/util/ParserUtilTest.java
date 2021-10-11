@@ -224,25 +224,25 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseQuantityKeywords_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantityKeywords(null));
+    public void parseQuantities_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantities(null));
     }
 
     @Test
-    public void parseQuantityKeywords_invalidValues_throwsParseException() {
+    public void parseQuantities_invalidValues_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseQuantityKeywords(INVALID_INTERNAL_QUANTITY));
+                ParserUtil.parseQuantities(INVALID_INTERNAL_QUANTITY));
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + INVALID_INTERNAL_QUANTITY));
+                ParserUtil.parseQuantities(VALID_QUANTITY_1 + " " + INVALID_INTERNAL_QUANTITY));
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseQuantityKeywords(INVALID_QUANTITY + " " + VALID_QUANTITY_2));
+                ParserUtil.parseQuantities(INVALID_QUANTITY + " " + VALID_QUANTITY_2));
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseQuantityKeywords(VALID_GENERIC_STRING + " " + VALID_QUANTITY_2));
+                ParserUtil.parseQuantities(VALID_GENERIC_STRING + " " + VALID_QUANTITY_2));
     }
 
     @Test
-    public void parseQuantityKeywords_validValues_returnsListOfQuantities() throws Exception {
+    public void parseQuantities_validValues_returnsListOfQuantities() throws Exception {
         List<Quantity> expectedList = List.of(new Quantity(VALID_QUANTITY_1), new Quantity(VALID_QUANTITY_2));
-        assertEquals(expectedList, ParserUtil.parseQuantityKeywords(VALID_QUANTITY_1 + " " + VALID_QUANTITY_2));
+        assertEquals(expectedList, ParserUtil.parseQuantities(VALID_QUANTITY_1 + " " + VALID_QUANTITY_2));
     }
 }
