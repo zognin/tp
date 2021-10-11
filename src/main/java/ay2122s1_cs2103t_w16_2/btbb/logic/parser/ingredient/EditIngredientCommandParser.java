@@ -16,28 +16,12 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
 /**
- * Parses input arguments and creates a new EditClientCommand object
+ * Parses input arguments and creates a new EditIngredientCommand object
  */
 public class EditIngredientCommandParser implements Parser<EditIngredientCommand> {
-    private void fillIngredientDescriptor(ArgumentMultimap argMultimap,
-                                          IngredientDescriptor ingredientDescriptor) throws ParseException {
-        if (argMultimap.getValue(PREFIX_INGREDIENT_NAME).isPresent()) {
-            ingredientDescriptor.setName(
-                    ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_NAME).get(), "Name"));
-        }
-        if (argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).isPresent()) {
-            ingredientDescriptor.setQuantity(
-                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));
-        }
-        if (argMultimap.getValue(PREFIX_INGREDIENT_UNIT).isPresent()) {
-            ingredientDescriptor.setUnit(
-                    ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_UNIT).get(), "Unit"));
-        }
-    }
-
     /**
-     * Parses the given {@code String} of arguments in the context of the EditClientCommand
-     * and returns an EditClientCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditIngredientCommand
+     * and returns an EditIngredientCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -64,5 +48,21 @@ public class EditIngredientCommandParser implements Parser<EditIngredientCommand
         }
 
         return new EditIngredientCommand(index, editIngredientDescriptor);
+    }
+
+    private void fillIngredientDescriptor(ArgumentMultimap argMultimap,
+                                          IngredientDescriptor ingredientDescriptor) throws ParseException {
+        if (argMultimap.getValue(PREFIX_INGREDIENT_NAME).isPresent()) {
+            ingredientDescriptor.setName(
+                    ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_NAME).get(), "Name"));
+        }
+        if (argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).isPresent()) {
+            ingredientDescriptor.setQuantity(
+                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_INGREDIENT_UNIT).isPresent()) {
+            ingredientDescriptor.setUnit(
+                    ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_INGREDIENT_UNIT).get(), "Unit"));
+        }
     }
 }

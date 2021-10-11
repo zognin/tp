@@ -66,9 +66,6 @@ public class AddressBookParser {
         case AddIngredientCommand.COMMAND_WORD:
             return new AddIngredientCommandParser().parse(arguments);
 
-        case EditIngredientCommand.COMMAND_WORD:
-            return new EditIngredientCommandParser().parse(arguments);
-
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
 
@@ -77,6 +74,9 @@ public class AddressBookParser {
 
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
+
+        case EditIngredientCommand.COMMAND_WORD:
+            return new EditIngredientCommandParser().parse(arguments);
 
         case FindClientCommand.COMMAND_WORD:
             return new FindClientCommandParser().parse(arguments);

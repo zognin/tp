@@ -106,7 +106,7 @@ public class IngredientDescriptor {
      * Missing fields are filled with an existing ingredient.
      *
      * @param existingIngredient An existing Ingredient that is not null.
-     * @return {@code Client}.
+     * @return {@code Ingredient}.
      */
     public Ingredient toModelTypeFrom(Ingredient existingIngredient) {
         assert existingIngredient != null;

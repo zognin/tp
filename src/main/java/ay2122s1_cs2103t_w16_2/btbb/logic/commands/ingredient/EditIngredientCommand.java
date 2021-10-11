@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
@@ -23,8 +24,8 @@ public class EditIngredientCommand extends Command {
     public static final String COMMAND_WORD = "edit-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the ingredient identified "
-            + "by the index number used in the displayed ingredient list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "by the index number used in the displayed ingredient list.\n"
+            + "\t Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_INGREDIENT_NAME + "NAME] "
             + "[" + PREFIX_INGREDIENT_QUANTITY + "QUANTITY] "
@@ -45,8 +46,7 @@ public class EditIngredientCommand extends Command {
      * @param editIngredientDescriptor details to edit the ingredient with.
      */
     public EditIngredientCommand(Index index, IngredientDescriptor editIngredientDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editIngredientDescriptor);
+        requireAllNonNull(index, editIngredientDescriptor);
 
         this.index = index;
         this.editIngredientDescriptor = new IngredientDescriptor(editIngredientDescriptor);
