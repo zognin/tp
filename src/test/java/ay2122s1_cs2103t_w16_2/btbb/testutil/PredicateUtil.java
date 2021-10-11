@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.ValueWithinRangePredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.ValueEqualsKeywordsPredicate;
 
@@ -48,19 +48,19 @@ public class PredicateUtil {
     }
 
     /**
-     * Makes a {@code QuantityWithinRangePredicate}.
+     * Makes a {@code ValueWithinRangePredicate} for quantity values.
      *
      * @param minQuantityKeyword Minimum quantity to form the lower bound of the range.
      * @param maxQuantityKeyword Maximum quantity to form the upper bound of the range.
      * @param getter Getter to get item to test predicate with.
      * @param <T> Type of predicate.
-     * @return {@code QuantityWithinRangePredicate}.
+     * @return {@code ValueWithinRangePredicate} for quantity values.
      */
-    public static <T> QuantityWithinRangePredicate<T> makeQuantityWithinRangePredicate(
+    public static <T> ValueWithinRangePredicate<T, Quantity> makeQuantityWithinRangePredicate(
             String minQuantityKeyword,
             String maxQuantityKeyword,
             Function<T, Quantity> getter) {
-        return new QuantityWithinRangePredicate<>(getter,
+        return new ValueWithinRangePredicate<>(getter,
                 new Quantity(minQuantityKeyword),
                 new Quantity(maxQuantityKeyword));
     }

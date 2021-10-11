@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents the quantity of an Ingredient in btbb.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Quantity {
+public class Quantity implements Comparable<Quantity> {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 2147483647.";
@@ -59,18 +59,6 @@ public class Quantity {
     }
 
     /**
-     * Returns true if this quantity is within the range of the provided minimum and maximum quantities,
-     * inclusive of both minimum and maximum quantities.
-     *
-     * @param minQuantity Lower bound of range check.
-     * @param maxQuantity Upper bound of range check.
-     * @return True if this quantity is within the range, false otherwise.
-     */
-    public boolean isWithinRange(Quantity minQuantity, Quantity maxQuantity) {
-        return this.quantity >= minQuantity.quantity && this.quantity <= maxQuantity.quantity;
-    }
-
-    /**
      * Converts Quantity object into its String representation.
      *
      * @return String representation of quantity.
@@ -101,5 +89,10 @@ public class Quantity {
     @Override
     public int hashCode() {
         return quantity;
+    }
+
+    @Override
+    public int compareTo(Quantity otherQuantity) {
+        return this.quantity - otherQuantity.quantity;
     }
 }

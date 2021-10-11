@@ -1,8 +1,5 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
-import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate.DEFAULT_KEYWORD_MAX_QUANTITY;
-import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate.DEFAULT_KEYWORD_MIN_QUANTITY;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.ValueWithinRangePredicate;
 
 /**
  * Tests that all given predicates match.
@@ -54,7 +51,7 @@ public class PredicateCollection<T> implements Predicate<T> {
     }
 
     /**
-     * Adds a {@code QuantityWithinRangePredicate} to the list of predicates.
+     * Adds a {@code ValueWithinRangePredicate} for quantity values to the list of predicates.
      * It adds the predicate as long as either the lower or upper bound of the range is provided,
      * and fills the unprovided bound with a default value.
      *
@@ -73,10 +70,13 @@ public class PredicateCollection<T> implements Predicate<T> {
             return;
         }
 
-        String minQuantityKeyword = optionalMinQuantityKeyword.orElse(DEFAULT_KEYWORD_MIN_QUANTITY);
-        String maxQuantityKeyword = optionalMaxQuantityKeyword.orElse(DEFAULT_KEYWORD_MAX_QUANTITY);
+        String defaultKeywordMinQuantity = String.valueOf(Integer.MIN_VALUE);
+        String defaultKeywordMaxQuantity = String.valueOf(Integer.MAX_VALUE);
 
-        addPredicate(new QuantityWithinRangePredicate<>(
+        String minQuantityKeyword = optionalMinQuantityKeyword.orElse(defaultKeywordMinQuantity);
+        String maxQuantityKeyword = optionalMaxQuantityKeyword.orElse(defaultKeywordMaxQuantity);
+
+        addPredicate(new ValueWithinRangePredicate<>(
                 getter,
                 ParserUtil.parseInternalQuantity(minQuantityKeyword),
                 ParserUtil.parseInternalQuantity(maxQuantityKeyword)));
