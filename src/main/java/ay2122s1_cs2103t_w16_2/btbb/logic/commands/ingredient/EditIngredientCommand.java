@@ -25,7 +25,7 @@ public class EditIngredientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the ingredient identified "
             + "by the index number used in the displayed ingredient list.\n"
-            + "\t Existing values will be overwritten by the input values.\n"
+            + "\t   Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_INGREDIENT_NAME + "NAME] "
             + "[" + PREFIX_INGREDIENT_QUANTITY + "QUANTITY] "
