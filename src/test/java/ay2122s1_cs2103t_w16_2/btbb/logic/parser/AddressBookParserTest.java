@@ -6,14 +6,22 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_ALICE_BOB_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.CLIENT_PHONE_9427_3217_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_ADDRESS_YISHUN_GEYLANG_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_NAME_ALICE_BOB_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_PHONE_9427_3217_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_TO_600_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,6 +41,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -43,7 +52,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientUtil;
@@ -135,6 +144,22 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_findIngredient() throws Exception {
+        PredicateCollection<Ingredient> predicateCollection = new PredicateCollection<>();
+        predicateCollection.addPredicate(INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE);
+        predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_550_PREDICATE);
+        predicateCollection.addPredicate(INGREDIENT_QUANTITY_5_TO_600_PREDICATE);
+        predicateCollection.addPredicate(INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE);
+        FindIngredientCommand command = (FindIngredientCommand) parser.parseCommand(FindIngredientCommand.COMMAND_WORD
+                + " "
+                + PREFIX_INGREDIENT_NAME + "Avocado Butter "
+                + PREFIX_INGREDIENT_QUANTITY + "5 550 "
+                + PREFIX_INGREDIENT_QUANTITY_FROM + "5 " + PREFIX_INGREDIENT_QUANTITY_TO + "600 "
+                + PREFIX_INGREDIENT_UNIT + "whole grams");
+        assertEquals(new FindIngredientCommand(predicateCollection), command);
+    }
+
+    @Test
     public void parseCommand_findOrder() throws Exception {
         PredicateCollection<Order> predicateCollection = new PredicateCollection<>();
         predicateCollection.addPredicate(CLIENT_NAME_CAROL_DAVID_PREDICATE);
@@ -144,26 +169,6 @@ public class AddressBookParserTest {
                 + " " + PREFIX_CLIENT_NAME + "Carol David " + PREFIX_CLIENT_PHONE + "9110 3216 "
                 + PREFIX_CLIENT_ADDRESS + "Eunos Bishan");
         assertEquals(new FindOrderCommand(predicateCollection), command);
-    }
-
-    @Test
-    public void parseCommand_findClientNoKeywords_exceptionThrown() {
-        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, errorMessage, () ->
-                parser.parseCommand(FindClientCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
-                parser.parseCommand(FindClientCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
-                    + " " + PREFIX_CLIENT_ADDRESS + " " + PREFIX_CLIENT_EMAIL + " " + PREFIX_CLIENT_PHONE));
-    }
-
-    @Test
-    public void parseCommand_invalidFindOrderCommand_exceptionThrown() {
-        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE);
-        assertThrows(ParseException.class, errorMessage, () ->
-                parser.parseCommand(FindOrderCommand.COMMAND_WORD + "\t \n"));
-        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORD, () ->
-                parser.parseCommand(FindOrderCommand.COMMAND_WORD + " " + PREFIX_CLIENT_NAME
-                        + " " + PREFIX_CLIENT_PHONE + " " + PREFIX_CLIENT_ADDRESS));
     }
 
     @Test

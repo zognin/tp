@@ -7,10 +7,13 @@ import static java.util.Objects.requireNonNull;
  * Represents the quantity of an Ingredient in btbb.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Quantity {
+public class Quantity implements Comparable<Quantity> {
+    public static final String DEFAULT_MIN_QUANTITY_STRING = String.valueOf(0);
+    public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(40000);
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 40000.";
+
     public static final String MESSAGE_INTERNAL_CONSTRAINTS = "Quantity should only contain numbers, "
             + "it should be non-negative and the largest acceptable quantity is 40000.";
     private final int quantity;
@@ -42,11 +45,11 @@ public class Quantity {
     }
 
     /**
-     * Returns true if a given string is a valid quantity.
-     * For internal use where there is a wider definition of a valid quantity.
+     * Returns true if a given string is a valid internal quantity.
+     * For internal use there is a wider definition of a valid quantity.
      *
      * @param test String input to check.
-     * @return boolean of whether name is valid.
+     * @return boolean of whether quantity is valid.
      */
     public static boolean isValidInternalQuantity(String test) {
         try {
@@ -99,5 +102,10 @@ public class Quantity {
     @Override
     public int hashCode() {
         return quantity;
+    }
+
+    @Override
+    public int compareTo(Quantity otherQuantity) {
+        return this.quantity - otherQuantity.quantity;
     }
 }

@@ -7,6 +7,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
@@ -33,9 +35,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
@@ -130,7 +132,9 @@ public class CommandTestUtil {
 
     // Ingredient (valid prefix + invalid attributes)
     public static final String INVALID_INGREDIENT_NAME_DESC = " " + PREFIX_INGREDIENT_NAME + "Rice&"; // '&' not allowed
-    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_INGREDIENT_QUANTITY + "-30"; // 'e' not allowed
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_INGREDIENT_QUANTITY + "-30";
+    public static final String INVALID_QUANTITY_FROM_DESC = " " + PREFIX_INGREDIENT_QUANTITY_FROM + "-30";
+    public static final String INVALID_QUANTITY_TO_DESC = " " + PREFIX_INGREDIENT_QUANTITY_TO + "-30";
     public static final String INVALID_UNIT_DESC = " " + PREFIX_INGREDIENT_UNIT; // no empty string for unit
 
     // Order (valid prefix + invalid attributes)

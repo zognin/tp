@@ -205,6 +205,40 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param keywords Keywords to be parsed.
+     * @return List of strings containing all the keywords.
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_KEYWORD);
+        }
+        return List.of(trimmedKeywords.split("\\s+"));
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * For internal use there is a wider definition of a valid quantity.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
      * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -222,20 +256,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {code String keywords} into a {@code List<String>}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String quantities} into a {@code List<Quantity>}.
      *
-     * @param keywords Keywords to be parsed.
-     * @return List of strings containing all the keywords.
-     * @throws ParseException if the given {@code keywords} is invalid.
+     * @param quantities String input to be parsed into a list of quantities.
+     * @return List of quantities.
+     * @throws ParseException if the given {@code quantities} is invalid.
      */
-    public static List<String> parseKeywords(String keywords) throws ParseException {
-        requireNonNull(keywords);
-        String trimmedKeywords = keywords.trim();
-        if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(MESSAGE_INVALID_KEYWORD);
+    public static List<Quantity> parseQuantities(String quantities) throws ParseException {
+        ArrayList<Quantity> quantityList = new ArrayList<>();
+        for (String stringKeyword : parseKeywords(quantities)) {
+            quantityList.add(parseInternalQuantity(stringKeyword));
         }
-        return List.of(trimmedKeywords.split("\\s+"));
+        return quantityList;
     }
 
     /**
