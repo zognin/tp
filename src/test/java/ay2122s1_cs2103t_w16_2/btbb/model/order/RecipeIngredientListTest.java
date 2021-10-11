@@ -7,6 +7,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BUTTER;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class RecipeIngredientListTest {
         assertFalse(RecipeIngredientList.isValidRecipeIngredientList(null));
 
         // invalid list
-        assertFalse(RecipeIngredientList.isValidRecipeIngredientList(List.of())); // empty list
+        assertFalse(RecipeIngredientList.isValidRecipeIngredientList(new ArrayList<>())); // empty list
 
         // valid list
         assertTrue(RecipeIngredientList.isValidRecipeIngredientList(List.of(AVOCADO))); // single element list
@@ -37,7 +38,7 @@ class RecipeIngredientListTest {
 
         // valid list
         assertTrue(RecipeIngredientList
-                .isValidInternalRecipeIngredientList(List.of())); // zero element list allowed internally
+                .isValidInternalRecipeIngredientList(new ArrayList<>())); // zero element list allowed internally
         assertTrue(RecipeIngredientList
                 .isValidInternalRecipeIngredientList(List.of(AVOCADO))); // single element list
         assertTrue(RecipeIngredientList

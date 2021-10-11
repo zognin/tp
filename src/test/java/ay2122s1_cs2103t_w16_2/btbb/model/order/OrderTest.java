@@ -22,6 +22,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_GEORG
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -80,7 +81,7 @@ class OrderTest {
 
         // empty recipe ingredients -> return false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_GEORGE)
-                .withRecipeIngredients(new RecipeIngredientList(List.of())).build();
+                .withRecipeIngredients(new RecipeIngredientList(new ArrayList<>())).build();
         assertFalse(ORDER_FOR_GEORGE.isSameOrder(editedRandomOrder));
 
         // different order price -> returns false
@@ -151,7 +152,7 @@ class OrderTest {
 
         // empty recipe ingredients -> return false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA)
-                .withRecipeIngredients(new RecipeIngredientList(List.of())).build();
+                .withRecipeIngredients(new RecipeIngredientList(new ArrayList<>())).build();
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order price -> returns false

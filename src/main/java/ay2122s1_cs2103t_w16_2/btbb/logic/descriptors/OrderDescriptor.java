@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
-    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(List.of());
+    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(new ArrayList<>());
     private Price price;
     private Deadline deadline;
     private Quantity quantity = new Quantity("1");

@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -116,7 +117,7 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder withRecipeIngredients(List<Ingredient> ingredients) {
         if (ingredients.isEmpty()) {
-            descriptor.setRecipeIngredients(new RecipeIngredientList(List.of()));
+            descriptor.setRecipeIngredients(new RecipeIngredientList(new ArrayList<>()));
             return this;
         }
         descriptor.setRecipeIngredients(new RecipeIngredientList(ingredients));

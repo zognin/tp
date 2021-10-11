@@ -154,7 +154,7 @@ public class TypicalOrders {
     private static List<Ingredient> getRecipeIngredientListForClient(Client client) {
         HashMap<Client, List<Ingredient>> recipeIngredientsMap = getRecipeIngredientsMapForClient();
         if (!recipeIngredientsMap.containsKey(client)) {
-            return List.of();
+            return new ArrayList<>();
         }
         return recipeIngredientsMap.get(client);
     }
