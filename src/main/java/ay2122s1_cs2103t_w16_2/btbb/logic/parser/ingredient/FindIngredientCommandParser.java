@@ -7,8 +7,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
-import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity.DEFAULT_MAX_QUANTITY_STRING;
-import static ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity.DEFAULT_MIN_QUANTITY_STRING;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity.DEFAULT_MAX_QUANTITY_STRING;
+import static ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity.DEFAULT_MIN_QUANTITY_STRING;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;

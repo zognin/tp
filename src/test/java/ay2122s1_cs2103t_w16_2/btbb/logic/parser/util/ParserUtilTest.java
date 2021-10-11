@@ -131,7 +131,49 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-    // Ingredient parsers
+    // Shared parsers
+
+    @Test
+    public void parseGenericString_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGenericString(null,
+                "Name"));
+    }
+
+    @Test
+    public void parseGenericString_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGenericString(INVALID_GENERIC_STRING,
+                "Name"));
+    }
+
+    @Test
+    public void parseGenericString_validValueWithoutWhitespace_returnsGenericString() throws Exception {
+        GenericString expectedName = new GenericString(VALID_GENERIC_STRING);
+        assertEquals(expectedName, ParserUtil.parseGenericString(VALID_GENERIC_STRING, "Name"));
+    }
+
+    @Test
+    public void parseGenericString_validValueWithWhitespace_returnsTrimmedGenericString() throws Exception {
+        String genericStringWithWhitespace = WHITESPACE + VALID_GENERIC_STRING + WHITESPACE;
+        GenericString expectedGenericString = new GenericString(VALID_GENERIC_STRING);
+        assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace,
+                "Name"));
+    }
+
+    @Test
+    public void parseKeywords_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
+    }
+
+    @Test
+    public void parseKeywords_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseKeywords(INVALID_KEYWORD));
+    }
+
+    @Test
+    public void parseKeywords_validValues_returnsListOfStrings() throws Exception {
+        List<String> expectedList = List.of(VALID_KEYWORD_1, VALID_KEYWORD_2);
+        assertEquals(expectedList, ParserUtil.parseKeywords(VALID_KEYWORD_1 + " " + VALID_KEYWORD_2));
+    }
 
     @Test
     public void parseInternalQuantity_null_throwsNullPointerException() {
@@ -177,50 +219,6 @@ public class ParserUtilTest {
         String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
         Quantity expectedQuantity = new Quantity(VALID_QUANTITY_1);
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
-    }
-
-    // Shared parsers
-
-    @Test
-    public void parseGenericString_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseGenericString(null,
-                "Name"));
-    }
-
-    @Test
-    public void parseGenericString_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseGenericString(INVALID_GENERIC_STRING,
-                "Name"));
-    }
-
-    @Test
-    public void parseGenericString_validValueWithoutWhitespace_returnsGenericString() throws Exception {
-        GenericString expectedName = new GenericString(VALID_GENERIC_STRING);
-        assertEquals(expectedName, ParserUtil.parseGenericString(VALID_GENERIC_STRING, "Name"));
-    }
-
-    @Test
-    public void parseGenericString_validValueWithWhitespace_returnsTrimmedGenericString() throws Exception {
-        String genericStringWithWhitespace = WHITESPACE + VALID_GENERIC_STRING + WHITESPACE;
-        GenericString expectedGenericString = new GenericString(VALID_GENERIC_STRING);
-        assertEquals(expectedGenericString, ParserUtil.parseGenericString(genericStringWithWhitespace,
-                "Name"));
-    }
-
-    @Test
-    public void parseKeywords_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
-    }
-
-    @Test
-    public void parseKeywords_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseKeywords(INVALID_KEYWORD));
-    }
-
-    @Test
-    public void parseKeywords_validValues_returnsListOfStrings() throws Exception {
-        List<String> expectedList = List.of(VALID_KEYWORD_1, VALID_KEYWORD_2);
-        assertEquals(expectedList, ParserUtil.parseKeywords(VALID_KEYWORD_1 + " " + VALID_KEYWORD_2));
     }
 
     @Test

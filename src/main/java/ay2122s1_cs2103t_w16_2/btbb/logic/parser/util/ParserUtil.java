@@ -90,23 +90,6 @@ public class ParserUtil {
     // Order-level parsers:
 
     /**
-     * Parses a {@code String quantity} into a {@code Quantity}.
-     * For internal use there is a wider definition of a valid quantity.
-     *
-     * @param quantity String input to parse.
-     * @return Quantity object.
-     * @throws ParseException if the given {@code quantity} is invalid.
-     */
-    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
-        requireNonNull(quantity);
-        String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
-        }
-        return new Quantity(trimmedQuantity);
-    }
-
-    /**
      * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -222,23 +205,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String quantity} into a {@code Quantity}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @param quantity String input to parse.
-     * @return Quantity object.
-     * @throws ParseException if the given {@code quantity} is invalid.
-     */
-    public static Quantity parseQuantity(String quantity) throws ParseException {
-        requireNonNull(quantity);
-        String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidQuantity(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
-        }
-        return new Quantity(trimmedQuantity);
-    }
-
-    /**
      * Parses a {code String keywords} into a {@code List<String>}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -253,6 +219,40 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_KEYWORD);
         }
         return List.of(trimmedKeywords.split("\\s+"));
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * For internal use there is a wider definition of a valid quantity.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseInternalQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidInternalQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param quantity String input to parse.
+     * @return Quantity object.
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
     }
 
     /**

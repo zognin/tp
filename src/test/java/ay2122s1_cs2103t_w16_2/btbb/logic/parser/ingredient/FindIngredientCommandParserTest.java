@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class FindIngredientCommandParserTest {
     private FindIngredientCommandParser parser = new FindIngredientCommandParser();
