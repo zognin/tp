@@ -32,6 +32,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.HelpCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.general.TabCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.AddIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.DeleteIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -102,6 +103,16 @@ public class AddressBookParserTest {
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        IngredientDescriptor descriptor = new IngredientDescriptorBuilder(ingredient).build();
+        EditIngredientCommand command = (EditIngredientCommand) parser.parseCommand(EditIngredientCommand.COMMAND_WORD
+                + " " + INDEX_FIRST.getOneBased() + " "
+                + IngredientUtil.getEditIngredientDescriptorDetails(descriptor));
+        assertEquals(new EditIngredientCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
