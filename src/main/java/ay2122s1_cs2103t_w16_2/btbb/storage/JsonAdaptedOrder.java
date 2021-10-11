@@ -124,8 +124,7 @@ public class JsonAdaptedOrder {
                 ingredients.add(i);
             }
         }
-        final RecipeIngredientList modelRecipeIngredients = ingredients.size() > 0
-                ? new RecipeIngredientList(ingredients) : new RecipeIngredientList();
+        final RecipeIngredientList modelRecipeIngredients = new RecipeIngredientList(ingredients);
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));

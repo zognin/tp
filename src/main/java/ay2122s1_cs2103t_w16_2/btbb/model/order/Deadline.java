@@ -6,16 +6,19 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents the deadline of an order in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Deadline {
-    private static final String INPUT_FORMAT = "dd-MM-yyyy HHmm";
-    public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT);
-    private static final String OUTPUT_FORMAT = "MMM d yyyy h:mm a";
-    private static final DateTimeFormatter OUTPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(OUTPUT_FORMAT);
+    private static final String INPUT_FORMAT = "dd-MM-uuuu HHmm";
+    public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
+    private static final String OUTPUT_FORMAT = "MMM d uuuu h:mm a";
+    private static final DateTimeFormatter OUTPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(OUTPUT_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in "
             + INPUT_FORMAT + " format and should occur in the future.";
 

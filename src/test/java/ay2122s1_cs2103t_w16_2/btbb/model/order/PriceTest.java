@@ -51,4 +51,25 @@ class PriceTest {
         assertTrue(Price.isValidPrice("1"));
         assertTrue(Price.isValidPrice("1.51"));
     }
+
+    @Test
+    public void equals() {
+        Price p1 = new Price("10");
+        Price p2 = new Price("10");
+        Price p3 = new Price("11");
+        Price p4 = new Price("10.00");
+
+        // same values -> returns true
+        assertTrue(p1.equals(p2));
+        assertTrue(p1.equals(p4));
+
+        // same object -> returns true
+        assertTrue(p1.equals(p1));
+
+        // null -> returns false
+        assertFalse(p1.equals(null));
+
+        // different price -> returns false
+        assertFalse(p1.equals(p3));
+    }
 }

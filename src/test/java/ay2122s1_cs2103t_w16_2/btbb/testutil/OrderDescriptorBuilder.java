@@ -116,7 +116,7 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder withRecipeIngredients(List<Ingredient> ingredients) {
         if (ingredients.isEmpty()) {
-            descriptor.setRecipeIngredients(new RecipeIngredientList());
+            descriptor.setRecipeIngredients(new RecipeIngredientList(List.of()));
             return this;
         }
         descriptor.setRecipeIngredients(new RecipeIngredientList(ingredients));

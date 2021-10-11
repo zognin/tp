@@ -26,7 +26,7 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
-    private RecipeIngredientList recipeIngredients = new RecipeIngredientList();
+    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(List.of());
     private Price price;
     private Deadline deadline;
     private Quantity quantity = new Quantity("1");

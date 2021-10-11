@@ -80,7 +80,7 @@ class OrderTest {
 
         // empty recipe ingredients -> return false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_GEORGE)
-                .withRecipeIngredients(new RecipeIngredientList()).build();
+                .withRecipeIngredients(new RecipeIngredientList(List.of())).build();
         assertFalse(ORDER_FOR_GEORGE.isSameOrder(editedRandomOrder));
 
         // different order price -> returns false
@@ -151,7 +151,7 @@ class OrderTest {
 
         // empty recipe ingredients -> return false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA)
-                .withRecipeIngredients(new RecipeIngredientList()).build();
+                .withRecipeIngredients(new RecipeIngredientList(List.of())).build();
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order price -> returns false

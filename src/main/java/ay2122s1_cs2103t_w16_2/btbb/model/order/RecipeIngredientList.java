@@ -4,7 +4,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,20 +17,13 @@ public class RecipeIngredientList {
     private final List<Ingredient> ingredients;
 
     /**
-     * Constructs an empty {@code RecipeIngredientList}.
-     */
-    public RecipeIngredientList() {
-        this.ingredients = new ArrayList<>();
-    }
-
-    /**
      * Constructs a {@code RecipeIngredientList}.
      *
      * @param ingredients A valid ingredient list.
      */
     public RecipeIngredientList(List<Ingredient> ingredients) {
         requireNonNull(ingredients);
-        checkArgument(isValidRecipeIngredientList(ingredients), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInternalRecipeIngredientList(ingredients), MESSAGE_CONSTRAINTS);
         this.ingredients = ingredients;
     }
 
@@ -50,12 +42,26 @@ public class RecipeIngredientList {
     }
 
     /**
+     * Returns true if a given string is a valid recipe ingredient list.
+     * For internal use where there is a wider definition of a valid recipe ingredient list.
+     *
+     * @param test List to check.
+     * @return True if the recipe ingredient list is valid. False otherwise.
+     */
+    public static boolean isValidInternalRecipeIngredientList(List<Ingredient> test) {
+        return test != null;
+    }
+
+    /**
      * Converts a RecipeIngredientList object into its String representation.
      *
      * @return String representation of a RecipeIngredientList object.
      */
     @Override
     public String toString() {
+        if (ingredients.size() == 0) {
+            return "This order's ingredient list is empty.";
+        }
         return ingredients.stream().map(Ingredient::toString).collect(Collectors.joining(", "));
     }
 

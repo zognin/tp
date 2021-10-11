@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * Represents the price of a recipe in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Price {
+public class Price implements Comparable<Price> {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers up to 8 digits, with an optional 2 decimal places.";
     public static final String VALIDATION_REGEX = "^\\d{1,8}(\\.\\d{2})?$";
@@ -36,6 +36,11 @@ public class Price {
         return test != null && test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public int compareTo(Price other) {
+        return price.compareTo(other.price);
+    }
+
     /**
      * Converts a Price object into its String representation.
      *
@@ -56,7 +61,7 @@ public class Price {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Price // instanceof handles nulls
-                && price.equals(((Price) other).price)); // state check
+                && (price.compareTo(((Price) other).price) == 0)); // state check
     }
 
     /**
