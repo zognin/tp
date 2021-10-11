@@ -13,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -182,6 +183,18 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return filteredIngredients;
+    }
+
+    /**
+     * Implements minusIngredientQuantity method.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    @Override
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        addressBook.minusIngredientQuantity(target, multiplier);
     }
 
     /**
