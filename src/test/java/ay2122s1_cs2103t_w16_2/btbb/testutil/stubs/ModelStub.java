@@ -105,6 +105,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
         throw new AssertionError("This method should not be called.");
     }

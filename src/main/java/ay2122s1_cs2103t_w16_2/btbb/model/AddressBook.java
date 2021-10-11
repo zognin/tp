@@ -182,6 +182,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         ingredients.remove(ingredientToRemove);
     }
 
+    /**
+     * Replaces the existing target Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient does not exist in the address book.
+     */
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+        ingredients.setIngredient(target, editedIngredient);
+    }
+
     //// order-level operations
 
     /**
