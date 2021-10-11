@@ -30,12 +30,12 @@ public class PredicateUtil {
     }
 
     /**
-     * Makes a {@code QuantityEqualsKeywordsPredicate}.
+     * Makes a {@code ValueEqualsKeywordsPredicate} for quantity values.
      *
      * @param input String input to get keywords from.
      * @param getter Getter to get item to test predicate with.
      * @param <T> Type of predicate.
-     * @return {@code QuantityEqualsKeywordsPredicate}.
+     * @return {@code ValueEqualsKeywordsPredicate} for quantity values.
      */
     public static <T> ValueEqualsKeywordsPredicate<T, Quantity> makeQuantityEqualsKeywordsPredicate(String input,
             Function<T, Quantity> getter) {

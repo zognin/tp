@@ -38,7 +38,7 @@ public class PredicateCollection<T> implements Predicate<T> {
     }
 
     /**
-     * Adds a {@code QuantityEqualsKeywordsPredicate} to the list of predicates.
+     * Adds a {@code ValueEqualsKeywordsPredicate} for quantity values to the list of predicates.
      *
      * @param prefix Prefix of keyword.
      * @param argMultimap ArgumentMultimap to get the value associated with a prefix.

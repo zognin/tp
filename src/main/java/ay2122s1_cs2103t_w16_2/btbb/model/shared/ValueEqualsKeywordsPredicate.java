@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Tests that a quantity matches any of the keywords given.
+ * Tests that a value equals any of the keywords given.
  *
  * @param <T> Type of the predicate.
  */
@@ -14,10 +14,10 @@ public class ValueEqualsKeywordsPredicate<T, S> implements Predicate<T> {
     private final List<S> keywords;
 
     /**
-     * Constructs a {@code QuantityEqualsKeywordsPredicate}.
+     * Constructs a {@code ValueEqualsKeywordsPredicate}.
      *
-     * @param getter Function to get the {@code Quantity} to be tested.
-     * @param keywords List of quantity keywords to be checked against.
+     * @param getter Function to get the value to be tested.
+     * @param keywords List of keywords to be checked against.
      */
     public ValueEqualsKeywordsPredicate(Function<T, S> getter, List<S> keywords) {
         this.getter = getter;
