@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
 /**
@@ -158,15 +159,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the existing target Ingredient in the address book with an edited Ingredient.
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
+     * by the quantity in {@code target} if it exists.
      *
-     * @param target The target ingredient to replace.
-     * @param editedIngredient The edited ingredient to replace with.
-     * @throws NotFoundException if the target ingredient does not exist in the address book.
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
      */
-    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
-        requireAllNonNull(target, editedIngredient);
-        ingredients.setIngredient(target, editedIngredient);
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        ingredients.minusIngredientQuantity(target, multiplier);
     }
 
     /**
@@ -179,6 +180,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeIngredient(Ingredient ingredientToRemove) throws NotFoundException {
         requireNonNull(ingredientToRemove);
         ingredients.remove(ingredientToRemove);
+    }
+
+    /**
+     * Replaces the existing target Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient does not exist in the address book.
+     */
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+        ingredients.setIngredient(target, editedIngredient);
     }
 
     //// order-level operations

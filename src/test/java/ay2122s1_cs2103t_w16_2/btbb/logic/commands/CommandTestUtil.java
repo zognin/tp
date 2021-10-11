@@ -8,9 +8,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_THIRD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +33,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
@@ -37,16 +45,21 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    // Valid descriptions:
+    // Valid Client attributes
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_IMRAN = "Imran";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_IMRAN = "95264521";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_IMRAN = "imran@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_IMRAN = "Block 565, Imranny Street 2";
 
+    // Valid Ingredient attributes
     public static final String VALID_INGREDIENT_NAME_APPLE = "Apple";
     public static final String VALID_INGREDIENT_NAME_BEEF = "Beef";
     public static final String VALID_QUANTITY_APPLE = "10";
@@ -54,18 +67,38 @@ public class CommandTestUtil {
     public static final String VALID_UNIT_APPLE = "whole";
     public static final String VALID_UNIT_BEEF = "cuts";
 
-    // prefix + desciption (valid):
+    // Valid Order attributes
+    public static final String VALID_RECIPE_NAME_CHICKEN_RICE = "Chicken Rice";
+    public static final String VALID_RECIPE_NAME_LAKSA = "Laksa";
+    public static final String VALID_RECIPE_INGREDIENT_LIST_1 = VALID_INGREDIENT_NAME_APPLE + "-"
+            + VALID_QUANTITY_APPLE + "-" + VALID_UNIT_APPLE;
+    public static final String VALID_RECIPE_INGREDIENT_LIST_2 = VALID_INGREDIENT_NAME_BEEF + "-"
+            + VALID_QUANTITY_BEEF + "-" + VALID_UNIT_BEEF;
+    public static final String VALID_PRICE_1 = "1";
+    public static final String VALID_PRICE_2 = "2";
+    public static final String VALID_DEADLINE_DECEMBER = "12-12-2021 1900";
+    public static final String VALID_DEADLINE_MARCH = "03-03-2022 1500";
+    public static final String VALID_ORDER_QUANTITY_1 = "1";
+    public static final String VALID_ORDER_QUANTITY_2 = "2";
+
+    // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_IMRAN = " " + PREFIX_CLIENT_NAME + VALID_NAME_IMRAN;
     public static final String PHONE_DESC_AMY = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_IMRAN = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_IMRAN;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_BOB;
+    public static final String EMAIL_DESC_IMRAN = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_IMRAN;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_IMRAN = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_IMRAN;
     public static final String INDEX_DESC_AMY = " " + PREFIX_CLIENT_INDEX + INDEX_SECOND.getOneBased();
     public static final String INDEX_DESC_BOB = " " + PREFIX_CLIENT_INDEX + INDEX_FIRST.getOneBased();
+    public static final String INDEX_DESC_IMRAN = " " + PREFIX_CLIENT_INDEX + INDEX_THIRD.getOneBased();
 
+    // Ingredient (valid prefix + valid attributes)
     public static final String INGREDIENT_NAME_DESC_APPLE = " " + PREFIX_INGREDIENT_NAME + VALID_INGREDIENT_NAME_APPLE;
     public static final String INGREDIENT_NAME_DESC_BEEF = " " + PREFIX_INGREDIENT_NAME + VALID_INGREDIENT_NAME_BEEF;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_INGREDIENT_QUANTITY + VALID_QUANTITY_APPLE;
@@ -73,17 +106,44 @@ public class CommandTestUtil {
     public static final String UNIT_DESC_APPLE = " " + PREFIX_INGREDIENT_UNIT + VALID_UNIT_APPLE;
     public static final String UNIT_DESC_BEEF = " " + PREFIX_INGREDIENT_UNIT + VALID_UNIT_BEEF;
 
-    // prefix + desciption (invalid):
+    // Order (valid prefix + valid attributes)
+    public static final String RECIPE_NAME_DESC_CHICKEN_RICE = " " + PREFIX_RECIPE_NAME
+            + VALID_RECIPE_NAME_CHICKEN_RICE;
+    public static final String RECIPE_NAME_DESC_LAKSA = " " + PREFIX_RECIPE_NAME + VALID_RECIPE_NAME_LAKSA;
+    public static final String RECIPE_INGREDIENT_LIST_DESC_1 = " " + PREFIX_RECIPE_INGREDIENT
+            + VALID_RECIPE_INGREDIENT_LIST_1;
+    public static final String RECIPE_INGREDIENT_LIST_DESC_2 = " " + PREFIX_RECIPE_INGREDIENT
+            + VALID_RECIPE_INGREDIENT_LIST_2;
+    public static final String ORDER_PRICE_DESC_1 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_1;
+    public static final String ORDER_PRICE_DESC_2 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_2;
+    public static final String ORDER_QUANTITY_DESC_1 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_1;
+    public static final String ORDER_QUANTITY_DESC_2 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_2;
+    public static final String DEADLINE_DESC_DECEMBER = " " + PREFIX_ORDER_DEADLINE + VALID_DEADLINE_DECEMBER;
+    public static final String DEADLINE_DESC_MARCH = " " + PREFIX_ORDER_DEADLINE + VALID_DEADLINE_MARCH;
+
+    // Client (valid prefix + invalid attributes)
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";
     public static final String INVALID_NAME_DESC = " " + PREFIX_CLIENT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CLIENT_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_CLIENT_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_CLIENT_ADDRESS; // no empty string for addresses
 
+    // Ingredient (valid prefix + invalid attributes)
     public static final String INVALID_INGREDIENT_NAME_DESC = " " + PREFIX_INGREDIENT_NAME + "Rice&"; // '&' not allowed
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_INGREDIENT_QUANTITY + "-30"; // 'e' not allowed
     public static final String INVALID_UNIT_DESC = " " + PREFIX_INGREDIENT_UNIT; // no empty string for unit
 
+    // Order (valid prefix + invalid attributes)
+    public static final String INVALID_RECIPE_NAME_DESC = " " + PREFIX_RECIPE_NAME
+            + "Chicken$&Rice"; // '$&' not allowed in names
+    public static final String INVALID_ORDER_PRICE_DESC = " " + PREFIX_ORDER_PRICE
+            + "$1.50"; // '$' not allowed in prices
+    public static final String INVALID_RECIPE_INGREDIENT_LIST_DESC = " " + PREFIX_RECIPE_INGREDIENT + "almond-grams-1";
+    public static final String INVALID_ORDER_QUANTITY_DESC = " " + PREFIX_ORDER_QUANTITY + "-20";
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_ORDER_DEADLINE
+            + "2021-12-12 6.30am"; // wrong format
+
+    // Others
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -108,9 +168,17 @@ public class CommandTestUtil {
 
         // Order
         DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
-                .withClientAddress(VALID_ADDRESS_AMY).build();
+                .withClientAddress(VALID_ADDRESS_AMY).withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
+                .withRecipeIngredients(List.of(new Ingredient(
+                                new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
+                                new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
+                .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
-                .withClientAddress(VALID_ADDRESS_BOB).build();
+                .withClientAddress(VALID_ADDRESS_BOB).withRecipeName(VALID_RECIPE_NAME_LAKSA)
+                .withRecipeIngredients(List.of(new Ingredient(
+                        new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
+                        new GenericString(VALID_UNIT_BEEF)))).withPrice(VALID_PRICE_2)
+                .withDeadline(VALID_DEADLINE_MARCH).withQuantity(VALID_ORDER_QUANTITY_2).build();
 
         // Ingredient
         DESC_APPLE = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)

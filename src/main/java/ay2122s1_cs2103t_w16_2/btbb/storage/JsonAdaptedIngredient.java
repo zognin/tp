@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
@@ -60,8 +60,8 @@ public class JsonAdaptedIngredient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
         }
-        if (!Quantity.isValidQuantity(quantity)) {
-            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+        if (!Quantity.isValidInternalQuantity(quantity)) {
+            throw new IllegalValueException(Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
 

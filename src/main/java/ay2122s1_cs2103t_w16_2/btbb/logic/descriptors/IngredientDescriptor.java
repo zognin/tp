@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Stores the details to relevant to a ingredient.
