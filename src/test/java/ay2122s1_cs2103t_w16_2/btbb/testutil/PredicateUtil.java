@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.function.Function;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityEqualsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.ValueEqualsKeywordsPredicate;
 
 /**
  * A utility class for predicates.
@@ -37,14 +37,14 @@ public class PredicateUtil {
      * @param <T> Type of predicate.
      * @return {@code QuantityEqualsKeywordsPredicate}.
      */
-    public static <T> QuantityEqualsKeywordsPredicate<T> makeQuantityEqualsKeywordsPredicate(String input,
+    public static <T> ValueEqualsKeywordsPredicate<T, Quantity> makeQuantityEqualsKeywordsPredicate(String input,
             Function<T, Quantity> getter) {
         List<String> keywords = List.of(input.split("\\s+"));
         List<Quantity> quantityKeywords = new ArrayList<>();
         for (String keyword : keywords) {
             quantityKeywords.add(new Quantity(keyword));
         }
-        return new QuantityEqualsKeywordsPredicate<>(getter, quantityKeywords);
+        return new ValueEqualsKeywordsPredicate<>(getter, quantityKeywords);
     }
 
     /**

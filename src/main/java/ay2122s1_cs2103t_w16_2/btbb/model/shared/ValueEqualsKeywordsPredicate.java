@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
+package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import java.util.List;
 import java.util.function.Function;
@@ -9,9 +9,9 @@ import java.util.function.Predicate;
  *
  * @param <T> Type of the predicate.
  */
-public class QuantityEqualsKeywordsPredicate<T> implements Predicate<T> {
-    private final Function<T, Quantity> getter;
-    private final List<Quantity> keywords;
+public class ValueEqualsKeywordsPredicate<T, S> implements Predicate<T> {
+    private final Function<T, S> getter;
+    private final List<S> keywords;
 
     /**
      * Constructs a {@code QuantityEqualsKeywordsPredicate}.
@@ -19,21 +19,21 @@ public class QuantityEqualsKeywordsPredicate<T> implements Predicate<T> {
      * @param getter Function to get the {@code Quantity} to be tested.
      * @param keywords List of quantity keywords to be checked against.
      */
-    public QuantityEqualsKeywordsPredicate(Function<T, Quantity> getter, List<Quantity> keywords) {
+    public ValueEqualsKeywordsPredicate(Function<T, S> getter, List<S> keywords) {
         this.getter = getter;
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(T t) {
-        Quantity toTest = getter.apply(t);
+        S toTest = getter.apply(t);
         return keywords.stream().anyMatch(toTest::equals);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof QuantityEqualsKeywordsPredicate) // instanceof handles nulls
-                && keywords.equals(((QuantityEqualsKeywordsPredicate<?>) other).keywords); // state check
+                || (other instanceof ValueEqualsKeywordsPredicate) // instanceof handles nulls
+                && keywords.equals(((ValueEqualsKeywordsPredicate<?, ?>) other).keywords); // state check
     }
 }

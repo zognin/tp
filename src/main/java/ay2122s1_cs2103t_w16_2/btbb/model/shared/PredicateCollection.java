@@ -14,7 +14,6 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityEqualsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.QuantityWithinRangePredicate;
 
 /**
@@ -49,7 +48,7 @@ public class PredicateCollection<T> implements Predicate<T> {
     public void addQuantityEqualsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
             Function<T, Quantity> getter) throws ParseException {
         if (argMultimap.getValue(prefix).isPresent()) {
-            addPredicate(new QuantityEqualsKeywordsPredicate<>(getter,
+            addPredicate(new ValueEqualsKeywordsPredicate<>(getter,
                     ParserUtil.parseQuantityKeywords(argMultimap.getValue(prefix).get())));
         }
     }
