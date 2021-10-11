@@ -8,6 +8,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Quantity implements Comparable<Quantity> {
+    public static final String DEFAULT_MIN_QUANTITY_STRING = String.valueOf(0);
+    public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(Integer.MAX_VALUE);
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 2147483647.";

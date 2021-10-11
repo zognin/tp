@@ -7,10 +7,10 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ParserFunction;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 
 /**
  * Tests that all given predicates match.
@@ -34,54 +34,6 @@ public class PredicateCollection<T> implements Predicate<T> {
     }
 
     /**
-     * Adds a {@code ValueInListPredicate} for quantity values to the list of predicates.
-     *
-     * @param prefix Prefix of keyword.
-     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
-     * @param getter Function to get the quantity to be tested.
-     * @throws ParseException if the given keywords is invalid.
-     */
-    public void addQuantityEqualsKeywordsPredicate(Prefix prefix, ArgumentMultimap argMultimap,
-            Function<T, Quantity> getter) throws ParseException {
-        if (argMultimap.getValue(prefix).isPresent()) {
-            addPredicate(new ValueInListPredicate<>(getter,
-                    ParserUtil.parseQuantities(argMultimap.getValue(prefix).get())));
-        }
-    }
-
-    /**
-     * Adds a {@code ValueWithinRangePredicate} for quantity values to the list of predicates.
-     * It adds the predicate as long as either the lower or upper bound of the range is provided,
-     * and fills the unprovided bound with a default value.
-     *
-     * @param fromPrefix Prefix for the lower bound of the range.
-     * @param toPrefix Prefix for the upper bound of the range.
-     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
-     * @param getter Function to get the quantity to be tested.
-     * @throws ParseException if the given keywords is invalid.
-     */
-    public void addQuantityWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
-            ArgumentMultimap argMultimap, Function<T, Quantity> getter) throws ParseException {
-        Optional<String> optionalMinQuantity = argMultimap.getValue(fromPrefix);
-        Optional<String> optionalMaxQuantity = argMultimap.getValue(toPrefix);
-
-        if (optionalMinQuantity.isEmpty() && optionalMaxQuantity.isEmpty()) {
-            return;
-        }
-
-        String defaultMinQuantity = String.valueOf(Integer.MIN_VALUE);
-        String defaultMaxQuantity = String.valueOf(Integer.MAX_VALUE);
-
-        String minQuantity = optionalMinQuantity.orElse(defaultMinQuantity);
-        String maxQuantity = optionalMaxQuantity.orElse(defaultMaxQuantity);
-
-        addPredicate(new ValueWithinRangePredicate<>(
-                getter,
-                ParserUtil.parseInternalQuantity(minQuantity),
-                ParserUtil.parseInternalQuantity(maxQuantity)));
-    }
-
-    /**
      * Adds a {@code StringContainsKeywordsPredicate} to the list of predicates.
      *
      * @param prefix Prefix of keyword.
@@ -95,6 +47,54 @@ public class PredicateCollection<T> implements Predicate<T> {
             addPredicate(new StringContainsKeywordsPredicate<>(getter,
                     ParserUtil.parseKeywords(argMultimap.getValue(prefix).get())));
         }
+    }
+
+    /**
+     * Adds a {@code ValueInListPredicate} to the list of predicates.
+     *
+     * @param prefix Prefix of keyword.
+     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
+     * @param getter Function to get the quantity to be tested.
+     * @param parser Parser to parse the input to a list of values.
+     * @param <S> Type of the values in the list.
+     * @throws ParseException if the given input is invalid.
+     */
+    public <S> void addValueInListPredicate(Prefix prefix, ArgumentMultimap argMultimap,
+            Function<T, S> getter, ParserFunction<List<S>> parser) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            addPredicate(new ValueInListPredicate<>(getter, parser.apply(argMultimap.getValue(prefix).get())));
+        }
+    }
+
+    /**
+     * Adds a {@code ValueWithinRangePredicate} to the list of predicates.
+     * It adds the predicate as long as either the lower or upper bound of the range is provided,
+     * and fills any unprovided bounds with a default value.
+     *
+     * @param fromPrefix Prefix for the lower bound of the range.
+     * @param toPrefix Prefix for the upper bound of the range.
+     * @param defaultMin Default upper bound of the range.
+     * @param defaultMax Default lower bound of the range.
+     * @param argMultimap ArgumentMultimap to get the value associated with a prefix.
+     * @param parser Parser to parse the inputs.
+     * @param getter Function to get the value to be tested.
+     * @param <S> Type of the values.
+     * @throws ParseException if the given input is invalid.
+     */
+    public <S extends Comparable<S>> void addValueWithinRangePredicate(Prefix fromPrefix, Prefix toPrefix,
+            String defaultMin, String defaultMax, ArgumentMultimap argMultimap, ParserFunction<S> parser,
+            Function<T, S> getter) throws ParseException {
+        Optional<String> optionalMinValue = argMultimap.getValue(fromPrefix);
+        Optional<String> optionalMaxValue = argMultimap.getValue(toPrefix);
+
+        if (optionalMinValue.isEmpty() && optionalMaxValue.isEmpty()) {
+            return;
+        }
+
+        String minQuantity = optionalMinValue.orElse(defaultMin);
+        String maxQuantity = optionalMaxValue.orElse(defaultMax);
+
+        addPredicate(new ValueWithinRangePredicate<>(getter, parser.apply(minQuantity), parser.apply(maxQuantity)));
     }
 
     /**
