@@ -2,10 +2,10 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.addPredicates;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.addPredicates;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeQuantityEqualsKeywordsPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeQuantityWithinRangePredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeSpaceSeparatedStringKeywords;
@@ -27,7 +27,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**

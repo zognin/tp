@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.function.Function;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.ValueWithinRangePredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.ValueEqualsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.ValueEqualsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.ValueWithinRangePredicate;
 
 /**
  * A utility class for predicates.

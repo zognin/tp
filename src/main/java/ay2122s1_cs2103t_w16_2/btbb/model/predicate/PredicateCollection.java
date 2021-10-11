@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.shared;
+package ay2122s1_cs2103t_w16_2.btbb.model.predicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,6 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.ValueWithinRangePredicate;
 
 /**
  * Tests that all given predicates match.

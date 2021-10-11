@@ -16,17 +16,17 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil.MESSAGE_INVALID_KEYWORD;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_QUANTITY_5_TO_600_PREDICATE;
-import static ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_550_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_QUANTITY_5_TO_600_PREDICATE;
+import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE;
 
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 
 public class FindIngredientCommandParserTest {
     private FindIngredientCommandParser parser = new FindIngredientCommandParser();

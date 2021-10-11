@@ -29,7 +29,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;

@@ -1,10 +1,11 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
+package ay2122s1_cs2103t_w16_2.btbb.model.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericQuantityStub;
 
 public class ValueWithinRangePredicateTest {
