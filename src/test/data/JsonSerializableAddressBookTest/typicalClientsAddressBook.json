@@ -50,44 +50,119 @@
     "unit": "whole"
   }, {
     "ingredientName": "Flour",
-    "quantity": "1000",
-    "unit": "g"
-  }, {
-    "ingredientName": "Sugar",
     "quantity": "9000",
     "unit": "g"
   }, {
+    "ingredientName": "Sugar",
+    "quantity": "9",
+    "unit": "kg"
+  }, {
     "ingredientName": "Fish",
-    "quantity": "50",
-    "unit": "g"
+    "quantity": "0",
+    "unit": "whole"
   } ],
-  "orders": [{
+  "orders": [ {
     "clientPhone": "94351253",
     "clientName": "Alice Pauline",
-    "clientAddress": "123, Jurong West Ave 6, #08-111"
+    "clientAddress": "123, Jurong West Ave 6, #08-111",
+    "recipeName" : "Chicken Rice",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Chicken"
+    }, {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Rice"
+    } ],
+    "price" : "4.50",
+    "deadline" : "12-12-2021 1900",
+    "quantity" : "4"
   }, {
     "clientPhone": "98765432",
     "clientName": "Benson Meier",
-    "clientAddress": "311, Clementi Ave 2, #02-25"
+    "clientAddress": "311, Clementi Ave 2, #02-25",
+    "recipeName" : "Nasi Lemak",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Fish"
+    }, {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Rice"
+    } ],
+    "price" : "5.50",
+    "deadline" : "01-01-2019 1300",
+    "quantity" : "2"
   }, {
     "clientPhone": "95352563",
     "clientName": "Carl Kurz",
-    "clientAddress": "wall street"
+    "clientAddress": "wall street",
+    "recipeName" : "Prata",
+    "recipeIngredients" : [],
+    "price" : "6.50",
+    "deadline" : "29-02-2020 1600",
+    "quantity" : "1"
   }, {
     "clientPhone": "87652533",
     "clientName": "Daniel Meier",
-    "clientAddress": "10th street"
+    "clientAddress": "10th street",
+    "recipeName" : "Char kuay teow",
+    "recipeIngredients" : [ {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Noodles"
+    } ],
+    "price" : "7.00",
+    "deadline" : "29-02-2024 1200",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482224",
     "clientName": "Elle Meyer",
-    "clientAddress": "michegan ave"
+    "clientAddress": "michegan ave",
+    "recipeName" : "Hokkien prawn mee",
+    "recipeIngredients" : [ {
+      "quantity" : "200",
+      "unit" : "grams",
+      "name" : "Noodles"
+    }, {
+      "quantity" : "20",
+      "unit" : "whole",
+      "name" : "Prawn"
+    } ],
+    "price" : "8.50",
+    "deadline" : "16-12-2021 1900",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482427",
     "clientName": "Fiona Kunz",
-    "clientAddress": "little tokyo"
+    "clientAddress": "little tokyo",
+    "recipeName" : "Kaya toast",
+    "recipeIngredients" : [ {
+      "quantity" : "2",
+      "unit" : "slice",
+      "name" : "Bread"
+    }, {
+      "quantity" : "100",
+      "unit" : "grams",
+      "name" : "Kaya"
+    } ],
+    "price" : "10",
+    "deadline" : "17-12-2021 2100",
+    "quantity" : "2"
   }, {
     "clientPhone": "9482442",
     "clientName": "George Best",
-    "clientAddress": "4th street"
+    "clientAddress": "4th street",
+    "recipeName" : "Satay",
+    "recipeIngredients" : [ {
+      "quantity" : "1",
+      "unit" : "whole",
+      "name" : "Chicken"
+    } ],
+    "price" : "10.00",
+    "deadline" : "18-12-2021 2359",
+    "quantity" : "2"
   } ]
 }

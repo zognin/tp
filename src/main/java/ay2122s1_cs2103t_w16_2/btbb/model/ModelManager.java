@@ -13,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -176,12 +177,38 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements setIngredient method.
+     * Replaces the existing Ingredient in the address book with an edited Ingredient.
+     *
+     * @param target The target ingredient to replace.
+     * @param editedIngredient The edited ingredient to replace with.
+     * @throws NotFoundException if the target ingredient was not found in the address book.
+     */
+    @Override
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) throws NotFoundException {
+        requireAllNonNull(target, editedIngredient);
+        addressBook.setIngredient(target, editedIngredient);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return filteredIngredients;
+    }
+
+    /**
+     * Implements minusIngredientQuantity method.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    @Override
+    public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        addressBook.minusIngredientQuantity(target, multiplier);
     }
 
     /**

@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
+package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -34,6 +34,26 @@ public class QuantityTest {
 
         // valid quantity
         assertTrue(Quantity.isValidQuantity("50"));
-        assertTrue(Quantity.isValidQuantity("1242938")); // large quantities
+        assertTrue(Quantity.isValidQuantity("40000")); // large quantities
+    }
+
+    @Test
+    public void isValidInternalQuantity() {
+        // null quantity
+        assertFalse(Quantity.isValidInternalQuantity(null));
+
+        // invalid quantity
+        assertFalse(Quantity.isValidInternalQuantity("")); // empty string
+        assertFalse(Quantity.isValidInternalQuantity(" ")); // spaces only
+        assertFalse(Quantity.isValidInternalQuantity("-91")); // negative number
+        assertFalse(Quantity.isValidInternalQuantity("qty")); // non-numeric
+        assertFalse(Quantity.isValidInternalQuantity("9011p041")); // alphabets within digits
+        assertFalse(Quantity.isValidInternalQuantity("9312 1534")); // spaces within digits
+        assertFalse(Quantity.isValidInternalQuantity("9312333333331534")); // int out of range
+
+        // valid quantity
+        assertTrue(Quantity.isValidInternalQuantity("0")); // internal allows 0
+        assertTrue(Quantity.isValidInternalQuantity("50"));
+        assertTrue(Quantity.isValidInternalQuantity("40000")); // large quantities
     }
 }

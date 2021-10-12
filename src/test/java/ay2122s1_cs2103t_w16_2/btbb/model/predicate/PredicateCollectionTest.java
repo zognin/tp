@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.shared;
+package ay2122s1_cs2103t_w16_2.btbb.model.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,7 +11,10 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericStub;
 
 public class PredicateCollectionTest {
@@ -24,6 +27,17 @@ public class PredicateCollectionTest {
             new StringContainsKeywordsPredicate<>(Client::getAddress, List.of("Yishun", "Geylang"));
     public static final StringContainsKeywordsPredicate<Client> CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE =
             new StringContainsKeywordsPredicate<>(Client::getEmail, List.of("alice@gmail.com", "bob@gmail.com"));
+
+    // Ingredient predicates
+    public static final StringContainsKeywordsPredicate<Ingredient> INGREDIENT_NAME_AVOCADO_BUTTER_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Ingredient::getName, List.of("Avocado", "Butter"));
+    public static final ValueInListPredicate<Ingredient, Quantity> INGREDIENT_QUANTITY_5_550_PREDICATE =
+            new ValueInListPredicate<>(Ingredient::getQuantity,
+                    List.of(new Quantity("5"), new Quantity("550")));
+    public static final ValueWithinRangePredicate<Ingredient, Quantity> INGREDIENT_QUANTITY_5_TO_600_PREDICATE =
+            new ValueWithinRangePredicate<>(Ingredient::getQuantity, new Quantity("5"), new Quantity("600"));
+    public static final StringContainsKeywordsPredicate<Ingredient> INGREDIENT_UNIT_WHOLE_GRAMS_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Ingredient::getUnit, List.of("whole", "grams"));
 
     // Order predicates
     public static final StringContainsKeywordsPredicate<Order> CLIENT_NAME_CAROL_DAVID_PREDICATE =

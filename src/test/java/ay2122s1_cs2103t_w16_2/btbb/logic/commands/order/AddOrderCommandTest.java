@@ -16,12 +16,20 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.Assert;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.ModelStub;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.ModelStubAcceptingOrderAdded;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.ModelStubWithOrder;
 
 public class AddOrderCommandTest {
     @Test
@@ -39,6 +47,54 @@ public class AddOrderCommandTest {
 
         assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOrder), modelStub.getOrdersAdded());
+    }
+
+    @Test
+    public void execute_duplicateOrder_throwsCommandException() {
+        Order validOrder = new OrderBuilder().build();
+        OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(validOrder).build();
+        AddOrderCommand addOrderCommand = new AddOrderCommand(validOrderDescriptor);
+        ModelStub modelStub = new ModelStubWithOrder(validOrder);
+
+        Assert.assertThrows(CommandException.class,
+                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand.execute(modelStub));
+
+        validOrder = new OrderBuilder().withPrice(new Price("10")).build();
+        Order withSamePriceValue = new OrderBuilder().withPrice(new Price("10.00")).build();
+        validOrderDescriptor = new OrderDescriptorBuilder(withSamePriceValue).build();
+        AddOrderCommand addOrderCommand2 = new AddOrderCommand(validOrderDescriptor);
+        ModelStub modelStub2 = new ModelStubWithOrder(validOrder);
+
+        Assert.assertThrows(CommandException.class,
+                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand2.execute(modelStub2));
+    }
+
+    @Test
+    public void execute_orderAcceptedByModel_reducesIngredientQuantity() throws Exception {
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+
+        Ingredient chicken = new Ingredient(
+                new GenericString("Chicken"),
+                new Quantity("100"),
+                new GenericString("whole")
+        );
+        modelStub.addIngredient(chicken);
+
+        // Order for Alice uses 1 chicken for each order. Alice made 4 orders.
+        Ingredient expectedChicken = new Ingredient(
+                chicken.getName(),
+                chicken.getQuantity().minusQuantityBy(new Quantity("1"), new Quantity("4")),
+                chicken.getUnit()
+        );
+
+        Order validOrder = new OrderBuilder(ORDER_FOR_ALICE).build();
+        OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(validOrder).build();
+
+        CommandResult commandResult = new AddOrderCommand(validOrderDescriptor).execute(modelStub);
+
+        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validOrder), modelStub.getOrdersAdded());
+        assertEquals(Arrays.asList(expectedChicken), modelStub.getIngredientsAdded());
     }
 
     @Test

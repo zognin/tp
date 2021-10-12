@@ -1,11 +1,19 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * A utility class to help with building OrderDescriptorBuilder objects.
@@ -39,6 +47,11 @@ public class OrderDescriptorBuilder {
         descriptor.setClientName(order.getClientName());
         descriptor.setClientPhone(order.getClientPhone());
         descriptor.setClientAddress(order.getClientAddress());
+        descriptor.setRecipeName(order.getRecipeName());
+        descriptor.setRecipeIngredients(order.getRecipeIngredients());
+        descriptor.setPrice(order.getPrice());
+        descriptor.setDeadline(order.getDeadline());
+        descriptor.setQuantity(order.getQuantity());
     }
 
     /**
@@ -82,6 +95,65 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder withClientIndex(Index clientIndex) {
         descriptor.setClientIndex(clientIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code recipeName} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param recipeName The recipeName that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new recipeName details.
+     */
+    public OrderDescriptorBuilder withRecipeName(String recipeName) {
+        descriptor.setRecipeName(new GenericString(recipeName));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ingredients} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param ingredients The ingredients that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new ingredients details.
+     */
+    public OrderDescriptorBuilder withRecipeIngredients(List<Ingredient> ingredients) {
+        if (ingredients.isEmpty()) {
+            descriptor.setRecipeIngredients(new RecipeIngredientList(new ArrayList<>()));
+            return this;
+        }
+        descriptor.setRecipeIngredients(new RecipeIngredientList(ingredients));
+        return this;
+    }
+
+    /**
+     * Sets the {@code price} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param price The price that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new price details.
+     */
+    public OrderDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
+        return this;
+    }
+
+    /**
+     * Sets the {@code deadline} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param deadline The deadline that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new deadline details.
+     */
+    public OrderDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
+        return this;
+    }
+
+    /**
+     * Sets the {@code quantity} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param quantity The quantity that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new quantity details.
+     */
+    public OrderDescriptorBuilder withQuantity(String quantity) {
+        descriptor.setQuantity(new Quantity(quantity));
         return this;
     }
 
