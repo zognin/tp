@@ -137,6 +137,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Order> getFilteredOrderList() {
         throw new AssertionError("This method should not be called.");
     }

@@ -213,6 +213,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
+
+    /**
+     * Replaces the existing target Order in the address book with an edited Order.
+     *
+     * @param target The target order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException if the target order does not exist in the address book.
+     */
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        orders.setOrder(target, editedOrder);
+    }
+
     //// util methods
 
     @Override

@@ -31,10 +31,10 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
-    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(new ArrayList<>());
+    private RecipeIngredientList recipeIngredients;
     private Price price;
     private Deadline deadline;
-    private Quantity quantity = new Quantity("1");
+    private Quantity quantity;
 
     public OrderDescriptor() {};
 
@@ -99,8 +99,8 @@ public class OrderDescriptor {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public RecipeIngredientList getRecipeIngredients() {
-        return recipeIngredients;
+    public Optional<RecipeIngredientList> getRecipeIngredients() {
+        return Optional.ofNullable(recipeIngredients);
     }
 
     public void setPrice(Price price) {
@@ -123,8 +123,8 @@ public class OrderDescriptor {
         this.quantity = quantity;
     }
 
-    public Quantity getQuantity() {
-        return quantity;
+    public Optional<Quantity> getQuantity() {
+        return Optional.ofNullable(quantity);
     }
 
     /**
@@ -141,11 +141,36 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
+            Quantity quantity = getQuantity().orElse(new Quantity("1"));
+            RecipeIngredientList recipeIngredientList =
+                    getRecipeIngredients().orElse(new RecipeIngredientList(new ArrayList<>()));
             return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, price, deadline, quantity);
+                    recipeName, recipeIngredientList, price, deadline, quantity);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
+    }
+
+    /**
+     * Converts an Order Descriptor to an Order model type.
+     * Missing fields are filled with an existing order.
+     *
+     * @param existingOrder An existing Order that is not null.
+     * @return {@code Order}.
+     */
+    public Order toModelTypeFrom(Order existingOrder) {
+        assert existingOrder != null;
+
+        GenericString clientName = getClientName().orElse(existingOrder.getClientName());
+        Phone clientPhone = getClientPhone().orElse(existingOrder.getClientPhone());
+        Address clientAddress = getClientAddress().orElse(existingOrder.getClientAddress());
+        GenericString recipeName = getRecipeName().orElse(existingOrder.getRecipeName());
+        RecipeIngredientList recipeIngredientList = getRecipeIngredients().orElse(existingOrder.getRecipeIngredients());
+        Price price = getPrice().orElse(existingOrder.getPrice());
+        Deadline deadline = getDeadline().orElse(existingOrder.getDeadline());
+        Quantity quantity = getQuantity().orElse(existingOrder.getQuantity());
+        return new Order(clientName, clientPhone, clientAddress,
+                recipeName, recipeIngredientList, price, deadline, quantity);
     }
 
     public Optional<Client> getClientFromModel(Model model) throws CommandException {

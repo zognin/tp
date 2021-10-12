@@ -237,6 +237,20 @@ public class ModelManager implements Model {
         return addressBook.hasOrder(order);
     }
 
+    /**
+     * Implements setOrder method.
+     * Replaces the existing Order in the address book with an edited Order.
+     *
+     * @param target The target order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException if the target order was not found in the address book.
+     */
+    @Override
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        addressBook.setOrder(target, editedOrder);
+    }
+
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;

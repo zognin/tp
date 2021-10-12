@@ -3,7 +3,6 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ADDRESS_DESC_IMRAN;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DEADLINE_DESC_DECEMBER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DEADLINE_DESC_MARCH;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.INDEX_DESC_AMY;
@@ -19,14 +18,12 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.INVALID
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.INVALID_RECIPE_NAME_DESC;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.NAME_DESC_IMRAN;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ORDER_PRICE_DESC_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ORDER_PRICE_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ORDER_QUANTITY_DESC_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ORDER_QUANTITY_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_DESC_IMRAN;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_1;
@@ -130,20 +127,6 @@ class AddOrderCommandParserTest {
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_1
                         + ORDER_PRICE_DESC_2 + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_1 + ORDER_QUANTITY_DESC_2,
                 new AddOrderCommand(expectedOrderDescriptorWithoutClientIndex));
-
-        //=========== Without Client Index and ingredient list ========================================================
-
-        assertParseSuccess(parser, PHONE_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + RECIPE_NAME_DESC_CHICKEN_RICE + ORDER_PRICE_DESC_1 + DEADLINE_DESC_DECEMBER
-                        + ORDER_QUANTITY_DESC_1,
-                new AddOrderCommand(expectedOrderDescriptorWithoutClientIndexAndIngredientList));
-
-        //=========== Without Client Index and order quantity ========================================================
-
-        assertParseSuccess(parser, PHONE_DESC_IMRAN + NAME_DESC_IMRAN + ADDRESS_DESC_IMRAN
-                        + RECIPE_NAME_DESC_CHICKEN_RICE + RECIPE_INGREDIENT_LIST_DESC_1 + ORDER_PRICE_DESC_1
-                        + DEADLINE_DESC_DECEMBER,
-                new AddOrderCommand(expectedOrderDescriptorWithoutClientIndexAndOrderQuantity));
 
         //=========== With Client Index ===============================================================================
 
