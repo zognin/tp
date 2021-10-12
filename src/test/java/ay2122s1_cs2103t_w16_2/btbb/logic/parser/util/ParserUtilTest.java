@@ -156,7 +156,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDeadline_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
