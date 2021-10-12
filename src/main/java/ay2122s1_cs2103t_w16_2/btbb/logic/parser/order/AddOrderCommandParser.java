@@ -19,6 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.Parser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 
 /**
  * Parses input arguments and creates a new AddOrderCommand object.
@@ -81,6 +82,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isPresent()) {
             orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
         }
+        // When a new Order is added, IsDone is set to false by default
+        orderDescriptor.setIsDone(new IsDone(false));
     }
 
     private void fillOrderDescriptorRecipeFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)

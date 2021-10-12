@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
@@ -107,6 +108,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String isDone} into a {@code IsDone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param isDone String input to parse.
+     * @return IsDone object.
+     * @throws ParseException If the given {@code isDone} is invalid.
+     */
+    public static IsDone parseIsDone(String isDone) throws ParseException {
+        requireNonNull(isDone);
+        String trimmedIsDone = isDone.trim();
+        if (!IsDone.isValidIsDone(trimmedIsDone)) {
+            throw new ParseException(IsDone.MESSAGE_CONSTRAINTS);
+        }
+        return new IsDone(trimmedIsDone);
+    }
+
+    /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -122,6 +140,8 @@ public class ParserUtil {
         }
         return new Price(trimmedPrice);
     }
+
+    // Recipe-level parsers:
 
     /**
      * Parses a {@code String recipeIngredients} into a {@code RecipeIngredientList}.

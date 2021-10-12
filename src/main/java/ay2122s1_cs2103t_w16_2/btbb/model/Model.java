@@ -167,6 +167,17 @@ public interface Model {
     ObservableList<Order> getFilteredOrderList();
 
     /**
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the address book.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     *
+     * @param target Order being replaced.
+     * @param editedOrder Order to replace with.
+     * @throws NotFoundException If target does not exist in currently shown order list.
+     */
+    void setOrder(Order target, Order editedOrder) throws NotFoundException;
+
+    /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

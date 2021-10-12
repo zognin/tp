@@ -242,6 +242,20 @@ public class ModelManager implements Model {
         return filteredOrders;
     }
 
+    /**
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the address book.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     *
+     * @param target Order being replaced.
+     * @param editedOrder Order to replace with.
+     * @throws NotFoundException If target does not exist in currently shown order list.
+     */
+    @Override
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        addressBook.setOrder(target, editedOrder);
+    }
+
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
