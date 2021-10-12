@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -47,6 +48,20 @@ public class UniqueOrderList implements Iterable<Order> {
             throw new NotFoundException(Order.class.getName());
         }
         internalList.set(index, editedOrder);
+    }
+
+    /**
+     * Removes the equivalent order from the list of orders.
+     * The ingredient must exist in the list.
+     *
+     * @param toRemove The order to remove from the list.
+     * @throws NotFoundException when there is no equivalent order found in the list.
+     */
+    public void remove(Order toRemove) throws NotFoundException {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new NotFoundException(Ingredient.class.getName());
+        }
     }
 
     /**
