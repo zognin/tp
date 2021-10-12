@@ -11,10 +11,10 @@ title: User Guide
 
 ### 1.1 About BobTheBistroBoss
 
-BobTheBistroBoss (BTBB) is a **desktop application that aims to help F&B businesses, by keeping track of logistics as well as 
-providing valuable data visualizations, via a user-friendly command line interface (CLI).** Keeping track of 
-information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our 
-application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and 
+BobTheBistroBoss (BTBB) is a **desktop application that aims to help F&B businesses, by keeping track of logistics as well as
+providing valuable data visualizations, via a user-friendly command line interface (CLI).** Keeping track of
+information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
+application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
 manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
 
 ## 2. Quick start
@@ -365,12 +365,12 @@ Action                   | Format and Examples
 ## 6. Disclaimers
 
 * If the quantity of ingredients or the quantity of the orders has
-  been changed in the JSON file, the application will not 
-  automatically reflect the corresponding changes in the 
+  been changed in the JSON file, the application will not
+  automatically reflect the corresponding changes in the
   inventory.
-* If any quantity attribute has been changed in the JSON such 
+* If any quantity attribute has been changed in the JSON such
   that it exceeds the lower bound 0 or the upper bound 40000,
-  they will be capped off to the respective bounds when the 
-  application starts. For example, if the quantity has been 
+  they will be capped off to the respective bounds when the
+  application starts. For example, if the quantity has been
   changed to -30, it will be capped off to 0. Likewise, if the
-  quantity has been changed to 50000, it will be capped off to 40000. 
+  quantity has been changed to 50000, it will be capped off to 40000.
