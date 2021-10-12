@@ -82,7 +82,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
         if (argMultimap.getValue(PREFIX_ORDER_DEADLINE).isPresent()) {
             orderDescriptor.setDeadline(
-                    ParserUtil.parseInternalDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
+                    ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isPresent()) {
             orderDescriptor.setQuantity(

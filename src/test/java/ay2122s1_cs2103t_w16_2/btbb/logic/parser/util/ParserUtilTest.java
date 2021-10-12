@@ -26,7 +26,6 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
 
     private static final String INVALID_DEADLINE = "12-12-2019";
-    private static final String INVALID_INTERNAL_DEADLINE = "12/12/2025 1500";
     private static final String INVALID_PRICE = "$4.00";
     private static final String INVALID_RECIPE_INGREDIENTS = "Rice-one-cup";
 
@@ -41,7 +40,6 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
 
     private static final String VALID_DEADLINE = "12-12-2025 1500";
-    private static final String VALID_INTERNAL_DEADLINE = "12-12-2019 1500";
     private static final String VALID_PRICE = "4.00";
     private static final String VALID_RECIPE_INGREDIENTS = "Rice-1-cup, Chicken-1-whole";
 
@@ -168,29 +166,6 @@ public class ParserUtilTest {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
-    }
-
-    @Test
-    public void parseInternalDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseInternalDeadline(null));
-    }
-
-    @Test
-    public void parseInternalDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInternalDeadline(INVALID_INTERNAL_DEADLINE));
-    }
-
-    @Test
-    public void parseInternalDeadline_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_INTERNAL_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseInternalDeadline(VALID_INTERNAL_DEADLINE));
-    }
-
-    @Test
-    public void parseInternalDeadline_validValueWithWhitespace_returnsEmail() throws Exception {
-        String deadlineWithWhitespace = WHITESPACE + VALID_INTERNAL_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_INTERNAL_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseInternalDeadline(deadlineWithWhitespace));
     }
 
     @Test
