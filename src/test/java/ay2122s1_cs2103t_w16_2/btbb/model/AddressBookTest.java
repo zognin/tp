@@ -133,7 +133,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void minusIngredientQuantity_validTargetAndMultiplier_throwsNullPointerException() {
+    public void minusIngredientQuantity_validTargetAndMultiplier_success() {
         addressBook.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
         Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
         Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("28").build();

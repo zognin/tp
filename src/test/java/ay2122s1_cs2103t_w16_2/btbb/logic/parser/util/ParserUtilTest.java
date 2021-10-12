@@ -162,7 +162,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDeadline_validValueWithWhitespace_returnsEmail() throws Exception {
+    public void parseDeadline_validValueWithWhitespace_returnsDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
@@ -179,13 +179,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePrice_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
         Price expectedPrice = new Price(VALID_PRICE);
         assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
     }
 
     @Test
-    public void parsePrice_validValueWithWhitespace_returnsEmail() throws Exception {
+    public void parsePrice_validValueWithWhitespace_returnsPrice() throws Exception {
         String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
         Price expectedPrice = new Price(VALID_PRICE);
         assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
@@ -202,7 +202,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRecipeIngredients_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseRecipeIngredients_validValueWithoutWhitespace_returnsRecipeIngredients() throws Exception {
         Ingredient rice = new Ingredient(new GenericString("Rice"), new Quantity("1"), new GenericString("cup"));
         Ingredient chicken = new Ingredient(
                 new GenericString("Chicken"), new Quantity("1"), new GenericString("whole"));
@@ -211,7 +211,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRecipeIngredients_validValueWithWhitespace_returnsEmail() throws Exception {
+    public void parseRecipeIngredients_validValueWithWhitespace_returnsRecipeIngredients() throws Exception {
         Ingredient rice = new Ingredient(new GenericString("Rice"), new Quantity("1"), new GenericString("cup"));
         Ingredient chicken = new Ingredient(
                 new GenericString("Chicken"), new Quantity("1"), new GenericString("whole"));
