@@ -122,7 +122,7 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 **Examples:**
 * `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the following attributes:
   * Name: Alex Yeoh
-  * Phone number:89653101
+  * Phone number: 89653101
   * Email: 'alexyeoh@gmail.com'
   * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
 
@@ -175,7 +175,7 @@ Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 * Partial search will be allowed. <br>
   e.g. <code>find-c cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* It will find orders that match at least one keyword, for each prefix. <br>
+* It will find clients that match at least one keyword, for each prefix. <br>
   e.g. <code>find-c cn/Al Be cp/34 22312 </code> can show all of these combinations of clients: <br>
   * client names containing 'Al' with phone numbers containing '34'.
   * client names containing 'Al' with phone numbers containing '22312'.
