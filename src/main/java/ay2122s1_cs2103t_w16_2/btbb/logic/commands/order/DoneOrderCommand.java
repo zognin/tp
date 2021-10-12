@@ -1,5 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
@@ -10,10 +14,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class DoneOrderCommand extends Command {
     public static final String COMMAND_WORD = "done-o";

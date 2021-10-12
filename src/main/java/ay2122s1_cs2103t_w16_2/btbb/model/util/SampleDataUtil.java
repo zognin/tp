@@ -101,7 +101,7 @@ public class SampleDataUtil {
         for (int i = 0; i < loopCount; i++) {
             float randomPrice = randomNumberGenerator.nextFloat();
             int randomQuantity = randomNumberGenerator.nextInt(40000);
-            boolean randomIsDone = randomNumberGenerator.nextBoolean();
+            boolean randomIsDone = (i % 2 == 0);
             orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
                     new GenericString(recipes[i]), new RecipeIngredientList(ingredients.get(i)),
                     new Price(String.format("%.2f", randomPrice)),
