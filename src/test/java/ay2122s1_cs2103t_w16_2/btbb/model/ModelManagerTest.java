@@ -133,7 +133,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void addIngredientQuantity_validTargetAndMultiplier_throwsNullPointerException() {
+    public void addIngredientQuantity_validTargetAndMultiplier_success() {
         modelManager.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
         Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
         Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("32").build();
@@ -153,7 +153,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void minusIngredientQuantity_validTargetAndMultiplier_throwsNullPointerException() {
+    public void minusIngredientQuantity_validTargetAndMultiplier_success() {
         modelManager.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
         Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
         Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("28").build();
@@ -177,7 +177,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setOrder_validTargetAndEditedOrder_throwsNullPointerException() throws NotFoundException {
+    public void setOrder_validTargetAndEditedOrder_success() throws NotFoundException {
         modelManager.addOrder(ORDER_FOR_ALICE);
         modelManager.setOrder(ORDER_FOR_ALICE, ORDER_FOR_AMY);
         assertFalse(modelManager.hasOrder(ORDER_FOR_ALICE));

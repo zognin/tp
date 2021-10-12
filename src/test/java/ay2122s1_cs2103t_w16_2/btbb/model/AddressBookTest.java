@@ -112,7 +112,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void addIngredientQuantity_validTargetAndMultiplier_throwsNullPointerException() {
+    public void addIngredientQuantity_validTargetAndMultiplier_success() {
         addressBook.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
         Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
         Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("32").build();
@@ -157,7 +157,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void setOrder_validTargetAndEditedOrder_throwsNullPointerException() throws NotFoundException {
+    public void setOrder_validTargetAndEditedOrder_success() throws NotFoundException {
         addressBook.addOrder(ORDER_FOR_ALICE);
         addressBook.setOrder(ORDER_FOR_ALICE, ORDER_FOR_AMY);
         assertFalse(addressBook.hasOrder(ORDER_FOR_ALICE));

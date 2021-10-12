@@ -70,7 +70,7 @@ class UniqueOrderListTest {
     }
 
     @Test
-    public void setOrder_validTargetAndEditedOrder_throwsNullPointerException() throws NotFoundException {
+    public void setOrder_validTargetAndEditedOrder_success() throws NotFoundException {
         uniqueOrderList.add(ORDER_FOR_ALICE);
         uniqueOrderList.setOrder(ORDER_FOR_ALICE, ORDER_FOR_BENSON);
         assertFalse(uniqueOrderList.contains(ORDER_FOR_ALICE));
