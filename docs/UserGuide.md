@@ -46,8 +46,8 @@ Displays a list of all clients and orders, with the following information:
 
 
 #### 2.2.2 Ingredient Tab
-Dispays a list of all ingredients, with the following information:
-* Ingredient: Name, quantity, unit
+Displays a list of all ingredients, with the following information:
+* Ingredient: Name, Quantity, Qnit
 
 ![layout2](images/layout2.png)
 
