@@ -44,6 +44,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
@@ -80,6 +81,21 @@ public class AddressBookParserTest {
         OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
         assertEquals(new AddOrderCommand(orderDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addOrderIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        IngredientDescriptor ingredientDescriptor = new IngredientDescriptorBuilder(ingredient).build();
+
+        AddOrderIngredientCommand command =
+                (AddOrderIngredientCommand) parser.parseCommand(AddOrderIngredientCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_INGREDIENT_NAME + ingredient.getName().toString() + " "
+                        + PREFIX_INGREDIENT_QUANTITY + ingredient.getQuantity().toString() + " "
+                        + PREFIX_INGREDIENT_UNIT + ingredient.getUnit().toString()
+                );
+        assertEquals(new AddOrderIngredientCommand(INDEX_FIRST, ingredientDescriptor), command);
     }
 
     @Test

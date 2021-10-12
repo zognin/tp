@@ -102,4 +102,22 @@ public class AddOrderIngredientCommand extends Command {
         newIngredients.add(ingredientToAdd);
         return new RecipeIngredientList(newIngredients);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddOrderIngredientCommand)) {
+            return false;
+        }
+
+        // state check
+        AddOrderIngredientCommand e = (AddOrderIngredientCommand) other;
+        return index.equals(e.index)
+                && ingredientDescriptor.equals(e.ingredientDescriptor);
+    }
 }
