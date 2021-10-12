@@ -15,6 +15,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
+/**
+ * Marks an order as done in address book.
+ */
 public class DoneOrderCommand extends Command {
     public static final String COMMAND_WORD = "done-o";
 
@@ -37,6 +40,13 @@ public class DoneOrderCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes this DoneOrderCommand.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Command Result of executing the Done Order Command.
+     * @throws CommandException If unable to mark this order as done.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

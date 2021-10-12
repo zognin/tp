@@ -163,14 +163,14 @@ public class Order {
                 .append(getDeadline())
                 .append("; Order Quantity: ")
                 .append(getQuantity())
-                .append("; IsDone: ")
+                .append("; Is Finished: ")
                 .append(getIsDone());
 
         return builder.toString();
     }
 
     /**
-     * Gets the string representation of Order object, without IsDone attribute.
+     * Gets the string representation of an Order object, without IsDone attribute.
      * For use in Done and Undone commands only.
      *
      * @return String representation of Order object, without IsDone attribute.

@@ -16,6 +16,7 @@ public class OrderCard extends UiPart<Region> {
     private static final String FXML = "OrderListCard.fxml";
 
     private final Order order;
+    private final Color BLUE_GREEN = Color.web("#03DAC5");
 
     @FXML
     private HBox cardPane;
@@ -58,7 +59,7 @@ public class OrderCard extends UiPart<Region> {
         orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
-        orderIsFinished.setStroke(order.getIsDone().getDoneStatus() ? Color.web("#03DAC5") : Color.WHITE);
+        orderIsFinished.setStroke(order.getIsDone().getDoneStatus() ? BLUE_GREEN : Color.WHITE);
     }
 
     @Override

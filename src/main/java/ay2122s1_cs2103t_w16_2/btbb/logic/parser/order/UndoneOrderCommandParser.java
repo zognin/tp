@@ -8,10 +8,13 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.Parser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
+/**
+ * Parses input arguments and creates a new UndoneOrderCommand object.
+ */
 public class UndoneOrderCommandParser implements Parser<UndoneOrderCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditClientCommand
-     * and returns an EditClientCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UndoneOrderCommand
+     * and returns an UndoneOrderCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

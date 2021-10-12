@@ -3,6 +3,10 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the done status of an order in BTBB.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class IsDone {
     public static final String MESSAGE_CONSTRAINTS = "Done Status should only be either 'yes' or 'no'.";
     private final boolean isDone;

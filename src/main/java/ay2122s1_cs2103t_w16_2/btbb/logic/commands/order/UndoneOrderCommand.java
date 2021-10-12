@@ -15,6 +15,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
+/**
+ * Marks an order as undone in address book.
+ */
 public class UndoneOrderCommand extends Command {
     public static final String COMMAND_WORD = "undone-o";
 
@@ -37,6 +40,13 @@ public class UndoneOrderCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes this UndoneOrderCommand.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Command Result of executing the Undone Order Command.
+     * @throws CommandException If unable to mark this order as undone.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
