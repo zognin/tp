@@ -1,6 +1,5 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -150,9 +149,6 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
-            RecipeIngredientList recipeIngredients = getRecipeIngredients()
-                    .orElse(new RecipeIngredientList(new ArrayList<>()));
-            Quantity quantity = getQuantity().orElse(new Quantity("1"));
             return new Order(clientName, clientPhone, clientAddress,
                     recipeName, recipeIngredients, price, deadline, quantity);
         } catch (NoSuchElementException e) {
