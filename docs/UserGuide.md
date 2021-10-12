@@ -18,6 +18,8 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 
 ## 2. Quick start
 
+### 2.1 Installation
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the jar file of the application.
@@ -31,6 +33,23 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
    * **`list client`** : Lists all clients.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+### 2.2 Layout
+The user interface of BobTheBistroBoss is divided into 2 tabs.
+
+#### 2.2.1 Home Tab
+Displays a list of all clients and orders, with the following information:
+* Client: Name, Phone number, Email, Address
+* Order: Client name, Phone number, Address, Recipe name, Recipe ingredients, Recipe price, Order deadline, Order quantity, Done status of Order.
+
+![layout1](images/layout1.png)
+
+
+#### 2.2.2 Ingredient Tab
+Dispays a list of all ingredients, with the following information:
+* Ingredient: Name, quantity, unit
+
+![layout2](images/layout2.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
