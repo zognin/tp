@@ -114,7 +114,7 @@ Deletes a client from the application.
 Format: `delete-c INDEX`
 
 **Examples:**
-* `delete client 1` Deletes the client at index 1 in the client list currently shown.
+* `delete-c 1` Deletes the client at index 1 in the client list currently shown.
 
 #### 3.3.3 Editing clients: `edit-c`
 
