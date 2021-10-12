@@ -4,7 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_OR
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_ORDER_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_IS_DONE_YES;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_YES;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -54,7 +54,7 @@ class OrderDescriptorTest {
 
         // different done status -> returns false
         editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
-                .withIsDone(VALID_ORDER_IS_DONE_YES).build();
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES).build();
         assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
     }
 }

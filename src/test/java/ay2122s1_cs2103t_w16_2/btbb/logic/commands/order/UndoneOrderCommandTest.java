@@ -18,7 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
@@ -44,7 +44,7 @@ public class UndoneOrderCommandTest {
         // null -> returns false
         assertFalse(undoneFirstCommand.equals(null));
 
-        // different ingredient -> returns false
+        // different index -> returns false
         assertFalse(undoneFirstCommand.equals(undoneSecondCommand));
     }
 
@@ -54,12 +54,12 @@ public class UndoneOrderCommandTest {
         Order expectedMarkedOrder = new Order(orderToMarkUndone.getClientName(), orderToMarkUndone.getClientPhone(),
                 orderToMarkUndone.getClientAddress(), orderToMarkUndone.getRecipeName(),
                 orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getPrice(),
-                orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new IsDone(false));
+                orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new CompletionStatus(false));
         UndoneOrderCommand undoneOrderCommand = new UndoneOrderCommand(INDEX_FIRST);
 
         String expectedMessage =
                 String.format(UndoneOrderCommand.MESSAGE_UNDONE_ORDER_SUCCESS,
-                        orderToMarkUndone.toStringWithoutIsDone());
+                        orderToMarkUndone.toStringWithoutCompletionStatus());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(orderToMarkUndone, expectedMarkedOrder);
@@ -81,11 +81,12 @@ public class UndoneOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Order markedOrder = new OrderBuilder(orderInFilteredList).withIsDone(new IsDone(false)).build();
+        Order markedOrder = new OrderBuilder(orderInFilteredList)
+                .withCompletionStatus(new CompletionStatus(false)).build();
         UndoneOrderCommand undoneOrderCommand = new UndoneOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(UndoneOrderCommand.MESSAGE_UNDONE_ORDER_SUCCESS,
-                orderInFilteredList.toStringWithoutIsDone());
+                orderInFilteredList.toStringWithoutCompletionStatus());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), markedOrder);
@@ -110,7 +111,7 @@ public class UndoneOrderCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no orders.
      */
     private void showNoOrder(Model model) {
         model.updateFilteredOrderList(p -> false);

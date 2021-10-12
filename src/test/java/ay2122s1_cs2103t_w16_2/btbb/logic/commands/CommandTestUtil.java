@@ -10,8 +10,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_FROM;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY_TO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_COMPLETION_STATUS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_IS_DONE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
@@ -84,8 +84,8 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_MARCH = "03-03-2022 1500";
     public static final String VALID_ORDER_QUANTITY_1 = "1";
     public static final String VALID_ORDER_QUANTITY_2 = "2";
-    public static final String VALID_ORDER_IS_DONE_YES = "yes";
-    public static final String VALID_ORDER_IS_DONE_NO = "no";
+    public static final String VALID_ORDER_COMPLETION_STATUS_YES = "yes";
+    public static final String VALID_ORDER_COMPLETION_STATUS_NO = "no";
 
     // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
@@ -126,8 +126,10 @@ public class CommandTestUtil {
     public static final String ORDER_QUANTITY_DESC_2 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_2;
     public static final String DEADLINE_DESC_DECEMBER = " " + PREFIX_ORDER_DEADLINE + VALID_DEADLINE_DECEMBER;
     public static final String DEADLINE_DESC_MARCH = " " + PREFIX_ORDER_DEADLINE + VALID_DEADLINE_MARCH;
-    public static final String ORDER_IS_DONE_YES = " " + PREFIX_ORDER_IS_DONE + VALID_ORDER_IS_DONE_YES;
-    public static final String ORDER_IS_DONE_NO = " " + PREFIX_ORDER_IS_DONE + VALID_ORDER_IS_DONE_NO;
+    public static final String ORDER_COMPLETION_STATUS_YES = " " + PREFIX_ORDER_COMPLETION_STATUS
+            + VALID_ORDER_COMPLETION_STATUS_YES;
+    public static final String ORDER_COMPLETION_STATUS_NO = " " + PREFIX_ORDER_COMPLETION_STATUS
+            + VALID_ORDER_COMPLETION_STATUS_NO;
 
     // Client (valid prefix + invalid attributes)
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";
@@ -152,7 +154,7 @@ public class CommandTestUtil {
     public static final String INVALID_ORDER_QUANTITY_DESC = " " + PREFIX_ORDER_QUANTITY + "-20";
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_ORDER_DEADLINE
             + "2021-12-12 6.30am"; // wrong format
-    public static final String INVALID_ORDER_IS_DONE_DESC = " " + PREFIX_ORDER_IS_DONE + "y";
+    public static final String INVALID_ORDER_COMPLETION_STATUS_DESC = " " + PREFIX_ORDER_COMPLETION_STATUS + "y";
 
     // Others
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -184,14 +186,14 @@ public class CommandTestUtil {
                                 new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
                                 new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
                 .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1)
-                .withIsDone(VALID_ORDER_IS_DONE_NO).build();
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                 .withClientAddress(VALID_ADDRESS_BOB).withRecipeName(VALID_RECIPE_NAME_LAKSA)
                 .withRecipeIngredients(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                         new GenericString(VALID_UNIT_BEEF)))).withPrice(VALID_PRICE_2)
                 .withDeadline(VALID_DEADLINE_MARCH).withQuantity(VALID_ORDER_QUANTITY_2)
-                .withIsDone(VALID_ORDER_IS_DONE_NO).build();
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
 
         // Ingredient
         DESC_APPLE = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)

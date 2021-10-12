@@ -11,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
@@ -60,7 +60,7 @@ public class UndoneOrderCommand extends Command {
         Order markedOrder = new Order(orderToMarkUndone.getClientName(), orderToMarkUndone.getClientPhone(),
                 orderToMarkUndone.getClientAddress(), orderToMarkUndone.getRecipeName(),
                 orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getPrice(),
-                orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new IsDone(false));
+                orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new CompletionStatus(false));
 
         try {
             model.setOrder(orderToMarkUndone, markedOrder);
@@ -68,8 +68,8 @@ public class UndoneOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_UNDONE_ORDER_SUCCESS, orderToMarkUndone.toStringWithoutIsDone()),
-                UiTab.HOME);
+        return new CommandResult(String.format(MESSAGE_UNDONE_ORDER_SUCCESS,
+                orderToMarkUndone.toStringWithoutCompletionStatus()), UiTab.HOME);
     }
 
     @Override

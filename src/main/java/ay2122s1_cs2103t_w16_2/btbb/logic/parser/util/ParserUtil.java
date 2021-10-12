@@ -13,8 +13,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
@@ -108,20 +108,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String isDone} into a {@code IsDone}.
+     * Parses a {@code String completionStatus} into a {@code CompletionStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param isDone String input to parse.
-     * @return IsDone object.
-     * @throws ParseException If the given {@code isDone} is invalid.
+     * @param completionStatus String input to parse.
+     * @return CompletionStatus object.
+     * @throws ParseException If the given {@code completionStatus} is invalid.
      */
-    public static IsDone parseIsDone(String isDone) throws ParseException {
-        requireNonNull(isDone);
-        String trimmedIsDone = isDone.trim();
-        if (!IsDone.isValidIsDone(trimmedIsDone)) {
-            throw new ParseException(IsDone.MESSAGE_CONSTRAINTS);
+    public static CompletionStatus parseCompletionStatus(String completionStatus) throws ParseException {
+        requireNonNull(completionStatus);
+        String trimmedCompletionStatus = completionStatus.trim();
+        if (!CompletionStatus.isValidCompletionStatus(trimmedCompletionStatus)) {
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
-        return new IsDone(trimmedIsDone);
+        return new CompletionStatus(trimmedCompletionStatus);
     }
 
     /**

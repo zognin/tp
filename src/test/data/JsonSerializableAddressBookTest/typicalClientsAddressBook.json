@@ -102,7 +102,7 @@
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   }, {
     "clientPhone": "98765432",
     "clientName": "Benson Meier",
@@ -120,7 +120,7 @@
     "price" : "5.50",
     "deadline" : "01-01-2019 1300",
     "quantity" : "2",
-    "isDone" : "no"
+    "isFinished" : "no"
   }, {
     "clientPhone": "95352563",
     "clientName": "Carl Kurz",
@@ -130,7 +130,7 @@
     "price" : "6.50",
     "deadline" : "29-02-2020 1600",
     "quantity" : "1",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   }, {
     "clientPhone": "87652533",
     "clientName": "Daniel Meier",
@@ -144,7 +144,7 @@
     "price" : "7.00",
     "deadline" : "29-02-2024 1200",
     "quantity" : "2",
-    "isDone" : "no"
+    "isFinished" : "no"
   }, {
     "clientPhone": "9482224",
     "clientName": "Elle Meyer",
@@ -162,7 +162,7 @@
     "price" : "8.50",
     "deadline" : "16-12-2021 1900",
     "quantity" : "2",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   }, {
     "clientPhone": "9482427",
     "clientName": "Fiona Kunz",
@@ -180,7 +180,7 @@
     "price" : "10",
     "deadline" : "17-12-2021 2100",
     "quantity" : "2",
-    "isDone" : "no"
+    "isFinished" : "no"
   }, {
     "clientPhone": "9482442",
     "clientName": "George Best",
@@ -194,6 +194,6 @@
     "price" : "10.00",
     "deadline" : "18-12-2021 2359",
     "quantity" : "2",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   } ]
 }

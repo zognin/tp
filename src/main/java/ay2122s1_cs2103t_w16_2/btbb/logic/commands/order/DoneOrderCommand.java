@@ -11,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
@@ -60,7 +60,7 @@ public class DoneOrderCommand extends Command {
         Order markedOrder = new Order(orderToMarkDone.getClientName(), orderToMarkDone.getClientPhone(),
                 orderToMarkDone.getClientAddress(), orderToMarkDone.getRecipeName(),
                 orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getPrice(),
-                orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new IsDone(true));
+                orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new CompletionStatus(true));
 
         try {
             model.setOrder(orderToMarkDone, markedOrder);
@@ -68,8 +68,8 @@ public class DoneOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DONE_ORDER_SUCCESS, orderToMarkDone.toStringWithoutIsDone()),
-                UiTab.HOME);
+        return new CommandResult(String.format(MESSAGE_DONE_ORDER_SUCCESS,
+                orderToMarkDone.toStringWithoutCompletionStatus()), UiTab.HOME);
     }
 
     @Override

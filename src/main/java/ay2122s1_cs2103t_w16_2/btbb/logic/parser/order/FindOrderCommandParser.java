@@ -5,7 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_IS_DONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_COMPLETION_STATUS;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -29,7 +29,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS,
-                        PREFIX_ORDER_IS_DONE);
+                        PREFIX_ORDER_COMPLETION_STATUS);
 
         PredicateCollection<Order> predicateCollection = new PredicateCollection<>();
         predicateCollection.addStringContainsKeywordsPredicate(
@@ -42,7 +42,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
                 PREFIX_CLIENT_ADDRESS, argMultimap, Order::getClientAddress
         );
         predicateCollection.addStringContainsKeywordsPredicate(
-                PREFIX_ORDER_IS_DONE, argMultimap, Order::getIsDone
+                PREFIX_ORDER_COMPLETION_STATUS, argMultimap, Order::getCompletionStatus
         );
 
         if (predicateCollection.hasNoPredicates() || !argMultimap.getPreamble().isEmpty()) {

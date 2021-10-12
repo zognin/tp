@@ -18,7 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
@@ -44,7 +44,7 @@ public class DoneOrderCommandTest {
         // null -> returns false
         assertFalse(doneFirstCommand.equals(null));
 
-        // different ingredient -> returns false
+        // different index -> returns false
         assertFalse(doneFirstCommand.equals(doneSecondCommand));
     }
 
@@ -54,11 +54,12 @@ public class DoneOrderCommandTest {
         Order expectedMarkedOrder = new Order(orderToMarkDone.getClientName(), orderToMarkDone.getClientPhone(),
                 orderToMarkDone.getClientAddress(), orderToMarkDone.getRecipeName(),
                 orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getPrice(),
-                orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new IsDone(true));
+                orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new CompletionStatus(true));
         DoneOrderCommand doneOrderCommand = new DoneOrderCommand(INDEX_FIRST);
 
         String expectedMessage =
-                String.format(DoneOrderCommand.MESSAGE_DONE_ORDER_SUCCESS, orderToMarkDone.toStringWithoutIsDone());
+                String.format(DoneOrderCommand.MESSAGE_DONE_ORDER_SUCCESS,
+                        orderToMarkDone.toStringWithoutCompletionStatus());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(orderToMarkDone, expectedMarkedOrder);
@@ -80,11 +81,12 @@ public class DoneOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Order markedOrder = new OrderBuilder(orderInFilteredList).withIsDone(new IsDone(true)).build();
+        Order markedOrder = new OrderBuilder(orderInFilteredList)
+                .withCompletionStatus(new CompletionStatus(true)).build();
         DoneOrderCommand doneOrderCommand = new DoneOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DoneOrderCommand.MESSAGE_DONE_ORDER_SUCCESS,
-                orderInFilteredList.toStringWithoutIsDone());
+                orderInFilteredList.toStringWithoutCompletionStatus());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), markedOrder);
@@ -109,7 +111,7 @@ public class DoneOrderCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no orders.
      */
     private void showNoOrder(Model model) {
         model.updateFilteredOrderList(p -> false);

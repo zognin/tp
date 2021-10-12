@@ -5,8 +5,8 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
@@ -27,7 +27,7 @@ public class OrderBuilder {
     private static final String DEFAULT_ORDER_PRICE = "1.50";
     private static final String DEFAULT_ORDER_DEADLINE = "12-12-2021 1500";
     private static final String DEFAULT_ORDER_QUANTITY = "1";
-    private static final String DEFAULT_ORDER_IS_DONE = "no";
+    private static final String DEFAULT_ORDER_COMPLETION_STATUS = "no";
 
     private GenericString clientName;
     private Phone clientPhone;
@@ -37,7 +37,7 @@ public class OrderBuilder {
     private Price price;
     private Deadline deadline;
     private Quantity quantity;
-    private IsDone isDone;
+    private CompletionStatus completionStatus;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -51,7 +51,7 @@ public class OrderBuilder {
         price = new Price(DEFAULT_ORDER_PRICE);
         deadline = new Deadline(DEFAULT_ORDER_DEADLINE);
         quantity = new Quantity(DEFAULT_ORDER_QUANTITY);
-        isDone = new IsDone(DEFAULT_ORDER_IS_DONE);
+        completionStatus = new CompletionStatus(DEFAULT_ORDER_COMPLETION_STATUS);
     }
 
     /**
@@ -68,7 +68,7 @@ public class OrderBuilder {
         price = orderToCopy.getPrice();
         deadline = orderToCopy.getDeadline();
         quantity = orderToCopy.getQuantity();
-        isDone = orderToCopy.getIsDone();
+        completionStatus = orderToCopy.getCompletionStatus();
     }
 
     /**
@@ -162,11 +162,11 @@ public class OrderBuilder {
     /**
      * Sets the {@code quantity} of the {@code OrderBuilder} that we are building.
      *
-     * @param isDone The order quantity associated with the order we are building.
+     * @param completionStatus The order quantity associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withIsDone(IsDone isDone) {
-        this.isDone = isDone;
+    public OrderBuilder withCompletionStatus(CompletionStatus completionStatus) {
+        this.completionStatus = completionStatus;
         return this;
     }
 
@@ -177,6 +177,6 @@ public class OrderBuilder {
      */
     public Order build() {
         return new Order(clientName, clientPhone, clientAddress,
-                recipeName, recipeIngredients, price, deadline, quantity, isDone);
+                recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
     }
 }

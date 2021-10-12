@@ -97,7 +97,8 @@ class OrderTest {
         assertTrue(ORDER_FOR_ALICE.isSameOrder(editedRandomOrder));
 
         // different order done status -> returns true
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON).withIsDone(new IsDone(false)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON)
+                .withCompletionStatus(new CompletionStatus(true)).build();
         assertTrue(ORDER_FOR_BENSON.isSameOrder(editedRandomOrder));
     }
 
@@ -172,7 +173,7 @@ class OrderTest {
         assertFalse(ORDER_FOR_ALICE.equals(editedRandomOrder));
 
         // different order done status -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON).withIsDone(new IsDone(true)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON).withCompletionStatus(new CompletionStatus(true)).build();
         assertFalse(ORDER_FOR_BENSON.equals(editedRandomOrder));
     }
 }

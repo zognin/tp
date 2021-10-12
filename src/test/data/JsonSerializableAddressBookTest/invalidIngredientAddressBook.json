@@ -27,6 +27,6 @@
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4",
-    "isDone" : "no"
+    "isFinished" : "no"
   } ]
 }

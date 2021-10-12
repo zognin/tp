@@ -22,7 +22,7 @@ public class Order {
     private final Price price;
     private final Deadline deadline;
     private final Quantity quantity;
-    private final IsDone isDone;
+    private final CompletionStatus completionStatus;
 
     /**
      * Constructs an order object.
@@ -38,9 +38,9 @@ public class Order {
      */
     public Order(GenericString clientName, Phone clientPhone, Address clientAddress,
                  GenericString recipeName, RecipeIngredientList recipeIngredients, Price price,
-                 Deadline deadline, Quantity quantity, IsDone isDone) {
+                 Deadline deadline, Quantity quantity, CompletionStatus completionStatus) {
         requireAllNonNull(clientName, clientPhone, clientAddress,
-                recipeName, recipeIngredients, recipeName, deadline, quantity, isDone);
+                recipeName, recipeIngredients, recipeName, deadline, quantity, completionStatus);
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
@@ -49,7 +49,7 @@ public class Order {
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
-        this.isDone = isDone;
+        this.completionStatus = completionStatus;
     }
 
     public GenericString getClientName() {
@@ -84,8 +84,8 @@ public class Order {
         return quantity;
     }
 
-    public IsDone getIsDone() {
-        return isDone;
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Order {
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getQuantity().equals(getQuantity())
-                && otherOrder.getIsDone().equals(getIsDone());
+                && otherOrder.getCompletionStatus().equals(getCompletionStatus());
     }
 
     @Override
@@ -163,19 +163,19 @@ public class Order {
                 .append(getDeadline())
                 .append("; Order Quantity: ")
                 .append(getQuantity())
-                .append("; Is Finished: ")
-                .append(getIsDone());
+                .append("; Order Status: ")
+                .append(getCompletionStatus().getDisplayMessage());
 
         return builder.toString();
     }
 
     /**
-     * Gets the string representation of an Order object, without IsDone attribute.
+     * Gets the string representation of an Order object, without CompletionStatus attribute.
      * For use in Done and Undone commands only.
      *
-     * @return String representation of Order object, without IsDone attribute.
+     * @return String representation of Order object, without CompletionStatus attribute.
      */
-    public String toStringWithoutIsDone() {
+    public String toStringWithoutCompletionStatus() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Client Name: ")
                 .append(getClientName())

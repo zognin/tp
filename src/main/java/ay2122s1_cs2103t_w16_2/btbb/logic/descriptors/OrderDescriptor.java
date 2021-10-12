@@ -12,8 +12,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
@@ -36,7 +36,7 @@ public class OrderDescriptor {
     private Price price;
     private Deadline deadline;
     private Quantity quantity = new Quantity("1");
-    private IsDone isDone;
+    private CompletionStatus completionStatus;
 
     public OrderDescriptor() {};
 
@@ -55,7 +55,7 @@ public class OrderDescriptor {
         setPrice(toCopy.price);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
-        setIsDone(toCopy.isDone);
+        setCompletionStatus(toCopy.completionStatus);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -130,12 +130,12 @@ public class OrderDescriptor {
         return quantity;
     }
 
-    public void setIsDone(IsDone isDone) {
-        this.isDone = isDone;
+    public void setCompletionStatus(CompletionStatus completionStatus) {
+        this.completionStatus = completionStatus;
     }
 
-    public IsDone getIsDone() {
-        return isDone;
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -154,7 +154,7 @@ public class OrderDescriptor {
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
 
             return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, price, deadline, quantity, isDone);
+                    recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -197,6 +197,6 @@ public class OrderDescriptor {
                 && getPrice().equals(otherOrderDescriptor.getPrice())
                 && getDeadline().equals(otherOrderDescriptor.getDeadline())
                 && getQuantity().equals(otherOrderDescriptor.getQuantity())
-                && getIsDone().equals(otherOrderDescriptor.getIsDone());
+                && getCompletionStatus().equals(otherOrderDescriptor.getCompletionStatus());
     }
 }

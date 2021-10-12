@@ -23,7 +23,7 @@
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   }, {
     "clientPhone": "94351253",
     "clientName": "Alice Pauline",
@@ -41,6 +41,6 @@
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
     "quantity" : "4",
-    "isDone" : "yes"
+    "isFinished" : "yes"
   } ]
 }
