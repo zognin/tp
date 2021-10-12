@@ -34,13 +34,11 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the given order {@code target} with {@code editedOrder}.
-     * {@code target} must exist in the address book.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     * Replaces the existing target Order in the list with an edited Order.
      *
-     * @param target Order being replaced.
-     * @param editedOrder Order to replace with.
-     * @throws NotFoundException If target does not exist in currently shown order list.
+     * @param target The target order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException If the target order does not exist in the list.
      */
     public void setOrder(Order target, Order editedOrder) throws NotFoundException {
         requireAllNonNull(target, editedOrder);

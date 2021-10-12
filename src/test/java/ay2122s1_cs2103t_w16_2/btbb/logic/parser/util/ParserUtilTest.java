@@ -13,7 +13,11 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -22,6 +26,10 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_COMPLETION_STATUS = "y";
+
+    private static final String INVALID_DEADLINE = "12-12-2019";
+    private static final String INVALID_PRICE = "$4.00";
+    private static final String INVALID_RECIPE_INGREDIENTS = "Rice-one-cup";
 
     private static final String INVALID_INTERNAL_QUANTITY = "-3";
     private static final String INVALID_QUANTITY = "-3";
@@ -34,6 +42,10 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_COMPLETION_STATUS_ONE = "yes";
     private static final String VALID_COMPLETION_STATUS_TWO = "yEs";
+
+    private static final String VALID_DEADLINE = "12-12-2025 1500";
+    private static final String VALID_PRICE = "4.00";
+    private static final String VALID_RECIPE_INGREDIENTS = "Rice-1-cup, Chicken-1-whole";
 
     private static final String VALID_QUANTITY_1 = "30";
     private static final String VALID_QUANTITY_2 = "10";
@@ -164,6 +176,81 @@ public class ParserUtilTest {
         String completionStatusWithWhitespace = WHITESPACE + VALID_COMPLETION_STATUS_ONE + WHITESPACE;
         CompletionStatus expectedCompletionStatus = new CompletionStatus(VALID_COMPLETION_STATUS_ONE);
         assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(completionStatusWithWhitespace));
+    }
+
+    @Test
+    public void parseDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline(null));
+    }
+
+    @Test
+    public void parseDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithWhitespace_returnsDeadline() throws Exception {
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+    }
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice(null));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+    }
+
+    @Test
+    public void parseRecipeIngredients_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRecipeIngredients(null));
+    }
+
+    @Test
+    public void parseRecipeIngredients_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRecipeIngredients(INVALID_RECIPE_INGREDIENTS));
+    }
+
+    @Test
+    public void parseRecipeIngredients_validValueWithoutWhitespace_returnsRecipeIngredients() throws Exception {
+        Ingredient rice = new Ingredient(new GenericString("Rice"), new Quantity("1"), new GenericString("cup"));
+        Ingredient chicken = new Ingredient(
+                new GenericString("Chicken"), new Quantity("1"), new GenericString("whole"));
+        RecipeIngredientList expectedList = new RecipeIngredientList(List.of(rice, chicken));
+        assertEquals(expectedList, ParserUtil.parseRecipeIngredients(VALID_RECIPE_INGREDIENTS));
+    }
+
+    @Test
+    public void parseRecipeIngredients_validValueWithWhitespace_returnsRecipeIngredients() throws Exception {
+        Ingredient rice = new Ingredient(new GenericString("Rice"), new Quantity("1"), new GenericString("cup"));
+        Ingredient chicken = new Ingredient(
+                new GenericString("Chicken"), new Quantity("1"), new GenericString("whole"));
+        String listWithWhitespace = WHITESPACE + VALID_RECIPE_INGREDIENTS + WHITESPACE;
+        RecipeIngredientList expectedList = new RecipeIngredientList(List.of(rice, chicken));
+        assertEquals(expectedList, ParserUtil.parseRecipeIngredients(listWithWhitespace));
     }
 
     // Shared parsers

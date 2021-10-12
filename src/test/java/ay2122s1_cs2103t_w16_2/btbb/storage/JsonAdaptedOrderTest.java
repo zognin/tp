@@ -158,7 +158,7 @@ public class JsonAdaptedOrderTest {
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, INVALID_ORDER_DEADLINE,
                         VALID_ORDER_QUANTITY, VALID_ORDER_COMPLETION_STATUS);
-        String expectedMessage = Deadline.MESSAGE_INTERNAL_CONSTRAINTS;
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

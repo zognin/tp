@@ -115,6 +115,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void minusIngredientQuantity(Ingredient target, Quantity multiplier) {
         throw new AssertionError("This method should not be called.");
     }
@@ -137,12 +142,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
+    public void setOrder(Order order, Order editedOrder) throws NotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+    public ObservableList<Order> getFilteredOrderList() {
         throw new AssertionError("This method should not be called.");
     }
 

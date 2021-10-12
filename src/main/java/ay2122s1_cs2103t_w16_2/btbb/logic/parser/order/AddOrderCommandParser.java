@@ -11,6 +11,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 
+import java.util.ArrayList;
+
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
@@ -20,6 +22,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
  * Parses input arguments and creates a new AddOrderCommand object.
@@ -79,7 +83,11 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throws ParseException {
         orderDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
         orderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
-        if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isPresent()) {
+
+        if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isEmpty()) {
+            // If the user does not provide the order quantity, it will be set to a default value of 1
+            orderDescriptor.setQuantity(new Quantity("1"));
+        } else {
             orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
         }
         // When a new Order is added, completionStatus is set to false by default
@@ -90,7 +98,11 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throws ParseException {
         orderDescriptor.setRecipeName(ParserUtil
                 .parseGenericString(argMultimap.getValue(PREFIX_RECIPE_NAME).get(), "Recipe Name"));
-        if (argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).isPresent()) {
+
+        if (argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).isEmpty()) {
+            // If the user does not provide recipe ingredients, it will be set to an empty list
+            orderDescriptor.setRecipeIngredients(new RecipeIngredientList(new ArrayList<>()));
+        } else {
             orderDescriptor.setRecipeIngredients(ParserUtil
                     .parseRecipeIngredients(argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).get()));
         }

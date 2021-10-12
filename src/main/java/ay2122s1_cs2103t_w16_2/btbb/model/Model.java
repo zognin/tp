@@ -136,6 +136,14 @@ public interface Model {
     ObservableList<Ingredient> getFilteredIngredientList();
 
     /**
+     * Adds the quantity of the ingredient that is the same as the {@code target} ingredient if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    void addIngredientQuantity(Ingredient target, Quantity multiplier);
+
+    /**
      * Reduces the quantity of the ingredient that is the same as the {@code target} ingredient if it exists.
      *
      * @param target The target ingredient.
@@ -163,9 +171,6 @@ public interface Model {
      */
     boolean hasOrder(Order order);
 
-    /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList();
-
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
@@ -176,6 +181,9 @@ public interface Model {
      * @throws NotFoundException If target does not exist in currently shown order list.
      */
     void setOrder(Order target, Order editedOrder) throws NotFoundException;
+
+    /** Returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList();
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
