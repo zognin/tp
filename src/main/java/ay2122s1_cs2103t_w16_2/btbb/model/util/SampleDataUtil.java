@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -100,11 +101,13 @@ public class SampleDataUtil {
         for (int i = 0; i < loopCount; i++) {
             float randomPrice = randomNumberGenerator.nextFloat();
             int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
+            boolean completionstatus = (i % 2 == 0);
             orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
                     new GenericString(recipes[i]), new RecipeIngredientList(ingredients.get(i)),
                     new Price(String.format("%.2f", randomPrice)),
                     new Deadline(getSampleDateTimeString(i + 1)),
-                    new Quantity(Integer.toString(randomQuantity)));
+                    new Quantity(Integer.toString(randomQuantity)),
+                    new CompletionStatus(completionstatus ? "yes" : "no"));
         }
 
         return orders;

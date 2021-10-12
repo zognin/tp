@@ -14,6 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
@@ -24,6 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_COMPLETION_STATUS = "y";
 
     private static final String INVALID_DEADLINE = "12-12-2019";
     private static final String INVALID_PRICE = "$4.00";
@@ -38,6 +40,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_COMPLETION_STATUS_ONE = "yes";
+    private static final String VALID_COMPLETION_STATUS_TWO = "yEs";
 
     private static final String VALID_DEADLINE = "12-12-2025 1500";
     private static final String VALID_PRICE = "4.00";
@@ -143,7 +147,36 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-    // Order parsers
+    // Order parsers:
+
+    @Test
+    public void parseCompletionStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompletionStatus(null));
+    }
+
+    @Test
+    public void parseCompletionStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCompletionStatus(INVALID_COMPLETION_STATUS));
+    }
+
+    @Test
+    public void parseCompletionStatus_validValueWithoutWhitespace_returnsCompletionStatus() throws Exception {
+        CompletionStatus expectedCompletionStatus = new CompletionStatus(VALID_COMPLETION_STATUS_ONE);
+        assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(VALID_COMPLETION_STATUS_ONE));
+    }
+
+    @Test
+    public void parseCompletionStatus_validValueCapitalisedLetters_returnsCompletionStatus() throws Exception {
+        CompletionStatus expectedCompletionStatus = new CompletionStatus(VALID_COMPLETION_STATUS_TWO);
+        assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(VALID_COMPLETION_STATUS_TWO));
+    }
+
+    @Test
+    public void parseCompletionStatus_validValueWithWhitespace_returnsTrimmedCompletionStatus() throws Exception {
+        String completionStatusWithWhitespace = WHITESPACE + VALID_COMPLETION_STATUS_ONE + WHITESPACE;
+        CompletionStatus expectedCompletionStatus = new CompletionStatus(VALID_COMPLETION_STATUS_ONE);
+        assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(completionStatusWithWhitespace));
+    }
 
     @Test
     public void parseDeadline_null_throwsNullPointerException() {

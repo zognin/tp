@@ -22,9 +22,11 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
@@ -35,8 +37,10 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.DeleteIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.EditIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.FindIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DoneOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.EditOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.FindOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.UndoneOrderCommandParser;
 
 /**
  * Parses user input.
@@ -79,6 +83,9 @@ public class AddressBookParser {
         case DeleteIngredientCommand.COMMAND_WORD:
             return new DeleteIngredientCommandParser().parse(arguments);
 
+        case DoneOrderCommand.COMMAND_WORD:
+            return new DoneOrderCommandParser().parse(arguments);
+
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
 
@@ -105,6 +112,9 @@ public class AddressBookParser {
 
         case ListOrderCommand.COMMAND_WORD:
             return new ListOrderCommand();
+
+        case UndoneOrderCommand.COMMAND_WORD:
+            return new UndoneOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

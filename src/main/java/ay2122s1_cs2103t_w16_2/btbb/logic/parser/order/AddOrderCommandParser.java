@@ -21,6 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.Parser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -89,6 +90,8 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         } else {
             orderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ORDER_QUANTITY).get()));
         }
+        // When a new Order is added, completionStatus is set to false by default
+        orderDescriptor.setCompletionStatus(new CompletionStatus(false));
     }
 
     private void fillOrderDescriptorRecipeFields(OrderDescriptor orderDescriptor, ArgumentMultimap argMultimap)

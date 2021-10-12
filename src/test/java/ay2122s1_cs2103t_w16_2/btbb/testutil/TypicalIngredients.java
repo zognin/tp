@@ -27,9 +27,9 @@ public class TypicalIngredients {
             .withQuantity("300").withUnit("grams").build();
     public static final Ingredient EGG = new IngredientBuilder().withIngredientName("Egg")
             .withQuantity("2").withUnit("dozen").build();
-    public static final Ingredient FISH = new IngredientBuilder().withIngredientName("FISH")
+    public static final Ingredient FISH = new IngredientBuilder().withIngredientName("Fish")
             .withQuantity("20").withUnit("whole").build();
-    public static final Ingredient FLOUR = new IngredientBuilder().withIngredientName("FLOUR")
+    public static final Ingredient FLOUR = new IngredientBuilder().withIngredientName("Flour")
             .withQuantity("4").withUnit("kg").build();
     public static final Ingredient GINGER = new IngredientBuilder().withIngredientName("Ginger")
             .withQuantity("8").withUnit("whole").build();
@@ -63,6 +63,7 @@ public class TypicalIngredients {
     }
 
     public static List<Ingredient> getTypicalIngredients() {
-        return new ArrayList<>(Arrays.asList(AVOCADO, BUTTER, CHICKEN, DARK_CHOCOLATE, EGG, FLOUR, GINGER));
+        return new ArrayList<>(Arrays.asList(AVOCADO, BREAD, BUTTER, CHICKEN, DARK_CHOCOLATE, EGG, FISH, FLOUR,
+                GINGER, KAYA, NOODLES, PRAWN, RICE));
     }
 }

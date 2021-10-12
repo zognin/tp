@@ -13,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
@@ -107,6 +108,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String completionStatus} into a {@code CompletionStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param completionStatus String input to parse.
+     * @return CompletionStatus object.
+     * @throws ParseException If the given {@code completionStatus} is invalid.
+     */
+    public static CompletionStatus parseCompletionStatus(String completionStatus) throws ParseException {
+        requireNonNull(completionStatus);
+        String trimmedCompletionStatus = completionStatus.trim();
+        if (!CompletionStatus.isValidCompletionStatus(trimmedCompletionStatus)) {
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new CompletionStatus(trimmedCompletionStatus);
+    }
+
+    /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -122,6 +140,8 @@ public class ParserUtil {
         }
         return new Price(trimmedPrice);
     }
+
+    // Recipe-level parsers:
 
     /**
      * Parses a {@code String recipeIngredients} into a {@code RecipeIngredientList}.

@@ -29,6 +29,7 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_ORDER_FILE_6 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook6.json");
     private static final Path INVALID_ORDER_FILE_7 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook7.json");
     private static final Path INVALID_ORDER_FILE_8 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook8.json");
+    private static final Path INVALID_ORDER_FILE_9 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook9.json");
     private static final Path DUPLICATE_ORDER_FILE = TEST_DATA_FOLDER.resolve("duplicateOrderAddressBook.json");
 
     @Test
@@ -86,6 +87,10 @@ public class JsonSerializableAddressBookTest {
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
 
         dataFromFile = JsonUtil.readJsonFile(INVALID_ORDER_FILE_8,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+
+        dataFromFile = JsonUtil.readJsonFile(INVALID_ORDER_FILE_9,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }

@@ -3,6 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_COMPLETION_STATUS;
 import static java.util.Objects.requireNonNull;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
@@ -25,7 +26,8 @@ public class FindOrderCommand extends Command {
             + "Parameters (at least one must be provided): "
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
-            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS]\n"
+            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS] "
+            + "[" + PREFIX_ORDER_COMPLETION_STATUS + "YES_OR_NO]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
     private PredicateCollection<Order> predicateCollection;

@@ -33,7 +33,7 @@
 
                     <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" spacing="4">
                         <Label fx:id="orderDeadline" styleClass="cell_small_label" text="\$deadline"/>
-                        <Circle fx:id="orderIsFinished" id="doneCircle" radius="8" fill="transparent" stroke="white"/>
+                        <Circle fx:id="orderIsFinished" id="doneCircle" radius="8" fill="transparent" strokeWidth="2"/>
                     </HBox>
                 </children>
 

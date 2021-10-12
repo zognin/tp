@@ -4,6 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_DEADLINE_MARCH;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_NO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
@@ -40,6 +41,7 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -56,48 +58,48 @@ public class TypicalOrders {
                     .withClientAddress(ALICE.getAddress()).withRecipeName(new GenericString("Chicken Rice"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ALICE)))
                     .withPrice(new Price("4.50")).withDeadline(new Deadline("12-12-2021 1200"))
-                    .withQuantity(new Quantity("4"))
+                    .withQuantity(new Quantity("4")).withCompletionStatus(new CompletionStatus("yes"))
                     .build();
     public static final Order ORDER_FOR_BENSON =
             new OrderBuilder().withClientName(BENSON.getName()).withClientPhone(BENSON.getPhone())
                     .withClientAddress(BENSON.getAddress()).withRecipeName(new GenericString("Nasi Lemak"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(BENSON)))
                     .withPrice(new Price("5.50")).withDeadline(new Deadline("13-12-2021 1300"))
-                    .withQuantity(new Quantity("2"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
                     .build();
     public static final Order ORDER_FOR_CARL =
             new OrderBuilder().withClientName(CARL.getName()).withClientPhone(CARL.getPhone())
                     .withClientAddress(CARL.getAddress()).withRecipeName(new GenericString("Prata"))
                     .withPrice(new Price("6.50")).withDeadline(new Deadline("14-12-2021 1020"))
-                    .withQuantity(new Quantity("1"))
+                    .withQuantity(new Quantity("1")).withCompletionStatus(new CompletionStatus("yes"))
                     .build();
     public static final Order ORDER_FOR_DANIEL =
             new OrderBuilder().withClientName(DANIEL.getName()).withClientPhone(DANIEL.getPhone())
                     .withClientAddress(DANIEL.getAddress()).withRecipeName(new GenericString("Char kuay teow"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(DANIEL)))
                     .withPrice(new Price("7.00")).withDeadline(new Deadline("15-12-2021 1510"))
-                    .withQuantity(new Quantity("2"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
                     .build();
     public static final Order ORDER_FOR_ELLE =
             new OrderBuilder().withClientName(ELLE.getName()).withClientPhone(ELLE.getPhone())
                     .withClientAddress(ELLE.getAddress()).withRecipeName(new GenericString("Hokkien prawn mee"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ELLE)))
                     .withPrice(new Price("8.50")).withDeadline(new Deadline("16-12-2021 1900"))
-                    .withQuantity(new Quantity("2"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("yes"))
                     .build();
     public static final Order ORDER_FOR_FIONA =
             new OrderBuilder().withClientName(FIONA.getName()).withClientPhone(FIONA.getPhone())
                     .withClientAddress(FIONA.getAddress()).withRecipeName(new GenericString("Kaya toast"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(FIONA)))
                     .withPrice(new Price("9.57")).withDeadline(new Deadline("17-12-2021 2100"))
-                    .withQuantity(new Quantity("2"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
                     .build();
     public static final Order ORDER_FOR_GEORGE =
             new OrderBuilder().withClientName(GEORGE.getName()).withClientPhone(GEORGE.getPhone())
                     .withClientAddress(GEORGE.getAddress()).withRecipeName(new GenericString("Satay"))
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(GEORGE)))
                     .withPrice(new Price("10")).withDeadline(new Deadline("18-12-2021 2359"))
-                    .withQuantity(new Quantity("2"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("yes"))
                     .build();
 
     // Manually added - Order's details found in {@code TypicalClients} and {@code CommandTestUtil}
@@ -108,6 +110,7 @@ public class TypicalOrders {
                     .withPrice(new Price(VALID_PRICE_1))
                     .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
                     .withQuantity(new Quantity(VALID_ORDER_QUANTITY_1))
+                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
                     .build();
     public static final Order ORDER_FOR_IMRAN =
             new OrderBuilder().withClientName(IMRAN.getName()).withClientPhone(IMRAN.getPhone())
@@ -117,6 +120,7 @@ public class TypicalOrders {
                             new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
                             new GenericString(VALID_UNIT_APPLE)))))
                     .withPrice(new Price(VALID_PRICE_1)).withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
+                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
                     .build();
     public static final Order ORDER_FOR_BOB =
             new OrderBuilder().withClientName(BOB.getName()).withClientPhone(BOB.getPhone())
@@ -126,6 +130,7 @@ public class TypicalOrders {
                             new GenericString(VALID_UNIT_BEEF)))))
                     .withPrice(new Price(VALID_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
                     .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
+                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
                     .build();
 
     /**

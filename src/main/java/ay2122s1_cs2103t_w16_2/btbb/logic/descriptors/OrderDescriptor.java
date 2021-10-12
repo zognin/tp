@@ -12,6 +12,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -35,6 +36,7 @@ public class OrderDescriptor {
     private Price price;
     private Deadline deadline;
     private Quantity quantity;
+    private CompletionStatus completionStatus;
 
     public OrderDescriptor() {};
 
@@ -53,6 +55,7 @@ public class OrderDescriptor {
         setPrice(toCopy.price);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
+        setCompletionStatus(toCopy.completionStatus);
     }
 
     /**
@@ -135,6 +138,14 @@ public class OrderDescriptor {
         return Optional.ofNullable(quantity);
     }
 
+    public void setCompletionStatus(CompletionStatus completionStatus) {
+        this.completionStatus = completionStatus;
+    }
+
+    public Optional<CompletionStatus> getCompletionStatus() {
+        return Optional.ofNullable(completionStatus);
+    }
+
     /**
      * Converts an Order Descriptor to an Order model type.
      *
@@ -149,8 +160,9 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
+
             return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, price, deadline, quantity);
+                    recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -183,9 +195,10 @@ public class OrderDescriptor {
         Price updatedPrice = getPrice().orElse(existingOrder.getPrice());
         Deadline updatedDeadline = getDeadline().orElse(existingOrder.getDeadline());
         Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
+        CompletionStatus updatedCompletionStatus = getCompletionStatus().orElse(existingOrder.getCompletionStatus());
 
         return new Order(updatedClientName, updatedClientPhone, updatedClientAddress, updatedRecipeName,
-                updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity);
+                updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
     }
 
     public Optional<Client> getClientFromModel(Model model) throws CommandException {
@@ -224,6 +237,7 @@ public class OrderDescriptor {
                 && getRecipeIngredients().equals(otherOrderDescriptor.getRecipeIngredients())
                 && getPrice().equals(otherOrderDescriptor.getPrice())
                 && getDeadline().equals(otherOrderDescriptor.getDeadline())
-                && getQuantity().equals(otherOrderDescriptor.getQuantity());
+                && getQuantity().equals(otherOrderDescriptor.getQuantity())
+                && getCompletionStatus().equals(otherOrderDescriptor.getCompletionStatus());
     }
 }

@@ -7,6 +7,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -51,6 +52,7 @@ public class OrderDescriptorBuilder {
         descriptor.setPrice(order.getPrice());
         descriptor.setDeadline(order.getDeadline());
         descriptor.setQuantity(order.getQuantity());
+        descriptor.setCompletionStatus(order.getCompletionStatus());
     }
 
     /**
@@ -149,6 +151,17 @@ public class OrderDescriptorBuilder {
      */
     public OrderDescriptorBuilder withQuantity(String quantity) {
         descriptor.setQuantity(quantity == null ? null : new Quantity(quantity));
+        return this;
+    }
+
+    /**
+     * Sets the {@code quantity} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param completionStatus The quantity that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new quantity details.
+     */
+    public OrderDescriptorBuilder withCompletionStatus(String completionStatus) {
+        descriptor.setCompletionStatus(completionStatus == null ? null : new CompletionStatus(completionStatus));
         return this;
     }
 

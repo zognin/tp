@@ -42,12 +42,10 @@ public class UniqueOrderList implements Iterable<Order> {
      */
     public void setOrder(Order target, Order editedOrder) throws NotFoundException {
         requireAllNonNull(target, editedOrder);
-
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new NotFoundException(Order.class.getName());
         }
-
         internalList.set(index, editedOrder);
     }
 

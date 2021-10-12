@@ -6,8 +6,8 @@
     "address": "123, Jurong West Ave 6, #08-111"
   } ],
   "ingredients": [],
-  "orders": [ {
-    "clientPhone": "9435$$1253",
+  "orders": [{
+    "clientPhone": "94351253",
     "clientName": "Alice Pauline",
     "clientAddress": "123, Jurong West Ave 6, #08-111",
     "recipeName" : "Chicken Rice",
@@ -22,7 +22,7 @@
     } ],
     "price" : "4.50",
     "deadline" : "12-12-2021 1900",
-    "quantity" : "4",
-    "isFinished" : "yes"
-  } ]
+    "quantity" : "-12",
+    "isFinished" : "y"
+  }]
 }
