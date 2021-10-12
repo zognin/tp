@@ -32,7 +32,7 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidInternalDeadline(deadline), MESSAGE_INTERNAL_CONSTRAINTS);
+        checkArgument(isValidDeadline(deadline), MESSAGE_INTERNAL_CONSTRAINTS);
         this.deadline = LocalDateTime.parse(deadline, INPUT_DATETIME_FORMATTER);
     }
 
@@ -43,26 +43,6 @@ public class Deadline {
      * @return True if the deadline is valid. False otherwise.
      */
     public static boolean isValidDeadline(String test) {
-        if (test == null) {
-            return false;
-        }
-
-        try {
-            LocalDateTime dateTime = LocalDateTime.parse(test, INPUT_DATETIME_FORMATTER);
-            return dateTime.isAfter(LocalDateTime.now());
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Returns true if a given string is a valid deadline.
-     * For internal use where there is a wider definition of a valid deadline.
-     *
-     * @param test String input to check.
-     * @return True if the deadline is valid. False otherwise.
-     */
-    public static boolean isValidInternalDeadline(String test) {
         if (test == null) {
             return false;
         }

@@ -141,8 +141,8 @@ public class JsonAdaptedOrder {
                     MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()
             ));
         }
-        if (!Deadline.isValidInternalDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_INTERNAL_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
 

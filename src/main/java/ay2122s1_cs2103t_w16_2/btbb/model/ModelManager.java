@@ -200,6 +200,18 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements addIngredientQuantity method.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        addressBook.addIngredientQuantity(target, multiplier);
+    }
+
+    /**
      * Implements minusIngredientQuantity method.
      *
      * @param target The target ingredient.
@@ -235,6 +247,20 @@ public class ModelManager implements Model {
     public boolean hasOrder(Order order) {
         requireNonNull(order);
         return addressBook.hasOrder(order);
+    }
+
+    /**
+     * Implements setOrder method.
+     * Replaces the existing Order in the address book with an edited Order.
+     *
+     * @param target The target order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException If the target order was not found in the address book.
+     */
+    @Override
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        addressBook.setOrder(target, editedOrder);
     }
 
     @Override

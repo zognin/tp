@@ -35,6 +35,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
@@ -280,5 +281,18 @@ public class CommandTestUtil {
         model.updateFilteredIngredientList(ingredient -> ingredient.equals(ingredientToShow));
 
         assertEquals(1, model.getFilteredIngredientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+
+        Order orderToShow = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        model.updateFilteredOrderList(order -> order.equals(orderToShow));
+
+        assertEquals(1, model.getFilteredOrderList().size());
     }
 }

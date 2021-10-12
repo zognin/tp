@@ -78,6 +78,29 @@ public class UniqueIngredientListTest {
     }
 
     @Test
+    public void addIngredientQuantity_ingredientInList_addsQuantity() {
+        GenericString name = new GenericString("Garlic");
+        GenericString unit = new GenericString("whole");
+        Ingredient toAdd = new Ingredient(name, new Quantity("100"), unit);
+        Ingredient target = new Ingredient(name, new Quantity("10"), unit);
+        Ingredient expected = new Ingredient(name, new Quantity("110"), unit);
+        Ingredient expected2 = new Ingredient(name, new Quantity("150"), unit);
+
+        UniqueIngredientList uniqueIngredientList = new UniqueIngredientList();
+        uniqueIngredientList.add(toAdd);
+        UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
+        expectedUniqueIngredientList.add(expected);
+        UniqueIngredientList expectedUniqueIngredientList2 = new UniqueIngredientList();
+        expectedUniqueIngredientList2.add(expected2);
+
+        uniqueIngredientList.addIngredientQuantity(target, new Quantity("1"));
+        assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
+
+        uniqueIngredientList.addIngredientQuantity(target, new Quantity("4"));
+        assertEquals(expectedUniqueIngredientList2, uniqueIngredientList);
+    }
+
+    @Test
     public void minusIngredientQuantity_ingredientInList_reducesQuantity() {
         GenericString name = new GenericString("Garlic");
         GenericString unit = new GenericString("whole");

@@ -58,7 +58,7 @@ public class EditIngredientCommandParser implements Parser<EditIngredientCommand
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).isPresent()) {
             ingredientDescriptor.setQuantity(
-                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));
+                    ParserUtil.parseInternalQuantity(argMultimap.getValue(PREFIX_INGREDIENT_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT_UNIT).isPresent()) {
             ingredientDescriptor.setUnit(

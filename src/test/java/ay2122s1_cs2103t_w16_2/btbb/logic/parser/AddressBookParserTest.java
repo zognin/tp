@@ -44,6 +44,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
@@ -123,6 +124,20 @@ public class AddressBookParserTest {
                 + IngredientUtil.getEditIngredientDescriptorDetails(descriptor));
         assertEquals(new EditIngredientCommand(INDEX_FIRST, descriptor), command);
     }
+
+    @Test
+    public void parseCommand_editOrder() throws Exception {
+        Order order = new OrderBuilder().build();
+
+        // It is not possible to edit the ingredient list using the EditOrderCommand
+        OrderDescriptor descriptor = new OrderDescriptorBuilder(order).withRecipeIngredients(null).build();
+        EditOrderCommand command = (EditOrderCommand) parser.parseCommand(EditOrderCommand.COMMAND_WORD
+                + " " + INDEX_FIRST.getOneBased() + " "
+                + OrderUtil.getEditOrderDescriptorDetails(descriptor));
+
+        assertEquals(new EditOrderCommand(INDEX_FIRST, descriptor), command);
+    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {

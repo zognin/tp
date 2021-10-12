@@ -159,6 +159,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
+     * by the quantity in {@code target} if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        ingredients.addIngredientQuantity(target, multiplier);
+    }
+
+    /**
      * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
      * by the quantity in {@code target} if it exists.
      *
@@ -213,6 +225,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
+
+    /**
+     * Replaces the existing target Order in the address book with an edited Order.
+     *
+     * @param target The target Order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException If the target order does not exist in the address book.
+     */
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        orders.setOrder(target, editedOrder);
+    }
+
     //// util methods
 
     @Override
