@@ -31,10 +31,10 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
-    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(new ArrayList<>());
+    private RecipeIngredientList recipeIngredients;
     private Price price;
     private Deadline deadline;
-    private Quantity quantity = new Quantity("1");
+    private Quantity quantity;
 
     public OrderDescriptor() {};
 
@@ -99,8 +99,8 @@ public class OrderDescriptor {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public RecipeIngredientList getRecipeIngredients() {
-        return recipeIngredients;
+    public Optional<RecipeIngredientList> getRecipeIngredients() {
+        return Optional.ofNullable(recipeIngredients);
     }
 
     public void setPrice(Price price) {
@@ -123,8 +123,8 @@ public class OrderDescriptor {
         this.quantity = quantity;
     }
 
-    public Quantity getQuantity() {
-        return quantity;
+    public Optional<Quantity> getQuantity() {
+        return Optional.ofNullable(quantity);
     }
 
     /**
@@ -141,6 +141,9 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
+            RecipeIngredientList recipeIngredients = getRecipeIngredients()
+                    .orElse(new RecipeIngredientList(new ArrayList<>()));
+            Quantity quantity = getQuantity().orElse(new Quantity("1"));
             return new Order(clientName, clientPhone, clientAddress,
                     recipeName, recipeIngredients, price, deadline, quantity);
         } catch (NoSuchElementException e) {

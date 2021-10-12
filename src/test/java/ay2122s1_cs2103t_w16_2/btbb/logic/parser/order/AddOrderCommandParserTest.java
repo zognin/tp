@@ -40,8 +40,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IMRAN;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
@@ -65,10 +63,10 @@ class AddOrderCommandParserTest {
                 new OrderDescriptorBuilder(ORDER_FOR_BOB).build();
 
         OrderDescriptor expectedOrderDescriptorWithoutClientIndexAndIngredientList =
-                new OrderDescriptorBuilder(ORDER_FOR_AMY).withRecipeIngredients(new ArrayList<>()).build();
+                new OrderDescriptorBuilder(ORDER_FOR_AMY).withRecipeIngredients(null).build();
 
         OrderDescriptor expectedOrderDescriptorWithoutClientIndexAndOrderQuantity =
-                new OrderDescriptorBuilder(ORDER_FOR_IMRAN).build();
+                new OrderDescriptorBuilder(ORDER_FOR_IMRAN).withQuantity(null).build();
 
         OrderDescriptor expectedOrderDescriptorWithClientIndexAndParams =
                 new OrderDescriptorBuilder(ORDER_FOR_BOB).withClientIndex(INDEX_FIRST).build();
