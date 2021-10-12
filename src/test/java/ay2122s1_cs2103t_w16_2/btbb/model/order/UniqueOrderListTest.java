@@ -40,6 +40,24 @@ class UniqueOrderListTest {
     }
 
     @Test
+    public void remove_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.remove(null));
+    }
+
+    @Test
+    public void remove_orderDoesNotExist_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> uniqueOrderList.remove(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void remove_existingOrder_removesOrder() throws NotFoundException {
+        uniqueOrderList.add(ORDER_FOR_ALICE);
+        uniqueOrderList.remove(ORDER_FOR_ALICE);
+        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
+        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+    }
+
+    @Test
     public void setOrders_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrders(null));
     }

@@ -5,12 +5,13 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.Parser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
 /**
  * Parses input arguments and creates a new DeleteOrderCommand object
  */
-public class DeleteOrderCommandParser {
+public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteOrderCommand
      * and returns a DeleteOrderCommand object for execution.
