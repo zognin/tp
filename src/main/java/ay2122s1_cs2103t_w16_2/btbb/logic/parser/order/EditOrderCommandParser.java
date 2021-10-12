@@ -20,6 +20,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
+/**
+ * Parses input arguments and creates a new EditOrderCommand object
+ */
 public class EditOrderCommandParser implements Parser<EditOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditOrderCommand
