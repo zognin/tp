@@ -466,7 +466,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2b1. BTBB informs Home Chef why adding did not happen.
+    * 2b1. BTBB informs Home Chef why addition of client failed.
 
       Use case ends.
 
@@ -476,14 +476,14 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Home Chef wants to find a client by a field.
 2.  Home Chef enters search terms in required format.
-3.  BTBB displays all clients that match the format.
+3.  BTBB displays all clients that match the terms.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Home Chef why find did not happen.
+    * 2a1. BTBB informs Home Chef why finding a client failed.
 
       Use case ends.
 
@@ -501,7 +501,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Home Chef why deletion did not happen.
+    * 2a1. BTBB informs Home Chef why deletion of client failed.
 
       Use case ends.
 
@@ -533,7 +533,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why editing of client failed.
 
       Use case ends.
 
@@ -555,7 +555,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use case ends.
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why addition of ingredient failed.
 
       Use case ends.
 
@@ -572,7 +572,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why find did not happen.
+    * 2a1. BTBB informs user why finding an ingredient failed.
 
     Use case ends.
 
@@ -589,7 +589,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deleting did not happen.
+    * 2a1. BTBB informs user why deletion of ingredient failed.
 
       Use case ends.
 
@@ -621,7 +621,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use case ends.
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why editing of ingredient failed.
 
       Use case ends.
 
@@ -638,7 +638,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why addition of order failed.
 
     Use case ends.
 
@@ -655,7 +655,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deleting did not happen.
+    * 2a1. BTBB informs user why deletion of order failed.
 
       Use case ends.
 
@@ -672,7 +672,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why find did not happen.
+    * 2a1. BTBB informs user why finding an order failed.
 
       Use case ends.
 
@@ -688,7 +688,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why marking an order as done failed.
 
       Use case ends.
 
@@ -704,7 +704,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why adding did not happen.
+    * 2a1. BTBB informs user why marking an order as undone failed.
 
       Use case ends.
 
