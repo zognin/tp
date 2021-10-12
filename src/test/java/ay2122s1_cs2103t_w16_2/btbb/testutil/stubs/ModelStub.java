@@ -95,6 +95,11 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     public boolean hasIngredient(Ingredient ingredient) {
         throw new AssertionError("This method should not be called.");
     }

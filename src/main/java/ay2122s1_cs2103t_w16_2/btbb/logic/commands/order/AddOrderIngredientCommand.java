@@ -1,6 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand.MESSAGE_DUPLICATE_ORDER;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.util.CommandUtil.makeOrderWithEditedIngredients;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
@@ -16,7 +18,6 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
-import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
@@ -40,8 +41,8 @@ public class AddOrderIngredientCommand extends Command {
             + PREFIX_INGREDIENT_QUANTITY + "400 "
             + PREFIX_INGREDIENT_UNIT + "g";
 
-    public static final String MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS = "Added Ingredient to Order: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in btbb.";
+    public static final String MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS = "Added Order Ingredient: %1$s\n"
+            + "Edited Order: %2$s";
     public static final String MESSAGE_DUPLICATE_ORDER_INGREDIENT = "This ingredient already exists in the order";
 
     private final Index index;
@@ -73,7 +74,7 @@ public class AddOrderIngredientCommand extends Command {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
 
         RecipeIngredientList editedIngredientList = makeEditedIngredientList(ingredientToAdd, orderToEdit);
-        Order editedOrder = makeEditedOrder(editedIngredientList, orderToEdit);
+        Order editedOrder = makeOrderWithEditedIngredients(editedIngredientList, orderToEdit);
         if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
@@ -86,7 +87,8 @@ public class AddOrderIngredientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS, editedOrder), UiTab.HOME);
+        return new CommandResult(
+                String.format(MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS, ingredientToAdd, editedOrder), UiTab.HOME);
     }
 
     private RecipeIngredientList makeEditedIngredientList(Ingredient ingredientToAdd, Order orderToEdit)
@@ -99,11 +101,5 @@ public class AddOrderIngredientCommand extends Command {
         List<Ingredient> newIngredients = new ArrayList<>(originalRecipeIngredientList.getIngredients());
         newIngredients.add(ingredientToAdd);
         return new RecipeIngredientList(newIngredients);
-    }
-
-    private Order makeEditedOrder(RecipeIngredientList editedIngredientList, Order orderToEdit) {
-        OrderDescriptor orderDescriptor = new OrderDescriptor();
-        orderDescriptor.setRecipeIngredients(editedIngredientList);
-        return orderDescriptor.toModelTypeFrom(orderToEdit);
     }
 }

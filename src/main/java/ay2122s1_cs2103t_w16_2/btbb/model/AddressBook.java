@@ -149,6 +149,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
+     * by the quantity in {@code target} if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        ingredients.addIngredientQuantity(target, multiplier);
+    }
+
+    /**
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
      *
      * @param ingredient to check.

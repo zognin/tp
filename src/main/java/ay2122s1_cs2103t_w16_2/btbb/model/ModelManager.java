@@ -151,6 +151,18 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements addIngredientQuantity method.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        addressBook.addIngredientQuantity(target, multiplier);
+    }
+
+    /**
      * Implements hasIngredient method.
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
      *

@@ -52,6 +52,30 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     }
 
     /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
+     * by the quantity in {@code target} times the multiplier if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+
+        Ingredient currentIngredient = internalList.stream()
+                .filter(target::isSameIngredient).findFirst().orElse(null);
+
+        if (currentIngredient != null) {
+            Ingredient ingredientWithNewQuantity = new Ingredient(
+                    currentIngredient.getName(),
+                    currentIngredient.getQuantity().addQuantityBy(target.getQuantity(), multiplier),
+                    currentIngredient.getUnit());
+
+            int index = internalList.indexOf(currentIngredient);
+            internalList.set(index, ingredientWithNewQuantity);
+        }
+    }
+
+    /**
      * Replaces the contents of this list with {@code ingredients}.
      * {@code ingredients} must not contain duplicate ingredients.
      *

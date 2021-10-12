@@ -8,8 +8,10 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Quantity implements Comparable<Quantity> {
+    public static final int MIN_QUANTITY = 0;
+    public static final int MAX_QUANTITY = 40000;
     public static final String DEFAULT_MIN_QUANTITY_STRING = String.valueOf(0);
-    public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(40000);
+    public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(MAX_QUANTITY);
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 40000.";
@@ -38,7 +40,7 @@ public class Quantity implements Comparable<Quantity> {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity > 0 && quantity <= 40000;
+            return quantity > MIN_QUANTITY && quantity <= MAX_QUANTITY;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
@@ -54,10 +56,21 @@ public class Quantity implements Comparable<Quantity> {
     public static boolean isValidInternalQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity >= 0 && quantity <= 40000;
+            return quantity >= MIN_QUANTITY && quantity <= MAX_QUANTITY;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
+    }
+
+    /**
+     * Returns a new {@code Quantity} object with its quantity increased by amount * multiplier.
+     *
+     * @param amount The amount to increase.
+     * @param multiplier The multiplier.
+     * @return A new {@code Quantity} object.
+     */
+    public Quantity addQuantityBy(Quantity amount, Quantity multiplier) {
+        return new Quantity(Integer.toString(Math.min(quantity + amount.quantity * multiplier.quantity, MAX_QUANTITY)));
     }
 
     /**
@@ -68,7 +81,7 @@ public class Quantity implements Comparable<Quantity> {
      * @return A new {@code Quantity} object.
      */
     public Quantity minusQuantityBy(Quantity amount, Quantity multiplier) {
-        return new Quantity(Integer.toString(Math.max(quantity - amount.quantity * multiplier.quantity, 0)));
+        return new Quantity(Integer.toString(Math.max(quantity - amount.quantity * multiplier.quantity, MIN_QUANTITY)));
     }
 
     /**
