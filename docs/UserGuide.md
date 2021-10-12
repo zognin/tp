@@ -360,3 +360,17 @@ Action                   | Format and Examples
 **Help**                 | `help`
 **Tab**                 | `tab INDEX`
 **Exit**                | `exit`
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Disclaimers
+
+* If the quantity of ingredients or the quantity of the orders has
+  been changed in the JSON file, the application will not 
+  automatically reflect the corresponding changes in the 
+  inventory.
+* If any quantity attribute has been changed in the JSON such 
+  that it exceeds the lower bound 0 or the upper bound 40000,
+  they will be capped off to the respective bounds when the 
+  application starts. For example, if the quantity has been 
+  changed to -30, it will be capped off to 0. Likewise, if the
+  quantity has been changed to 50000, it will be capped off to 40000. 
