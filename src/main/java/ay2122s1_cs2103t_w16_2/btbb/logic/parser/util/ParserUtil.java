@@ -107,6 +107,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     * For internal use there is a wider definition of a valid deadline.
+     *
+     * @param deadline String input to parse.
+     * @return Deadline object.
+     * @throws ParseException If the given {@code deadline} is invalid.
+     */
+    public static Deadline parseInternalDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidInternalDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_INTERNAL_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
+    /**
      * Parses a {@code String price} into a {@code Price}.
      * Leading and trailing whitespaces will be trimmed.
      *

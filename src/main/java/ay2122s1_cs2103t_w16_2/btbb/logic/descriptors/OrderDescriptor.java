@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
@@ -53,6 +54,14 @@ public class OrderDescriptor {
         setPrice(toCopy.price);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
+    }
+
+    /**
+     * Returns true if at least one field is edited.
+     */
+    public boolean isAnyFieldEdited() {
+        return CollectionUtil.isAnyNonNull(clientIndex, clientName, clientPhone, clientAddress, recipeName,
+                recipeIngredients, price, deadline, quantity);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -149,6 +158,38 @@ public class OrderDescriptor {
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
+    }
+
+    /**
+     * Converts an Order Descriptor to an Order model type.
+     * Missing fields are filled with an existing order.
+     *
+     * @param model To get the client list.
+     * @param existingOrder An existing order that is not null.
+     * @return {@code Order}.
+     * @throws CommandException If the client index provided is invalid.
+     */
+    public Order toModelTypeFrom(Model model, Order existingOrder) throws CommandException {
+        assert existingOrder != null;
+
+        Optional<Client> client = getClientFromModel(model);
+        boolean isClientPresent = client.isPresent();
+
+        GenericString updatedClientName = getClientName().orElse(isClientPresent
+                ? client.get().getName() : existingOrder.getClientName());
+        Phone updatedClientPhone = getClientPhone().orElse(isClientPresent
+                ? client.get().getPhone() : existingOrder.getClientPhone());
+        Address updatedClientAddress = getClientAddress().orElse(isClientPresent
+                ? client.get().getAddress() : existingOrder.getClientAddress());
+        GenericString updatedRecipeName = getRecipeName().orElse(existingOrder.getRecipeName());
+        RecipeIngredientList updatedRecipeIngredientList = getRecipeIngredients()
+                .orElse(existingOrder.getRecipeIngredients());
+        Price updatedPrice = getPrice().orElse(existingOrder.getPrice());
+        Deadline updatedDeadline = getDeadline().orElse(existingOrder.getDeadline());
+        Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
+
+        return new Order(updatedClientName, updatedClientPhone, updatedClientAddress, updatedRecipeName,
+                updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity);
     }
 
     public Optional<Client> getClientFromModel(Model model) throws CommandException {

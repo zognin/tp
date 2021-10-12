@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,6 +73,30 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     }
 
     /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
+     * by the quantity in {@code target} times the multiplier if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+
+        Ingredient currentIngredient = internalList.stream()
+                .filter(target::isSameIngredient).findFirst().orElse(null);
+
+        if (currentIngredient != null) {
+            Ingredient ingredientWithNewQuantity = new Ingredient(
+                    currentIngredient.getName(),
+                    currentIngredient.getQuantity().addQuantityBy(target.getQuantity(), multiplier),
+                    currentIngredient.getUnit());
+
+            int index = internalList.indexOf(currentIngredient);
+            internalList.set(index, ingredientWithNewQuantity);
+        }
+    }
+
+    /**
      * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is reduced
      * by the quantity in {@code target} times the multiplier if it exists.
      *
@@ -123,7 +146,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new NotFoundException(Client.class.getName());
+            throw new NotFoundException(Ingredient.class.getName());
         }
 
         internalList.set(index, editedIngredient);
