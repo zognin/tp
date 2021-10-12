@@ -13,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Email;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
@@ -20,6 +21,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_IS_DONE = "y";
 
     private static final String INVALID_INTERNAL_QUANTITY = "-3";
     private static final String INVALID_QUANTITY = "-3";
@@ -30,6 +32,7 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_IS_DONE = "yes";
 
     private static final String VALID_QUANTITY_1 = "30";
     private static final String VALID_QUANTITY_2 = "10";
@@ -129,6 +132,31 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    // Order parsers:
+
+    @Test
+    public void parseIsDone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIsDone(null));
+    }
+
+    @Test
+    public void parseIsDone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIsDone(INVALID_IS_DONE));
+    }
+
+    @Test
+    public void parseIsDone_validValueWithoutWhitespace_returnsIsDone() throws Exception {
+        IsDone expectedIsDone = new IsDone(VALID_IS_DONE);
+        assertEquals(expectedIsDone, ParserUtil.parseIsDone(VALID_IS_DONE));
+    }
+
+    @Test
+    public void parseIsDone_validValueWithWhitespace_returnsTrimmedIsDone() throws Exception {
+        String isDoneWithWhitespace = WHITESPACE + VALID_IS_DONE + WHITESPACE;
+        IsDone expectedIsDone = new IsDone(VALID_IS_DONE);
+        assertEquals(expectedIsDone, ParserUtil.parseIsDone(isDoneWithWhitespace));
     }
 
     // Shared parsers

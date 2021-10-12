@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.order.IsDone;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
@@ -29,6 +30,7 @@ public class JsonAdaptedOrderTest {
     private static final String INVALID_ORDER_PRICE = "$1.50";
     private static final String INVALID_ORDER_DEADLINE = "2021-12-12 1900";
     private static final String INVALID_ORDER_QUANTITY = "-1";
+    private static final String INVALID_ORDER_IS_DONE = "n";
 
     private static final String VALID_CLIENT_NAME = BENSON.getName().toString();
     private static final String VALID_CLIENT_PHONE = BENSON.getPhone().toString();
@@ -42,6 +44,7 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_ORDER_PRICE = "4.50";
     private static final String VALID_ORDER_DEADLINE = "20-12-2021 1200";
     private static final String VALID_ORDER_QUANTITY = "2";
+    private static final String VALID_ORDER_IS_DONE = "no";
 
     @Test
     public void toModelType_validOrderDetails_returnsOrder() throws IllegalValueException {
@@ -59,7 +62,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, INVALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -68,7 +71,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, null, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -78,7 +81,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(INVALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
+                        VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = GenericString.getMessageConstraints("Name");
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -87,7 +90,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(null, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, GenericString.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -98,7 +101,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, INVALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
+                        VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -107,7 +110,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, null,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -117,7 +120,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         INVALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
+                        VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = GenericString.getMessageConstraints("Recipe Name");
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -125,7 +128,7 @@ public class JsonAdaptedOrderTest {
     @Test void toModelType_nullRecipeName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 null, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT,
                         GenericString.getMessageConstraints("Recipe Name"));
@@ -136,7 +139,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, INVALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
+                        VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = Price.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -144,7 +147,7 @@ public class JsonAdaptedOrderTest {
     @Test void toModelType_nullPrice_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, null, VALID_ORDER_DEADLINE,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -154,7 +157,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, INVALID_ORDER_DEADLINE,
-                        VALID_ORDER_QUANTITY);
+                        VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = Deadline.MESSAGE_INTERNAL_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -162,7 +165,7 @@ public class JsonAdaptedOrderTest {
     @Test void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, null,
-                VALID_ORDER_QUANTITY);
+                VALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -172,7 +175,7 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                        INVALID_ORDER_QUANTITY);
+                        INVALID_ORDER_QUANTITY, VALID_ORDER_IS_DONE);
         String expectedMessage = Quantity.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -180,9 +183,27 @@ public class JsonAdaptedOrderTest {
     @Test void toModelType_nullQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
-                null);
+                null, VALID_ORDER_IS_DONE);
         String expectedMessage = String
                 .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
+    }
+
+    @Test void toModelType_invalidIsDone_throwsIllegalValueException() {
+        JsonAdaptedOrder order =
+                new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
+                        VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
+                        VALID_ORDER_QUANTITY, INVALID_ORDER_IS_DONE);
+        String expectedMessage = IsDone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
+    }
+
+    @Test void toModelType_nullIsDone_throwsIllegalValueException() {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
+                VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, VALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
+                VALID_ORDER_QUANTITY, null);
+        String expectedMessage = String
+                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, IsDone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 }

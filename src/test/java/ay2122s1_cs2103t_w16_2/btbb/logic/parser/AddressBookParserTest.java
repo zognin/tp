@@ -44,8 +44,10 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
@@ -103,6 +105,13 @@ public class AddressBookParserTest {
         DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
                 DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_doneOrder() throws Exception {
+        DoneOrderCommand command = (DoneOrderCommand) parser.parseCommand(
+                DoneOrderCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DoneOrderCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -200,6 +209,13 @@ public class AddressBookParserTest {
         TabCommand command = (TabCommand) parser.parseCommand(
                 TabCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new TabCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_undoneOrder() throws Exception {
+        UndoneOrderCommand command = (UndoneOrderCommand) parser.parseCommand(
+                UndoneOrderCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UndoneOrderCommand(INDEX_FIRST), command);
     }
 
     @Test
