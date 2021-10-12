@@ -50,7 +50,7 @@ public class AddOrderIngredientCommandTest {
     }
 
     @Test
-    public void execute_validIngredientAndOrderIndexUnfilteredList_addSuccessful() throws Exception {
+    public void execute_validIngredientAndOrderIndex_addSuccessful() throws Exception {
         Ingredient validIngredient = new IngredientBuilder().build();
         IngredientDescriptor validIngredientDescriptor = new IngredientDescriptorBuilder(validIngredient).build();
         AddOrderIngredientCommand command = new AddOrderIngredientCommand(INDEX_FIRST, validIngredientDescriptor);
@@ -63,28 +63,6 @@ public class AddOrderIngredientCommandTest {
                 AddOrderIngredientCommand.MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS, validIngredient, editedOrder);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(orderToEdit, editedOrder);
-
-        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
-    }
-
-    @Test
-    public void execute_validIngredientAndOrderIndexFilteredList_addSuccessful() throws Exception {
-        showOrderAtIndex(model, INDEX_FIRST);
-
-        Ingredient validIngredient = new IngredientBuilder().build();
-        IngredientDescriptor validIngredientDescriptor = new IngredientDescriptorBuilder(validIngredient).build();
-        AddOrderIngredientCommand command = new AddOrderIngredientCommand(INDEX_FIRST, validIngredientDescriptor);
-        Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        RecipeIngredientList newRecipeIngredientList =
-                OrderUtil.addIngredientToIngredientList(orderInFilteredList, validIngredient);
-        Order editedOrder =
-                new OrderBuilder(orderInFilteredList).withRecipeIngredients(newRecipeIngredientList).build();
-
-        String expectedMessage = String.format(
-                AddOrderIngredientCommand.MESSAGE_ADD_ORDER_INGREDIENT_SUCCESS, validIngredient, editedOrder);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        showOrderAtIndex(expectedModel, INDEX_FIRST);
-        expectedModel.setOrder(orderInFilteredList, editedOrder);
 
         assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
     }

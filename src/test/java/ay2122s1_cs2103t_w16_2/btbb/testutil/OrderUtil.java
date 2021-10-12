@@ -37,6 +37,20 @@ public class OrderUtil {
         return new RecipeIngredientList(newIngredients);
     }
 
+    /**
+     * Removes ingredient from a copy of an ingredient list of an order.
+     *
+     * @param order Order to get the original ingredient list from.
+     * @param ingredient Ingredient to remove from the ingredient list.
+     * @return New ingredient list.
+     */
+    public static RecipeIngredientList removeIngredientFromIngredientList(Order order, Ingredient ingredient) {
+        RecipeIngredientList editedRecipeIngredientList = order.getRecipeIngredients();
+        List<Ingredient> newIngredients = new ArrayList<>(editedRecipeIngredientList.getIngredients());
+        newIngredients.remove(ingredient);
+        return new RecipeIngredientList(newIngredients);
+    }
+
     public static String getAddCommand(Order order) {
         return AddOrderCommand.COMMAND_WORD + " " + getOrderDetails(order);
     }

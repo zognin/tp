@@ -99,4 +99,22 @@ public class DeleteOrderIngredientCommand extends Command {
 
         return new RecipeIngredientList(newIngredients);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteOrderIngredientCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteOrderIngredientCommand e = (DeleteOrderIngredientCommand) other;
+        return targetIngredientIndex.equals(e.targetIngredientIndex)
+                && targetOrderIndex.equals(e.targetOrderIndex);
+    }
 }
