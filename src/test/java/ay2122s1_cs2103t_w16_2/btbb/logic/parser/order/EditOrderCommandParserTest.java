@@ -97,7 +97,7 @@ class EditOrderCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ORDER_PRICE_DESC,
                 Price.MESSAGE_CONSTRAINTS); // invalid order price
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
-                Deadline.MESSAGE_INTERNAL_CONSTRAINTS); // invalid order deadline
+                Deadline.MESSAGE_CONSTRAINTS); // invalid order deadline
         assertParseFailure(parser, "1" + INVALID_ORDER_QUANTITY_DESC,
                 Quantity.MESSAGE_CONSTRAINTS); // invalid order quantity
 

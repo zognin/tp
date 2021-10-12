@@ -118,8 +118,8 @@ public class ParserUtil {
     public static Deadline parseInternalDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidInternalDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_INTERNAL_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
     }
