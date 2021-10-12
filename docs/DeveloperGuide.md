@@ -493,8 +493,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Home Chef chooses to delete a client.
 2.  Home Chef enter details to delete a client.
-3.  BTBB deletes client.
-4.  BTBB informs Home Chef that client has been deleted.
+3.  BTBB informs Home Chef that client has been deleted.
 
     Use case ends.
 
