@@ -26,6 +26,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
+/**
+ * Edits the details of an existing order in the address book.
+ */
 public class EditOrderCommand extends Command {
     public static final String COMMAND_WORD = "edit-o";
 
@@ -54,6 +57,8 @@ public class EditOrderCommand extends Command {
     private final OrderDescriptor editOrderDescriptor;
 
     /**
+     * Constructs a EditOrderCommand object.
+     *
      * @param index The index of the order in the filtered order list.
      * @param editOrderDescriptor Contains details to edit the order with.
      */
