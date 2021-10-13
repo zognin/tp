@@ -36,19 +36,6 @@ public class UniqueClientList implements Iterable<Client> {
     }
 
     /**
-     * Gets a client by phone.
-     * The phone may not belong to any client.
-     *
-     * @param phone Phone of the client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return internalList.stream()
-                .filter(client -> client.getPhone().equals(phone))
-                .findFirst();
-    }
-
-    /**
      * Adds a client to the list.
      * The client must not already exist in the list.
      */

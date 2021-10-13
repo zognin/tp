@@ -101,16 +101,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets a client by phone.
-     *
-     * @param phone Phone of a client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return clients.getClientByPhone(phone);
-    }
-
-    /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
