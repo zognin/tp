@@ -43,6 +43,11 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     }
 
     @Override
+    public void deleteOrder(Order orderToDelete) {
+        ordersAdded.remove(orderToDelete);
+    }
+
+    @Override
     public void setOrder(Order order, Order editedOrder) throws NotFoundException {
         requireAllNonNull(order, editedOrder);
 

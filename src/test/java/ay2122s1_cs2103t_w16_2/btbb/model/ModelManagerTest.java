@@ -101,6 +101,56 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deleteClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteClient(null));
+    }
+
+    @Test
+    public void deleteClient_clientNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> modelManager.deleteClient(ALICE));
+    }
+
+    @Test
+    public void deleteClient_clientInAddressBook_success() throws NotFoundException {
+        modelManager.addClient(ALICE);
+        modelManager.deleteClient(ALICE);
+        assertFalse(modelManager.hasClient(ALICE));
+    }
+
+    @Test
+    public void hasOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasOrder(null));
+    }
+
+    @Test
+    public void hasOrder_orderNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void hasOrder_orderInAddressBook_returnsTrue() {
+        modelManager.addOrder(ORDER_FOR_ALICE);
+        assertTrue(modelManager.hasOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void deleteOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteOrder(null));
+    }
+
+    @Test
+    public void deleteOrder_orderNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> modelManager.deleteOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void deleteOrder_orderInAddressBook_success() throws NotFoundException {
+        modelManager.addOrder(ORDER_FOR_ALICE);
+        modelManager.deleteOrder(ORDER_FOR_ALICE);
+        assertFalse(modelManager.hasOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }

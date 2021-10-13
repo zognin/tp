@@ -22,6 +22,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -37,6 +38,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.DeleteIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.EditIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.FindIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DeleteOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DoneOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.EditOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.FindOrderCommandParser;
@@ -82,6 +84,9 @@ public class AddressBookParser {
 
         case DeleteIngredientCommand.COMMAND_WORD:
             return new DeleteIngredientCommandParser().parse(arguments);
+
+        case DeleteOrderCommand.COMMAND_WORD:
+            return new DeleteOrderCommandParser().parse(arguments);
 
         case DoneOrderCommand.COMMAND_WORD:
             return new DoneOrderCommandParser().parse(arguments);

@@ -226,7 +226,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return orders.contains(order);
     }
 
-
+    /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     *
+     * @param orderToRemove The order to remove from the orders list.
+     * @throws NotFoundException when the given order does not exist in the orders list.
+     */
+    public void removeOrder(Order orderToRemove) throws NotFoundException {
+        requireNonNull(orderToRemove);
+        orders.remove(orderToRemove);
+    }
 
     /** Replaces the existing target Order in the address book with an edited Order.
      *
