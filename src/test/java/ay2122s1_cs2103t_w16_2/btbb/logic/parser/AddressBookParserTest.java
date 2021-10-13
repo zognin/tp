@@ -46,6 +46,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
@@ -81,6 +82,15 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        IngredientDescriptor ingredientDescriptor = new IngredientDescriptorBuilder(ingredient).build();
+        AddIngredientCommand command = (AddIngredientCommand) parser
+                .parseCommand(IngredientUtil.getAddCommand(ingredient));
+        assertEquals(new AddIngredientCommand(ingredientDescriptor), command);
+    }
+
+    @Test
     public void parseCommand_addOrder() throws Exception {
         Order order = new OrderBuilder().build();
         OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
@@ -104,25 +114,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_deleteOrderIngredient() throws Exception {
-        DeleteOrderIngredientCommand command =
-                (DeleteOrderIngredientCommand) parser.parseCommand(DeleteOrderIngredientCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST.getOneBased() + " "
-                        + PREFIX_INGREDIENT_INDEX + INDEX_FIRST.getOneBased()
-                );
-        assertEquals(new DeleteOrderIngredientCommand(INDEX_FIRST, INDEX_FIRST), command);
-    }
-
-    @Test
-    public void parseCommand_addIngredient() throws Exception {
-        Ingredient ingredient = new IngredientBuilder().build();
-        IngredientDescriptor ingredientDescriptor = new IngredientDescriptorBuilder(ingredient).build();
-        AddIngredientCommand command = (AddIngredientCommand) parser
-                .parseCommand(IngredientUtil.getAddCommand(ingredient));
-        assertEquals(new AddIngredientCommand(ingredientDescriptor), command);
-    }
-
-    @Test
     public void parseCommand_deleteClient() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
@@ -134,6 +125,23 @@ public class AddressBookParserTest {
         DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
                 DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteIngredientCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteOrder() throws Exception {
+        DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(
+                DeleteOrderCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteOrderCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteOrderIngredient() throws Exception {
+        DeleteOrderIngredientCommand command =
+                (DeleteOrderIngredientCommand) parser.parseCommand(DeleteOrderIngredientCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_INGREDIENT_INDEX + INDEX_FIRST.getOneBased()
+                );
+        assertEquals(new DeleteOrderIngredientCommand(INDEX_FIRST, INDEX_FIRST), command);
     }
 
     @Test

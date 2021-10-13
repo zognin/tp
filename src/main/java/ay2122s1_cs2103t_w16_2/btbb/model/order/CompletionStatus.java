@@ -63,7 +63,7 @@ public class CompletionStatus {
         return "Not Finished";
     }
 
-    public boolean getCompletionStatus() {
+    public boolean getIsFinished() {
         return isFinished;
     }
 

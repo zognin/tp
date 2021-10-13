@@ -249,6 +249,12 @@ public class ModelManager implements Model {
         return addressBook.hasOrder(order);
     }
 
+    @Override
+    public void deleteOrder(Order target) throws NotFoundException {
+        requireNonNull(target);
+        addressBook.removeOrder(target);
+    }
+
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
