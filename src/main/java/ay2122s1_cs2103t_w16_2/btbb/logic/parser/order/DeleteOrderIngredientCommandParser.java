@@ -12,7 +12,18 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentMultimap;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
+/**
+ * Parses input arguments and creates a new DeleteOrderIngredientCommand object
+ */
 public class DeleteOrderIngredientCommandParser implements Parser<DeleteOrderIngredientCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteOrderIngredientCommand
+     * and returns a DeleteOrderIngredientCommand object for execution.
+     *
+     * @param args User input to parse.
+     * @return Command.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     @Override
     public DeleteOrderIngredientCommand parse(String args) throws ParseException {
         requireNonNull(args);

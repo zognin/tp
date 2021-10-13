@@ -23,6 +23,8 @@ public class AddOrderIngredientCommandParser implements Parser<AddOrderIngredien
      * Parses the given {@code String} of arguments in the context of the AddOrderIngredientCommand
      * and returns an AddOrderIngredientCommand object for execution.
      *
+     * @param args User input to parse.
+     * @return Command.
      * @throws ParseException if the user input does not conform the expected format.
      */
     @Override
