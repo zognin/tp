@@ -6,6 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTes
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_NAME_CAROL_DAVID_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.CLIENT_PHONE_9110_3216_PREDICATE;
 import static ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollectionTest.addPredicates;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeLocalDateInListPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.PredicateUtil.makeStringContainsKeywordsPredicate;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_CARL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
@@ -83,6 +84,15 @@ public class FindOrderCommandTest {
         );
         predicateCollection.addPredicate(
                 makeStringContainsKeywordsPredicate("wall michegan tokyo", Order::getClientAddress)
+        );
+        predicateCollection.addPredicate(
+                makeStringContainsKeywordsPredicate("prata hokkien kaya", Order::getRecipeName)
+        );
+        predicateCollection.addPredicate(
+                makeLocalDateInListPredicate("14-12-2021 16-12-2021 17-12-2021", Order::getDeadlineDate)
+        );
+        predicateCollection.addPredicate(
+                makeStringContainsKeywordsPredicate("yes no", Order::getCompletionStatus)
         );
         FindOrderCommand command = new FindOrderCommand(predicateCollection);
         expectedModel.updateFilteredOrderList(predicateCollection);

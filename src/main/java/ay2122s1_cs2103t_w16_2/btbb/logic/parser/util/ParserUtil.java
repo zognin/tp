@@ -2,6 +2,10 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,6 +30,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
+    public static final String MESSAGE_INVALID_DATE = "Date should be a valid date in dd-mm-yyyy format";
 
     // Client-level parsers:
 
@@ -89,6 +94,40 @@ public class ParserUtil {
     }
 
     // Order-level parsers:
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     *
+     * @param date String input to be parsed into a {@code LocalDate} object.
+     * @return LocalDate object.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(date, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
+        return localDate;
+    }
+
+    /**
+     * Parses a {@code String dates} into a {@code List<LocalDate>}.
+     *
+     * @param dates String input to be parsed into a list of dates.
+     * @return List of dates.
+     * @throws ParseException if the given {@code dates} is invalid.
+     */
+    public static List<LocalDate> parseDates(String dates) throws ParseException {
+        List<LocalDate> dateList = new ArrayList<>();
+        for (String stringKeyword : parseKeywords(dates)) {
+            dateList.add(parseDate(stringKeyword));
+        }
+        return dateList;
+    }
 
     /**
      * Parses a {@code String deadline} into a {@code Deadline}.
