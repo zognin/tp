@@ -175,13 +175,10 @@ public interface Model {
      * Replaces the given order {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
      * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
-<<<<<<< HEAD
-=======
      *
      * @param target Order being replaced.
      * @param editedOrder Order to replace with.
      * @throws NotFoundException If target does not exist in currently shown order list.
->>>>>>> master
      */
     void setOrder(Order target, Order editedOrder) throws NotFoundException;
 
