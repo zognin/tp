@@ -18,6 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 
 class RecipeIngredientListTest {
     private final RecipeIngredientList recipeIngredientList = new RecipeIngredientList(new ArrayList<>());
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new RecipeIngredientList(null));
