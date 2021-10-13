@@ -144,7 +144,7 @@ public class DeleteOrderCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different ORDER -> returns false
+        // different order -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

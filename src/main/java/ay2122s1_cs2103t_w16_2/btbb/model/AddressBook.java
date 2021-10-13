@@ -229,6 +229,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Deletes the given order.
      * The order must exist in the address book.
+     *
+     * @param orderToRemove The order to remove from the orders list.
+     * @throws NotFoundException when the given order does not exist in the orders list.
      */
     public void removeOrder(Order orderToRemove) throws NotFoundException {
         requireNonNull(orderToRemove);
