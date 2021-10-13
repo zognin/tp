@@ -1,5 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +30,26 @@ public class PredicateUtil {
             sb.append(" ");
         });
         return sb.toString().trim();
+    }
+
+    /**
+     * Makes a {@code ValueInListPredicate} for {@code LocalDate} values.
+     *
+     * @param input String input to get keywords from.
+     * @param getter Getter to get item to test predicate with.
+     * @param <T> Type of predicate.
+     * @return {@code ValueInListPredicate} for {@code LocalDate} values.
+     */
+    public static <T> ValueInListPredicate<T, LocalDate> makeLocalDateInListPredicate(String input,
+                                                                                      Function<T, LocalDate> getter) {
+        DateTimeFormatter dateTimeFormatter =
+                DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
+        List<String> keywords = List.of(input.split("\\s+"));
+        List<LocalDate> dates = new ArrayList<>();
+        for (String keyword : keywords) {
+            dates.add(LocalDate.parse(keyword, dateTimeFormatter));
+        }
+        return new ValueInListPredicate<>(getter, dates);
     }
 
     /**

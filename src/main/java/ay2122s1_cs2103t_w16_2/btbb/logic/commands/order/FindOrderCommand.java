@@ -29,8 +29,8 @@ public class FindOrderCommand extends Command {
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
             + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS] "
-            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME]\n"
-            + "[" + PREFIX_ORDER_DEADLINE + "ORDER_DATE]\n" // Note that only deadline date is used
+            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME]"
+            + "[" + PREFIX_ORDER_DEADLINE + "ORDER_DATE]" // Note that only deadline date is used
             + "[" + PREFIX_ORDER_COMPLETION_STATUS + "YES_OR_NO]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
