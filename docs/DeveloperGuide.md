@@ -446,14 +446,14 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 ### Use cases
 
-(For all use cases below, the **System** is the `BobTheBodyBuilder (BTBB)` and the **Actor** is the `Gym Manager`, unless specified otherwise)
+(For all use cases below, the **System** is the `BobTheBistroBoss (BTBB)` and the **Actor** is the `Home Chef`, unless specified otherwise)
 
 **Use case: UC01 Add a client**
 
 **MSS**
 
-1.  Gym Manager chooses to add a client.
-2.  Gym Manager enters details in required format.
+1.  Home Chef chooses to add a client.
+2.  Home Chef enters details in required format.
 3.  BTBB displays new client.
 
     Use case ends.
@@ -461,30 +461,29 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Gym Manager that client already exist.
+    * 2a1. BTBB informs Home Chef that client already exist.
 
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2b1. BTBB informs Gym Manager why adding did not happen.
+    * 2b1. BTBB informs Home Chef why addition of client failed.
 
       Use case ends.
-
 
 **Use case: UC02 Find a client**
 
 **MSS**
 
-1.  Gym Manager wants to find a client by a field.
-2.  Gym Manager enters search terms in required format.
-3.  BTBB displays all clients that match the format.
+1.  Home Chef wants to find a client by a field.
+2.  Home Chef enters search terms in required format.
+3.  BTBB displays all clients that match the terms.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why find did not happen.
+    * 2a1. BTBB informs Home Chef why finding a client failed.
 
       Use case ends.
 
@@ -492,17 +491,16 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Gym Manager chooses to delete a client.
-2.  Gym Manager enter details to delete a client.
-3.  BTBB deletes client.
-4.  BTBB informs Gym Manager that client has been deleted.
+1.  Home Chef chooses to delete a client.
+2.  Home Chef enter details to delete a client.
+3.  BTBB informs Home Chef that client has been deleted.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why deletion did not happen.
+    * 2a1. BTBB informs Home Chef why deletion of client failed.
 
       Use case ends.
 
@@ -510,101 +508,204 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Gym Manager chooses to view all clients.
-2.  Gym Manager enters command to see all clients.
+1.  Home Chef chooses to view all clients.
+2.  Home Chef enters command to see all clients.
 3.  BTBB displays all clients.
 
     Use case ends.
 
-**Use case: UC05 Add a order**
+**Use case: UC05 Edit clients**
 
 **MSS**
 
-1.  Gym Manager chooses to add a order.
-2.  Gym Manager enters details to create a order.
-3.  BTBB adds new order for client.
-4.  BTBB shows that new order has been added.
+1.  Home chef chooses to edit a client’s details.
+2.  Home chef enters details in required format.
+3.  BTBB displays the edited client.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Phone number entered already exists in the system.
+    * 2a1. BTBB informs user that client already exist.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why editing of client failed.
+
+      Use case ends.
+
+**Use case: UC06 Add ingredient**
+
+**MSS**
+
+1.  Home chef chooses to add ingredient.
+2.  Home chef enters details in required format.
+3.  BTBB displays new ingredient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Ingredient entered already exists in the system.
+    * 2a1. BTBB informs user that ingredient already exist.
+
+      Use case ends.
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why addition of ingredient failed.
+
+      Use case ends.
+
+**Use case: UC07 Find Ingredient**
+
+**MSS**
+
+1.  Home chef wants to find an ingredient by a field.
+2.  Home chef enters search terms in required format.
+3.  BTBB displays all ingredient that match the format.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why adding did not happen.
+    * 2a1. BTBB informs user why finding an ingredient failed.
 
-      Use case ends.
+    Use case ends.
 
-**Use case: UC06 Delete a order**
+**Use case: UC08 Delete an Ingredient**
 
 **MSS**
 
-1.  Gym Manager chooses to delete a order.
-2.  Gym Manager enter details to delete a order.
-3.  BTBB deletes order.
-4.  BTBB informs Gym Manager that order has been deleted.
+1.  Home chef chooses to delete a ingredient.
+2.  Home chef enters details in required format.
+3.  BTBB displays deleted ingredient.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why deletion did not happen.
+    * 2a1. BTBB informs user why deletion of ingredient failed.
 
       Use case ends.
 
-**Use case: UC07 Find orders**
+**Use case: UC09 View all ingredients**
 
 **MSS**
 
-1.  Gym Manager wants to find orders in a certain time slot.
-2.  Gym Manager enters search terms in required format.
-3.  BTBB displays all orders in the time slot.
+1.  Home chef chooses to view all ingredients.
+2.  Home chef enters command to see all ingredients.
+3.  BTBB displays all ingredients.
+
+    Use case ends.
+
+**Use case: UC10 Edit Ingredient**
+
+**MSS**
+
+1. Home chef chooses to edit an ingredient.
+2. Home chef enters details in required format.
+3. BTBB displays the edited ingredient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Ingredient entered already exists in the system.
+    * 2a1. BTBB informs user that ingredient already exist.
+
+      Use case ends.
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why editing of ingredient failed.
+
+      Use case ends.
+
+**Use case: UC11 Add Order**
+
+**MSS**
+
+1. Home chef chooses to add order.
+2. Home chef enters details in required format.
+3. BTBB displays new order.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why find did not happen.
+    * 2a1. BTBB informs user why addition of order failed.
 
-      Use case ends.
+    Use case ends.
 
-**Use case: UC08 Mark order as done**
+**Use case: UC12 Delete Order**
 
 **MSS**
 
-1.  Gym Manager wants to mark a order as done.
-2.  Gym Manager enters required data to mark a order as done.
-3.  BTBB marks order as done.
+1. Home chef chooses to delete an order.
+2. Home chef enters details in required format.
+3. BTBB displays deleted order.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Gym Manager why order could not be marked as done.
+    * 2a1. BTBB informs user why deletion of order failed.
 
       Use case ends.
 
-**Use case: UC09 View all orders**
+**Use case: UC13 Find order**
 
 **MSS**
 
-1.  Gym Manager chooses to view all orders.
-2.  Gym Manager enters command to see all orders.
-3.  BTBB displays all orders.
+1. Home chef chooses to find an order.
+2. Home chef enters details in required format.
+3. BTBB displays all orders that match the format.
 
-    Use case ends.
+   Use case ends.
 
-**Use case: UC10 View all available commands**
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why finding an order failed.
+
+      Use case ends.
+
+**Use case: UC14 Mark order as done**
 
 **MSS**
 
-1.  Gym Manager wants to find out all the available commands.
-2.  Gym Manager uses the help command.
-3.  BTBB displays all available commands.
+1. Home chef chooses to mark an order as done.
+2. BTBB displays order as done.
 
-    Use case ends.
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why marking an order as done failed.
+
+      Use case ends.
+
+**Use case: UC15 Mark order as undone**
+
+**MSS**
+
+1. Home chef chooses to mark an order as undone.
+2. BTBB displays order as undone.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs user why marking an order as undone failed.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -612,8 +713,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
     * Should work on systems with Java 11 and above.
 
 2. Business/Domain Requirements:
-    * Booking slots in the app are fixed to be 1 hour 30 minutes.
-    * Each order has a max capacity (of clients).
+    * All quantities in the application are from 0 to 40000.
 
 3. Data Requirements:
     * Data of clients and orders should persist after the app closes.
@@ -628,19 +728,25 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 #### Prefix Glossary
 
-| Prefix | Parameter     | Associated with |
-|:------:|:-------------:|:---------------:|
-| a/     | ADDRESS       | Client          |
-| b/     | BIRTH_DATE    | Client          |
-| c/     | IS_COMPLETED  | Booking         |
-| d/     | DATE          | Booking         |
-| e/     | EMAIL         | Client          |
-| m/     | START_DATE    | Membership      |
-| n/     | NAME          | Client          |
-| p/     | PHONE_NUMBER  | Client          |
-| pe/    | PERIOD        | Membership      |
-| s/     | START_TIME    | Booking         |
-| v/     | IS_VACCINATED | Client          |
+| Prefix | Parameter                | Associated with |
+|:------:|:------------------------:|:---------------:|
+| c/     | CLIENT_INDEX             | Client          |
+| ca/    | CLIENT_ADDRESS           | Client          |
+| ce/    | CLIENT_EMAIL             | Client          |
+| cn/    | CLIENT_NAME              | Client          |
+| cp/    | CLIENT_PHONE             | Client          |
+| i/     | INGREDIENT_INDEX         | Ingredient      |
+| in/    | INGREDIENT_NAME          | Ingredient      |
+| iq/    | INGREDIENT_QUANTITY      | Ingredient      |
+| iqf/   | INGREDIENT_QUANTITY_FROM | Ingredient      |
+| iqt/   | INGREDIENT_QUANTITY_TO   | Ingredient      |
+| iu/    | INGREDIENT_UNIT          | Ingredient      |
+| od/    | ORDER_DEADLINE           | Order           |
+| of/    | ORDER_FINISHED           | Order           |
+| op/    | ORDER_PRICE              | Order           |
+| oq/    | ORDER_QUANTITY           | Order           |
+| ri/    | RECIPE_INGREDIENT        | Recipe          |
+| rn/    | RECIPE_NAME              | Recipe          |
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -69,16 +69,18 @@ public class EditIngredientCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_INGREDIENT_NAME_DESC,
                 GenericString.getMessageConstraints("Name")); // invalid name
         assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC,
-                Quantity.MESSAGE_CONSTRAINTS); // invalid quantity
+                Quantity.MESSAGE_INTERNAL_CONSTRAINTS); // invalid quantity
         assertParseFailure(parser, "1" + INVALID_UNIT_DESC,
                 GenericString.getMessageConstraints("Unit")); // invalid unit
 
         // invalid quantity followed by valid unit
-        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF, Quantity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,
+                Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
 
         // valid quantity followed by invalid quantity. The test case for invalid quantity followed by valid quantity
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + QUANTITY_DESC_BEEF + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + QUANTITY_DESC_BEEF + INVALID_QUANTITY_DESC,
+                Quantity.MESSAGE_INTERNAL_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_INGREDIENT_NAME_DESC + INVALID_QUANTITY_DESC + UNIT_DESC_BEEF,

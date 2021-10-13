@@ -4,7 +4,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
@@ -41,8 +43,30 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     }
 
     @Override
+    public void deleteOrder(Order orderToDelete) {
+        ordersAdded.remove(orderToDelete);
+    }
+
+    @Override
+    public void setOrder(Order order, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(order, editedOrder);
+
+        int index = ordersAdded.indexOf(order);
+        if (index == -1) {
+            throw new NotFoundException(Order.class.getName());
+        }
+
+        ordersAdded.set(index, editedOrder);
+    }
+
+    @Override
     public ObservableList<Client> getFilteredClientList() {
         return FXCollections.observableList(clientsAdded);
+    }
+
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return FXCollections.observableList(ordersAdded);
     }
 
     public ArrayList<Order> getOrdersAdded() {
@@ -57,6 +81,24 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     public boolean hasOrder(Order order) {
         requireNonNull(order);
         return ordersAdded.stream().anyMatch(order::isSameOrder);
+    }
+
+    @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+
+        Ingredient currentIngredient = ingredientsAdded.stream()
+                .filter(target::isSameIngredient).findFirst().orElse(null);
+
+        if (currentIngredient != null) {
+            Ingredient ingredientWithNewQuantity = new Ingredient(
+                    currentIngredient.getName(),
+                    currentIngredient.getQuantity().addQuantityBy(target.getQuantity(), multiplier),
+                    currentIngredient.getUnit());
+
+            int index = ingredientsAdded.indexOf(currentIngredient);
+            ingredientsAdded.set(index, ingredientWithNewQuantity);
+        }
     }
 
     @Override
@@ -76,6 +118,9 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
             ingredientsAdded.set(index, ingredientWithNewQuantity);
         }
     }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {}
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {

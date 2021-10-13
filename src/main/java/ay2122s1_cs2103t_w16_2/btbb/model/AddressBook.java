@@ -4,11 +4,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
@@ -101,16 +99,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets a client by phone.
-     *
-     * @param phone Phone of a client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return clients.getClientByPhone(phone);
-    }
-
-    /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
@@ -156,6 +144,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredients.contains(ingredient);
+    }
+
+    /**
+     * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
+     * by the quantity in {@code target} if it exists.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        ingredients.addIngredientQuantity(target, multiplier);
     }
 
     /**
@@ -213,6 +213,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
+
+    /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     *
+     * @param orderToRemove The order to remove from the orders list.
+     * @throws NotFoundException when the given order does not exist in the orders list.
+     */
+    public void removeOrder(Order orderToRemove) throws NotFoundException {
+        requireNonNull(orderToRemove);
+        orders.remove(orderToRemove);
+    }
+
+    /** Replaces the existing target Order in the address book with an edited Order.
+     *
+     * @param target The target Order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException If the target order does not exist in the address book.
+     */
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        orders.setOrder(target, editedOrder);
+    }
+
     //// util methods
 
     @Override

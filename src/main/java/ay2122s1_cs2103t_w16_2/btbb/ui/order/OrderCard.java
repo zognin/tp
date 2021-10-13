@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  * Encapsulates a UI component that displays information of a {@code Order}.
@@ -14,6 +16,7 @@ public class OrderCard extends UiPart<Region> {
     private static final String FXML = "OrderListCard.fxml";
 
     private final Order order;
+    private final Color completionColor = Color.web("#03DAC5");
 
     @FXML
     private HBox cardPane;
@@ -35,6 +38,8 @@ public class OrderCard extends UiPart<Region> {
     private Label orderDeadline;
     @FXML
     private Label orderQuantity;
+    @FXML
+    private Circle orderIsFinished;
 
     /**
      * Creates a {@code OrderCard} with the given {@code Order} and index to display.
@@ -54,6 +59,7 @@ public class OrderCard extends UiPart<Region> {
         orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
+        orderIsFinished.setStroke(order.getCompletionStatus().getIsFinished() ? completionColor : Color.WHITE);
     }
 
     @Override

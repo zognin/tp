@@ -39,6 +39,7 @@ class DeadlineTest {
         // invalid deadline
         assertFalse(Deadline.isValidDeadline("")); // empty string
         assertFalse(Deadline.isValidDeadline(" ")); // spaces only
+        assertFalse(Deadline.isValidDeadline("12/12/2019 1900")); // invalid format ('/' not allowed)
         assertFalse(Deadline.isValidDeadline("12/12/2025 1900")); // invalid format ('/' not allowed)
         assertFalse(Deadline.isValidDeadline("2025-12-12 1900")); // invalid format (wrong date format)
         assertFalse(Deadline.isValidDeadline("1900")); // missing date
@@ -47,34 +48,12 @@ class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("31-04-2022 1900")); // day does not exist in April
 
         // valid deadline
+        assertTrue(Deadline.isValidDeadline("12-12-0000 1900")); // past date
+        assertTrue(Deadline.isValidDeadline("12-12-2019 1900")); // past date
         assertTrue(Deadline.isValidDeadline("12-12-2025 1900"));
         assertTrue(Deadline.isValidDeadline("12-09-2025 2359"));
+        assertTrue(Deadline.isValidDeadline("29-02-2020 2359")); // past leap year
         assertTrue(Deadline.isValidDeadline("29-02-2024 2359")); // leap year
-    }
-
-    @Test
-    public void isValidInternalDeadline() {
-        // null deadline
-        assertFalse(Deadline.isValidInternalDeadline(null));
-
-        // invalid deadline
-        assertFalse(Deadline.isValidInternalDeadline("")); // empty string
-        assertFalse(Deadline.isValidInternalDeadline(" ")); // spaces only
-        assertFalse(Deadline.isValidInternalDeadline("12/12/2019 1900")); // invalid format ('/' not allowed)
-        assertFalse(Deadline.isValidInternalDeadline("12/12/2025 1900")); // invalid format ('/' not allowed)
-        assertFalse(Deadline.isValidInternalDeadline("2025-12-12 1900")); // invalid format (wrong date format)
-        assertFalse(Deadline.isValidInternalDeadline("1900")); // missing date
-        assertFalse(Deadline.isValidInternalDeadline("12-12-2025")); // missing time
-        assertFalse(Deadline.isValidInternalDeadline("29-02-2022 1900")); // not leap year
-        assertFalse(Deadline.isValidInternalDeadline("31-04-2022 1900")); // day does not exist in April
-
-        // valid deadline
-        assertTrue(Deadline.isValidInternalDeadline("12-12-0000 1900")); // past date
-        assertTrue(Deadline.isValidInternalDeadline("12-12-2019 1900")); // past date
-        assertTrue(Deadline.isValidInternalDeadline("12-12-2025 1900"));
-        assertTrue(Deadline.isValidInternalDeadline("12-09-2025 2359"));
-        assertTrue(Deadline.isValidInternalDeadline("29-02-2020 2359")); // past leap year
-        assertTrue(Deadline.isValidInternalDeadline("29-02-2024 2359")); // leap year
     }
 
     @Test

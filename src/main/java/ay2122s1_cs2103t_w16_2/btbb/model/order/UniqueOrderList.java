@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -30,6 +31,37 @@ public class UniqueOrderList implements Iterable<Order> {
     public boolean contains(Order toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameOrder);
+    }
+
+    /**
+     * Removes the equivalent order from the list of orders.
+     * The order must exist in the list.
+     *
+     * @param toRemove The order to remove from the list.
+     * @throws NotFoundException when there is no equivalent order found in the list.
+     */
+    public void remove(Order toRemove) throws NotFoundException {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new NotFoundException(Order.class.getName());
+        }
+    }
+
+    /**
+     * Replaces the existing target Order in the list with an edited Order.
+     *
+     * @param target The target order to replace.
+     * @param editedOrder The edited order to replace with.
+     * @throws NotFoundException If the target order does not exist in the list.
+     */
+    public void setOrder(Order target, Order editedOrder) throws NotFoundException {
+        requireAllNonNull(target, editedOrder);
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new NotFoundException(Order.class.getName());
+        }
+
+        internalList.set(index, editedOrder);
     }
 
     /**

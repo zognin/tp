@@ -1,17 +1,18 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -31,10 +32,11 @@ public class OrderDescriptor {
     private Phone clientPhone;
     private Address clientAddress;
     private GenericString recipeName;
-    private RecipeIngredientList recipeIngredients = new RecipeIngredientList(new ArrayList<>());
+    private RecipeIngredientList recipeIngredients;
     private Price price;
     private Deadline deadline;
-    private Quantity quantity = new Quantity("1");
+    private Quantity quantity;
+    private CompletionStatus completionStatus;
 
     public OrderDescriptor() {};
 
@@ -53,6 +55,15 @@ public class OrderDescriptor {
         setPrice(toCopy.price);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
+        setCompletionStatus(toCopy.completionStatus);
+    }
+
+    /**
+     * Returns true if at least one field is edited.
+     */
+    public boolean isAnyFieldEdited() {
+        return CollectionUtil.isAnyNonNull(clientIndex, clientName, clientPhone, clientAddress, recipeName,
+                recipeIngredients, price, deadline, quantity);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -99,8 +110,8 @@ public class OrderDescriptor {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public RecipeIngredientList getRecipeIngredients() {
-        return recipeIngredients;
+    public Optional<RecipeIngredientList> getRecipeIngredients() {
+        return Optional.ofNullable(recipeIngredients);
     }
 
     public void setPrice(Price price) {
@@ -123,8 +134,16 @@ public class OrderDescriptor {
         this.quantity = quantity;
     }
 
-    public Quantity getQuantity() {
-        return quantity;
+    public Optional<Quantity> getQuantity() {
+        return Optional.ofNullable(quantity);
+    }
+
+    public void setCompletionStatus(CompletionStatus completionStatus) {
+        this.completionStatus = completionStatus;
+    }
+
+    public Optional<CompletionStatus> getCompletionStatus() {
+        return Optional.ofNullable(completionStatus);
     }
 
     /**
@@ -141,11 +160,45 @@ public class OrderDescriptor {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
+
             return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, price, deadline, quantity);
+                    recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
+    }
+
+    /**
+     * Converts an Order Descriptor to an Order model type.
+     * Missing fields are filled with an existing order.
+     *
+     * @param model To get the client list.
+     * @param existingOrder An existing order that is not null.
+     * @return {@code Order}.
+     * @throws CommandException If the client index provided is invalid.
+     */
+    public Order toModelTypeFrom(Model model, Order existingOrder) throws CommandException {
+        assert existingOrder != null;
+
+        Optional<Client> client = getClientFromModel(model);
+        boolean isClientPresent = client.isPresent();
+
+        GenericString updatedClientName = getClientName().orElse(isClientPresent
+                ? client.get().getName() : existingOrder.getClientName());
+        Phone updatedClientPhone = getClientPhone().orElse(isClientPresent
+                ? client.get().getPhone() : existingOrder.getClientPhone());
+        Address updatedClientAddress = getClientAddress().orElse(isClientPresent
+                ? client.get().getAddress() : existingOrder.getClientAddress());
+        GenericString updatedRecipeName = getRecipeName().orElse(existingOrder.getRecipeName());
+        RecipeIngredientList updatedRecipeIngredientList = getRecipeIngredients()
+                .orElse(existingOrder.getRecipeIngredients());
+        Price updatedPrice = getPrice().orElse(existingOrder.getPrice());
+        Deadline updatedDeadline = getDeadline().orElse(existingOrder.getDeadline());
+        Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
+        CompletionStatus updatedCompletionStatus = getCompletionStatus().orElse(existingOrder.getCompletionStatus());
+
+        return new Order(updatedClientName, updatedClientPhone, updatedClientAddress, updatedRecipeName,
+                updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
     }
 
     public Optional<Client> getClientFromModel(Model model) throws CommandException {
@@ -184,6 +237,7 @@ public class OrderDescriptor {
                 && getRecipeIngredients().equals(otherOrderDescriptor.getRecipeIngredients())
                 && getPrice().equals(otherOrderDescriptor.getPrice())
                 && getDeadline().equals(otherOrderDescriptor.getDeadline())
-                && getQuantity().equals(otherOrderDescriptor.getQuantity());
+                && getQuantity().equals(otherOrderDescriptor.getQuantity())
+                && getCompletionStatus().equals(otherOrderDescriptor.getCompletionStatus());
     }
 }

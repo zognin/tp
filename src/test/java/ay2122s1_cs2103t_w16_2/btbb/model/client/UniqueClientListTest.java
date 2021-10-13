@@ -58,7 +58,7 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setClient_targetClientNotInList_throwsClientNotFoundException() {
+    public void setClient_targetClientNotInList_throwsNotFoundException() {
         assertThrows(NotFoundException.class, () -> uniqueClientList.setClient(ALICE, ALICE));
     }
 
@@ -96,7 +96,7 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void remove_clientDoesNotExist_throwsClientNotFoundException() {
+    public void remove_clientDoesNotExist_throwsNotFoundException() {
         assertThrows(NotFoundException.class, () -> uniqueClientList.remove(ALICE));
     }
 

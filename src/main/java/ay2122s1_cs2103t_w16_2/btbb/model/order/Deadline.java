@@ -13,10 +13,8 @@ import java.time.format.ResolverStyle;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Deadline {
-    public static final String MESSAGE_CONSTRAINTS = "Deadline should be in dd-mm-yyyy hhmm format "
-            + "and should occur in the future.";
+    public static final String MESSAGE_CONSTRAINTS = "Deadline should be in dd-mm-yyyy hhmm format";
     private static final String INPUT_FORMAT = "dd-MM-uuuu HHmm";
-    public static final String MESSAGE_INTERNAL_CONSTRAINTS = "Deadline should be in " + INPUT_FORMAT;
     public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
     private static final String OUTPUT_FORMAT = "MMM d uuuu h:mm a";
@@ -32,7 +30,7 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidInternalDeadline(deadline), MESSAGE_INTERNAL_CONSTRAINTS);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.deadline = LocalDateTime.parse(deadline, INPUT_DATETIME_FORMATTER);
     }
 
@@ -48,31 +46,15 @@ public class Deadline {
         }
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(test, INPUT_DATETIME_FORMATTER);
-            return dateTime.isAfter(LocalDateTime.now());
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Returns true if a given string is a valid deadline.
-     * For internal use where there is a wider definition of a valid deadline.
-     *
-     * @param test String input to check.
-     * @return True if the deadline is valid. False otherwise.
-     */
-    public static boolean isValidInternalDeadline(String test) {
-        if (test == null) {
-            return false;
-        }
-
-        try {
             LocalDateTime.parse(test, INPUT_DATETIME_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
     }
 
     /**

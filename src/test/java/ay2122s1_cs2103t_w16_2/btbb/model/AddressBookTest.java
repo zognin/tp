@@ -6,6 +6,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.getTypicalAddressBook;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,9 +18,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 import javafx.collections.FXCollections;
@@ -67,8 +72,58 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getCLientList_modifyList_throwsUnsupportedOperationException() {
+    public void deleteClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeClient(null));
+    }
+
+    @Test
+    public void deleteClient_clientNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> addressBook.removeClient(ALICE));
+    }
+
+    @Test
+    public void deleteClient_clientInAddressBook_success() throws NotFoundException {
+        addressBook.addClient(ALICE);
+        addressBook.removeClient(ALICE);
+        assertFalse(addressBook.hasClient(ALICE));
+    }
+
+    @Test
+    public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
+    }
+
+    @Test
+    public void hasOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasOrder(null));
+    }
+
+    @Test
+    public void hasOrder_orderNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void hasOrder_orderInAddressBook_returnsTrue() {
+        addressBook.addOrder(ORDER_FOR_ALICE);
+        assertTrue(addressBook.hasOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void deleteOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeOrder(null));
+    }
+
+    @Test
+    public void deleteOrder_orderNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> addressBook.removeOrder(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void deleteOrder_orderInAddressBook_success() throws NotFoundException {
+        addressBook.addOrder(ORDER_FOR_ALICE);
+        addressBook.removeOrder(ORDER_FOR_ALICE);
+        assertFalse(addressBook.hasOrder(ORDER_FOR_ALICE));
     }
 
     @Test
@@ -95,8 +150,68 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getIngredientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getIngredientList().remove(0));
+    public void addIngredientQuantity_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                addressBook.addIngredientQuantity(null, new Quantity("1")));
+    }
+
+    @Test
+    public void addIngredientQuantity_nullMultiplier_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                addressBook.addIngredientQuantity(APPLE, null));
+    }
+
+    @Test
+    public void addIngredientQuantity_validTargetAndMultiplier_success() {
+        addressBook.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
+        Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
+        Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("32").build();
+        addressBook.addIngredientQuantity(target, new Quantity("2"));
+        assertTrue(addressBook.hasIngredient(expectedIngredient));
+    }
+
+    @Test
+    public void minusIngredientQuantity_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+            -> addressBook.minusIngredientQuantity(null, new Quantity("1")));
+    }
+
+    @Test
+    public void minusIngredientQuantity_nullMultiplier_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+            -> addressBook.minusIngredientQuantity(APPLE, null));
+    }
+
+    @Test
+    public void minusIngredientQuantity_validTargetAndMultiplier_success() {
+        addressBook.addIngredient(new IngredientBuilder(BEEF).withQuantity(VALID_QUANTITY_BEEF).build());
+        Ingredient target = new IngredientBuilder(BEEF).withQuantity("1").build();
+        Ingredient expectedIngredient = new IngredientBuilder(BEEF).withQuantity("28").build();
+        addressBook.addIngredientQuantity(target, new Quantity("2"));
+        assertTrue(addressBook.hasIngredient(expectedIngredient));
+    }
+
+    @Test
+    public void setOrder_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.setOrder(null, ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void setOrder_nullEditedOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.setOrder(ORDER_FOR_ALICE, null));
+    }
+
+    @Test
+    public void setOrder_invalidTarget_throwsNullPointerException() throws NotFoundException {
+        assertThrows(NotFoundException.class, () -> addressBook.setOrder(ORDER_FOR_ALICE, ORDER_FOR_AMY));
+    }
+
+    @Test
+    public void setOrder_validTargetAndEditedOrder_success() throws NotFoundException {
+        addressBook.addOrder(ORDER_FOR_ALICE);
+        addressBook.setOrder(ORDER_FOR_ALICE, ORDER_FOR_AMY);
+        assertFalse(addressBook.hasOrder(ORDER_FOR_ALICE));
+        assertTrue(addressBook.hasOrder(ORDER_FOR_AMY));
     }
 
     /**
