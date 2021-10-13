@@ -317,7 +317,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String quantities} into a {@code List<Quantity>}.
      *
-     * @param quantities
+     * @param quantities String input to be parsed into a list of quantities.
      * @return List of quantities.
      * @throws ParseException if the given {@code quantities} is invalid.
      */
