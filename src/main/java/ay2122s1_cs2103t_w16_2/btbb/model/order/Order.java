@@ -81,16 +81,16 @@ public class Order {
         return deadline;
     }
 
+    public LocalDate getDeadlineDate() {
+        return deadline.getDeadline().toLocalDate();
+    }
+
     public Quantity getQuantity() {
         return quantity;
     }
 
     public CompletionStatus getCompletionStatus() {
         return completionStatus;
-    }
-
-    public LocalDate getDeadlineDate() {
-        return deadline.getDeadline().toLocalDate();
     }
 
     /**

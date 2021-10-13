@@ -24,7 +24,7 @@ public class FindOrderCommand extends Command {
     public static final String COMMAND_WORD = "find-o";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds orders by "
-            + "client name, client phone number or client address fields. \n"
+            + "client name, client phone number, client address, recipe name, order date and order status fields. \n"
             + "Parameters (at least one must be provided): "
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
