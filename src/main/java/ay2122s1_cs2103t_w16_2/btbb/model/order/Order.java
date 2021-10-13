@@ -2,6 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
@@ -86,6 +87,10 @@ public class Order {
 
     public CompletionStatus getCompletionStatus() {
         return completionStatus;
+    }
+
+    public LocalDate getDeadlineDate() {
+        return deadline.getDeadline().toLocalDate();
     }
 
     /**

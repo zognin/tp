@@ -55,6 +55,10 @@ public class Deadline {
         }
     }
 
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
     /**
      * Converts a Deadline object into its String representation.
      *
