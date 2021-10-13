@@ -151,18 +151,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Implements addIngredientQuantity method.
-     *
-     * @param target The target ingredient.
-     * @param multiplier The multiplier.
-     */
-    @Override
-    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
-        requireAllNonNull(target, multiplier);
-        addressBook.addIngredientQuantity(target, multiplier);
-    }
-
-    /**
      * Implements hasIngredient method.
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
      *
@@ -212,6 +200,18 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Implements addIngredientQuantity method.
+     *
+     * @param target The target ingredient.
+     * @param multiplier The multiplier.
+     */
+    @Override
+    public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
+        requireAllNonNull(target, multiplier);
+        addressBook.addIngredientQuantity(target, multiplier);
+    }
+
+    /**
      * Implements minusIngredientQuantity method.
      *
      * @param target The target ingredient.
@@ -250,12 +250,13 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Implements setOrder method.
-     * Replaces the existing Order in the address book with an edited Order.
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the address book.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
      *
-     * @param target The target order to replace.
-     * @param editedOrder The edited order to replace with.
-     * @throws NotFoundException if the target order was not found in the address book.
+     * @param target Order being replaced.
+     * @param editedOrder Order to replace with.
+     * @throws NotFoundException If target does not exist in currently shown order list.
      */
     @Override
     public void setOrder(Order target, Order editedOrder) throws NotFoundException {

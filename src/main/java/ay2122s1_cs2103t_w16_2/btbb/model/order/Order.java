@@ -22,6 +22,7 @@ public class Order {
     private final Price price;
     private final Deadline deadline;
     private final Quantity quantity;
+    private final CompletionStatus completionStatus;
 
     /**
      * Constructs an order object.
@@ -37,9 +38,9 @@ public class Order {
      */
     public Order(GenericString clientName, Phone clientPhone, Address clientAddress,
                  GenericString recipeName, RecipeIngredientList recipeIngredients, Price price,
-                 Deadline deadline, Quantity quantity) {
+                 Deadline deadline, Quantity quantity, CompletionStatus completionStatus) {
         requireAllNonNull(clientName, clientPhone, clientAddress,
-                recipeName, recipeIngredients, recipeName, deadline, quantity);
+                recipeName, recipeIngredients, recipeName, deadline, quantity, completionStatus);
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
@@ -48,6 +49,7 @@ public class Order {
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
+        this.completionStatus = completionStatus;
     }
 
     public GenericString getClientName() {
@@ -80,6 +82,10 @@ public class Order {
 
     public Quantity getQuantity() {
         return quantity;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -127,7 +133,8 @@ public class Order {
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getDeadline().equals(getDeadline())
-                && otherOrder.getQuantity().equals(getQuantity());
+                && otherOrder.getQuantity().equals(getQuantity())
+                && otherOrder.getCompletionStatus().equals(getCompletionStatus());
     }
 
     @Override
@@ -137,6 +144,38 @@ public class Order {
 
     @Override
     public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Client Name: ")
+                .append(getClientName())
+                .append("; Client Phone: ")
+                .append(getClientPhone())
+                .append("; Client Address: ")
+                .append(getClientAddress())
+                .append("\n")
+                .append("Recipe Name: ")
+                .append(getRecipeName())
+                .append("; Recipe Ingredients: ")
+                .append(getRecipeIngredients())
+                .append("\n")
+                .append("Order Price: ")
+                .append(getPrice())
+                .append("; Order Deadline: ")
+                .append(getDeadline())
+                .append("; Order Quantity: ")
+                .append(getQuantity())
+                .append("; Order Status: ")
+                .append(getCompletionStatus().getDisplayMessage());
+
+        return builder.toString();
+    }
+
+    /**
+     * Gets the string representation of an Order object, without CompletionStatus attribute.
+     * For use in Done and Undone commands only.
+     *
+     * @return String representation of Order object, without CompletionStatus attribute.
+     */
+    public String toStringWithoutCompletionStatus() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Client Name: ")
                 .append(getClientName())

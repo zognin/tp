@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
@@ -32,6 +33,7 @@ public class JsonAdaptedOrder {
     private final String price;
     private final String deadline;
     private final String quantity;
+    private final String isFinished;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -44,7 +46,8 @@ public class JsonAdaptedOrder {
                             @JsonProperty("recipeIngredients") List<JsonAdaptedIngredient> recipeIngredients,
                             @JsonProperty("price") String price,
                             @JsonProperty("deadline") String deadline,
-                            @JsonProperty("quantity") String quantity) {
+                            @JsonProperty("quantity") String quantity,
+                            @JsonProperty("isFinished") String isFinished) {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
@@ -52,6 +55,7 @@ public class JsonAdaptedOrder {
         this.price = price;
         this.deadline = deadline;
         this.quantity = quantity;
+        this.isFinished = isFinished;
 
         if (recipeIngredients != null) {
             this.recipeIngredients.addAll(recipeIngredients);
@@ -71,6 +75,7 @@ public class JsonAdaptedOrder {
         price = source.getPrice().toString();
         deadline = source.getDeadline().toJsonStorageString();
         quantity = source.getQuantity().toString();
+        isFinished = source.getCompletionStatus().toString();
     }
 
     /**
@@ -141,8 +146,8 @@ public class JsonAdaptedOrder {
                     MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()
             ));
         }
-        if (!Deadline.isValidInternalDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_INTERNAL_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
@@ -156,7 +161,18 @@ public class JsonAdaptedOrder {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
+        if (isFinished == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, CompletionStatus.class.getSimpleName()
+            ));
+        }
+        if (!CompletionStatus.isValidCompletionStatus(isFinished)) {
+            throw new IllegalValueException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        final CompletionStatus modelCompletionStatus = new CompletionStatus(isFinished);
+
         return new Order(modelClientName, modelClientPhone, modelClientAddress,
-                modelRecipeName, modelRecipeIngredients, modelPrice, modelDeadline, modelQuantity);
+                modelRecipeName, modelRecipeIngredients, modelPrice, modelDeadline, modelQuantity,
+                modelCompletionStatus);
     }
 }

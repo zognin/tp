@@ -149,6 +149,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
+     *
+     * @param ingredient to check.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.contains(ingredient);
+    }
+
+    /**
      * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
      * by the quantity in {@code target} if it exists.
      *
@@ -158,16 +168,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addIngredientQuantity(Ingredient target, Quantity multiplier) {
         requireAllNonNull(target, multiplier);
         ingredients.addIngredientQuantity(target, multiplier);
-    }
-
-    /**
-     * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
-     *
-     * @param ingredient to check.
-     */
-    public boolean hasIngredient(Ingredient ingredient) {
-        requireNonNull(ingredient);
-        return ingredients.contains(ingredient);
     }
 
     /**
@@ -229,9 +229,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the existing target Order in the address book with an edited Order.
      *
-     * @param target The target order to replace.
+     * @param target The target Order to replace.
      * @param editedOrder The edited order to replace with.
-     * @throws NotFoundException if the target order does not exist in the address book.
+     * @throws NotFoundException If the target order does not exist in the address book.
      */
     public void setOrder(Order target, Order editedOrder) throws NotFoundException {
         requireAllNonNull(target, editedOrder);

@@ -34,15 +34,14 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the existing target Order in the list with an edited Order
+     * Replaces the existing target Order in the list with an edited Order.
      *
      * @param target The target order to replace.
      * @param editedOrder The edited order to replace with.
-     * @throws NotFoundException if the target Order does not exist in the list.
+     * @throws NotFoundException If the target order does not exist in the list.
      */
     public void setOrder(Order target, Order editedOrder) throws NotFoundException {
         requireAllNonNull(target, editedOrder);
-
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new NotFoundException(Order.class.getName());

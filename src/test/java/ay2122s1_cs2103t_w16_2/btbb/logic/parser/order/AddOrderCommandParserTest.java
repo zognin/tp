@@ -30,6 +30,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_NAME_DESC_CHICKEN_RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_NAME_DESC_LAKSA;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -65,7 +66,7 @@ class AddOrderCommandParserTest {
                 new OrderDescriptorBuilder(ORDER_FOR_AMY).withRecipeIngredients(new ArrayList<>()).build();
 
         OrderDescriptor expectedOrderDescriptorWithoutClientIndexAndOrderQuantity =
-                new OrderDescriptorBuilder(ORDER_FOR_IMRAN).build();
+                new OrderDescriptorBuilder(ORDER_FOR_IMRAN).withQuantity(VALID_ORDER_QUANTITY_1).build();
 
         OrderDescriptor expectedOrderDescriptorWithClientIndexAndParams =
                 new OrderDescriptorBuilder(ORDER_FOR_BOB).withClientIndex(INDEX_FIRST).build();

@@ -18,6 +18,8 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
 
 ## 2. Quick start
 
+### 2.1 Installation
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the jar file of the application.
@@ -31,6 +33,23 @@ If you are looking to keep your physique, down to your finger muscles, in shape,
    * **`list client`** : Lists all clients.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+### 2.2 Layout
+The user interface of BobTheBistroBoss is divided into 2 tabs.
+
+#### 2.2.1 Home Tab
+Displays a list of all clients and orders, with the following information:
+* Client: Name, Phone number, Email, Address
+* Order: Client name, Phone number, Address, Recipe name, Recipe ingredients, Recipe price, Order deadline, Order quantity, Done status of Order.
+
+![layout1](images/layout1.png)
+
+
+#### 2.2.2 Ingredient Tab
+Displays a list of all ingredients, with the following information:
+* Ingredient: Name, Quantity, Qnit
+
+![layout2](images/layout2.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,47 +104,62 @@ Example:
 
 ### 3.3 Client
 
-#### 3.3.1 Adding a client: `add client`
+#### 3.3.1 Adding a client: `add-c`
 
 Adds a client to the application.
 
-Format: `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE pe/PERIOD`
+Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* <code>p/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
-
-* <code>v/YES_OR_NO</code> records the client's vaccination status.
-
-* <code>m/START_DATE</code> records the client's membership status. Start date is the start of the membership.
-
-* <code>pe/PERIOD</code> must follow the format specified [above](#features).
-
-* <code>b/BIRTH_DATE</code> and <code>m/START_DATE</code> must follow the format specified [above](#features).
-
+* <code>cp/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-* `add client n/Alex Yeoh p/89653101 e/alexyeoh@gmail.com a/Choa Chu Kang St 62 Blk 123 #12-34 b/04-03-1990 v/yes m/04-06-2021 pe/1m` Adds a client named Alex Yeoh, who is vaccinated and membership lasts for 1 month from 4 Jun 2021.
+* `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the following attributes:
+  * Name: Alex Yeoh
+  * Phone number: 89653101
+  * Email: 'alexyeoh@gmail.com'
+  * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
 
-#### 3.3.2 Deleting a client: `delete client`
+#### 3.3.2 Deleting a client: `delete-c`
 
 Deletes a client from the application.
 
-Format: `delete client INDEX`
+Format: `delete-c INDEX`
 
 **Examples:**
-* `delete client 1` Deletes the client at index 1 in the client list currently shown.
+* `delete-c 1` Deletes the client at index 1 in the client list currently shown.
 
-#### 3.3.3 Finding clients by keywords: `find client`
+#### 3.3.3 Editing clients: `edit-c`
 
-Finds clients whose attribute(s) matches the keyword(s).
+Edits an existing client in the application.
 
-Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]`
+Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which client to edit by specifying its position in the currently displayed client list.
+
+* `[cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ce/EMAIL], [ca/CLIENT_ADDRESS]` allows you to specify the client information to update. None of
+  them are mandatory, but at least one must be specified.
+
+</div>
+
+**Examples:**
+*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in currently shown client list by changing the name to 'Amy' and the email to 'Amy1234@gmail.com'.
+
+#### 3.3.4 Finding clients by keywords: `find-c`
+
+Finds client(s) whose attribute(s) match the keyword(s).
+
+Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -135,29 +169,116 @@ Format: `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DA
 
 * There must be 1 or more search arguments.
 
+* Multiple search keywords can be specified for each field. <br>
+  e.g. <code>find-c cn/Alex Brian</code>
+
 * Partial search will be allowed. <br>
-e.g. <code>find client n/Al</code> can show clients with names like Alice and Alex.
+  e.g. <code>find-c cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* <code>b/BIRTH_DATE</code> must follow the format specified [above](#features).
+* It will find clients that match at least one keyword, for each prefix. <br>
+  e.g. <code>find-c cn/Al Be cp/34 22312 </code> can show all of these combinations of clients: <br>
+  * client names containing 'Al' with phone numbers containing '34'.
+  * client names containing 'Al' with phone numbers containing '22312'.
+  * client names containing 'Be' with phone numbers containing '34'.
+  * client names containing 'Be' with phone numbers containing '22312'.
 
-* <code>pe/PERIOD_TO_EXP</code> must follow the format specified [above](#features).
+</div>
+
+#### 3.3.5 Listing all clients: `list-c`
+
+Lists all clients in the application.
+
+Format: `list-c`
+
+### 3.4 Ingredient
+
+#### 3.4.1 Adding an ingredient: `add-i`
+
+Adds an ingredient to the application.
+
+Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
+
+* Please refer to the examples below.
 
 </div>
 
 **Examples:**
-* `find client n/al` Find clients with names matching 'al'. E.g. Alex, Alice, Al.
-* `find client n/al p/984` Find clients with names matching ‘al’ and phone numbers matching ‘984’.
-* `find client v/yes pe/1y` Find all clients who are vaccinated and whose memberships are expiring in 1 year or less.
+* `add-i in/White Rice iq/4000 iu/g` adds 4000g of White Rice to the Inventory.
 
-#### 3.3.4 Listing all clients `list client`
+#### 3.4.2 Deleting an ingredient: `delete-i`
 
-Lists all clients in the application.
+Deletes an ingredient from the application.
 
-Format: `list client`
+Format: `delete-i INDEX`
 
-### 3.4 Order
+**Examples:**
+* `delete-i 1` Deletes the ingredient at index 1 in the ingredient list currently shown.
 
-#### 3.4.1 Adding an order: `add-o`
+#### 3.4.3 Editing ingredients: `edit-i`
+
+Edits an existing ingredient in the application.
+
+Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed ingredient list.
+
+* `[in/NAME] [iq/QUANTITY] [iu/UNIT]` allows you to specify the ingredient information to update. None of
+  them are mandatory, but at least one must be specified.
+
+</div>
+
+**Examples:**
+*  `edit-i 2 in/Apple iu/whole` Edits the second ingredient in currently shown ingredient list by changing the
+   name to 'Apple' and the unit to 'whole'.
+
+#### 3.4.4 Finding ingredients by keywords: `find-i`
+
+Finds ingredient(s) whose attribute(s) match the keyword(s).
+
+Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* The search is case-insensitive.
+* There must be 1 or more search arguments.
+* Multiple search keywords can be specified for each field. <br>
+  e.g. <code>find-i in/Kiwi Chocolate</code>
+* Partial search will be allowed. <br>
+  e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
+* Ingredient Quantity:
+  * keyword for QUANTITY finds ingredients with quantity that is equal to QUANTITY.
+  * keywords for QUANTITY_FROM and QUANTITY_TO finds ingredients with quantity in the range, inclusive of QUANTITY_FROM and QUANTITY_TO.
+  * If keywords are given for both Quantity and both Quantity_from and Quantity_to, then found ingredients must satisfy all 3 conditions.
+
+* It will find ingredients that match at least one keyword, for each prefix. <br>
+  e.g. <code>find-i in/Ap Fl iu/p k</code> can show all of these combinations of ingredients: <br>
+  * ingredient names containing 'Ap' with units containing 'p'
+  * ingredient names containing 'Ap' with units containing 'k'
+  * ingredient names containing 'Fl' with units containing 'p'
+  * ingredient names containing 'Fl' with units containing 'k'
+</div>
+
+#### 3.4.5 Listing all ingredients: `list-i`
+
+Lists all ingredients in the application.
+
+Format: `list-i`
+
+### 3.5 Order
+
+#### 3.5.1 Adding an order: `add-o`
 
 Adds an order to the application.
 
@@ -215,7 +336,7 @@ Suppose the first client in the list has the following details:
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
   scheduled to be delivered by 15 December 2021 at 1630 hrs.
 
-#### 3.4.2 Editing an order: `edit-o`
+#### 3.5.2 Editing an order: `edit-o`
 
 Edits an order in the application.
 
@@ -240,7 +361,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
   to Carol and the client's phone number to 98765432.
 
-#### 3.4.3 Deleting an order: `delete-o`
+#### 3.5.3 Deleting an order: `delete-o`
 
 Deletes an order from the application.
 
@@ -249,7 +370,7 @@ Format: `delete-o INDEX`
 **Examples:**
 * `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
-#### 3.4.4 Finding orders by keywords: `find-o`
+#### 3.5.4 Finding orders by keywords: `find-o`
 
 Find order(s) with attribute(s) that contains the keyword(s).
 
@@ -289,13 +410,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
   * Alex 92315697
   * David 92316612
 
-#### 3.4.5 Listing all orders: `list-o`
+#### 3.5.5 Listing all orders: `list-o`
 
 Lists all orders in the application.
 
 Format: `list-o`
 
-#### 3.4.6 Mark order as done: `done-o`
+#### 3.5.6 Mark order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -304,7 +425,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 3.4.7 Mark order as undone: `undone-o`
+#### 3.5.7 Mark order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -313,17 +434,17 @@ Format: `undone-o INDEX`
 **Examples:**
 * `undone-o 1` Marks the order at index 1 in the order list currently shown as undone.
 
-#### 3.5 Exiting the program: `exit`
+### 3.6 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### 3.6 Saving the data
+### 3.7 Saving the data
 
 BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 3.7 Editing the data file
+### 3.8 Editing the data file
 
 BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
@@ -344,17 +465,23 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 Action                   | Format and Examples
 -------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add client**           | `add client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE v/YES_OR_NO m/START_DATE pe/PERIOD`
-**Delete client**        | `delete client INDEX`
-**Find client**          | `find client [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [v/YES_OR_NO] [pe/PERIOD_TO_EXP]`
-**List client**          | `list client`
-**Add order**          | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
-**Edit order**         | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
-**Delete order**       | `delete-o INDEX`
-**Find order**         | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
-**List order**         | `list-o`
-**Mark order as done** | `done-o INDEX`
+**Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
+**Delete client**        | `delete-c INDEX`
+**Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**Find client**          | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**List client**          | `list-c`
+**Add ingredient**       | `add-i in/RECIPE_NAME iq/RECIPE_QUANTITY iu/RECIPE_UNIT`
+**Delete ingredient**    | `delete-i INDEX`
+**Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
+**Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+**List ingredient**      | `list-i`
+**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
+**Delete order**         | `delete-o INDEX`
+**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
+**List order**           | `list-o`
+**Mark order as done**   | `done-o INDEX`
 **Mark order as undone** | `undone-o INDEX`
 **Help**                 | `help`
-**Tab**                 | `tab INDEX`
-**Exit**                | `exit`
+**Tab**                  | `tab INDEX`
+**Exit**                 | `exit`

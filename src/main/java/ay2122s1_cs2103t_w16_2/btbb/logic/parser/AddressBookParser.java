@@ -24,8 +24,11 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.AddClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.DeleteClientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.client.EditClientCommandParser;
@@ -38,7 +41,10 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.FindIngredientCommand
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DeleteOrderIngredientCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DoneOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.EditOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.FindOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.UndoneOrderCommandParser;
 
 /**
  * Parses user input.
@@ -87,11 +93,17 @@ public class AddressBookParser {
         case DeleteIngredientCommand.COMMAND_WORD:
             return new DeleteIngredientCommandParser().parse(arguments);
 
+        case DoneOrderCommand.COMMAND_WORD:
+            return new DoneOrderCommandParser().parse(arguments);
+
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
 
         case EditIngredientCommand.COMMAND_WORD:
             return new EditIngredientCommandParser().parse(arguments);
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
 
         case FindClientCommand.COMMAND_WORD:
             return new FindClientCommandParser().parse(arguments);
@@ -110,6 +122,9 @@ public class AddressBookParser {
 
         case ListOrderCommand.COMMAND_WORD:
             return new ListOrderCommand();
+
+        case UndoneOrderCommand.COMMAND_WORD:
+            return new UndoneOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

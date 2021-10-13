@@ -64,7 +64,7 @@ public class DeleteOrderIngredientCommand extends Command {
         Ingredient ingredientToDelete = getIngredientToDelete(orderToEdit);
 
         RecipeIngredientList editedIngredientList = makeEditedIngredientList(orderToEdit);
-        Order editedOrder = makeOrderWithEditedIngredients(editedIngredientList, orderToEdit);
+        Order editedOrder = makeOrderWithEditedIngredients(model, editedIngredientList, orderToEdit);
         if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }

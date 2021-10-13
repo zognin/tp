@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
@@ -66,6 +67,28 @@ public class OrderUtil {
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_PRICE, order.getPrice().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_DEADLINE, order.getDeadline().toJsonStorageString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_QUANTITY, order.getQuantity().toString()));
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code OrderDescriptor}'s details.
+     */
+    public static String getEditOrderDescriptorDetails(OrderDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getClientName().ifPresent(name ->
+                sb.append(PREFIX_CLIENT_NAME).append(name).append(" "));
+        descriptor.getClientPhone().ifPresent(phone ->
+                sb.append(PREFIX_CLIENT_PHONE).append(phone).append(" "));
+        descriptor.getClientAddress().ifPresent(address ->
+                sb.append(PREFIX_CLIENT_ADDRESS).append(address).append(" "));
+        descriptor.getRecipeName().ifPresent(name ->
+                sb.append(PREFIX_RECIPE_NAME).append(name).append(" "));
+        descriptor.getPrice().ifPresent(price ->
+                sb.append(PREFIX_ORDER_PRICE).append(price).append(" "));
+        descriptor.getDeadline().ifPresent(deadline ->
+                sb.append(PREFIX_ORDER_DEADLINE).append(deadline.toJsonStorageString()).append(" "));
+        descriptor.getQuantity().ifPresent(quantity ->
+                sb.append(PREFIX_ORDER_QUANTITY).append(quantity).append(" "));
         return sb.toString();
     }
 

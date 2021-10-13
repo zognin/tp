@@ -47,8 +47,11 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderIngredientCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
@@ -134,6 +137,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_doneOrder() throws Exception {
+        DoneOrderCommand command = (DoneOrderCommand) parser.parseCommand(
+                DoneOrderCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DoneOrderCommand(INDEX_FIRST), command);
+    }
+
+    @Test
     public void parseCommand_editClient() throws Exception {
         Client person = new ClientBuilder().build();
         ClientDescriptor descriptor = new ClientDescriptorBuilder(person).build();
@@ -151,6 +161,21 @@ public class AddressBookParserTest {
                 + IngredientUtil.getEditIngredientDescriptorDetails(descriptor));
         assertEquals(new EditIngredientCommand(INDEX_FIRST, descriptor), command);
     }
+
+    @Test
+    public void parseCommand_editOrder() throws Exception {
+        Order order = new OrderBuilder().build();
+
+        // It is not possible to edit the ingredient list using the EditOrderCommand
+        OrderDescriptor descriptor = new OrderDescriptorBuilder(order).withRecipeIngredients(null)
+                .withCompletionStatus(null).build();
+        EditOrderCommand command = (EditOrderCommand) parser.parseCommand(EditOrderCommand.COMMAND_WORD
+                + " " + INDEX_FIRST.getOneBased() + " "
+                + OrderUtil.getEditOrderDescriptorDetails(descriptor));
+
+        assertEquals(new EditOrderCommand(INDEX_FIRST, descriptor), command);
+    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -228,6 +253,13 @@ public class AddressBookParserTest {
         TabCommand command = (TabCommand) parser.parseCommand(
                 TabCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new TabCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_undoneOrder() throws Exception {
+        UndoneOrderCommand command = (UndoneOrderCommand) parser.parseCommand(
+                UndoneOrderCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UndoneOrderCommand(INDEX_FIRST), command);
     }
 
     @Test

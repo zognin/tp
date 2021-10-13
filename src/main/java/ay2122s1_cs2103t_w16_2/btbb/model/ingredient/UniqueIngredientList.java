@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +51,28 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     }
 
     /**
+     * Replaces the contents of this list with {@code ingredients}.
+     * {@code ingredients} must not contain duplicate ingredients.
+     *
+     * @param replacement another ingredient list to copy from.
+     */
+    public void setIngredients(UniqueIngredientList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code ingredients}.
+     * {@code ingredients} must not contain duplicate ingredients.
+     *
+     * @param ingredients another ingredient list to copy from.
+     */
+    public void setIngredients(List<Ingredient> ingredients) {
+        requireAllNonNull(ingredients);
+        internalList.setAll(ingredients);
+    }
+
+    /**
      * Replaces the similar ingredient that is in the address book with a new ingredient whose quantity is increased
      * by the quantity in {@code target} times the multiplier if it exists.
      *
@@ -73,28 +94,6 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
             int index = internalList.indexOf(currentIngredient);
             internalList.set(index, ingredientWithNewQuantity);
         }
-    }
-
-    /**
-     * Replaces the contents of this list with {@code ingredients}.
-     * {@code ingredients} must not contain duplicate ingredients.
-     *
-     * @param replacement another ingredient list to copy from.
-     */
-    public void setIngredients(UniqueIngredientList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code ingredients}.
-     * {@code ingredients} must not contain duplicate ingredients.
-     *
-     * @param ingredients another ingredient list to copy from.
-     */
-    public void setIngredients(List<Ingredient> ingredients) {
-        requireAllNonNull(ingredients);
-        internalList.setAll(ingredients);
     }
 
     /**
@@ -147,7 +146,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new NotFoundException(Client.class.getName());
+            throw new NotFoundException(Ingredient.class.getName());
         }
 
         internalList.set(index, editedIngredient);

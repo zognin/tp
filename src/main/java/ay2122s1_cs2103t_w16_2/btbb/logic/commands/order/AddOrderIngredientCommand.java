@@ -74,7 +74,7 @@ public class AddOrderIngredientCommand extends Command {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
 
         RecipeIngredientList editedIngredientList = makeEditedIngredientList(ingredientToAdd, orderToEdit);
-        Order editedOrder = makeOrderWithEditedIngredients(editedIngredientList, orderToEdit);
+        Order editedOrder = makeOrderWithEditedIngredients(model, editedIngredientList, orderToEdit);
         if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
