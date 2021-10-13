@@ -47,7 +47,7 @@ Displays a list of all clients and orders, with the following information:
 ![layout1](images/layout1.png)
 
 
-#### 2.2.2 Ingredient Tab
+#### 2.2.2 Inventory Tab
 Displays a list of all ingredients, with the following information:
 * Ingredient: Name, Quantity, Qnit
 
