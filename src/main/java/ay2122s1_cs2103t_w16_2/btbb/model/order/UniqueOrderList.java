@@ -60,6 +60,7 @@ public class UniqueOrderList implements Iterable<Order> {
         if (index == -1) {
             throw new NotFoundException(Order.class.getName());
         }
+
         internalList.set(index, editedOrder);
     }
 

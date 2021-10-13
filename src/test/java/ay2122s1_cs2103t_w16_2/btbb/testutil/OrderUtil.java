@@ -9,11 +9,14 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
+import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 
@@ -21,6 +24,34 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
  * A utility class for Order.
  */
 public class OrderUtil {
+    /**
+     * Adds ingredient to a copy of an ingredient list of an order.
+     *
+     * @param order Order to get the original ingredient list from.
+     * @param ingredient Ingredient to add to the ingredient list.
+     * @return New ingredient list.
+     */
+    public static RecipeIngredientList addIngredientToIngredientList(Order order, Ingredient ingredient) {
+        RecipeIngredientList editedRecipeIngredientList = order.getRecipeIngredients();
+        List<Ingredient> newIngredients = new ArrayList<>(editedRecipeIngredientList.getIngredients());
+        newIngredients.add(ingredient);
+        return new RecipeIngredientList(newIngredients);
+    }
+
+    /**
+     * Removes ingredient from a copy of an ingredient list of an order.
+     *
+     * @param order Order to get the original ingredient list from.
+     * @param ingredient Ingredient to remove from the ingredient list.
+     * @return New ingredient list.
+     */
+    public static RecipeIngredientList removeIngredientFromIngredientList(Order order, Ingredient ingredient) {
+        RecipeIngredientList editedRecipeIngredientList = order.getRecipeIngredients();
+        List<Ingredient> newIngredients = new ArrayList<>(editedRecipeIngredientList.getIngredients());
+        newIngredients.remove(ingredient);
+        return new RecipeIngredientList(newIngredients);
+    }
+
     public static String getAddCommand(Order order) {
         return AddOrderCommand.COMMAND_WORD + " " + getOrderDetails(order);
     }

@@ -22,7 +22,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.EditIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.FindIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient.ListIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DeleteOrderIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.DoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
@@ -38,7 +40,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.DeleteIngredientComma
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.EditIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient.FindIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.AddOrderIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DeleteOrderCommandParser;
+import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DeleteOrderIngredientCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.DoneOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.EditOrderCommandParser;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.order.FindOrderCommandParser;
@@ -78,6 +82,12 @@ public class AddressBookParser {
 
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
+
+        case AddOrderIngredientCommand.COMMAND_WORD:
+            return new AddOrderIngredientCommandParser().parse(arguments);
+
+        case DeleteOrderIngredientCommand.COMMAND_WORD:
+            return new DeleteOrderIngredientCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);

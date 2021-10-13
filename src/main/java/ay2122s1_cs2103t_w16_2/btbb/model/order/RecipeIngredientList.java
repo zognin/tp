@@ -30,6 +30,17 @@ public class RecipeIngredientList {
         this.ingredients = ingredients;
     }
 
+    /**
+     * Returns true if the list contains an equivalent ingredient as the given argument.
+     *
+     * @param toCheck Ingredient.
+     * @return true if ingredient is already in the ingredients list, false otherwise.
+     */
+    public boolean contains(Ingredient toCheck) {
+        requireNonNull(toCheck);
+        return ingredients.stream().anyMatch(toCheck::isSameIngredient);
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }

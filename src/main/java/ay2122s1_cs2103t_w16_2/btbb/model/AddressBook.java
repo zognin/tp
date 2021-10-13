@@ -4,11 +4,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
@@ -98,16 +96,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
-    }
-
-    /**
-     * Gets a client by phone.
-     *
-     * @param phone Phone of a client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return clients.getClientByPhone(phone);
     }
 
     /**
