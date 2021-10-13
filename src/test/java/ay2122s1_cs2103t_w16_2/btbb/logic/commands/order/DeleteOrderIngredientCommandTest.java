@@ -3,6 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.OrderUtil.removeIngredientFromIngredientList;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
@@ -35,6 +36,16 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
  */
 public class DeleteOrderIngredientCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullArgs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new DeleteOrderIngredientCommand(null, null));
+        assertThrows(NullPointerException.class, () ->
+                new DeleteOrderIngredientCommand(INDEX_FIRST, null));
+        assertThrows(NullPointerException.class, () ->
+                new DeleteOrderIngredientCommand(null, null));
+    }
 
     @Test
     public void execute_validOrderIndex_success() throws NotFoundException {

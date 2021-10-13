@@ -86,9 +86,6 @@ public class AddressBookParser {
         case AddOrderIngredientCommand.COMMAND_WORD:
             return new AddOrderIngredientCommandParser().parse(arguments);
 
-        case DeleteOrderIngredientCommand.COMMAND_WORD:
-            return new DeleteOrderIngredientCommandParser().parse(arguments);
-
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
 
@@ -97,6 +94,9 @@ public class AddressBookParser {
 
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
+
+        case DeleteOrderIngredientCommand.COMMAND_WORD:
+            return new DeleteOrderIngredientCommandParser().parse(arguments);
 
         case DoneOrderCommand.COMMAND_WORD:
             return new DoneOrderCommandParser().parse(arguments);

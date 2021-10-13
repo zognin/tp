@@ -90,12 +90,15 @@ public class CommandTestUtil {
     // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_IMRAN = " " + PREFIX_CLIENT_NAME + VALID_NAME_IMRAN;
     public static final String PHONE_DESC_AMY = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_IMRAN = " " + PREFIX_CLIENT_PHONE + VALID_PHONE_IMRAN;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_CLIENT_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_IMRAN = " " + PREFIX_CLIENT_ADDRESS + VALID_ADDRESS_IMRAN;
     public static final String INDEX_DESC_AMY = " " + PREFIX_CLIENT_INDEX + INDEX_SECOND.getOneBased();
     public static final String INDEX_DESC_BOB = " " + PREFIX_CLIENT_INDEX + INDEX_FIRST.getOneBased();
 

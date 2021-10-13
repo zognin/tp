@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.AddOrderCommand.MESSAGE_DUPLICATE_ORDER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.util.CommandUtil.makeOrderWithEditedIngredients;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_INDEX;
@@ -47,6 +48,8 @@ public class DeleteOrderIngredientCommand extends Command {
      * @param targetOrderIndex Index of the order in the displayed list.
      */
     public DeleteOrderIngredientCommand(Index targetIngredientIndex, Index targetOrderIndex) {
+        requireAllNonNull(targetIngredientIndex, targetOrderIndex);
+
         this.targetIngredientIndex = targetIngredientIndex;
         this.targetOrderIndex = targetOrderIndex;
     }
