@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import javafx.collections.FXCollections;

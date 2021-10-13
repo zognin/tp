@@ -109,14 +109,6 @@ public interface Model {
     void addIngredient(Ingredient ingredient);
 
     /**
-     * Increases the quantity of the ingredient that is the same as the {@code target} ingredient if it exists.
-     *
-     * @param target The target ingredient.
-     * @param multiplier The multiplier.
-     */
-    void addIngredientQuantity(Ingredient target, Quantity multiplier);
-
-    /**
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the address book.
      *
      * @param ingredient to check.
