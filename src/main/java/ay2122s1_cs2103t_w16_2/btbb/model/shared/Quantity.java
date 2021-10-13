@@ -12,6 +12,7 @@ public class Quantity implements Comparable<Quantity> {
     public static final int DEFAULT_MAX_QUANTITY = 40000;
     public static final String DEFAULT_MIN_QUANTITY_STRING = String.valueOf(DEFAULT_MIN_QUANTITY);
     public static final String DEFAULT_MAX_QUANTITY_STRING = String.valueOf(DEFAULT_MAX_QUANTITY);
+
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, it should be positive "
                     + "and the largest acceptable quantity is 40000.";
@@ -40,7 +41,7 @@ public class Quantity implements Comparable<Quantity> {
     public static boolean isValidQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity > 0 && quantity <= 40000;
+            return quantity > DEFAULT_MIN_QUANTITY && quantity <= DEFAULT_MAX_QUANTITY;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
@@ -56,7 +57,7 @@ public class Quantity implements Comparable<Quantity> {
     public static boolean isValidInternalQuantity(String test) {
         try {
             int quantity = Integer.parseInt(test);
-            return quantity >= 0 && quantity <= 40000;
+            return quantity >= DEFAULT_MIN_QUANTITY && quantity <= DEFAULT_MAX_QUANTITY;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }

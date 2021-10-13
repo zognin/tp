@@ -4,11 +4,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
@@ -98,16 +96,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
-    }
-
-    /**
-     * Gets a client by phone.
-     *
-     * @param phone Phone of a client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return clients.getClientByPhone(phone);
     }
 
     /**
@@ -226,7 +214,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return orders.contains(order);
     }
 
-
+    /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     *
+     * @param orderToRemove The order to remove from the orders list.
+     * @throws NotFoundException when the given order does not exist in the orders list.
+     */
+    public void removeOrder(Order orderToRemove) throws NotFoundException {
+        requireNonNull(orderToRemove);
+        orders.remove(orderToRemove);
+    }
 
     /** Replaces the existing target Order in the address book with an edited Order.
      *

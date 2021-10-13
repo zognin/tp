@@ -172,6 +172,15 @@ public interface Model {
     boolean hasOrder(Order order);
 
     /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     *
+     * @param target The order to remove from the orders list.
+     * @throws NotFoundException when the given order does not exist in the orders list.
+     */
+    void deleteOrder(Order target) throws NotFoundException;
+
+    /**
      * Replaces the given order {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
      * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.

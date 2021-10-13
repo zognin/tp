@@ -34,6 +34,20 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
+     * Removes the equivalent order from the list of orders.
+     * The order must exist in the list.
+     *
+     * @param toRemove The order to remove from the list.
+     * @throws NotFoundException when there is no equivalent order found in the list.
+     */
+    public void remove(Order toRemove) throws NotFoundException {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new NotFoundException(Order.class.getName());
+        }
+    }
+
+    /**
      * Replaces the existing target Order in the list with an edited Order.
      *
      * @param target The target order to replace.
@@ -46,6 +60,7 @@ public class UniqueOrderList implements Iterable<Order> {
         if (index == -1) {
             throw new NotFoundException(Order.class.getName());
         }
+
         internalList.set(index, editedOrder);
     }
 

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import javafx.collections.FXCollections;
@@ -33,19 +32,6 @@ public class UniqueClientList implements Iterable<Client> {
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClient);
-    }
-
-    /**
-     * Gets a client by phone.
-     * The phone may not belong to any client.
-     *
-     * @param phone Phone of the client.
-     * @return An optional client.
-     */
-    public Optional<Client> getClientByPhone(Phone phone) {
-        return internalList.stream()
-                .filter(client -> client.getPhone().equals(phone))
-                .findFirst();
     }
 
     /**

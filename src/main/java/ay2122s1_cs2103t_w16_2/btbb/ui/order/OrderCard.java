@@ -59,7 +59,7 @@ public class OrderCard extends UiPart<Region> {
         orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
-        orderIsFinished.setStroke(order.getCompletionStatus().getCompletionStatus() ? completionColor : Color.WHITE);
+        orderIsFinished.setStroke(order.getCompletionStatus().getIsFinished() ? completionColor : Color.WHITE);
     }
 
     @Override
