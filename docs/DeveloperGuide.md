@@ -711,7 +711,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1. Usability Requirements:
     * Should work on systems with Java 11 and above.
-    * Should work on Windows, Linux and Macintosh OS.
+    * Should work on Windows, Linux and macOS.
 
 2. Business/Domain Requirements:
     * All quantities in the application are from 0 to 40000.
@@ -724,7 +724,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **BTBB**: BobTheBistroBoss
 * **Client**: Client information that can be copied to orders
-* **Booking**: A fixed time period (of 1 hour 30 minutes) that a client can use the gym’s facilities
+* **Ingredient**: Ingredient information that is stored in inventory and orders
 * **Inventory**: Keeps track of ingredients and their quantities
 * **Order**: Meal order sold to a client
 

@@ -11,8 +11,8 @@ title: User Guide
 
 ### 1.1 About BobTheBistroBoss
 
-BobTheBistroBoss (BTBB) is a **desktop application that aims to help F&B businesses, by keeping track of logistics as well as
-providing valuable data visualizations, via a user-friendly command line interface (CLI).** Keeping track of
+BobTheBistroBoss (BTBB) is a **desktop application that aims to help home-based F&B businesses, by keeping track of logistics as well as
+providing valuable data visualizations, via a user-friendly command-line interface (CLI).** Keeping track of
 information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
 application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
 manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
@@ -34,7 +34,7 @@ manoeuvre through client and order details. If you are looking for an easy solut
    * **`help`** : Opens the help window
    * **`list-c`** : Lists all clients.
 
-7. Refer to the [Features](#3-features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 ### 2.2 Layout
 The user interface of BobTheBistroBoss is divided into 2 tabs.
@@ -42,7 +42,7 @@ The user interface of BobTheBistroBoss is divided into 2 tabs.
 #### 2.2.1 Home Tab
 Displays a list of all clients and orders, with the following information:
 * Client: Name, Phone number, Email, Address
-* Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Recipe price, Order deadline, Order quantity, Completion status of Order.
+* Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Order price, Order deadline, Order quantity, Completion status of Order.
 
 ![layout1](images/layout1.png)
 
@@ -73,7 +73,7 @@ Displays a list of all ingredients, with the following information:
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `cp/12341234 cp/56785678`, only `cp/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, and `list client`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, and `list-c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * The format of all date fields is `dd-MM-yyyy`.
@@ -82,6 +82,7 @@ Displays a list of all ingredients, with the following information:
 * The format of all time fields is `HHmm`.<br>
   e.g. 1340 is 1.40p.m.
 
+* The format of all deadline fields is `dd-MM-yyyy HHmm`. e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 </div>
 
 ### 3.1 Viewing help : `help`
@@ -115,7 +116,7 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
-* Client information that can be copied to orders.
+* Client information that serves as a bookmark to efficiently add orders for a particular client.
 * Client is considered a duplicate when they have the same phone number.
 * <code>cp/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
 * Please refer to the examples below.
