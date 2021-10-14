@@ -49,7 +49,7 @@ Displays a list of all clients and orders, with the following information:
 
 #### 2.2.2 Inventory Tab
 Displays a list of all ingredients, with the following information:
-* Ingredient: Name, Quantity, Qnit
+* Ingredient: Name, Quantity, Unit
 
 ![layout2](images/layout2.png)
 
@@ -79,9 +79,6 @@ Displays a list of all ingredients, with the following information:
 * The format of all date fields is `dd-MM-yyyy`.
   e.g. 21-10-1998 is 21 October 1998.
 
-* The format of all time fields is `HHmm`.<br>
-  e.g. 1340 is 1.40p.m.
-
 * The format of all deadline fields is `dd-MM-yyyy HHmm`. e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 </div>
 
@@ -97,7 +94,7 @@ Switches to the specified tab.
 
 Format: `tab INDEX`
 
-* Switches to the tab corresponding to the specified INDEX. INDEX must be 1 or 2.
+* Switches to the tab corresponding to the specified INDEX. INDEX must be either 1 or 2.
   * Index 1 corresponds to the Home tab.
   * Index 2 corresponds to the Inventory tab.
 
@@ -157,7 +154,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 </div>
 
 **Examples:**
-*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in currently shown client list by changing the name to 'Amy' and the email to 'Amy1234@gmail.com'.
+*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in the currently shown client list by changing the name to 'Amy' and the email to 'Amy1234@gmail.com'.
 
 #### 3.3.4 Finding clients by keywords: `find-c`
 
@@ -209,9 +206,11 @@ Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 * Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
   is considered a duplicate of `in/Apple iq/30 iu/whole`.
 
-* INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
+* INGREDIENT_NAME and INGREDIENT_UNIT attributes are matched exactly, including their casing.
+  This means that `in/Apple iq/2 iu/whole` is not the same ingredient as `in/apple iq/2 iu/Whole`
+  and both ingredients may exist together in the inventory.
 
-* INGREDIENT_NAME and INGREDIENT_UNIT must be exact matches.
+* INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
 
 * Please refer to the examples below.
 
@@ -292,7 +291,7 @@ Format: `list-i`
 Adds an order to the application.
 
 Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME
-[ri/INGREDIENT_NAME-QUANTITY-UNIT] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+[ri/INGREDIENT_NAME-QUANTITY-UNIT] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -301,7 +300,7 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
   [Ingredients](#34-ingredient) for the definition of a matching ingredient
 
-* `c/CLIENT_INDEX` will copy over the details of the client at the given index into the order.
+* `c/CLIENT_INDEX` will copy over the details of the client bookmark at the given index into the order.
 
 * `cn/CLIENT_NAME`, `cp/CLIENT_PHONE` and `ca/CLIENT_ADDRESS` will override any details copied over by
   `c/CLIENT_INDEX`.
@@ -319,9 +318,9 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * All orders will be uncompleted upon addition.
 
-* `od/DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#3-features).
+* `od/ORDER_DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#3-features).
 
-* The format for ingredients `ri/` is `NAME-QTY-UNIT`. <br>
+* The format for ingredients `ri/` is `INGREDIENT_NAME-QTY-UNIT`. <br>
   e.g. Garlic-1-whole.
 
 * Please refer to the examples below.
@@ -335,13 +334,13 @@ Suppose the first client in the list has the following details:
 * Address: Happy Funland Street 12
 * Email: johndoe12@gmail.com
 
-* `add-o c/1 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams rp/3 od/15-11-2021 1830 oq/1` Adds an order to the
+* `add-o c/1 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams op/3 od/15-11-2021 1830 oq/1` Adds an order to the
   application where the client's name, phone and address matches the first client in the list shown above. The
   order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
   scheduled to be delivered by 15 November 2021 at 1830 hrs.
 
-* `add-o cn/Alex cp/98765432 ca/Hogwarts Blk 68 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams rp/3 od/15-12-2021
+* `add-o cn/Alex cp/98765432 ca/Hogwarts Blk 68 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams op/3 od/15-12-2021
   1630 oq/1` Adds an order to the
   application where the client's name, phone and address are Alex, 98765432 and Hogwarts Blk 68 respectively. The
   order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
@@ -361,7 +360,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed order list.
 * Ingredients that already exist in the order cannot be added again. Instead,
   perform delete order ingredient command first before performing this command again.
-* If the ingredient to be added exists in the inventory, the quantity deducted
+* If the ingredient to be added already exists in the inventory (see [here](#34-ingredient)), the quantity deducted
   from the inventory will be equivalent to the ingredient quantity in the order
   multiplied by the order quantity.
 
@@ -381,7 +380,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **:bookmark: Note:**<br>
 
 * `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently displayed order list.
-* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the currently displayed order ingredient list.
+* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the currently displayed order ingredient sub-list.
 * When an ingredient is deleted from an order, the ingredient will be added back to the inventory.
   The quantity added to the inventory will be equivalent to the deleted ingredient's quantity
   in the order multiplied by the order quantity.
@@ -397,7 +396,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 Edits an order in the application.
 
 Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME]
-[rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
+[op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -531,7 +530,8 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 ## 5. Command summary
 
 Action                   | Format and Examples
--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------
 **Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 **Delete client**        | `delete-c INDEX`
 **Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
@@ -542,10 +542,12 @@ Action                   | Format and Examples
 **Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 **Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 **List ingredient**      | `list-i`
-**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
-**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/DEADLINE] [oq/QUANTITY]`
+**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
+**Add order ingredient** | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **Delete order**         | `delete-o INDEX`
-**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
+**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DEADLINE] [of/YES_OR_NO]`
 **List order**           | `list-o`
 **Mark order as done**   | `done-o INDEX`
 **Mark order as undone** | `undone-o INDEX`
@@ -556,23 +558,23 @@ Action                   | Format and Examples
 
 ## 6. Disclaimers
 
-### About Data
+### Data
 * App starts with seed data if there is no initial data file.
 * If a user edits the JSON file with invalid data, the application
   will not show any data on startup.
 
-### About Format
+### Format
 * For deadlines, 29-12-2021 2400 is considered valid and it will be
   represented as 30-12-2021 0000 in the application.
 * Prices can be an integer value or a floating point value with
   **exactly** 2 decimal places.
 
-### About Index
-* When index is negative, application displays INVALID COMMAND FORMAT
-  rather than index out of bounds as the command format requires users
+### Index
+* When index is negative, the application displays the `INVALID COMMAND FORMAT` error
+  rather than the `index provided is invalid` error as the command format requires users
   to key in a positive number.
 
-### About Quantities
+### Quantities
 * If any quantity field in orders is changed in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
