@@ -7,6 +7,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## 1. Introduction
 
 ### 1.1 About BobTheBistroBoss
@@ -16,6 +17,8 @@ providing valuable data visualizations, via a user-friendly command-line interfa
 information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
 application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
 manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
 
@@ -71,6 +74,7 @@ Displays a list of all ingredients, with the following information:
 
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
   [Ingredients](#32-inventory) for the definition of a matching ingredient.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
@@ -538,36 +542,6 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
-
-Action                   | Format and Examples
--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
-**Delete client**        | `delete-c INDEX`
-**Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
-**Find client**          | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
-**List client**          | `list-c`
-**Add ingredient**       | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
-**Delete ingredient**    | `delete-i INDEX`
-**Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
-**Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
-**List ingredient**      | `list-i`
-**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
-**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
-**Add order ingredient** | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
-**Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
-**Delete order**         | `delete-o INDEX`
-**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DEADLINE] [of/YES_OR_NO]`
-**List order**           | `list-o`
-**Mark order as done**   | `done-o INDEX`
-**Mark order as undone** | `undone-o INDEX`
-**Help**                 | `help`
-**Tab**                  | `tab INDEX`
-**Exit**                 | `exit`
--------------------------|-------------------------
-
---------------------------------------------------------------------------------------------------------------------
-
 ## 7. Disclaimers
 
 ### 7.1 Data
@@ -601,3 +575,31 @@ Action                   | Format and Examples
   ingredient, the system will allow the deletion but inventory no
   longer tracks the ingredient properly.)
 
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Command summary
+
+Action                   | Format and Examples
+-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
+**Delete client**        | `delete-c INDEX`
+**Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**Find client**          | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**List client**          | `list-c`
+**Add ingredient**       | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete ingredient**    | `delete-i INDEX`
+**Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
+**Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+**List ingredient**      | `list-i`
+**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
+**Add order ingredient** | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
+**Delete order**         | `delete-o INDEX`
+**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DEADLINE] [of/YES_OR_NO]`
+**List order**           | `list-o`
+**Mark order as done**   | `done-o INDEX`
+**Mark order as undone** | `undone-o INDEX`
+**Help**                 | `help`
+**Tab**                  | `tab INDEX`
+**Exit**                 | `exit`
