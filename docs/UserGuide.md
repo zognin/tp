@@ -555,13 +555,34 @@ Action                   | Format and Examples
 
 ## 6. Disclaimers
 
-* If the quantity of ingredients or the quantity of the orders has
-  been changed in the JSON file, the application will not
-  automatically reflect the corresponding changes in the
-  inventory.
-* If any quantity attribute has been changed in the JSON such
-  that it exceeds the lower bound 0 or the upper bound 40000,
-  they will be capped off to the respective bounds when the
-  application starts. For example, if the quantity has been
-  changed to -30, it will be capped off to 0. Likewise, if the
+### About Data
+* App starts with seed data if there is no initial data file.
+* If a user edits the JSON file with invalid data, the application
+  will not show any data on startup.
+
+### About Format
+* For deadlines, 29-12-2021 2400 is considered valid and it will be
+  represented as 30-12-2021 0000 in the application.
+* Prices can be an integer value or a floating point value with
+  **exactly** 2 decimal places.
+
+### About Index
+* When index is negative, application displays INVALID COMMAND FORMAT
+  rather than index out of bounds as the command format requires users
+  to key in a positive number.
+
+### About Quantities
+* If any quantity field in orders is changed in the JSON file, the
+  application will not automatically reflect the corresponding changes
+  in the inventory.
+* If the quantity attribute has been changed in a command such that
+  it exceeds the lower bound 0 or the upper bound 40000, they will be
+  capped off to the respective bounds. For example, if the quantity has
+  been changed to -30, it will be capped off to 0. Likewise, if the
   quantity has been changed to 50000, it will be capped off to 40000.
+* Ingredient quantity cannot change beyond the min and max cap.
+  (e.g. If the user reaches the upper boundary and tries to increase
+  the quantity further by deleting an existing order that uses the
+  ingredient, the system will allow the deletion but inventory no
+  longer tracks the ingredient properly.)
+
