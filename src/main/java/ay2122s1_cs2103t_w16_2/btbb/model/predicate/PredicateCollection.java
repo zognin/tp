@@ -119,7 +119,7 @@ public class PredicateCollection<T> implements Predicate<T> {
         if (other == this) {
             return true;
         }
-        if (other instanceof  PredicateCollection) {
+        if (other instanceof PredicateCollection) {
             PredicateCollection<?> otherPredicateCollection = (PredicateCollection<?>) other;
             return hasSamePredicates(otherPredicateCollection.predicates);
         }
