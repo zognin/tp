@@ -542,25 +542,25 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Disclaimers
+## 6. Disclaimers
 
-### 7.1 Data
+### 6.1 Data
 * App starts with seed data if there is no initial data file.
 * If a user edits the JSON file with invalid data, the application
   will not show any data on startup.
 
-### 7.2 Format
+### 6.2 Format
 * For deadlines, 29-12-2021 2400 is considered valid and it will be
   represented as 30-12-2021 0000 in the application.
 * Prices can be an integer value or a floating point value with
   **exactly** 2 decimal places.
 
-### 7.3 Index
+### 6.3 Index
 * When index is negative, the application displays the `INVALID COMMAND FORMAT` error
   rather than the `index provided is invalid` error as the command format requires users
   to key in a positive number.
 
-### 7.4 Quantities
+### 6.4 Quantities
 * If any quantity field in orders is changed in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
@@ -577,7 +577,7 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Command summary
 
 Action                   | Format and Examples
 -------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
