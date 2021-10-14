@@ -205,7 +205,7 @@ Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
 **:bookmark: Note:**<br>
 
-* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole` 
+* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
   is considered a duplicate of `in/Apple iq/30 iu/whole`.
 
 * INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
@@ -297,7 +297,7 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 **:bookmark: Note:**<br>
 
-* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to 
+* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
   [Ingredients](#34-ingredient) for the definition of a matching ingredient
 
 * `c/CLIENT_INDEX` will copy over the details of the client at the given index into the order.
@@ -313,7 +313,7 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
 
-* Quantity of ingredients in the inventory will decrease by the amount specified in `ri/` multiplied by the order quantity 
+* Quantity of ingredients in the inventory will decrease by the amount specified in `ri/` multiplied by the order quantity
   if it exists in the inventory. If the ingredients do not exist in the inventory, there will be no effect on the inventory.
 
 * All orders will be uncompleted upon addition.
