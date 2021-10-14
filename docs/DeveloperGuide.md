@@ -721,7 +721,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux and macOS
 * **BTBB**: BobTheBistroBoss
 * **Client**: Client information that can be copied to orders
 * **Ingredient**: Ingredient information that is stored in inventory and orders
