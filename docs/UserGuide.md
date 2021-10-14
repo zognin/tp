@@ -531,7 +531,6 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 Action                   | Format and Examples
 -------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
----------------------------------------------------------------
 **Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 **Delete client**        | `delete-c INDEX`
 **Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
@@ -554,6 +553,7 @@ Action                   | Format and Examples
 **Help**                 | `help`
 **Tab**                  | `tab INDEX`
 **Exit**                 | `exit`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Disclaimers
