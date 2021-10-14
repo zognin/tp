@@ -34,7 +34,7 @@ manoeuvre through client and order details. If you are looking for an easy solut
    * **`help`** : Opens the help window
    * **`list-c`** : Lists all clients.
 
-7. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#3-features) below for details of each command.
 
 ### 2.2 Layout
 The user interface of BobTheBistroBoss is divided into 2 tabs.
@@ -42,7 +42,7 @@ The user interface of BobTheBistroBoss is divided into 2 tabs.
 #### 2.2.1 Home Tab
 Displays a list of all clients and orders, with the following information:
 * Client: Name, Phone number, Email, Address
-* Order: Client name, Phone number, Address, Recipe name, Recipe ingredients, Recipe price, Order deadline, Order quantity, Done status of Order.
+* Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Recipe price, Order deadline, Order quantity, Completion status of Order.
 
 ![layout1](images/layout1.png)
 
@@ -65,7 +65,7 @@ Displays a list of all ingredients, with the following information:
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `cn/CLIENT_NAME [ri/RECIPE_INGREDIENTS]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
+  e.g `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
@@ -84,13 +84,13 @@ Displays a list of all ingredients, with the following information:
 
 </div>
 
-### 3.1 View help : `help`
+### 3.1 Viewing help : `help`
 
 Displays all commands and their format.
 
 Format: `help`
 
-### 3.2 Switch Tabs: `tab`
+### 3.2 Switching Tabs: `tab`
 
 Switches to the specified tab.
 
@@ -115,7 +115,8 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
-
+* Client information that can be copied to orders.
+* Client is considered a duplicate when they have the same phone number.
 * <code>cp/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
 * Please refer to the examples below.
 
@@ -204,7 +205,12 @@ Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
 **:bookmark: Note:**<br>
 
+* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole` 
+  is considered a duplicate of `in/Apple iq/30 iu/whole`.
+
 * INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
+
+* INGREDIENT_NAME and INGREDIENT_UNIT must be exact matches.
 
 * Please refer to the examples below.
 
@@ -260,7 +266,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 * Partial search will be allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
 * Ingredient Quantity:
-  * keyword for QUANTITY finds ingredients with quantity that is equal to QUANTITY.
+  * keywords for QUANTITY finds ingredients with a quantity that is equal to any of the given keywords.
   * keywords for QUANTITY_FROM and QUANTITY_TO finds ingredients with quantity in the range, inclusive of QUANTITY_FROM and QUANTITY_TO.
   * If keywords are given for both Quantity and both Quantity_from and Quantity_to, then found ingredients must satisfy all 3 conditions.
 
@@ -285,11 +291,14 @@ Format: `list-i`
 Adds an order to the application.
 
 Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME
-[ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+[ri/INGREDIENT_NAME-QUANTITY-UNIT] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
+
+* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to 
+  [Ingredients](#34-ingredient) for the definition of a matching ingredient
 
 * `c/CLIENT_INDEX` will copy over the details of the client at the given index into the order.
 
@@ -304,12 +313,12 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
 
-* Quantity of ingredients in the inventory will decrease by the amount specified after `ri/` if it exists in the
-  inventory.
+* Quantity of ingredients in the inventory will decrease by the amount specified in `ri/` multiplied by the order quantity 
+  if it exists in the inventory. If the ingredients do not exist in the inventory, there will be no effect on the inventory.
 
 * All orders will be uncompleted upon addition.
 
-* `od/DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#features).
+* `od/DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#3-features).
 
 * The format for ingredients `ri/` is `NAME-QTY-UNIT`. <br>
   e.g. Garlic-1-whole.
@@ -338,7 +347,51 @@ Suppose the first client in the list has the following details:
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
   scheduled to be delivered by 15 December 2021 at 1630 hrs.
 
-#### 3.5.2 Editing an order: `edit-o`
+#### 3.5.2 Adding an order ingredient: `add-oi`
+
+Adds an ingredient to an order in the application.
+
+Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed order list.
+* Ingredients that already exist in the order cannot be added again. Instead,
+  perform delete order ingredient command first before performing this command again.
+* If the ingredient to be added exists in the inventory, the quantity deducted
+  from the inventory will be equivalent to the ingredient quantity in the order
+  multiplied by the order quantity.
+
+</div>
+
+**Examples:**
+* `add-oi 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first order.
+
+#### 3.5.3 Deleting an order ingredient: `delete-oi`
+
+Deletes an ingredient from an order in the application.
+
+Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently displayed order list.
+* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the currently displayed order ingredient list.
+* When an ingredient is deleted from an order, the ingredient will be added back to the inventory.
+  The quantity added to the inventory will be equivalent to the deleted ingredient's quantity
+  in the order multiplied by the order quantity.
+
+</div>
+
+**Examples:**
+* `delete-oi 1 i/2` Deletes the second ingredient from the ingredient list of
+  the first order.
+
+#### 3.5.4 Editing an order: `edit-o`
 
 Edits an order in the application.
 
@@ -363,20 +416,31 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
   to Carol and the client's phone number to 98765432.
 
-#### 3.5.3 Deleting an order: `delete-o`
+#### 3.5.5 Deleting an order: `delete-o`
 
 Deletes an order from the application.
 
 Format: `delete-o INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
+
+* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
+  order is already marked as done, the ingredient quantities will not be added back.
+
+</div>
+
 **Examples:**
 * `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
-#### 3.5.4 Finding orders by keywords: `find-o`
+#### 3.5.6 Finding orders by keywords: `find-o`
 
 Find order(s) with attribute(s) that contains the keyword(s).
 
-Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
+Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -394,7 +458,7 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 * It will find orders that match at least one keyword, for each prefix.
 
-* `od/DEADLINE` represents the order date and time. They must follow the format specified [above](#features).
+* `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#3-features).
 
 * `of/YES_OR_NO` represents whether the order is completed.
 
@@ -412,13 +476,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
   * Alex 92315697
   * David 92316612
 
-#### 3.5.5 Listing all orders: `list-o`
+#### 3.5.7 Listing all orders: `list-o`
 
 Lists all orders in the application.
 
 Format: `list-o`
 
-#### 3.5.6 Mark order as done: `done-o`
+#### 3.5.8 Mark order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -427,7 +491,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 3.5.7 Mark order as undone: `undone-o`
+#### 3.5.9 Mark order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -472,13 +536,13 @@ Action                   | Format and Examples
 **Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 **Find client**          | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 **List client**          | `list-c`
-**Add ingredient**       | `add-i in/RECIPE_NAME iq/RECIPE_QUANTITY iu/RECIPE_UNIT`
+**Add ingredient**       | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete ingredient**    | `delete-i INDEX`
 **Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 **Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 **List ingredient**      | `list-i`
-**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/RECIPE_INGREDIENTS] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
-**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [rp/RECIPE_PRICE] [od/DEADLINE] [oq/QUANTITY]`
+**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT] rp/RECIPE_PRICE od/DEADLINE [oq/ORDER_QUANTITY]`
+**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/DEADLINE] [oq/QUANTITY]`
 **Delete order**         | `delete-o INDEX`
 **Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/DEADLINE] [of/YES_OR_NO]`
 **List order**           | `list-o`
