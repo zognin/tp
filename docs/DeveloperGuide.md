@@ -711,20 +711,22 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1. Usability Requirements:
     * Should work on systems with Java 11 and above.
+    * Should work on Windows, Linux and Macintosh OS.
 
 2. Business/Domain Requirements:
     * All quantities in the application are from 0 to 40000.
 
 3. Data Requirements:
-    * Data of clients and orders should persist after the app closes.
+    * Data of clients, orders and ingredients should persist after the app closes.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **BTBB**: BobTheBodyBuilder
-* **Client**: A member of the gym
+* **BTBB**: BobTheBistroBoss
+* **Client**: Client information that can be copied to orders
 * **Booking**: A fixed time period (of 1 hour 30 minutes) that a client can use the gym’s facilities
+* **Inventory**: Keeps track of ingredients and their quantities
+* **Order**: Meal order sold to a client
 
 #### Prefix Glossary
 
