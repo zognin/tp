@@ -55,7 +55,25 @@ Displays a list of all ingredients, with the following information:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## 3. Overview of Features
+
+### 3.1 Client (Bookmarks)
+
+* Client information that serves as a bookmark to efficiently add orders for a particular client.
+* Clients are considered duplicates when they have the same phone number.
+
+### 3.2 Inventory
+
+* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
+  is considered a duplicate of `in/Apple iq/30 iu/whole`.
+
+### 3.3 Order
+
+* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
+  [Ingredients](#32-inventory) for the definition of a matching ingredient.
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -82,13 +100,13 @@ Displays a list of all ingredients, with the following information:
 * The format of all deadline fields is `dd-MM-yyyy HHmm`. e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 </div>
 
-### 3.1 Viewing help : `help`
+### 4.1 Viewing help : `help`
 
 Displays all commands and their format.
 
 Format: `help`
 
-### 3.2 Switching Tabs: `tab`
+### 4.2 Switching Tabs: `tab`
 
 Switches to the specified tab.
 
@@ -102,9 +120,9 @@ Example:
 
 * `tab 1` switches to the Home tab.
 
-### 3.3 Client
+### 4.3 Client
 
-#### 3.3.1 Adding a client: `add-c`
+#### 4.3.1 Adding a client: `add-c`
 
 Adds a client to the application.
 
@@ -113,8 +131,7 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
-* Client information that serves as a bookmark to efficiently add orders for a particular client.
-* Client is considered a duplicate when they have the same phone number.
+
 * <code>cp/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
 * Please refer to the examples below.
 
@@ -127,7 +144,7 @@ Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
   * Email: 'alexyeoh@gmail.com'
   * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
 
-#### 3.3.2 Deleting a client: `delete-c`
+#### 4.3.2 Deleting a client: `delete-c`
 
 Deletes a client from the application.
 
@@ -136,7 +153,7 @@ Format: `delete-c INDEX`
 **Examples:**
 * `delete-c 1` Deletes the client at index 1 in the client list currently shown.
 
-#### 3.3.3 Editing clients: `edit-c`
+#### 4.3.3 Editing clients: `edit-c`
 
 Edits an existing client in the application.
 
@@ -156,7 +173,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 **Examples:**
 *  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in the currently shown client list by changing the name to 'Amy' and the email to 'Amy1234@gmail.com'.
 
-#### 3.3.4 Finding clients by keywords: `find-c`
+#### 4.3.4 Finding clients by keywords: `find-c`
 
 Finds client(s) whose attribute(s) match the keyword(s).
 
@@ -185,15 +202,15 @@ Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 
 </div>
 
-#### 3.3.5 Listing all clients: `list-c`
+#### 4.3.5 Listing all clients: `list-c`
 
 Lists all clients in the application.
 
 Format: `list-c`
 
-### 3.4 Ingredient
+### 4.4 Ingredient
 
-#### 3.4.1 Adding an ingredient: `add-i`
+#### 4.4.1 Adding an ingredient: `add-i`
 
 Adds an ingredient to the application.
 
@@ -203,10 +220,7 @@ Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
 **:bookmark: Note:**<br>
 
-* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
-  is considered a duplicate of `in/Apple iq/30 iu/whole`.
-
-* INGREDIENT_NAME and INGREDIENT_UNIT attributes are matched exactly, including their casing.
+* INGREDIENT_NAME and INGREDIENT_UNIT attributes are matched exactly, including their casing to detect duplicates.
   This means that `in/Apple iq/2 iu/whole` is not the same ingredient as `in/apple iq/2 iu/Whole`
   and both ingredients may exist together in the inventory.
 
@@ -219,7 +233,7 @@ Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Examples:**
 * `add-i in/White Rice iq/4000 iu/g` adds 4000g of White Rice to the Inventory.
 
-#### 3.4.2 Deleting an ingredient: `delete-i`
+#### 4.4.2 Deleting an ingredient: `delete-i`
 
 Deletes an ingredient from the application.
 
@@ -228,7 +242,7 @@ Format: `delete-i INDEX`
 **Examples:**
 * `delete-i 1` Deletes the ingredient at index 1 in the ingredient list currently shown.
 
-#### 3.4.3 Editing ingredients: `edit-i`
+#### 4.4.3 Editing ingredients: `edit-i`
 
 Edits an existing ingredient in the application.
 
@@ -249,7 +263,7 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 *  `edit-i 2 in/Apple iu/whole` Edits the second ingredient in currently shown ingredient list by changing the
    name to 'Apple' and the unit to 'whole'.
 
-#### 3.4.4 Finding ingredients by keywords: `find-i`
+#### 4.4.4 Finding ingredients by keywords: `find-i`
 
 Finds ingredient(s) whose attribute(s) match the keyword(s).
 
@@ -278,15 +292,15 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * ingredient names containing 'Fl' with units containing 'k'
 </div>
 
-#### 3.4.5 Listing all ingredients: `list-i`
+#### 4.4.5 Listing all ingredients: `list-i`
 
 Lists all ingredients in the application.
 
 Format: `list-i`
 
-### 3.5 Order
+### 4.5 Order
 
-#### 3.5.1 Adding an order: `add-o`
+#### 4.5.1 Adding an order: `add-o`
 
 Adds an order to the application.
 
@@ -296,9 +310,6 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
-
-* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
-  [Ingredients](#34-ingredient) for the definition of a matching ingredient
 
 * `c/CLIENT_INDEX` will copy over the details of the client bookmark at the given index into the order.
 
@@ -347,7 +358,7 @@ Suppose the first client in the list has the following details:
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
   scheduled to be delivered by 15 December 2021 at 1630 hrs.
 
-#### 3.5.2 Adding an order ingredient: `add-oi`
+#### 4.5.2 Adding an order ingredient: `add-oi`
 
 Adds an ingredient to an order in the application.
 
@@ -369,7 +380,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 **Examples:**
 * `add-oi 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first order.
 
-#### 3.5.3 Deleting an order ingredient: `delete-oi`
+#### 4.5.3 Deleting an order ingredient: `delete-oi`
 
 Deletes an ingredient from an order in the application.
 
@@ -391,7 +402,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * `delete-oi 1 i/2` Deletes the second ingredient from the ingredient list of
   the first order.
 
-#### 3.5.4 Editing an order: `edit-o`
+#### 4.5.4 Editing an order: `edit-o`
 
 Edits an order in the application.
 
@@ -416,7 +427,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
   to Carol and the client's phone number to 98765432.
 
-#### 3.5.5 Deleting an order: `delete-o`
+#### 4.5.5 Deleting an order: `delete-o`
 
 Deletes an order from the application.
 
@@ -436,7 +447,7 @@ Format: `delete-o INDEX`
 **Examples:**
 * `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
-#### 3.5.6 Finding orders by keywords: `find-o`
+#### 4.5.6 Finding orders by keywords: `find-o`
 
 Find order(s) with attribute(s) that contains the keyword(s).
 
@@ -476,13 +487,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
   * Alex 92315697
   * David 92316612
 
-#### 3.5.7 Listing all orders: `list-o`
+#### 4.5.7 Listing all orders: `list-o`
 
 Lists all orders in the application.
 
 Format: `list-o`
 
-#### 3.5.8 Mark order as done: `done-o`
+#### 4.5.8 Mark order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -491,7 +502,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 3.5.9 Mark order as undone: `undone-o`
+#### 4.5.9 Mark order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -500,17 +511,17 @@ Format: `undone-o INDEX`
 **Examples:**
 * `undone-o 1` Marks the order at index 1 in the order list currently shown as undone.
 
-### 3.6 Exiting the program: `exit`
+### 4.6 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.7 Saving the data
+### 4.7 Saving the data
 
 BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.8 Editing the data file
+### 4.8 Editing the data file
 
 BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
@@ -520,14 +531,14 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BTBB home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 6. Command summary
 
 Action                   | Format and Examples
 -------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -553,28 +564,29 @@ Action                   | Format and Examples
 **Help**                 | `help`
 **Tab**                  | `tab INDEX`
 **Exit**                 | `exit`
+-------------------------|-------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Disclaimers
+## 7. Disclaimers
 
-### Data
+### 7.1 Data
 * App starts with seed data if there is no initial data file.
 * If a user edits the JSON file with invalid data, the application
   will not show any data on startup.
 
-### Format
+### 7.2 Format
 * For deadlines, 29-12-2021 2400 is considered valid and it will be
   represented as 30-12-2021 0000 in the application.
 * Prices can be an integer value or a floating point value with
   **exactly** 2 decimal places.
 
-### Index
+### 7.3 Index
 * When index is negative, the application displays the `INVALID COMMAND FORMAT` error
   rather than the `index provided is invalid` error as the command format requires users
   to key in a positive number.
 
-### Quantities
+### 7.4 Quantities
 * If any quantity field in orders is changed in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
