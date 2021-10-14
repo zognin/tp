@@ -37,7 +37,7 @@ manoeuvre through client and order details. If you are looking for an easy solut
    * **`help`** : Opens the help window
    * **`list-c`** : Lists all clients.
 
-6. Refer to the [Features](#3-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
 
 ### 2.2 Layout
 The user interface of BobTheBistroBoss is divided into 2 tabs.
@@ -73,7 +73,7 @@ Displays a list of all ingredients, with the following information:
 ### 3.3 Order
 
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
-  [Ingredients](#32-inventory) for the definition of a matching ingredient.
+  [Inventory](#32-inventory) for the definition of a matching ingredient.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ Displays a list of all ingredients, with the following information:
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
+  e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
@@ -169,7 +169,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 
 * `INDEX` allows you to choose which client to edit by specifying its position in the currently displayed client list.
 
-* `[cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ce/EMAIL], [ca/CLIENT_ADDRESS]` allows you to specify the client information to update. None of
+* `[cn/NAME], [cp/PHONE_NUMBER], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
   them are mandatory, but at least one must be specified.
 
 </div>
@@ -218,17 +218,17 @@ Format: `list-c`
 
 Adds an ingredient to the application.
 
-Format: `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* INGREDIENT_NAME and INGREDIENT_UNIT attributes are matched exactly, including their casing to detect duplicates.
+* NAME and UNIT attributes are matched exactly, including their casing to detect duplicates.
   This means that `in/Apple iq/2 iu/whole` is not the same ingredient as `in/apple iq/2 iu/Whole`
   and both ingredients may exist together in the inventory.
 
-* INGREDIENT_QUANTITY must be positive, and the largest possible input is 40000.
+* QUANTITY must be positive, and the largest possible input is 40000.
 
 * Please refer to the examples below.
 
@@ -283,10 +283,10 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   e.g. <code>find-i in/Kiwi Chocolate</code>
 * Partial search will be allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
-* Ingredient Quantity:
-  * keywords for QUANTITY finds ingredients with a quantity that is equal to any of the given keywords.
-  * keywords for QUANTITY_FROM and QUANTITY_TO finds ingredients with quantity in the range, inclusive of QUANTITY_FROM and QUANTITY_TO.
-  * If keywords are given for both Quantity and both Quantity_from and Quantity_to, then found ingredients must satisfy all 3 conditions.
+* Ingredient `QUANTITY`:
+  * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
+  * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of `QUANTITY_FROM` and `QUANTITY_TO`.
+  * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must satisfy all 3 conditions.
 
 * It will find ingredients that match at least one keyword, for each prefix. <br>
   e.g. <code>find-i in/Ap Fl iu/p k</code> can show all of these combinations of ingredients: <br>
@@ -333,7 +333,7 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * All orders will be uncompleted upon addition.
 
-* `od/ORDER_DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#3-features).
+* `od/ORDER_DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#4-features).
 
 * The format for ingredients `ri/` is `INGREDIENT_NAME-QTY-UNIT`. <br>
   e.g. Garlic-1-whole.
@@ -375,7 +375,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed order list.
 * Ingredients that already exist in the order cannot be added again. Instead,
   perform delete order ingredient command first before performing this command again.
-* If the ingredient to be added already exists in the inventory (see [here](#34-ingredient)), the quantity deducted
+* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted
   from the inventory will be equivalent to the ingredient quantity in the order
   multiplied by the order quantity.
 
@@ -420,7 +420,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
 
 * `[c/INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [rn/RECIPE_NAME],
-  [rp/RECIPE_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
+  [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
 
 </div>
@@ -473,7 +473,7 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 * It will find orders that match at least one keyword, for each prefix.
 
-* `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#3-features).
+* `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#4-features).
 
 * `of/YES_OR_NO` represents whether the order is completed.
 
@@ -550,7 +550,7 @@ If your changes to the data file makes its format invalid, BTBB will discard all
   will not show any data on startup.
 
 ### 6.2 Format
-* For deadlines, 29-12-2021 2400 is considered valid and it will be
+* For deadlines, 29-12-2021 2400 is considered valid, and it will be
   represented as 30-12-2021 0000 in the application.
 * Prices can be an integer value or a floating point value with
   **exactly** 2 decimal places.
@@ -596,7 +596,7 @@ Action                   | Format and Examples
 **Add order ingredient** | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **Delete order**         | `delete-o INDEX`
-**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DEADLINE] [of/YES_OR_NO]`
+**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**           | `list-o`
 **Mark order as done**   | `done-o INDEX`
 **Mark order as undone** | `undone-o INDEX`
