@@ -48,7 +48,7 @@ public class FindClientCommandTest {
                 CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE));
 
         PredicateCollection<Client> diffAmountPredicateCollection = new PredicateCollection<>();
-        addPredicates(diffAmountPredicateCollection, List.of(CLIENT_NAME_ALICE_BOB_PREDICATE,
+        addPredicates(diffOrderPredicateCollection, List.of(CLIENT_NAME_ALICE_BOB_PREDICATE,
                 CLIENT_EMAIL_ALICE_BOB_GMAIL_PREDICATE));
 
         FindClientCommand findCommand = new FindClientCommand(predicateCollection);
