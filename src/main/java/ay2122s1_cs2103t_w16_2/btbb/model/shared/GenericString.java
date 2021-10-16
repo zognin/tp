@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Generic String in the address book, that is reusable.
  * Guarantees: immutable; is valid as declared in {@link #isValidGenericString(String)}
  */
-public class GenericString {
+public class GenericString implements Comparable<GenericString> {
     private static final String MESSAGE_CONSTRAINTS =
             " should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -48,6 +48,11 @@ public class GenericString {
      */
     public static String getMessageConstraints(String attributeName) {
         return attributeName + MESSAGE_CONSTRAINTS;
+    }
+
+    @Override
+    public int compareTo(GenericString other) {
+        return genericString.compareTo(other.genericString);
     }
 
     @Override
