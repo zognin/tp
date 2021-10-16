@@ -3,7 +3,12 @@ package ay2122s1_cs2103t_w16_2.btbb.model.client;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.CARL;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_THIRD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
+import javafx.collections.ObservableList;
 
 public class UniqueClientListTest {
     private final UniqueClientList uniqueClientList = new UniqueClientList();
@@ -40,6 +46,15 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(uniqueClientList.contains(editedAlice));
+    }
+
+    @Test
+    public void add_validClient_listInSortedOrder() {
+        uniqueClientList.add(BOB);
+        uniqueClientList.add(ALICE);
+        ObservableList<Client> clientList = uniqueClientList.asUnmodifiableObservableList();
+        assertEquals(ALICE, clientList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(BOB, clientList.get(INDEX_SECOND.getZeroBased()));
     }
 
     @Test
@@ -91,6 +106,18 @@ public class UniqueClientListTest {
     }
 
     @Test
+    public void setClient_editedClientHasDifferentName_listInSortedOrder() throws NotFoundException {
+        uniqueClientList.add(ALICE);
+        uniqueClientList.add(BOB);
+        uniqueClientList.add(CARL);
+        uniqueClientList.setClient(CARL, AMY);
+        ObservableList<Client> clientList = uniqueClientList.asUnmodifiableObservableList();
+        assertEquals(ALICE, clientList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(AMY, clientList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(BOB, clientList.get(INDEX_THIRD.getZeroBased()));
+    }
+
+    @Test
     public void remove_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.remove(null));
     }
@@ -114,6 +141,18 @@ public class UniqueClientListTest {
     }
 
     @Test
+    public void setClients_uniqueClientList_listInSortedOrder() {
+        uniqueClientList.add(ALICE);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(CARL);
+        expectedUniqueClientList.add(BOB);
+        uniqueClientList.setClients(expectedUniqueClientList);
+        ObservableList<Client> clientObservableList = uniqueClientList.asUnmodifiableObservableList();
+        assertEquals(BOB, clientObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(CARL, clientObservableList.get(INDEX_SECOND.getZeroBased()));
+    }
+
+    @Test
     public void setClients_uniqueClientList_replacesOwnListWithProvidedUniqueClientList() {
         uniqueClientList.add(ALICE);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
@@ -125,6 +164,16 @@ public class UniqueClientListTest {
     @Test
     public void setClients_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
+    }
+
+    @Test
+    public void setClients_list_listInSortedOrder() {
+        List<Client> clientList = List.of(BOB, ALICE, CARL);
+        uniqueClientList.setClients(clientList);
+        ObservableList<Client> clientObservableList = uniqueClientList.asUnmodifiableObservableList();
+        assertEquals(ALICE, clientObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(BOB, clientObservableList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(CARL, clientObservableList.get(INDEX_THIRD.getZeroBased()));
     }
 
     @Test
