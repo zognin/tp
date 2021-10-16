@@ -6,6 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_N
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -65,5 +66,17 @@ public class ClientTest {
         // different address -> returns false
         editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compareTo() {
+        // name comes before alphabetically -> returns -1
+        assertEquals(-1, ALICE.compareTo(BOB));
+
+        // equal name -> returns 0
+        assertEquals(0, ALICE.compareTo(ALICE));
+
+        // name comes after alphabetically -> returns 1
+        assertEquals(1, BOB.compareTo(ALICE));
     }
 }

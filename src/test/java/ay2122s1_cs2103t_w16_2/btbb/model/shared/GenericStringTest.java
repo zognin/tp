@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,5 +36,20 @@ public class GenericStringTest {
         assertTrue(GenericString.isValidGenericString("peter the 2nd")); // alphanumeric characters
         assertTrue(GenericString.isValidGenericString("Capital Tan")); // with capital letters
         assertTrue(GenericString.isValidGenericString("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void compareTo() {
+        GenericString aliceName = new GenericString("Alice");
+        GenericString bobName = new GenericString("Bob");
+
+        // name comes before alphabetically -> returns -1
+        assertEquals(-1, aliceName.compareTo(bobName));
+
+        // equal name -> returns 0
+        assertEquals(0, aliceName.compareTo(aliceName));
+
+        // name comes after alphabetically -> returns 1
+        assertEquals(1, bobName.compareTo(aliceName));
     }
 }
