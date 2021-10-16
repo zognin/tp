@@ -10,7 +10,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
  * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client {
+public class Client implements Comparable<Client> {
     // Identity fields
     private final GenericString name;
     private final Phone phone;
@@ -57,6 +57,11 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getPhone().equals(getPhone());
+    }
+
+    @Override
+    public int compareTo(Client other) {
+        return name.compareTo(other.getName());
     }
 
     /**
