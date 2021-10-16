@@ -41,6 +41,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -57,6 +58,7 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         internalList.set(index, editedClient);
+        sort();
     }
 
     /**
@@ -73,6 +75,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void setClients(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -82,6 +85,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void setClients(List<Client> clients) {
         requireAllNonNull(clients);
         internalList.setAll(clients);
+        sort();
     }
 
     /**
@@ -106,5 +110,9 @@ public class UniqueClientList implements Iterable<Client> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    private void sort() {
+        internalList.sort(Client::compareTo);
     }
 }
