@@ -107,7 +107,8 @@ public class ParserUtil {
                 .withResolverStyle(ResolverStyle.STRICT);
         LocalDate localDate;
         try {
-            localDate = LocalDate.parse(date, dateTimeFormatter);
+            String trimmedDate = date.trim();
+            localDate = LocalDate.parse(trimmedDate, dateTimeFormatter);
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATE);
         }
