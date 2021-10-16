@@ -6,6 +6,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,7 @@ public class ParserUtilTest {
     private static final String VALID_COMPLETION_STATUS_TWO = "yEs";
 
     private static final String VALID_DATE = "21-10-2025";
+    private static final String VALID_MULTIPLE_DATES = "21-10-2025 31-12-2021 14-06-1998";
     private static final String VALID_DEADLINE = "12-12-2025 1500";
     private static final String VALID_PRICE = "4.00";
     private static final String VALID_RECIPE_INGREDIENTS = "Rice-1-cup, Chicken-1-whole";
@@ -182,7 +184,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_null_throwsNulPointerException() {
+    public void parseDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
     }
 
@@ -205,7 +207,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDates_null_throwsNulPointerException() {
+    public void parseDates_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDates(null));
     }
 
@@ -225,6 +227,15 @@ public class ParserUtilTest {
         String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
         List<LocalDate> expectedLocalDates = List.of(LocalDate.of(2025, 10, 21));
         assertEquals(expectedLocalDates, ParserUtil.parseDates(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseDates_multipleDates_returnListOfLocalDates() throws Exception {
+        List<LocalDate> expectedLocalDates = new ArrayList<>();
+        expectedLocalDates.add(LocalDate.of(2025, 10, 21));
+        expectedLocalDates.add(LocalDate.of(2021, 12, 31));
+        expectedLocalDates.add(LocalDate.of(1998, 6, 14));
+        assertEquals(expectedLocalDates, ParserUtil.parseDates(VALID_MULTIPLE_DATES));
     }
 
     @Test
