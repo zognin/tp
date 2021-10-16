@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_COMPLETION_STATUS = "y";
 
+    private static final String INVALID_DATE = "35-12-2019";
     private static final String INVALID_DEADLINE = "12-12-2019";
     private static final String INVALID_PRICE = "$4.00";
     private static final String INVALID_RECIPE_INGREDIENTS = "Rice-one-cup";
@@ -43,6 +45,7 @@ public class ParserUtilTest {
     private static final String VALID_COMPLETION_STATUS_ONE = "yes";
     private static final String VALID_COMPLETION_STATUS_TWO = "yEs";
 
+    private static final String VALID_DATE = "21-10-2025";
     private static final String VALID_DEADLINE = "12-12-2025 1500";
     private static final String VALID_PRICE = "4.00";
     private static final String VALID_RECIPE_INGREDIENTS = "Rice-1-cup, Chicken-1-whole";
@@ -176,6 +179,52 @@ public class ParserUtilTest {
         String completionStatusWithWhitespace = WHITESPACE + VALID_COMPLETION_STATUS_ONE + WHITESPACE;
         CompletionStatus expectedCompletionStatus = new CompletionStatus(VALID_COMPLETION_STATUS_ONE);
         assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(completionStatusWithWhitespace));
+    }
+
+    @Test
+    public void parseDate_null_throwsNulPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsLocalDate() throws Exception {
+        LocalDate expectedLocalDate = LocalDate.of(2025, 10, 21);
+        assertEquals(expectedLocalDate, ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsLocalDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        LocalDate expectedLocalDate = LocalDate.of(2025, 10, 21);
+        assertEquals(expectedLocalDate, ParserUtil.parseDate(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseDates_null_throwsNulPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDates(null));
+    }
+
+    @Test
+    public void parseDates_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDates(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDates_validValueWithoutWhitespace_returnsListOfLocalDates() throws Exception {
+        List<LocalDate> expectedLocalDates = List.of(LocalDate.of(2025, 10, 21));
+        assertEquals(expectedLocalDates, ParserUtil.parseDates(VALID_DATE));
+    }
+
+    @Test
+    public void parseDates_validValueWithWhitespace_returnsListOfLocalDates() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        List<LocalDate> expectedLocalDates = List.of(LocalDate.of(2025, 10, 21));
+        assertEquals(expectedLocalDates, ParserUtil.parseDates(dateWithWhitespace));
     }
 
     @Test
