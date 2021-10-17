@@ -18,18 +18,14 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
  * @param <T> Type of the predicate.
  */
 public class PredicateCollection<T> implements Predicate<T> {
-    private final List<Predicate<T>> predicates = new ArrayList<>();
-
-    private boolean hasSamePredicates(List<Predicate<T>> otherPredicates) {
-        return predicates.containsAll(otherPredicates) && otherPredicates.containsAll(predicates);
-    }
+    private final List<Predicate<? super T>> predicates = new ArrayList<>();
 
     /**
      * Adds a predicate to the list of predicates to test against.
      *
      * @param predicate The Predicate to add to the list.
      */
-    public void addPredicate(Predicate<T> predicate) {
+    public void addPredicate(Predicate<? super T> predicate) {
         predicates.add(predicate);
     }
 
@@ -114,10 +110,19 @@ public class PredicateCollection<T> implements Predicate<T> {
                 .reduce(Boolean.TRUE, Boolean::logicalAnd);
     }
 
+    private boolean hasSamePredicates(List<? extends Predicate<?>> otherPredicates) {
+        return predicates.size() == otherPredicates.size() && predicates.containsAll(otherPredicates);
+    }
+
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof PredicateCollection // instanceof handles nulls
-                && hasSamePredicates(((PredicateCollection<T>) other).predicates)); // state check
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof PredicateCollection) {
+            PredicateCollection<?> otherCollection = (PredicateCollection<?>) other;
+            return hasSamePredicates(otherCollection.predicates);
+        }
+        return false;
     }
 }
