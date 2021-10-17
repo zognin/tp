@@ -20,10 +20,6 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.Prefix;
 public class PredicateCollection<T> implements Predicate<T> {
     private final List<Predicate<T>> predicates = new ArrayList<>();
 
-    private boolean hasSamePredicates(List<Predicate<T>> otherPredicates) {
-        return predicates.containsAll(otherPredicates) && otherPredicates.containsAll(predicates);
-    }
-
     /**
      * Adds a predicate to the list of predicates to test against.
      *
@@ -114,10 +110,21 @@ public class PredicateCollection<T> implements Predicate<T> {
                 .reduce(Boolean.TRUE, Boolean::logicalAnd);
     }
 
+    private boolean hasSamePredicates(List<? extends Predicate<?>> otherPredicates) {
+        return predicates.containsAll(otherPredicates) && otherPredicates.containsAll(predicates);
+    }
+
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof PredicateCollection // instanceof handles nulls
-                && hasSamePredicates(((PredicateCollection<T>) other).predicates)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PredicateCollection)) {
+            return false;
+        }
+
+        PredicateCollection<?> otherCollection = (PredicateCollection<?>) other;
+        return hasSamePredicates(otherCollection.predicates);
     }
 }
