@@ -3,9 +3,12 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
@@ -27,6 +30,8 @@ public class DeleteClientCommand extends Command {
 
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final Index targetIndex;
 
     public DeleteClientCommand(Index targetIndex) {
@@ -35,6 +40,8 @@ public class DeleteClientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + DeleteClientCommand.class.getSimpleName());
+
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 

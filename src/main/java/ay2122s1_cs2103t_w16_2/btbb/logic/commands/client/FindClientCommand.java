@@ -6,7 +6,11 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
@@ -30,6 +34,8 @@ public class FindClientCommand extends Command {
             + "[" + PREFIX_CLIENT_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final PredicateCollection<Client> predicateCollection;
 
     public FindClientCommand(PredicateCollection<Client> predicateCollection) {
@@ -38,6 +44,8 @@ public class FindClientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("Executing " + FindClientCommand.class.getSimpleName());
+
         requireNonNull(model);
         model.updateFilteredClientList(predicateCollection);
         return new CommandResult(
