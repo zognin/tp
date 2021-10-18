@@ -8,7 +8,11 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
@@ -34,6 +38,8 @@ public class FindOrderCommand extends Command {
             + "[" + PREFIX_ORDER_COMPLETION_STATUS + "YES_OR_NO]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLIENT_NAME + "alice";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private PredicateCollection<Order> predicateCollection;
 
     public FindOrderCommand(PredicateCollection<Order> predicateCollection) {
@@ -42,6 +48,8 @@ public class FindOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("Executing " + FindOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         model.updateFilteredOrderList(predicateCollection);
         return new CommandResult(
