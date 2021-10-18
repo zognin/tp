@@ -77,6 +77,7 @@ public class EditOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         logger.info("Executing " + EditOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
 

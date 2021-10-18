@@ -55,6 +55,7 @@ public class UndoneOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         logger.info("Executing " + UndoneOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
 

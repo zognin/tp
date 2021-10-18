@@ -25,6 +25,7 @@ public class ListOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         logger.info("Executing " + ListOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(MESSAGE_SUCCESS, UiTab.HOME);

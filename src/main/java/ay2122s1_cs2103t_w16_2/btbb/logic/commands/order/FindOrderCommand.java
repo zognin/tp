@@ -49,6 +49,7 @@ public class FindOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         logger.info("Executing " + FindOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         model.updateFilteredOrderList(predicateCollection);
         return new CommandResult(
