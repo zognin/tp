@@ -167,7 +167,7 @@ This is because any programmatic tab switch will only occur after the execution 
 and information about the switch has to be passed to `Ui` components.
 After executing a command, if a tab switch should occur,
 the tab to switch to is stored in a `CommandResult`.
-This `CommandResult` is created in a `Ui` class through `MainWindow#executeCommand()`.
+This `CommandResult` is created in a `Ui` object through `MainWindow#executeCommand()`.
 Hence, data about whether there is a tab switch and which tab to switch to
 can be passed to `Ui` components and rendered accordingly.
 
