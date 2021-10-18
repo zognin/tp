@@ -16,6 +16,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -74,6 +75,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
     }
 
     @Override

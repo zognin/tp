@@ -1,0 +1,42 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Region?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="0" GridPane.columnIndex="0">
+            <padding>
+                <Insets top="10" right="15" bottom="10" left="15" />
+            </padding>
+
+            <GridPane>
+                <children>
+                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" spacing="4">
+                        <Label fx:id="id" styleClass="cell_big_label">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
+                        <Label fx:id="recipeName" styleClass="cell_big_label" text="\$recipe name"/>
+                    </HBox>
+                </children>
+
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="70.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0"/>
+                </columnConstraints>
+            </GridPane>
+            <Label text="Ingredients" styleClass="cell_small_label_header"/>
+            <Label fx:id="recipeIngredients" styleClass="cell_small_label"/>
+        </VBox>
+    </GridPane>
+</HBox>
+

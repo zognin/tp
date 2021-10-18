@@ -13,6 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Ingredient> filteredIngredients;
     private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Recipe> filteredRecipes;
     private final UserPrefs userPrefs;
 
     /**
@@ -42,6 +44,7 @@ public class ModelManager implements Model {
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
     }
 
     public ModelManager() {
@@ -279,6 +282,43 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    //=========== Recipe ====================================================================================
+
+    @Override
+    public void addRecipe(Recipe recipe) {
+        addressBook.addRecipe(recipe);
+        filteredRecipes.setPredicate(PREDICATE_SHOW_ALL_RECIPES);
+    }
+
+    @Override
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return addressBook.hasRecipe(recipe);
+    }
+
+    @Override
+    public void deleteRecipe(Recipe target) throws NotFoundException {
+        requireNonNull(target);
+        addressBook.removeRecipe(target);
+    }
+
+    @Override
+    public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
+        requireAllNonNull(target, editedRecipe);
+        addressBook.setRecipe(target, editedRecipe);
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return filteredRecipes;
+    }
+
+    @Override
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+        requireNonNull(predicate);
+        filteredRecipes.setPredicate(predicate);
     }
 
     @Override

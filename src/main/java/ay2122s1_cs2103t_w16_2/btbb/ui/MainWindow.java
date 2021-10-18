@@ -123,7 +123,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void initializeTabs() {
         // Initialise tabs with content
-        HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(), logic.getFilteredOrderList());
+        HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(),
+                logic.getFilteredOrderList(), logic.getFilteredRecipeList());
         homeTab.setContent(homeTabContent.getRoot());
 
         StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList());
