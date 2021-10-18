@@ -8,9 +8,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
@@ -37,6 +40,8 @@ public class DeleteOrderIngredientCommand extends Command {
     public static final String MESSAGE_DELETE_ORDER_INGREDIENT_SUCCESS = "Deleted Order Ingredient: %1$s\n"
             + "Edited Order: %2$s";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final Index targetIngredientIndex;
     private final Index targetOrderIndex;
 
@@ -56,6 +61,8 @@ public class DeleteOrderIngredientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + DeleteOrderIngredientCommand.class.getSimpleName());
+
         requireNonNull(model);
         List<Order> lastShownOrderList = model.getFilteredOrderList();
 
