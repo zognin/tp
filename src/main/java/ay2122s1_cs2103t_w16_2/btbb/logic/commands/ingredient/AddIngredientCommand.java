@@ -5,6 +5,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
@@ -32,6 +36,8 @@ public class AddIngredientCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in your inventory.";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final IngredientDescriptor ingredientDescriptor;
 
     /**
@@ -53,6 +59,8 @@ public class AddIngredientCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + AddIngredientCommand.class.getSimpleName());
+
         requireNonNull(model);
         Ingredient ingredient = ingredientDescriptor.toModelType();
 

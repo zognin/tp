@@ -7,7 +7,11 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ING
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
@@ -39,6 +43,8 @@ public class FindIngredientCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_INGREDIENT_NAME + "corn"
             + " " + PREFIX_INGREDIENT_QUANTITY + "30 20 15";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final PredicateCollection<Ingredient> predicateCollection;
 
     public FindIngredientCommand(PredicateCollection<Ingredient> predicateCollection) {
@@ -47,6 +53,8 @@ public class FindIngredientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("Executing " + FindIngredientCommand.class.getSimpleName());
+
         requireNonNull(model);
         model.updateFilteredIngredientList(predicateCollection);
         return new CommandResult(
