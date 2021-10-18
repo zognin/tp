@@ -6,6 +6,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_PHONE;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
@@ -35,6 +39,8 @@ public class AddClientCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final ClientDescriptor clientDescriptor;
 
     /**
@@ -47,6 +53,8 @@ public class AddClientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + AddClientCommand.class.getSimpleName());
+
         requireNonNull(model);
         Client client = clientDescriptor.toModelType();
 
