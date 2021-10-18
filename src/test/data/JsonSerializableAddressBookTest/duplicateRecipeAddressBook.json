@@ -1,0 +1,39 @@
+{
+  "clients": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111"
+  } ],
+  "ingredients": [ {
+    "ingredientName": "Chicken",
+    "quantity": "15",
+    "unit": "whole"
+  } ],
+  "orders": [],
+  "recipes": [{
+    "name": "Egg Prata",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Flour",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  },{
+    "name": "Egg Prata",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Flour",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  }]
+}

@@ -18,7 +18,7 @@ public class RecipeDescriptor {
     private GenericString name;
     private RecipeIngredientList recipeIngredients;
     private Price price;
-    
+
     public RecipeDescriptor() {}
 
     /**

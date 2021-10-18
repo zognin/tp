@@ -6,20 +6,29 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
+/**
+ * Encapsulates a UI component that displays information of a {@code Recipe}.
+ */
 public class RecipeCard extends UiPart<Region> {
     private static final String FXML = "RecipeListCard.fxml";
 
     private final Recipe recipe;
 
     @FXML
-    Label id;
+    private Label id;
 
     @FXML
-    Label recipeName;
+    private Label recipeName;
 
     @FXML
-    Label recipeIngredients;
+    private Label recipeIngredients;
 
+    /**
+     * Creates a {@code RecipeCard} with the given {@code Recipe} and index to display.
+     *
+     * @param recipe The recipe to display.
+     * @param displayedIndex The index of the recipe in the currently shown list.
+     */
     public RecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;

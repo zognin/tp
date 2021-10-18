@@ -21,6 +21,8 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_INGREDIENT_FILE = TEST_DATA_FOLDER.resolve("invalidIngredientAddressBook.json");
     private static final Path DUPLICATE_INGREDIENT_FILE = TEST_DATA_FOLDER
             .resolve("duplicateIngredientAddressBook.json");
+    private static final Path INVALID_RECIPE_FILE = TEST_DATA_FOLDER.resolve("invalidRecipeAddressBook.json");
+    private static final Path DUPLICATE_RECIPE_FILE = TEST_DATA_FOLDER.resolve("duplicateRecipeAddressBook.json");
     private static final Path INVALID_ORDER_FILE_1 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook1.json");
     private static final Path INVALID_ORDER_FILE_2 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook2.json");
     private static final Path INVALID_ORDER_FILE_3 = TEST_DATA_FOLDER.resolve("invalidOrderAddressBook3.json");
@@ -115,6 +117,21 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_INGREDIENT_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_INGREDIENT,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidRecipeFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_RECIPE_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateRecipes_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_RECIPE_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_RECIPE,
                 dataFromFile::toModelType);
     }
 }

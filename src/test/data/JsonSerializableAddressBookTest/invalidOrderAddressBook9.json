@@ -24,5 +24,18 @@
     "deadline" : "12-12-2021 1900",
     "quantity" : "-12",
     "isFinished" : "y"
+  }],
+  "recipes": [{
+    "name": "Egg Prata",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Flour",
+      "quantity": "100",
+      "unit": "g"
+    }]
   }]
 }

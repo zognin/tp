@@ -9,12 +9,20 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
+/**
+ * Panel containing a list of recipes
+ */
 public class RecipeListPanel extends UiPart<Region> {
     private static final String FXML = "RecipeListPanel.fxml";
 
     @FXML
-    ListView<Recipe> recipeListView;
+    private ListView<Recipe> recipeListView;
 
+    /**
+     * Creates a RecipeListPanel with the given {@code ObservableList}.
+     *
+     * @param recipeList The recipe list to display.
+     */
     public RecipeListPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
         recipeListView.setItems(recipeList);

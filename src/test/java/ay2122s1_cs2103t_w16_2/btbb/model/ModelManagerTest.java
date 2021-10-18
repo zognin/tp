@@ -11,6 +11,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_AMY;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_LAKSA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -232,6 +234,68 @@ public class ModelManagerTest {
         modelManager.setOrder(ORDER_FOR_ALICE, ORDER_FOR_AMY);
         assertFalse(modelManager.hasOrder(ORDER_FOR_ALICE));
         assertTrue(modelManager.hasOrder(ORDER_FOR_AMY));
+    }
+
+    @Test
+    public void hasRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRecipe(null));
+    }
+
+    @Test
+    public void hasRecipe_recipeNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void hasRecipe_recipeInAddressBook_returnsTrue() {
+        modelManager.addRecipe(RECIPE_EGG_PRATA);
+        assertTrue(modelManager.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void deleteRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteRecipe(null));
+    }
+
+    @Test
+    public void deleteRecipe_recipeNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> modelManager.deleteRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void deleteRecipe_recipeInAddressBook_throwsNotFoundException() throws NotFoundException {
+        modelManager.addRecipe(RECIPE_EGG_PRATA);
+        modelManager.deleteRecipe(RECIPE_EGG_PRATA);
+        assertFalse(modelManager.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void setRecipe_nullTargetRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setRecipe(null, RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void setRecipe_nullEditedRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setRecipe(RECIPE_EGG_PRATA, null));
+    }
+
+    @Test
+    public void setRecipe_targetRecipeNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> modelManager.setRecipe(RECIPE_EGG_PRATA, RECIPE_LAKSA));
+    }
+
+    @Test
+    public void setRecipe_targetRecipeInAddressBook_success() throws NotFoundException {
+        modelManager.addRecipe(RECIPE_EGG_PRATA);
+        modelManager.setRecipe(RECIPE_EGG_PRATA, RECIPE_LAKSA);
+        assertFalse(modelManager.hasRecipe(RECIPE_EGG_PRATA));
+        assertTrue(modelManager.hasRecipe(RECIPE_LAKSA));
+    }
+
+    @Test
+    public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () ->
+                modelManager.getFilteredRecipeList().add(RECIPE_EGG_PRATA));
     }
 
     @Test

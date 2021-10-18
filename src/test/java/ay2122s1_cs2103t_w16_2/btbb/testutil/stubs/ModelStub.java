@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -158,6 +159,36 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRecipe(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasRecipe(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteRecipe(Recipe target) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

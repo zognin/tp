@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 
 public class UniqueRecipeList implements Iterable<Recipe> {
     private final ObservableList<Recipe> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Recipe> internalUnmodifiableList = 
+    private final ObservableList<Recipe> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**

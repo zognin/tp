@@ -30,8 +30,8 @@
     "isFinished" : "no"
   } ],
   "recipes": [{
-    "name": "Egg Prata",
-    "price" : "2",
+    "name": "Egg Pr@ta",
+    "price" : "$$2",
     "recipeIngredients": [{
       "name": "Egg",
       "quantity": "2",

@@ -23,5 +23,18 @@
     "clientPhone" : "9482424"
   }, {
     "clientPhone" : "94822424"
-  } ]
+  } ],
+  "recipes": [{
+    "name": "Egg Prata",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Flour",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  }]
 }
