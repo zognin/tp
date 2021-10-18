@@ -10,9 +10,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
@@ -45,6 +48,8 @@ public class AddOrderIngredientCommand extends Command {
             + "Edited Order: %2$s";
     public static final String MESSAGE_DUPLICATE_ORDER_INGREDIENT = "This ingredient already exists in the order";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final Index index;
     private final IngredientDescriptor ingredientDescriptor;
 
@@ -63,6 +68,8 @@ public class AddOrderIngredientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + AddOrderIngredientCommand.class.getSimpleName());
+
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
 

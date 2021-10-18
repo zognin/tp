@@ -11,6 +11,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_REC
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
@@ -43,6 +47,8 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final OrderDescriptor orderDescriptor;
 
     /**
@@ -55,6 +61,8 @@ public class AddOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + AddOrderCommand.class.getSimpleName());
+
         requireNonNull(model);
         Order order = orderDescriptor.toModelType(model);
 
