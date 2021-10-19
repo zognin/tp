@@ -1,32 +1,10 @@
 {
-  "clients": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "muster@gmail.com",
-    "address": "4th street"
-  } ],
+  "clients": [],
   "ingredients": [ {
     "ingredientName": "Chi!ccken",
     "quantity": "30",
     "unit": "whole"
   } ],
-  "orders": [ {
-    "clientPhone": "94351253",
-    "clientName": "Alice Pauline",
-    "clientAddress": "123, Jurong West Ave 6, #08-111",
-    "recipeName" : "Chicken Rice",
-    "recipeIngredients" : [ {
-      "quantity" : "1",
-      "unit" : "whole",
-      "name" : "Chicken"
-    }, {
-      "quantity" : "200",
-      "unit" : "grams",
-      "name" : "Rice"
-    } ],
-    "price" : "4.50",
-    "deadline" : "12-12-2021 1900",
-    "quantity" : "4",
-    "isFinished" : "no"
-  } ]
+  "orders": [],
+  "recipes": []
 }

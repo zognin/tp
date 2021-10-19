@@ -1,15 +1,5 @@
 {
-  "clients": [ {
-    "name": "Average Client",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "name": "Normal Client",
-    "phone": "94822424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ],
+  "clients": [],
   "ingredients": [ {
     "ingredient name": "Valid Ingredient",
     "quantity": "15",
@@ -19,9 +9,6 @@
     "quantity": "15",
     "unit": "whole@@"
   } ],
-  "orders" : [ {
-    "clientPhone" : "9482424"
-  }, {
-    "clientPhone" : "94822424"
-  } ]
+  "orders" : [],
+  "recipes": []
 }

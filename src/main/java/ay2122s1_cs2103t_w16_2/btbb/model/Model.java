@@ -11,6 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -22,6 +23,7 @@ public interface Model {
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
 
     //=========== UserPref ===================================================================================
 
@@ -212,4 +214,47 @@ public interface Model {
      * @return List containing the top 10 clients with most orders.
      */
     List<Entry<OrderClient, Long>> getTopTenOrderClients();
+
+    //=========== Recipe ======================================================================================
+
+    /**
+     * Adds the given recipe.
+     * {@code recipe} must not already exist in the address book.
+     */
+    void addRecipe(Recipe recipe);
+
+    /**
+     * Returns true if an recipe with the same identity as {@code recipe} exists in the address book.
+     */
+    boolean hasRecipe(Recipe recipe);
+
+    /**
+     * Deletes the given recipe.
+     * The recipe must exist in the address book.
+     *
+     * @param target The recipe to remove from the recipes list.
+     * @throws NotFoundException when the given recipe does not exist in the recipes list.
+     */
+    void deleteRecipe(Recipe target) throws NotFoundException;
+
+    /**
+     * Replaces the given recipe {@code target} with {@code editedRecipe}.
+     * {@code target} must exist in the address book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     *
+     * @param target Recipe being replaced.
+     * @param editedRecipe Recipe to replace with.
+     * @throws NotFoundException If target does not exist in currently shown recipe list.
+     */
+    void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException;
+
+    /** Returns an unmodifiable view of the filtered recipe list */
+    ObservableList<Recipe> getFilteredRecipeList();
+
+    /**
+     * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecipeList(Predicate<Recipe> predicate);
 }

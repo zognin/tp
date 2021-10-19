@@ -25,6 +25,7 @@ import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
 class UniqueOrderListTest {
