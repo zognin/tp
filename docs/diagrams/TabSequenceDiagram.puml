@@ -46,7 +46,7 @@ LogicManager --> MainWindow : result
 deactivate LogicManager
 
 opt isSwitchTab
-MainWindow --> MainWindow : switchTabs(tabToSwitchTo)
+MainWindow -> MainWindow : switchTabs(tabToSwitchTo)
 activate MainWindow
 
 MainWindow --> MainWindow

@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Tab feature
 
 #### Overview
-Tabs are switched programmatically through 2 ways:
+Tabs are switched programmatically in 2 ways:
 1. Tab command
 1. Executing a command that affects the view of contents in a tab
 
@@ -183,7 +183,7 @@ The following activity diagram summarizes what happens when a user executes a co
 
 Example of a successful switch using the Tab command:
 1. The user wishes to switch to the Home tab.
-1. The user executes `tab 1` command to switch to the home tab. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The user executes `tab 1` command to switch to the Home tab. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app shows the Home tab.
 
 --------------------------------------------------------------------------------------------------------------------
