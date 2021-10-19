@@ -4,6 +4,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,11 +13,14 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -280,6 +285,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
     }
+
+    //=========== Statistics ===============================================================================
+
+    @Override
+    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
+        return addressBook.getTopTenClients();
+    }
+
 
     @Override
     public boolean equals(Object obj) {

@@ -1,6 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
@@ -8,9 +10,12 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * API of the Logic component
@@ -41,6 +46,13 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of orders */
     ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Returns the top ten clients with the most orders.
+     *
+     * @return List containing the top 10 clients with most orders.
+     */
+    List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients();
 
     /**
      * Returns the user prefs' address book file path.

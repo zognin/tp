@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(), logic.getFilteredOrderList());
         homeTab.setContent(homeTabContent.getRoot());
 
-        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList());
+        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(), logic.getTopTenClients());
         statTab.setContent(statTabContent.getRoot());
 
         // Select default tab
@@ -185,6 +185,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Update displayed statistics.
+     */
+    void updateStatistics() {
+        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
+                logic.getTopTenClients());
+        statTab.setContent(statTabContent.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see ay2122s1_cs2103t_w16_2.btbb.logic.Logic#execute(String)
@@ -194,6 +203,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateStatistics();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -282,6 +282,27 @@
     -fx-padding: 8 1 8 1;
 }
 
+.chart-pie-label-line {
+    -fx-stroke: #FFFFFF;
+    -fx-fill: #FFFFFF;
+}
+
+.chart-pie-label {
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}
+.chart-legend {
+    -fx-background-color:  #222222;
+}
+
+.chart-legend-item{
+    -fx-text-fill: #FFFFFF;
+}
+
+.statistics-scroll-pane{
+    -fx-background-color: transparent;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

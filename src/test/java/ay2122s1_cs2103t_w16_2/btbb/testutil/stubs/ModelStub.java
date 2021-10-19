@@ -1,6 +1,8 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -9,10 +11,13 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * A default model stub that has all of its methods failing.
@@ -95,6 +100,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public boolean hasIngredient(Ingredient ingredient) {
         throw new AssertionError("This method should not be called.");
     }
@@ -158,6 +164,13 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // Statistics-level
+
+    @Override
+    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
         throw new AssertionError("This method should not be called.");
     }
 }
