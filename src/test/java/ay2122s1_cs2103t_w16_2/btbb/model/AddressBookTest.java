@@ -9,6 +9,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_AMY;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_LAKSA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,6 +24,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
@@ -214,6 +217,67 @@ public class AddressBookTest {
         assertTrue(addressBook.hasOrder(ORDER_FOR_AMY));
     }
 
+    @Test
+    public void hasRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasRecipe(null));
+    }
+
+    @Test
+    public void hasRecipe_recipeNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void hasRecipe_recipeInAddressBook_returnsTrue() {
+        addressBook.addRecipe(RECIPE_EGG_PRATA);
+        assertTrue(addressBook.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void deleteRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeRecipe(null));
+    }
+
+    @Test
+    public void deleteRecipe_recipeNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> addressBook.removeRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void deleteRecipe_recipeInAddressBook_throwsNotFoundException() throws NotFoundException {
+        addressBook.addRecipe(RECIPE_EGG_PRATA);
+        addressBook.removeRecipe(RECIPE_EGG_PRATA);
+        assertFalse(addressBook.hasRecipe(RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void setRecipe_nullTargetRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.setRecipe(null, RECIPE_EGG_PRATA));
+    }
+
+    @Test
+    public void setRecipe_nullEditedRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.setRecipe(RECIPE_EGG_PRATA, null));
+    }
+
+    @Test
+    public void setRecipe_targetRecipeNotInAddressBook_throwsNotFoundException() {
+        assertThrows(NotFoundException.class, () -> addressBook.setRecipe(RECIPE_EGG_PRATA, RECIPE_LAKSA));
+    }
+
+    @Test
+    public void setRecipe_targetRecipeInAddressBook_success() throws NotFoundException {
+        addressBook.addRecipe(RECIPE_EGG_PRATA);
+        addressBook.setRecipe(RECIPE_EGG_PRATA, RECIPE_LAKSA);
+        assertFalse(addressBook.hasRecipe(RECIPE_EGG_PRATA));
+        assertTrue(addressBook.hasRecipe(RECIPE_LAKSA));
+    }
+
+    @Test
+    public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getRecipeList().add(RECIPE_EGG_PRATA));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
      */
@@ -221,6 +285,7 @@ public class AddressBookTest {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
         private final ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
+        private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
@@ -234,6 +299,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Order> getOrderList() {
             return orders;
+        }
+
+        @Override
+        public ObservableList<Recipe> getRecipeList() {
+            return recipes;
         }
 
         @Override

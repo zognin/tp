@@ -195,5 +195,90 @@
     "deadline" : "18-12-2021 2359",
     "quantity" : "2",
     "isFinished" : "yes"
-  } ]
+  } ],
+  "recipes": [{
+    "name": "Egg Prata",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Flour",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  }, {
+    "name": "Chicken Rice",
+    "price" : "3",
+    "recipeIngredients": [{
+      "name": "Chicken",
+      "quantity": "5",
+      "unit": "cuts"
+    }, {
+      "name": "Rice",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  }, {
+    "name": "Laksa",
+    "price" : "4",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "1",
+      "unit": "whole"
+    }, {
+      "name": "Noodles",
+      "quantity": "100",
+      "unit": "g"
+    }]
+  }, {
+    "name": "Pasta",
+    "price" : "4",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "1",
+      "unit": "whole"
+    }, {
+      "name": "Noodles",
+      "quantity": "100",
+      "unit": "g"
+    }, {
+      "name": "Tomato Sauce",
+      "quantity": "10",
+      "unit": "g"
+    }]
+  }, {
+    "name": "Mee Rebus",
+    "price" : "3",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Noodles",
+      "quantity": "100",
+      "unit": "g"
+    }, {
+      "name": "Curry Powder",
+      "quantity": "10",
+      "unit": "g"
+    }]
+  }, {
+    "name": "Mee Goreng",
+    "price" : "4",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "2",
+      "unit": "whole"
+    }, {
+      "name": "Noodles",
+      "quantity": "100",
+      "unit": "g"
+    }, {
+      "name": "Chilli Powder",
+      "quantity": "10",
+      "unit": "g"
+    }]
+  }]
 }

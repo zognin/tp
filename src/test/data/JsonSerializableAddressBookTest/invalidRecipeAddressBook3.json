@@ -1,0 +1,22 @@
+{
+  "clients": [],
+  "ingredients": [],
+  "orders": [],
+  "recipes": [{
+    "name": "Invalid recipe ingredient",
+    "price" : "2",
+    "recipeIngredients": [{
+      "name": "Egg",
+      "quantity": "##2",
+      "unit": "whole"
+    }, {
+      "name": "Flo##r",
+      "quantity": "100",
+      "unit": "g"
+    }, {
+      "name": "Rice",
+      "quantity": "2",
+      "unit": "kg###"
+    }]
+  }]
+}

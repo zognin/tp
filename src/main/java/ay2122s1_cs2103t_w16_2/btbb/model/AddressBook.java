@@ -12,6 +12,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.UniqueRecipeList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -23,6 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
     private final UniqueIngredientList ingredients;
     private final UniqueOrderList orders;
+    private final UniqueRecipeList recipes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,6 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients = new UniqueClientList();
         ingredients = new UniqueIngredientList();
         orders = new UniqueOrderList();
+        recipes = new UniqueRecipeList();
     }
 
     public AddressBook() {}
@@ -78,6 +82,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the orders list with {@code recipes}
+     * {@code recipes} must not contain duplicate recipes.
+     *
+     * @param recipes Recipes to replace the list with.
+     */
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes.setRecipes(recipes);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -86,6 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(newData.getClientList());
         setIngredients(newData.getIngredientList());
         setOrders(newData.getOrderList());
+        setRecipes(newData.getRecipeList());
     }
 
     //// client-level operations
@@ -237,6 +252,49 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders.setOrder(target, editedOrder);
     }
 
+    //// recipe-level operations
+
+    /**
+     * Adds an recipe to the address book.
+     * The recipe must not already exist in the address book.
+     *
+     * @param recipe Recipe to be added.
+     */
+    public void addRecipe(Recipe recipe) {
+        recipes.add(recipe);
+    }
+
+    /**
+     * Returns true if an recipe with the same identity as {@code recipe} exists in the address book.
+     */
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return recipes.contains(recipe);
+    }
+
+    /**
+     * Deletes the given recipe.
+     * The recipe must exist in the address book.
+     *
+     * @param recipeToRemove The recipe to remove from the recipes list.
+     * @throws NotFoundException when the given recipe does not exist in the recipes list.
+     */
+    public void removeRecipe(Recipe recipeToRemove) throws NotFoundException {
+        requireNonNull(recipeToRemove);
+        recipes.remove(recipeToRemove);
+    }
+
+    /** Replaces the existing target Recipe in the address book with an edited Recipe.
+     *
+     * @param target The target Recipe to replace.
+     * @param editedRecipe The edited recipe to replace with.
+     * @throws NotFoundException If the target recipe does not exist in the address book.
+     */
+    public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
+        requireAllNonNull(target, editedRecipe);
+        recipes.setRecipe(target, editedRecipe);
+    }
+
     //// util methods
 
     @Override
@@ -253,6 +311,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Recipe> getRecipeList() {
+        return recipes.asUnmodifiableObservableList();
     }
 
     @Override
