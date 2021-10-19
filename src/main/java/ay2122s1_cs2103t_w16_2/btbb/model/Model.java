@@ -8,13 +8,11 @@ import java.util.function.Predicate;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 /**
  * The API of the Model component.
@@ -213,5 +211,5 @@ public interface Model {
      *
      * @return List containing the top 10 clients with most orders.
      */
-    List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients();
+    List<Map.Entry<OrderClient, Long>> getTopTenOrderClients();
 }

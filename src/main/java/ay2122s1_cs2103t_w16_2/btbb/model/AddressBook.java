@@ -8,16 +8,14 @@ import java.util.Map;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.UniqueClientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.UniqueIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 /**
  * Wraps all data at the address-book level
@@ -248,8 +246,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * @return List containing the top 10 clients with most orders.
      */
-    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
-        return orders.getTopTenClients();
+    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return orders.getTopTenOrderClients();
     }
 
     //// util methods

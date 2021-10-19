@@ -24,7 +24,7 @@
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
 
-            <Label text="Business Analytics" styleClass="list-header"/>
+            <Label text="Statistics" styleClass="list-header"/>
 
             <ScrollPane styleClass="statistics-scroll-pane" fitToWidth="true" fitToHeight="true">
                 <VBox>

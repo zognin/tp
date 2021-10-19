@@ -11,13 +11,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 /**
  * A default model stub that has all of its methods failing.
@@ -170,7 +168,7 @@ public class ModelStub implements Model {
     // Statistics-level
 
     @Override
-    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
+    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
         throw new AssertionError("This method should not be called.");
     }
 }

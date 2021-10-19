@@ -8,8 +8,10 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.Logic;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.HomeTabContent;
 import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.StatTabContent;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -119,6 +121,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Initialise statistic listeners.
+     * When unique order list changes, statistics will be updated.
+     */
+    void initializeStatListeners() {
+        logic.getFilteredOrderList().addListener((ListChangeListener<Order>) c -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated() || c.wasPermutated()) {
+                    logger.info("Updating statistics");
+                    updateStatistics();
+                }
+            }
+        });
+    }
+
+    /**
      * Initializes the tabs.
      */
     void initializeTabs() {
@@ -126,7 +143,9 @@ public class MainWindow extends UiPart<Stage> {
         HomeTabContent homeTabContent = new HomeTabContent(logic.getFilteredClientList(), logic.getFilteredOrderList());
         homeTab.setContent(homeTabContent.getRoot());
 
-        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(), logic.getTopTenClients());
+        StatTabContent statTabContent = new StatTabContent(
+                logic.getFilteredIngredientList(), logic.getTopTenOrderClients()
+        );
         statTab.setContent(statTabContent.getRoot());
 
         // Select default tab
@@ -189,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void updateStatistics() {
         StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
-                logic.getTopTenClients());
+                logic.getTopTenOrderClients());
         statTab.setContent(statTabContent.getRoot());
     }
 
@@ -203,7 +222,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            updateStatistics();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

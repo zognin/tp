@@ -4,18 +4,15 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 public class UniqueOrderList implements Iterable<Order> {
     private final ObservableList<Order> internalList = FXCollections.observableArrayList();
@@ -83,46 +80,39 @@ public class UniqueOrderList implements Iterable<Order> {
 
     /**
      * Returns the top ten clients with the most orders.
+     * Ties are broken arbitrarily eg. if there are multiple clients with the same number of orders, 10 random
+     * clients will be chosen.
      *
      * @return Top ten clients with the most orders.
      */
-    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
-        HashMap<Pair<GenericString, Phone>, Integer> clientOrderCountKeyValuePair =
-                getClientOrderCountKeyValuePair();
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        Map<OrderClient, Long> clientToOrderCountMap =
+                getClientToOrderMap();
 
-        List<Map.Entry<Pair<GenericString, Phone>, Integer>> topTenClients =
-                getTopTenClientsFromHashMap(clientOrderCountKeyValuePair);
+        List<Entry<OrderClient, Long>> topTenClients =
+                getTopTenOrderClientsFromMap(clientToOrderCountMap);
 
         return topTenClients;
     }
 
-    private HashMap<Pair<GenericString, Phone>, Integer> getClientOrderCountKeyValuePair() {
-        HashMap<Pair<GenericString, Phone>, Integer> clientOrderCountKeyValuePair = new HashMap<>();
+    private Map<OrderClient, Long> getClientToOrderMap() {
+        Map<OrderClient, Long> clientToOrderCountMap = internalList.stream()
+                .collect(Collectors.groupingBy((order) ->
+                        order.getOrderClient(), Collectors.counting()));
 
-        internalList.stream().forEach(order -> {
-            GenericString clientName = order.getClientName();
-            Phone clientPhone = order.getClientPhone();
-            Pair<GenericString, Phone> clientNameAndPhone = new Pair<>(clientName, clientPhone);
-            if (clientOrderCountKeyValuePair.containsKey(clientNameAndPhone)) {
-                int orderCount = clientOrderCountKeyValuePair.get(clientNameAndPhone);
-                clientOrderCountKeyValuePair.put(clientNameAndPhone, ++orderCount);
-            } else {
-                clientOrderCountKeyValuePair.put(clientNameAndPhone, 1);
-            }
-        });
-
-        return clientOrderCountKeyValuePair;
+        return clientToOrderCountMap;
     }
 
-    private List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClientsFromHashMap(
-            HashMap<Pair<GenericString, Phone>, Integer> hashMap) {
-        List<Map.Entry<Pair<GenericString, Phone>, Integer>> clientOrderCountPairs =
+    private List<Entry<OrderClient, Long>> getTopTenOrderClientsFromMap(
+            Map<OrderClient, Long> hashMap) {
+        List<Entry<OrderClient, Long>> clientOrderCountPairs =
                 hashMap.entrySet()
                         .stream()
-                        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                        .sorted(Collections.reverseOrder(Entry.comparingByValue()))
+                        .limit(10)
                         .collect(Collectors.toList());
 
-        return clientOrderCountPairs.size() <= 10 ? clientOrderCountPairs : clientOrderCountPairs.subList(0, 10);
+        return clientOrderCountPairs;
     }
 
     /**

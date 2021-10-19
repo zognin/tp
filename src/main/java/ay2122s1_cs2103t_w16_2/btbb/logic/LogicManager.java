@@ -16,13 +16,11 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.AddressBookParser;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.storage.Storage;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 /**
  * The main LogicManager of the app.
@@ -82,8 +80,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
-        return model.getTopTenClients();
+    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return model.getTopTenOrderClients();
     }
 
     @Override

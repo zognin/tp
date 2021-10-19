@@ -13,14 +13,12 @@ import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.util.Pair;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -289,10 +287,9 @@ public class ModelManager implements Model {
     //=========== Statistics ===============================================================================
 
     @Override
-    public List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients() {
-        return addressBook.getTopTenClients();
+    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return addressBook.getTopTenOrderClients();
     }
-
 
     @Override
     public boolean equals(Object obj) {

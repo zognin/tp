@@ -10,12 +10,10 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
 /**
  * API of the Logic component
@@ -52,7 +50,7 @@ public interface Logic {
      *
      * @return List containing the top 10 clients with most orders.
      */
-    List<Map.Entry<Pair<GenericString, Phone>, Integer>> getTopTenClients();
+    List<Map.Entry<OrderClient, Long>> getTopTenOrderClients();
 
     /**
      * Returns the user prefs' address book file path.

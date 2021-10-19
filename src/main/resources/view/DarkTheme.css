@@ -282,6 +282,10 @@
     -fx-padding: 8 1 8 1;
 }
 
+.chart {
+    -fx-legend-visible: false;
+}
+
 .chart-pie-label-line {
     -fx-stroke: #FFFFFF;
     -fx-fill: #FFFFFF;
@@ -291,6 +295,12 @@
     -fx-fill: #FFFFFF;
     -fx-font-size: 1em;
 }
+
+.chart-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 1.6em;
+}
+
 .chart-legend {
     -fx-background-color:  #222222;
 }
