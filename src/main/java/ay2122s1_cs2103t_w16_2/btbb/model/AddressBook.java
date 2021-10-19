@@ -4,7 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
@@ -242,11 +242,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// statistics-level operations
 
     /**
-     * Returns the top ten clients with the most orders.
+     * Returns the top 10 clients with the most orders.
      *
      * @return List containing the top 10 clients with most orders.
      */
-    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return orders.getTopTenOrderClients();
     }
 

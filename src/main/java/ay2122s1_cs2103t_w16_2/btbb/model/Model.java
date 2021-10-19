@@ -2,7 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.model;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -211,5 +211,5 @@ public interface Model {
      *
      * @return List containing the top 10 clients with most orders.
      */
-    List<Map.Entry<OrderClient, Long>> getTopTenOrderClients();
+    List<Entry<OrderClient, Long>> getTopTenOrderClients();
 }

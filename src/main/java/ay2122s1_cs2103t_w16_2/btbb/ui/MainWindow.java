@@ -121,8 +121,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initialise statistic listeners.
-     * When unique order list changes, statistics will be updated.
+     * Initializes listeners to update statistics when relevant model change.
      */
     void initializeStatListeners() {
         logic.getFilteredOrderList().addListener((ListChangeListener<Order>) c -> {
@@ -204,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Update displayed statistics.
+     * Updates displayed statistics.
      */
     void updateStatistics() {
         StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),

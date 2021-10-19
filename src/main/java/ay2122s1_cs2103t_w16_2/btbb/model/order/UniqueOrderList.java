@@ -79,40 +79,29 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Returns the top ten clients with the most orders.
+     * Returns the top 10 clients with the most orders.
      * Ties are broken arbitrarily eg. if there are multiple clients with the same number of orders, 10 random
      * clients will be chosen.
      *
-     * @return Top ten clients with the most orders.
+     * @return Top 10 clients with the most orders.
      */
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
-        Map<OrderClient, Long> clientToOrderCountMap =
-                getClientToOrderMap();
-
-        List<Entry<OrderClient, Long>> topTenClients =
-                getTopTenOrderClientsFromMap(clientToOrderCountMap);
-
-        return topTenClients;
+        Map<OrderClient, Long> clientToOrderCountMap = getClientToOrderMap();
+        return getTopTenOrderClientsFromMap(clientToOrderCountMap);
     }
 
     private Map<OrderClient, Long> getClientToOrderMap() {
-        Map<OrderClient, Long> clientToOrderCountMap = internalList.stream()
-                .collect(Collectors.groupingBy((order) ->
-                        order.getOrderClient(), Collectors.counting()));
-
-        return clientToOrderCountMap;
+        return internalList.stream()
+                .collect(Collectors.groupingBy((order) -> order.getOrderClient(), Collectors.counting()));
     }
 
     private List<Entry<OrderClient, Long>> getTopTenOrderClientsFromMap(
             Map<OrderClient, Long> hashMap) {
-        List<Entry<OrderClient, Long>> clientOrderCountPairs =
-                hashMap.entrySet()
-                        .stream()
-                        .sorted(Collections.reverseOrder(Entry.comparingByValue()))
-                        .limit(10)
-                        .collect(Collectors.toList());
-
-        return clientOrderCountPairs;
+        return hashMap.entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Entry.comparingByValue()))
+                .limit(10)
+                .collect(Collectors.toList());
     }
 
     /**

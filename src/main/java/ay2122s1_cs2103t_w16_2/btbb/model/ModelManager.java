@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -287,7 +287,7 @@ public class ModelManager implements Model {
     //=========== Statistics ===============================================================================
 
     @Override
-    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return addressBook.getTopTenOrderClients();
     }
 

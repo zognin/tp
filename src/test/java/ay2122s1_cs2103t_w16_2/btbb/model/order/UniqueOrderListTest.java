@@ -20,7 +20,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ class UniqueOrderListTest {
     }
 
     @Test
-    public void getTopTenClients_listContainsOrdersForElevenClients_returnsTopTenClients() {
+    public void getTopTenOrderClients_listContainsOrdersForElevenClients_returnsTopTenClients() {
         List<Order> orderList = new ArrayList<>(List.of(ORDER_FOR_ALICE, ORDER_FOR_AMY, ORDER_FOR_BOB, ORDER_FOR_BENSON,
                 ORDER_FOR_CARL, ORDER_FOR_DANIEL, ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE, ORDER_FOR_HOON,
                 ORDER_FOR_IDA));
@@ -64,10 +64,10 @@ class UniqueOrderListTest {
                 );
             }
         }
-        List<Map.Entry<OrderClient, Long>> topTenClients = uniqueOrderList.getTopTenOrderClients();
+        List<Entry<OrderClient, Long>> topTenClients = uniqueOrderList.getTopTenOrderClients();
 
         orderList.remove(ORDER_FOR_ALICE);
-        List<Map.Entry<OrderClient, Long>> expectedTopTenClients = new ArrayList<>();
+        List<Entry<OrderClient, Long>> expectedTopTenClients = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Order currOrder = orderList.get(i);
             expectedTopTenClients.add(new AbstractMap.SimpleEntry<>(

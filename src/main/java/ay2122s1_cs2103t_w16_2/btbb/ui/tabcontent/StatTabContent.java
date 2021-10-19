@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
@@ -31,26 +31,26 @@ public class StatTabContent extends UiPart<Region> {
      * Constructs a {@code StatTabContent}.
      *
      * @param ingredientList List of ingredients to display in the tab.
-     * @param topTenClients Top ten clients to be shown in statistics.
+     * @param topTenOrderClients Top 10 order clients to be shown in statistics.
      */
     public StatTabContent(ObservableList<Ingredient> ingredientList,
-                          List<Map.Entry<OrderClient, Long>> topTenClients) {
+                          List<Entry<OrderClient, Long>> topTenOrderClients) {
         super(FXML);
 
         IngredientListPanel ingredientListPanel = new IngredientListPanel(ingredientList);
         ingredientListPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
 
-        setTopTenOrderClientsPieChart(topTenClients);
+        setTopTenOrderClientsPieChart(topTenOrderClients);
     }
 
     /**
-     * Converts a list of top ten clients to data points in the pie chart.
+     * Converts a list of top 10 clients to data points in the pie chart.
      *
-     * @param topTenClients Top ten clients to be converted to data points in the pie chart.
+     * @param topTenOrderClients Top 10 order clients to be converted to data points in the pie chart.
      */
-    private void setTopTenOrderClientsPieChart(List<Map.Entry<OrderClient, Long>> topTenClients) {
+    private void setTopTenOrderClientsPieChart(List<Entry<OrderClient, Long>> topTenOrderClients) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableList(
-                topTenClients.stream()
+                topTenOrderClients.stream()
                         .map(entry -> {
                             OrderClient orderClient = entry.getKey();
                             return new PieChart.Data(orderClient.getName().toString()

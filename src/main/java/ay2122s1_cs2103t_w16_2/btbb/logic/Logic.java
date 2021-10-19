@@ -2,7 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
@@ -46,11 +46,11 @@ public interface Logic {
     ObservableList<Order> getFilteredOrderList();
 
     /**
-     * Returns the top ten clients with the most orders.
+     * Returns the top 10 clients with the most orders.
      *
      * @return List containing the top 10 clients with most orders.
      */
-    List<Map.Entry<OrderClient, Long>> getTopTenOrderClients();
+    List<Entry<OrderClient, Long>> getTopTenOrderClients();
 
     /**
      * Returns the user prefs' address book file path.

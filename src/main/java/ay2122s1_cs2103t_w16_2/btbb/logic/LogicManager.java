@@ -3,7 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -80,7 +80,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public List<Map.Entry<OrderClient, Long>> getTopTenOrderClients() {
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return model.getTopTenOrderClients();
     }
 
