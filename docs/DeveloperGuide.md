@@ -153,6 +153,7 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
 ### Find feature
 
 #### Overview
