@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.order;
+package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

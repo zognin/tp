@@ -10,27 +10,7 @@
     "email": "hans@example.com",
     "address": "4th street"
   } ],
-  "ingredients": [ {
-    "ingredient name": "Chicken",
-    "quantity": "15",
-    "unit": "whole"
-  } ],
-  "orders" : [ {
-    "clientPhone" : "9482424"
-  }, {
-    "clientPhone" : "948asdf2424"
-  } ],
-  "recipes": [{
-    "name": "Egg Prata",
-    "price" : "2",
-    "recipeIngredients": [{
-      "name": "Egg",
-      "quantity": "2",
-      "unit": "whole"
-    }, {
-      "name": "Flour",
-      "quantity": "100",
-      "unit": "g"
-    }]
-  }]
+  "ingredients": [],
+  "orders" : [],
+  "recipes": []
 }

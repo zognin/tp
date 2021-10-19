@@ -5,10 +5,10 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import java.util.Optional;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 
 /**
  * Stores the details relevant to a recipe.
@@ -105,10 +105,10 @@ public class RecipeDescriptor {
         }
 
         // state check
-        RecipeDescriptor e = (RecipeDescriptor) other;
+        RecipeDescriptor otherRecipeDescriptor = (RecipeDescriptor) other;
 
-        return getName().equals(e.getName())
-                && getRecipeIngredients().equals(e.getRecipeIngredients())
-                && getPrice().equals(e.getPrice());
+        return getName().equals(otherRecipeDescriptor.getName())
+                && getRecipeIngredients().equals(otherRecipeDescriptor.getRecipeIngredients())
+                && getPrice().equals(otherRecipeDescriptor.getPrice());
     }
 }

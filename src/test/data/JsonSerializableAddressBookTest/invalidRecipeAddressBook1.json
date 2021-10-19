@@ -3,19 +3,7 @@
   "ingredients": [],
   "orders": [],
   "recipes": [{
-    "name": "Egg Prata",
-    "price" : "2",
-    "recipeIngredients": [{
-      "name": "Egg",
-      "quantity": "2",
-      "unit": "whole"
-    }, {
-      "name": "Flour",
-      "quantity": "100",
-      "unit": "g"
-    }]
-  },{
-    "name": "Egg Prata",
+    "name": "Invalid Recipe n@me",
     "price" : "2",
     "recipeIngredients": [{
       "name": "Egg",

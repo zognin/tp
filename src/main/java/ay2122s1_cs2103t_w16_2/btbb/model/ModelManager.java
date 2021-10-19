@@ -289,7 +289,7 @@ public class ModelManager implements Model {
     @Override
     public void addRecipe(Recipe recipe) {
         addressBook.addRecipe(recipe);
-        filteredRecipes.setPredicate(PREDICATE_SHOW_ALL_RECIPES);
+        updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
     }
 
     @Override
@@ -304,6 +304,15 @@ public class ModelManager implements Model {
         addressBook.removeRecipe(target);
     }
 
+    /**
+     * Replaces the given recipe {@code target} with {@code editedRecipe}.
+     * {@code target} must exist in the address book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     *
+     * @param target Recipe being replaced.
+     * @param editedRecipe Recipe to replace with.
+     * @throws NotFoundException
+     */
     @Override
     public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
         requireAllNonNull(target, editedRecipe);

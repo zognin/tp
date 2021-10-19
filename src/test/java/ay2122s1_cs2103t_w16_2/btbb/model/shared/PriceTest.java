@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.order;
+package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

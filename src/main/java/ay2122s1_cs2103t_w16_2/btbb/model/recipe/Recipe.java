@@ -2,9 +2,9 @@ package ay2122s1_cs2103t_w16_2.btbb.model.recipe;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 
 /**
  * Represents a Recipe in the address book.
