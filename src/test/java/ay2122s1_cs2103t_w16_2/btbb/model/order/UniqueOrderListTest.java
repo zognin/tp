@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,20 +56,23 @@ class UniqueOrderListTest {
         List<Order> orderList = new ArrayList<>(List.of(ORDER_FOR_ALICE, ORDER_FOR_AMY, ORDER_FOR_BOB, ORDER_FOR_BENSON,
                 ORDER_FOR_CARL, ORDER_FOR_DANIEL, ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE, ORDER_FOR_HOON,
                 ORDER_FOR_IDA));
-        LongStream.range(1, orderList.size() + 1).forEach(i -> {
-            LongStream.range(0, i).forEach(j -> uniqueOrderList.add(new OrderBuilder(orderList.get((int) i - 1))
-                    .withPrice(new Price(Integer.toString((int) i)))
-                    .build()));
-        });
+
+        for (int i = 0; i < orderList.size(); i++) {
+            for (int j = 0; j < i + 1; j++) {
+                uniqueOrderList.add(
+                        new OrderBuilder(orderList.get(i)).withPrice(new Price(Integer.toString(i))).build()
+                );
+            }
+        }
         List<Map.Entry<OrderClient, Long>> topTenClients = uniqueOrderList.getTopTenOrderClients();
 
         orderList.remove(ORDER_FOR_ALICE);
         List<Map.Entry<OrderClient, Long>> expectedTopTenClients = new ArrayList<>();
-        LongStream.range(0, 10).forEach(i -> {
-            Order currOrder = orderList.get((int) i);
-            expectedTopTenClients.add(new AbstractMap.SimpleEntry<>(new OrderClient(currOrder.getClientName(),
-                    currOrder.getClientPhone()), i + 2));
-        });
+        for (int i = 0; i < 10; i++) {
+            Order currOrder = orderList.get(i);
+            expectedTopTenClients.add(new AbstractMap.SimpleEntry<>(
+                    new OrderClient(currOrder.getClientName(), currOrder.getClientPhone()), (long) i + 2));
+        }
         Collections.reverse(expectedTopTenClients);
         assertEquals(expectedTopTenClients, topTenClients);
     }

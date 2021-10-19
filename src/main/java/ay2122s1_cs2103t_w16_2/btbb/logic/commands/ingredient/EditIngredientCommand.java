@@ -82,7 +82,9 @@ public class EditIngredientCommand extends Command {
         }
 
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient), UiTab.INVENTORY);
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient), UiTab.INVENTORY_AND_STATISTICS
+        );
     }
 
     @Override

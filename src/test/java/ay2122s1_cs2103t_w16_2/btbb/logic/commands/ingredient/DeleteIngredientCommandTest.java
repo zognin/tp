@@ -58,7 +58,7 @@ public class DeleteIngredientCommandTest {
         expectedModel.deleteIngredient(ingredientToDelete);
 
         assertCommandSuccessWithTabChange(deleteIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class DeleteIngredientCommandTest {
         showNoIngredient(expectedModel);
 
         assertCommandSuccessWithTabChange(deleteIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test

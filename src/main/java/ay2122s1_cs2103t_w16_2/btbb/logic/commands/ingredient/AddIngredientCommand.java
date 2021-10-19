@@ -69,7 +69,7 @@ public class AddIngredientCommand extends Command {
         }
 
         model.addIngredient(ingredient);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredient), UiTab.INVENTORY);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredient), UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Override

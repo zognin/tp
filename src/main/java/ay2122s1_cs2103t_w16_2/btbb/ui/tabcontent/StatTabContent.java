@@ -40,7 +40,7 @@ public class StatTabContent extends UiPart<Region> {
         IngredientListPanel ingredientListPanel = new IngredientListPanel(ingredientList);
         ingredientListPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
 
-        setClientStatisticsPieChart(topTenClients);
+        setTopTenOrderClientsPieChart(topTenClients);
     }
 
     /**
@@ -48,7 +48,7 @@ public class StatTabContent extends UiPart<Region> {
      *
      * @param topTenClients Top ten clients to be converted to data points in the pie chart.
      */
-    private void setClientStatisticsPieChart(List<Map.Entry<OrderClient, Long>> topTenClients) {
+    private void setTopTenOrderClientsPieChart(List<Map.Entry<OrderClient, Long>> topTenClients) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableList(
                 topTenClients.stream()
                         .map(entry -> {

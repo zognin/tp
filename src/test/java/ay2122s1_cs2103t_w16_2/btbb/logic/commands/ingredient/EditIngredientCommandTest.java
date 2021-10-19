@@ -43,7 +43,7 @@ public class EditIngredientCommandTest {
         expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
 
         assertCommandSuccessWithTabChange(editIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class EditIngredientCommandTest {
         expectedModel.setIngredient(lastIngredient, editedIngredient);
 
         assertCommandSuccessWithTabChange(editIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class EditIngredientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccessWithTabChange(editIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class EditIngredientCommandTest {
         expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
 
         assertCommandSuccessWithTabChange(editIngredientCommand, model, expectedMessage, expectedModel,
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
