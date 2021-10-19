@@ -2,7 +2,11 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.commands.general;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import ay2122s1_cs2103t_w16_2.btbb.commons.core.LogsCenter;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
+import ay2122s1_cs2103t_w16_2.btbb.commons.util.JsonUtil;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
@@ -25,6 +29,8 @@ public class TabCommand extends Command {
     public static final String MESSAGE_INVALID_TAB_INDEX = "The tab index provided is invalid. "
             + "The index can only be 1 or 2.";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
     private final Index targetIndex;
 
     /**
@@ -38,6 +44,8 @@ public class TabCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing " + TabCommand.class.getSimpleName());
+
         requireNonNull(model);
         UiTab[] tabList = UiTab.values();
 
