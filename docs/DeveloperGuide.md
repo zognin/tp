@@ -154,11 +154,43 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Tab feature
+
+#### Overview
+Tabs are switched programmatically in 2 ways:
+1. Tab command
+1. Executing a command that affects the view of contents in a tab
+
+#### Mechanism
+The tab switch mechanism is facilitated by `CommandResult`.
+This is because any programmatic tab switch will only occur after the execution of a command
+and information about the switch has to be passed to `Ui` components.
+After executing a command, if a tab switch should occur,
+the tab to switch to is stored in a `CommandResult`.
+This `CommandResult` is created in a `Ui` object through `MainWindow#executeCommand()`.
+Hence, data about whether there is a tab switch and which tab to switch to
+can be passed to `Ui` components and rendered accordingly.
+
+The following sequence diagram shows how the tab operation works:
+
+![TabSequenceDiagram](images/TabSequenceDiagram.png)
+
+#### Usage Scenarios
+
+The following activity diagram summarizes what happens when a user executes a command:
+
+![TabActivityDiagram](images/TabActivityDiagram.png)
+
+Example of a successful switch using the Tab command:
+1. The user wishes to switch to the Home tab.
+1. The user executes `tab 1` command to switch to the Home tab. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app shows the Home tab.
+
 ### Find feature
 
 #### Overview
 
-Find operations can be executed for all entity types in the model, ie. 
+Find operations can be executed for all entity types in the model, ie.
 clients, orders, ingredients and recipes.
 
 #### Mechanism
@@ -170,34 +202,34 @@ Java `Predicate` interface. The 4 classes are `PredicateCollection`,
 functionality can be reused for all entity types. The purposes of these classes
 are as follows:
 * `StringContainsKeywordsPredicate` - Tests if a field in an object matches
-   any of the keywords provided by the user. This class can perform partial and
-   case-insensitive matches.
+  any of the keywords provided by the user. This class can perform partial and
+  case-insensitive matches.
 
 * `ValueInListPredicate` - Tests if a value of a field in an object
-  exists in the list of values provided by the user. 
+  exists in the list of values provided by the user.
 
 * `ValueWithinRangePredicate` - Tests if a value of a field in an object
   is within a range of values provided by the user.
 
 * `PredicateCollection` - Tests if an object satisfies all the predicates
   contained in this class. This class enables finding entities based on
-  multiple search criteria. 
+  multiple search criteria.
 
 #### Usage Scenario
 
 1. The user executes the `find-i in/avo gin iqf/1 iqt/10` command to find ingredients whose name matches
-   the keywords 'avo' or 'gin' and whose quantities are from the range 1-10. 
+   the keywords 'avo' or 'gin' and whose quantities are from the range 1-10.
 
-2. The `FindIngredientCommandParser` parses the command into `FindIngredientCommand`. A `StringContainsKeywordsPredicate` 
-   is created with the keywords 'avo' and 'gin'. A `ValueWithinRangePredicate` is created with the start value set to 
-   '1' and end value set to '10'. Both of these predicates are added to a `PredicateCollection`. A `FindCommand` is 
+2. The `FindIngredientCommandParser` parses the command into `FindIngredientCommand`. A `StringContainsKeywordsPredicate`
+   is created with the keywords 'avo' and 'gin'. A `ValueWithinRangePredicate` is created with the start value set to
+   '1' and end value set to '10'. Both of these predicates are added to a `PredicateCollection`. A `FindCommand` is
    created with the `PredicateCollection`.
 
 3. The `FilteredIngredientList` in the `ModelManager` class gets updated with the `PredicateCollection` which causes
    it to only contain ingredients that match all the find criteria.
 
-4. The `FilteredIngredientList` is a JavaFX `ObservableList` that is observed by the `IngredientListPanel`. The change 
-   in the `FilteredIngredientList` will cause the `IngredientListPanel` to re-render, showing only the ingredients that
+4. The `FilteredIngredientList` is a JavaFX `ObservableList` that is observed by the `IngredientListPanel`. The change
+   in `FilteredIngredientList` will cause the `IngredientListPanel` to re-render, showing only the ingredients that
    match the find criteria.
 
 --------------------------------------------------------------------------------------------------------------------

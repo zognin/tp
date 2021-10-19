@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+
+:Generate command result;
+
+if () then ([isSwitchTab])
+    :Switch tabs;
+else ([else])
+endif
+stop
+@enduml
