@@ -1,0 +1,111 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+end box
+[-> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindIngredientCommandParser" as FindIngredientCommandParser LOGIC_COLOR
+participant "p:PredicateCollection" as PredicateCollection LOGIC_COLOR
+participant ":StringContainsKeywordsPredicate" as StringContainsKeywordsPredicate LOGIC_COLOR
+participant ":ValueWithinRangePredicate" as ValueWithinRangePredicate LOGIC_COLOR
+participant "c:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+MainWindow -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+AddressBookParser -> FindIngredientCommandParser : parse(args)
+activate FindIngredientCommandParser
+
+create PredicateCollection
+FindIngredientCommandParser -> PredicateCollection : PredicateCollection()
+activate PredicateCollection
+
+PredicateCollection --> FindIngredientCommandParser
+deactivate PredicateCollection
+
+FindIngredientCommandParser -> PredicateCollection : addStringContainsKeywordsPredicate()
+activate PredicateCollection
+
+create StringContainsKeywordsPredicate
+PredicateCollection -> StringContainsKeywordsPredicate : StringContainsKeywordsPredicate()
+activate StringContainsKeywordsPredicate
+
+StringContainsKeywordsPredicate --> PredicateCollection
+deactivate StringContainsKeywordsPredicate
+
+PredicateCollection --> FindIngredientCommandParser
+deactivate PredicateCollection
+
+FindIngredientCommandParser -> PredicateCollection : addValueWithinRangePredicate()
+activate PredicateCollection
+
+create ValueWithinRangePredicate
+PredicateCollection -> ValueWithinRangePredicate : ValueWithinRangePredicate()
+activate ValueWithinRangePredicate
+
+ValueWithinRangePredicate --> PredicateCollection
+deactivate ValueWithinRangePredicate
+
+PredicateCollection --> FindIngredientCommandParser
+deactivate PredicateCollection
+
+create FindIngredientCommand
+FindIngredientCommandParser -> FindIngredientCommand : FindIngredientCommand(p)
+activate FindIngredientCommand
+
+FindIngredientCommand --> FindIngredientCommandParser
+deactivate FindIngredientCommand
+
+FindIngredientCommandParser --> AddressBookParser : c
+deactivate FindIngredientCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> FindIngredientCommand : execute()
+activate FindIngredientCommand
+
+FindIngredientCommand -> ModelManager : updateFilteredIngredientList(p)
+activate ModelManager
+
+ModelManager --> FindIngredientCommand
+deactivate ModelManager
+|||
+create CommandResult
+FindIngredientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindIngredientCommand
+deactivate CommandResult
+
+FindIngredientCommand --> LogicManager : result
+deactivate FindIngredientCommand
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow -> ResultDisplay : setFeedbackToUser()
+activate ResultDisplay
+
+ResultDisplay --> MainWindow
+deactivate ResultDisplay
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

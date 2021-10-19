@@ -193,12 +193,16 @@ are as follows:
    '1' and end value set to '10'. Both of these predicates are added to a `PredicateCollection`. A `FindCommand` is
    created with the `PredicateCollection`.
 
-3. The `FilteredIngredientList` in the `ModelManager` class gets updated with the `PredicateCollection` which causes
-   it to only contain ingredients that match all the find criteria.
+3. The `ModelManager#updateFilteredIngredientList` method gets called with the `PredicateCollection` which causes
+   the `FilteredIngredientList` in `ModelManager` to only contain ingredients that match all the find criteria.
 
 4. The `FilteredIngredientList` is a JavaFX `ObservableList` that is observed by the `IngredientListPanel`. The change
    in `FilteredIngredientList` will cause the `IngredientListPanel` to re-render, showing only the ingredients that
    match the find criteria.
+
+The following sequence diagram shows how the find operation for the above scenario works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ### Tab feature
 
