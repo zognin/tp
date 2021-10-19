@@ -153,39 +153,6 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### Tab feature
-
-#### Overview
-Tabs are switched programmatically in 2 ways:
-1. Tab command
-1. Executing a command that affects the view of contents in a tab
-
-#### Mechanism
-The tab switch mechanism is facilitated by `CommandResult`.
-This is because any programmatic tab switch will only occur after the execution of a command
-and information about the switch has to be passed to `Ui` components.
-After executing a command, if a tab switch should occur,
-the tab to switch to is stored in a `CommandResult`.
-This `CommandResult` is created in a `Ui` object through `MainWindow#executeCommand()`.
-Hence, data about whether there is a tab switch and which tab to switch to
-can be passed to `Ui` components and rendered accordingly.
-
-The following sequence diagram shows how the tab operation works:
-
-![TabSequenceDiagram](images/TabSequenceDiagram.png)
-
-#### Usage Scenarios
-
-The following activity diagram summarizes what happens when a user executes a command:
-
-![TabActivityDiagram](images/TabActivityDiagram.png)
-
-Example of a successful switch using the Tab command:
-1. The user wishes to switch to the Home tab.
-1. The user executes `tab 1` command to switch to the Home tab. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
-1. The app shows the Home tab.
-
 ### Find feature
 
 #### Overview
@@ -231,6 +198,38 @@ are as follows:
 4. The `FilteredIngredientList` is a JavaFX `ObservableList` that is observed by the `IngredientListPanel`. The change
    in `FilteredIngredientList` will cause the `IngredientListPanel` to re-render, showing only the ingredients that
    match the find criteria.
+
+### Tab feature
+
+#### Overview
+Tabs are switched programmatically in 2 ways:
+1. Tab command
+1. Executing a command that affects the view of contents in a tab
+
+#### Mechanism
+The tab switch mechanism is facilitated by `CommandResult`.
+This is because any programmatic tab switch will only occur after the execution of a command
+and information about the switch has to be passed to `Ui` components.
+After executing a command, if a tab switch should occur,
+the tab to switch to is stored in a `CommandResult`.
+This `CommandResult` is created in a `Ui` object through `MainWindow#executeCommand()`.
+Hence, data about whether there is a tab switch and which tab to switch to
+can be passed to `Ui` components and rendered accordingly.
+
+The following sequence diagram shows how the tab operation works:
+
+![TabSequenceDiagram](images/TabSequenceDiagram.png)
+
+#### Usage Scenarios
+
+The following activity diagram summarizes what happens when a user executes a command:
+
+![TabActivityDiagram](images/TabActivityDiagram.png)
+
+Example of a successful switch using the Tab command:
+1. The user wishes to switch to the Home tab.
+1. The user executes `tab 1` command to switch to the Home tab. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app shows the Home tab.
 
 --------------------------------------------------------------------------------------------------------------------
 
