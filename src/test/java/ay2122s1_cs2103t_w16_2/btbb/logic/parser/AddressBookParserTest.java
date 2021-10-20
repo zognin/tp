@@ -28,6 +28,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
@@ -53,13 +55,17 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.EditOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientUtil;
@@ -69,6 +75,9 @@ import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientUtil;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderUtil;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeUtil;
 
 public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
@@ -96,6 +105,16 @@ public class AddressBookParserTest {
         OrderDescriptor orderDescriptor = new OrderDescriptorBuilder(order).build();
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
         assertEquals(new AddOrderCommand(orderDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addRecipe() throws Exception {
+        Recipe recipe = new RecipeBuilder()
+                .withRecipeIngredients(new RecipeIngredientList(new ArrayList<>())).build();
+        RecipeDescriptor recipeDescriptor = new RecipeDescriptorBuilder(recipe)
+                .withRecipeIngredients(new ArrayList<>()).build();
+        AddRecipeCommand command = (AddRecipeCommand) parser.parseCommand(RecipeUtil.getAddCommand(recipe));
+        assertEquals(new AddRecipeCommand(recipeDescriptor), command);
     }
 
     @Test
