@@ -287,13 +287,6 @@ public class ModelManager implements Model {
         filteredOrders.setPredicate(predicate);
     }
 
-    //=========== Statistics ===============================================================================
-
-    @Override
-    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
-        return addressBook.getTopTenOrderClients();
-    }
-
     //=========== Recipe ====================================================================================
 
     @Override
@@ -338,6 +331,13 @@ public class ModelManager implements Model {
     public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
+    }
+
+    //=========== Statistics ===============================================================================
+
+    @Override
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return addressBook.getTopTenOrderClients();
     }
 
     @Override

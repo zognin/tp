@@ -80,13 +80,13 @@ public class LogicManager implements Logic {
         return model.getFilteredOrderList();
     }
 
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
+    }
+
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return model.getTopTenOrderClients();
-    }
-
-    public ObservableList<Recipe> getFilteredRecipeList() {
-        return model.getFilteredRecipeList();
     }
 
     @Override

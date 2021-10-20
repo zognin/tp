@@ -206,15 +206,6 @@ public interface Model {
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
-    //=========== Statistics =================================================================================
-
-    /**
-     * Returns the top 10 clients with the most orders.
-     *
-     * @return List containing the top 10 clients with most orders.
-     */
-    List<Entry<OrderClient, Long>> getTopTenOrderClients();
-
     //=========== Recipe ======================================================================================
 
     /**
@@ -257,4 +248,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecipeList(Predicate<Recipe> predicate);
+
+    //=========== Statistics =================================================================================
+
+    /**
+     * Returns the top 10 clients with the most orders.
+     *
+     * @return List containing the top 10 clients with most orders.
+     */
+    List<Entry<OrderClient, Long>> getTopTenOrderClients();
 }

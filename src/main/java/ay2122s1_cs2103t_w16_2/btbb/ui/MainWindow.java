@@ -121,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initializes listeners to update statistics when relevant model change.
+     * Initializes listeners to update statistics when relevant models change.
      */
     void initializeStatListeners() {
         logic.getFilteredOrderList().addListener((ListChangeListener<Order>) c -> {

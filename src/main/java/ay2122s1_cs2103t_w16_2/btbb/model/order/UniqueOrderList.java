@@ -86,11 +86,11 @@ public class UniqueOrderList implements Iterable<Order> {
      * @return Top 10 clients with the most orders.
      */
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
-        Map<OrderClient, Long> clientToOrderCountMap = getClientToOrderMap();
+        Map<OrderClient, Long> clientToOrderCountMap = getClientToOrderCountMap();
         return getTopTenOrderClientsFromMap(clientToOrderCountMap);
     }
 
-    private Map<OrderClient, Long> getClientToOrderMap() {
+    private Map<OrderClient, Long> getClientToOrderCountMap() {
         return internalList.stream()
                 .collect(Collectors.groupingBy((order) -> order.getOrderClient(), Collectors.counting()));
     }
