@@ -1,6 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -93,28 +96,37 @@ public class SampleDataUtil {
     }
 
     public static Order[] getSampleOrders() {
+        List<Order> orders = new ArrayList<>();
+
         Client[] people = getSampleClients();
         Recipe[] recipes = getSampleRecipes();
-
-        Order[] orders = new Order[people.length];
-
         Random randomNumberGenerator = new Random();
 
-        int loopCount = Math.min(orders.length, Math.min(recipes.length, recipes.length));
+        int loopCount = Math.min(people.length, recipes.length);
 
-        for (int i = 0; i < loopCount; i++) {
-            float randomPrice = randomNumberGenerator.nextFloat();
-            int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
-            boolean completionstatus = (i % 2 == 0);
-            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
-                    recipes[i].getName(), recipes[i].getRecipeIngredients(),
-                    new Price(String.format("%.2f", randomPrice)),
-                    new Deadline(getSampleDateTimeString(i + 1)),
-                    new Quantity(Integer.toString(randomQuantity)),
-                    new CompletionStatus(completionstatus ? "yes" : "no"));
+        for (int month = 0; month < 12; month++) {
+            for (int i = 0; i < loopCount; i++) {
+                int randomIndex = randomNumberGenerator.nextInt(people.length);
+                float randomPrice = randomNumberGenerator.nextFloat() * 10;
+                int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
+
+                LocalDateTime orderDeadline = getSampleDateTime(month + 1, i + 1);
+                boolean completionstatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
+
+                Order order = new Order(
+                        people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
+                        recipes[i].getName(), recipes[i].getRecipeIngredients(),
+                        new Price(String.format("%.2f", randomPrice)),
+                        new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
+                        new Quantity(Integer.toString(randomQuantity)),
+                        new CompletionStatus(completionstatus ? "yes" : "no")
+                );
+
+                orders.add(order);
+            }
         }
 
-        return orders;
+        return orders.toArray(Order[]::new);
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -139,9 +151,9 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    private static String getSampleDateTimeString(int dayOffset) {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime dateTimeWithOffset = currentDateTime.plusDays(dayOffset);
-        return dateTimeWithOffset.format(Deadline.INPUT_DATETIME_FORMATTER);
+    private static LocalDateTime getSampleDateTime(int month, int day) {
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.of(LocalDate.now().getYear(), month, day);
+        return LocalDateTime.of(date, time);
     }
 }

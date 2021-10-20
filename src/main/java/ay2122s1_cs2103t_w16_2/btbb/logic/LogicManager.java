@@ -2,6 +2,7 @@ package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
@@ -82,6 +83,11 @@ public class LogicManager implements Logic {
 
     public ObservableList<Recipe> getFilteredRecipeList() {
         return model.getFilteredRecipeList();
+    }
+
+    @Override
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        return model.getRevenueForPastTwelveMonths();
     }
 
     @Override

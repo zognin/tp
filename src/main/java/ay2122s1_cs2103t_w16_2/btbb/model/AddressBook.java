@@ -3,6 +3,7 @@ package ay2122s1_cs2103t_w16_2.btbb.model;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -255,6 +256,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// statistics-level operations
+
+    /**
+     * Returns the revenue for the past 12 months.
+     *
+     * @return List containing the month details and the revenue for each month for the past 12 months.
+     */
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        return orders.getRevenueForPastTwelveMonths();
+    }
 
     /**
      * Returns the top 10 clients with the most orders.

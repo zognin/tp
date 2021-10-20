@@ -8,6 +8,9 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
@@ -27,11 +30,17 @@
             <Label text="Statistics" styleClass="list-header"/>
 
             <ScrollPane styleClass="statistics-scroll-pane" fitToWidth="true" fitToHeight="true">
-                <VBox>
+                <VBox spacing="25">
+                    <BarChart minWidth="450" minHeight="450" fx:id="revenueBarChart">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" />
+                        </yAxis>
+                    </BarChart>
+
                     <PieChart minWidth="450" minHeight="450" fx:id="clientPieChart"/>
-                    <padding>
-                        <Insets top="10"/>
-                    </padding>
                 </VBox>
             </ScrollPane>
         </VBox>

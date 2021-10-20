@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
@@ -167,6 +168,11 @@ public class ModelStub implements Model {
     }
 
     // Statistics-level
+
+    @Override
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
