@@ -54,7 +54,7 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your orders list.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your order list.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
