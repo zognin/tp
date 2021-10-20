@@ -27,13 +27,13 @@ public class ListIngredientCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccessWithTabChange(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS,
-                expectedModel, UiTab.INVENTORY);
+                expectedModel, UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         model.updateFilteredIngredientList(unused -> false);
         assertCommandSuccessWithTabChange(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS,
-                expectedModel, UiTab.INVENTORY);
+                expectedModel, UiTab.INVENTORY_AND_STATISTICS);
     }
 }

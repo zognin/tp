@@ -8,8 +8,10 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.exception.ParseException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.Logic;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.HomeTabContent;
 import ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent.StatTabContent;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -119,6 +121,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Initializes listeners to update statistics when relevant models change.
+     */
+    void initializeStatListeners() {
+        logic.getFilteredOrderList().addListener((ListChangeListener<Order>) c -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated() || c.wasPermutated()) {
+                    logger.info("Updating statistics");
+                    updateStatistics();
+                }
+            }
+        });
+    }
+
+    /**
      * Initializes the tabs.
      */
     void initializeTabs() {
@@ -127,7 +143,9 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getFilteredOrderList(), logic.getFilteredRecipeList());
         homeTab.setContent(homeTabContent.getRoot());
 
-        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList());
+        StatTabContent statTabContent = new StatTabContent(
+                logic.getFilteredIngredientList(), logic.getTopTenOrderClients()
+        );
         statTab.setContent(statTabContent.getRoot());
 
         // Select default tab
@@ -183,6 +201,15 @@ public class MainWindow extends UiPart<Stage> {
     void switchTabs(UiTab tab) {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(tab.getZeroBasedTabIndex());
+    }
+
+    /**
+     * Updates displayed statistics.
+     */
+    void updateStatistics() {
+        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
+                logic.getTopTenOrderClients());
+        statTab.setContent(statTabContent.getRoot());
     }
 
     /**

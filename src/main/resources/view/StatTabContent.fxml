@@ -5,6 +5,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <?import javafx.scene.control.Label?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
 <GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
@@ -15,9 +18,27 @@
             <Label text="Inventory" styleClass="list-header"/>
             <StackPane fx:id="ingredientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
+
+        <VBox styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+
+            <Label text="Statistics" styleClass="list-header"/>
+
+            <ScrollPane styleClass="statistics-scroll-pane" fitToWidth="true" fitToHeight="true">
+                <VBox>
+                    <PieChart minWidth="450" minHeight="450" fx:id="clientPieChart"/>
+                    <padding>
+                        <Insets top="10"/>
+                    </padding>
+                </VBox>
+            </ScrollPane>
+        </VBox>
     </children>
 
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="30.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="70.0"/>
     </columnConstraints>
 </GridPane>

@@ -57,7 +57,9 @@ public class DeleteIngredientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), UiTab.INVENTORY);
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), UiTab.INVENTORY_AND_STATISTICS
+        );
     }
 
     @Override

@@ -2,6 +2,8 @@ package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -16,6 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.storage.Storage;
 import javafx.collections.ObservableList;
@@ -77,9 +80,13 @@ public class LogicManager implements Logic {
         return model.getFilteredOrderList();
     }
 
-    @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
         return model.getFilteredRecipeList();
+    }
+
+    @Override
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return model.getTopTenOrderClients();
     }
 
     @Override

@@ -28,6 +28,6 @@ public class ListIngredientCommand extends Command {
 
         requireNonNull(model);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
-        return new CommandResult(MESSAGE_SUCCESS, UiTab.INVENTORY);
+        return new CommandResult(MESSAGE_SUCCESS, UiTab.INVENTORY_AND_STATISTICS);
     }
 }

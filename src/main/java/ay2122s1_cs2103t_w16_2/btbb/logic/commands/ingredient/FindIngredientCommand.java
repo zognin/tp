@@ -59,7 +59,7 @@ public class FindIngredientCommand extends Command {
         model.updateFilteredIngredientList(predicateCollection);
         return new CommandResult(
                 String.format(Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW, model.getFilteredIngredientList().size()),
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Override

@@ -94,6 +94,10 @@ public class Order {
         return completionStatus;
     }
 
+    public OrderClient getOrderClient() {
+        return new OrderClient(getClientName(), getClientPhone());
+    }
+
     /**
      * Returns true if both orders have the same client fields, recipe fields, deadline and finished status.
      * This defines a weaker notion of equality between two orders.

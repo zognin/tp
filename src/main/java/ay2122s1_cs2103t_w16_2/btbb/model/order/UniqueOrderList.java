@@ -3,8 +3,12 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import javafx.collections.FXCollections;
@@ -72,6 +76,32 @@ public class UniqueOrderList implements Iterable<Order> {
     public void setOrders(List<Order> orders) {
         requireAllNonNull(orders);
         internalList.setAll(orders);
+    }
+
+    /**
+     * Returns the top 10 clients with the most orders.
+     * Ties are broken arbitrarily eg. if there are multiple clients with the same number of orders, 10 random
+     * clients will be chosen.
+     *
+     * @return Top 10 clients with the most orders.
+     */
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        Map<OrderClient, Long> clientToOrderCountMap = getClientToOrderCountMap();
+        return getTopTenOrderClientsFromMap(clientToOrderCountMap);
+    }
+
+    private Map<OrderClient, Long> getClientToOrderCountMap() {
+        return internalList.stream()
+                .collect(Collectors.groupingBy((order) -> order.getOrderClient(), Collectors.counting()));
+    }
+
+    private List<Entry<OrderClient, Long>> getTopTenOrderClientsFromMap(
+            Map<OrderClient, Long> hashMap) {
+        return hashMap.entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Entry.comparingByValue()))
+                .limit(10)
+                .collect(Collectors.toList());
     }
 
     /**
