@@ -1,76 +1,10 @@
 @startuml
-!include style.puml
+start
+:User executes list command;
 
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
-participant ":ResultDisplay" as ResultDisplay UI_COLOR
-end box
-[-> MainWindow : executeCommand(commandText)
-activate MainWindow
+:Generate Command Result;
 
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "c:ListOrderCommand" as ListOrderCommand LOGIC_COLOR
-participant "result:CommandResult" as CommandResult LOGIC_COLOR
-end box
+:Update List;
 
-box Model MODEL_COLOR_T1
-participant ":ModelManager" as ModelManager MODEL_COLOR
-end box
-
-MainWindow -> LogicManager : execute(commandText)
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand(commandText)
-activate AddressBookParser
-
-create ListOrderCommand
-AddressBookParser -> ListOrderCommand
-activate ListOrderCommand
-
-ListOrderCommand --> AddressBookParser
-deactivate ListOrderCommand
-
-AddressBookParser --> LogicManager
-deactivate AddressBookParser
-
-LogicManager -> ListOrderCommand : execute()
-activate ListOrderCommand
-
-ListOrderCommand -> ModelManager : updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)
-activate ModelManager
-
-ModelManager -> ModelManager : setPredicate(PREDICATE_SHOW_ALL_ORDERS)
-activate ModelManager
-
-ModelManager --> ModelManager
-deactivate ModelManager
-
-ModelManager --> ListOrderCommand
-deactivate ModelManager
-|||
-create CommandResult
-ListOrderCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ListOrderCommand
-deactivate CommandResult
-destroy CommandResult
-
-ListOrderCommand --> LogicManager : result
-deactivate ListOrderCommand
-destroy ListOrderCommand
-
-LogicManager --> MainWindow : result
-deactivate
-|||
-MainWindow -> ResultDisplay : setFeedbackToUser()
-activate ResultDisplay
-
-ResultDisplay --> MainWindow
-deactivate ResultDisplay
-
-[<--MainWindow
-deactivate MainWindow
+end
 @enduml

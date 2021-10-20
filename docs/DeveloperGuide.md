@@ -167,6 +167,7 @@ ie. clients, orders, ingredients and recipes.
 The list operation is facilitated by 
 
 The following sequence diagram shows how the list operation works:
+![List]
 
 #### Usage Scenario
 
