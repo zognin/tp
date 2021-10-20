@@ -73,4 +73,16 @@ public class Recipe {
                 && getRecipeIngredients().equals(otherRecipe.getRecipeIngredients())
                 && getPrice().equals(otherRecipe.getPrice());
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Ingredients: ")
+                .append(getRecipeIngredients())
+                .append("; Price: ")
+                .append(getPrice());
+
+        return builder.toString();
+    }
 }
