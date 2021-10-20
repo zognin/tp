@@ -34,14 +34,14 @@ public class AddRecipeCommand extends Command {
             + PREFIX_RECIPE_PRICE + "2.00";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in your recipe bookmarks";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in your recipe bookmarks.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
     private final RecipeDescriptor recipeDescriptor;
 
     /**
-     * Creates an AddRecipeCommand to add the specified {@code Recipe}
+     * Creates an AddRecipeCommand to add the specified {@code Recipe}.
      */
     public AddRecipeCommand(RecipeDescriptor recipeDescriptor) {
         requireNonNull(recipeDescriptor);

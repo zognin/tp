@@ -19,15 +19,15 @@ public class ModelStubAcceptingRecipeAdded extends ModelStub {
     }
 
     @Override
-    public boolean hasRecipe(Recipe recipe) {
-        requireNonNull(recipe);
-        return recipesAdded.stream().anyMatch(recipe::isSameRecipe);
-    }
-
-    @Override
     public void addRecipe(Recipe recipe) {
         requireNonNull(recipe);
         recipesAdded.add(recipe);
+    }
+
+    @Override
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return recipesAdded.stream().anyMatch(recipe::isSameRecipe);
     }
 
     @Override

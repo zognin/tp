@@ -20,6 +20,14 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
  * Parses input arguments and creates a new AddRecipeCommand object.
  */
 public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddRecipeCommand
+     * and returns an AddRecipeCommand object for execution.
+     *
+     * @param args String input
+     * @return AddRecipeCommand object.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     @Override
     public AddRecipeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

@@ -45,7 +45,7 @@ public class AddOrderCommand extends Command {
             + "If ORDER_QUANTITY is not present, it will be set to 1 by default.";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your orders list";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your orders list.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
