@@ -154,6 +154,24 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### List feature
+
+#### Overview
+
+List operation can be executed for all entity types in the model,
+ie. clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+The list operation is facilitated by 
+
+The following sequence diagram shows how the list operation works:
+
+#### Usage Scenario
+
+
+
 ### Tab feature
 
 #### Overview
