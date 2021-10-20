@@ -4,6 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -55,6 +56,14 @@ public class Deadline {
 
     public LocalDateTime getDeadline() {
         return deadline;
+    }
+
+    public Month getMonth() {
+        return deadline.getMonth();
+    }
+
+    public int getYear() {
+        return deadline.getYear();
     }
 
     /**

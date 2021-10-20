@@ -36,6 +36,10 @@ public class Price implements Comparable<Price> {
         return test != null && test.matches(VALIDATION_REGEX);
     }
 
+    public Double doubleValue() {
+        return price.doubleValue();
+    }
+
     @Override
     public int compareTo(Price other) {
         return price.compareTo(other.price);

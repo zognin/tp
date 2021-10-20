@@ -4,6 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
@@ -334,6 +335,11 @@ public class ModelManager implements Model {
     }
 
     //=========== Statistics ===============================================================================
+
+    @Override
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        return addressBook.getRevenueForPastTwelveMonths();
+    }
 
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
