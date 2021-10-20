@@ -13,7 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Lists all orders in the address book to the user.
+ * Lists all orders in btbb to the user.
  */
 public class ListOrderCommand extends Command {
     public static final String COMMAND_WORD = "list-o";

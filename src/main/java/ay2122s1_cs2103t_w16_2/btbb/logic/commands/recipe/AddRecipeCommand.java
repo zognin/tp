@@ -23,7 +23,7 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 public class AddRecipeCommand extends Command {
     public static final String COMMAND_WORD = "add-r";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to your recipe bookmarks.\n"
             + "Parameters: "
             + PREFIX_RECIPE_NAME + "RECIPE_NAME "
             + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
@@ -34,7 +34,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_RECIPE_PRICE + "2.00";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in your recipe bookmarks";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 

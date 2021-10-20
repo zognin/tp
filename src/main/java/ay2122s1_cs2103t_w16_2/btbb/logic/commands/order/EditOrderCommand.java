@@ -30,7 +30,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Edits the details of an existing order in the address book.
+ * Edits the details of an existing order in btbb.
  */
 public class EditOrderCommand extends Command {
     public static final String COMMAND_WORD = "edit-o";
@@ -54,7 +54,7 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your orders list.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
