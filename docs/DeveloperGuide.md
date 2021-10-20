@@ -163,15 +163,28 @@ List operation can be executed for all entity types in the model,
 ie. clients, orders, ingredients and recipes.
 
 #### Mechanism
+This section explains the List Order Mechanism:
+1. The user executes the `ListOrderCommand` to display everything stored in the specified list.
+2. The `ListOrderCommandParser` parses the command into a `ListOrderCommand`, which is passed back to the logic to be executed.
+3. The `Logic` Component then executes the command.
+4. The Model's `filteredOrderList` will be updated to show all orders.
+5. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
 
-The list operation is facilitated by 
+This Mechanism is the same for all other entities (client, ingredient and recipe) in the model.
 
 The following sequence diagram shows how the list operation works:
-![List]
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 #### Usage Scenario
 
+The following activity diagram summarizes what happens when a user executes a list command:
 
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+Example of a successful outcome using the List command:
+1. The user wishes to list all orders in the order list.
+1. The user executes `list-o` command to list all orders. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app shows all orders in the order list.
 
 ### Tab feature
 
