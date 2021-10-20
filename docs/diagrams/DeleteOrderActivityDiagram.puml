@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes delete order command;
+
+if () then ([!isOrderFinished])
+    :Add ingredient back to inventory;
+else ([else])
+endif
+
+:Model deletes order from order list;
+
+:Order list removes order;
+
+:Storage saves order list after deletion;
+stop
+@enduml
