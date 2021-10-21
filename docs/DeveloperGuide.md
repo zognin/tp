@@ -158,42 +158,40 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Overview
 
-Delete operations can be executed for all entity types in the model, ie. clients, orders, ingredients and recipes.
+Delete operations can be executed for all entity types in the model, i.e. clients, orders, ingredients and recipes.
 
 #### Mechanism
 
-This section explains the delete order mechanism.
+This is how the delete mechanism works in general:
+1. User enters a delete command.
+1. A relevant `DeleteXCommandParser`, where `X` is one of the entity types parses the command to generate a `DeleteXCommand`
+1. The `DeleteXCommand` is executed.
+1. `Model` deletes the entity.
+1. `Storage` saves the changes.
+1. Feedback about the status of the delete is shown to the user.
 
-1. The user executes the `delete-o 1` command to delete the first order in the displayed order list.
+#### Extensions
+1. For a delete order command, there is an additional step of adding the ingredient quantity back to the matching
+   ingredients in the inventory.
 
-2. The `DeleteOrderCommandParser` parses the command into `DeleteOrderCommand` that contains the index of the order
-   to be deleted. This command is passed back to the logic to be executed.
-
-3. Logic then executes the command to delete the order.
-
-4. If the order is not yet finished, the model will first add the ingredients contained in the order back to the
-   inventory. Afterwards, the model deletes the order from the order list.
-
-5. Lastly, the storage saves the changes.
-
-The following sequence diagram shows how the delete order operation works:
+The following sequence diagram shows how the delete order operation works. The sequence diagram for other entity
+types (client, ingredient and recipe) in the model is similar, the only difference being that there is no additional
+step of adding the ingredient quantity back into the inventory.
 
 ![DeleteOrderSequenceDiagram](images/DeleteOrderSequenceDiagram.png)
 
-Note: The mechanism for other entity types (client, ingredient and recipe) in the model is similar, the only difference
-being that there is no additional step of adding the ingredient quantity back into the inventory.
 #### Usage scenarios
 
 The following activity diagram summarizes what happens when a user executes a delete order command:
 
 ![DeleteOrderActivityDiagram](images/DeleteOrderActivityDiagram.png)
 
-Example of a successful deletion using the Delete command:
+Example of a successful deletion using the Delete order command:
 
 1. The user wishes to delete the first order in the list
-2. The user executes `delete-o 1` command to delete the first order. The `commandText` is received by
+1. The user executes `delete-o 1` command to delete the first order. The `commandText` is received by
    `MainWindow#executeCommand()` and the above mechanism occurs.
-3. The app deletes the order and the order is no longer shown in the list.
+1. The app deletes the order and the order is no longer shown in the list.
 
 ### Tab feature
 
