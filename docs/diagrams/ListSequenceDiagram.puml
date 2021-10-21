@@ -11,7 +11,7 @@ activate MainWindow
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "c:ListOrderCommand" as ListOrderCommand LOGIC_COLOR
+participant "l:ListOrderCommand" as ListOrderCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -29,10 +29,10 @@ create ListOrderCommand
 AddressBookParser -> ListOrderCommand
 activate ListOrderCommand
 
-ListOrderCommand --> AddressBookParser
+ListOrderCommand --> AddressBookParser : l
 deactivate ListOrderCommand
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : l
 deactivate AddressBookParser
 
 LogicManager -> ListOrderCommand : execute()
@@ -54,7 +54,7 @@ create CommandResult
 ListOrderCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListOrderCommand
+CommandResult --> ListOrderCommand : result
 deactivate CommandResult
 
 ListOrderCommand --> LogicManager : result

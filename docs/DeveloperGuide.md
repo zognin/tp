@@ -194,8 +194,7 @@ Example of a successful deletion using the delete order command:
 
 #### Overview
 
-List operation can be executed for all entity types in the model,
-ie. clients, orders, ingredients and recipes.
+List operation can be executed for the following entities: clients, orders, ingredients and recipes.
 
 #### Mechanism
 This section explains the List Mechanism:
@@ -203,7 +202,7 @@ This section explains the List Mechanism:
 The list mechanism is facilitated by updating the filtered list in `ModelManager` with the predicate that shows all objects in the specified entity list.
 
 The Filtered List is a JavaFX `ObservableList` that is observed by the respective entity Ui Panel.
-Changes made to this list will case the Ui panel to re-render, showing all objects of the specified entity.
+Changes made to this list will cause the Ui panel to re-render, showing all objects of the specified entity.
 
 #### Usage Scenario
 
