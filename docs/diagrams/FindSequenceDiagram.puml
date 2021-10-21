@@ -1,6 +1,5 @@
 @startuml
 !include style.puml
-skinparam Padding 0
 
 box Logic LOGIC_COLOR_T1
 participant ":FindIngredientCommandParser" as FindIngredientCommandParser LOGIC_COLOR
@@ -10,11 +9,12 @@ participant ":ValueWithinRangePredicate" as ValueWithinRangePredicate LOGIC_COLO
 participant "c:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
+
 [-> FindIngredientCommandParser : parse(args)
 activate FindIngredientCommandParser
 
 box Model MODEL_COLOR_T1
-participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 end box
 
 create PredicateCollection
@@ -63,12 +63,12 @@ deactivate FindIngredientCommandParser
 [-> FindIngredientCommand : execute()
 activate FindIngredientCommand
 
-FindIngredientCommand -> ModelManager : updateFilteredIngredientList(p)
-activate ModelManager
+FindIngredientCommand -> Model : updateFilteredIngredientList(p)
+activate Model
 
-ModelManager --> FindIngredientCommand
-deactivate ModelManager
-|||
+Model --> FindIngredientCommand
+deactivate Model
+
 create CommandResult
 FindIngredientCommand -> CommandResult
 activate CommandResult
