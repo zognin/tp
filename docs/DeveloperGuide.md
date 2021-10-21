@@ -163,27 +163,25 @@ List operation can be executed for all entity types in the model,
 ie. clients, orders, ingredients and recipes.
 
 #### Mechanism
-This section explains the List Order Mechanism:
-1. The user executes the `ListOrderCommand` to display everything stored in the specified list.
-2. The `ListOrderCommandParser` parses the command into a `ListOrderCommand`, which is passed back to the logic to be executed.
-3. The `Logic` Component then executes the command.
-4. The Model's `filteredOrderList` will be updated to show all orders.
-5. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
+This section explains the List Mechanism:
 
-This Mechanism is the same for all other entities (client, ingredient and recipe) in the model.
+The list mechanism is facilitated by updating the filtered list in `ModelManager` with the predicate that shows all objects in the specified entity list.
 
-The following sequence diagram shows how the list operation works:
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
+The Filtered List is a JavaFX `ObservableList` that is observed by the respective entity Ui Panel.
+Changes made to this list will case the Ui panel to re-render, showing all objects of the specified entity.
 
 #### Usage Scenario
 
-The following activity diagram summarizes what happens when a user executes a list command:
-
-![ListActivityDiagram](images/ListActivityDiagram.png)
+The following sequence diagram shows how the list order operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 Example of a successful outcome using the List command:
 1. The user wishes to list all orders in the order list.
-1. The user executes `list-o` command to list all orders. The `commandText` is received by `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The user executes `list-o` command to display everything stored in the specified order list. The `commandText` is received by `MainWindow#executeCommand()`.
+1. The `ListOrderCommandParser` parses the command into a `ListOrderCommand`, which is passed back to the `Logic` to be executed.
+1. The `Logic` Component then executes the command.
+1. The Model's `filteredOrderList` will be updated to show all orders.
+1. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
 1. The app shows all orders in the order list.
 
 ### Tab feature

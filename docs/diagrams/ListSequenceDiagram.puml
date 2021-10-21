@@ -56,11 +56,9 @@ activate CommandResult
 
 CommandResult --> ListOrderCommand
 deactivate CommandResult
-destroy CommandResult
 
 ListOrderCommand --> LogicManager : result
 deactivate ListOrderCommand
-destroy ListOrderCommand
 
 LogicManager --> MainWindow : result
 deactivate

@@ -1,9 +1,0 @@
-@startuml
-start
-:User executes list command;
-
-:Generate Command Result;
-
-:Update List;
-stop
-@enduml
