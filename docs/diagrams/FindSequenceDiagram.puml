@@ -1,16 +1,8 @@
 @startuml
 !include style.puml
-
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
-participant ":ResultDisplay" as ResultDisplay UI_COLOR
-end box
-[-> MainWindow : executeCommand(commandText)
-activate MainWindow
+skinparam Padding 0
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindIngredientCommandParser" as FindIngredientCommandParser LOGIC_COLOR
 participant "p:PredicateCollection" as PredicateCollection LOGIC_COLOR
 participant ":StringContainsKeywordsPredicate" as StringContainsKeywordsPredicate LOGIC_COLOR
@@ -18,22 +10,15 @@ participant ":ValueWithinRangePredicate" as ValueWithinRangePredicate LOGIC_COLO
 participant "c:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
+[-> FindIngredientCommandParser : parse(args)
+activate FindIngredientCommandParser
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-MainWindow -> LogicManager : execute(commandText)
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand(commandText)
-activate AddressBookParser
-
-AddressBookParser -> FindIngredientCommandParser : parse(args)
-activate FindIngredientCommandParser
-
 create PredicateCollection
-FindIngredientCommandParser -> PredicateCollection : PredicateCollection()
+FindIngredientCommandParser -> PredicateCollection
 activate PredicateCollection
 
 PredicateCollection --> FindIngredientCommandParser
@@ -43,7 +28,7 @@ FindIngredientCommandParser -> PredicateCollection : addStringContainsKeywordsPr
 activate PredicateCollection
 
 create StringContainsKeywordsPredicate
-PredicateCollection -> StringContainsKeywordsPredicate : StringContainsKeywordsPredicate()
+PredicateCollection -> StringContainsKeywordsPredicate
 activate StringContainsKeywordsPredicate
 
 StringContainsKeywordsPredicate --> PredicateCollection
@@ -56,7 +41,7 @@ FindIngredientCommandParser -> PredicateCollection : addValueWithinRangePredicat
 activate PredicateCollection
 
 create ValueWithinRangePredicate
-PredicateCollection -> ValueWithinRangePredicate : ValueWithinRangePredicate()
+PredicateCollection -> ValueWithinRangePredicate
 activate ValueWithinRangePredicate
 
 ValueWithinRangePredicate --> PredicateCollection
@@ -66,19 +51,16 @@ PredicateCollection --> FindIngredientCommandParser
 deactivate PredicateCollection
 
 create FindIngredientCommand
-FindIngredientCommandParser -> FindIngredientCommand : FindIngredientCommand(p)
+FindIngredientCommandParser -> FindIngredientCommand
 activate FindIngredientCommand
 
 FindIngredientCommand --> FindIngredientCommandParser
 deactivate FindIngredientCommand
 
-FindIngredientCommandParser --> AddressBookParser : c
+[<--FindIngredientCommandParser : c
 deactivate FindIngredientCommandParser
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
-
-LogicManager -> FindIngredientCommand : execute()
+[-> FindIngredientCommand : execute()
 activate FindIngredientCommand
 
 FindIngredientCommand -> ModelManager : updateFilteredIngredientList(p)
@@ -94,18 +76,7 @@ activate CommandResult
 CommandResult --> FindIngredientCommand
 deactivate CommandResult
 
-FindIngredientCommand --> LogicManager : result
+[<--FindIngredientCommand : result
 deactivate FindIngredientCommand
 
-LogicManager --> MainWindow : result
-deactivate LogicManager
-
-MainWindow -> ResultDisplay : setFeedbackToUser()
-activate ResultDisplay
-
-ResultDisplay --> MainWindow
-deactivate ResultDisplay
-
-[<--MainWindow
-deactivate MainWindow
 @enduml
