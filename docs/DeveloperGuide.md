@@ -165,7 +165,7 @@ Delete operations can be executed for the following entities: clients, orders, i
 This is how the delete mechanism works in general:
 1. User enters a delete command.
 1. A relevant `DeleteXCommandParser`, where `X` is one of the entities, parses the command to generate a
-   `DeleteXCommand`
+   `DeleteXCommand`.
 1. The `DeleteXCommand` is executed.
 1. `Model` deletes the entity.
 1. `Storage` saves the changes.
@@ -185,7 +185,7 @@ The following activity diagram summarizes what happens when a user executes a de
 
 Example of a successful deletion using the delete order command:
 
-1. The user wishes to delete the first order in the list
+1. The user wishes to delete the first order in the list.
 1. The user executes `delete-o 1` command to delete the first order. The `commandText` is received by
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app deletes the order and the order is no longer shown in the list.
