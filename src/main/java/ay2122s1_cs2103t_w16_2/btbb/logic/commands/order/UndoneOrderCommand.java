@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Marks an order as undone in address book.
+ * Marks an order as undone in btbb.
  */
 public class UndoneOrderCommand extends Command {
     public static final String COMMAND_WORD = "undone-o";

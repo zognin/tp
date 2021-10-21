@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Marks an order as done in address book.
+ * Marks an order as done in btbb.
  */
 public class DoneOrderCommand extends Command {
     public static final String COMMAND_WORD = "done-o";

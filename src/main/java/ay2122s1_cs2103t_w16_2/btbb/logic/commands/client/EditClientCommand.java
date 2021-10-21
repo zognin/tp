@@ -24,7 +24,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Edits the details of an existing client in btbb.
  */
 public class EditClientCommand extends Command {
     public static final String COMMAND_WORD = "edit-c";
@@ -43,7 +43,7 @@ public class EditClientCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in your client bookmarks.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
