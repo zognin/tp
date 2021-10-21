@@ -10,9 +10,12 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_DANIE
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_GEORGE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_HARRY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_HOON;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IDA;
-import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IMRAN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IRIS;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_JANE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_KELLY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -128,35 +131,21 @@ class UniqueOrderListTest {
 
     @Test
     public void getTopTenOrderRecipes_listContainsOrdersForElevenRecipes_returnsTopTenRecipes() {
-        Order orderForAmy = new OrderBuilder(ORDER_FOR_AMY).withRecipeName(new GenericString("Latte"))
-                .withQuantity(new Quantity("1")).build();
-        Order orderForBob = new OrderBuilder(ORDER_FOR_BOB).withRecipeName(new GenericString("Chocolate Cake"))
-                .withQuantity(new Quantity("2")).build();
-        Order orderForImran = new OrderBuilder(ORDER_FOR_IMRAN).withRecipeName(new GenericString("Salad"))
-                .withQuantity(new Quantity("3")).build();
-        Order orderForHoon = new OrderBuilder(ORDER_FOR_HOON).withRecipeName(new GenericString("Aglio Olio"))
-                .withQuantity(new Quantity("4")).build();
-        Order orderForIda = new OrderBuilder(ORDER_FOR_IDA).withRecipeName(new GenericString("Porridge"))
-                .withQuantity(new Quantity("5")).build();
-
-        Order orderForAlice = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("6")).build();
-        Order orderForBenson = new OrderBuilder(ORDER_FOR_BENSON).withQuantity(new Quantity("7")).build();
-        Order orderForCarl = new OrderBuilder(ORDER_FOR_CARL).withQuantity(new Quantity("8")).build();
-        Order orderForDaniel = new OrderBuilder(ORDER_FOR_DANIEL).withQuantity(new Quantity("9")).build();
-        Order orderForElle = new OrderBuilder(ORDER_FOR_ELLE).withQuantity(new Quantity("10")).build();
-        Order orderForFiona = new OrderBuilder(ORDER_FOR_FIONA).withQuantity(new Quantity("11")).build();
-
-        List<Order> orderList = new ArrayList<>(List.of(orderForAmy, orderForAlice, orderForBenson, orderForBob,
-                orderForCarl, orderForDaniel, orderForElle, orderForFiona, orderForImran, orderForHoon, orderForIda));
+        List<Order> orderList = new ArrayList<>(List.of(ORDER_FOR_ALICE, ORDER_FOR_BENSON, ORDER_FOR_CARL,
+                ORDER_FOR_DANIEL, ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE, ORDER_FOR_HARRY, ORDER_FOR_IRIS,
+                ORDER_FOR_JANE, ORDER_FOR_KELLY));
 
         UniqueOrderList uniqueOrderList = new UniqueOrderList();
         for (int i = 0; i < orderList.size(); i++) {
-            uniqueOrderList.add(orderList.get(i));
+            String qty = Integer.toString(i + 1);
+            Order orderToAdd = new OrderBuilder(orderList.get(i)).withQuantity(new Quantity(qty)).build();
+            orderList.set(i, orderToAdd);
+            uniqueOrderList.add(orderToAdd);
         }
 
         List<Entry<GenericString, Long>> topTenRecipes = uniqueOrderList.getTopTenOrderRecipes();
 
-        orderList.remove(orderForAmy);
+        orderList.remove(0); // remove edited ORDER_FOR_ALICE
         List<Entry<GenericString, Long>> expectedTopTenClients = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Order currOrder = orderList.get(i);

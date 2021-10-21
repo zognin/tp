@@ -66,7 +66,7 @@ public class Quantity implements Comparable<Quantity> {
     /**
      * Gets the integer value stored in {@Quantity}.
      *
-     * @return quantity value.
+     * @return Quantity value.
      */
     public int getQuantityAsInt() {
         return this.quantity;
