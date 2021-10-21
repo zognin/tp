@@ -3,7 +3,6 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.time.Month;
 import java.time.YearMonth;
 import java.util.Collections;
 import java.util.HashMap;
@@ -96,19 +95,9 @@ public class UniqueOrderList implements Iterable<Order> {
 
     private void fillInitialValuesForRevenueMap(Map<YearMonth, Double> orderToMonthlyRevenueMap) {
         YearMonth currentYearMonth = YearMonth.now();
-        int year = currentYearMonth.getYear();
-        Month month = currentYearMonth.getMonth();
-
         for (int i = 0; i < 12; i++) {
-            orderToMonthlyRevenueMap.put(YearMonth.of(year, month), 0.0);
-
-            if (month == Month.JANUARY) {
-                month = Month.DECEMBER;
-                year--;
-                continue;
-            }
-
-            month = Month.of(month.getValue() - 1);
+            orderToMonthlyRevenueMap.put(currentYearMonth, 0.0);
+            currentYearMonth = currentYearMonth.minusMonths(1);
         }
     }
 
