@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -48,6 +49,13 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of recipes */
     ObservableList<Recipe> getFilteredRecipeList();
+
+    /**
+     * Returns the revenue for the past 12 months.
+     *
+     * @return List containing the month details and the revenue for each month for the past 12 months.
+     */
+    List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths();
 
     /**
      * Returns the top 10 clients with the most orders.

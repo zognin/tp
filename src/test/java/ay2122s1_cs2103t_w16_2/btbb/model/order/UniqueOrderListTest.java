@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Month;
+import java.time.YearMonth;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +52,49 @@ class UniqueOrderListTest {
     public void contains_orderInList_returnsTrue() {
         uniqueOrderList.add(ORDER_FOR_ALICE);
         assertTrue(uniqueOrderList.contains(ORDER_FOR_ALICE));
+    }
+
+    @Test
+    public void getRevenueForPastTwelveMonths_emptyOrderList_returnsZeroRevenueForPastTwelveMonths() {
+        List<Entry<YearMonth, Double>> revenueList = uniqueOrderList.getRevenueForPastTwelveMonths();
+        assertEquals(12, revenueList.size());
+        revenueList.forEach(item -> assertEquals(0, item.getValue()));
+    }
+
+    @Test
+    public void getRevenueForPastTwelveMonths_nonEmptyOrderList_returnsCorrectRevenueForPastTwelveMonths() {
+        List<Order> orderList = new ArrayList<>(List.of(ORDER_FOR_ALICE, ORDER_FOR_AMY, ORDER_FOR_BOB, ORDER_FOR_BENSON,
+                ORDER_FOR_CARL, ORDER_FOR_DANIEL, ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE, ORDER_FOR_HOON,
+                ORDER_FOR_IDA));
+
+        YearMonth currentYearMonth = YearMonth.now();
+
+        for (int i = 0; i < 12; i++) {
+            int year = currentYearMonth.getYear();
+            Month month = currentYearMonth.getMonth();
+
+            for (Order order : orderList) {
+                Order o = new OrderBuilder(order)
+                        .withPrice(new Price(String.valueOf(i + 1)))
+                        .withDeadline(new Deadline(
+                                String.format("%s-%s-%s 1900", i + 10,
+                                        month.getValue() < 10
+                                                ? "0" + month.getValue()
+                                                : month.getValue(),
+                                        year)))
+                        .withCompletionStatus(new CompletionStatus(true))
+                        .build();
+
+                uniqueOrderList.add(o);
+            }
+
+            currentYearMonth = currentYearMonth.minusMonths(1);
+        }
+
+        List<Entry<YearMonth, Double>> revenueList = uniqueOrderList.getRevenueForPastTwelveMonths();
+        for (int i = 0; i < revenueList.size(); i++) {
+            assertEquals((i + 1) * 11, revenueList.get(revenueList.size() - 1 - i).getValue());
+        }
     }
 
     @Test
