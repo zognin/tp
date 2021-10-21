@@ -143,9 +143,10 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getFilteredOrderList(), logic.getFilteredRecipeList());
         homeTab.setContent(homeTabContent.getRoot());
 
-        StatTabContent statTabContent = new StatTabContent(
-                logic.getFilteredIngredientList(), logic.getTopTenOrderClients(), logic.getRevenueForPastTwelveMonths()
-        );
+        StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
+                logic.getRevenueForPastTwelveMonths(),
+                logic.getTopTenOrderClients(),
+                logic.getTopTenOrderRecipes());
         statTab.setContent(statTabContent.getRoot());
 
         // Select default tab
@@ -208,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void updateStatistics() {
         StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
-                logic.getTopTenOrderClients(), logic.getRevenueForPastTwelveMonths());
+                logic.getRevenueForPastTwelveMonths(), logic.getTopTenOrderClients(), logic.getTopTenOrderRecipes());
         statTab.setContent(statTabContent.getRoot());
     }
 

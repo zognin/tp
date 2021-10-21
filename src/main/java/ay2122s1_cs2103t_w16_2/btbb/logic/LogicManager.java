@@ -21,6 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -93,6 +94,16 @@ public class LogicManager implements Logic {
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return model.getTopTenOrderClients();
+    }
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    @Override
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        return model.getTopTenOrderRecipes();
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiPart;
 import ay2122s1_cs2103t_w16_2.btbb.ui.ingredient.IngredientListPanel;
 import javafx.collections.FXCollections;
@@ -35,6 +36,9 @@ public class StatTabContent extends UiPart<Region> {
     @FXML
     private PieChart clientPieChart;
 
+    @FXML
+    private PieChart recipePieChart;
+
     /**
      * Constructs a {@code StatTabContent}.
      *
@@ -43,15 +47,17 @@ public class StatTabContent extends UiPart<Region> {
      * @param revenueForPastTwelveMonths Revenue details for the past 12 months.
      */
     public StatTabContent(ObservableList<Ingredient> ingredientList,
+                          List<Entry<YearMonth, Double>> revenueForPastTwelveMonths,
                           List<Entry<OrderClient, Long>> topTenOrderClients,
-                          List<Entry<YearMonth, Double>> revenueForPastTwelveMonths) {
+                          List<Entry<GenericString, Long>> topTenOrderRecipes) {
         super(FXML);
 
         IngredientListPanel ingredientListPanel = new IngredientListPanel(ingredientList);
         ingredientListPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
 
-        setTopTenOrderClientsPieChart(topTenOrderClients);
         setRevenueBarChart(revenueForPastTwelveMonths);
+        setTopTenOrderClientsPieChart(topTenOrderClients);
+        setTopTenOrderRecipesPieChart(topTenOrderRecipes);
     }
 
     private void setRevenueBarChart(List<Entry<YearMonth, Double>> revenueForPastTwelveMonths) {
@@ -90,5 +96,26 @@ public class StatTabContent extends UiPart<Region> {
 
         clientPieChart.setData(pieChartData);
         clientPieChart.setTitle("Top 10 Clients (by no. of Orders)");
+    }
+
+    /**
+     * Converts a list of top 10 recipes to data points in the pie chart.
+     *
+     * @param topTenOrderRecipes Top 10 order recipes to be converted to data points in the pie chart.
+     */
+    private void setTopTenOrderRecipesPieChart(List<Entry<GenericString, Long>> topTenOrderRecipes) {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableList(
+                topTenOrderRecipes.stream()
+                        .map(entry -> {
+                            GenericString recipeName = entry.getKey();
+                            return new PieChart.Data(recipeName.toString()
+                                    + "\n" + "Orders: " + entry.getValue(),
+                                    entry.getValue());
+                        })
+                        .collect(Collectors.toList())
+        );
+
+        recipePieChart.setData(pieChartData);
+        recipePieChart.setTitle("Top 10 Recipes (by no. of Orders)");
     }
 }

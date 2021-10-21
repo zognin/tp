@@ -92,6 +92,10 @@ public class Order {
         return quantity;
     }
 
+    public int getQuantityAsInt() {
+        return quantity.getQuantityAsInt();
+    }
+
     public CompletionStatus getCompletionStatus() {
         return completionStatus;
     }
