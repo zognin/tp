@@ -24,7 +24,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
      * Parses the given {@code String} of arguments in the context of the AddRecipeCommand
      * and returns an AddRecipeCommand object for execution.
      *
-     * @param args String input
+     * @param args String input.
      * @return AddRecipeCommand object.
      * @throws ParseException if the user input does not conform the expected format.
      */
