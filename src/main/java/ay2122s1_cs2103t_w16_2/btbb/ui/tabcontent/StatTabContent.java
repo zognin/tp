@@ -73,7 +73,7 @@ public class StatTabContent extends UiPart<Region> {
         revenueBarChart.setData(FXCollections.observableList(List.of(series)));
         revenueBarChart.setTitle("Revenue for past 12 months");
         revenueBarChart.getXAxis().setLabel("Month & Year");
-        revenueBarChart.getYAxis().setLabel("Revenue");
+        revenueBarChart.getYAxis().setLabel("Revenue ($)");
     }
 
     /**
