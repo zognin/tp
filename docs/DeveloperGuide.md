@@ -190,6 +190,34 @@ Example of a successful deletion using the delete order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app deletes the order and the order is no longer shown in the list.
 
+### List feature
+
+#### Overview
+
+List operation can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+This section explains the List Mechanism:
+
+The list mechanism is facilitated by updating the filtered list in `ModelManager` with the predicate that shows all objects in the specified entity list.
+
+The Filtered List is a JavaFX `ObservableList` that is observed by the respective entity Ui Panel.
+Changes made to this list will cause the Ui panel to re-render, showing all objects of the specified entity.
+
+#### Usage Scenario
+
+The following sequence diagram shows how the list order operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+Example of a successful outcome using the List command:
+1. The user wishes to list all orders in the order list.
+1. The user executes `list-o` command to display everything stored in the specified order list. The `commandText` is received by `MainWindow#executeCommand()`.
+1. The `ListOrderCommandParser` parses the command into a `ListOrderCommand`, which is passed back to the `Logic` to be executed.
+1. The `Logic` Component then executes the command.
+1. The Model's `filteredOrderList` will be updated to show all orders.
+1. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
+1. The app shows all orders in the order list.
+
 ### Tab feature
 
 #### Overview
