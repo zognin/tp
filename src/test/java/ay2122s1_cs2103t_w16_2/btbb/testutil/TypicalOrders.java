@@ -24,9 +24,13 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.DANIEL;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.GEORGE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.HARRY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.HOON;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.IDA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.IMRAN;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.IRIS;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.JANE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.KELLY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BREAD;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.CHICKEN;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.FISH;
@@ -102,6 +106,34 @@ public class TypicalOrders {
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(GEORGE)))
                     .withPrice(new Price("10")).withDeadline(new Deadline("18-12-2021 2359"))
                     .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("yes"))
+                    .build();
+    public static final Order ORDER_FOR_HARRY =
+            new OrderBuilder().withClientName(HARRY.getName()).withClientPhone(HARRY.getPhone())
+                    .withClientAddress(HARRY.getAddress()).withRecipeName(new GenericString("Cheese cake"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(HARRY)))
+                    .withPrice(new Price("7")).withDeadline(new Deadline("18-12-2021 2200"))
+                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
+                    .build();
+    public static final Order ORDER_FOR_IRIS =
+            new OrderBuilder().withClientName(IRIS.getName()).withClientPhone(IRIS.getPhone())
+                    .withClientAddress(IRIS.getAddress()).withRecipeName(new GenericString("Porridge"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(IRIS)))
+                    .withPrice(new Price("10")).withDeadline(new Deadline("18-11-2021 2359"))
+                    .withQuantity(new Quantity("3")).withCompletionStatus(new CompletionStatus("no"))
+                    .build();
+    public static final Order ORDER_FOR_JANE =
+            new OrderBuilder().withClientName(JANE.getName()).withClientPhone(JANE.getPhone())
+                    .withClientAddress(JANE.getAddress()).withRecipeName(new GenericString("Prawn Noodles"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(JANE)))
+                    .withPrice(new Price("10")).withDeadline(new Deadline("18-12-2021 2359"))
+                    .withQuantity(new Quantity("7")).withCompletionStatus(new CompletionStatus("no"))
+                    .build();
+    public static final Order ORDER_FOR_KELLY =
+            new OrderBuilder().withClientName(KELLY.getName()).withClientPhone(KELLY.getPhone())
+                    .withClientAddress(KELLY.getAddress()).withRecipeName(new GenericString("Fish Soup with Milk"))
+                    .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(KELLY)))
+                    .withPrice(new Price("10")).withDeadline(new Deadline("18-12-2021 2359"))
+                    .withQuantity(new Quantity("6")).withCompletionStatus(new CompletionStatus("yes"))
                     .build();
 
     // Manually added - Order's details found in {@code TypicalClients} and {@code CommandTestUtil}

@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -124,7 +125,7 @@ public class UniqueOrderList implements Iterable<Order> {
 
     /**
      * Returns the top 10 clients with the most orders.
-     * Ties are broken arbitrarily eg. if there are multiple clients with the same number of orders, 10 random
+     * Ties are broken arbitrarily eg. if there are multiple clients with the same number of orders, random
      * clients will be chosen.
      *
      * @return Top 10 clients with the most orders.
@@ -141,6 +142,33 @@ public class UniqueOrderList implements Iterable<Order> {
 
     private List<Entry<OrderClient, Long>> getTopTenOrderClientsFromMap(
             Map<OrderClient, Long> hashMap) {
+        return hashMap.entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Entry.comparingByValue()))
+                .limit(10)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the top 10 recipes.
+     * Ties are broken arbitrarily eg. if there are multiple recipes with the same quantity, random
+     * recipes will be chosen.
+     *
+     * @return Top 10 recipes.
+     */
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        Map<GenericString, Long> recipeToOrderCountMap = getRecipeToOrderCountMap();
+        return getTopTenOrderRecipesFromMap(recipeToOrderCountMap);
+    }
+
+    private Map<GenericString, Long> getRecipeToOrderCountMap() {
+        return internalList.stream()
+                .collect(Collectors.groupingBy(Order::getRecipeName,
+                        Collectors.<Order>summingLong(Order::getQuantityAsInt)));
+    }
+
+    private List<Entry<GenericString, Long>> getTopTenOrderRecipesFromMap(
+            Map<GenericString, Long> hashMap) {
         return hashMap.entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(Entry.comparingByValue()))

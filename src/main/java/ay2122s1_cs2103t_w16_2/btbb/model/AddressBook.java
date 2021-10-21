@@ -17,6 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.UniqueOrderList;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.UniqueRecipeList;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -273,6 +274,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return orders.getTopTenOrderClients();
+    }
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        return orders.getTopTenOrderRecipes();
     }
 
     //// recipe-level operations

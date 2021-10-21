@@ -18,6 +18,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -344,6 +345,16 @@ public class ModelManager implements Model {
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
         return addressBook.getTopTenOrderClients();
+    }
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    @Override
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        return addressBook.getTopTenOrderRecipes();
     }
 
     @Override

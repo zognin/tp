@@ -40,6 +40,14 @@ public class TypicalClients {
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Client HARRY = new ClientBuilder().withName("Harry Potter").withPhone("94831142")
+            .withEmail("harry@example.com").withAddress("10th street").build();
+    public static final Client IRIS = new ClientBuilder().withName("Iris Toh").withPhone("94824842")
+            .withEmail("iris@example.com").withAddress("Lorong Chuan").build();
+    public static final Client JANE = new ClientBuilder().withName("Jane Mary").withPhone("94889042")
+            .withEmail("jane@example.com").withAddress("Serangoon Gardens").build();
+    public static final Client KELLY = new ClientBuilder().withName("Kelly Koo").withPhone("94111242")
+            .withEmail("kelly@example.com").withAddress("21st Avenue").build();
 
     // Manually added
     public static final Client HOON = new ClientBuilder().withName("Hoon Meier").withPhone("8482424")

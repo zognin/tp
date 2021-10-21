@@ -15,6 +15,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import javafx.collections.ObservableList;
 
 /**
@@ -63,6 +64,13 @@ public interface Logic {
      * @return List containing the top 10 clients with most orders.
      */
     List<Entry<OrderClient, Long>> getTopTenOrderClients();
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    List<Entry<GenericString, Long>> getTopTenOrderRecipes();
 
     /**
      * Returns the user prefs' address book file path.

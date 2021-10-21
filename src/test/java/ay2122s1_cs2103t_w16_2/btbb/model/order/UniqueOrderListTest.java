@@ -10,8 +10,12 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_DANIE
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_GEORGE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_HARRY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_HOON;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IDA;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_IRIS;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_JANE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_KELLY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,7 +31,9 @@ import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
 class UniqueOrderListTest {
@@ -121,6 +127,34 @@ class UniqueOrderListTest {
         }
         Collections.reverse(expectedTopTenClients);
         assertEquals(expectedTopTenClients, topTenClients);
+    }
+
+    @Test
+    public void getTopTenOrderRecipes_listContainsOrdersForElevenRecipes_returnsTopTenRecipes() {
+        List<Order> orderList = new ArrayList<>(List.of(ORDER_FOR_ALICE, ORDER_FOR_BENSON, ORDER_FOR_CARL,
+                ORDER_FOR_DANIEL, ORDER_FOR_ELLE, ORDER_FOR_FIONA, ORDER_FOR_GEORGE, ORDER_FOR_HARRY, ORDER_FOR_IRIS,
+                ORDER_FOR_JANE, ORDER_FOR_KELLY));
+
+        UniqueOrderList uniqueOrderList = new UniqueOrderList();
+        for (int i = 0; i < orderList.size(); i++) {
+            String qty = Integer.toString(i + 1);
+            Order orderToAdd = new OrderBuilder(orderList.get(i)).withQuantity(new Quantity(qty)).build();
+            orderList.set(i, orderToAdd);
+            uniqueOrderList.add(orderToAdd);
+        }
+
+        List<Entry<GenericString, Long>> topTenRecipes = uniqueOrderList.getTopTenOrderRecipes();
+
+        orderList.remove(0); // remove edited ORDER_FOR_ALICE
+        List<Entry<GenericString, Long>> expectedTopTenClients = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Order currOrder = orderList.get(i);
+            expectedTopTenClients.add(new AbstractMap.SimpleEntry<>(currOrder.getRecipeName(),
+                    (long) currOrder.getQuantityAsInt()));
+        }
+        expectedTopTenClients.sort(Entry.comparingByValue());
+        Collections.reverse(expectedTopTenClients);
+        assertEquals(expectedTopTenClients, topTenRecipes);
     }
 
     @Test

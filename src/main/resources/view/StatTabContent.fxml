@@ -41,6 +41,7 @@
                     </BarChart>
 
                     <PieChart minWidth="450" minHeight="450" fx:id="clientPieChart"/>
+                    <PieChart minWidth="450" minHeight="450" fx:id="recipePieChart"/>
                 </VBox>
             </ScrollPane>
         </VBox>

@@ -16,6 +16,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -176,6 +177,11 @@ public class ModelStub implements Model {
 
     @Override
     public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
         throw new AssertionError("This method should not be called.");
     }
 
