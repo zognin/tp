@@ -68,10 +68,11 @@ class UniqueOrderListTest {
                 ORDER_FOR_IDA));
 
         YearMonth currentYearMonth = YearMonth.now();
-        int year = currentYearMonth.getYear();
-        Month month = currentYearMonth.getMonth();
 
         for (int i = 0; i < 12; i++) {
+            int year = currentYearMonth.getYear();
+            Month month = currentYearMonth.getMonth();
+
             for (Order order : orderList) {
                 Order o = new OrderBuilder(order)
                         .withPrice(new Price(String.valueOf(i + 1)))
@@ -87,12 +88,7 @@ class UniqueOrderListTest {
                 uniqueOrderList.add(o);
             }
 
-            if (month == Month.JANUARY) {
-                month = Month.DECEMBER;
-                year--;
-                continue;
-            }
-            month = Month.of(month.getValue() - 1);
+            currentYearMonth = currentYearMonth.minusMonths(1);
         }
 
         List<Entry<YearMonth, Double>> revenueList = uniqueOrderList.getRevenueForPastTwelveMonths();
