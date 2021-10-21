@@ -1,13 +1,5 @@
 @startuml
 !include style.puml
-
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
-participant ":ResultDisplay" as ResultDisplay UI_COLOR
-end box
-[-> MainWindow : executeCommand("delete-o 1")
-activate MainWindow
-
 box Logic LOGIC_COLOR_T1
 participant ":Logic" as Logic LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -24,7 +16,7 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-MainWindow -> Logic : execute("delete-o 1")
+[-> Logic : executeCommand("delete-o 1")
 activate Logic
 
 Logic -> AddressBookParser : parseCommand("delete-o 1")
@@ -88,15 +80,6 @@ activate Storage
 Storage --> Logic
 deactivate Storage
 
-Logic --> MainWindow : result
+[<--Logic
 deactivate Logic
-
-MainWindow -> ResultDisplay : setFeedbackToUser()
-activate ResultDisplay
-
-ResultDisplay --> MainWindow
-deactivate ResultDisplay
-
-[<--MainWindow
-deactivate MainWindow
 @enduml

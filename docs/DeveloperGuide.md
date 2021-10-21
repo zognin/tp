@@ -158,27 +158,23 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Overview
 
-Delete operations can be executed for all entity types in the model, i.e. clients, orders, ingredients and recipes.
+Delete operations can be executed for the following entities: clients, orders, ingredients and recipes.
 
 #### Mechanism
 
 This is how the delete mechanism works in general:
 1. User enters a delete command.
-1. A relevant `DeleteXCommandParser`, where `X` is one of the entity types parses the command to generate a `DeleteXCommand`
+1. A relevant `DeleteXCommandParser`, where `X` is one of the entities parses the command to generate a `DeleteXCommand`
 1. The `DeleteXCommand` is executed.
 1. `Model` deletes the entity.
 1. `Storage` saves the changes.
 1. Feedback about the status of the delete is shown to the user.
 
-#### Extensions
-1. For a delete order command, there is an additional step of adding the ingredient quantity back to the matching
-   ingredients in the inventory.
+The following sequence diagram shows how the delete order operation works. The sequence diagram for other
+entities (client, ingredient and recipe) in the model is similar. However, for delete order, there is an additional
+optional step of adding ingredient quantities back to matching ingredients in the inventory.
 
-The following sequence diagram shows how the delete order operation works. The sequence diagram for other entity
-types (client, ingredient and recipe) in the model is similar, the only difference being that there is no additional
-step of adding the ingredient quantity back into the inventory.
-
-![DeleteOrderSequenceDiagram](images/DeleteOrderSequenceDiagram.png)
+![DeleteOrderSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 #### Usage scenarios
 
