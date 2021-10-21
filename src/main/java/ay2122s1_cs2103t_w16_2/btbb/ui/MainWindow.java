@@ -144,7 +144,7 @@ public class MainWindow extends UiPart<Stage> {
         homeTab.setContent(homeTabContent.getRoot());
 
         StatTabContent statTabContent = new StatTabContent(
-                logic.getFilteredIngredientList(), logic.getTopTenOrderClients()
+                logic.getFilteredIngredientList(), logic.getTopTenOrderClients(), logic.getRevenueForPastTwelveMonths()
         );
         statTab.setContent(statTabContent.getRoot());
 
@@ -208,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void updateStatistics() {
         StatTabContent statTabContent = new StatTabContent(logic.getFilteredIngredientList(),
-                logic.getTopTenOrderClients());
+                logic.getTopTenOrderClients(), logic.getRevenueForPastTwelveMonths());
         statTab.setContent(statTabContent.getRoot());
     }
 

@@ -19,7 +19,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Finds and lists all clients in the address book whose name, phone number,
+ * Finds and lists all clients in btbb whose name, phone number,
  * email or address matches the provided parameters.
  */
 public class FindClientCommand extends Command {

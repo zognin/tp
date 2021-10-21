@@ -18,12 +18,12 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Adds an ingredient to the address book.
+ * Adds an ingredient to btbb.
  */
 public class AddIngredientCommand extends Command {
     public static final String COMMAND_WORD = "add-i";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to your inventory. "
             + "Parameters: "
             + PREFIX_INGREDIENT_NAME + "NAME "
             + PREFIX_INGREDIENT_QUANTITY + "QUANTITY "

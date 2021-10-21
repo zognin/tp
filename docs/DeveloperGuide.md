@@ -154,6 +154,41 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete feature
+
+#### Overview
+
+Delete operations can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+This is how the delete mechanism works in general:
+1. User enters a delete command.
+1. A relevant `DeleteXCommandParser`, where `X` is one of the entities, parses the command to generate a
+   `DeleteXCommand`.
+1. The `DeleteXCommand` is executed.
+1. `Model` deletes the entity.
+1. `Storage` saves the changes.
+1. Feedback about the status of the delete is shown to the user.
+
+The following sequence diagram shows how the delete order operation works. The sequence diagram for other
+entities (client, ingredient and recipe) in the model is similar. However, for delete order, there is an additional
+optional step of adding ingredient quantities back to matching ingredients in the inventory.
+
+![DeleteOrderSequenceDiagram](images/DeleteOrderSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when a user executes a delete order command:
+
+![DeleteOrderActivityDiagram](images/DeleteOrderActivityDiagram.png)
+
+Example of a successful deletion using the delete order command:
+
+1. The user wishes to delete the first order in the list.
+1. The user executes `delete-o 1` command to delete the first order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app deletes the order and the order is no longer shown in the list.
 
 ### List feature
 

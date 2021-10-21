@@ -14,7 +14,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting BobTheBistroBoss as requested ...";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 

@@ -313,6 +313,15 @@
     -fx-background-color: transparent;
 }
 
+.default-color0.chart-bar {
+    -fx-bar-fill: #ab60fc;
+}
+
+.axis-label {
+    -fx-font-size: 1.2em;
+    -fx-text-fill: white;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

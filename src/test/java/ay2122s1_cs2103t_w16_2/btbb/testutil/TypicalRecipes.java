@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 
 public class TypicalRecipes {
     public static final RecipeIngredientList INGREDIENT_LIST_EGG_PRATA = new RecipeIngredientList(List.of(
