@@ -63,4 +63,13 @@ class DeadlineTest {
         assertEquals("12-09-2025 2359", new Deadline("12-09-2025 2359").toJsonStorageString());
         assertEquals("29-02-2024 2359", new Deadline("29-02-2024 2359").toJsonStorageString());
     }
+
+    @Test
+    public void compareTo() {
+        Deadline deadlineBefore = new Deadline("12-12-2019 1830");
+        Deadline deadlineAfter = new Deadline("12-12-2020 1830");
+        assertEquals(0, deadlineBefore.compareTo(deadlineBefore));
+        assertTrue(deadlineBefore.compareTo(deadlineAfter) < 0);
+        assertTrue(deadlineAfter.compareTo(deadlineBefore) > 0);
+    }
 }

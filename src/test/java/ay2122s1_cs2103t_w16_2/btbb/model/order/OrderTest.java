@@ -19,6 +19,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_DANIE
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_GEORGE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -102,6 +103,24 @@ class OrderTest {
         editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON)
                 .withCompletionStatus(new CompletionStatus(true)).build();
         assertTrue(ORDER_FOR_BENSON.isSameOrder(editedRandomOrder));
+    }
+
+    @Test
+    public void compareTo() {
+        // same order -> returns 0
+        assertEquals(0, ORDER_FOR_ALICE.compareTo(ORDER_FOR_ALICE));
+
+        // order 1 deadline before order 2 deadline -> returns negative value
+        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_CARL) < 0);
+
+        // order 1 deadline before order 2 deadline -> returns positive value
+        assertTrue(ORDER_FOR_CARL.compareTo(ORDER_FOR_ALICE) > 0);
+
+        // order 1 not completed but order 2 completed -> returns negative value
+        assertTrue(ORDER_FOR_BENSON.compareTo(ORDER_FOR_ALICE) < 0);
+
+        // order 1 completed but order 2 not completed -> returns positive value
+        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_BENSON) > 0);
     }
 
     @Test
