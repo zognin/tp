@@ -13,7 +13,7 @@ import java.time.format.ResolverStyle;
  * Represents the deadline of an order in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in dd-mm-yyyy hhmm format";
     private static final String INPUT_FORMAT = "dd-MM-uuuu HHmm";
     public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT)
@@ -83,6 +83,11 @@ public class Deadline {
      */
     public String toJsonStorageString() {
         return deadline.format(INPUT_DATETIME_FORMATTER);
+    }
+
+    @Override
+    public int compareTo(Deadline other) {
+        return deadline.compareTo(other.deadline);
     }
 
     /**
