@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindIngredientCommandParser" as FindIngredientCommandParser LOGIC_COLOR
+participant "p:PredicateCollection" as PredicateCollection LOGIC_COLOR
+participant ":StringContainsKeywordsPredicate" as StringContainsKeywordsPredicate LOGIC_COLOR
+participant ":ValueWithinRangePredicate" as ValueWithinRangePredicate LOGIC_COLOR
+participant "f:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> FindIngredientCommandParser : parse(args)
+activate FindIngredientCommandParser
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+create PredicateCollection
+FindIngredientCommandParser -> PredicateCollection
+activate PredicateCollection
+
+PredicateCollection --> FindIngredientCommandParser : p
+deactivate PredicateCollection
+
+FindIngredientCommandParser -> PredicateCollection : addStringContainsKeywordsPredicate()
+activate PredicateCollection
+
+create StringContainsKeywordsPredicate
+PredicateCollection -> StringContainsKeywordsPredicate
+activate StringContainsKeywordsPredicate
+
+StringContainsKeywordsPredicate --> PredicateCollection
+deactivate StringContainsKeywordsPredicate
+
+PredicateCollection --> FindIngredientCommandParser
+deactivate PredicateCollection
+
+FindIngredientCommandParser -> PredicateCollection : addValueWithinRangePredicate()
+activate PredicateCollection
+
+create ValueWithinRangePredicate
+PredicateCollection -> ValueWithinRangePredicate
+activate ValueWithinRangePredicate
+
+ValueWithinRangePredicate --> PredicateCollection
+deactivate ValueWithinRangePredicate
+
+PredicateCollection --> FindIngredientCommandParser
+deactivate PredicateCollection
+
+create FindIngredientCommand
+FindIngredientCommandParser -> FindIngredientCommand
+activate FindIngredientCommand
+
+FindIngredientCommand --> FindIngredientCommandParser : f
+deactivate FindIngredientCommand
+
+[<--FindIngredientCommandParser : f
+deactivate FindIngredientCommandParser
+
+[-> FindIngredientCommand : execute()
+activate FindIngredientCommand
+
+FindIngredientCommand -> Model : updateFilteredIngredientList(p)
+activate Model
+
+Model --> FindIngredientCommand
+deactivate Model
+
+create CommandResult
+FindIngredientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindIngredientCommand : result
+deactivate CommandResult
+
+[<--FindIngredientCommand : result
+deactivate FindIngredientCommand
+
+@enduml

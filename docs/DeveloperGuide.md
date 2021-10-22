@@ -190,6 +190,56 @@ Example of a successful deletion using the delete order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app deletes the order and the order is no longer shown in the list.
 
+### Find feature
+
+#### Overview
+
+Find operations can be executed for all entity types in the model, ie.
+clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+The find mechanism is facilitated by 4 generic classes that implement the
+Java `Predicate` interface. The 4 classes are `PredicateCollection`,
+`StringContainsKeywordsPredicate`, `ValueInListPredicate` and
+`ValueWithinRangePredicate`. All of these classes are generic so that their
+functionality can be reused for all entity types. The purposes of these classes
+are as follows:
+* `StringContainsKeywordsPredicate` - Tests if a field in an object matches
+  any of the keywords provided by the user. This class can perform partial and
+  case-insensitive matches.
+
+* `ValueInListPredicate` - Tests if a value of a field in an object
+  exists in the list of values provided by the user.
+
+* `ValueWithinRangePredicate` - Tests if a value of a field in an object
+  is within a range of values provided by the user.
+
+* `PredicateCollection` - Tests if an object satisfies all the predicates
+  contained in this class. This class enables finding entities based on
+  multiple search criteria.
+
+#### Usage Scenario
+
+1. The user executes the `find-i in/avo gin iqf/1 iqt/10` command to find ingredients whose name matches
+   the keywords 'avo' or 'gin' and whose quantities are from the range 1-10.
+
+2. The `FindIngredientCommandParser` parses the command into `FindIngredientCommand`. A `StringContainsKeywordsPredicate`
+   is created with the keywords 'avo' and 'gin'. A `ValueWithinRangePredicate` is created with the start value set to
+   '1' and end value set to '10'. Both of these predicates are added to a `PredicateCollection`. A `FindCommand` is
+   created with the `PredicateCollection`.
+
+3. The `ModelManager#updateFilteredIngredientList` method gets called with the `PredicateCollection` which causes
+   the `FilteredIngredientList` in `ModelManager` to only contain ingredients that match all the find criteria.
+
+4. The `FilteredIngredientList` is a JavaFX `ObservableList` that is observed by the `IngredientListPanel`. The change
+   in `FilteredIngredientList` will cause the `IngredientListPanel` to re-render, showing only the ingredients that
+   match the find criteria.
+
+The following sequence diagram shows how the find operation for the above scenario works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
 ### List feature
 
 #### Overview
