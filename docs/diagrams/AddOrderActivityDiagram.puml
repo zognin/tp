@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes add order command;
+
+if () then ([order is duplicate])
+    stop
+else ([else])
+    if () then ([ingredient in inventory])
+        :Subtracts respective ingredient quantity from ingredient list;
+    else ([else])
+    endif
+endif
+
+:Model adds order to order list;
+
+:Storage saves order list after addition;
+stop
+@enduml
