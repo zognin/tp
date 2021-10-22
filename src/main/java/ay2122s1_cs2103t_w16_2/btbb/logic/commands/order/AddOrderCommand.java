@@ -24,12 +24,12 @@ import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Adds an order to the address book.
+ * Adds an order to btbb.
  */
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add-o";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to your order list.\n"
             + "Parameters: "
             + "[" + PREFIX_CLIENT_INDEX + "CLIENT_INDEX (must be a positive integer)] "
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
@@ -45,7 +45,7 @@ public class AddOrderCommand extends Command {
             + "If ORDER_QUANTITY is not present, it will be set to 1 by default.";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your order list.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 

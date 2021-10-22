@@ -1,6 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.testutil.stubs;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -11,6 +14,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyUserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 
@@ -95,6 +101,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public boolean hasIngredient(Ingredient ingredient) {
         throw new AssertionError("This method should not be called.");
     }
@@ -158,6 +165,53 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // Statistics-level
+
+    @Override
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRecipe(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasRecipe(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteRecipe(Recipe target) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

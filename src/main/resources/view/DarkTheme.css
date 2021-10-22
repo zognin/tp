@@ -282,6 +282,46 @@
     -fx-padding: 8 1 8 1;
 }
 
+.chart {
+    -fx-legend-visible: false;
+}
+
+.chart-pie-label-line {
+    -fx-stroke: #FFFFFF;
+    -fx-fill: #FFFFFF;
+}
+
+.chart-pie-label {
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}
+
+.chart-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 1.6em;
+}
+
+.chart-legend {
+    -fx-background-color:  #222222;
+}
+
+.chart-legend-item{
+    -fx-text-fill: #FFFFFF;
+}
+
+.statistics-scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: #ab60fc;
+}
+
+.axis-label {
+    -fx-font-size: 1.2em;
+    -fx-text-fill: white;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

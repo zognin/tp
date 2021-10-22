@@ -64,6 +64,15 @@ public class Quantity implements Comparable<Quantity> {
     }
 
     /**
+     * Gets the integer value stored in {@Quantity}.
+     *
+     * @return Quantity value.
+     */
+    public int getQuantityAsInt() {
+        return this.quantity;
+    }
+
+    /**
      * Returns a new {@code Quantity} object with its quantity increased by amount * multiplier.
      *
      * @param amount The amount to increase.

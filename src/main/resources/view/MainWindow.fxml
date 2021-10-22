@@ -33,7 +33,7 @@
                      AnchorPane.rightAnchor="0.0"
                      AnchorPane.bottomAnchor="0.0">
               <Tab fx:id="homeTab" text="Home" closable="false"/>
-              <Tab fx:id="statTab" text="Inventory" closable="false"/>
+              <Tab fx:id="statTab" text="Inventory &amp; Statistics" closable="false"/>
             </TabPane>
 
             <Button text="Help" onAction="#handleHelp" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>

@@ -4,6 +4,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +16,9 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Ingredient> filteredIngredients;
     private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Recipe> filteredRecipes;
     private final UserPrefs userPrefs;
 
     /**
@@ -42,6 +49,7 @@ public class ModelManager implements Model {
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
     }
 
     public ModelManager() {
@@ -279,6 +287,74 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    //=========== Recipe ====================================================================================
+
+    @Override
+    public void addRecipe(Recipe recipe) {
+        addressBook.addRecipe(recipe);
+        updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+    }
+
+    @Override
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return addressBook.hasRecipe(recipe);
+    }
+
+    @Override
+    public void deleteRecipe(Recipe target) throws NotFoundException {
+        requireNonNull(target);
+        addressBook.removeRecipe(target);
+    }
+
+    /**
+     * Replaces the given recipe {@code target} with {@code editedRecipe}.
+     * {@code target} must exist in the address book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     *
+     * @param target Recipe being replaced.
+     * @param editedRecipe Recipe to replace with.
+     * @throws NotFoundException
+     */
+    @Override
+    public void setRecipe(Recipe target, Recipe editedRecipe) throws NotFoundException {
+        requireAllNonNull(target, editedRecipe);
+        addressBook.setRecipe(target, editedRecipe);
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return filteredRecipes;
+    }
+
+    @Override
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+        requireNonNull(predicate);
+        filteredRecipes.setPredicate(predicate);
+    }
+
+    //=========== Statistics ===============================================================================
+
+    @Override
+    public List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths() {
+        return addressBook.getRevenueForPastTwelveMonths();
+    }
+
+    @Override
+    public List<Entry<OrderClient, Long>> getTopTenOrderClients() {
+        return addressBook.getTopTenOrderClients();
+    }
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    @Override
+    public List<Entry<GenericString, Long>> getTopTenOrderRecipes() {
+        return addressBook.getTopTenOrderRecipes();
     }
 
     @Override

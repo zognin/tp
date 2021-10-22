@@ -1,6 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -14,9 +17,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Price;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -53,23 +57,27 @@ public class SampleDataUtil {
         };
     }
 
-    public static String[] getSampleRecipes() {
-        return new String[] {
-            "Chicken Rice",
-            "Nasi Lemak",
-            "Prata",
-            "Char kuay teow",
-            "Hokkien prawn mee",
-            "Laksa",
-            "Kaya toast",
-            "Satay"
+    public static Recipe[] getSampleRecipes() {
+        List<List<Ingredient>> ingredients = getRecipeIngredientList();
+        return new Recipe[] {
+            new Recipe(new GenericString("Chicken Rice"), new RecipeIngredientList(ingredients.get(0)), new Price("3")),
+            new Recipe(new GenericString("Nasi Lemak"), new RecipeIngredientList(ingredients.get(1)), new Price("3")),
+            new Recipe(new GenericString("Prata"), new RecipeIngredientList(ingredients.get(2)), new Price("2")),
+            new Recipe(new GenericString("Char kuay teow"), new RecipeIngredientList(ingredients.get(3)),
+                    new Price("4")),
+            new Recipe(new GenericString("Hokkien Prawn Mee"), new RecipeIngredientList(ingredients.get(4)),
+                    new Price("4")),
+            new Recipe(new GenericString("Laksa"), new RecipeIngredientList(ingredients.get(5)), new Price("4")),
+            new Recipe(new GenericString("Kaya toast"), new RecipeIngredientList(ingredients.get(6)), new Price("2")),
+            new Recipe(new GenericString("Satay"), new RecipeIngredientList(ingredients.get(7)), new Price("2")),
         };
     }
 
     public static List<List<Ingredient>> getRecipeIngredientList() {
         return List.of(
                 List.of(new Ingredient(new GenericString("Almond"), new Quantity("1"), new GenericString("bags")),
-                        new Ingredient(new GenericString("Corn"), new Quantity("2"), new GenericString("whole"))),
+                        new Ingredient(new GenericString("Corn"), new Quantity("2"), new GenericString("whole"))
+                ),
                 List.of(new Ingredient(
                         new GenericString("Chicken Eggs"), new Quantity("2"), new GenericString("whole"))),
                 List.of(new Ingredient(new GenericString("Garlic"), new Quantity("1"), new GenericString("whole")),
@@ -88,29 +96,37 @@ public class SampleDataUtil {
     }
 
     public static Order[] getSampleOrders() {
+        List<Order> orders = new ArrayList<>();
+
         Client[] people = getSampleClients();
-        String[] recipes = getSampleRecipes();
-        List<List<Ingredient>> ingredients = getRecipeIngredientList();
-
-        Order[] orders = new Order[people.length];
-
+        Recipe[] recipes = getSampleRecipes();
         Random randomNumberGenerator = new Random();
 
-        int loopCount = Math.min(orders.length, Math.min(recipes.length, ingredients.size()));
+        int loopCount = Math.min(people.length, recipes.length);
 
-        for (int i = 0; i < loopCount; i++) {
-            float randomPrice = randomNumberGenerator.nextFloat();
-            int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
-            boolean completionstatus = (i % 2 == 0);
-            orders[i] = new Order(people[i].getName(), people[i].getPhone(), people[i].getAddress(),
-                    new GenericString(recipes[i]), new RecipeIngredientList(ingredients.get(i)),
-                    new Price(String.format("%.2f", randomPrice)),
-                    new Deadline(getSampleDateTimeString(i + 1)),
-                    new Quantity(Integer.toString(randomQuantity)),
-                    new CompletionStatus(completionstatus ? "yes" : "no"));
+        for (int month = 0; month < 12; month++) {
+            for (int i = 0; i < loopCount; i++) {
+                int randomIndex = randomNumberGenerator.nextInt(people.length);
+                float randomPrice = randomNumberGenerator.nextFloat() * 10;
+                int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
+
+                LocalDateTime orderDeadline = getSampleDateTime(month + 1, i + 1);
+                boolean completionstatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
+
+                Order order = new Order(
+                        people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
+                        recipes[i].getName(), recipes[i].getRecipeIngredients(),
+                        new Price(String.format("%.2f", randomPrice)),
+                        new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
+                        new Quantity(Integer.toString(randomQuantity)),
+                        new CompletionStatus(completionstatus ? "yes" : "no")
+                );
+
+                orders.add(order);
+            }
         }
 
-        return orders;
+        return orders.toArray(Order[]::new);
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -128,12 +144,16 @@ public class SampleDataUtil {
             sampleAb.addIngredient(sampleIngredient);
         }
 
+        for (Recipe sampleRecipe : getSampleRecipes()) {
+            sampleAb.addRecipe(sampleRecipe);
+        }
+
         return sampleAb;
     }
 
-    private static String getSampleDateTimeString(int dayOffset) {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime dateTimeWithOffset = currentDateTime.plusDays(dayOffset);
-        return dateTimeWithOffset.format(Deadline.INPUT_DATETIME_FORMATTER);
+    private static LocalDateTime getSampleDateTime(int month, int day) {
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.of(LocalDate.now().getYear(), month, day);
+        return LocalDateTime.of(date, time);
     }
 }

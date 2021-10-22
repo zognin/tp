@@ -21,7 +21,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Finds and lists all orders in the address book whose client name, client phone number,
+ * Finds and lists all orders in btbb whose client name, client phone number,
  * or client address matches the provided parameters.
  */
 public class FindOrderCommand extends Command {

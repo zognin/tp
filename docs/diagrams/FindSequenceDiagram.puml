@@ -6,7 +6,7 @@ participant ":FindIngredientCommandParser" as FindIngredientCommandParser LOGIC_
 participant "p:PredicateCollection" as PredicateCollection LOGIC_COLOR
 participant ":StringContainsKeywordsPredicate" as StringContainsKeywordsPredicate LOGIC_COLOR
 participant ":ValueWithinRangePredicate" as ValueWithinRangePredicate LOGIC_COLOR
-participant "c:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
+participant "f:FindIngredientCommand" as FindIngredientCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -21,7 +21,7 @@ create PredicateCollection
 FindIngredientCommandParser -> PredicateCollection
 activate PredicateCollection
 
-PredicateCollection --> FindIngredientCommandParser
+PredicateCollection --> FindIngredientCommandParser : p
 deactivate PredicateCollection
 
 FindIngredientCommandParser -> PredicateCollection : addStringContainsKeywordsPredicate()
@@ -54,10 +54,10 @@ create FindIngredientCommand
 FindIngredientCommandParser -> FindIngredientCommand
 activate FindIngredientCommand
 
-FindIngredientCommand --> FindIngredientCommandParser
+FindIngredientCommand --> FindIngredientCommandParser : f
 deactivate FindIngredientCommand
 
-[<--FindIngredientCommandParser : c
+[<--FindIngredientCommandParser : f
 deactivate FindIngredientCommandParser
 
 [-> FindIngredientCommand : execute()
@@ -73,7 +73,7 @@ create CommandResult
 FindIngredientCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindIngredientCommand
+CommandResult --> FindIngredientCommand : result
 deactivate CommandResult
 
 [<--FindIngredientCommand : result

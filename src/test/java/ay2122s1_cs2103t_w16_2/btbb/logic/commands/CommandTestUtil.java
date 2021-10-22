@@ -17,6 +17,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
@@ -32,6 +33,7 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
@@ -43,6 +45,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeDescriptorBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
@@ -87,6 +90,10 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_COMPLETION_STATUS_YES = "yes";
     public static final String VALID_ORDER_COMPLETION_STATUS_NO = "no";
 
+    // Valid Recipe attributes
+    public static final String VALID_RECIPE_NAME_APPLE_PIE = "Apple pie";
+    public static final String VALID_RECIPE_NAME_BEEF_STEW = "Beef stew";
+
     // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_NAME_BOB;
@@ -119,6 +126,8 @@ public class CommandTestUtil {
             + VALID_RECIPE_INGREDIENT_LIST_1;
     public static final String RECIPE_INGREDIENT_LIST_DESC_2 = " " + PREFIX_RECIPE_INGREDIENT
             + VALID_RECIPE_INGREDIENT_LIST_2;
+    public static final String RECIPE_INGREDIENT_LIST_DESC_LAKSA = " " + PREFIX_RECIPE_INGREDIENT
+            + "Egg-1-whole," + "Noodles-100-g";
     public static final String ORDER_PRICE_DESC_1 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_1;
     public static final String ORDER_PRICE_DESC_2 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_2;
     public static final String ORDER_QUANTITY_DESC_1 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_1;
@@ -129,6 +138,10 @@ public class CommandTestUtil {
             + VALID_ORDER_COMPLETION_STATUS_YES;
     public static final String ORDER_COMPLETION_STATUS_NO = " " + PREFIX_ORDER_COMPLETION_STATUS
             + VALID_ORDER_COMPLETION_STATUS_NO;
+
+    // Recipe (valid prefix + valid attributes)
+    public static final String RECIPE_PRICE_DESC_CHICKEN_RICE = " " + PREFIX_RECIPE_PRICE + "3";
+    public static final String RECIPE_PRICE_DESC_LAKSA = " " + PREFIX_RECIPE_PRICE + "4";
 
     // Client (valid prefix + invalid attributes)
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";
@@ -156,6 +169,9 @@ public class CommandTestUtil {
             + "2021-12-12 6.30am"; // wrong format
     public static final String INVALID_ORDER_COMPLETION_STATUS_DESC = " " + PREFIX_ORDER_COMPLETION_STATUS + "y";
 
+    // Recipe
+    public static final String INVALID_RECIPE_PRICE_DESC = " " + PREFIX_RECIPE_PRICE + "$1.50";
+
     // Others
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -164,11 +180,14 @@ public class CommandTestUtil {
     public static final ClientDescriptor DESC_AMY;
     public static final ClientDescriptor DESC_BOB;
 
+    public static final IngredientDescriptor DESC_APPLE;
+    public static final IngredientDescriptor DESC_BEEF;
+
     public static final OrderDescriptor DESC_ORDER_AMY;
     public static final OrderDescriptor DESC_ORDER_BOB;
 
-    public static final IngredientDescriptor DESC_APPLE;
-    public static final IngredientDescriptor DESC_BEEF;
+    public static final RecipeDescriptor DESC_APPLE_PIE;
+    public static final RecipeDescriptor DESC_BEEF_STEW;
 
     static {
         // Client
@@ -179,12 +198,18 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
 
+        // Ingredient
+        DESC_APPLE = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)
+                .withQuantity(VALID_QUANTITY_APPLE).withUnit(VALID_UNIT_APPLE).build();
+        DESC_BEEF = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_BEEF)
+                .withQuantity(VALID_QUANTITY_BEEF).withUnit(VALID_UNIT_BEEF).build();
+
         // Order
         DESC_ORDER_AMY = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY).withClientPhone(VALID_PHONE_AMY)
                 .withClientAddress(VALID_ADDRESS_AMY).withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
                 .withRecipeIngredients(List.of(new Ingredient(
-                                new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
-                                new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
+                        new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
+                        new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
                 .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1)
                 .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
@@ -195,11 +220,11 @@ public class CommandTestUtil {
                 .withDeadline(VALID_DEADLINE_MARCH).withQuantity(VALID_ORDER_QUANTITY_2)
                 .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
 
-        // Ingredient
-        DESC_APPLE = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_APPLE)
-                .withQuantity(VALID_QUANTITY_APPLE).withUnit(VALID_UNIT_APPLE).build();
-        DESC_BEEF = new IngredientDescriptorBuilder().withIngredientName(VALID_INGREDIENT_NAME_BEEF)
-                .withQuantity(VALID_QUANTITY_BEEF).withUnit(VALID_UNIT_BEEF).build();
+        // Recipe
+        DESC_APPLE_PIE = new RecipeDescriptorBuilder().withName(VALID_RECIPE_NAME_APPLE_PIE)
+                .withPrice(VALID_PRICE_1).build();
+        DESC_BEEF_STEW = new RecipeDescriptorBuilder().withName(VALID_RECIPE_NAME_BEEF_STEW)
+                .withPrice(VALID_PRICE_2).build();
     }
 
     /**

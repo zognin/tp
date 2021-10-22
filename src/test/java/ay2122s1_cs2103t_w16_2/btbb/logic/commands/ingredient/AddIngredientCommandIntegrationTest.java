@@ -33,7 +33,8 @@ public class AddIngredientCommandIntegrationTest {
         IngredientDescriptor validIngredientDescriptor = new IngredientDescriptorBuilder(validIngredient).build();
 
         assertCommandSuccessWithTabChange(new AddIngredientCommand(validIngredientDescriptor), model,
-                String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient), expectedModel, UiTab.INVENTORY);
+                String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient), expectedModel,
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Test

@@ -19,12 +19,12 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Adds a client to the address book.
+ * Adds a client to btbb.
  */
 public class AddClientCommand extends Command {
     public static final String COMMAND_WORD = "add-c";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to your client bookmarks. "
             + "Parameters: "
             + PREFIX_CLIENT_NAME + "NAME "
             + PREFIX_CLIENT_PHONE + "PHONE "
@@ -37,7 +37,7 @@ public class AddClientCommand extends Command {
             + PREFIX_CLIENT_ADDRESS + "311, Clementi Ave 2, #02-25.";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in your client bookmarks";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 

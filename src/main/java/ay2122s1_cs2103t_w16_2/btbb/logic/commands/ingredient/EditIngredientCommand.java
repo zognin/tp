@@ -39,7 +39,7 @@ public class EditIngredientCommand extends Command {
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in your inventory.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
@@ -82,7 +82,9 @@ public class EditIngredientCommand extends Command {
         }
 
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient), UiTab.INVENTORY);
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient), UiTab.INVENTORY_AND_STATISTICS
+        );
     }
 
     @Override

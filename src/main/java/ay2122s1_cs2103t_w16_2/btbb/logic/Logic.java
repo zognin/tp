@@ -1,6 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.Map.Entry;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
 import ay2122s1_cs2103t_w16_2.btbb.exception.CommandException;
@@ -10,6 +13,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import javafx.collections.ObservableList;
 
 /**
@@ -41,6 +47,30 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of orders */
     ObservableList<Order> getFilteredOrderList();
+
+    /** Returns an unmodifiable view of the filtered list of recipes */
+    ObservableList<Recipe> getFilteredRecipeList();
+
+    /**
+     * Returns the revenue for the past 12 months.
+     *
+     * @return List containing the month details and the revenue for each month for the past 12 months.
+     */
+    List<Entry<YearMonth, Double>> getRevenueForPastTwelveMonths();
+
+    /**
+     * Returns the top 10 clients with the most orders.
+     *
+     * @return List containing the top 10 clients with most orders.
+     */
+    List<Entry<OrderClient, Long>> getTopTenOrderClients();
+
+    /**
+     * Returns the top 10 recipes.
+     *
+     * @return List containing the top 10 recipes.
+     */
+    List<Entry<GenericString, Long>> getTopTenOrderRecipes();
 
     /**
      * Returns the user prefs' address book file path.

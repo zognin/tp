@@ -3,11 +3,14 @@ package ay2122s1_cs2103t_w16_2.btbb.model.order;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -89,8 +92,20 @@ public class Order {
         return quantity;
     }
 
+    public int getQuantityAsInt() {
+        return quantity.getQuantityAsInt();
+    }
+
     public CompletionStatus getCompletionStatus() {
         return completionStatus;
+    }
+
+    public OrderClient getOrderClient() {
+        return new OrderClient(getClientName(), getClientPhone());
+    }
+
+    public YearMonth getYearMonth() {
+        return YearMonth.of(deadline.getYear(), deadline.getMonth());
     }
 
     /**

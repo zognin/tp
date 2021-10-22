@@ -154,6 +154,42 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete feature
+
+#### Overview
+
+Delete operations can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+This is how the delete mechanism works in general:
+1. User enters a delete command.
+1. A relevant `DeleteXCommandParser`, where `X` is one of the entities, parses the command to generate a
+   `DeleteXCommand`.
+1. The `DeleteXCommand` is executed.
+1. `Model` deletes the entity.
+1. `Storage` saves the changes.
+1. Feedback about the status of the delete is shown to the user.
+
+The following sequence diagram shows how the delete order operation works. The sequence diagram for other
+entities (client, ingredient and recipe) in the model is similar. However, for delete order, there is an additional
+optional step of adding ingredient quantities back to matching ingredients in the inventory.
+
+![DeleteOrderSequenceDiagram](images/DeleteOrderSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when a user executes a delete order command:
+
+![DeleteOrderActivityDiagram](images/DeleteOrderActivityDiagram.png)
+
+Example of a successful deletion using the delete order command:
+
+1. The user wishes to delete the first order in the list.
+1. The user executes `delete-o 1` command to delete the first order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app deletes the order and the order is no longer shown in the list.
+
 ### Find feature
 
 #### Overview
@@ -203,6 +239,34 @@ are as follows:
 The following sequence diagram shows how the find operation for the above scenario works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+### List feature
+
+#### Overview
+
+List operation can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+This section explains the List Mechanism:
+
+The list mechanism is facilitated by updating the filtered list in `ModelManager` with the predicate that shows all objects in the specified entity list.
+
+The Filtered List is a JavaFX `ObservableList` that is observed by the respective entity Ui Panel.
+Changes made to this list will cause the Ui panel to re-render, showing all objects of the specified entity.
+
+#### Usage Scenario
+
+The following sequence diagram shows how the list order operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+Example of a successful outcome using the List command:
+1. The user wishes to list all orders in the order list.
+1. The user executes `list-o` command to display everything stored in the specified order list. The `commandText` is received by `MainWindow#executeCommand()`.
+1. The `ListOrderCommandParser` parses the command into a `ListOrderCommand`, which is passed back to the `Logic` to be executed.
+1. The `Logic` Component then executes the command.
+1. The Model's `filteredOrderList` will be updated to show all orders.
+1. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
+1. The app shows all orders in the order list.
 
 ### Tab feature
 

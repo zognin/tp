@@ -20,7 +20,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Finds and lists all ingredients in the address book whose name, quantity or unit
+ * Finds and lists all ingredients in btbb whose name, quantity or unit
  * matches the provided parameters.
  */
 public class FindIngredientCommand extends Command {
@@ -59,7 +59,7 @@ public class FindIngredientCommand extends Command {
         model.updateFilteredIngredientList(predicateCollection);
         return new CommandResult(
                 String.format(Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW, model.getFilteredIngredientList().size()),
-                UiTab.INVENTORY);
+                UiTab.INVENTORY_AND_STATISTICS);
     }
 
     @Override

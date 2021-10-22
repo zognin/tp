@@ -22,4 +22,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER_QUANTITY = new Prefix("oq/");
     public static final Prefix PREFIX_RECIPE_INGREDIENT = new Prefix("ri/");
     public static final Prefix PREFIX_RECIPE_NAME = new Prefix("rn/");
+    public static final Prefix PREFIX_RECIPE_PRICE = new Prefix("rp/");
 }

@@ -8,7 +8,16 @@
 <?import javafx.scene.control.Label?>
 <GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox fx:id="clientList" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
+        <VBox fx:id="orderList" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+
+            <Label text="Orders" styleClass="list-header"/>
+            <StackPane fx:id="orderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox fx:id="clientList" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
@@ -17,18 +26,19 @@
             <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
-        <VBox fx:id="orderList" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+        <VBox fx:id="recipeList" styleClass="pane-with-border" GridPane.columnIndex="2" GridPane.vgrow="ALWAYS">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
 
-            <Label text="Orders" styleClass="list-header"/>
-            <StackPane fx:id="orderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <Label text="Recipe Bookmarks" styleClass="list-header"/>
+            <StackPane fx:id="recipeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
     </children>
 
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="40.0"/>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="60.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="25.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="25.0"/>
     </columnConstraints>
 </GridPane>

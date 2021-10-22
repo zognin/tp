@@ -104,7 +104,9 @@ public class FindIngredientCommandTest {
         );
         FindIngredientCommand command = new FindIngredientCommand(predicateCollection);
         expectedModel.updateFilteredIngredientList(predicateCollection);
-        assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.INVENTORY);
+        assertCommandSuccessWithTabChange(
+                command, model, expectedMessage, expectedModel, UiTab.INVENTORY_AND_STATISTICS
+        );
         assertEquals(Arrays.asList(AVOCADO, BUTTER, CHICKEN), model.getFilteredIngredientList());
     }
 }
