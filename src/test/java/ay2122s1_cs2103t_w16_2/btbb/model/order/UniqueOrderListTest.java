@@ -67,6 +67,8 @@ class UniqueOrderListTest {
         uniqueOrderList.add(orderForCarl);
         ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
         assertEquals(orderForBenson, orderList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(orderForAlice, orderList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(orderForCarl, orderList.get(INDEX_THIRD.getZeroBased()));
     }
 
     @Test
