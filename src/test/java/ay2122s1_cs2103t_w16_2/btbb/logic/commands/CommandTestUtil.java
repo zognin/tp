@@ -15,6 +15,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
@@ -142,6 +143,8 @@ public class CommandTestUtil {
     // Recipe (valid prefix + valid attributes)
     public static final String RECIPE_PRICE_DESC_CHICKEN_RICE = " " + PREFIX_RECIPE_PRICE + "3";
     public static final String RECIPE_PRICE_DESC_LAKSA = " " + PREFIX_RECIPE_PRICE + "4";
+    public static final String RECIPE_INDEX_DESC_1 = " " + PREFIX_RECIPE_INDEX + INDEX_FIRST.getOneBased();
+    public static final String RECIPE_INDEX_DESC_2 = " " + PREFIX_RECIPE_INDEX + INDEX_SECOND.getOneBased();
 
     // Client (valid prefix + invalid attributes)
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";

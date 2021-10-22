@@ -7,6 +7,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static java.util.Objects.requireNonNull;
@@ -35,13 +36,15 @@ public class AddOrderCommand extends Command {
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
             + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS]\n\t\t" + "      "
-            + PREFIX_RECIPE_NAME + "RECIPE_NAME "
-            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
-            + PREFIX_ORDER_PRICE + "ORDER_PRICE "
+            + "[" + PREFIX_RECIPE_INDEX + "RECIPE_INDEX (must be a positive integer)] "
+            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
+            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...]\n\t\t" + "      "
+            + "[" + PREFIX_ORDER_PRICE + "ORDER_PRICE] "
             + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE "
             + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n"
             + "Additional Info: If CLIENT_INDEX is not present, CLIENT_NAME, CLIENT_PHONE and CLIENT_ADDRESS must be"
             + " present." + "\n\t\t\t" + "   "
+            + "If RECIPE_INDEX is not present, RECIPE_NAME and ORDER_PRICE must be present." + "\n\t\t\t" + "   "
             + "If ORDER_QUANTITY is not present, it will be set to 1 by default.";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";

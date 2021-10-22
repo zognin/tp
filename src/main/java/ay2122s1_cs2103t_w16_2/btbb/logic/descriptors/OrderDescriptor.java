@@ -15,6 +15,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
@@ -31,6 +32,7 @@ public class OrderDescriptor {
     private GenericString clientName;
     private Phone clientPhone;
     private Address clientAddress;
+    private Index recipeIndex;
     private GenericString recipeName;
     private RecipeIngredientList recipeIngredients;
     private Price price;
@@ -50,6 +52,7 @@ public class OrderDescriptor {
         setClientName(toCopy.clientName);
         setClientPhone(toCopy.clientPhone);
         setClientAddress(toCopy.clientAddress);
+        setRecipeIndex(toCopy.recipeIndex);
         setRecipeName(toCopy.recipeName);
         setRecipeIngredients(toCopy.recipeIngredients);
         setPrice(toCopy.price);
@@ -96,6 +99,14 @@ public class OrderDescriptor {
 
     public Optional<Address> getClientAddress() {
         return Optional.ofNullable(clientAddress);
+    }
+
+    public void setRecipeIndex(Index recipeIndex) {
+        this.recipeIndex = recipeIndex;
+    }
+
+    public Optional<Index> getRecipeIndex() {
+        return Optional.ofNullable(recipeIndex);
     }
 
     public void setRecipeName(GenericString recipeName) {
@@ -155,14 +166,22 @@ public class OrderDescriptor {
      */
     public Order toModelType(Model model) throws CommandException {
         Optional<Client> client = getClientFromModel(model);
+        Optional<Recipe> recipe = getRecipeFromModel(model);
 
         try {
             GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
             Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
             Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
 
+            GenericString recipeName = getRecipeName().orElseGet(() -> recipe.get().getName());
+            RecipeIngredientList recipeIngredients = getRecipeIngredients().get().isEmpty()
+                    ? recipe.get().getRecipeIngredients()
+                    : getRecipeIngredients().get();
+            Price orderPrice =
+                    getPrice().orElseGet(() -> recipe.get().getPrice().multiplyPriceByQuantity(quantity));
+
             return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
+                    recipeName, recipeIngredients, orderPrice, deadline, quantity, completionStatus);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
@@ -212,6 +231,19 @@ public class OrderDescriptor {
                 ? Optional.of(lastShownClientList.get(clientIndex.getZeroBased()))
                 : Optional.empty();
         return client;
+    }
+
+    public Optional<Recipe> getRecipeFromModel(Model model) throws CommandException {
+        List<Recipe> lastShownRecipeList = model.getFilteredRecipeList();
+
+        if (getRecipeIndex().isPresent() && getRecipeIndex().get().getZeroBased() >= lastShownRecipeList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        }
+
+        Optional<Recipe> recipe = getRecipeIndex().isPresent()
+                ? Optional.of(lastShownRecipeList.get(recipeIndex.getZeroBased()))
+                : Optional.empty();
+        return recipe;
     }
 
     @Override

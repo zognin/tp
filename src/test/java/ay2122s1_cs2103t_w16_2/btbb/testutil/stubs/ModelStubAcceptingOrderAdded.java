@@ -12,6 +12,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +24,7 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     private final ArrayList<Client> clientsAdded = new ArrayList<>();
     private final ArrayList<Ingredient> ingredientsAdded = new ArrayList<>();
     private final ArrayList<Order> ordersAdded = new ArrayList<>();
+    private final ArrayList<Recipe> recipeAdded = new ArrayList<>();
 
     @Override
     public void addClient(Client client) {
@@ -67,6 +69,11 @@ public class ModelStubAcceptingOrderAdded extends ModelStub {
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return FXCollections.observableList(ordersAdded);
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return FXCollections.observableList(recipeAdded);
     }
 
     public ArrayList<Order> getOrdersAdded() {

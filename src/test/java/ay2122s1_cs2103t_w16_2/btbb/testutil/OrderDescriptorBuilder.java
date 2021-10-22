@@ -122,6 +122,17 @@ public class OrderDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Index} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param recipeIndex The index that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new index details.
+     */
+    public OrderDescriptorBuilder withRecipeIndex(Index recipeIndex) {
+        descriptor.setRecipeIndex(recipeIndex);
+        return this;
+    }
+
+    /**
      * Sets the {@code price} of the {@code OrderDescriptor} that we are building.
      *
      * @param price The price that should be set.
