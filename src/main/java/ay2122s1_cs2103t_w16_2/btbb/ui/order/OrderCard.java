@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 
 /**
@@ -17,7 +15,7 @@ public class OrderCard extends UiPart<Region> {
     private static final String FXML = "OrderListCard.fxml";
 
     private final Order order;
-    private final String SVG_PATH = "M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z";
+    private final String svgPathForTick = "M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z";
 
     @FXML
     private HBox cardPane;
@@ -60,7 +58,7 @@ public class OrderCard extends UiPart<Region> {
         orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
-        orderIsFinished.setContent(SVG_PATH);
+        orderIsFinished.setContent(svgPathForTick);
         orderIsFinished.setVisible(order.getCompletionStatus().getIsFinished());
     }
 

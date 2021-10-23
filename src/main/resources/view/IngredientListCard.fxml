@@ -21,10 +21,20 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="name" wrapText="true" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="quantity" styleClass="cell_big_label_secondary" text="\$quantity" />
-            <Label fx:id="unit" styleClass="cell_big_label_secondary" text="\$unit" />
+            <Label fx:id="quantity" styleClass="cell_big_label_secondary" text="\$quantity" >
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </Label>
+            <Label fx:id="unit" styleClass="cell_big_label_secondary" text="\$unit" >
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </Label>
         </HBox>
     </GridPane>
 </HBox>

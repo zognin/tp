@@ -20,21 +20,33 @@
 
             <GridPane>
                 <children>
-                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" spacing="4">
+                    <HBox alignment="BASELINE_LEFT"  GridPane.columnIndex="0" spacing="4">
                         <Label fx:id="id" styleClass="cell_big_label">
                             <minWidth>
                                 <!-- Ensures that the label text is never truncated -->
                                 <Region fx:constant="USE_PREF_SIZE" />
                             </minWidth>
                         </Label>
-                        <Label fx:id="recipeName" styleClass="cell_big_label" text="\$recipe name"/>
-                        <Label fx:id="orderQuantity" styleClass="cell_big_label" text="x $qty"/>
-                        <Label fx:id="orderPrice" styleClass="cell_big_label" text="- $price"/>
+                        <Label fx:id="recipeName" wrapText="true" styleClass="cell_big_label" text="\$recipe name" />
+                        <Label fx:id="orderQuantity" wrapText="true" styleClass="cell_big_label" text="x $qty">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
+                        <Label fx:id="orderPrice" wrapText="true" minWidth="175" styleClass="cell_big_label" text="- $price">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
                     </HBox>
 
-                    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" spacing="4">
-                        <Label fx:id="orderDeadline" styleClass="cell_small_label" text="\$deadline"/>
-                        <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
+                    <HBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1">
+                        <HBox alignment="CENTER">
+                            <Label fx:id="orderDeadline" wrapText="true" styleClass="cell_small_label" text="\$deadline"/>
+                            <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
+                        </HBox>
                     </HBox>
                 </children>
 
@@ -44,12 +56,12 @@
                 </columnConstraints>
             </GridPane>
 
-            <Label text="Ingredients" styleClass="cell_small_label_header"/>
-            <Label fx:id="recipeIngredients" styleClass="cell_small_label"/>
-            <Label text="Client Details" styleClass="cell_small_label_header"/>
-            <Label fx:id="clientName" styleClass="cell_small_label" text="\$client name" />
-            <Label fx:id="clientPhone" styleClass="cell_small_label" text="\$client phone" />
-            <Label fx:id="clientAddress" styleClass="cell_small_label" text="\$client address" />
+            <Label text="Ingredients" wrapText="true" styleClass="cell_small_label_header"/>
+            <Label fx:id="recipeIngredients" wrapText="true" styleClass="cell_small_label"/>
+            <Label text="Client Details" wrapText="true" styleClass="cell_small_label_header"/>
+            <Label fx:id="clientName" wrapText="true" styleClass="cell_small_label" text="\$client name" />
+            <Label fx:id="clientPhone" wrapText="true" styleClass="cell_small_label" text="\$client phone" />
+            <Label fx:id="clientAddress" wrapText="true" styleClass="cell_small_label" text="\$client address" />
         </VBox>
     </GridPane>
 </HBox>
