@@ -40,6 +40,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
@@ -329,5 +330,21 @@ public class CommandTestUtil {
         model.updateFilteredOrderList(order -> order.equals(orderToShow));
 
         assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     *
+     * @param model The model.
+     * @param targetIndex The target index.
+     */
+    public static void showRecipeAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecipeList().size());
+
+        Recipe recipeToShow = model.getFilteredRecipeList().get(targetIndex.getZeroBased());
+        model.updateFilteredRecipeList(recipe -> recipe.equals(recipeToShow));
+
+        assertEquals(1, model.getFilteredRecipeList().size());
     }
 }
