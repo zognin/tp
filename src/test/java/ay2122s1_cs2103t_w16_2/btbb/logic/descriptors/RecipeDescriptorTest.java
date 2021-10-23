@@ -44,7 +44,7 @@ public class RecipeDescriptorTest {
 
         // Price field is null
         RecipeDescriptor nullPriceDescriptor = new RecipeDescriptorBuilder().build();
-        nullPriceDescriptor.setPrice(null);
+        nullPriceDescriptor.setRecipePrice(null);
         assertThrows(NullPointerException.class, nullPriceDescriptor::toModelType);
     }
 
@@ -78,7 +78,7 @@ public class RecipeDescriptorTest {
         // Price field in descriptor is null
         expectedModelRecipe = new RecipeBuilder().withPrice(VALID_PRICE_1).build();
         validRecipeDescriptor = new RecipeDescriptorBuilder(expectedModelRecipe).build();
-        validRecipeDescriptor.setPrice(null);
+        validRecipeDescriptor.setRecipePrice(null);
         assertEquals(expectedModelRecipe, validRecipeDescriptor.toModelTypeFrom(expectedModelRecipe));
     }
 

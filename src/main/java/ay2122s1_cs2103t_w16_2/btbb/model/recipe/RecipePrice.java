@@ -5,13 +5,18 @@ import static java.util.Objects.requireNonNull;
 
 import java.math.BigDecimal;
 
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
+
 /**
  * Represents the recipe price of a recipe in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class RecipePrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "Recipe price should be positive and less than $2500.00.";
+            "Recipe price should be positive and less than $2500.00. It should contain up to 4 digits, with an "
+                    + "optional 2 decimal places";
+    public static final String VALIDATION_REGEX = "^\\d{1,4}(\\.\\d{2})?$";
     public static final BigDecimal MAX_RECIPE_PRICE = new BigDecimal(2500.00);
     public static final BigDecimal MIN_RECIPE_PRICE = new BigDecimal(0);
     private final BigDecimal recipePrice;
@@ -34,12 +39,19 @@ public class RecipePrice {
      * @return True if the recipe price is valid. False otherwise.
      */
     public static boolean isValidRecipePrice(String test) {
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
         try {
             BigDecimal recipePrice = new BigDecimal(test);
             return recipePrice.compareTo(MAX_RECIPE_PRICE) < 0 && recipePrice.compareTo(MIN_RECIPE_PRICE) > 0;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
+    }
+
+    public Price multiplyRecipePriceByQuantity(Quantity quantity) {
+        return new Price(recipePrice.multiply(new BigDecimal(quantity.getQuantityAsInt())).toString());
     }
 
     /**

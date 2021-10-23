@@ -7,8 +7,8 @@ import java.util.Optional;
 import ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 
 /**
  * Stores the details relevant to a recipe.
@@ -17,7 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 public class RecipeDescriptor {
     private GenericString name;
     private RecipeIngredientList recipeIngredients;
-    private Price price;
+    private RecipePrice recipePrice;
 
     public RecipeDescriptor() {}
 
@@ -29,14 +29,14 @@ public class RecipeDescriptor {
     public RecipeDescriptor(RecipeDescriptor toCopy) {
         setName(toCopy.name);
         setRecipeIngredients(toCopy.recipeIngredients);
-        setPrice(toCopy.price);
+        setRecipePrice(toCopy.recipePrice);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, recipeIngredients, price);
+        return CollectionUtil.isAnyNonNull(name, recipeIngredients, recipePrice);
     }
 
     public Optional<GenericString> getName() {
@@ -55,12 +55,12 @@ public class RecipeDescriptor {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public Optional<Price> getPrice() {
-        return Optional.ofNullable(price);
+    public Optional<RecipePrice> getRecipePrice() {
+        return Optional.ofNullable(recipePrice);
     }
 
-    public void setPrice(Price price) {
-        this.price = price;
+    public void setRecipePrice(RecipePrice recipePrice) {
+        this.recipePrice = recipePrice;
     }
 
     /**
@@ -70,8 +70,8 @@ public class RecipeDescriptor {
      * @return {@code Recipe}.
      */
     public Recipe toModelType() {
-        requireAllNonNull(name, recipeIngredients, price);
-        return new Recipe(name, recipeIngredients, price);
+        requireAllNonNull(name, recipeIngredients, recipePrice);
+        return new Recipe(name, recipeIngredients, recipePrice);
     }
 
     /**
@@ -87,7 +87,7 @@ public class RecipeDescriptor {
         GenericString updatedName = getName().orElse(existingRecipe.getName());
         RecipeIngredientList updatedRecipeIngredients =
                 getRecipeIngredients().orElse(existingRecipe.getRecipeIngredients());
-        Price updatedPrice = getPrice().orElse(existingRecipe.getPrice());
+        RecipePrice updatedPrice = getRecipePrice().orElse(existingRecipe.getRecipePrice());
 
         return new Recipe(updatedName, updatedRecipeIngredients, updatedPrice);
     }
@@ -109,6 +109,6 @@ public class RecipeDescriptor {
 
         return getName().equals(otherRecipeDescriptor.getName())
                 && getRecipeIngredients().equals(otherRecipeDescriptor.getRecipeIngredients())
-                && getPrice().equals(otherRecipeDescriptor.getPrice());
+                && getRecipePrice().equals(otherRecipeDescriptor.getRecipePrice());
     }
 }

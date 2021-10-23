@@ -26,11 +26,6 @@ public class Price implements Comparable<Price> {
         this.price = new BigDecimal(price);
     }
 
-    private Price(BigDecimal price) {
-        requireNonNull(price);
-        this.price = price;
-    }
-
     /**
      * Returns true if a given string is a valid price.
      *
@@ -43,10 +38,6 @@ public class Price implements Comparable<Price> {
 
     public Double doubleValue() {
         return price.doubleValue();
-    }
-
-    public Price multiplyPriceByQuantity(Quantity quantity) {
-        return new Price(price.multiply(new BigDecimal(quantity.getQuantityAsInt())));
     }
 
     @Override

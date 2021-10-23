@@ -191,7 +191,7 @@ public class OrderDescriptor {
                     ? getRecipeIngredients().get()
                     : recipe.get().getRecipeIngredients();
             orderPrice =
-                    getPrice().orElseGet(() -> recipe.get().getPrice().multiplyPriceByQuantity(quantity));
+                    getPrice().orElseGet(() -> recipe.get().getRecipePrice().multiplyRecipePriceByQuantity(quantity));
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_RECIPE_DETAILS);
         }

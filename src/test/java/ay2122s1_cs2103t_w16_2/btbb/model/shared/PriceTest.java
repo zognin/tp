@@ -35,19 +35,6 @@ class PriceTest {
     }
 
     @Test
-    public void multiplyPriceByQuantity() {
-        Price price = new Price("1");
-        Quantity quantity = new Quantity("2");
-
-        // multiply price by 2 -> returns Price with value 2
-        assertEquals(new Price("2"), price.multiplyPriceByQuantity(quantity));
-
-        // multiply price by 0 -> returns Price with value 0
-        quantity = new Quantity("0");
-        assertEquals(new Price("0"), price.multiplyPriceByQuantity(quantity));
-    }
-
-    @Test
     public void isValidPrice() {
         // null price
         assertFalse(Price.isValidPrice(null));

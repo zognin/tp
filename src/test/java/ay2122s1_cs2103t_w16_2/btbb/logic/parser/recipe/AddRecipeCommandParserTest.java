@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeDescriptorBuilder;
 
 public class AddRecipeCommandParserTest {
@@ -84,7 +84,7 @@ public class AddRecipeCommandParserTest {
 
         // invalid price
         assertParseFailure(parser, RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_LAKSA
-                        + INVALID_RECIPE_PRICE_DESC, Price.MESSAGE_CONSTRAINTS);
+                        + INVALID_RECIPE_PRICE_DESC, RecipePrice.MESSAGE_CONSTRAINTS);
 
 
         // two invalid values, only first invalid value reported
