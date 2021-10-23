@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_REC
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
 
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 
 /**
@@ -25,7 +26,7 @@ public class RecipeUtil {
      * Returns the part of command string for the given {@code recipe}'s details.
      *
      * @param recipe Recipe to get details from.
-     * @return Part of the add recipe command string.
+     * @return Part of the command string.
      */
     public static String getRecipeDetails(Recipe recipe) {
         StringBuilder sb = new StringBuilder();
@@ -34,6 +35,21 @@ public class RecipeUtil {
             sb.append(PREFIX_RECIPE_INGREDIENT + recipe.getRecipeIngredients().toString() + " ");
         }
         sb.append(PREFIX_RECIPE_PRICE + recipe.getPrice().toString() + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code RecipeDescriptor}'s details.
+     *
+     * @param descriptor Descriptor to get details from.
+     * @return Part of the command string.
+     */
+    public static String getEditRecipeDescriptorDetails(RecipeDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name ->
+                sb.append(PREFIX_RECIPE_NAME).append(name).append(" "));
+        descriptor.getPrice().ifPresent(price ->
+                sb.append(PREFIX_RECIPE_PRICE).append(price).append(" "));
         return sb.toString();
     }
 }

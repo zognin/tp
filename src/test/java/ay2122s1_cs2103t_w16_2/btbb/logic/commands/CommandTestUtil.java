@@ -94,6 +94,7 @@ public class CommandTestUtil {
     // Valid Recipe attributes
     public static final String VALID_RECIPE_NAME_APPLE_PIE = "Apple pie";
     public static final String VALID_RECIPE_NAME_BEEF_STEW = "Beef stew";
+    public static final String VALID_RECIPE_PRICE_LAKSA = "4";
 
     // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
