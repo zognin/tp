@@ -181,7 +181,7 @@ the inventory.
 
 #### Usage scenarios
 
-The following activity diagram summarizes what happens when a user executes an adds order command:
+The following activity diagram summarizes what happens when a user executes an add order command:
 
 ![AddOrderActivityDiagram](images/AddOrderActivityDiagram.png)
 
