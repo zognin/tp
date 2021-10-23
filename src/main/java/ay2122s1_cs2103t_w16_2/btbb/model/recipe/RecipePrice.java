@@ -39,7 +39,7 @@ public class RecipePrice {
      * @return True if the recipe price is valid. False otherwise.
      */
     public static boolean isValidRecipePrice(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
+        if (test == null || !test.matches(VALIDATION_REGEX)) {
             return false;
         }
         try {
