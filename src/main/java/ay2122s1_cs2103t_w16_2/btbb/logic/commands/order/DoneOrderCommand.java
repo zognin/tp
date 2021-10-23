@@ -66,7 +66,7 @@ public class DoneOrderCommand extends Command {
         Order orderToMarkDone = lastShownList.get(targetIndex.getZeroBased());
         Order markedOrder = new Order(orderToMarkDone.getClientName(), orderToMarkDone.getClientPhone(),
                 orderToMarkDone.getClientAddress(), orderToMarkDone.getRecipeName(),
-                orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getPrice(),
+                orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getOrderPrice(),
                 orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new CompletionStatus(true));
 
         try {

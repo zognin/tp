@@ -10,9 +10,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -49,7 +49,7 @@ public class OrderDescriptorBuilder {
         descriptor.setClientAddress(order.getClientAddress());
         descriptor.setRecipeName(order.getRecipeName());
         descriptor.setRecipeIngredients(order.getRecipeIngredients());
-        descriptor.setPrice(order.getPrice());
+        descriptor.setOrderPrice(order.getOrderPrice());
         descriptor.setDeadline(order.getDeadline());
         descriptor.setQuantity(order.getQuantity());
         descriptor.setCompletionStatus(order.getCompletionStatus());
@@ -122,13 +122,24 @@ public class OrderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code price} of the {@code OrderDescriptor} that we are building.
+     * Sets the recipeIndex of the {@code OrderDescriptor} that we are building.
      *
-     * @param price The price that should be set.
+     * @param recipeIndex The index that should be set.
+     * @return A OrderDescriptorBuilder object that contains the new index details.
+     */
+    public OrderDescriptorBuilder withRecipeIndex(Index recipeIndex) {
+        descriptor.setRecipeIndex(recipeIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code orderPrice} of the {@code OrderDescriptor} that we are building.
+     *
+     * @param orderPrice The price that should be set.
      * @return A OrderDescriptorBuilder object that contains the new price details.
      */
-    public OrderDescriptorBuilder withPrice(String price) {
-        descriptor.setPrice(new Price(price));
+    public OrderDescriptorBuilder withOrderPrice(String orderPrice) {
+        descriptor.setOrderPrice(new OrderPrice(orderPrice));
         return this;
     }
 

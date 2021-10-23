@@ -10,7 +10,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -23,7 +22,7 @@ public class Order {
     private final Address clientAddress;
     private final GenericString recipeName;
     private final RecipeIngredientList recipeIngredients;
-    private final Price price;
+    private final OrderPrice orderPrice;
     private final Deadline deadline;
     private final Quantity quantity;
     private final CompletionStatus completionStatus;
@@ -36,12 +35,12 @@ public class Order {
      * @param clientAddress The client's address.
      * @param recipeName The name of the recipe chosen.
      * @param recipeIngredients The list of ingredients used the for recipe in the order.
-     * @param price The price of the order.
+     * @param orderPrice The orderPrice of the order.
      * @param deadline The deadline for this order.
      * @param quantity The quantity of this order.
      */
     public Order(GenericString clientName, Phone clientPhone, Address clientAddress,
-                 GenericString recipeName, RecipeIngredientList recipeIngredients, Price price,
+                 GenericString recipeName, RecipeIngredientList recipeIngredients, OrderPrice orderPrice,
                  Deadline deadline, Quantity quantity, CompletionStatus completionStatus) {
         requireAllNonNull(clientName, clientPhone, clientAddress,
                 recipeName, recipeIngredients, recipeName, deadline, quantity, completionStatus);
@@ -50,7 +49,7 @@ public class Order {
         this.clientAddress = clientAddress;
         this.recipeName = recipeName;
         this.recipeIngredients = recipeIngredients;
-        this.price = price;
+        this.orderPrice = orderPrice;
         this.deadline = deadline;
         this.quantity = quantity;
         this.completionStatus = completionStatus;
@@ -76,8 +75,8 @@ public class Order {
         return recipeIngredients;
     }
 
-    public Price getPrice() {
-        return price;
+    public OrderPrice getOrderPrice() {
+        return orderPrice;
     }
 
     public Deadline getDeadline() {
@@ -123,7 +122,7 @@ public class Order {
                 && otherOrder.getClientAddress().equals(getClientAddress())
                 && otherOrder.getRecipeName().equals(getRecipeName())
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
-                && otherOrder.getPrice().equals(getPrice())
+                && otherOrder.getOrderPrice().equals(getOrderPrice())
                 && otherOrder.getDeadline().equals(getDeadline());
     }
 
@@ -151,7 +150,7 @@ public class Order {
                 && otherOrder.getClientAddress().equals(getClientAddress())
                 && otherOrder.getRecipeName().equals(getRecipeName())
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
-                && otherOrder.getPrice().equals(getPrice())
+                && otherOrder.getOrderPrice().equals(getOrderPrice())
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getQuantity().equals(getQuantity())
                 && otherOrder.getCompletionStatus().equals(getCompletionStatus());
@@ -178,7 +177,7 @@ public class Order {
                 .append(getRecipeIngredients())
                 .append("\n")
                 .append("Order Price: ")
-                .append(getPrice())
+                .append(getOrderPrice())
                 .append("; Order Deadline: ")
                 .append(getDeadline())
                 .append("; Order Quantity: ")
@@ -210,7 +209,7 @@ public class Order {
                 .append(getRecipeIngredients())
                 .append("\n")
                 .append("Order Price: ")
-                .append(getPrice())
+                .append(getOrderPrice())
                 .append("; Order Deadline: ")
                 .append(getDeadline())
                 .append("; Order Quantity: ")

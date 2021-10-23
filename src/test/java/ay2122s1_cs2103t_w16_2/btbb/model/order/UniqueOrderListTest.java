@@ -32,7 +32,6 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
@@ -81,7 +80,7 @@ class UniqueOrderListTest {
 
             for (Order order : orderList) {
                 Order o = new OrderBuilder(order)
-                        .withPrice(new Price(String.valueOf(i + 1)))
+                        .withOrderPrice(new OrderPrice(String.valueOf(i + 1)))
                         .withDeadline(new Deadline(
                                 String.format("%s-%s-%s 1900", i + 10,
                                         month.getValue() < 10
@@ -112,7 +111,7 @@ class UniqueOrderListTest {
         for (int i = 0; i < orderList.size(); i++) {
             for (int j = 0; j < i + 1; j++) {
                 uniqueOrderList.add(
-                        new OrderBuilder(orderList.get(i)).withPrice(new Price(Integer.toString(i))).build()
+                        new OrderBuilder(orderList.get(i)).withOrderPrice(new OrderPrice(Integer.toString(i))).build()
                 );
             }
         }
