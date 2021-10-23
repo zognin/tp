@@ -42,11 +42,9 @@
                         </Label>
                     </HBox>
 
-                    <HBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1">
-                        <HBox alignment="CENTER">
-                            <Label fx:id="orderDeadline" wrapText="true" styleClass="cell_small_label" text="\$deadline"/>
-                            <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
-                        </HBox>
+                    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
+                        <Label fx:id="orderDeadline" wrapText="true" styleClass="cell_small_label" text="\$deadline"/>
+                        <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
                     </HBox>
                 </children>
 
