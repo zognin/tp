@@ -118,10 +118,10 @@ public class Order {
         }
 
         return otherOrder != null
-                && otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientName().isSameGenericString(getClientName())
                 && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress())
-                && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getRecipeName().isSameGenericString(getRecipeName())
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getDeadline().equals(getDeadline());
