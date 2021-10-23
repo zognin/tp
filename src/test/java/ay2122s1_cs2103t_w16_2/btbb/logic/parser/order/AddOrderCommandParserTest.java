@@ -157,12 +157,20 @@ class AddOrderCommandParserTest {
                         + DEADLINE_DESC_DECEMBER,
                 new AddOrderCommand(expectedOrderDescriptorWithoutClientIndexAndOrderQuantity));
 
-        //=========== With Client Index ===============================================================================
+        //=========== With Client Index and without Recipe Index =====================================================
 
         // multiple client index with client details - last index accepted
         assertParseSuccess(parser,
                 INDEX_DESC_AMY + INDEX_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
+                        + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
+                new AddOrderCommand(expectedOrderDescriptorWithClientIndexAndParams));
+
+        //=========== With Client Index with Recipe Name only ========================================================
+
+        assertParseSuccess(parser,
+                INDEX_DESC_AMY + INDEX_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + RECIPE_NAME_DESC_LAKSA + ORDER_PRICE_DESC_2
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
                 new AddOrderCommand(expectedOrderDescriptorWithClientIndexAndParams));
 
