@@ -335,6 +335,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
      * {@code model}'s address book.
+     *
+     * @param model The model.
+     * @param targetIndex The target index.
      */
     public static void showRecipeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRecipeList().size());

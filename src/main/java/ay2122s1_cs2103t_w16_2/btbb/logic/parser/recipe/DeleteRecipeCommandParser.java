@@ -16,6 +16,7 @@ public class DeleteRecipeCommandParser implements Parser<DeleteRecipeCommand> {
      * Parses the given {@code String} of arguments in the context of the DeleteRecipeCommand
      * and returns a DeleteRecipeCommand object for execution.
      *
+     * @param args The string to parse.
      * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteRecipeCommand parse(String args) throws ParseException {
