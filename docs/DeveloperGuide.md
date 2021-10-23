@@ -154,6 +154,44 @@ Classes used by multiple components are in the `ay2122s1_cs2103t_w16_2.btbb.comm
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Overview
+
+Add operations can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+This is how the add mechanism works in general:
+
+1. User enters an add command.
+1. A relevant `AddXCommandParser`, where `X` is one of the entities, parses the command to generate a `AddXCommand`.
+1. The `AddXCommandParser` generates a relevant `XDescriptor` that contains the details of the entity `X` to be created.
+1. The `AddXCommand` is executed. During execution, the `XDescriptor` is converted to its respective `X` entity.
+1. `Model` adds the entity.
+1. `Storage` saves the changes.
+1. Feedback about the status of the add is shown to the user.
+
+The following sequence diagram shows how the add order operation works. The sequence diagram for other
+entities (client, ingredient and recipe) in the model is similar. However, for add order,
+there is an additional optional step of subtracting the ingredient quantities for each matching ingredient in
+the inventory.
+
+![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when a user executes an add order command:
+
+![AddOrderActivityDiagram](images/AddOrderActivityDiagram.png)
+
+Example of a successful addition using the add order command:
+
+1. The user wishes to add an order.
+1. The user executes an appropriate add order command to add an order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app adds the order and the order is shown in the list.
+
 ### Delete feature
 
 #### Overview

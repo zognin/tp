@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
+participant "a:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "od:OrderDescriptor" as OrderDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Logic : executeCommand()
+activate Logic
+
+Logic -> AddressBookParser : parseCommand()
+activate AddressBookParser
+
+create AddOrderCommandParser
+AddressBookParser -> AddOrderCommandParser
+activate AddOrderCommandParser
+
+AddOrderCommandParser --> AddressBookParser
+deactivate AddOrderCommandParser
+
+AddressBookParser -> AddOrderCommandParser : parse(args)
+activate AddOrderCommandParser
+
+create OrderDescriptor
+AddOrderCommandParser -> OrderDescriptor
+activate OrderDescriptor
+
+OrderDescriptor --> AddOrderCommandParser : od
+deactivate OrderDescriptor
+
+create AddOrderCommand
+AddOrderCommandParser -> AddOrderCommand : AddOrderCommand(od)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser : a
+deactivate AddOrderCommand
+
+AddOrderCommandParser --> AddressBookParser : a
+deactivate AddOrderCommandParser
+
+AddressBookParser --> Logic : a
+deactivate AddressBookParser
+
+Logic -> AddOrderCommand : execute()
+activate AddOrderCommand
+
+loop for each ingredient
+    opt ingredient in inventory
+        AddOrderCommand -> Model : minusIngredientQuantity()
+        activate Model
+
+        Model --> AddOrderCommand
+        deactivate Model
+    end
+end
+
+AddOrderCommand -> Model : addOrder()
+activate Model
+
+Model --> AddOrderCommand
+deactivate Model
+
+create CommandResult
+AddOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderCommand: result
+deactivate CommandResult
+
+Logic <-- AddOrderCommand : result
+deactivate AddOrderCommand
+
+Logic -> Storage : saveAddressBook()
+activate Storage
+
+Storage --> Logic
+deactivate Storage
+
+[<-- Logic : result
+deactivate Logic
+
+@enduml

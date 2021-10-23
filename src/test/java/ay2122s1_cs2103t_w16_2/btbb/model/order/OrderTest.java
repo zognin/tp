@@ -5,9 +5,9 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_BEEF;
@@ -19,6 +19,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_DANIE
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ELLE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_FIONA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_GEORGE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,7 +33,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 
@@ -51,7 +51,7 @@ class OrderTest {
                 .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                         new GenericString(VALID_UNIT_BEEF)))))
-                .withPrice(new Price(VALID_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
+                .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
                 .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
                 .build();
         // different object, with similar fields as ORDER_FOR_BOB -> returns true
@@ -87,7 +87,7 @@ class OrderTest {
         assertFalse(ORDER_FOR_GEORGE.isSameOrder(editedRandomOrder));
 
         // different order price -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withPrice(new Price("10.50")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withOrderPrice(new OrderPrice("10.50")).build();
         assertFalse(ORDER_FOR_DANIEL.isSameOrder(editedRandomOrder));
 
         // different order deadline -> returns false
@@ -102,6 +102,30 @@ class OrderTest {
         editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON)
                 .withCompletionStatus(new CompletionStatus(true)).build();
         assertTrue(ORDER_FOR_BENSON.isSameOrder(editedRandomOrder));
+    }
+
+    @Test
+    public void compareTo() {
+        // same order -> returns 0
+        assertEquals(0, ORDER_FOR_ALICE.compareTo(ORDER_FOR_ALICE));
+
+        // order 1 not completed but order 2 completed -> returns negative value
+        assertTrue(ORDER_FOR_BENSON.compareTo(ORDER_FOR_ALICE) < 0);
+
+        // order 1 completed but order 2 not completed -> returns positive value
+        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_BENSON) > 0);
+
+        // both orders completed, order 1 deadline before order 2 deadline -> returns negative value
+        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_CARL) < 0);
+
+        // both orders completed, order 1 deadline after order 2 deadline -> returns positive value
+        assertTrue(ORDER_FOR_CARL.compareTo(ORDER_FOR_ALICE) > 0);
+
+        // both orders not completed, order 1 deadline before order 2 deadline -> returns negative value
+        assertTrue(ORDER_FOR_BENSON.compareTo(ORDER_FOR_DANIEL) < 0);
+
+        // both orders not completed, order 1 deadline after order 2 deadline -> returns positive value
+        assertTrue(ORDER_FOR_DANIEL.compareTo(ORDER_FOR_BENSON) > 0);
     }
 
     @Test
@@ -128,7 +152,7 @@ class OrderTest {
                 .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                         new GenericString(VALID_UNIT_BEEF)))))
-                .withPrice(new Price(VALID_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
+                .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
                 .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
                 .build();
         // different object, with similar fields as ORDER_FOR_BOB -> returns true
@@ -163,7 +187,7 @@ class OrderTest {
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order price -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withPrice(new Price("0.50")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withOrderPrice(new OrderPrice("0.50")).build();
         assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
 
         // different order deadline -> returns false

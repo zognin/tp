@@ -18,7 +18,7 @@ public class JsonAdaptedRecipeTest {
     private static final String INVALID_RECIPE_PRICE = "$2.40";
 
     private static final String VALID_RECIPE_NAME = RECIPE_EGG_PRATA.getName().toString();
-    private static final String VALID_RECIPE_PRICE = RECIPE_EGG_PRATA.getPrice().toString();
+    private static final String VALID_RECIPE_PRICE = RECIPE_EGG_PRATA.getRecipePrice().toString();
     private static final List<JsonAdaptedIngredient> VALID_RECIPE_INGREDIENT_LIST = List.of(
             new JsonAdaptedIngredient(
                     CHICKEN.getName().toString(), new Quantity("1").toString(), CHICKEN.getUnit().toString()),

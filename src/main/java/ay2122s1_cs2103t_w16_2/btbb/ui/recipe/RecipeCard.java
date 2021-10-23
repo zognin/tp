@@ -38,7 +38,7 @@ public class RecipeCard extends UiPart<Region> {
         this.id.setText(displayedIndex + ". ");
         recipeName.setText(recipe.getName().toString());
         recipeIngredients.setText(recipe.getRecipeIngredients().toDisplayString());
-        recipePrice.setText("(Price: $" + recipe.getPrice().toString() + ")");
+        recipePrice.setText("(Price: $" + recipe.getRecipePrice().toString() + ")");
     }
 
     @Override

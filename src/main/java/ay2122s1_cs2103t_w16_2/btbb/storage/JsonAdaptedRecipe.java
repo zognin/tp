@@ -11,8 +11,8 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.IllegalValueException;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class JsonAdaptedRecipe {
@@ -20,7 +20,7 @@ public class JsonAdaptedRecipe {
 
     private final String name;
     private final List<JsonAdaptedIngredient> recipeIngredients = new ArrayList<>();
-    private final String price;
+    private final String recipePrice;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -28,9 +28,9 @@ public class JsonAdaptedRecipe {
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
                              @JsonProperty("recipeIngredients") List<JsonAdaptedIngredient> recipeIngredients,
-                             @JsonProperty("price") String price) {
+                             @JsonProperty("price") String recipePrice) {
         this.name = name;
-        this.price = price;
+        this.recipePrice = recipePrice;
 
         if (recipeIngredients != null) {
             this.recipeIngredients.addAll(recipeIngredients);
@@ -46,7 +46,7 @@ public class JsonAdaptedRecipe {
         this.name = source.getName().toString();
         this.recipeIngredients.addAll(source.getRecipeIngredients().getIngredients()
                 .stream().map(JsonAdaptedIngredient::new).collect(Collectors.toList()));
-        this.price = source.getPrice().toString();
+        this.recipePrice = source.getRecipePrice().toString();
     }
 
     /**
@@ -78,13 +78,14 @@ public class JsonAdaptedRecipe {
         }
         final RecipeIngredientList modelRecipeIngredients = new RecipeIngredientList(ingredients);
 
-        if (price == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        if (recipePrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    RecipePrice.class.getSimpleName()));
         }
-        if (!Price.isValidPrice(price)) {
-            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        if (!RecipePrice.isValidRecipePrice(recipePrice)) {
+            throw new IllegalValueException(RecipePrice.MESSAGE_CONSTRAINTS);
         }
-        final Price modelPrice = new Price(price);
+        final RecipePrice modelPrice = new RecipePrice(recipePrice);
 
         return new Recipe(modelName, modelRecipeIngredients, modelPrice);
     }

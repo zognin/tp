@@ -53,7 +53,7 @@ public class DoneOrderCommandTest {
         Order orderToMarkDone = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         Order expectedMarkedOrder = new Order(orderToMarkDone.getClientName(), orderToMarkDone.getClientPhone(),
                 orderToMarkDone.getClientAddress(), orderToMarkDone.getRecipeName(),
-                orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getPrice(),
+                orderToMarkDone.getRecipeIngredients(), orderToMarkDone.getOrderPrice(),
                 orderToMarkDone.getDeadline(), orderToMarkDone.getQuantity(), new CompletionStatus(true));
         DoneOrderCommand doneOrderCommand = new DoneOrderCommand(INDEX_FIRST);
 

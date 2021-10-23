@@ -48,4 +48,14 @@ public class CompletionStatusTest {
         assertTrue(CompletionStatus.isValidCompletionStatus("yES")); // Case-sensitive
         assertTrue(CompletionStatus.isValidCompletionStatus("no"));
     }
+
+    @Test
+    public void compareTo() {
+        CompletionStatus completed = new CompletionStatus(true);
+        CompletionStatus notCompleted = new CompletionStatus(false);
+
+        assertEquals(0, completed.compareTo(completed));
+        assertTrue(completed.compareTo(notCompleted) > 0);
+        assertTrue(notCompleted.compareTo(completed) < 0);
+    }
 }

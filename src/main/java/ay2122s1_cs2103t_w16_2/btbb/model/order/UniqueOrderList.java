@@ -30,6 +30,7 @@ public class UniqueOrderList implements Iterable<Order> {
     public void add(Order toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sortOrders();
     }
 
     /**
@@ -69,6 +70,7 @@ public class UniqueOrderList implements Iterable<Order> {
         }
 
         internalList.set(index, editedOrder);
+        sortOrders();
     }
 
     /**
@@ -79,6 +81,7 @@ public class UniqueOrderList implements Iterable<Order> {
     public void setOrders(List<Order> orders) {
         requireAllNonNull(orders);
         internalList.setAll(orders);
+        sortOrders();
     }
 
     /**
@@ -111,7 +114,8 @@ public class UniqueOrderList implements Iterable<Order> {
                     if (orderToMonthlyRevenueMap.containsKey(currentYearMonthForOrder)) {
                         orderToMonthlyRevenueMap.put(
                                 currentYearMonthForOrder,
-                                orderToMonthlyRevenueMap.get(currentYearMonthForOrder) + order.getPrice().doubleValue()
+                                orderToMonthlyRevenueMap.get(currentYearMonthForOrder)
+                                        + order.getOrderPrice().doubleValue()
                         );
                     }
                 });
@@ -200,5 +204,9 @@ public class UniqueOrderList implements Iterable<Order> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    private void sortOrders() {
+        internalList.sort(Order::compareTo);
     }
 }

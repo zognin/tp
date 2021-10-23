@@ -38,17 +38,17 @@ public class TypicalRecipes {
     ));
 
     public static final Recipe RECIPE_EGG_PRATA = new RecipeBuilder().withName("Egg Prata")
-            .withRecipeIngredients(INGREDIENT_LIST_EGG_PRATA).withPrice("2").build();
+            .withRecipeIngredients(INGREDIENT_LIST_EGG_PRATA).withRecipePrice("2").build();
     public static final Recipe RECIPE_CHICKEN_RICE = new RecipeBuilder().withName("Chicken Rice")
-            .withRecipeIngredients(INGREDIENT_LIST_CHICKEN_RICE).withPrice("3").build();
+            .withRecipeIngredients(INGREDIENT_LIST_CHICKEN_RICE).withRecipePrice("3").build();
     public static final Recipe RECIPE_LAKSA = new RecipeBuilder().withName("Laksa")
-            .withRecipeIngredients(INGREDIENT_LIST_LAKSA).withPrice("4").build();
+            .withRecipeIngredients(INGREDIENT_LIST_LAKSA).withRecipePrice("4").build();
     public static final Recipe RECIPE_PASTA = new RecipeBuilder().withName("Pasta")
-            .withRecipeIngredients(INGREDIENT_LIST_PASTA).withPrice("4").build();
+            .withRecipeIngredients(INGREDIENT_LIST_PASTA).withRecipePrice("4").build();
     public static final Recipe RECIPE_MEE_REBUS = new RecipeBuilder().withName("Mee Rebus")
-            .withRecipeIngredients(INGREDIENT_LIST_MEE_REBUS).withPrice("3").build();
+            .withRecipeIngredients(INGREDIENT_LIST_MEE_REBUS).withRecipePrice("3").build();
     public static final Recipe RECIPE_MEE_GORENG = new RecipeBuilder().withName("Mee Goreng")
-            .withRecipeIngredients(INGREDIENT_LIST_MEE_GORENG).withPrice("4").build();
+            .withRecipeIngredients(INGREDIENT_LIST_MEE_GORENG).withRecipePrice("4").build();
 
     /**
      * Returns an {@code AddressBook} with all the typical clients.

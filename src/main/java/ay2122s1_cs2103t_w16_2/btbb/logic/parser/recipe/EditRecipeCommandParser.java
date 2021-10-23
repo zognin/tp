@@ -58,7 +58,8 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_RECIPE_PRICE).isPresent()) {
-            recipeDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_RECIPE_PRICE).get()));
+            recipeDescriptor.setRecipePrice(
+                    ParserUtil.parseRecipePrice(argMultimap.getValue(PREFIX_RECIPE_PRICE).get()));
         }
     }
 }

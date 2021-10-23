@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.EditRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeDescriptorBuilder;
 
 public class EditRecipeCommandParserTest {
@@ -59,8 +59,7 @@ public class EditRecipeCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_RECIPE_NAME_DESC,
                 GenericString.getMessageConstraints("Recipe Name"));
-        assertParseFailure(parser, "1" + INVALID_RECIPE_PRICE_DESC,
-                Price.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_RECIPE_PRICE_DESC, RecipePrice.MESSAGE_CONSTRAINTS);
 
         // invalid name followed by valid price
         assertParseFailure(parser, "1" + INVALID_RECIPE_NAME_DESC + RECIPE_PRICE_DESC_LAKSA,
@@ -81,7 +80,7 @@ public class EditRecipeCommandParserTest {
         String userInput = targetIndex.getOneBased() + RECIPE_NAME_DESC_LAKSA + RECIPE_PRICE_DESC_LAKSA;
 
         RecipeDescriptor descriptor = new RecipeDescriptorBuilder().withName(VALID_RECIPE_NAME_LAKSA)
-                .withPrice(VALID_RECIPE_PRICE_LAKSA).build();
+                .withRecipePrice(VALID_RECIPE_PRICE_LAKSA).build();
         EditRecipeCommand expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

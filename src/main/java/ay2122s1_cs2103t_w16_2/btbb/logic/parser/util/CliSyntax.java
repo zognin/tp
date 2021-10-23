@@ -20,6 +20,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER_COMPLETION_STATUS = new Prefix("of/");
     public static final Prefix PREFIX_ORDER_PRICE = new Prefix("op/");
     public static final Prefix PREFIX_ORDER_QUANTITY = new Prefix("oq/");
+    public static final Prefix PREFIX_RECIPE_INDEX = new Prefix("r/");
     public static final Prefix PREFIX_RECIPE_INGREDIENT = new Prefix("ri/");
     public static final Prefix PREFIX_RECIPE_NAME = new Prefix("rn/");
     public static final Prefix PREFIX_RECIPE_PRICE = new Prefix("rp/");

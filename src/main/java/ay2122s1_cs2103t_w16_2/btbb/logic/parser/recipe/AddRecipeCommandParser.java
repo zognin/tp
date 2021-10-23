@@ -42,7 +42,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
         recipeDescriptor.setName(ParserUtil.parseGenericString(
                 argMultimap.getValue(PREFIX_RECIPE_NAME).get(), "Recipe Name"));
-        recipeDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_RECIPE_PRICE).get()));
+        recipeDescriptor.setRecipePrice(ParserUtil.parseRecipePrice(argMultimap.getValue(PREFIX_RECIPE_PRICE).get()));
         if (argMultimap.getValue(PREFIX_RECIPE_INGREDIENT).isEmpty()) {
             // If the user does not provide recipe ingredients, it will be set to an empty list
             recipeDescriptor.setRecipeIngredients(new RecipeIngredientList(new ArrayList<>()));

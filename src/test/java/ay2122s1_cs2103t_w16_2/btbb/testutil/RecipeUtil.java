@@ -34,7 +34,7 @@ public class RecipeUtil {
         if (recipe.getRecipeIngredients().getIngredients().size() > 0) {
             sb.append(PREFIX_RECIPE_INGREDIENT + recipe.getRecipeIngredients().toString() + " ");
         }
-        sb.append(PREFIX_RECIPE_PRICE + recipe.getPrice().toString() + " ");
+        sb.append(PREFIX_RECIPE_PRICE + recipe.getRecipePrice().toString() + " ");
         return sb.toString();
     }
 
@@ -48,7 +48,7 @@ public class RecipeUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name ->
                 sb.append(PREFIX_RECIPE_NAME).append(name).append(" "));
-        descriptor.getPrice().ifPresent(price ->
+        descriptor.getRecipePrice().ifPresent(price ->
                 sb.append(PREFIX_RECIPE_PRICE).append(price).append(" "));
         return sb.toString();
     }
