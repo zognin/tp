@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.model.shared;
+package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 
 class OrderPriceTest {
     @Test

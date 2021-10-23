@@ -190,8 +190,7 @@ public class OrderDescriptor {
             recipeIngredients = !getRecipeIngredients().get().isEmpty() || recipe.isEmpty()
                     ? getRecipeIngredients().get()
                     : recipe.get().getRecipeIngredients();
-            orderPrice =
-                    getOrderPrice().orElseGet(() ->
+            orderPrice = getOrderPrice().orElseGet(() ->
                             recipe.get().getRecipePrice().multiplyRecipePriceByQuantity(quantity));
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_RECIPE_DETAILS);
@@ -230,8 +229,8 @@ public class OrderDescriptor {
         Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
         CompletionStatus updatedCompletionStatus = getCompletionStatus().orElse(existingOrder.getCompletionStatus());
 
-        return new Order(updatedClientName, updatedClientPhone, updatedClientAddress, updatedRecipeName,
-                updatedRecipeIngredientList,
+        return new Order(updatedClientName, updatedClientPhone, updatedClientAddress,
+                updatedRecipeName, updatedRecipeIngredientList,
                 updatedOrderPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
     }
 

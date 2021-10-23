@@ -14,8 +14,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  */
 public class RecipePrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "Recipe price should be positive and less than $2500.00. It should contain up to 4 digits, with an "
-                    + "optional 2 decimal places";
+            "Recipe Price should be positive and less than $2500.00. It should contain up to 4 digits, with an "
+                    + "optional 2 decimal places.";
     public static final String VALIDATION_REGEX = "^\\d{1,4}(\\.\\d{2})?$";
     public static final BigDecimal MAX_RECIPE_PRICE = new BigDecimal(2500.00);
     public static final BigDecimal MIN_RECIPE_PRICE = new BigDecimal(0);
@@ -50,6 +50,12 @@ public class RecipePrice {
         }
     }
 
+    /**
+     * Multiplies a recipe price by a given quantity to get the price of an order.
+     *
+     * @param quantity Quantity to be multiplied by.
+     * @return OrderPrice which represents the price of an order.
+     */
     public OrderPrice multiplyRecipePriceByQuantity(Quantity quantity) {
         return new OrderPrice(recipePrice.multiply(new BigDecimal(quantity.getQuantityAsInt())).toString());
     }

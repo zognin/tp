@@ -118,7 +118,7 @@ public class SampleDataUtil {
                 int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
 
                 LocalDateTime orderDeadline = getSampleDateTime(month + 1, i + 1);
-                boolean completionstatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
+                boolean completionStatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
 
                 Order order = new Order(
                         people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
@@ -126,7 +126,7 @@ public class SampleDataUtil {
                         new OrderPrice(String.format("%.2f", randomPrice)),
                         new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
                         new Quantity(Integer.toString(randomQuantity)),
-                        new CompletionStatus(completionstatus ? "yes" : "no")
+                        new CompletionStatus(completionStatus ? "yes" : "no")
                 );
 
                 orders.add(order);

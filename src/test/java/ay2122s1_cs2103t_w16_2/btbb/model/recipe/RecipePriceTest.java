@@ -26,6 +26,12 @@ public class RecipePriceTest {
 
         String priceMoreThan2500 = "2501";
         assertThrows(IllegalArgumentException.class, () -> new RecipePrice(priceMoreThan2500));
+
+        String priceEquals2500 = "2500";
+        assertThrows(IllegalArgumentException.class, () -> new RecipePrice(priceEquals2500));
+
+        String zeroPrice = "0";
+        assertThrows(IllegalArgumentException.class, () -> new RecipePrice(zeroPrice));
     }
 
     @Test
