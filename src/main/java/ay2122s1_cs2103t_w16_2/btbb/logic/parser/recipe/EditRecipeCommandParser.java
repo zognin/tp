@@ -15,7 +15,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
 /**
- * Parses input arguments and creates a new EditRecipeCommand object
+ * Parses input arguments and creates a new EditRecipeCommand object.
  */
 public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
     /**
