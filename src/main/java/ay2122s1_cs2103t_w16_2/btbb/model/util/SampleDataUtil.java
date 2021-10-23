@@ -17,10 +17,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -60,16 +61,22 @@ public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         List<List<Ingredient>> ingredients = getRecipeIngredientList();
         return new Recipe[] {
-            new Recipe(new GenericString("Chicken Rice"), new RecipeIngredientList(ingredients.get(0)), new Price("3")),
-            new Recipe(new GenericString("Nasi Lemak"), new RecipeIngredientList(ingredients.get(1)), new Price("3")),
-            new Recipe(new GenericString("Prata"), new RecipeIngredientList(ingredients.get(2)), new Price("2")),
+            new Recipe(new GenericString("Chicken Rice"), new RecipeIngredientList(ingredients.get(0)),
+                    new RecipePrice("3")),
+            new Recipe(new GenericString("Nasi Lemak"), new RecipeIngredientList(ingredients.get(1)),
+                    new RecipePrice("3")),
+            new Recipe(new GenericString("Prata"), new RecipeIngredientList(ingredients.get(2)),
+                    new RecipePrice("2")),
             new Recipe(new GenericString("Char kuay teow"), new RecipeIngredientList(ingredients.get(3)),
-                    new Price("4")),
+                    new RecipePrice("4")),
             new Recipe(new GenericString("Hokkien Prawn Mee"), new RecipeIngredientList(ingredients.get(4)),
-                    new Price("4")),
-            new Recipe(new GenericString("Laksa"), new RecipeIngredientList(ingredients.get(5)), new Price("4")),
-            new Recipe(new GenericString("Kaya toast"), new RecipeIngredientList(ingredients.get(6)), new Price("2")),
-            new Recipe(new GenericString("Satay"), new RecipeIngredientList(ingredients.get(7)), new Price("2")),
+                    new RecipePrice("4")),
+            new Recipe(new GenericString("Laksa"), new RecipeIngredientList(ingredients.get(5)),
+                    new RecipePrice("4")),
+            new Recipe(new GenericString("Kaya toast"), new RecipeIngredientList(ingredients.get(6)),
+                    new RecipePrice("2")),
+            new Recipe(new GenericString("Satay"), new RecipeIngredientList(ingredients.get(7)),
+                    new RecipePrice("2")),
         };
     }
 
@@ -111,15 +118,15 @@ public class SampleDataUtil {
                 int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
 
                 LocalDateTime orderDeadline = getSampleDateTime(month + 1, i + 1);
-                boolean completionstatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
+                boolean completionStatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
 
                 Order order = new Order(
                         people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
                         recipes[i].getName(), recipes[i].getRecipeIngredients(),
-                        new Price(String.format("%.2f", randomPrice)),
+                        new OrderPrice(String.format("%.2f", randomPrice)),
                         new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
                         new Quantity(Integer.toString(randomQuantity)),
-                        new CompletionStatus(completionstatus ? "yes" : "no")
+                        new CompletionStatus(completionStatus ? "yes" : "no")
                 );
 
                 orders.add(order);

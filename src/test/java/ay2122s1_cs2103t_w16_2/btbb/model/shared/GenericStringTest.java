@@ -39,6 +39,22 @@ public class GenericStringTest {
     }
 
     @Test
+    public void isSameGenericString() {
+        GenericString appleLowerCase = new GenericString("apple");
+        GenericString appleUpperCase = new GenericString("APPLE");
+        GenericString orange = new GenericString("orange");
+
+        // Different case -> returns true
+        assertTrue(appleLowerCase.isSameGenericString(appleUpperCase));
+
+        // Same string -> returns true
+        assertTrue(appleLowerCase.isSameGenericString(appleLowerCase));
+
+        // Different string -> returns true
+        assertFalse(appleLowerCase.isSameGenericString(orange));
+    }
+
+    @Test
     public void compareTo() {
         GenericString aliceName = new GenericString("Alice");
         GenericString bobName = new GenericString("Bob");

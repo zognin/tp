@@ -5,8 +5,8 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -21,7 +21,7 @@ public class RecipeBuilder {
 
     private GenericString name;
     private RecipeIngredientList recipeIngredients;
-    private Price price;
+    private RecipePrice recipePrice;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -29,7 +29,7 @@ public class RecipeBuilder {
     public RecipeBuilder() {
         name = new GenericString(DEFAULT_NAME);
         recipeIngredients = new RecipeIngredientList(DEFAULT_RECIPE_INGREDIENT_LIST);
-        price = new Price(DEFAULT_PRICE);
+        recipePrice = new RecipePrice(DEFAULT_PRICE);
     }
 
     /**
@@ -38,7 +38,7 @@ public class RecipeBuilder {
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
         recipeIngredients = recipeToCopy.getRecipeIngredients();
-        price = recipeToCopy.getPrice();
+        recipePrice = recipeToCopy.getRecipePrice();
     }
 
     /**
@@ -58,14 +58,14 @@ public class RecipeBuilder {
     }
 
     /**
-     * Sets the {@code Price} of the {@code Recipe} that we are building.
+     * Sets the {@code RecipePrice} of the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withPrice(String price) {
-        this.price = new Price(price);
+    public RecipeBuilder withRecipePrice(String recipePrice) {
+        this.recipePrice = new RecipePrice(recipePrice);
         return this;
     }
 
     public Recipe build() {
-        return new Recipe(name, recipeIngredients, price);
+        return new Recipe(name, recipeIngredients, recipePrice);
     }
 }

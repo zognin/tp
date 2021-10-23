@@ -18,8 +18,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class JsonAdaptedOrderTest {
@@ -140,7 +140,7 @@ public class JsonAdaptedOrderTest {
                 new JsonAdaptedOrder(VALID_CLIENT_NAME, VALID_CLIENT_PHONE, VALID_CLIENT_ADDRESS,
                         VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, INVALID_ORDER_PRICE, VALID_ORDER_DEADLINE,
                         VALID_ORDER_QUANTITY, VALID_ORDER_COMPLETION_STATUS);
-        String expectedMessage = Price.MESSAGE_CONSTRAINTS;
+        String expectedMessage = OrderPrice.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -149,7 +149,7 @@ public class JsonAdaptedOrderTest {
                 VALID_RECIPE_NAME, VALID_RECIPE_INGREDIENT_LIST, null, VALID_ORDER_DEADLINE,
                 VALID_ORDER_QUANTITY, VALID_ORDER_COMPLETION_STATUS);
         String expectedMessage = String
-                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
+                .format(JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT, OrderPrice.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

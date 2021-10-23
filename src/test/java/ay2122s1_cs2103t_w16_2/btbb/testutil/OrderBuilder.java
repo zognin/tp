@@ -8,9 +8,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -34,7 +34,7 @@ public class OrderBuilder {
     private Address clientAddress;
     private GenericString recipeName;
     private RecipeIngredientList recipeIngredients;
-    private Price price;
+    private OrderPrice orderPrice;
     private Deadline deadline;
     private Quantity quantity;
     private CompletionStatus completionStatus;
@@ -48,7 +48,7 @@ public class OrderBuilder {
         clientAddress = new Address(DEFAULT_CLIENT_ADDRESS);
         recipeName = new GenericString(DEFAULT_RECIPE_NAME);
         recipeIngredients = new RecipeIngredientList(DEFAULT_RECIPE_INGREDIENT_LIST);
-        price = new Price(DEFAULT_ORDER_PRICE);
+        orderPrice = new OrderPrice(DEFAULT_ORDER_PRICE);
         deadline = new Deadline(DEFAULT_ORDER_DEADLINE);
         quantity = new Quantity(DEFAULT_ORDER_QUANTITY);
         completionStatus = new CompletionStatus(DEFAULT_ORDER_COMPLETION_STATUS);
@@ -65,7 +65,7 @@ public class OrderBuilder {
         clientAddress = orderToCopy.getClientAddress();
         recipeName = orderToCopy.getRecipeName();
         recipeIngredients = orderToCopy.getRecipeIngredients();
-        price = orderToCopy.getPrice();
+        orderPrice = orderToCopy.getOrderPrice();
         deadline = orderToCopy.getDeadline();
         quantity = orderToCopy.getQuantity();
         completionStatus = orderToCopy.getCompletionStatus();
@@ -127,13 +127,13 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code price} of the {@code OrderBuilder} that we are building.
+     * Sets the {@code orderPrice} of the {@code OrderBuilder} that we are building.
      *
-     * @param price The order price associated with the order we are building.
+     * @param orderPrice The order orderPrice associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withPrice(Price price) {
-        this.price = price;
+    public OrderBuilder withOrderPrice(OrderPrice orderPrice) {
+        this.orderPrice = orderPrice;
         return this;
     }
 
@@ -177,6 +177,6 @@ public class OrderBuilder {
      */
     public Order build() {
         return new Order(clientName, clientPhone, clientAddress,
-                recipeName, recipeIngredients, price, deadline, quantity, completionStatus);
+                recipeName, recipeIngredients, orderPrice, deadline, quantity, completionStatus);
     }
 }

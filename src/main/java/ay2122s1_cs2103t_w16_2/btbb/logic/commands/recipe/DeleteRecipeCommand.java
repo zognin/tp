@@ -1,4 +1,4 @@
-package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
+package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
 import static java.util.Objects.requireNonNull;
 
@@ -14,56 +14,56 @@ import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.Command;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Deletes a client identified using it's displayed index from btbb.
+ * Deletes a recipe identified using it's displayed index from btbb.
  */
-public class DeleteClientCommand extends Command {
-    public static final String COMMAND_WORD = "delete-c";
+public class DeleteRecipeCommand extends Command {
+    public static final String COMMAND_WORD = "delete-r";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client bookmarks list.\n"
+            + ": Deletes the recipe identified by the index number used in the displayed recipe bookmarks list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
     private final Index targetIndex;
 
-    public DeleteClientCommand(Index targetIndex) {
+    public DeleteRecipeCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        logger.info("Executing " + DeleteClientCommand.class.getSimpleName());
+        logger.info("Executing " + DeleteRecipeCommand.class.getSimpleName());
 
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Recipe> lastShownList = model.getFilteredRecipeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         try {
-            model.deleteClient(clientToDelete);
+            model.deleteRecipe(recipeToDelete);
         } catch (NotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete), UiTab.HOME);
+        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete), UiTab.HOME);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteClientCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteClientCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteRecipeCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteRecipeCommand) other).targetIndex)); // state check
     }
 }

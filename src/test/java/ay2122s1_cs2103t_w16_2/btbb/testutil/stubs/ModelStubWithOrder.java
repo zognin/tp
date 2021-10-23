@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
  */
 public class ModelStubWithOrder extends ModelStub {
     private final ArrayList<Client> clientsAdded = new ArrayList<>();
+    private final ArrayList<Recipe> recipeAdded = new ArrayList<>();
     private final Order order;
 
     /**
@@ -29,6 +31,11 @@ public class ModelStubWithOrder extends ModelStub {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return FXCollections.observableList(clientsAdded);
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return FXCollections.observableList(recipeAdded);
     }
 
     @Override

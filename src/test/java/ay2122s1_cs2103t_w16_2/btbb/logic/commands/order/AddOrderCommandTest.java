@@ -21,8 +21,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.Assert;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
@@ -59,8 +59,8 @@ public class AddOrderCommandTest {
         Assert.assertThrows(CommandException.class,
                 AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand.execute(modelStub));
 
-        validOrder = new OrderBuilder().withPrice(new Price("10")).build();
-        Order withSamePriceValue = new OrderBuilder().withPrice(new Price("10.00")).build();
+        validOrder = new OrderBuilder().withOrderPrice(new OrderPrice("10")).build();
+        Order withSamePriceValue = new OrderBuilder().withOrderPrice(new OrderPrice("10.00")).build();
         validOrderDescriptor = new OrderDescriptorBuilder(withSamePriceValue).build();
         AddOrderCommand addOrderCommand2 = new AddOrderCommand(validOrderDescriptor);
         ModelStub modelStub2 = new ModelStubWithOrder(validOrder);

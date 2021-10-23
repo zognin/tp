@@ -53,7 +53,7 @@ public class UndoneOrderCommandTest {
         Order orderToMarkUndone = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         Order expectedMarkedOrder = new Order(orderToMarkUndone.getClientName(), orderToMarkUndone.getClientPhone(),
                 orderToMarkUndone.getClientAddress(), orderToMarkUndone.getRecipeName(),
-                orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getPrice(),
+                orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getOrderPrice(),
                 orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new CompletionStatus(false));
         UndoneOrderCommand undoneOrderCommand = new UndoneOrderCommand(INDEX_FIRST);
 

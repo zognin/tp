@@ -1,6 +1,9 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_THIRD;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_ALICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalOrders.ORDER_FOR_BENSON;
@@ -32,9 +35,9 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
+import javafx.collections.ObservableList;
 
 class UniqueOrderListTest {
     private final UniqueOrderList uniqueOrderList = new UniqueOrderList();
@@ -42,6 +45,52 @@ class UniqueOrderListTest {
     @Test
     public void add_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.add(null));
+    }
+
+    @Test
+    public void add_validOrdersSameDeadlineDifferentCompletionStatus_listSortedByCompletionStatus() {
+        Order orderForAlice = new OrderBuilder(ORDER_FOR_ALICE)
+                .withCompletionStatus(new CompletionStatus(true))
+                .withDeadline(new Deadline("12-11-2019 1830"))
+                .build();
+        Order orderForBenson = new OrderBuilder(ORDER_FOR_BENSON)
+                .withCompletionStatus(new CompletionStatus(false))
+                .withDeadline(new Deadline("12-11-2020 1830"))
+                .build();
+        Order orderForCarl = new OrderBuilder(ORDER_FOR_CARL)
+                .withCompletionStatus(new CompletionStatus(true))
+                .withDeadline(new Deadline("12-11-2022 1830"))
+                .build();
+        uniqueOrderList.add(orderForAlice);
+        uniqueOrderList.add(orderForBenson);
+        uniqueOrderList.add(orderForCarl);
+        ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
+        assertEquals(orderForBenson, orderList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(orderForAlice, orderList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(orderForCarl, orderList.get(INDEX_THIRD.getZeroBased()));
+    }
+
+    @Test
+    public void add_validOrdersSameCompletionStatusDifferentDeadline_listSortedByDeadline() {
+        Order orderForAlice = new OrderBuilder(ORDER_FOR_ALICE)
+                .withCompletionStatus(new CompletionStatus(true))
+                .withDeadline(new Deadline("12-11-2019 1830"))
+                .build();
+        Order orderForBenson = new OrderBuilder(ORDER_FOR_BENSON)
+                .withCompletionStatus(new CompletionStatus(true))
+                .withDeadline(new Deadline("12-11-2020 1830"))
+                .build();
+        Order orderForCarl = new OrderBuilder(ORDER_FOR_CARL)
+                .withCompletionStatus(new CompletionStatus(true))
+                .withDeadline(new Deadline("12-11-2022 1830"))
+                .build();
+        uniqueOrderList.add(orderForAlice);
+        uniqueOrderList.add(orderForBenson);
+        uniqueOrderList.add(orderForCarl);
+        ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
+        assertEquals(orderForAlice, orderList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(orderForBenson, orderList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(orderForCarl, orderList.get(INDEX_THIRD.getZeroBased()));
     }
 
     @Test
@@ -81,7 +130,7 @@ class UniqueOrderListTest {
 
             for (Order order : orderList) {
                 Order o = new OrderBuilder(order)
-                        .withPrice(new Price(String.valueOf(i + 1)))
+                        .withOrderPrice(new OrderPrice(String.valueOf(i + 1)))
                         .withDeadline(new Deadline(
                                 String.format("%s-%s-%s 1900", i + 10,
                                         month.getValue() < 10
@@ -112,7 +161,7 @@ class UniqueOrderListTest {
         for (int i = 0; i < orderList.size(); i++) {
             for (int j = 0; j < i + 1; j++) {
                 uniqueOrderList.add(
-                        new OrderBuilder(orderList.get(i)).withPrice(new Price(Integer.toString(i))).build()
+                        new OrderBuilder(orderList.get(i)).withOrderPrice(new OrderPrice(Integer.toString(i))).build()
                 );
             }
         }
@@ -191,6 +240,16 @@ class UniqueOrderListTest {
     }
 
     @Test
+    public void setOrders_list_listInSortedOrder() {
+        List<Order> orders = List.of(ORDER_FOR_ALICE, ORDER_FOR_BENSON, ORDER_FOR_CARL);
+        uniqueOrderList.setOrders(orders);
+        ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
+        assertEquals(ORDER_FOR_BENSON, orderList.get(0));
+        assertEquals(ORDER_FOR_ALICE, orderList.get(1));
+        assertEquals(ORDER_FOR_CARL, orderList.get(2));
+    }
+
+    @Test
     public void setOrder_nullTarget_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(null, ORDER_FOR_AMY));
     }
@@ -211,5 +270,24 @@ class UniqueOrderListTest {
         uniqueOrderList.setOrder(ORDER_FOR_ALICE, ORDER_FOR_BENSON);
         assertFalse(uniqueOrderList.contains(ORDER_FOR_ALICE));
         assertTrue(uniqueOrderList.contains(ORDER_FOR_BENSON));
+    }
+
+    @Test
+    public void setOrder_changeOrderStatusFromTrueToFalse_listInSortedOrder() throws NotFoundException {
+        uniqueOrderList.add(ORDER_FOR_ALICE); // Order is completed
+        uniqueOrderList.add(ORDER_FOR_BENSON); // Order is not completed
+
+        // Carl's order is initially completed and the order's deadline is after benson's order deadline
+        uniqueOrderList.add(ORDER_FOR_CARL);
+
+        // Change Carl's order to not completed, carl's order should appear second in the list
+        Order orderForCarlNotCompleted =
+                new OrderBuilder(ORDER_FOR_CARL).withCompletionStatus(new CompletionStatus(false)).build();
+        uniqueOrderList.setOrder(ORDER_FOR_CARL, orderForCarlNotCompleted);
+        ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
+
+        assertEquals(ORDER_FOR_BENSON, orderList.get(0));
+        assertEquals(orderForCarlNotCompleted, orderList.get(1));
+        assertEquals(ORDER_FOR_ALICE, orderList.get(2));
     }
 }

@@ -15,6 +15,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORD
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
@@ -40,6 +41,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
@@ -81,8 +83,8 @@ public class CommandTestUtil {
             + VALID_QUANTITY_APPLE + "-" + VALID_UNIT_APPLE;
     public static final String VALID_RECIPE_INGREDIENT_LIST_2 = VALID_INGREDIENT_NAME_BEEF + "-"
             + VALID_QUANTITY_BEEF + "-" + VALID_UNIT_BEEF;
-    public static final String VALID_PRICE_1 = "1";
-    public static final String VALID_PRICE_2 = "2";
+    public static final String VALID_ORDER_PRICE_1 = "1";
+    public static final String VALID_ORDER_PRICE_2 = "2";
     public static final String VALID_DEADLINE_DECEMBER = "12-12-2021 1900";
     public static final String VALID_DEADLINE_MARCH = "03-03-2022 1500";
     public static final String VALID_ORDER_QUANTITY_1 = "1";
@@ -93,6 +95,8 @@ public class CommandTestUtil {
     // Valid Recipe attributes
     public static final String VALID_RECIPE_NAME_APPLE_PIE = "Apple pie";
     public static final String VALID_RECIPE_NAME_BEEF_STEW = "Beef stew";
+    public static final String VALID_RECIPE_PRICE_1 = "1";
+    public static final String VALID_RECIPE_PRICE_2 = "2";
 
     // Client (valid prefix + valid attributes)
     public static final String NAME_DESC_AMY = " " + PREFIX_CLIENT_NAME + VALID_NAME_AMY;
@@ -128,8 +132,8 @@ public class CommandTestUtil {
             + VALID_RECIPE_INGREDIENT_LIST_2;
     public static final String RECIPE_INGREDIENT_LIST_DESC_LAKSA = " " + PREFIX_RECIPE_INGREDIENT
             + "Egg-1-whole," + "Noodles-100-g";
-    public static final String ORDER_PRICE_DESC_1 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_1;
-    public static final String ORDER_PRICE_DESC_2 = " " + PREFIX_ORDER_PRICE + VALID_PRICE_2;
+    public static final String ORDER_PRICE_DESC_1 = " " + PREFIX_ORDER_PRICE + VALID_ORDER_PRICE_1;
+    public static final String ORDER_PRICE_DESC_2 = " " + PREFIX_ORDER_PRICE + VALID_ORDER_PRICE_2;
     public static final String ORDER_QUANTITY_DESC_1 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_1;
     public static final String ORDER_QUANTITY_DESC_2 = " " + PREFIX_ORDER_QUANTITY + VALID_ORDER_QUANTITY_2;
     public static final String DEADLINE_DESC_DECEMBER = " " + PREFIX_ORDER_DEADLINE + VALID_DEADLINE_DECEMBER;
@@ -142,6 +146,8 @@ public class CommandTestUtil {
     // Recipe (valid prefix + valid attributes)
     public static final String RECIPE_PRICE_DESC_CHICKEN_RICE = " " + PREFIX_RECIPE_PRICE + "3";
     public static final String RECIPE_PRICE_DESC_LAKSA = " " + PREFIX_RECIPE_PRICE + "4";
+    public static final String RECIPE_INDEX_DESC_1 = " " + PREFIX_RECIPE_INDEX + INDEX_FIRST.getOneBased();
+    public static final String RECIPE_INDEX_DESC_2 = " " + PREFIX_RECIPE_INDEX + INDEX_SECOND.getOneBased();
 
     // Client (valid prefix + invalid attributes)
     public static final String INVALID_INDEX_DESC = " " + PREFIX_CLIENT_INDEX + "-1";
@@ -209,22 +215,22 @@ public class CommandTestUtil {
                 .withClientAddress(VALID_ADDRESS_AMY).withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
                 .withRecipeIngredients(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
-                        new GenericString(VALID_UNIT_APPLE)))).withPrice(VALID_PRICE_1)
+                        new GenericString(VALID_UNIT_APPLE)))).withOrderPrice(VALID_ORDER_PRICE_1)
                 .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1)
                 .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         DESC_ORDER_BOB = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).withClientPhone(VALID_PHONE_BOB)
                 .withClientAddress(VALID_ADDRESS_BOB).withRecipeName(VALID_RECIPE_NAME_LAKSA)
                 .withRecipeIngredients(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
-                        new GenericString(VALID_UNIT_BEEF)))).withPrice(VALID_PRICE_2)
+                        new GenericString(VALID_UNIT_BEEF)))).withOrderPrice(VALID_ORDER_PRICE_2)
                 .withDeadline(VALID_DEADLINE_MARCH).withQuantity(VALID_ORDER_QUANTITY_2)
                 .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
 
         // Recipe
         DESC_APPLE_PIE = new RecipeDescriptorBuilder().withName(VALID_RECIPE_NAME_APPLE_PIE)
-                .withPrice(VALID_PRICE_1).build();
+                .withRecipePrice(VALID_ORDER_PRICE_1).build();
         DESC_BEEF_STEW = new RecipeDescriptorBuilder().withName(VALID_RECIPE_NAME_BEEF_STEW)
-                .withPrice(VALID_PRICE_2).build();
+                .withRecipePrice(VALID_ORDER_PRICE_2).build();
     }
 
     /**
@@ -329,5 +335,21 @@ public class CommandTestUtil {
         model.updateFilteredOrderList(order -> order.equals(orderToShow));
 
         assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     *
+     * @param model The model.
+     * @param targetIndex The target index.
+     */
+    public static void showRecipeAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecipeList().size());
+
+        Recipe recipeToShow = model.getFilteredRecipeList().get(targetIndex.getZeroBased());
+        model.updateFilteredRecipeList(recipe -> recipe.equals(recipeToShow));
+
+        assertEquals(1, model.getFilteredRecipeList().size());
     }
 }

@@ -55,7 +55,7 @@ public class OrderCard extends UiPart<Region> {
         clientAddress.setText(order.getClientAddress().toString());
         recipeName.setText(order.getRecipeName().toString());
         recipeIngredients.setText(order.getRecipeIngredients().toDisplayString());
-        orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
+        orderPrice.setText("(Price: $" + order.getOrderPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
         orderIsFinished.setContent(svgPathForTick);
