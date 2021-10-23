@@ -30,7 +30,6 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INDEX_DESC_1;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INDEX_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_NAME_DESC_CHICKEN_RICE;
@@ -168,16 +167,16 @@ class AddOrderCommandParserTest {
 
         // ========== With Recipe Index ==============================================================================
 
-        // multiple recipe index with recipe details - last index accepted
+        // recipe index with recipe details
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + RECIPE_INDEX_DESC_1
-                + RECIPE_INDEX_DESC_2 + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
+                + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
                 + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
                 new AddOrderCommand(expectedOrderDescriptorWithRecipeIndexAndParams));
 
         // ========== With Recipe and Client Index ===================================================================
 
         assertParseSuccess(parser,
-                INDEX_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + RECIPE_INDEX_DESC_2
+                INDEX_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + RECIPE_INDEX_DESC_1
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
                 new AddOrderCommand(expectedOrderDescriptorWithClientIndexAndRecipeIndex));

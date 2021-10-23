@@ -8,6 +8,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static java.util.Objects.requireNonNull;
 
@@ -34,8 +35,8 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
     public EditOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX,
-                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_NAME, PREFIX_ORDER_PRICE,
-                PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
+                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_INDEX, PREFIX_RECIPE_NAME,
+                PREFIX_ORDER_PRICE, PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
 
         Index index;
 
@@ -70,6 +71,9 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         if (argMultimap.getValue(PREFIX_CLIENT_ADDRESS).isPresent()) {
             orderDescriptor.setClientAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_RECIPE_INDEX).isPresent()) {
+            orderDescriptor.setRecipeIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE_INDEX).get()));
         }
         if (argMultimap.getValue(PREFIX_RECIPE_NAME).isPresent()) {
             orderDescriptor.setRecipeName(

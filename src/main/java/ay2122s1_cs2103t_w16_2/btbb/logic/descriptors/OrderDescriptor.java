@@ -213,7 +213,9 @@ public class OrderDescriptor {
         assert existingOrder != null;
 
         Optional<Client> client = getClientFromModel(model);
+        Optional<Recipe> recipe = getRecipeFromModel(model);
         boolean isClientPresent = client.isPresent();
+        boolean isRecipePresent = recipe.isPresent();
 
         GenericString updatedClientName = getClientName().orElse(isClientPresent
                 ? client.get().getName() : existingOrder.getClientName());
@@ -221,12 +223,17 @@ public class OrderDescriptor {
                 ? client.get().getPhone() : existingOrder.getClientPhone());
         Address updatedClientAddress = getClientAddress().orElse(isClientPresent
                 ? client.get().getAddress() : existingOrder.getClientAddress());
-        GenericString updatedRecipeName = getRecipeName().orElse(existingOrder.getRecipeName());
+
+        GenericString updatedRecipeName = getRecipeName().orElse(isRecipePresent
+                ? recipe.get().getName() : existingOrder.getRecipeName());
         RecipeIngredientList updatedRecipeIngredientList = getRecipeIngredients()
-                .orElse(existingOrder.getRecipeIngredients());
-        OrderPrice updatedOrderPrice = getOrderPrice().orElse(existingOrder.getOrderPrice());
+                .orElse(isRecipePresent ? recipe.get().getRecipeIngredients() : existingOrder.getRecipeIngredients());
+
         Deadline updatedDeadline = getDeadline().orElse(existingOrder.getDeadline());
         Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
+        OrderPrice updatedOrderPrice = getOrderPrice().orElse(isRecipePresent
+                ? recipe.get().getRecipePrice().multiplyRecipePriceByQuantity(updatedQuantity)
+                : existingOrder.getOrderPrice());
         CompletionStatus updatedCompletionStatus = getCompletionStatus().orElse(existingOrder.getCompletionStatus());
 
         return new Order(updatedClientName, updatedClientPhone, updatedClientAddress,
@@ -279,6 +286,7 @@ public class OrderDescriptor {
                 && getClientName().equals(otherOrderDescriptor.getClientName())
                 && getClientPhone().equals(otherOrderDescriptor.getClientPhone())
                 && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
+                && getRecipeIndex().equals(otherOrderDescriptor.getRecipeIndex())
                 && getRecipeName().equals(otherOrderDescriptor.getRecipeName())
                 && getRecipeIngredients().equals(otherOrderDescriptor.getRecipeIngredients())
                 && getOrderPrice().equals(otherOrderDescriptor.getOrderPrice())
