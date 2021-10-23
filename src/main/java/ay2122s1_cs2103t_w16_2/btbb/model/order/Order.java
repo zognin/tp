@@ -4,6 +4,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAll
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.Comparator;
 import java.util.Objects;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
@@ -16,7 +17,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Order {
+public class Order implements Comparable<Order> {
     private final GenericString clientName;
     private final Phone clientPhone;
     private final Address clientAddress;
@@ -124,6 +125,13 @@ public class Order {
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getOrderPrice().equals(getOrderPrice())
                 && otherOrder.getDeadline().equals(getDeadline());
+    }
+
+    @Override
+    public int compareTo(Order other) {
+        return Comparator.comparing(Order::getCompletionStatus)
+                .thenComparing(Order::getDeadline)
+                .compare(this, other);
     }
 
     /**
