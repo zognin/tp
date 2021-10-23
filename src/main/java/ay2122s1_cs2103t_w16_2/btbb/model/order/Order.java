@@ -118,10 +118,10 @@ public class Order implements Comparable<Order> {
         }
 
         return otherOrder != null
-                && otherOrder.getClientName().equals(getClientName())
+                && otherOrder.getClientName().isSameGenericString(getClientName())
                 && otherOrder.getClientPhone().equals(getClientPhone())
                 && otherOrder.getClientAddress().equals(getClientAddress())
-                && otherOrder.getRecipeName().equals(getRecipeName())
+                && otherOrder.getRecipeName().isSameGenericString(getRecipeName())
                 && otherOrder.getRecipeIngredients().equals(getRecipeIngredients())
                 && otherOrder.getOrderPrice().equals(getOrderPrice())
                 && otherOrder.getDeadline().equals(getDeadline());

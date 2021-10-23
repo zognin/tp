@@ -51,7 +51,7 @@ public class Recipe {
         }
 
         return otherRecipe != null
-                && getName().equals(otherRecipe.getName())
+                && getName().isSameGenericString(otherRecipe.getName())
                 && getRecipePrice().equals(otherRecipe.getRecipePrice())
                 && getRecipeIngredients().equals(otherRecipe.getRecipeIngredients());
     }

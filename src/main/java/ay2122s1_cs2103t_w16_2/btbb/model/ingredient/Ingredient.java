@@ -85,8 +85,8 @@ public class Ingredient {
         }
 
         return otherIngredient != null
-                && otherIngredient.getName().equals(getName())
-                && otherIngredient.getUnit().equals(getUnit());
+                && otherIngredient.getName().isSameGenericString(getName())
+                && otherIngredient.getUnit().isSameGenericString(getUnit());
     }
 
     /**
