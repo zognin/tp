@@ -14,9 +14,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -30,7 +30,7 @@ public class JsonAdaptedOrder {
     private final String clientAddress;
     private final String recipeName;
     private final List<JsonAdaptedIngredient> recipeIngredients = new ArrayList<>();
-    private final String price;
+    private final String orderPrice;
     private final String deadline;
     private final String quantity;
     private final String isFinished;
@@ -44,7 +44,7 @@ public class JsonAdaptedOrder {
                             @JsonProperty("clientAddress") String clientAddress,
                             @JsonProperty("recipeName") String recipeName,
                             @JsonProperty("recipeIngredients") List<JsonAdaptedIngredient> recipeIngredients,
-                            @JsonProperty("price") String price,
+                            @JsonProperty("price") String orderPrice,
                             @JsonProperty("deadline") String deadline,
                             @JsonProperty("quantity") String quantity,
                             @JsonProperty("isFinished") String isFinished) {
@@ -52,7 +52,7 @@ public class JsonAdaptedOrder {
         this.clientPhone = clientPhone;
         this.clientAddress = clientAddress;
         this.recipeName = recipeName;
-        this.price = price;
+        this.orderPrice = orderPrice;
         this.deadline = deadline;
         this.quantity = quantity;
         this.isFinished = isFinished;
@@ -72,7 +72,7 @@ public class JsonAdaptedOrder {
         recipeName = source.getRecipeName().toString();
         recipeIngredients.addAll(source.getRecipeIngredients().getIngredients().stream()
                 .map(JsonAdaptedIngredient::new).collect(Collectors.toList()));
-        price = source.getPrice().toString();
+        orderPrice = source.getOrderPrice().toString();
         deadline = source.getDeadline().toJsonStorageString();
         quantity = source.getQuantity().toString();
         isFinished = source.getCompletionStatus().toString();
@@ -133,13 +133,15 @@ public class JsonAdaptedOrder {
         }
         final RecipeIngredientList modelRecipeIngredients = new RecipeIngredientList(ingredients);
 
-        if (price == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        if (orderPrice == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderPrice.class.getSimpleName())
+            );
         }
-        if (!Price.isValidPrice(price)) {
-            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        if (!OrderPrice.isValidOrderPrice(orderPrice)) {
+            throw new IllegalValueException(OrderPrice.MESSAGE_CONSTRAINTS);
         }
-        final Price modelPrice = new Price(price);
+        final OrderPrice modelOrderPrice = new OrderPrice(orderPrice);
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(
@@ -172,7 +174,7 @@ public class JsonAdaptedOrder {
         final CompletionStatus modelCompletionStatus = new CompletionStatus(isFinished);
 
         return new Order(modelClientName, modelClientPhone, modelClientAddress,
-                modelRecipeName, modelRecipeIngredients, modelPrice, modelDeadline, modelQuantity,
+                modelRecipeName, modelRecipeIngredients, modelOrderPrice, modelDeadline, modelQuantity,
                 modelCompletionStatus);
     }
 }

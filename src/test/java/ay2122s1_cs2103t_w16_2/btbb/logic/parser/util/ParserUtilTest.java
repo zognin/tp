@@ -18,9 +18,9 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class ParserUtilTest {
@@ -263,25 +263,25 @@ public class ParserUtilTest {
 
     @Test
     public void parsePrice_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderPrice(null));
     }
 
     @Test
     public void parsePrice_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderPrice(INVALID_PRICE));
     }
 
     @Test
     public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
-        Price expectedPrice = new Price(VALID_PRICE);
-        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+        OrderPrice expectedOrderPrice = new OrderPrice(VALID_PRICE);
+        assertEquals(expectedOrderPrice, ParserUtil.parseOrderPrice(VALID_PRICE));
     }
 
     @Test
     public void parsePrice_validValueWithWhitespace_returnsPrice() throws Exception {
         String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
-        Price expectedPrice = new Price(VALID_PRICE);
-        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+        OrderPrice expectedOrderPrice = new OrderPrice(VALID_PRICE);
+        assertEquals(expectedOrderPrice, ParserUtil.parseOrderPrice(priceWithWhitespace));
     }
 
     @Test

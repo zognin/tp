@@ -69,7 +69,7 @@ public class RecipeDescriptorBuilder {
      * @param recipePrice The price to set for the {@code RecipeDescriptor}.
      * @return A RecipeDescriptorBuilder object with the price set.
      */
-    public RecipeDescriptorBuilder withPrice(String recipePrice) {
+    public RecipeDescriptorBuilder withRecipePrice(String recipePrice) {
         descriptor.setRecipePrice(new RecipePrice(recipePrice));
         return this;
     }

@@ -77,8 +77,8 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
                             "Recipe Name"));
         }
         if (argMultimap.getValue(PREFIX_ORDER_PRICE).isPresent()) {
-            orderDescriptor.setPrice(
-                    ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
+            orderDescriptor.setOrderPrice(
+                    ParserUtil.parseOrderPrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_ORDER_DEADLINE).isPresent()) {
             orderDescriptor.setDeadline(

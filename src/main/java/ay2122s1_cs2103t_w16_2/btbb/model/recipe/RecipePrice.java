@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.math.BigDecimal;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -50,8 +50,8 @@ public class RecipePrice {
         }
     }
 
-    public Price multiplyRecipePriceByQuantity(Quantity quantity) {
-        return new Price(recipePrice.multiply(new BigDecimal(quantity.getQuantityAsInt())).toString());
+    public OrderPrice multiplyRecipePriceByQuantity(Quantity quantity) {
+        return new OrderPrice(recipePrice.multiply(new BigDecimal(quantity.getQuantityAsInt())).toString());
     }
 
     /**

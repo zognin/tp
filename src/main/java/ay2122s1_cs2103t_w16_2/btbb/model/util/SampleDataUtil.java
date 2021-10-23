@@ -17,11 +17,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -123,7 +123,7 @@ public class SampleDataUtil {
                 Order order = new Order(
                         people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
                         recipes[i].getName(), recipes[i].getRecipeIngredients(),
-                        new Price(String.format("%.2f", randomPrice)),
+                        new OrderPrice(String.format("%.2f", randomPrice)),
                         new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
                         new Quantity(Integer.toString(randomQuantity)),
                         new CompletionStatus(completionstatus ? "yes" : "no")

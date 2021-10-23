@@ -88,7 +88,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         orderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ORDER_DEADLINE).get()));
 
         if (argMultimap.getValue(PREFIX_ORDER_PRICE).isPresent()) {
-            orderDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
+            orderDescriptor.setOrderPrice(ParserUtil.parseOrderPrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_ORDER_QUANTITY).isEmpty()) {
             // If the user does not provide the order quantity, it will be set to a default value of 1

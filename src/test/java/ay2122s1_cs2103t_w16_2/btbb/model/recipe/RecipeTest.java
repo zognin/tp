@@ -1,6 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.recipe;
 
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_CHICKEN_RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.INGREDIENT_LIST_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
@@ -30,7 +30,7 @@ public class RecipeTest {
         assertFalse(RECIPE_EGG_PRATA.isSameRecipe(editedPrata));
 
         // different recipe price, all other attributes same -> returns false
-        editedPrata = new RecipeBuilder(RECIPE_EGG_PRATA).withPrice(VALID_PRICE_1).build();
+        editedPrata = new RecipeBuilder(RECIPE_EGG_PRATA).withRecipePrice(VALID_ORDER_PRICE_1).build();
         assertFalse(RECIPE_EGG_PRATA.isSameRecipe(editedPrata));
     }
 
@@ -61,7 +61,7 @@ public class RecipeTest {
         assertFalse(RECIPE_EGG_PRATA.equals(editedPrata));
 
         // different price -> returns false
-        editedPrata = new RecipeBuilder(RECIPE_EGG_PRATA).withPrice(VALID_PRICE_1).build();
+        editedPrata = new RecipeBuilder(RECIPE_EGG_PRATA).withRecipePrice(VALID_ORDER_PRICE_1).build();
         assertFalse(RECIPE_EGG_PRATA.equals(editedPrata));
     }
 }

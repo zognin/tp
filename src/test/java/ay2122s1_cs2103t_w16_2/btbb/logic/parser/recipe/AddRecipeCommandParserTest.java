@@ -11,7 +11,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_NAME_DESC_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_PRICE_DESC_CHICKEN_RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_PRICE_DESC_LAKSA;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APPLE_PIE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -65,11 +65,11 @@ public class AddRecipeCommandParserTest {
                 expectedMessage);
 
         // missing price prefix
-        assertParseFailure(parser, RECIPE_NAME_DESC_CHICKEN_RICE + VALID_PRICE_1,
+        assertParseFailure(parser, RECIPE_NAME_DESC_CHICKEN_RICE + VALID_ORDER_PRICE_1,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_RECIPE_NAME_APPLE_PIE + VALID_PRICE_1, expectedMessage);
+        assertParseFailure(parser, VALID_RECIPE_NAME_APPLE_PIE + VALID_ORDER_PRICE_1, expectedMessage);
     }
 
     @Test

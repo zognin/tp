@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 public class RecipePriceTest {
@@ -60,12 +60,12 @@ public class RecipePriceTest {
         RecipePrice recipePrice = new RecipePrice("1");
         Quantity quantity = new Quantity("2");
 
-        // multiply price by 2 -> returns Price with value 2
-        assertEquals(new Price("2"), recipePrice.multiplyRecipePriceByQuantity(quantity));
+        // multiply price by 2 -> returns OrderPrice with value 2
+        assertEquals(new OrderPrice("2"), recipePrice.multiplyRecipePriceByQuantity(quantity));
 
-        // multiply price by 0 -> returns Price with value 0
+        // multiply price by 0 -> returns OrderPrice with value 0
         quantity = new Quantity("0");
-        assertEquals(new Price("0"), recipePrice.multiplyRecipePriceByQuantity(quantity));
+        assertEquals(new OrderPrice("0"), recipePrice.multiplyRecipePriceByQuantity(quantity));
     }
 
     @Test

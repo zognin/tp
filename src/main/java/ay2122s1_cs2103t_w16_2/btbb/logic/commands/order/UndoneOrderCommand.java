@@ -66,7 +66,7 @@ public class UndoneOrderCommand extends Command {
         Order orderToMarkUndone = lastShownList.get(targetIndex.getZeroBased());
         Order markedOrder = new Order(orderToMarkUndone.getClientName(), orderToMarkUndone.getClientPhone(),
                 orderToMarkUndone.getClientAddress(), orderToMarkUndone.getRecipeName(),
-                orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getPrice(),
+                orderToMarkUndone.getRecipeIngredients(), orderToMarkUndone.getOrderPrice(),
                 orderToMarkUndone.getDeadline(), orderToMarkUndone.getQuantity(), new CompletionStatus(false));
 
         try {

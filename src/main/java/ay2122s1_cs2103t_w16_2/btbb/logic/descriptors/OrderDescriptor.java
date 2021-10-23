@@ -15,10 +15,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -38,7 +38,7 @@ public class OrderDescriptor {
     private Index recipeIndex;
     private GenericString recipeName;
     private RecipeIngredientList recipeIngredients;
-    private Price price;
+    private OrderPrice orderPrice;
     private Deadline deadline;
     private Quantity quantity;
     private CompletionStatus completionStatus;
@@ -58,7 +58,7 @@ public class OrderDescriptor {
         setRecipeIndex(toCopy.recipeIndex);
         setRecipeName(toCopy.recipeName);
         setRecipeIngredients(toCopy.recipeIngredients);
-        setPrice(toCopy.price);
+        setOrderPrice(toCopy.orderPrice);
         setDeadline(toCopy.deadline);
         setQuantity(toCopy.quantity);
         setCompletionStatus(toCopy.completionStatus);
@@ -69,7 +69,7 @@ public class OrderDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(clientIndex, clientName, clientPhone, clientAddress, recipeName,
-                recipeIngredients, price, deadline, quantity);
+                recipeIngredients, orderPrice, deadline, quantity);
     }
 
     public void setClientIndex(Index clientIndex) {
@@ -128,12 +128,12 @@ public class OrderDescriptor {
         return Optional.ofNullable(recipeIngredients);
     }
 
-    public void setPrice(Price price) {
-        this.price = price;
+    public void setOrderPrice(OrderPrice orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
-    public Optional<Price> getPrice() {
-        return Optional.ofNullable(price);
+    public Optional<OrderPrice> getOrderPrice() {
+        return Optional.ofNullable(orderPrice);
     }
 
     public void setDeadline(Deadline deadline) {
@@ -175,7 +175,7 @@ public class OrderDescriptor {
         Address clientAddress;
         GenericString recipeName;
         RecipeIngredientList recipeIngredients;
-        Price orderPrice;
+        OrderPrice orderPrice;
 
         try {
             clientName = getClientName().orElseGet(() -> client.get().getName());
@@ -191,7 +191,8 @@ public class OrderDescriptor {
                     ? getRecipeIngredients().get()
                     : recipe.get().getRecipeIngredients();
             orderPrice =
-                    getPrice().orElseGet(() -> recipe.get().getRecipePrice().multiplyRecipePriceByQuantity(quantity));
+                    getOrderPrice().orElseGet(() ->
+                            recipe.get().getRecipePrice().multiplyRecipePriceByQuantity(quantity));
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_RECIPE_DETAILS);
         }
@@ -224,13 +225,14 @@ public class OrderDescriptor {
         GenericString updatedRecipeName = getRecipeName().orElse(existingOrder.getRecipeName());
         RecipeIngredientList updatedRecipeIngredientList = getRecipeIngredients()
                 .orElse(existingOrder.getRecipeIngredients());
-        Price updatedPrice = getPrice().orElse(existingOrder.getPrice());
+        OrderPrice updatedOrderPrice = getOrderPrice().orElse(existingOrder.getOrderPrice());
         Deadline updatedDeadline = getDeadline().orElse(existingOrder.getDeadline());
         Quantity updatedQuantity = getQuantity().orElse(existingOrder.getQuantity());
         CompletionStatus updatedCompletionStatus = getCompletionStatus().orElse(existingOrder.getCompletionStatus());
 
         return new Order(updatedClientName, updatedClientPhone, updatedClientAddress, updatedRecipeName,
-                updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
+                updatedRecipeIngredientList,
+                updatedOrderPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
     }
 
     private Optional<Client> getClientFromModel(Model model) throws CommandException {
@@ -280,7 +282,7 @@ public class OrderDescriptor {
                 && getClientAddress().equals(otherOrderDescriptor.getClientAddress())
                 && getRecipeName().equals(otherOrderDescriptor.getRecipeName())
                 && getRecipeIngredients().equals(otherOrderDescriptor.getRecipeIngredients())
-                && getPrice().equals(otherOrderDescriptor.getPrice())
+                && getOrderPrice().equals(otherOrderDescriptor.getOrderPrice())
                 && getDeadline().equals(otherOrderDescriptor.getDeadline())
                 && getQuantity().equals(otherOrderDescriptor.getQuantity())
                 && getCompletionStatus().equals(otherOrderDescriptor.getCompletionStatus());

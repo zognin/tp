@@ -60,8 +60,8 @@ public class RecipeBuilder {
     /**
      * Sets the {@code RecipePrice} of the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withPrice(String price) {
-        this.recipePrice = new RecipePrice(price);
+    public RecipeBuilder withRecipePrice(String recipePrice) {
+        this.recipePrice = new RecipePrice(recipePrice);
         return this;
     }
 

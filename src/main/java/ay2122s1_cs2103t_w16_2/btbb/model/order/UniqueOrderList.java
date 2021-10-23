@@ -111,7 +111,8 @@ public class UniqueOrderList implements Iterable<Order> {
                     if (orderToMonthlyRevenueMap.containsKey(currentYearMonthForOrder)) {
                         orderToMonthlyRevenueMap.put(
                                 currentYearMonthForOrder,
-                                orderToMonthlyRevenueMap.get(currentYearMonthForOrder) + order.getPrice().doubleValue()
+                                orderToMonthlyRevenueMap.get(currentYearMonthForOrder)
+                                        + order.getOrderPrice().doubleValue()
                         );
                     }
                 });

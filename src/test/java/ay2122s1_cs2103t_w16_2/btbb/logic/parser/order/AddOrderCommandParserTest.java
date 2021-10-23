@@ -53,9 +53,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
@@ -269,7 +269,7 @@ class AddOrderCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + INVALID_ORDER_PRICE_DESC
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
-                Price.MESSAGE_CONSTRAINTS);
+                OrderPrice.MESSAGE_CONSTRAINTS);
 
         // invalid order deadline
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB
