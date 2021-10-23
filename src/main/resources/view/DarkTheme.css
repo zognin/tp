@@ -152,6 +152,10 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.order-tick-mark {
+    -fx-fill: #03DAC5;
+}
+
 .stack-pane {
      -fx-background-color: #121212;
 }

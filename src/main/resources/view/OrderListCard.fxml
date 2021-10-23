@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.Region?>
 
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -33,7 +34,7 @@
 
                     <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" spacing="4">
                         <Label fx:id="orderDeadline" styleClass="cell_small_label" text="\$deadline"/>
-                        <Circle fx:id="orderIsFinished" id="doneCircle" radius="8" fill="transparent" strokeWidth="2"/>
+                        <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
                     </HBox>
                 </children>
 

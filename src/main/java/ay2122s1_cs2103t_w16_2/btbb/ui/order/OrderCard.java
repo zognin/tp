@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.SVGPath;
 
 /**
  * Encapsulates a UI component that displays information of a {@code Order}.
@@ -16,7 +17,7 @@ public class OrderCard extends UiPart<Region> {
     private static final String FXML = "OrderListCard.fxml";
 
     private final Order order;
-    private final Color completionColor = Color.web("#03DAC5");
+    private final String SVG_PATH = "M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z";
 
     @FXML
     private HBox cardPane;
@@ -39,7 +40,7 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label orderQuantity;
     @FXML
-    private Circle orderIsFinished;
+    private SVGPath orderIsFinished;
 
     /**
      * Creates a {@code OrderCard} with the given {@code Order} and index to display.
@@ -59,7 +60,8 @@ public class OrderCard extends UiPart<Region> {
         orderPrice.setText("(Price: $" + order.getPrice().toString() + ")");
         orderDeadline.setText(order.getDeadline().toString());
         orderQuantity.setText("x " + order.getQuantity().toString());
-        orderIsFinished.setStroke(order.getCompletionStatus().getIsFinished() ? completionColor : Color.WHITE);
+        orderIsFinished.setContent(SVG_PATH);
+        orderIsFinished.setVisible(order.getCompletionStatus().getIsFinished());
     }
 
     @Override
