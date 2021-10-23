@@ -167,7 +167,7 @@ This is how the add mechanism works in general:
 1. User enters an add command.
 1. A relevant `AddXCommandParser`, where `X` is one of the entities, parses the command to generate a `AddXCommand`.
 1. The `AddXCommandParser` generates a relevant `XDescriptor` that contains the details of the entity `X` to be created.
-1. The `AddXCommand` is executed.
+1. The `AddXCommand` is executed. During execution, the `XDescriptor` is converted to its respective `X` entity.
 1. `Model` adds the entity.
 1. `Storage` saves the changes.
 1. Feedback about the status of the add is shown to the user.

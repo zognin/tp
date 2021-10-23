@@ -2,13 +2,9 @@
 start
 :User executes add order command;
 
-if () then ([order is duplicate])
-    stop
+if () then ([ingredient in inventory])
+    :Subtracts respective ingredient quantities from ingredient list;
 else ([else])
-    if () then ([ingredient in inventory])
-        :Subtracts respective ingredient quantity from ingredient list;
-    else ([else])
-    endif
 endif
 
 :Model adds order to order list;
