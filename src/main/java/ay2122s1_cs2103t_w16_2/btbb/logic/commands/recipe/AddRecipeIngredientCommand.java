@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.util.CommandUtil.makeRecipeWithEditedIngredients;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
@@ -59,6 +60,8 @@ public class AddRecipeIngredientCommand extends Command {
      * @param ingredientDescriptor of ingredient to add to the recipe.
      */
     public AddRecipeIngredientCommand(Index index, IngredientDescriptor ingredientDescriptor) {
+        requireAllNonNull(index, ingredientDescriptor);
+
         this.index = index;
         this.ingredientDescriptor = ingredientDescriptor;
     }
@@ -104,5 +107,23 @@ public class AddRecipeIngredientCommand extends Command {
         List<Ingredient> newIngredients = new ArrayList<>(originalRecipeIngredientList.getIngredients());
         newIngredients.add(ingredientToAdd);
         return new RecipeIngredientList(newIngredients);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddRecipeIngredientCommand)) {
+            return false;
+        }
+
+        // state check
+        AddRecipeIngredientCommand e = (AddRecipeIngredientCommand) other;
+        return index.equals(e.index)
+                && ingredientDescriptor.equals(e.ingredientDescriptor);
     }
 }
