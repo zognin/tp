@@ -20,6 +20,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
@@ -162,6 +163,23 @@ public class ParserUtil {
             throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
         return new CompletionStatus(trimmedCompletionStatus);
+    }
+
+    /**
+     * Parses a {@code String recipePrice} into a {@code RecipePrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param recipePrice String input to parse.
+     * @return RecipePrice object.
+     * @throws ParseException If the given {@code recipePrice} is invalid.
+     */
+    public static RecipePrice parseRecipePrice(String recipePrice) throws ParseException {
+        requireNonNull(recipePrice);
+        String trimmedRecipePrice = recipePrice.trim();
+        if (!RecipePrice.isValidRecipePrice(trimmedRecipePrice)) {
+            throw new ParseException(RecipePrice.MESSAGE_CONSTRAINTS);
+        }
+        return new RecipePrice(trimmedRecipePrice);
     }
 
     /**
