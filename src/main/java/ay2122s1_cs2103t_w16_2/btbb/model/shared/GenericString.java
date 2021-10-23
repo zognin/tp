@@ -3,6 +3,8 @@ package ay2122s1_cs2103t_w16_2.btbb.model.shared;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Locale;
+
 /**
  * Represents a Generic String in the address book, that is reusable.
  * Guarantees: immutable; is valid as declared in {@link #isValidGenericString(String)}
@@ -48,6 +50,23 @@ public class GenericString implements Comparable<GenericString> {
      */
     public static String getMessageConstraints(String attributeName) {
         return attributeName + MESSAGE_CONSTRAINTS;
+    }
+
+    /**
+     * Returns true if both generic strings have the same lower case string.
+     * This defines a weaker notion of equality between two generic strings.
+     *
+     * @param otherGenericString to compare this generic string to.
+     * @return boolean of whether the two generic strings match.
+     */
+    public boolean isSameGenericString(GenericString otherGenericString) {
+        if (otherGenericString == this) {
+            return true;
+        }
+
+        return otherGenericString != null
+                && otherGenericString.genericString.toLowerCase(Locale.ROOT)
+                .equals(genericString.toLowerCase(Locale.ROOT));
     }
 
     @Override
