@@ -33,7 +33,7 @@ public class RecipeUtil {
         if (recipe.getRecipeIngredients().getIngredients().size() > 0) {
             sb.append(PREFIX_RECIPE_INGREDIENT + recipe.getRecipeIngredients().toString() + " ");
         }
-        sb.append(PREFIX_RECIPE_PRICE + recipe.getPrice().toString() + " ");
+        sb.append(PREFIX_RECIPE_PRICE + recipe.getRecipePrice().toString() + " ");
         return sb.toString();
     }
 }

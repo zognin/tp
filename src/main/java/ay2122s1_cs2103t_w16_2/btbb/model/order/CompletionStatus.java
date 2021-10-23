@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents the completion status of an order in BTBB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class CompletionStatus {
+public class CompletionStatus implements Comparable<CompletionStatus> {
     public static final String MESSAGE_CONSTRAINTS = "Completion Status should only be either 'yes' or 'no'.";
     private final boolean isFinished;
 
@@ -54,6 +54,11 @@ public class CompletionStatus {
             return "yes";
         }
         return "no";
+    }
+
+    @Override
+    public int compareTo(CompletionStatus other) {
+        return Boolean.compare(isFinished, other.isFinished);
     }
 
     public String getDisplayMessage() {

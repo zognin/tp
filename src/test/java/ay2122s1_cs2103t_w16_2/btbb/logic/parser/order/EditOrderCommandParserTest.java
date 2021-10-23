@@ -24,11 +24,11 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_A
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_DEADLINE_DECEMBER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_DEADLINE_MARCH;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -44,8 +44,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
@@ -95,7 +95,7 @@ class EditOrderCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_RECIPE_NAME_DESC,
                 GenericString.getMessageConstraints("Recipe Name")); // invalid recipe name
         assertParseFailure(parser, "1" + INVALID_ORDER_PRICE_DESC,
-                Price.MESSAGE_CONSTRAINTS); // invalid order price
+                OrderPrice.MESSAGE_CONSTRAINTS); // invalid order price
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
                 Deadline.MESSAGE_CONSTRAINTS); // invalid order deadline
         assertParseFailure(parser, "1" + INVALID_ORDER_QUANTITY_DESC,
@@ -121,7 +121,7 @@ class EditOrderCommandParserTest {
 
         OrderDescriptor descriptor = new OrderDescriptorBuilder().withClientName(VALID_NAME_AMY)
                 .withClientPhone(VALID_PHONE_BOB).withClientAddress(VALID_ADDRESS_BOB)
-                .withRecipeName(VALID_RECIPE_NAME_LAKSA).withPrice(VALID_PRICE_1)
+                .withRecipeName(VALID_RECIPE_NAME_LAKSA).withOrderPrice(VALID_ORDER_PRICE_1)
                 .withDeadline(VALID_DEADLINE_DECEMBER).withQuantity(VALID_ORDER_QUANTITY_1).build();
         EditOrderCommand expectedCommand = new EditOrderCommand(targetIndex, descriptor);
 
@@ -169,7 +169,7 @@ class EditOrderCommandParserTest {
 
         // order price
         userInput = targetIndex.getOneBased() + ORDER_PRICE_DESC_2;
-        descriptor = new OrderDescriptorBuilder().withPrice(VALID_ORDER_QUANTITY_2).build();
+        descriptor = new OrderDescriptorBuilder().withOrderPrice(VALID_ORDER_QUANTITY_2).build();
         expectedCommand = new EditOrderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

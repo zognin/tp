@@ -7,8 +7,12 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_N
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_YES;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.AVOCADO;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BREAD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +54,36 @@ class OrderDescriptorTest {
         // different client address -> returns false
         editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
                 .withClientAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different recipe index -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withRecipeIndex(INDEX_SECOND).build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different recipe name -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withRecipeName("random").build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different recipe ingredients -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withRecipeIngredients(List.of(AVOCADO, BREAD)).build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different order price -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withOrderPrice("10000").build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different deadline -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withDeadline("12-12-1998 1830").build();
+        assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
+
+        // different quantity -> returns false
+        editedOrderDescriptor = new OrderDescriptorBuilder(DESC_ORDER_AMY)
+                .withQuantity("10000").build();
         assertFalse(DESC_ORDER_AMY.equals(editedOrderDescriptor));
 
         // different done status -> returns false

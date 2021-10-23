@@ -3,7 +3,6 @@ package ay2122s1_cs2103t_w16_2.btbb.model.recipe;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 
 /**
  * Represents a Recipe in the address book.
@@ -12,20 +11,20 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 public class Recipe {
     private final GenericString name;
     private final RecipeIngredientList recipeIngredients;
-    private final Price price;
+    private final RecipePrice recipePrice;
 
     /**
      * Constructs a recipe object with the given fields.
      *
      * @param name The name of the recipe.
      * @param recipeIngredients The ingredients of the recipe.
-     * @param price The price of the recipe.
+     * @param recipePrice The price of the recipe.
      */
-    public Recipe(GenericString name, RecipeIngredientList recipeIngredients, Price price) {
-        requireAllNonNull(name, recipeIngredients, price);
+    public Recipe(GenericString name, RecipeIngredientList recipeIngredients, RecipePrice recipePrice) {
+        requireAllNonNull(name, recipeIngredients, recipePrice);
         this.name = name;
         this.recipeIngredients = recipeIngredients;
-        this.price = price;
+        this.recipePrice = recipePrice;
     }
 
     public GenericString getName() {
@@ -36,8 +35,8 @@ public class Recipe {
         return recipeIngredients;
     }
 
-    public Price getPrice() {
-        return price;
+    public RecipePrice getRecipePrice() {
+        return recipePrice;
     }
 
     /**
@@ -53,7 +52,7 @@ public class Recipe {
 
         return otherRecipe != null
                 && getName().isSameGenericString(otherRecipe.getName())
-                && getPrice().equals(otherRecipe.getPrice())
+                && getRecipePrice().equals(otherRecipe.getRecipePrice())
                 && getRecipeIngredients().equals(otherRecipe.getRecipeIngredients());
     }
 
@@ -70,7 +69,7 @@ public class Recipe {
         Recipe otherRecipe = (Recipe) other;
         return getName().equals(otherRecipe.getName())
                 && getRecipeIngredients().equals(otherRecipe.getRecipeIngredients())
-                && getPrice().equals(otherRecipe.getPrice());
+                && getRecipePrice().equals(otherRecipe.getRecipePrice());
     }
 
     @Override
@@ -80,7 +79,7 @@ public class Recipe {
                 .append("; Ingredients: ")
                 .append(getRecipeIngredients())
                 .append("; Price: ")
-                .append(getPrice());
+                .append(getRecipePrice());
 
         return builder.toString();
     }

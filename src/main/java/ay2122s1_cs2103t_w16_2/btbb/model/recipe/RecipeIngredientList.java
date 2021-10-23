@@ -45,6 +45,10 @@ public class RecipeIngredientList {
         return ingredients;
     }
 
+    public boolean isEmpty() {
+        return ingredients.isEmpty();
+    }
+
     /**
      * Returns true if a given string is a valid recipe ingredient list.
      *

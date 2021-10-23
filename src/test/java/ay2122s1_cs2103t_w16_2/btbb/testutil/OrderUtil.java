@@ -64,7 +64,7 @@ public class OrderUtil {
         sb.append(wrapAroundPrefixAndSpace(PREFIX_RECIPE_NAME, order.getRecipeName().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_RECIPE_INGREDIENT,
                 getUserInputStringForRecipeIngredientList(order.getRecipeIngredients())));
-        sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_PRICE, order.getPrice().toString()));
+        sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_PRICE, order.getOrderPrice().toString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_DEADLINE, order.getDeadline().toJsonStorageString()));
         sb.append(wrapAroundPrefixAndSpace(PREFIX_ORDER_QUANTITY, order.getQuantity().toString()));
         return sb.toString();
@@ -83,7 +83,7 @@ public class OrderUtil {
                 sb.append(PREFIX_CLIENT_ADDRESS).append(address).append(" "));
         descriptor.getRecipeName().ifPresent(name ->
                 sb.append(PREFIX_RECIPE_NAME).append(name).append(" "));
-        descriptor.getPrice().ifPresent(price ->
+        descriptor.getOrderPrice().ifPresent(price ->
                 sb.append(PREFIX_ORDER_PRICE).append(price).append(" "));
         descriptor.getDeadline().ifPresent(deadline ->
                 sb.append(PREFIX_ORDER_DEADLINE).append(deadline.toJsonStorageString()).append(" "));

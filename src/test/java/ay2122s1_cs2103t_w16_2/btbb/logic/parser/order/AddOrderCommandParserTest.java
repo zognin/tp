@@ -29,6 +29,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_DESC_IMRAN;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INDEX_DESC_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_INGREDIENT_LIST_DESC_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.RECIPE_NAME_DESC_CHICKEN_RICE;
@@ -51,9 +52,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
 
@@ -73,6 +74,15 @@ class AddOrderCommandParserTest {
 
         OrderDescriptor expectedOrderDescriptorWithClientIndexAndParams =
                 new OrderDescriptorBuilder(ORDER_FOR_BOB).withClientIndex(INDEX_FIRST).build();
+
+        OrderDescriptor expectedOrderDescriptorWithRecipeIndexAndParams =
+                new OrderDescriptorBuilder(ORDER_FOR_BOB).withRecipeIndex(INDEX_FIRST).build();
+
+        OrderDescriptor expectedOrderDescriptorWithClientIndexAndRecipeIndex =
+                new OrderDescriptorBuilder(ORDER_FOR_BOB)
+                        .withClientIndex(INDEX_FIRST)
+                        .withRecipeIndex(INDEX_FIRST)
+                        .build();
 
         //=========== Without Client Index ============================================================================
 
@@ -146,7 +156,7 @@ class AddOrderCommandParserTest {
                         + DEADLINE_DESC_DECEMBER,
                 new AddOrderCommand(expectedOrderDescriptorWithoutClientIndexAndOrderQuantity));
 
-        //=========== With Client Index ===============================================================================
+        //=========== With Client Index and without Recipe Index =====================================================
 
         // multiple client index with client details - last index accepted
         assertParseSuccess(parser,
@@ -154,6 +164,22 @@ class AddOrderCommandParserTest {
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
                 new AddOrderCommand(expectedOrderDescriptorWithClientIndexAndParams));
+
+        // ========== With Recipe Index ==============================================================================
+
+        // recipe index with recipe details
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + RECIPE_INDEX_DESC_1
+                + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
+                + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
+                new AddOrderCommand(expectedOrderDescriptorWithRecipeIndexAndParams));
+
+        // ========== With Recipe and Client Index ===================================================================
+
+        assertParseSuccess(parser,
+                INDEX_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + RECIPE_INDEX_DESC_1
+                        + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + ORDER_PRICE_DESC_2
+                        + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
+                new AddOrderCommand(expectedOrderDescriptorWithClientIndexAndRecipeIndex));
     }
 
     @Test
@@ -242,7 +268,7 @@ class AddOrderCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB
                         + RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_2 + INVALID_ORDER_PRICE_DESC
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
-                Price.MESSAGE_CONSTRAINTS);
+                OrderPrice.MESSAGE_CONSTRAINTS);
 
         // invalid order deadline
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB

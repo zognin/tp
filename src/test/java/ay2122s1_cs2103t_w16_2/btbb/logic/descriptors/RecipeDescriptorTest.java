@@ -3,10 +3,10 @@ package ay2122s1_cs2103t_w16_2.btbb.logic.descriptors;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_APPLE_PIE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BEEF_STEW;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_1;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_QUANTITY_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_BEEF_STEW;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_PRICE_1;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_BEEF;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -44,7 +44,7 @@ public class RecipeDescriptorTest {
 
         // Price field is null
         RecipeDescriptor nullPriceDescriptor = new RecipeDescriptorBuilder().build();
-        nullPriceDescriptor.setPrice(null);
+        nullPriceDescriptor.setRecipePrice(null);
         assertThrows(NullPointerException.class, nullPriceDescriptor::toModelType);
     }
 
@@ -76,9 +76,9 @@ public class RecipeDescriptorTest {
         assertEquals(expectedModelRecipe, validRecipeDescriptor.toModelTypeFrom(expectedModelRecipe));
 
         // Price field in descriptor is null
-        expectedModelRecipe = new RecipeBuilder().withPrice(VALID_PRICE_1).build();
+        expectedModelRecipe = new RecipeBuilder().withRecipePrice(VALID_RECIPE_PRICE_1).build();
         validRecipeDescriptor = new RecipeDescriptorBuilder(expectedModelRecipe).build();
-        validRecipeDescriptor.setPrice(null);
+        validRecipeDescriptor.setRecipePrice(null);
         assertEquals(expectedModelRecipe, validRecipeDescriptor.toModelTypeFrom(expectedModelRecipe));
     }
 
@@ -112,7 +112,8 @@ public class RecipeDescriptorTest {
         assertFalse(DESC_APPLE_PIE.equals(editedRecipeDescriptor));
 
         // different price -> returns false
-        editedRecipeDescriptor = new RecipeDescriptorBuilder(DESC_APPLE_PIE).withPrice(VALID_PRICE_2).build();
+        editedRecipeDescriptor = new RecipeDescriptorBuilder(DESC_APPLE_PIE)
+                .withRecipePrice(VALID_RECIPE_PRICE_2).build();
         assertFalse(DESC_APPLE_PIE.equals(editedRecipeDescriptor));
     }
 }
