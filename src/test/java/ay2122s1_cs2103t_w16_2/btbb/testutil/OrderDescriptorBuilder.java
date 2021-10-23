@@ -122,7 +122,7 @@ public class OrderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Index} of the {@code OrderDescriptor} that we are building.
+     * Sets the recipeIndex of the {@code OrderDescriptor} that we are building.
      *
      * @param recipeIndex The index that should be set.
      * @return A OrderDescriptorBuilder object that contains the new index details.

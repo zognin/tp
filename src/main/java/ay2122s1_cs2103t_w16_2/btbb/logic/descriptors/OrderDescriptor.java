@@ -26,7 +26,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  * Some details have to be converted to their model representations before converting to a Order model type.
  */
 public class OrderDescriptor {
-    public static final String MESSAGE_MISSING_CLIENT_DETAILS = "Both client and client details cannot be found";
+    public static final String MESSAGE_MISSING_CLIENT_DETAILS = "If CLIENT_INDEX is not present, CLIENT_NAME, "
+            + "CLIENT_PHONE and CLIENT_ADDRESS must be present.";
+    public static final String MESSAGE_MISSING_RECIPE_DETAILS = "If RECIPE_INDEX is not present, RECIPE_NAME and "
+            + "ORDER_PRICE must be present.";
 
     private Index clientIndex;
     private GenericString clientName;
@@ -167,24 +170,34 @@ public class OrderDescriptor {
     public Order toModelType(Model model) throws CommandException {
         Optional<Client> client = getClientFromModel(model);
         Optional<Recipe> recipe = getRecipeFromModel(model);
+        GenericString clientName;
+        Phone clientPhone;
+        Address clientAddress;
+        GenericString recipeName;
+        RecipeIngredientList recipeIngredients;
+        Price orderPrice;
 
         try {
-            GenericString clientName = getClientName().orElseGet(() -> client.get().getName());
-            Phone clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
-            Address clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
-
-            GenericString recipeName = getRecipeName().orElseGet(() -> recipe.get().getName());
-            RecipeIngredientList recipeIngredients = getRecipeIngredients().get().isEmpty()
-                    ? recipe.get().getRecipeIngredients()
-                    : getRecipeIngredients().get();
-            Price orderPrice =
-                    getPrice().orElseGet(() -> recipe.get().getPrice().multiplyPriceByQuantity(quantity));
-
-            return new Order(clientName, clientPhone, clientAddress,
-                    recipeName, recipeIngredients, orderPrice, deadline, quantity, completionStatus);
+            clientName = getClientName().orElseGet(() -> client.get().getName());
+            clientPhone = getClientPhone().orElseGet(() -> client.get().getPhone());
+            clientAddress = getClientAddress().orElseGet(() -> client.get().getAddress());
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_MISSING_CLIENT_DETAILS);
         }
+
+        try {
+            recipeName = getRecipeName().orElseGet(() -> recipe.get().getName());
+            recipeIngredients = !getRecipeIngredients().get().isEmpty() || recipe.isEmpty()
+                    ? getRecipeIngredients().get()
+                    : recipe.get().getRecipeIngredients();
+            orderPrice =
+                    getPrice().orElseGet(() -> recipe.get().getPrice().multiplyPriceByQuantity(quantity));
+        } catch (NoSuchElementException e) {
+            throw new CommandException(MESSAGE_MISSING_RECIPE_DETAILS);
+        }
+
+        return new Order(clientName, clientPhone, clientAddress, recipeName, recipeIngredients, orderPrice,
+                deadline, quantity, completionStatus);
     }
 
     /**
@@ -220,7 +233,7 @@ public class OrderDescriptor {
                 updatedRecipeIngredientList, updatedPrice, updatedDeadline, updatedQuantity, updatedCompletionStatus);
     }
 
-    public Optional<Client> getClientFromModel(Model model) throws CommandException {
+    private Optional<Client> getClientFromModel(Model model) throws CommandException {
         List<Client> lastShownClientList = model.getFilteredClientList();
 
         if (getClientIndex().isPresent() && getClientIndex().get().getZeroBased() >= lastShownClientList.size()) {
@@ -233,7 +246,7 @@ public class OrderDescriptor {
         return client;
     }
 
-    public Optional<Recipe> getRecipeFromModel(Model model) throws CommandException {
+    private Optional<Recipe> getRecipeFromModel(Model model) throws CommandException {
         List<Recipe> lastShownRecipeList = model.getFilteredRecipeList();
 
         if (getRecipeIndex().isPresent() && getRecipeIndex().get().getZeroBased() >= lastShownRecipeList.size()) {
