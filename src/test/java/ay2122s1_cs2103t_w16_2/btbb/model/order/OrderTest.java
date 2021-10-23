@@ -110,17 +110,23 @@ class OrderTest {
         // same order -> returns 0
         assertEquals(0, ORDER_FOR_ALICE.compareTo(ORDER_FOR_ALICE));
 
-        // order 1 deadline before order 2 deadline -> returns negative value
-        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_CARL) < 0);
-
-        // order 1 deadline before order 2 deadline -> returns positive value
-        assertTrue(ORDER_FOR_CARL.compareTo(ORDER_FOR_ALICE) > 0);
-
         // order 1 not completed but order 2 completed -> returns negative value
         assertTrue(ORDER_FOR_BENSON.compareTo(ORDER_FOR_ALICE) < 0);
 
         // order 1 completed but order 2 not completed -> returns positive value
         assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_BENSON) > 0);
+
+        // both orders completed, order 1 deadline before order 2 deadline -> returns negative value
+        assertTrue(ORDER_FOR_ALICE.compareTo(ORDER_FOR_CARL) < 0);
+
+        // both orders completed, order 1 deadline after order 2 deadline -> returns positive value
+        assertTrue(ORDER_FOR_CARL.compareTo(ORDER_FOR_ALICE) > 0);
+
+        // both orders not completed, order 1 deadline before order 2 deadline -> returns negative value
+        assertTrue(ORDER_FOR_BENSON.compareTo(ORDER_FOR_DANIEL) < 0);
+
+        // both orders not completed, order 1 deadline after order 2 deadline -> returns positive value
+        assertTrue(ORDER_FOR_DANIEL.compareTo(ORDER_FOR_BENSON) > 0);
     }
 
     @Test

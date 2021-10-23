@@ -67,8 +67,10 @@ class DeadlineTest {
     @Test
     public void compareTo() {
         Deadline deadlineBefore = new Deadline("12-12-2019 1830");
+        Deadline deadlineBeforeCopy = new Deadline("12-12-2019 1830");
         Deadline deadlineAfter = new Deadline("12-12-2020 1830");
-        assertEquals(0, deadlineBefore.compareTo(deadlineBefore));
+
+        assertEquals(0, deadlineBefore.compareTo(deadlineBeforeCopy));
         assertTrue(deadlineBefore.compareTo(deadlineAfter) < 0);
         assertTrue(deadlineAfter.compareTo(deadlineBefore) > 0);
     }
