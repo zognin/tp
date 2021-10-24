@@ -95,6 +95,7 @@ public class CommandTestUtil {
     // Valid Recipe attributes
     public static final String VALID_RECIPE_NAME_APPLE_PIE = "Apple pie";
     public static final String VALID_RECIPE_NAME_BEEF_STEW = "Beef stew";
+    public static final String VALID_RECIPE_PRICE_LAKSA = "4";
     public static final String VALID_RECIPE_PRICE_1 = "1";
     public static final String VALID_RECIPE_PRICE_2 = "2";
 
