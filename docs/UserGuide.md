@@ -367,19 +367,21 @@ Suppose the first client in the list has the following details:
 * Email: johndoe12@gmail.com
 
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
-  1800 oq/2`
+  1800 oq/2`. Adding an order using the full command.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFull.png)
 
-* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`
+* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using
+  a client index only.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnly.png)
 
-* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`
+* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe
+  index only.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnly.png)
 
-* `add-o c/1 r/3 od/12-12-2021 1800 oq/2`
+* `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndex.png)
 
