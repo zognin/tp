@@ -11,13 +11,10 @@ import java.util.Locale;
  */
 public class GenericString implements Comparable<GenericString> {
     private static final String MESSAGE_CONSTRAINTS =
-            " should only contain alphanumeric characters and spaces, and it should not be blank";
+            " should only contain alphanumeric characters and spaces, and it should not be blank.\n"
+            + "The maximum allowed length is 50 characters including spaces.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-    */
-    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]{1,50}$";
 
     private final String genericString;
 
@@ -39,7 +36,7 @@ public class GenericString implements Comparable<GenericString> {
      * @return true if test is valid.
      */
     public static boolean isValidGenericString(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
     /**
