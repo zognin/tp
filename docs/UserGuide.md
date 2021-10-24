@@ -325,23 +325,13 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * `c/CLIENT_INDEX` will copy over the details of the client bookmark at the given index into the order.
 
-* `cn/CLIENT_NAME`, `cp/CLIENT_PHONE` and `ca/CLIENT_ADDRESS` will override any details copied over by
-  `c/CLIENT_INDEX`.
-
-* If `c/CLIENT_INDEX` is not specified all of `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` must be
-  specified.
-
-* If `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` are all specified, `c/CLIENT_INDEX` does not need to
-  be specified.
+* When `c/CLIENT_INDEX` is present, the client details does not need to be provided. But if any of it happens to be
+  provided, the provided details will override the client bookmark details.
 
 * `r/RECIPE_INDEX` will copy over the details of the recipe bookmark at the given index into the order.
 
-* `rn/RECIPE_NAME` and `ri/INGREDIENT_NAME-QUANTITY-UNIT,...` will override any details copied over by `r/RECIPE_INDEX`
-
-* If `r/RECIPE_INDEX` is not specified all of `rn/RECIPE_NAME` and `ri/INGREDIENT_NAME-QUANTITY-UNIT,...` must be
-  specified.
-
-* If `rn/RECIPE_NAME` is specified, `r/RECIPE_INDEX` does not need to be specified
+* When `r/RECIPE_INDEX` is present, the recipe details does not need to be provided. But if any of it happens to be
+  provided, the provided details will override the recipe bookmark details.
 
 * Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
 
@@ -434,8 +424,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 Edits an order in the application.
 
 Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
-[rn/RECIPE_NAME]
-[op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
+[rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -521,7 +510,7 @@ Lists all orders in the application.
 
 Format: `list-o`
 
-#### 4.5.8 Marking order as done: `done-o`
+#### 4.5.8 Marking an order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -530,7 +519,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 4.5.9 Marking order as undone: `undone-o`
+#### 4.5.9 Marking an order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -572,16 +561,16 @@ Format: `delete-r INDEX`
 
 ### 4.7 Statistics
 
-#### 4.7.1 Viewing revenue for past 12 months
-* A bar chart is displayed showing the revenue earned each month for the past 12 months. Revenue is calculated only
+#### 4.7.1 Viewing revenue per month for the past 12 months
+* A bar chart is displayed showing the revenue earned per month for the past 12 months. Revenue is calculated only
   from completed orders
 
 * The actual value will be displayed when you hover your cursor over each bar.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
-#### 4.7.2 Viewing top 10 most frequent clients
-* Displays a pie chart showing the top 10 most frequent clients by the number of orders.
+#### 4.7.2 Viewing top 10 clients
+* Displays a pie chart showing the top 10 clients who made the highest number of orders.
 
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
@@ -590,8 +579,8 @@ Format: `delete-r INDEX`
 
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 
-#### 4.7.3 Viewing top 10 most popular recipes
-* Displays a pie chart showing the top 10 most popular recipes by the number of orders.
+#### 4.7.3 Viewing top 10 recipes
+* Displays a pie chart showing the top 10 recipes that appear in the highest number of orders.
 
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
