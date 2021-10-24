@@ -32,6 +32,20 @@ public class RecipeUtil {
     }
 
     /**
+     * Removes ingredient from a copy of an ingredient list of an order.
+     *
+     * @param recipe Recipe to get the original ingredient list from.
+     * @param ingredient Ingredient to remove from the ingredient list.
+     * @return New ingredient list.
+     */
+    public static RecipeIngredientList removeIngredientFromIngredientList(Recipe recipe, Ingredient ingredient) {
+        RecipeIngredientList editedRecipeIngredientList = recipe.getRecipeIngredients();
+        List<Ingredient> newIngredients = new ArrayList<>(editedRecipeIngredientList.getIngredients());
+        newIngredients.remove(ingredient);
+        return new RecipeIngredientList(newIngredients);
+    }
+
+    /**
      * Returns an add recipe command string for adding the {@code recipe}.
      *
      * @param recipe Recipe to make the command with.
