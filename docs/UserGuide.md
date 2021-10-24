@@ -324,8 +324,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 **Examples:**
 * `find-i in/co` Find ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
 * `find-i iq/20 33` Find ingredients with quantities equal to 20 or 33.
-* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the
-  keywords for each prefix, and quantity in the specified range. 
+* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for each prefix, and quantity in the specified range.
   These ingredients with the following details will be matched:
   * **Co**rn **7** **g**rams
   * **Eg**g **19** k**g**
