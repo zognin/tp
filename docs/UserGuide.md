@@ -43,27 +43,15 @@ manoeuvre through client and order details. If you are looking for an easy solut
 The user interface of BobTheBistroBoss is divided into 2 tabs.
 
 #### 2.2.1 Home Tab
-Displays a list of all clients and orders, with the following information:
-* Client: Name, Phone number, Email, Address
-* Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Order price, Order deadline, Order quantity, Completion status of Order.
+Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
 
 #### 2.2.2 Inventory & Statistics Tab
-Displays a list of all ingredients, with the following information:
-* Ingredient: Name, Quantity, Unit
-
-Displays useful statistics like:
-* Revenue for the past 12 months in a bar chart format
-* Top 10 clients (by no. of orders) in a pie chart format
-* Top 10 recipes (by no. of orders) in a pie chart format
+Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
-
-![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
-
-![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,19 +61,25 @@ Displays useful statistics like:
 
 * Client bookmarks are client information that can be copied to an order's client details when adding an order.
 * Client bookmarks are considered duplicates when they have the same phone number.
-* `Client Bookmarks` may also be referred to as `Clients` for simplicity.
+* 'Client Bookmarks' may also be referred to as 'Clients' for simplicity.
+* Client bookmarks are sorted in ascending alphabetical order of client name.
+  Uppercase letters appear before lowercase letters.
 
 ### 3.2 Inventory
 
 * The inventory displays a list of ingredients whose quantities can be tracked.
 * Ingredients are considered duplicates when they have the same name and unit.
 * The matching of names and units are case insensitive.
+* Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name in the list.
+  Uppercase letters appear before lowercase letters.
 
 ### 3.3 Order
 
 * Orders contain client details, recipe details, deadline, quantity, price and a completion status.
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
 * The matching of details are case insensitive where applicable.
+* Orders are sorted by completion status, then deadline. Uncompleted orders are higher in the list.
+  Within each group of uncompleted and completed orders, orders with earlier deadlines are higher in the list.
 
 ### 3.4 Recipe (Bookmarks)
 
@@ -93,6 +87,8 @@ Displays useful statistics like:
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
 * The matching of details are case insensitive where applicable.
 * `Recipe Bookmarks` may also be referred to as `Recipes` for simplicity.
+* Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
+  Uppercase letters appear before lowercase letters.
 
 ### 3.5 Statistics
 
