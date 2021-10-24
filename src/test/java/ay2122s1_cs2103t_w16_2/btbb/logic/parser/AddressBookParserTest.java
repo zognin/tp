@@ -56,6 +56,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.FindOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.ListOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.DeleteRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.EditRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
@@ -110,16 +111,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addRecipe() throws Exception {
-        Recipe recipe = new RecipeBuilder()
-                .withRecipeIngredients(new RecipeIngredientList(new ArrayList<>())).build();
-        RecipeDescriptor recipeDescriptor = new RecipeDescriptorBuilder(recipe)
-                .withRecipeIngredients(new ArrayList<>()).build();
-        AddRecipeCommand command = (AddRecipeCommand) parser.parseCommand(RecipeUtil.getAddCommand(recipe));
-        assertEquals(new AddRecipeCommand(recipeDescriptor), command);
-    }
-
-    @Test
     public void parseCommand_addOrderIngredient() throws Exception {
         Ingredient ingredient = new IngredientBuilder().build();
         IngredientDescriptor ingredientDescriptor = new IngredientDescriptorBuilder(ingredient).build();
@@ -132,6 +123,31 @@ public class AddressBookParserTest {
                         + PREFIX_INGREDIENT_UNIT + ingredient.getUnit().toString()
                 );
         assertEquals(new AddOrderIngredientCommand(INDEX_FIRST, ingredientDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addRecipe() throws Exception {
+        Recipe recipe = new RecipeBuilder()
+                .withRecipeIngredients(new RecipeIngredientList(new ArrayList<>())).build();
+        RecipeDescriptor recipeDescriptor = new RecipeDescriptorBuilder(recipe)
+                .withRecipeIngredients(new ArrayList<>()).build();
+        AddRecipeCommand command = (AddRecipeCommand) parser.parseCommand(RecipeUtil.getAddCommand(recipe));
+        assertEquals(new AddRecipeCommand(recipeDescriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addRecipeIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        IngredientDescriptor ingredientDescriptor = new IngredientDescriptorBuilder(ingredient).build();
+
+        AddRecipeIngredientCommand command =
+                (AddRecipeIngredientCommand) parser.parseCommand(AddRecipeIngredientCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_INGREDIENT_NAME + ingredient.getName().toString() + " "
+                        + PREFIX_INGREDIENT_QUANTITY + ingredient.getQuantity().toString() + " "
+                        + PREFIX_INGREDIENT_UNIT + ingredient.getUnit().toString()
+                );
+        assertEquals(new AddRecipeIngredientCommand(INDEX_FIRST, ingredientDescriptor), command);
     }
 
     @Test

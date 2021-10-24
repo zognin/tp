@@ -9,8 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    private static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and it should have minimally 3 digits and maximally 20 digits";
+    private static final String VALIDATION_REGEX = "\\d{3,20}";
     private final String phoneNumber;
 
     /**
