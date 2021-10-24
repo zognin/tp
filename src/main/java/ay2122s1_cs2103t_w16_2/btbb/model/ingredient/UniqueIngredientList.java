@@ -52,8 +52,8 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     }
 
     /**
-     * Replaces the contents of this list with {@code ingredients}.
-     * {@code ingredients} must not contain duplicate ingredients.
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not contain duplicate ingredients.
      *
      * @param replacement another ingredient list to copy from.
      */
@@ -152,8 +152,8 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         if (index == -1) {
             throw new NotFoundException(Ingredient.class.getName());
         }
-
         internalList.set(index, editedIngredient);
+        sortIngredients();
     }
 
     private void sortIngredients() {

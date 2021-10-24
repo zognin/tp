@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_R
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.INGREDIENT_LIST_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_LAKSA;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -63,5 +64,17 @@ public class RecipeTest {
         // different price -> returns false
         editedPrata = new RecipeBuilder(RECIPE_EGG_PRATA).withRecipePrice(VALID_RECIPE_PRICE_1).build();
         assertFalse(RECIPE_EGG_PRATA.equals(editedPrata));
+    }
+
+    @Test
+    public void compareTo() {
+        // name comes before alphabetically -> returns -1
+        assertEquals(-7, RECIPE_EGG_PRATA.compareTo(RECIPE_LAKSA));
+
+        // equal name -> returns 0
+        assertEquals(0, RECIPE_EGG_PRATA.compareTo(RECIPE_EGG_PRATA));
+
+        // name comes after alphabetically -> returns 1
+        assertEquals(7, RECIPE_LAKSA.compareTo(RECIPE_EGG_PRATA));
     }
 }
