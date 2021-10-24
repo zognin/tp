@@ -47,14 +47,20 @@ Displays a list of all clients and orders, with the following information:
 * Client: Name, Phone number, Email, Address
 * Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Order price, Order deadline, Order quantity, Completion status of Order.
 
-![layout1](images/layout1.png)
+![Home tab](images/product-screenshots/general/HomeTab.png)
 
 
-#### 2.2.2 Inventory Tab
+#### 2.2.2 Inventory & Statistics Tab
 Displays a list of all ingredients, with the following information:
 * Ingredient: Name, Quantity, Unit
 
-![layout2](images/layout2.png)
+This tab features useful statistics like:
+* Revenue for the past 12 months in a bar chart format
+![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+* Top 10 clients (by no. of orders) in a pie chart format
+![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+* Top 10 recipes (by no. of orders) in a pie chart format
+![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
