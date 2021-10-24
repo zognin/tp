@@ -28,7 +28,7 @@ public class EditRecipeCommand extends Command {
     public static final String COMMAND_WORD = "edit-r";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the recipe identified "
-            + "by the index number used in the displayed recipe list.\n"
+            + "by the index number used in the displayed recipe bookmarks list.\n"
             + "\t   Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
@@ -38,7 +38,6 @@ public class EditRecipeCommand extends Command {
             + PREFIX_RECIPE_PRICE + "8 ";
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in your recipe bookmarks.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);

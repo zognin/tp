@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
@@ -50,7 +51,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         fillOrderDescriptor(argMultimap, editOrderDescriptor);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);

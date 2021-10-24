@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.recipe;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
 import static java.util.Objects.requireNonNull;
@@ -44,7 +45,7 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
         fillRecipeDescriptor(argMultimap, editRecipeDescriptor);
 
         if (!editRecipeDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditRecipeCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditRecipeCommand(index, editRecipeDescriptor);
