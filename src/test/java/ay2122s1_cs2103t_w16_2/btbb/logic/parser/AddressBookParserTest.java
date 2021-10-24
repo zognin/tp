@@ -59,6 +59,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.DeleteRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.EditRecipeCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.ListRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.IngredientDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.OrderDescriptor;
@@ -310,6 +311,12 @@ public class AddressBookParserTest {
     public void parseCommand_listOrder() throws Exception {
         assertTrue(parser.parseCommand(ListOrderCommand.COMMAND_WORD) instanceof ListOrderCommand);
         assertTrue(parser.parseCommand(ListOrderCommand.COMMAND_WORD + " 3") instanceof ListOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_listRecipe() throws Exception {
+        assertTrue(parser.parseCommand(ListRecipeCommand.COMMAND_WORD) instanceof ListRecipeCommand);
+        assertTrue(parser.parseCommand(ListRecipeCommand.COMMAND_WORD + " 3") instanceof ListRecipeCommand);
     }
 
     @Test
