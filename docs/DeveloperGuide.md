@@ -228,6 +228,62 @@ Example of a successful deletion using the delete order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app deletes the order and the order is no longer shown in the list.
 
+### Edit ingredients in order/ recipe feature
+
+#### Overview
+Each order and recipe can contain a list of ingredients.
+The list is edited through add and delete operations.
+
+#### Mechanism - Add order/ recipe ingredient
+
+This is how the mechanism works in general:
+
+1. User enters an add ingredient command.
+1. A relevant `AddXIngredientCommandParser`, where `X` is either `Order` or `Recipe`, parses the command to generate a `AddXIngredientCommand`.
+1. The `AddXIngredientCommand` is executed.
+1. The new ingredient is added to a copy of the ingredients list of the specified order or recipe, forming a new ingredients list.
+1. `Model` updates the order or recipe with the new ingredients list.
+1. `Storage` saves the changes.
+1. Feedback about the status of the add is shown to the user.
+
+The sequence diagram is similar to the edit feature.
+
+#### Mechanism - Delete order/ recipe ingredient
+
+This is how the mechanism works in general:
+
+1. User enters an delete ingredient command.
+1. A relevant `DeleteXIngredientCommandParser`, where `X` is either `Order` or `Recipe`, parses the command to generate a `DeleteXIngredientCommand`.
+1. The `DeleteXIngredientCommand` is executed.
+1. A copy of the ingredients list of the specified order or recipe is made and the specified ingredient is removed.
+1. `Model` updates the order or recipe with the new ingredients list.
+1. `Storage` saves the changes.
+1. Feedback about the status of the add is shown to the user.
+
+The sequence diagram is similar to the edit feature.
+
+#### Usage Scenario - Add order/ recipe ingredient
+
+Example of a successful addition of ingredient using the add recipe ingredient command:
+
+1. The user wishes to add an ingredient to a recipe in the list.
+1. The user executes `add-ri 1 in/Rice iq/400 iu/g` command to add 400 grams of Rice to the first recipe. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app adds the ingredient to the recipe and the edited recipe is displayed.
+
+![AddRecipeIngredientActivityDiagram](images/AddRecipeIngredientActivityDiagram.png)
+
+#### Usage Scenario - Delete order/ recipe ingredient
+
+Example of a successful deletion of ingredient using the delete recipe ingredient command:
+
+1. The user wishes to delete an ingredient from a recipe in the list.
+1. The user executes `delete-ri 1 i/2` command to delete the second ingredient from the first recipe. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app deletes the ingredient from the recipe and the edited recipe is displayed.
+
+![DeleteRecipeIngredientActivityDiagram](images/DeleteRecipeIngredientActivityDiagram.png)
+
 ### Find feature
 
 #### Overview

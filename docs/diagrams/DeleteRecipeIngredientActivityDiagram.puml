@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes delete recipe ingredient command;
+
+:Model gets the specified recipe;
+
+:A copy of the ingredients list of the recipe is made;
+
+:The ingredient is deleted from the copied list;
+
+:Model updates the recipe to contain the new ingredients list;
+
+:Storage saves recipe list;
+stop
+@enduml
