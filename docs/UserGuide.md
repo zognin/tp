@@ -60,10 +60,6 @@ Displays useful statistics like:
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
-![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
-
-![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Overview of Features
