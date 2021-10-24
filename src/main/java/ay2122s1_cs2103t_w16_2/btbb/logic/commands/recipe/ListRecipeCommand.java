@@ -12,6 +12,9 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandResult;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
+/**
+ * Lists all recipes in btbb to the user.
+ */
 public class ListRecipeCommand extends Command {
     public static final String COMMAND_WORD = "list-r";
 
