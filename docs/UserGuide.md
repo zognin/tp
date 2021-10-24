@@ -60,7 +60,9 @@ This tab features useful statistics like:
 * Top 10 recipes (by no. of orders) in a pie chart format
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
 --------------------------------------------------------------------------------------------------------------------

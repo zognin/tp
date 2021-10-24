@@ -12,7 +12,9 @@ title: BobTheBistroBoss
 
 #### Inventory & Statistics Tab
 ![Bar Chart](images/product-screenshots/general/BarChart.png)
+
 ![Client Pie Chart](images/product-screenshots/general/ClientPieChart.png)
+
 ![Recipe Pie Chart](images/product-screenshots/general/RecipePieChart.png)
 
 
