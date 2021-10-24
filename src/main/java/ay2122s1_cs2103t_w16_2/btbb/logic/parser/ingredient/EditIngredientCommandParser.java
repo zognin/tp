@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_UNIT;
@@ -44,7 +45,7 @@ public class EditIngredientCommandParser implements Parser<EditIngredientCommand
         fillIngredientDescriptor(argMultimap, editIngredientDescriptor);
 
         if (!editIngredientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditIngredientCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditIngredientCommand(index, editIngredientDescriptor);

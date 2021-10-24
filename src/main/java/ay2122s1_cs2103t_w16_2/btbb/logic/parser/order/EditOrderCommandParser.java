@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.order;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
@@ -8,6 +9,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static java.util.Objects.requireNonNull;
 
@@ -34,8 +36,8 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
     public EditOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX,
-                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_NAME, PREFIX_ORDER_PRICE,
-                PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
+                PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE, PREFIX_CLIENT_ADDRESS, PREFIX_RECIPE_INDEX, PREFIX_RECIPE_NAME,
+                PREFIX_ORDER_PRICE, PREFIX_ORDER_DEADLINE, PREFIX_ORDER_QUANTITY);
 
         Index index;
 
@@ -49,7 +51,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         fillOrderDescriptor(argMultimap, editOrderDescriptor);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);
@@ -71,14 +73,17 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
             orderDescriptor.setClientAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CLIENT_ADDRESS).get()));
         }
+        if (argMultimap.getValue(PREFIX_RECIPE_INDEX).isPresent()) {
+            orderDescriptor.setRecipeIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE_INDEX).get()));
+        }
         if (argMultimap.getValue(PREFIX_RECIPE_NAME).isPresent()) {
             orderDescriptor.setRecipeName(
                     ParserUtil.parseGenericString(argMultimap.getValue(PREFIX_RECIPE_NAME).get(),
                             "Recipe Name"));
         }
         if (argMultimap.getValue(PREFIX_ORDER_PRICE).isPresent()) {
-            orderDescriptor.setPrice(
-                    ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
+            orderDescriptor.setOrderPrice(
+                    ParserUtil.parseOrderPrice(argMultimap.getValue(PREFIX_ORDER_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_ORDER_DEADLINE).isPresent()) {
             orderDescriptor.setDeadline(

@@ -19,9 +19,10 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 
 /**
@@ -165,20 +166,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String price} into a {@code Price}.
+     * Parses a {@code String orderPrice} into a {@code OrderPrice}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param price String input to parse.
-     * @return Price object.
-     * @throws ParseException If the given {@code price} is invalid.
+     * @param orderPrice String input to parse.
+     * @return OrderPrice object.
+     * @throws ParseException If the given {@code orderPrice} is invalid.
      */
-    public static Price parsePrice(String price) throws ParseException {
-        requireNonNull(price);
-        String trimmedPrice = price.trim();
-        if (!Price.isValidPrice(trimmedPrice)) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+    public static OrderPrice parseOrderPrice(String orderPrice) throws ParseException {
+        requireNonNull(orderPrice);
+        String trimmedPrice = orderPrice.trim();
+        if (!OrderPrice.isValidOrderPrice(trimmedPrice)) {
+            throw new ParseException(OrderPrice.MESSAGE_CONSTRAINTS);
         }
-        return new Price(trimmedPrice);
+        return new OrderPrice(trimmedPrice);
     }
 
     // Recipe-level parsers:
@@ -242,6 +243,23 @@ public class ParserUtil {
         }
 
         return new Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit));
+    }
+
+    /**
+     * Parses a {@code String recipePrice} into a {@code RecipePrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param recipePrice String input to parse.
+     * @return RecipePrice object.
+     * @throws ParseException If the given {@code recipePrice} is invalid.
+     */
+    public static RecipePrice parseRecipePrice(String recipePrice) throws ParseException {
+        requireNonNull(recipePrice);
+        String trimmedRecipePrice = recipePrice.trim();
+        if (!RecipePrice.isValidRecipePrice(trimmedRecipePrice)) {
+            throw new ParseException(RecipePrice.MESSAGE_CONSTRAINTS);
+        }
+        return new RecipePrice(trimmedRecipePrice);
     }
 
     // Shared-level parsers:

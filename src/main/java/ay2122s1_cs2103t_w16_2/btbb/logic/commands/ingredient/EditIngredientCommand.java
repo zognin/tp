@@ -38,7 +38,6 @@ public class EditIngredientCommand extends Command {
             + PREFIX_INGREDIENT_QUANTITY + "10 ";
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in your inventory.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);

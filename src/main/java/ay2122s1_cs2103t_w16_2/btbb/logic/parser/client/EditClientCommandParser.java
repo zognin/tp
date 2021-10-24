@@ -1,6 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.parser.client;
 
 import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_ADDRESS;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLIENT_NAME;
@@ -44,7 +45,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         fillClientDescriptor(argMultimap, editClientDescriptor);
 
         if (!editClientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditClientCommand(index, editClientDescriptor);

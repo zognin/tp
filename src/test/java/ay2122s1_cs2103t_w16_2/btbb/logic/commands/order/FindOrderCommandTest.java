@@ -97,6 +97,6 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicateCollection);
         expectedModel.updateFilteredOrderList(predicateCollection);
         assertCommandSuccessWithTabChange(command, model, expectedMessage, expectedModel, UiTab.HOME);
-        assertEquals(Arrays.asList(ORDER_FOR_CARL, ORDER_FOR_ELLE, ORDER_FOR_FIONA), model.getFilteredOrderList());
+        assertEquals(Arrays.asList(ORDER_FOR_FIONA, ORDER_FOR_CARL, ORDER_FOR_ELLE), model.getFilteredOrderList());
     }
 }

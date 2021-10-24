@@ -28,6 +28,12 @@ public class IngredientTest {
         Ingredient editedAvocado = new IngredientBuilder(AVOCADO).withQuantity(VALID_QUANTITY_BEEF).build();
         assertTrue(AVOCADO.isSameIngredient(editedAvocado));
 
+        // same ingredient name and unit with different case -> returns true
+        editedAvocado = new IngredientBuilder(AVOCADO).withIngredientName("avocado").build();
+        assertTrue(AVOCADO.isSameIngredient(editedAvocado));
+        editedAvocado = new IngredientBuilder(AVOCADO).withUnit("WHOLE").build();
+        assertTrue(AVOCADO.isSameIngredient(editedAvocado));
+
         // different ingredient name, all other attributes same -> returns false
         editedAvocado = new IngredientBuilder(AVOCADO).withIngredientName(VALID_INGREDIENT_NAME_BEEF).build();
         assertFalse(AVOCADO.isSameIngredient(editedAvocado));

@@ -49,7 +49,7 @@ public class DeleteOrderIngredientCommandTest {
 
     @Test
     public void execute_validOrderIndex_success() throws NotFoundException {
-        Index editedOrderIndex = Index.fromZeroBased(model.getFilteredOrderList().size());
+        Index editedOrderIndex = INDEX_FIRST;
         RecipeIngredientList recipeIngredientList = new RecipeIngredientList(List.of(new IngredientBuilder().build()));
         Order orderToEdit = new OrderBuilder()
                 .withRecipeName(new GenericString("Random"))

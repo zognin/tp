@@ -8,6 +8,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_CLI
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_DEADLINE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_PRICE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_ORDER_QUANTITY;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INDEX;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static java.util.Objects.requireNonNull;
@@ -43,6 +44,7 @@ public class EditOrderCommand extends Command {
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
             + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS]\n\t\t" + "      "
+            + "[" + PREFIX_RECIPE_INDEX + "RECIPE_INDEX (must be a positive integer)] "
             + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
             + "[" + PREFIX_ORDER_PRICE + "ORDER_PRICE] "
             + "[" + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE] "
@@ -53,7 +55,6 @@ public class EditOrderCommand extends Command {
             + PREFIX_ORDER_PRICE + "4.50";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in your order list.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);

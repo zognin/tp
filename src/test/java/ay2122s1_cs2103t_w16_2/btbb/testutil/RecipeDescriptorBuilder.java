@@ -6,8 +6,8 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Price;
 
 public class RecipeDescriptorBuilder {
     private RecipeDescriptor descriptor;
@@ -38,7 +38,7 @@ public class RecipeDescriptorBuilder {
         descriptor = new RecipeDescriptor();
         descriptor.setName(recipe.getName());
         descriptor.setRecipeIngredients(recipe.getRecipeIngredients());
-        descriptor.setPrice(recipe.getPrice());
+        descriptor.setRecipePrice(recipe.getRecipePrice());
     }
 
     /**
@@ -66,11 +66,11 @@ public class RecipeDescriptorBuilder {
     /**
      * Sets the price of the {@code RecipeDescriptor} we are building.
      *
-     * @param price The price to set for the {@code RecipeDescriptor}.
+     * @param recipePrice The price to set for the {@code RecipeDescriptor}.
      * @return A RecipeDescriptorBuilder object with the price set.
      */
-    public RecipeDescriptorBuilder withPrice(String price) {
-        descriptor.setPrice(new Price(price));
+    public RecipeDescriptorBuilder withRecipePrice(String recipePrice) {
+        descriptor.setRecipePrice(new RecipePrice(recipePrice));
         return this;
     }
 
