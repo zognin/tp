@@ -70,7 +70,7 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 * The inventory displays a list of ingredients whose quantities can be tracked.
 * Ingredients are considered duplicates when they have the same name and unit.
 * The matching of names and units are case insensitive.
-* Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name in the list.
+* Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name.
   Uppercase letters appear before lowercase letters.
 
 ### 3.3 Order
@@ -78,7 +78,7 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 * Orders contain client details, recipe details, deadline, quantity, price and a completion status.
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
 * The matching of details are case insensitive where applicable.
-* Orders are sorted by completion status, then deadline. Uncompleted orders are higher in the list.
+* Orders are sorted by completion status, then deadline. Uncompleted orders appear before completed orders.
   Within each group of uncompleted and completed orders, orders with earlier deadlines are higher in the list.
 
 ### 3.4 Recipe (Bookmarks)
