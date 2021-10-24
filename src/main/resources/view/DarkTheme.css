@@ -135,11 +135,6 @@
     -fx-text-fill: #BB86FC;
 }
 
-.cell_big_label_secondary {
-    -fx-font-size: 16px;
-    -fx-text-fill: white;
-}
-
 .cell_small_label_header {
     -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 13px;
@@ -150,6 +145,10 @@
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 13px;
     -fx-text-fill: #FFFFFF;
+}
+
+.order-tick-mark {
+    -fx-fill: #03DAC5;
 }
 
 .stack-pane {
@@ -315,6 +314,10 @@
 
 .default-color0.chart-bar {
     -fx-bar-fill: #ab60fc;
+}
+
+.axis {
+    -fx-tick-label-font-family: "Open Sans Regular", "Arial";
 }
 
 .axis-label {
