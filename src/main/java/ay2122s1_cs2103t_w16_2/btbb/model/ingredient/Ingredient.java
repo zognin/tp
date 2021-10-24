@@ -11,7 +11,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  * Represents an Ingredient in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
     private GenericString name;
     private Quantity quantity;
     private GenericString unit;
@@ -138,5 +138,10 @@ public class Ingredient {
                 .append(getUnit());
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Ingredient other) {
+        return name.compareTo(other.getName());
     }
 }

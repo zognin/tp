@@ -48,6 +48,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sortIngredients();
     }
 
     /**
@@ -59,6 +60,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void setIngredients(UniqueIngredientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sortIngredients();
     }
 
     /**
@@ -70,6 +72,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void setIngredients(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         internalList.setAll(ingredients);
+        sortIngredients();
     }
 
     /**
@@ -132,6 +135,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         if (!internalList.remove(toRemove)) {
             throw new NotFoundException(Ingredient.class.getName());
         }
+        sortIngredients();
     }
 
     /**
@@ -150,6 +154,10 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         }
 
         internalList.set(index, editedIngredient);
+    }
+
+    private void sortIngredients() {
+        internalList.sort(Ingredient::compareTo);
     }
 
     /**

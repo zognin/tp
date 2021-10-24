@@ -8,6 +8,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_U
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_UNIT_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.AVOCADO;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -90,5 +91,17 @@ public class IngredientTest {
         // different unit -> returns false
         editedAvocado = new IngredientBuilder(AVOCADO).withUnit(VALID_UNIT_BEEF).build();
         assertFalse(AVOCADO.equals(editedAvocado));
+    }
+
+    @Test
+    public void compareTo() {
+        // name comes before alphabetically -> returns -1
+        assertEquals(-1, AVOCADO.compareTo(BEEF));
+
+        // equal name -> returns 0
+        assertEquals(0, AVOCADO.compareTo(AVOCADO));
+
+        // name comes after alphabetically -> returns 1
+        assertEquals(1, BEEF.compareTo(AVOCADO));
     }
 }
