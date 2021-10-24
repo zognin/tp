@@ -1,8 +1,13 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.ingredient;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_THIRD;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.APPLE;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.AVOCADO;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.BEEF;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.CHICKEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,9 +17,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
+import javafx.collections.ObservableList;
 
 public class UniqueIngredientListTest {
     private final UniqueIngredientList uniqueIngredientList = new UniqueIngredientList();
@@ -48,6 +55,15 @@ public class UniqueIngredientListTest {
     }
 
     @Test
+    public void add_validIngredient_listInSortedOrder() {
+        uniqueIngredientList.add(BEEF);
+        uniqueIngredientList.add(APPLE);
+        ObservableList<Ingredient> ingredientList = uniqueIngredientList.asUnmodifiableObservableList();
+        assertEquals(APPLE, ingredientList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(BEEF, ingredientList.get(INDEX_SECOND.getZeroBased()));
+    }
+
+    @Test
     public void setIngredients_nullUniqueIngredientList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueIngredientList
                 .setIngredients((UniqueIngredientList) null));
@@ -75,6 +91,40 @@ public class UniqueIngredientListTest {
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
         expectedUniqueIngredientList.add(BEEF);
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
+    }
+
+    @Test
+    public void setIngredient_editedIngredientHasDifferentName_listInSortedOrder() throws NotFoundException {
+        uniqueIngredientList.add(APPLE);
+        uniqueIngredientList.add(BEEF);
+        uniqueIngredientList.add(CHICKEN);
+        uniqueIngredientList.setIngredient(CHICKEN, AVOCADO);
+        ObservableList<Ingredient> ingredientList = uniqueIngredientList.asUnmodifiableObservableList();
+        assertEquals(APPLE, ingredientList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(AVOCADO, ingredientList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(BEEF, ingredientList.get(INDEX_THIRD.getZeroBased()));
+    }
+
+    @Test
+    public void setIngredients_uniqueIngredientsList_listInSortedOrder() {
+        uniqueIngredientList.add(APPLE);
+        UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
+        expectedUniqueIngredientList.add(CHICKEN);
+        expectedUniqueIngredientList.add(BEEF);
+        uniqueIngredientList.setIngredients(expectedUniqueIngredientList);
+        ObservableList<Ingredient> ingredientObservableList = uniqueIngredientList.asUnmodifiableObservableList();
+        assertEquals(BEEF, ingredientObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(CHICKEN, ingredientObservableList.get(INDEX_SECOND.getZeroBased()));
+    }
+
+    @Test
+    public void setIngredients_list_listInSortedOrder() {
+        List<Ingredient> ingredientList = List.of(BEEF, APPLE, CHICKEN);
+        uniqueIngredientList.setIngredients(ingredientList);
+        ObservableList<Ingredient> ingredientObservableList = uniqueIngredientList.asUnmodifiableObservableList();
+        assertEquals(APPLE, ingredientObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(BEEF, ingredientObservableList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(CHICKEN, ingredientObservableList.get(INDEX_THIRD.getZeroBased()));
     }
 
     @Test

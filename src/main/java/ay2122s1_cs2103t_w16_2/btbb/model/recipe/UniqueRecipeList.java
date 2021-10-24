@@ -23,6 +23,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     public void add(Recipe toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sortRecipes();
     }
 
     /**
@@ -45,6 +46,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         if (!internalList.remove(toRemove)) {
             throw new NotFoundException(Recipe.class.getName());
         }
+        sortRecipes();
     }
 
     /**
@@ -62,6 +64,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         }
 
         internalList.set(index, editedRecipe);
+        sortRecipes();
     }
 
     /**
@@ -72,6 +75,23 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     public void setRecipes(List<Recipe> recipes) {
         requireAllNonNull(recipes);
         internalList.setAll(recipes);
+        sortRecipes();
+    }
+
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not contain duplicate recipes.
+     *
+     * @param replacement another ingredient list to copy from.
+     */
+    public void setRecipes(UniqueRecipeList replacement) {
+        requireAllNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+        sortRecipes();
+    }
+
+    private void sortRecipes() {
+        internalList.sort(Recipe::compareTo);
     }
 
     /**

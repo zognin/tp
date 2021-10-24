@@ -8,7 +8,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
  * Represents a Recipe in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Recipe {
+public class Recipe implements Comparable<Recipe> {
     private final GenericString name;
     private final RecipeIngredientList recipeIngredients;
     private final RecipePrice recipePrice;
@@ -82,5 +82,10 @@ public class Recipe {
                 .append(getRecipePrice());
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Recipe other) {
+        return name.compareTo(other.getName());
     }
 }
