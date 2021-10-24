@@ -71,7 +71,7 @@ Displays useful statistics like:
 
 ### 3.1 Client (Bookmarks)
 
-* Client bookmarks are client information that can be copied from when adding an order.
+* Client bookmarks are client information that can be copied to an order's client details when adding an order.
 * Client bookmarks are considered duplicates when they have the same phone number.
 * `Client Bookmarks` may also be referred to as `Clients` for simplicity.
 
@@ -89,7 +89,7 @@ Displays useful statistics like:
 
 ### 3.4 Recipe (Bookmarks)
 
-* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied from when adding an order.
+* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe details when adding an order.
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
 * The matching of details are case insensitive where applicable.
 * `Recipe Bookmarks` may also be referred to as `Recipes` for simplicity.
@@ -467,6 +467,8 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
 
+* To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient) and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient).
+
 </div>
 
 **Examples:**
@@ -591,12 +593,12 @@ Format: `delete-r INDEX`
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which recipe to delete by specifying its position in the currently displayed recipe bookmarks list.
+* `INDEX` allows you to choose which recipe to delete by specifying its position in the currently displayed recipe list.
 
 </div>
 
 **Examples:**
-* `delete-r 1` Deletes the recipe at index 1 in the recipe bookmarks list currently shown.
+* `delete-r 1` Deletes the recipe at index 1 in the recipe list currently shown.
 
 #### 4.6.4 Deleting a recipe ingredient: `delete-ri`
 
@@ -615,10 +617,12 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * `[rn/RECIPE_NAME] [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
+* To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient) and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient).
+
 </div>
 
 **Examples:**
-*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe bookmarks list by changing the
+*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe list by changing the
    recipe name to 'Burger' and the recipe price to $8.00.
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
