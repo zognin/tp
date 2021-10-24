@@ -69,12 +69,12 @@ public class RecipeTest {
     @Test
     public void compareTo() {
         // name comes before alphabetically -> returns negative number
-        assertEquals(-7, RECIPE_EGG_PRATA.compareTo(RECIPE_LAKSA));
+        assertTrue(RECIPE_EGG_PRATA.compareTo(RECIPE_LAKSA) < 0);
 
         // equal name -> returns 0
         assertEquals(0, RECIPE_EGG_PRATA.compareTo(RECIPE_EGG_PRATA));
 
         // name comes after alphabetically -> returns positive number
-        assertEquals(7, RECIPE_LAKSA.compareTo(RECIPE_EGG_PRATA));
+        assertTrue(RECIPE_LAKSA.compareTo(RECIPE_EGG_PRATA) > 0);
     }
 }
