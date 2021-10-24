@@ -9,7 +9,7 @@ import java.util.Objects;
  * Guarantees: immutable.
  */
 public class GuiSettings implements Serializable {
-    private static final double DEFAULT_HEIGHT = 850;
+    private static final double DEFAULT_HEIGHT = 700;
     private static final double DEFAULT_WIDTH = 1250;
 
     private final double windowWidth;

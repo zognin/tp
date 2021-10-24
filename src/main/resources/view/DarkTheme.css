@@ -316,6 +316,10 @@
     -fx-bar-fill: #ab60fc;
 }
 
+.axis {
+    -fx-tick-label-font-family: "Open Sans Regular", "Arial";
+}
+
 .axis-label {
     -fx-font-size: 1.2em;
     -fx-text-fill: white;
