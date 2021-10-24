@@ -79,11 +79,11 @@ public class StatTabContent extends UiPart<Region> {
         revenueBarChart.getXAxis().setLabel("Month & Year");
         revenueBarChart.getYAxis().setLabel("Revenue ($)");
 
-        // To show the exact revenue for each month on mouse hover
+        // To show the exact revenue (rounded to 2dp) for each month on mouse hover
         revenueBarChart.getData().get(0).getData().forEach(data -> {
             data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(data.getNode(),
-                    new Tooltip("$" + String.format("%.2f", BigDecimal.valueOf(data.getYValue())
-                            .setScale(2, RoundingMode.HALF_UP).doubleValue()))));
+                    new Tooltip("$" + BigDecimal.valueOf(
+                            data.getYValue()).setScale(2, RoundingMode.HALF_UP))));
         });
     }
 
