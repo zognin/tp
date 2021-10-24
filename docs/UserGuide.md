@@ -62,18 +62,35 @@ Displays a list of all ingredients, with the following information:
 
 ### 3.1 Client (Bookmarks)
 
-* Client information that serves as a bookmark to efficiently add orders for a particular client.
-* Clients are considered duplicates when they have the same phone number.
+* Client bookmarks are client information that can be copied from when adding an order.
+* Client bookmarks are considered duplicates when they have the same phone number.
+* `Client Bookmarks` may also be referred to as `Clients` for simplicity.
 
 ### 3.2 Inventory
 
-* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
-  is considered a duplicate of `in/Apple iq/30 iu/whole`.
+* The inventory displays a list of ingredients whose quantities can be tracked.
+* Ingredients are considered duplicates when they have the same name and unit.
+* The matching of names and units are case insensitive.
 
 ### 3.3 Order
 
-* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
-  [Inventory](#32-inventory) for the definition of a matching ingredient.
+* Orders contain client details, recipe details, deadline, quantity, price and a completion status.
+* Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
+* The matching of details are case insensitive where applicable.
+
+### 3.4 Recipe (Bookmarks)
+
+* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied from when adding an order.
+* Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
+* The matching of details are case insensitive where applicable.
+* `Recipe Bookmarks` may also be referred to as `Recipes` for simplicity.
+
+### 3.5 Statistics
+
+* 3 types of statistics are shown:
+  * Revenue per month for the past 12 months.
+  * Top 10 clients who made the highest number of orders.
+  * Top 10 recipes that appear in the highest number of orders.
 
 --------------------------------------------------------------------------------------------------------------------
 
