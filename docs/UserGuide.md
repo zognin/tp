@@ -401,7 +401,27 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 **Examples:**
 * `add-oi 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first order.
 
-#### 4.5.3 Deleting an order ingredient: `delete-oi`
+#### 4.5.3 Deleting an order: `delete-o`
+
+Deletes an order from the application.
+
+Format: `delete-o INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
+
+* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
+  order is already marked as done, the ingredient quantities will not be added back.
+
+</div>
+
+**Examples:**
+* `delete-o 1` Deletes the order at index 1 in the order list currently shown.
+
+#### 4.5.4 Deleting an order ingredient: `delete-oi`
 
 Deletes an ingredient from an order in the application.
 
@@ -423,7 +443,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * `delete-oi 1 i/2` Deletes the second ingredient from the ingredient list of
   the first order.
 
-#### 4.5.4 Editing an order: `edit-o`
+#### 4.5.5 Editing an order: `edit-o`
 
 Edits an order in the application.
 
@@ -447,26 +467,6 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 1 cn/David` Edits the first order in the list currently shown by changing the client's name to David.
 * `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
   to Carol and the client's phone number to 98765432.
-
-#### 4.5.5 Deleting an order: `delete-o`
-
-Deletes an order from the application.
-
-Format: `delete-o INDEX`
-
-<div markdown="block" class="alert alert-primary">
-
-**:bookmark: Note:**<br>
-
-* `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
-
-* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
-  order is already marked as done, the ingredient quantities will not be added back.
-
-</div>
-
-**Examples:**
-* `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
 #### 4.5.6 Finding orders by keywords: `find-o`
 
@@ -695,9 +695,9 @@ Action                      | Format and Examples
 **List ingredient**         | `list-i`
 **Add order**               | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
-**Delete order**            | `delete-o INDEX`
 **Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
