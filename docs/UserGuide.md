@@ -54,7 +54,7 @@ Displays a list of all clients and orders, with the following information:
 Displays a list of all ingredients, with the following information:
 * Ingredient: Name, Quantity, Unit
 
-This tab features useful statistics like:
+Displays useful statistics like:
 * Revenue for the past 12 months in a bar chart format
 * Top 10 clients (by no. of orders) in a pie chart format
 * Top 10 recipes (by no. of orders) in a pie chart format
