@@ -1,6 +1,10 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.recipe;
 
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_THIRD;
+import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_CHICKEN_RICE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_LAKSA;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_PASTA;
@@ -14,6 +18,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
+import javafx.collections.ObservableList;
 
 public class UniqueRecipeListTest {
     private final UniqueRecipeList uniqueRecipeList = new UniqueRecipeList();
@@ -40,6 +45,15 @@ public class UniqueRecipeListTest {
     }
 
     @Test
+    public void add_validRecipe_listInSortedOrder() {
+        uniqueRecipeList.add(RECIPE_LAKSA);
+        uniqueRecipeList.add(RECIPE_EGG_PRATA);
+        ObservableList<Recipe> recipeList = uniqueRecipeList.asUnmodifiableObservableList();
+        assertEquals(RECIPE_EGG_PRATA, recipeList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(RECIPE_LAKSA, recipeList.get(INDEX_SECOND.getZeroBased()));
+    }
+
+    @Test
     public void remove_nullRecipe_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueRecipeList.remove(null));
     }
@@ -59,7 +73,7 @@ public class UniqueRecipeListTest {
 
     @Test
     public void setRecipes_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipes(null));
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipes((UniqueRecipeList) null));
     }
 
     @Test
@@ -93,5 +107,39 @@ public class UniqueRecipeListTest {
         uniqueRecipeList.setRecipe(RECIPE_EGG_PRATA, RECIPE_PASTA);
         assertFalse(uniqueRecipeList.contains(RECIPE_EGG_PRATA));
         assertTrue(uniqueRecipeList.contains(RECIPE_PASTA));
+    }
+
+    @Test
+    public void setRecipe_editedRecipeHasDifferentName_listInSortedOrder() throws NotFoundException {
+        uniqueRecipeList.add(RECIPE_EGG_PRATA);
+        uniqueRecipeList.add(RECIPE_LAKSA);
+        uniqueRecipeList.add(RECIPE_PASTA);
+        uniqueRecipeList.setRecipe(RECIPE_PASTA, RECIPE_CHICKEN_RICE);
+        ObservableList<Recipe> recipeList = uniqueRecipeList.asUnmodifiableObservableList();
+        assertEquals(RECIPE_CHICKEN_RICE, recipeList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(RECIPE_EGG_PRATA, recipeList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(RECIPE_LAKSA, recipeList.get(INDEX_THIRD.getZeroBased()));
+    }
+
+    @Test
+    public void setRecipes_uniqueRecipesList_listInSortedOrder() {
+        uniqueRecipeList.add(RECIPE_EGG_PRATA);
+        UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
+        expectedUniqueRecipeList.add(RECIPE_PASTA);
+        expectedUniqueRecipeList.add(RECIPE_LAKSA);
+        uniqueRecipeList.setRecipes(expectedUniqueRecipeList);
+        ObservableList<Recipe> recipeObservableList = uniqueRecipeList.asUnmodifiableObservableList();
+        assertEquals(RECIPE_LAKSA, recipeObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(RECIPE_PASTA, recipeObservableList.get(INDEX_SECOND.getZeroBased()));
+    }
+
+    @Test
+    public void setRecipes_list_listInSortedOrder() {
+        List<Recipe> recipeList = List.of(RECIPE_LAKSA, RECIPE_EGG_PRATA, RECIPE_PASTA);
+        uniqueRecipeList.setRecipes(recipeList);
+        ObservableList<Recipe> recipeObservableList = uniqueRecipeList.asUnmodifiableObservableList();
+        assertEquals(RECIPE_EGG_PRATA, recipeObservableList.get(INDEX_FIRST.getZeroBased()));
+        assertEquals(RECIPE_LAKSA, recipeObservableList.get(INDEX_SECOND.getZeroBased()));
+        assertEquals(RECIPE_PASTA, recipeObservableList.get(INDEX_THIRD.getZeroBased()));
     }
 }
