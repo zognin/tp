@@ -1,5 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.ui.tabcontent;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.List;
@@ -18,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -74,6 +78,13 @@ public class StatTabContent extends UiPart<Region> {
         revenueBarChart.setTitle("Revenue for past 12 months");
         revenueBarChart.getXAxis().setLabel("Month & Year");
         revenueBarChart.getYAxis().setLabel("Revenue ($)");
+
+        // To show the exact revenue for each month on mouse hover
+        revenueBarChart.getData().get(0).getData().forEach(data -> {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(data.getNode(),
+                    new Tooltip("$" + String.format("%.2f", BigDecimal.valueOf(data.getYValue())
+                            .setScale(2, RoundingMode.HALF_UP).doubleValue()))));
+        });
     }
 
     /**
@@ -94,8 +105,14 @@ public class StatTabContent extends UiPart<Region> {
                         .collect(Collectors.toList())
         );
 
-        clientPieChart.setData(pieChartData);
         clientPieChart.setTitle("Top 10 Clients (by no. of Orders)");
+        clientPieChart.setData(pieChartData);
+
+        // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
+        clientPieChart.getData().forEach(data -> {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(
+                    data.getNode(), new Tooltip(data.getName())));
+        });
     }
 
     /**
@@ -115,7 +132,13 @@ public class StatTabContent extends UiPart<Region> {
                         .collect(Collectors.toList())
         );
 
-        recipePieChart.setData(pieChartData);
         recipePieChart.setTitle("Top 10 Recipes (by no. of Orders)");
+        recipePieChart.setData(pieChartData);
+
+        // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
+        recipePieChart.getData().forEach(data -> {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(
+                    data.getNode(), new Tooltip(data.getName())));
+        });
     }
 }
