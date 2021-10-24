@@ -244,7 +244,7 @@ This is how the mechanism works in general:
 1. The new ingredient is added to a copy of the ingredients list of the specified order or recipe, forming a new ingredients list.
 1. `Model` updates the order or recipe with the new ingredients list.
 1. `Storage` saves the changes.
-1. Feedback about the status of the add is shown to the user.
+1. Feedback about the status of the addition is shown to the user.
 
 The sequence diagram is similar to the edit feature.
 
@@ -252,13 +252,13 @@ The sequence diagram is similar to the edit feature.
 
 This is how the mechanism works in general:
 
-1. User enters an delete ingredient command.
+1. User enters a delete ingredient command.
 1. A relevant `DeleteXIngredientCommandParser`, where `X` is either `Order` or `Recipe`, parses the command to generate a `DeleteXIngredientCommand`.
 1. The `DeleteXIngredientCommand` is executed.
 1. A copy of the ingredients list of the specified order or recipe is made and the specified ingredient is removed.
 1. `Model` updates the order or recipe with the new ingredients list.
 1. `Storage` saves the changes.
-1. Feedback about the status of the add is shown to the user.
+1. Feedback about the status of the deletion is shown to the user.
 
 The sequence diagram is similar to the edit feature.
 
