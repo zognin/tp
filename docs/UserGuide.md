@@ -576,6 +576,8 @@ Format: `delete-r INDEX`
 * A bar chart is displayed showing the revenue earned each month for the past 12 months. Revenue is calculated only
   from completed orders
 
+* The actual value will be displayed when you hover your cursor over each bar.
+
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
 #### 4.7.2 Viewing top 10 most frequent clients
@@ -584,6 +586,8 @@ Format: `delete-r INDEX`
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
 
+* The actual value will be displayed when you hover your cursor over each wedge.
+
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 
 #### 4.7.3 Viewing top 10 most popular recipes
@@ -591,6 +595,8 @@ Format: `delete-r INDEX`
 
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
+
+* The actual value will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
