@@ -536,13 +536,44 @@ Format: `undone-o INDEX`
 
 #### 4.6.1 Adding a recipe: `add-r`
 
+Adds a recipe to the application.
+
+Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* The application does not allow duplicate recipes to be added.
+* A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an existing recipe in the application.
+* The matching of fields are case insensitive.
+* Please refer to the examples below.
+
+</div>
+
+**Examples:**
+* `add-r rn/Soup ri/Carrot-2-Stick, Egg-1-Whole rp/2.00` adds a recipe named Soup, with 2 ingredients and a price of $2.00.
+
 #### 4.6.2 Adding a recipe ingredient: `add-ri`
 
-#### 4.6.3 Deleting a recipe ingredient: `delete-ri`
+Adds an ingredient to a recipe in the application.
 
-#### 4.6.4 Editing a recipe: `edit-r`
+Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
-#### 4.6.5 Deleting a recipe: `delete-r`
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed recipe list.
+* Ingredients that already exist in the recipe cannot be added again. Instead,
+  perform delete recipe ingredient command first before performing this command again.
+
+</div>
+
+**Examples:**
+* `add-ri 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first recipe.
+
+#### 4.6.3 Deleting a recipe: `delete-r`
 
 Deletes a recipe from the application.
 
@@ -558,6 +589,29 @@ Format: `delete-r INDEX`
 
 **Examples:**
 * `delete-r 1` Deletes the recipe at index 1 in the recipe bookmarks list currently shown.
+
+#### 4.6.4 Deleting a recipe ingredient: `delete-ri`
+
+#### 4.6.5 Editing a recipe: `edit-r`
+
+Edits an existing recipe in the application.
+
+Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which recipe to edit by specifying its position in the currently displayed recipe list.
+
+* `[rn/RECIPE_NAME] [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
+  them are mandatory, but at least one must be specified.
+
+</div>
+
+**Examples:**
+*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe list by changing the
+   recipe name to 'Burger' and the recipe price to $8.00.
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
 
@@ -648,7 +702,10 @@ Action                      | Format and Examples
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
 **Mark order as undone**    | `undone-o INDEX`
-**Delete Recipe**           | `delete-r INDEX`
+**Add recipe**              | `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
+**Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete recipe**           | `delete-r INDEX`
+**Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
 **Exit**                    | `exit`
