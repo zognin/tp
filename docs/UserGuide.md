@@ -567,6 +567,7 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed recipe list.
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
+* Refer to [3.2 Inventory](#32-inventory) for the definition of a duplicate ingredient.
 
 </div>
 
@@ -610,7 +611,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 </div>
 
 **Examples:**
-*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe list by changing the
+*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe bookmarks list by changing the
    recipe name to 'Burger' and the recipe price to $8.00.
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
