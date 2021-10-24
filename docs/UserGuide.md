@@ -43,27 +43,15 @@ manoeuvre through client and order details. If you are looking for an easy solut
 The user interface of BobTheBistroBoss is divided into 2 tabs.
 
 #### 2.2.1 Home Tab
-Displays a list of all clients and orders, with the following information:
-* Client: Name, Phone number, Email, Address
-* Order: Client name, Client Phone number, Client Address, Recipe name, Recipe ingredients, Order price, Order deadline, Order quantity, Completion status of Order.
+Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
 
 #### 2.2.2 Inventory & Statistics Tab
-Displays a list of all ingredients, with the following information:
-* Ingredient: Name, Quantity, Unit
-
-Displays useful statistics like:
-* Revenue for the past 12 months in a bar chart format
-* Top 10 clients (by no. of orders) in a pie chart format
-* Top 10 recipes (by no. of orders) in a pie chart format
+Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
-
-![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
-
-![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,18 +59,43 @@ Displays useful statistics like:
 
 ### 3.1 Client (Bookmarks)
 
-* Client information that serves as a bookmark to efficiently add orders for a particular client.
-* Clients are considered duplicates when they have the same phone number.
+* Client bookmarks are client information that can be copied to an order's client details when adding an order.
+* Client bookmarks are considered duplicates when they have the same phone number.
+* 'Client Bookmarks' may also be referred to as 'Clients' for simplicity.
+* Client bookmarks are sorted in ascending alphabetical order of client name.
+  Uppercase letters appear before lowercase letters.
 
 ### 3.2 Inventory
 
-* Ingredients are identified by name and unit. This means that `in/Apple iq/2 iu/whole`
-  is considered a duplicate of `in/Apple iq/30 iu/whole`.
+* The inventory displays a list of ingredients whose quantities can be tracked.
+* Ingredients are considered duplicates when they have the same name and unit.
+* The matching of names and units are case insensitive.
+* Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name.
+  Uppercase letters appear before lowercase letters.
 
 ### 3.3 Order
 
-* Orders are considered duplicates when they have the same client details, recipe details, deadline and price. Refer to
-  [Inventory](#32-inventory) for the definition of a matching ingredient.
+* Orders contain client details, recipe details, deadline, quantity, price and a completion status.
+* Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
+* The matching of details are case insensitive where applicable.
+* Orders are sorted by completion status, then deadline. Uncompleted orders appear before completed orders.
+  Within each group of uncompleted and completed orders, orders with earlier deadlines are higher in the list.
+
+### 3.4 Recipe (Bookmarks)
+
+* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe details when adding an order.
+* Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
+* The matching of details are case insensitive where applicable.
+* `Recipe Bookmarks` may also be referred to as `Recipes` for simplicity.
+* Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
+  Uppercase letters appear before lowercase letters.
+
+### 3.5 Statistics
+
+* 3 types of statistics are shown:
+  * Revenue per month for the past 12 months.
+  * Top 10 clients who made the highest number of orders.
+  * Top 10 recipes that appear in the highest number of orders.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,12 +246,10 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
 **:bookmark: Note:**<br>
 
-* NAME and UNIT attributes are matched exactly, including their casing to detect duplicates.
-  This means that `in/Apple iq/2 iu/whole` is not the same ingredient as `in/apple iq/2 iu/Whole`
-  and both ingredients may exist together in the inventory.
-
-* QUANTITY must be positive, and the largest possible input is 40000.
-
+* The application does not allow duplicate ingredients to be added.
+* An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the application.
+* The matching of `NAME` and `UNIT` are case insensitive.
+* `QUANTITY` must be positive, and the largest possible input is 40000.
 * Please refer to the examples below.
 
 </div>
@@ -393,7 +404,27 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 **Examples:**
 * `add-oi 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first order.
 
-#### 4.5.3 Deleting an order ingredient: `delete-oi`
+#### 4.5.3 Deleting an order: `delete-o`
+
+Deletes an order from the application.
+
+Format: `delete-o INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
+
+* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
+  order is already marked as done, the ingredient quantities will not be added back.
+
+</div>
+
+**Examples:**
+* `delete-o 1` Deletes the order at index 1 in the order list currently shown.
+
+#### 4.5.4 Deleting an order ingredient: `delete-oi`
 
 Deletes an ingredient from an order in the application.
 
@@ -415,7 +446,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * `delete-oi 1 i/2` Deletes the second ingredient from the ingredient list of
   the first order.
 
-#### 4.5.4 Editing an order: `edit-o`
+#### 4.5.5 Editing an order: `edit-o`
 
 Edits an order in the application.
 
@@ -432,6 +463,8 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
 
+* To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi) and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
+
 </div>
 
 **Examples:**
@@ -439,26 +472,6 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `edit-o 1 cn/David` Edits the first order in the list currently shown by changing the client's name to David.
 * `edit-o 2 cn/Carol cp/98765432` Edits the second order in the list currently shown by changing the client's name
   to Carol and the client's phone number to 98765432.
-
-#### 4.5.5 Deleting an order: `delete-o`
-
-Deletes an order from the application.
-
-Format: `delete-o INDEX`
-
-<div markdown="block" class="alert alert-primary">
-
-**:bookmark: Note:**<br>
-
-* `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
-
-* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
-  order is already marked as done, the ingredient quantities will not be added back.
-
-</div>
-
-**Examples:**
-* `delete-o 1` Deletes the order at index 1 in the order list currently shown.
 
 #### 4.5.6 Finding orders by keywords: `find-o`
 
@@ -528,13 +541,45 @@ Format: `undone-o INDEX`
 
 #### 4.6.1 Adding a recipe: `add-r`
 
+Adds a recipe to the application.
+
+Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* The application does not allow duplicate recipes to be added.
+* A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an existing recipe in the application.
+* The matching of fields are case insensitive.
+* Please refer to the examples below.
+
+</div>
+
+**Examples:**
+* `add-r rn/Soup ri/Carrot-2-Stick, Egg-1-Whole rp/2.00` adds a recipe named Soup, with 2 ingredients and a price of $2.00.
+
 #### 4.6.2 Adding a recipe ingredient: `add-ri`
 
-#### 4.6.3 Deleting a recipe ingredient: `delete-ri`
+Adds an ingredient to a recipe in the application.
 
-#### 4.6.4 Editing a recipe: `edit-r`
+Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
-#### 4.6.5 Deleting a recipe: `delete-r`
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed recipe list.
+* Ingredients that already exist in the recipe cannot be added again. Instead,
+  perform delete recipe ingredient command first before performing this command again.
+* Refer to [3.2 Inventory](#32-inventory) for the definition of a duplicate ingredient.
+
+</div>
+
+**Examples:**
+* `add-ri 1 in/Rice iq/400 iu/g` Adds 400 grams of Rice to the ingredients of the first recipe.
+
+#### 4.6.3 Deleting a recipe: `delete-r`
 
 Deletes a recipe from the application.
 
@@ -544,12 +589,37 @@ Format: `delete-r INDEX`
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which recipe to delete by specifying its position in the currently displayed recipe bookmarks list.
+* `INDEX` allows you to choose which recipe to delete by specifying its position in the currently displayed recipe list.
 
 </div>
 
 **Examples:**
-* `delete-r 1` Deletes the recipe at index 1 in the recipe bookmarks list currently shown.
+* `delete-r 1` Deletes the recipe at index 1 in the recipe list currently shown.
+
+#### 4.6.4 Deleting a recipe ingredient: `delete-ri`
+
+#### 4.6.5 Editing a recipe: `edit-r`
+
+Edits an existing recipe in the application.
+
+Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which recipe to edit by specifying its position in the currently displayed recipe list.
+
+* `[rn/RECIPE_NAME] [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
+  them are mandatory, but at least one must be specified.
+
+* To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri) and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
+
+</div>
+
+**Examples:**
+*  `edit-r 2 rn/Burger rp/8` Edits the second recipe in currently shown recipe list by changing the
+   recipe name to 'Burger' and the recipe price to $8.00.
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
 
@@ -633,14 +703,17 @@ Action                      | Format and Examples
 **List ingredient**         | `list-i`
 **Add order**               | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
-**Delete order**            | `delete-o INDEX`
 **Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
 **Mark order as undone**    | `undone-o INDEX`
-**Delete Recipe**           | `delete-r INDEX`
+**Add recipe**              | `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
+**Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete recipe**           | `delete-r INDEX`
+**Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
 **Exit**                    | `exit`
