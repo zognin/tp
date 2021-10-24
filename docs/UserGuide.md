@@ -515,17 +515,48 @@ Format: `undone-o INDEX`
 **Examples:**
 * `undone-o 1` Marks the order at index 1 in the order list currently shown as undone.
 
-### 4.6 Exiting the program: `exit`
+### 4.6 Recipe
+
+#### 4.6.1 Adding a recipe: `add-r`
+
+#### 4.6.2 Adding a recipe ingredient: `add-ri`
+
+#### 4.6.3 Deleting a recipe ingredient: `delete-ri`
+
+#### 4.6.4 Editing a recipe: `edit-r`
+
+#### 4.6.5 Deleting a recipe: `delete-r`
+
+Deletes a recipe from the application.
+
+Format: `delete-r INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `INDEX` allows you to choose which recipe to delete by specifying its position in the currently displayed recipe bookmarks list.
+
+</div>
+
+**Examples:**
+* `delete-r 1` Deletes the recipe at index 1 in the recipe bookmarks list currently shown.
+
+#### 4.6.6 Finding recipe by keywords: `find-r`
+
+#### 4.6.7 Listing all recipes: `list-r`
+
+### 4.7 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 4.7 Saving the data
+### 4.8 Saving the data
 
 BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 4.8 Editing the data file
+### 4.9 Editing the data file
 
 BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
@@ -579,27 +610,28 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 ## 7. Command summary
 
-Action                   | Format and Examples
--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add client**           | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
-**Delete client**        | `delete-c INDEX`
-**Edit client**          | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
-**Find client**          | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
-**List client**          | `list-c`
-**Add ingredient**       | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
-**Delete ingredient**    | `delete-i INDEX`
-**Edit ingredient**      | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
-**Find ingredient**      | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
-**List ingredient**      | `list-i`
-**Add order**            | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
-**Edit order**           | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
-**Add order ingredient** | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+Action                      | Format and Examples
+----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add client**              | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
+**Delete client**           | `delete-c INDEX`
+**Edit client**             | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**Find client**             | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**List client**             | `list-c`
+**Add ingredient**          | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Delete ingredient**       | `delete-i INDEX`
+**Edit ingredient**         | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
+**Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+**List ingredient**         | `list-i`
+**Add order**               | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+**Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
-**Delete order**         | `delete-o INDEX`
-**Find order**           | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
-**List order**           | `list-o`
-**Mark order as done**   | `done-o INDEX`
-**Mark order as undone** | `undone-o INDEX`
-**Help**                 | `help`
-**Tab**                  | `tab INDEX`
-**Exit**                 | `exit`
+**Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
+**Delete order**            | `delete-o INDEX`
+**Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
+**List order**              | `list-o`
+**Mark order as done**      | `done-o INDEX`
+**Mark order as undone**    | `undone-o INDEX`
+**Delete Recipe**           | `delete-r INDEX`
+**Help**                    | `help`
+**Tab**                     | `tab INDEX`
+**Exit**                    | `exit`
