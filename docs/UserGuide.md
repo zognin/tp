@@ -49,7 +49,6 @@ Displays a list of all clients and orders, with the following information:
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
-
 #### 2.2.2 Inventory & Statistics Tab
 Displays a list of all ingredients, with the following information:
 * Ingredient: Name, Quantity, Unit
@@ -334,14 +333,14 @@ Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r
 
 * If `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` are all specified, `c/CLIENT_INDEX` does not need to
   be specified.
-  
+
 * `r/RECIPE_INDEX` will copy over the details of the recipe bookmark at the given index into the order.
 
 * `rn/RECIPE_NAME` and `ri/INGREDIENT_NAME-QUANTITY-UNIT,...` will override any details copied over by `r/RECIPE_INDEX`
 
-* If `r/RECIPE_INDEX` is not specified all of `rn/RECIPE_NAME` and `ri/INGREDIENT_NAME-QUANTITY-UNIT,...` must be 
+* If `r/RECIPE_INDEX` is not specified all of `rn/RECIPE_NAME` and `ri/INGREDIENT_NAME-QUANTITY-UNIT,...` must be
   specified.
-  
+
 * If `rn/RECIPE_NAME` is specified, `r/RECIPE_INDEX` does not need to be specified
 
 * Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
@@ -379,7 +378,7 @@ Suppose the first client in the list has the following details:
   order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
   decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
   scheduled to be delivered by 15 December 2021 at 1630 hrs.
-  
+
 * `add-o c/1 r/1 od/12-12-2021 1830 oq/2`
 
 * `add-o cn/Bob cp/98856441 ca/Bukit Batok St 42 r/1 od/23-11-2021 1930 oq/1`
@@ -432,7 +431,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 Edits an order in the application.
 
-Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] 
+Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
 [rn/RECIPE_NAME]
 [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
 
@@ -575,18 +574,24 @@ Format: `delete-r INDEX`
 * A bar chart is displayed showing the revenue earned each month for the past 12 months. Revenue is calculated only
   from completed orders
 
+![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+
 #### 4.7.2 Viewing top 10 most frequent clients
 * Displays a pie chart showing the top 10 most frequent clients by the number of orders.
 
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
 
+![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+
 #### 4.7.3 Viewing top 10 most popular recipes
 * Displays a pie chart showing the top 10 most popular recipes by the number of orders.
 
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
-  
+
+![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
+
 ### 4.8 Exiting the program: `exit`
 
 Exits the program.
