@@ -7,10 +7,10 @@ title: BobTheBistroBoss
 [![codecov](https://codecov.io/gh/AY2122S1-CS2103T-W16-2/tp/branch/master/graph/badge.svg?token=PQVA8CSXQ8)](https://codecov.io/gh/AY2122S1-CS2103T-W16-2/tp)
 
 <!--- Needs to be named Ui.png because it is tracked in the CS2103T website -->
-### Home Tab
+#### Home Tab
 ![Home Tab](images/Ui.png)
 
-### Inventory & Statistics Tab
+#### Inventory & Statistics Tab
 ![Bar Chart](images/product-screenshots/general/BarChart.png)
 ![Client Pie Chart](images/product-screenshots/general/ClientPieChart.png)
 ![Recipe Pie Chart](images/product-screenshots/general/RecipePieChart.png)

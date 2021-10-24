@@ -56,10 +56,11 @@ Displays a list of all ingredients, with the following information:
 
 This tab features useful statistics like:
 * Revenue for the past 12 months in a bar chart format
-![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 * Top 10 clients (by no. of orders) in a pie chart format
-![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 * Top 10 recipes (by no. of orders) in a pie chart format
+
+![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
 --------------------------------------------------------------------------------------------------------------------
