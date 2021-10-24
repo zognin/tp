@@ -250,12 +250,10 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
 **:bookmark: Note:**<br>
 
-* NAME and UNIT attributes are matched exactly, including their casing to detect duplicates.
-  This means that `in/Apple iq/2 iu/whole` is not the same ingredient as `in/apple iq/2 iu/Whole`
-  and both ingredients may exist together in the inventory.
-
-* QUANTITY must be positive, and the largest possible input is 40000.
-
+* The application does not allow duplicate ingredients to be added.
+* An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the application.
+* The matching of `NAME` and `UNIT` are case insensitive.
+* `QUANTITY` must be positive, and the largest possible input is 40000.
 * Please refer to the examples below.
 
 </div>
