@@ -24,6 +24,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 /**
  * Encapsulates the statistics tab.
@@ -81,9 +82,13 @@ public class StatTabContent extends UiPart<Region> {
 
         // To show the exact revenue (rounded to 2dp) for each month on mouse hover
         revenueBarChart.getData().get(0).getData().forEach(data -> {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(data.getNode(),
-                    new Tooltip("$" + BigDecimal.valueOf(
-                            data.getYValue()).setScale(2, RoundingMode.HALF_UP))));
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+                Tooltip tooltip = new Tooltip("$" + BigDecimal.valueOf(
+                        data.getYValue()).setScale(2, RoundingMode.HALF_UP));
+                tooltip.setShowDelay(Duration.millis(1));
+                tooltip.setHideDelay(Duration.millis(1));
+                Tooltip.install(data.getNode(), tooltip);
+            });
         });
     }
 
@@ -109,10 +114,7 @@ public class StatTabContent extends UiPart<Region> {
         clientPieChart.setData(pieChartData);
 
         // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
-        clientPieChart.getData().forEach(data -> {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(
-                    data.getNode(), new Tooltip(data.getName())));
-        });
+        addTooltipToPieChartSlices(clientPieChart);
     }
 
     /**
@@ -136,9 +138,22 @@ public class StatTabContent extends UiPart<Region> {
         recipePieChart.setData(pieChartData);
 
         // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
-        recipePieChart.getData().forEach(data -> {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Tooltip.install(
-                    data.getNode(), new Tooltip(data.getName())));
+        addTooltipToPieChartSlices(recipePieChart);
+    }
+
+    /**
+     * Adds a tooltip that shows the pie chart data on mouse hover.
+     *
+     * @param pieChart The pie chart.
+     */
+    private void addTooltipToPieChartSlices(PieChart pieChart) {
+        pieChart.getData().forEach(data -> {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+                Tooltip tooltip = new Tooltip(data.getName());
+                tooltip.setShowDelay(Duration.millis(1));
+                tooltip.setHideDelay(Duration.millis(1));
+                Tooltip.install(data.getNode(), tooltip);
+            });
         });
     }
 }
