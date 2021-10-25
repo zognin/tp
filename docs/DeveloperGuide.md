@@ -218,10 +218,21 @@ This is how the copy mechanism works in general:
 1. `Storage` saves the changes.
 1. Feedback about the status of the addition is shown to the user.
 
-The following activity diagram shows how the copy operation works when adding an order using a client index. The
-activity diagram for adding an order using a recipe index is similar.
+The sequence diagram is similar to the add feature.
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when a user executes an add order command using a client index.
+The activity diagram for adding an order using a recipe index is similar.
 
 ![DeleteOrderSequenceDiagram](images/CopyClientBookmarkDetailsToOrder.png)
+
+Example of a successful addition using the add order command using a client index:
+
+1. The user wishes to add an order for the first client in the displayed client list.
+1. The user executes `add-o c/1 rn/Chicken Rice od/12-12-2021 1800 oq/2` The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app adds an order containing the details of the first client and the order is shown in the list.
 
 ### Delete feature
 
