@@ -406,9 +406,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed order list.
 * Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command first before performing this command again.
-* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted
-  from the inventory will be equivalent to the ingredient quantity in the order
-  multiplied by the order quantity.
+* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted from the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
 
