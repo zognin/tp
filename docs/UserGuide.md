@@ -645,6 +645,10 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 #### 4.6.7 Listing all recipes: `list-r`
 
+Lists all recipes in the application.
+
+Format: `list-r`
+
 ### 4.7 Statistics
 
 #### 4.7.1 Viewing revenue per month for the past 12 months
@@ -760,6 +764,7 @@ Action                      | Format and Examples
 **Delete recipe**           | `delete-r INDEX`
 **Delete recipe ingredient**| `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
+**List recipe**             | `list-r`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
 **Exit**                    | `exit`
