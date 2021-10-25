@@ -219,14 +219,21 @@ Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 * Partial search will be allowed. <br>
   e.g. <code>find-c cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* It will find clients that match at least one keyword, for each prefix. <br>
-  e.g. <code>find-c cn/Al Be cp/34 22312 </code> can show all of these combinations of clients: <br>
-  * client names containing 'Al' with phone numbers containing '34'.
-  * client names containing 'Al' with phone numbers containing '22312'.
-  * client names containing 'Be' with phone numbers containing '34'.
-  * client names containing 'Be' with phone numbers containing '22312'.
+* It will find clients that match at least one keyword, for each prefix.
+
+* Please refer to the examples below. <br>
 
 </div>
+
+**Examples:**
+* `find-c cn/al` Find clients with names containing 'al'. E.g. **Al**ex, Abig**al**e.
+* `find-c cp/22312` Find clients with phone numbers containing 22312. E.g. 9**22312**11.
+* `find-c cn/Al Ice cp/9123 923111` Find clients whose name and phone contains at least 1 of the
+  keywords for each prefix. Any clients with the following details will be matched:
+  * **Al**ex **9123**1100
+  * Bern**ice** 98**9123**45
+  * **Al**ex **923111**97
+  * Bern**ice** 91**923111**
 
 #### 4.3.5 Listing all clients: `list-c`
 
@@ -308,13 +315,20 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must satisfy all 3 conditions.
 
-* It will find ingredients that match at least one keyword, for each prefix. <br>
-  e.g. <code>find-i in/Ap Fl iu/p k</code> can show all of these combinations of ingredients: <br>
-  * ingredient names containing 'Ap' with units containing 'p'
-  * ingredient names containing 'Ap' with units containing 'k'
-  * ingredient names containing 'Fl' with units containing 'p'
-  * ingredient names containing 'Fl' with units containing 'k'
+* It will find ingredients that match at least one keyword, for each prefix.
+
+* Please refer to the examples below. <br>
+
 </div>
+
+**Examples:**
+* `find-i in/co` Find ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
+* `find-i iq/20 33` Find ingredients with quantities equal to 20 or 33.
+* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for each prefix, and quantity in the specified range.
+  These ingredients with the following details will be matched:
+  * **Co**rn **7** **g**rams
+  * **Eg**g **19** k**g**
+  * V**eg**etable Oil **14** **g**
 
 #### 4.4.5 Listing all ingredients: `list-i`
 
@@ -488,19 +502,19 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 * `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#4-features).
 * `of/YES_OR_NO` represents whether the order is completed.
 
-* Please refer to the examples below.
+* Please refer to the examples below. <br>
 
 </div>
 
 **Examples:**
-* `find-o cn/al` Find orders for clients with names containing 'al'. E.g. Alex, Alice, Al.
-* `find-o cp/91234567` Find orders for clients with 91234567 as their phone number.
+* `find-o cn/al` Find orders for clients with names containing 'al'. E.g. **Al**ex, K**al**yn.
+* `find-o cp/91234567` Find orders for clients with phone numbers that contain 91234567. E.g. **91234567**, 87**91234567**3421
 * `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone contains at least 1 of the
   keywords for each prefix. Any orders with the following client details will be matched:
-  * Alex 91231100
-  * David 91234567
-  * Alex 92315697
-  * David 92316612
+  * **Alex** **9123**1100
+  * **David** 8912**9123**
+  * **Alex** 9881**9231**
+  * **David** **9231**6612
 
 #### 4.5.7 Listing all orders: `list-o`
 
