@@ -362,6 +362,45 @@ Example of a successful outcome using the List command:
 1. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
 1. The app shows all orders in the order list.
 
+### Statistics feature
+
+#### Overview
+
+Statistics will always be display to the user.
+The following order operations can be executed to update the statistics: 
+* add-o
+* delete-o
+* edit-o (with changes made to recipe price and/or client phone number)
+
+#### Mechanism
+
+This is how the statistics mechanism works in general:
+
+1. User enters any order command that updates statistics.
+1. A relevant `XOrderCommandParser`, where `X` is one of the operations, parses the command to generate a `XOrderCommand`.
+1. The `XOrderCommand` is executed.
+1. `Model` adds the entity and `Storage` saves the changes.
+1. Feedback about the status of the add is shown to the user.
+1. Necessary charts are updated.
+
+The following sequence diagram shows how the statistics work. 
+
+![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when statistics are updated through an add order command:
+
+![AddOrderActivityDiagram](images/AddOrderActivityDiagram.png)
+
+Example of a successful addition using the add order command:
+
+1. The user wishes to add an order.
+1. The user executes an appropriate add order command to add an order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app adds the order and the order is shown in the list.
+1. 
+
 ### Tab feature
 
 #### Overview
