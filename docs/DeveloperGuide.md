@@ -192,7 +192,7 @@ Example of a successful addition using the add order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app adds the order and the order is shown in the list.
 
-### Copy bookmark details to orders
+### Copy bookmark details to order feature
 
 #### Overview
 
@@ -202,9 +202,6 @@ to copy over the details of the client to the order. This can also be done for r
 
 Example:
 * With both client and recipe index `add-o c/1 r/3 od/12-12-2021 1800 oq/2`
-
-* Full command: `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
-  1800 oq/2`
 
 #### Mechanism
 
@@ -225,12 +222,12 @@ The sequence diagram is similar to the add feature.
 The following activity diagram summarizes what happens when a user executes an add order command using a client index.
 The activity diagram for adding an order using a recipe index is similar.
 
-![DeleteOrderSequenceDiagram](images/CopyClientBookmarkDetailsToOrder.png)
+![CopyClientBookmarkDetailsToOrderActivityDiagram](images/CopyClientBookmarkDetailsToOrderActivityDiagram.png)
 
 Example of a successful addition using the add order command using a client index:
 
 1. The user wishes to add an order for the first client in the displayed client list.
-1. The user executes `add-o c/1 rn/Chicken Rice od/12-12-2021 1800 oq/2` The `commandText` is received by
+1. The user executes `add-o c/1 rn/Chicken Rice od/12-12-2021 1800 op/4.00 oq/2` The `commandText` is received by
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app adds an order containing the details of the first client and the order is shown in the list.
 

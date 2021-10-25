@@ -4,7 +4,7 @@ start
 
 :Model gets the client from client list using index;
 
-:Client details is copied into the order;
+:Client details are copied into the order;
 
 :Model adds the order to the order list;
 
