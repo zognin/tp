@@ -406,7 +406,7 @@ Example of a successful outcome using the List command:
 #### Overview
 
 Statistics will always be display to the user.
-The following order operations can be executed to update the statistics: 
+The following order operations can be executed to update the statistics:
 * add-o
 * delete-o
 * edit-o (with changes made to recipe price and/or client phone number and client name)
