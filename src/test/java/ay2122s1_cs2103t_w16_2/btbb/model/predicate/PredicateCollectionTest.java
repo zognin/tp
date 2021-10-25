@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.GenericStub;
@@ -46,6 +47,10 @@ public class PredicateCollectionTest {
             new StringContainsKeywordsPredicate<>(Order::getClientPhone, List.of("9110", "3216"));
     public static final StringContainsKeywordsPredicate<Order> CLIENT_ADDRESS_EUNOS_BISHAN_PREDICATE =
             new StringContainsKeywordsPredicate<>(Order::getClientAddress, List.of("Eunos", "Bishan"));
+
+    // Recipe predicates
+    public static final StringContainsKeywordsPredicate<Recipe> RECIPE_NAME_LAKSA_PRATA_PREDICATE =
+            new StringContainsKeywordsPredicate<>(Recipe::getName, List.of("Laksa", "Prata"));
 
     // Generic stub predicates
     public static final StringContainsKeywordsPredicate<GenericStub> GENERIC_STUB_NAME_ALICE_BOB_PREDICATE =

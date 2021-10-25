@@ -90,7 +90,7 @@ public class RecipeIngredientList {
      */
     public String toDisplayString() {
         if (ingredients.size() == 0) {
-            return "This order's ingredient list is empty.";
+            return "The ingredient list is currently empty.";
         }
 
         StringBuilder stringBuilder = new StringBuilder();

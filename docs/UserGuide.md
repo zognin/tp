@@ -47,7 +47,6 @@ Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [reci
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
-
 #### 2.2.2 Inventory & Statistics Tab
 Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
@@ -109,7 +108,8 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
+  e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
+  `cn/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
@@ -219,14 +219,21 @@ Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 * Partial search will be allowed. <br>
   e.g. <code>find-c cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* It will find clients that match at least one keyword, for each prefix. <br>
-  e.g. <code>find-c cn/Al Be cp/34 22312 </code> can show all of these combinations of clients: <br>
-  * client names containing 'Al' with phone numbers containing '34'.
-  * client names containing 'Al' with phone numbers containing '22312'.
-  * client names containing 'Be' with phone numbers containing '34'.
-  * client names containing 'Be' with phone numbers containing '22312'.
+* It will find clients that match at least one keyword, for each prefix.
+
+* Please refer to the examples below. <br>
 
 </div>
+
+**Examples:**
+* `find-c cn/al` Find clients with names containing 'al'. E.g. **Al**ex, Abig**al**e.
+* `find-c cp/22312` Find clients with phone numbers containing 22312. E.g. 9**22312**11.
+* `find-c cn/Al Ice cp/9123 923111` Find clients whose name and phone contains at least 1 of the
+  keywords for each prefix. Any clients with the following details will be matched:
+  * **Al**ex **9123**1100
+  * Bern**ice** 98**9123**45
+  * **Al**ex **923111**97
+  * Bern**ice** 91**923111**
 
 #### 4.3.5 Listing all clients: `list-c`
 
@@ -308,13 +315,20 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must satisfy all 3 conditions.
 
-* It will find ingredients that match at least one keyword, for each prefix. <br>
-  e.g. <code>find-i in/Ap Fl iu/p k</code> can show all of these combinations of ingredients: <br>
-  * ingredient names containing 'Ap' with units containing 'p'
-  * ingredient names containing 'Ap' with units containing 'k'
-  * ingredient names containing 'Fl' with units containing 'p'
-  * ingredient names containing 'Fl' with units containing 'k'
+* It will find ingredients that match at least one keyword, for each prefix.
+
+* Please refer to the examples below. <br>
+
 </div>
+
+**Examples:**
+* `find-i in/co` Find ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
+* `find-i iq/20 33` Find ingredients with quantities equal to 20 or 33.
+* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for each prefix, and quantity in the specified range.
+  These ingredients with the following details will be matched:
+  * **Co**rn **7** **g**rams
+  * **Eg**g **19** k**g**
+  * V**eg**etable Oil **14** **g**
 
 #### 4.4.5 Listing all ingredients: `list-i`
 
@@ -328,59 +342,57 @@ Format: `list-i`
 
 Adds an order to the application.
 
-Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME
-[ri/INGREDIENT_NAME-QUANTITY-UNIT] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+Format: `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME]
+[ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* `c/CLIENT_INDEX` will copy over the details of the client bookmark at the given index into the order.
+* `od/ORDER_DEADLINE` includes date and time, it must follow the format specified [above](#4-features).
 
-* `cn/CLIENT_NAME`, `cp/CLIENT_PHONE` and `ca/CLIENT_ADDRESS` will override any details copied over by
-  `c/CLIENT_INDEX`.
+Client details include client name, phone and address, they must be provided in one of these ways:
+* If `c/CLIENT_INDEX` is present, client details are copied from the client bookmark at the given index to the order.
+* If `cn/`, `cp/` or `ca/` are provided with `c/`, client details are taken from `cn/`, `cp/` or `ca/` instead.
+* If `c/` is not present, `cn/`, `cp/` and `ca/` must be provided.
 
-* If `c/CLIENT_INDEX` is not specified all of `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` must be
-  specified.
+Recipe details include recipe name, ingredients and price. Recipe name and order price must be provided in one of these ways:
+* If `r/RECIPE_INDEX` is present, recipe details are copied from the recipe bookmark at the given index to the order.
+  `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
+* If `rn/`, `ri/` or `op/` is provided with `r/`, details are taken from `rn/`, `ri/` or `op/` instead.
+* If `r/` is not present, `rn/` and `op/` must be provided.
 
-* If `cn/CLIENT_NAME`, `cp/CLIENT_PHONE`, `ca/CLIENT_ADDRESS` are all specified, `c/CLIENT_INDEX` does not need to
-  be specified.
+These details are fully optional:
+* `oq/ORDER_QUANTITY` is set to 1 by default if not specified.
+* `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` does not need to be specified.
 
-* Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
-
-* Quantity of ingredients in the inventory will decrease by the amount specified in `ri/` multiplied by the order quantity
-  if it exists in the inventory. If the ingredients do not exist in the inventory, there will be no effect on the inventory.
-
-* All orders will be uncompleted upon addition.
-
-* `od/ORDER_DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#4-features).
-
-* The format for ingredients `ri/` is `INGREDIENT_NAME-QTY-UNIT`. <br>
-  e.g. Garlic-1-whole.
+Secondary processes that happen when you add an order:
+* For each ingredient in the order, the inventory will find [matching ingredients](#32-inventory) and decrease their quantity.
+  The inventory quantity is decreased by the ingredient quantity in the order, multiplied by the order quantity.
+  If the ingredient in the order does not exist in the inventory, there is no effect.
+* All orders have an uncompleted status upon addition.
 
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-Suppose the first client in the list has the following details:
-* Name: John Doe
-* Phone: 98765432
-* Address: Happy Funland Street 12
-* Email: johndoe12@gmail.com
+* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
+  1800 oq/2`. Adding an order without client index and recipe index.
 
-* `add-o c/1 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams op/3 od/15-11-2021 1830 oq/1` Adds an order to the
-  application where the client's name, phone and address matches the first client in the list shown above. The
-  order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
-  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
-  scheduled to be delivered by 15 November 2021 at 1830 hrs.
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
 
-* `add-o cn/Alex cp/98765432 ca/Hogwarts Blk 68 rn/Chicken Rice ri/Chicken-1-whole Rice-200-grams op/3 od/15-12-2021
-  1630 oq/1` Adds an order to the
-  application where the client's name, phone and address are Alex, 98765432 and Hogwarts Blk 68 respectively. The
-  order's recipe name and price will be chicken rice and $3 respectively. The quantity of chicken and rice will
-  decrease by 1 whole and 200 grams respectively if it exists in the inventory. The order of 1 chicken rice will be
-  scheduled to be delivered by 15 December 2021 at 1630 hrs.
+* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
+
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
+
+* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe index.
+
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
+
+* `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
+
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
 
@@ -415,7 +427,6 @@ Format: `delete-o INDEX`
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
-
 * When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
   order is already marked as done, the ingredient quantities will not be added back.
 
@@ -450,19 +461,17 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 Edits an order in the application.
 
-Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME]
-[op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
+Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
+[rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
-
-* `[c/INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [rn/RECIPE_NAME],
+* `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
-
 * To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi) and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
 </div>
@@ -484,34 +493,28 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
-
 * There must be 1 or more search arguments.
-
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
-
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
-
 * It will find orders that match at least one keyword, for each prefix.
-
 * `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#4-features).
-
 * `of/YES_OR_NO` represents whether the order is completed.
 
-* Please refer to the examples below.
+* Please refer to the examples below. <br>
 
 </div>
 
 **Examples:**
-* `find-o cn/al` Find orders for clients with names containing 'al'. E.g. Alex, Alice, Al.
-* `find-o cp/91234567` Find orders for clients with 91234567 as their phone number.
+* `find-o cn/al` Find orders for clients with names containing 'al'. E.g. **Al**ex, K**al**yn.
+* `find-o cp/91234567` Find orders for clients with phone numbers that contain 91234567. E.g. **91234567**, 87**91234567**3421
 * `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone contains at least 1 of the
   keywords for each prefix. Any orders with the following client details will be matched:
-  * Alex 91231100
-  * David 91234567
-  * Alex 92315697
-  * David 92316612
+  * **Alex** **9123**1100
+  * **David** 8912**9123**
+  * **Alex** 9881**9231**
+  * **David** **9231**6612
 
 #### 4.5.7 Listing all orders: `list-o`
 
@@ -519,7 +522,7 @@ Lists all orders in the application.
 
 Format: `list-o`
 
-#### 4.5.8 Mark order as done: `done-o`
+#### 4.5.8 Marking an order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -528,7 +531,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 4.5.9 Mark order as undone: `undone-o`
+#### 4.5.9 Marking an order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -655,17 +658,46 @@ Format: `find-r rn/RECIPE_NAME`
 
 #### 4.6.7 Listing all recipes: `list-r`
 
-### 4.7 Exiting the program: `exit`
+Lists all recipes in the application.
+
+Format: `list-r`
+
+### 4.7 Statistics
+
+#### 4.7.1 Viewing revenue per month for the past 12 months
+* Displays a bar chart showing the revenue earned per month for the past 12 months. Revenue is calculated only
+  from completed orders
+* Values will be displayed when you hover your cursor over each bar.
+
+![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+
+#### 4.7.2 Viewing top 10 clients
+* Displays a pie chart showing the top 10 clients who made the highest number of orders.
+* Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
+  will be displayed.
+* Values will be displayed when you hover your cursor over each wedge.
+
+![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+
+#### 4.7.3 Viewing top 10 recipes
+* Displays a pie chart showing the top 10 recipes that appear in the highest number of orders.
+* Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
+  will be displayed.
+* Values will be displayed when you hover your cursor over each wedge.
+
+![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
+
+### 4.8 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 4.8 Saving the data
+### 4.9 Saving the data
 
 BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 4.9 Editing the data file
+### 4.10 Editing the data file
 
 BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
@@ -731,7 +763,7 @@ Action                      | Format and Examples
 **Edit ingredient**         | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 **Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 **List ingredient**         | `list-i`
-**Add order**               | `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+**Add order**               | `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
@@ -745,6 +777,7 @@ Action                      | Format and Examples
 **Delete recipe**           | `delete-r INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Find recipe**             | `find-r rn/RECIPE_NAME`
+**List recipe**             | `list-r`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
 **Exit**                    | `exit`

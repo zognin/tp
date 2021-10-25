@@ -58,6 +58,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.commands.order.UndoneOrderCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.DeleteRecipeCommand;
+import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.DeleteRecipeIngredientCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.EditRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.ListRecipeCommand;
 import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.ClientDescriptor;
@@ -187,6 +188,17 @@ public class AddressBookParserTest {
         DeleteRecipeCommand command = (DeleteRecipeCommand) parser.parseCommand(
                 DeleteRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteRecipeCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteRecipeIngredient() throws Exception {
+        DeleteRecipeIngredientCommand command =
+                (DeleteRecipeIngredientCommand) parser.parseCommand(DeleteRecipeIngredientCommand.COMMAND_WORD
+                        + " "
+                        + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_INGREDIENT_INDEX + INDEX_FIRST.getOneBased()
+                );
+        assertEquals(new DeleteRecipeIngredientCommand(INDEX_FIRST, INDEX_FIRST), command);
     }
 
     @Test
