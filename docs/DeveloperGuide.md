@@ -192,6 +192,37 @@ Example of a successful addition using the add order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app adds the order and the order is shown in the list.
 
+### Copy bookmark details to orders
+
+#### Overview
+
+Copy operations can be executed for the following entities: clients and recipes. Instead of keying in all the
+details of a client when adding an order, the user can specify the index of the client displayed in the client list
+to copy over the details of the client to the order. This can also be done for recipes.
+
+Example:
+* With both client and recipe index `add-o c/1 r/3 od/12-12-2021 1800 oq/2`
+
+* Full command: `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
+  1800 oq/2`
+
+#### Mechanism
+
+This is how the copy mechanism works in general:
+1. User enters an add order command using `X` index where `X` is one of the entities.
+1. A relevant `AddOrderCommandParser` parses the command to generate a `AddOrderCommand`.
+1. The `AddOrderCommand` is executed.
+1. `Model` gets `X` from `X` list using the specified index.
+1. Details of `X` is copied into the order.
+1. `Model` adds the order.
+1. `Storage` saves the changes.
+1. Feedback about the status of the addition is shown to the user.
+
+The following activity diagram shows how the copy operation works when adding an order using a client index. The
+activity diagram for adding an order using a recipe index is similar.
+
+![DeleteOrderSequenceDiagram](images/CopyClientBookmarkDetailsToOrder.png)
+
 ### Delete feature
 
 #### Overview
