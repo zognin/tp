@@ -601,6 +601,23 @@ Format: `delete-r INDEX`
 
 #### 4.6.4 Deleting a recipe ingredient: `delete-ri`
 
+Deletes an ingredient from a recipe in the application.
+
+Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* `RECIPE_INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the currently displayed recipe list.
+* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the recipe by specifying its position in the currently displayed recipe ingredient sub-list.
+
+</div>
+
+**Examples:**
+* `delete-ri 1 i/2` Deletes the second ingredient from the ingredient list of
+  the first recipe.
+
 #### 4.6.5 Editing a recipe: `edit-r`
 
 Edits an existing recipe in the application.
@@ -775,6 +792,7 @@ Action                      | Format and Examples
 **Add recipe**              | `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
+**Delete recipe ingredient**| `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Find recipe**             | `find-r rn/RECIPE_NAME`
 **List recipe**             | `list-r`
