@@ -650,8 +650,8 @@ Format: `find-r rn/RECIPE_NAME`
 </div>
 
 **Examples:**
-* `find-r rn/Chicken rice` Find orders for clients whose name and phone contains at least 1 of the
-  keywords for each prefix. Any orders with the following client details will be matched:
+* `find-r rn/Chicken rice` Find recipes with a name that contains at least 1 of the
+  keywords for each prefix. Any recipes with the following names will be matched:
   * Teriyaki **Chicken**
   * **Chicken** **Rice**
   * Kimchi Fried **Rice**
