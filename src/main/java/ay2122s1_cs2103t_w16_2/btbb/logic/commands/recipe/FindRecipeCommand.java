@@ -25,7 +25,7 @@ public class FindRecipeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds recipes by "
             + "recipe name field. \n"
             + "Parameters: "
-            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
+            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_RECIPE_NAME + "chocolate";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);

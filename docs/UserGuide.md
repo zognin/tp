@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<!-- 
+<!--
 @@author {sivayogasubramanian}-reused
 Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
 -->
@@ -158,13 +158,13 @@ Example:
 
 Adds a client to the application.
 
-Format: `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
+Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* <code>cp/PHONE_NUMBER</code> is unique to a client. Each phone number in the system must belong to exactly one client.
+* <code>cp/PHONE</code> refers to a client's phone number and is unique to a client. Each phone number in the system must belong to exactly one client.
 * Please refer to the examples below.
 
 </div>
@@ -189,7 +189,7 @@ Format: `delete-c INDEX`
 
 Edits an existing client in the application.
 
-Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -197,7 +197,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 
 * `INDEX` allows you to choose which client to edit by specifying its position in the currently displayed client list.
 
-* `[cn/NAME], [cp/PHONE_NUMBER], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
+* `[cn/NAME], [cp/PHONE], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
   them are mandatory, but at least one must be specified.
 
 </div>
@@ -209,7 +209,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
 
 Finds client(s) whose attribute(s) match the keyword(s).
 
-Format: `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -776,10 +776,10 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 
 Action                      | Format and Examples
 ----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add client**              | `add-c cn/NAME cp/PHONE_NUMBER ce/EMAIL ca/ADDRESS`
+**Add client**              | `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 **Delete client**           | `delete-c INDEX`
-**Edit client**             | `edit-c INDEX [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
-**Find client**             | `find-c [cn/NAME] [cp/PHONE_NUMBER] [ce/EMAIL] [ca/ADDRESS]`
+**Edit client**             | `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
+**Find client**             | `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 **List client**             | `list-c`
 **Add ingredient**          | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete ingredient**       | `delete-i INDEX`
