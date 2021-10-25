@@ -746,7 +746,7 @@ Action                      | Format and Examples
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
-**List recipe**              | `list-r`
+**List recipe**             | `list-r`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
 **Exit**                    | `exit`
