@@ -405,7 +405,7 @@ Example of a successful outcome using the List command:
 
 #### Overview
 
-Statistics will always be display to the user.
+Statistics will always be displayed to the user.
 The following order operations can be executed to update the statistics:
 * add-o
 * delete-o
@@ -418,7 +418,7 @@ This is how the statistics mechanism works in general:
 1. User enters any order command that updates statistics.
 1. A relevant `XOrderCommandParser`, where `X` is one of the operations, parses the command to generate a `XOrderCommand`.
 1. The `XOrderCommand` is executed.
-1. `Model` adds the entity and `Storage` saves the changes.
+1. `Model` adds the `UniqueOrderList` and `Storage` saves the changes.
 1. Feedback about the status of the operation is shown to the user.
 1. The relevant data is retrieved from `Model` via `Logic` and passed into a new `StatTabContent` object.
 1. `StatTab` which contains the statistic charts, is updated with the contents of the `StatTabContent`.
