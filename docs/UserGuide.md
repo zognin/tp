@@ -89,7 +89,7 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
-### 3.5 [Statistics](#47-statistics)
+### [3.5 Statistics](#47-statistics)
 
 * 3 types of statistics are shown:
   * Revenue per month for the past 12 months.
@@ -368,7 +368,7 @@ Secondary processes that happen when you add an order:
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
 
-* * `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
+* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
 
