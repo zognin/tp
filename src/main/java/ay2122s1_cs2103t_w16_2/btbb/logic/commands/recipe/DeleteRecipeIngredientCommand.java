@@ -25,7 +25,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 
 /**
- * Deletes an ingredient from an existing recipe in btbb
+ * Deletes an ingredient from an existing recipe in btbb.
  */
 public class DeleteRecipeIngredientCommand extends Command {
     public static final String COMMAND_WORD = "delete-ri";
