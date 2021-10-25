@@ -32,7 +32,7 @@ public class RecipeUtil {
     }
 
     /**
-     * Removes ingredient from a copy of an ingredient list of an order.
+     * Removes ingredient from a copy of an ingredient list of a recipe.
      *
      * @param recipe Recipe to get the original ingredient list from.
      * @param ingredient Ingredient to remove from the ingredient list.

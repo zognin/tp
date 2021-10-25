@@ -13,7 +13,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ArgumentTokenizer;
 import ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.ParserUtil;
 
 /**
- * Parses input arguments and creates a new DeleteRecipeIngredientCommand object
+ * Parses input arguments and creates a new DeleteRecipeIngredientCommand object.
  */
 public class DeleteRecipeIngredientCommandParser implements Parser<DeleteRecipeIngredientCommand> {
     /**
