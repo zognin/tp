@@ -43,7 +43,7 @@ public class DeleteRecipeIngredientCommandTest {
         assertThrows(NullPointerException.class, () ->
                 new DeleteRecipeIngredientCommand(INDEX_FIRST, null));
         assertThrows(NullPointerException.class, () ->
-                new DeleteRecipeIngredientCommand(null, null));
+                new DeleteRecipeIngredientCommand(null, INDEX_FIRST));
     }
 
     @Test
