@@ -20,7 +20,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.predicate.PredicateCollection;
 
 /**
- * Parses input arguments and creates a new FindIngredientCommand object
+ * Parses input arguments and creates a new FindIngredientCommand object.
  */
 public class FindIngredientCommandParser implements Parser<FindIngredientCommand> {
     /**
