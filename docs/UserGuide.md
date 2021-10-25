@@ -89,7 +89,7 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
-### 3.5 Statistics
+### 3.5 [Statistics](#47-statistics)
 
 * 3 types of statistics are shown:
   * Revenue per month for the past 12 months.
@@ -108,7 +108,8 @@ Displays [inventory](#32-inventory) and [statistics](#35-statistics).
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT]` can be used as `cn/John Doe ri/Garlic-1-whole` or as `cn/John Doe`.
+  e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
+  `cn/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
@@ -327,64 +328,57 @@ Format: `list-i`
 
 Adds an order to the application.
 
-Format: `add-o c/CLIENT_INDEX cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX rn/RECIPE_NAME
-[ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+Format: `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME]
+[ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* `c/CLIENT_INDEX` will copy over the details of the client bookmark at the given index into the order.
+* `od/ORDER_DEADLINE` includes date and time, it must follow the format specified [above](#4-features).
 
-* When `c/CLIENT_INDEX` is present, the client details does not need to be provided. But if any of it happens to be
-  provided, the provided details will override the client bookmark details.
+Client details include client name, phone and address, they must be provided in one of these ways:
+* If `c/CLIENT_INDEX` is present, client details are copied from the client bookmark at the given index to the order.
+* If `cn/`, `cp/` or `ca/` are provided with `c/`, client details are taken from `cn/`, `cp/` or `ca/` instead.
+* If `c/` is not present, `cn/`, `cp/` and `ca/` must be provided.
 
-* `r/RECIPE_INDEX` will copy over the details of the recipe bookmark at the given index into the order.
+Recipe details include recipe name, ingredients and price. Recipe name and order price must be provided in one of these ways:
+* If `r/RECIPE_INDEX` is present, recipe details are copied from the recipe bookmark at the given index to the order.
+  `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
+* If `rn/`, `ri/` or `op/` is provided with `r/`, details are taken from `rn/`, `ri/` or `op/` instead.
+* If `r/` is not present, `rn/` and `op/` must be provided.
 
-* When `r/RECIPE_INDEX` is present, the recipe details does not need to be provided. But if any of it happens to be
-  provided, the provided details will override the recipe bookmark details.
+These details are fully optional:
+* `oq/ORDER_QUANTITY` is set to 1 by default if not specified.
+* `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` does not need to be specified.
 
-* Order quantity and recipe ingredients are optional. Order quantity will be set to 1 if not specified.
-
-* Quantity of ingredients in the inventory will decrease by the amount specified in `ri/` multiplied by the order quantity
-  if it exists in the inventory. If the ingredients do not exist in the inventory, there will be no effect on the inventory.
-
-* All orders will be uncompleted upon addition.
-
-* `od/ORDER_DEADLINE` represents the order deadline date and time. They must follow the format specified [above](#4-features).
-
-* The format for ingredients `ri/` is `INGREDIENT_NAME-QTY-UNIT`. <br>
-  e.g. Garlic-1-whole.
+Secondary processes that happen when you add an order:
+* For each ingredient in the order, the inventory will find [matching ingredients](#32-inventory) and decrease their quantity.
+  The inventory quantity is decreased by the ingredient quantity in the order, multiplied by the order quantity.
+  If the ingredient in the order does not exist in the inventory, there is no effect.
+* All orders have an uncompleted status upon addition.
 
 * Please refer to the examples below.
 
 </div>
 
 **Examples:**
-Suppose the first client in the list has the following details:
-* Name: John Doe
-* Phone: 98765432
-* Address: Happy Funland Street 12
-* Email: johndoe12@gmail.com
-
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
-  1800 oq/2`. Adding an order using the full command.
+  1800 oq/2`. Adding an order without client index and recipe index.
 
-![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFull.png)
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
 
-* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using
-  a client index only.
+* * `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
 
-![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnly.png)
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
 
-* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe
-  index only.
+* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe index.
 
-![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnly.png)
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
 
 * `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
 
-![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndex.png)
+![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
 
@@ -419,7 +413,6 @@ Format: `delete-o INDEX`
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
-
 * When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
   order is already marked as done, the ingredient quantities will not be added back.
 
@@ -462,11 +455,9 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
-
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
-
 * To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi) and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
 </div>
@@ -488,19 +479,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
-
 * There must be 1 or more search arguments.
-
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
-
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
-
 * It will find orders that match at least one keyword, for each prefix.
-
 * `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#4-features).
-
 * `of/YES_OR_NO` represents whether the order is completed.
 
 * Please refer to the examples below.
@@ -632,30 +617,25 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 ### 4.7 Statistics
 
 #### 4.7.1 Viewing revenue per month for the past 12 months
-* A bar chart is displayed showing the revenue earned per month for the past 12 months. Revenue is calculated only
+* Displays a bar chart showing the revenue earned per month for the past 12 months. Revenue is calculated only
   from completed orders
-
-* The actual value will be displayed when you hover your cursor over each bar.
+* Values will be displayed when you hover your cursor over each bar.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
 #### 4.7.2 Viewing top 10 clients
 * Displays a pie chart showing the top 10 clients who made the highest number of orders.
-
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
-
-* The actual value will be displayed when you hover your cursor over each wedge.
+* Values will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 
 #### 4.7.3 Viewing top 10 recipes
 * Displays a pie chart showing the top 10 recipes that appear in the highest number of orders.
-
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
-
-* The actual value will be displayed when you hover your cursor over each wedge.
+* Values will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 
