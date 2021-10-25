@@ -626,6 +626,36 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
 
+Find recipe(s) with attribute(s) that contains the keyword(s). <br>
+Recipes can only be found using recipe name.
+
+Format: `find-r rn/RECIPE_NAME`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* The search is case-insensitive.
+
+* `rn/RECIPE_NAME` search field must be present.
+
+* Multiple search keywords can be specified for each field. <br>
+  e.g. <code>find-r cr/Chicken rice</code>
+
+* Partial search will be allowed.
+  e.g. <code>find-r rn/Ch</code> can show recipes with names like Chicken rice and Cheesecake.
+
+* Please refer to the examples below. <br>
+
+</div>
+
+**Examples:**
+* `find-r rn/Chicken rice` Find recipes with a name that contains at least 1 of the
+  keywords for each prefix. Any recipes with the following names will be matched:
+  * Teriyaki **Chicken**
+  * **Chicken** **Rice**
+  * Kimchi Fried **Rice**
+
 #### 4.6.7 Listing all recipes: `list-r`
 
 Lists all recipes in the application.
@@ -746,6 +776,7 @@ Action                      | Format and Examples
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
+**Find recipe**             | `find-r rn/RECIPE_NAME`
 **List recipe**             | `list-r`
 **Help**                    | `help`
 **Tab**                     | `tab INDEX`
