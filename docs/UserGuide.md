@@ -734,7 +734,7 @@ Fig 8: Client pie chart
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 <p style="color: gray; text-align: center">
-Fig 9: Top 10 recipes
+Fig 9: Recipe pie chart
 </p>
 
 ### 4.8 Exiting the program: `exit`
