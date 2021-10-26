@@ -7,11 +7,6 @@ title: User Guide
 @@author {sivayogasubramanian}-reused
 Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
 -->
-<head>
-  <link rel="stylesheet" type="txt/css" href="styles/ug.css" />
-  <title>BobTheBistroBoss</title>
-</head>
-
 <div class="toc-no-bullet-points">
   * Table of Contents
   {:toc}
