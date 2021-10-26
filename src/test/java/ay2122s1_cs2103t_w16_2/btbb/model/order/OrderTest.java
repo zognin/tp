@@ -5,6 +5,8 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_NO;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_YES;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -28,8 +30,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
@@ -45,33 +45,33 @@ class OrderTest {
         // null -> returns false
         assertFalse(ORDER_FOR_BENSON.isSameOrder(null));
 
-        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB))
-                .withClientPhone(new Phone(VALID_PHONE_BOB)).withClientAddress(new Address(VALID_ADDRESS_BOB))
-                .withRecipeName(new GenericString(VALID_RECIPE_NAME_LAKSA))
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(VALID_NAME_BOB)
+                .withClientPhone(VALID_PHONE_BOB).withClientAddress(VALID_ADDRESS_BOB)
+                .withRecipeName(VALID_RECIPE_NAME_LAKSA)
                 .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                         new GenericString(VALID_UNIT_BEEF)))))
-                .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
-                .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
+                .withOrderPrice(VALID_ORDER_PRICE_2).withDeadline(VALID_DEADLINE_MARCH)
+                .withQuantity(VALID_ORDER_QUANTITY_2)
                 .build();
         // different object, with similar fields as ORDER_FOR_BOB -> returns true
         assertTrue(ORDER_FOR_BOB.isSameOrder(editedRandomOrder));
 
         // different client phone -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientPhone(VALID_PHONE_BOB).build();
         assertFalse(ORDER_FOR_CARL.isSameOrder(editedRandomOrder));
 
         // different client name -> returns false
         editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL)
-                .withClientName(new GenericString(VALID_NAME_AMY)).build();
+                .withClientName(VALID_NAME_AMY).build();
         assertFalse(ORDER_FOR_DANIEL.isSameOrder(editedRandomOrder));
 
         // different client address -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address("Choa Chu Kang")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress("Choa Chu Kang").build();
         assertFalse(ORDER_FOR_ELLE.isSameOrder(editedRandomOrder));
 
         // different recipe name -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA).withRecipeName(new GenericString("Sushi")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA).withRecipeName("Sushi").build();
         assertFalse(ORDER_FOR_FIONA.isSameOrder(editedRandomOrder));
 
         // different recipe ingredients -> returns false
@@ -87,20 +87,20 @@ class OrderTest {
         assertFalse(ORDER_FOR_GEORGE.isSameOrder(editedRandomOrder));
 
         // different order price -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withOrderPrice(new OrderPrice("10.50")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withOrderPrice("10.50").build();
         assertFalse(ORDER_FOR_DANIEL.isSameOrder(editedRandomOrder));
 
         // different order deadline -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA).withDeadline(new Deadline("11-10-2025 1000")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_FIONA).withDeadline("11-10-2025 1000").build();
         assertFalse(ORDER_FOR_FIONA.isSameOrder(editedRandomOrder));
 
         // different order quantity -> returns true
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("5")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity("5").build();
         assertTrue(ORDER_FOR_ALICE.isSameOrder(editedRandomOrder));
 
         // different order done status -> returns true
         editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON)
-                .withCompletionStatus(new CompletionStatus(true)).build();
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         assertTrue(ORDER_FOR_BENSON.isSameOrder(editedRandomOrder));
     }
 
@@ -146,32 +146,32 @@ class OrderTest {
         // different order -> returns false
         assertFalse(ORDER_FOR_ALICE.equals(ORDER_FOR_ELLE));
 
-        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB))
-                .withClientPhone(new Phone(VALID_PHONE_BOB)).withClientAddress(new Address(VALID_ADDRESS_BOB))
-                .withRecipeName(new GenericString(VALID_RECIPE_NAME_LAKSA))
+        Order editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(VALID_NAME_BOB)
+                .withClientPhone(VALID_PHONE_BOB).withClientAddress(VALID_ADDRESS_BOB)
+                .withRecipeName(VALID_RECIPE_NAME_LAKSA)
                 .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                         new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                         new GenericString(VALID_UNIT_BEEF)))))
-                .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_2)).withDeadline(new Deadline(VALID_DEADLINE_MARCH))
-                .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
+                .withOrderPrice(VALID_ORDER_PRICE_2).withDeadline(VALID_DEADLINE_MARCH)
+                .withQuantity(VALID_ORDER_QUANTITY_2)
                 .build();
         // different object, with similar fields as ORDER_FOR_BOB -> returns true
         assertTrue(ORDER_FOR_BOB.isSameOrder(editedRandomOrder));
 
         // different client name -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(new GenericString(VALID_NAME_BOB)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_CARL).withClientName(VALID_NAME_BOB).build();
         assertFalse(ORDER_FOR_CARL.equals(editedRandomOrder));
 
         // different client phone -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientPhone(new Phone(VALID_PHONE_BOB)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_DANIEL).withClientPhone(VALID_PHONE_BOB).build();
         assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
 
         // different client address -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(new Address(VALID_ADDRESS_BOB)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ELLE).withClientAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ORDER_FOR_ELLE.equals(editedRandomOrder));
 
         // different recipe name -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withRecipeName(new GenericString("Chocolate Cake")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withRecipeName("Chocolate Cake").build();
         assertFalse(ORDER_FOR_BOB.equals(editedRandomOrder));
 
         // different recipe ingredients -> returns false
@@ -187,19 +187,20 @@ class OrderTest {
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order price -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withOrderPrice(new OrderPrice("0.50")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BOB).withOrderPrice("0.50").build();
         assertFalse(ORDER_FOR_DANIEL.equals(editedRandomOrder));
 
         // different order deadline -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_GEORGE).withDeadline(new Deadline("15-10-2025 1000")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_GEORGE).withDeadline("15-10-2025 1000").build();
         assertFalse(ORDER_FOR_FIONA.equals(editedRandomOrder));
 
         // different order quantity -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("40000")).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity("40000").build();
         assertFalse(ORDER_FOR_ALICE.equals(editedRandomOrder));
 
         // different order done status -> returns false
-        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON).withCompletionStatus(new CompletionStatus(true)).build();
+        editedRandomOrder = new OrderBuilder(ORDER_FOR_BENSON).withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .build();
         assertFalse(ORDER_FOR_BENSON.equals(editedRandomOrder));
     }
 }

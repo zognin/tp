@@ -27,7 +27,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
@@ -79,18 +78,19 @@ class OrderDescriptorTest {
 
         // With client index
         expectedModelOrder = new OrderBuilder()
-                .withClientName(client.getName())
-                .withClientPhone(client.getPhone())
-                .withClientAddress(client.getAddress())
+                .withClientName(client.getName().toString())
+                .withClientPhone(client.getPhone().toString())
+                .withClientAddress(client.getAddress().toString())
                 .build();
         validDescriptor = new OrderDescriptorBuilder(expectedModelOrder).withClientIndex(INDEX_FIRST).build();
         assertEquals(expectedModelOrder, validDescriptor.toModelType(modelWithClientAndRecipe));
 
         // With recipe index
         expectedModelOrder = new OrderBuilder()
-                .withRecipeName(recipe.getName())
+                .withRecipeName(recipe.getName().toString())
                 .withRecipeIngredients(recipe.getRecipeIngredients())
-                .withOrderPrice(recipe.getRecipePrice().multiplyRecipePriceByQuantity(expectedModelOrder.getQuantity()))
+                .withOrderPrice(recipe.getRecipePrice().multiplyRecipePriceByQuantity(expectedModelOrder
+                        .getQuantity()).toString())
                 .build();
         validDescriptor = new OrderDescriptorBuilder(expectedModelOrder).withRecipeIndex(INDEX_FIRST).build();
         assertEquals(expectedModelOrder, validDescriptor.toModelType(modelWithClientAndRecipe));
@@ -106,7 +106,7 @@ class OrderDescriptorTest {
         modelWithClientAndRecipe.addRecipe(recipe);
 
         // All compulsory fields in descriptor are non null
-        Order anotherModelOrder = new OrderBuilder().withClientName(new GenericString("Imposter")).build();
+        Order anotherModelOrder = new OrderBuilder().withClientName("Imposter").build();
         OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(expectedModelOrder).build();
         assertEquals(expectedModelOrder,
                 validOrderDescriptor.toModelTypeFrom(modelWithClientAndRecipe, anotherModelOrder));

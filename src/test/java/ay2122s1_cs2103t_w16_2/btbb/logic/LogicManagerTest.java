@@ -37,10 +37,8 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.storage.JsonAddressBookStorage;
 import ay2122s1_cs2103t_w16_2.btbb.storage.JsonUserPrefsStorage;
@@ -131,8 +129,8 @@ public class LogicManagerTest {
         String stringDeadline = INPUT_DATETIME_FORMATTER.format(deadline);
 
         Order order = new OrderBuilder()
-                .withOrderPrice(new OrderPrice("2"))
-                .withDeadline(new Deadline(stringDeadline)).build();
+                .withOrderPrice("2")
+                .withDeadline(stringDeadline).build();
         Model modelWithOrder = new ModelStubWithOrder(order);
         Logic logic = setUpLogicForStatistics(modelWithOrder);
 
@@ -145,8 +143,8 @@ public class LogicManagerTest {
     public void getTopTenOrderClients() {
         OrderClient orderClient = new OrderClient(new GenericString("Tom"), new Phone("1234"));
         Order order = new OrderBuilder()
-                .withClientName(orderClient.getName())
-                .withClientPhone(orderClient.getPhone())
+                .withClientName(orderClient.getName().toString())
+                .withClientPhone(orderClient.getPhone().toString())
                 .build();
         Model modelWithOrder = new ModelStubWithOrder(order);
         Logic logic = setUpLogicForStatistics(modelWithOrder);
@@ -158,7 +156,7 @@ public class LogicManagerTest {
     @Test
     public void getTopTenOrderRecipes() {
         GenericString recipeName = new GenericString("Egg toast");
-        Order order = new OrderBuilder().withRecipeName(recipeName).build();
+        Order order = new OrderBuilder().withRecipeName(recipeName.toString()).build();
         Model modelWithOrder = new ModelStubWithOrder(order);
         Logic logic = setUpLogicForStatistics(modelWithOrder);
 

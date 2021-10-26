@@ -30,7 +30,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
-import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
@@ -65,7 +64,7 @@ class EditOrderCommandTest {
                 new GenericString("whole"));
         modelStub.addIngredient(chicken);
 
-        Order editedOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("2")).build();
+        Order editedOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity("2").build();
         OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(editedOrder).build();
 
         CommandResult commandResult = new EditOrderCommand(INDEX_FIRST, validOrderDescriptor).execute(modelStub);
@@ -90,7 +89,7 @@ class EditOrderCommandTest {
                 new GenericString("whole"));
         modelStub.addIngredient(chicken);
 
-        Order editedOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity(new Quantity("6")).build();
+        Order editedOrder = new OrderBuilder(ORDER_FOR_ALICE).withQuantity("6").build();
         OrderDescriptor validOrderDescriptor = new OrderDescriptorBuilder(editedOrder).build();
 
         CommandResult commandResult = new EditOrderCommand(INDEX_FIRST, validOrderDescriptor).execute(modelStub);
@@ -131,8 +130,8 @@ class EditOrderCommandTest {
         Order lastOrder = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
 
         OrderBuilder orderInList = new OrderBuilder(lastOrder);
-        Order editedOrder = orderInList.withClientName(new GenericString(VALID_NAME_BOB))
-                .withClientPhone(new Phone(VALID_PHONE_BOB)).build();
+        Order editedOrder = orderInList.withClientName(VALID_NAME_BOB)
+                .withClientPhone(VALID_PHONE_BOB).build();
 
         OrderDescriptor descriptor = new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB)
                 .withClientPhone(VALID_PHONE_BOB).build();
@@ -164,7 +163,7 @@ class EditOrderCommandTest {
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         Order editedOrder = new OrderBuilder(orderInFilteredList)
-                .withClientName(new GenericString(VALID_NAME_BOB)).build();
+                .withClientName(VALID_NAME_BOB).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST,
                 new OrderDescriptorBuilder().withClientName(VALID_NAME_BOB).build());
 

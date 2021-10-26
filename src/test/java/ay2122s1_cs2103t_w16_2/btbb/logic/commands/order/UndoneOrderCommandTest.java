@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_NO;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.showOrderAtIndex;
@@ -82,7 +83,7 @@ public class UndoneOrderCommandTest {
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         Order markedOrder = new OrderBuilder(orderInFilteredList)
-                .withCompletionStatus(new CompletionStatus(false)).build();
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         UndoneOrderCommand undoneOrderCommand = new UndoneOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(UndoneOrderCommand.MESSAGE_UNDONE_ORDER_SUCCESS,

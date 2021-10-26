@@ -5,6 +5,7 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_D
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_NO;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_YES;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_1;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_PRICE_2;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_1;
@@ -47,10 +48,7 @@ import java.util.List;
 import ay2122s1_cs2103t_w16_2.btbb.model.AddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.CompletionStatus;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
@@ -60,135 +58,135 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  */
 public class TypicalOrders {
     public static final Order ORDER_FOR_ALICE =
-            new OrderBuilder().withClientName(ALICE.getName()).withClientPhone(ALICE.getPhone())
-                    .withClientAddress(ALICE.getAddress()).withRecipeName(new GenericString("Chicken Rice"))
+            new OrderBuilder().withClientName(ALICE.getName().toString()).withClientPhone(ALICE.getPhone().toString())
+                    .withClientAddress(ALICE.getAddress().toString()).withRecipeName("Chicken Rice")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ALICE)))
-                    .withOrderPrice(new OrderPrice("4.50")).withDeadline(new Deadline("12-12-2021 1200"))
-                    .withQuantity(new Quantity("4")).withCompletionStatus(new CompletionStatus("yes"))
+                    .withOrderPrice("4.50").withDeadline("12-12-2021 1200")
+                    .withQuantity("4").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                     .build();
     public static final Order ORDER_FOR_BENSON =
-            new OrderBuilder().withClientName(BENSON.getName()).withClientPhone(BENSON.getPhone())
-                    .withClientAddress(BENSON.getAddress()).withRecipeName(new GenericString("Nasi Lemak"))
+            new OrderBuilder().withClientName(BENSON.getName().toString()).withClientPhone(BENSON.getPhone().toString())
+                    .withClientAddress(BENSON.getAddress().toString()).withRecipeName("Nasi Lemak")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(BENSON)))
-                    .withOrderPrice(new OrderPrice("5.50")).withDeadline(new Deadline("13-12-2021 1300"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("5.50").withDeadline("13-12-2021 1300")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_CARL =
-            new OrderBuilder().withClientName(CARL.getName()).withClientPhone(CARL.getPhone())
-                    .withClientAddress(CARL.getAddress()).withRecipeName(new GenericString("Prata"))
-                    .withOrderPrice(new OrderPrice("6.50")).withDeadline(new Deadline("14-12-2021 1020"))
-                    .withQuantity(new Quantity("1")).withCompletionStatus(new CompletionStatus("yes"))
+            new OrderBuilder().withClientName(CARL.getName().toString()).withClientPhone(CARL.getPhone().toString())
+                    .withClientAddress(CARL.getAddress().toString()).withRecipeName("Prata")
+                    .withOrderPrice("6.50").withDeadline("14-12-2021 1020")
+                    .withQuantity("1").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                     .build();
     public static final Order ORDER_FOR_DANIEL =
-            new OrderBuilder().withClientName(DANIEL.getName()).withClientPhone(DANIEL.getPhone())
-                    .withClientAddress(DANIEL.getAddress()).withRecipeName(new GenericString("Char kuay teow"))
+            new OrderBuilder().withClientName(DANIEL.getName().toString()).withClientPhone(DANIEL.getPhone().toString())
+                    .withClientAddress(DANIEL.getAddress().toString()).withRecipeName("Char kuay teow")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(DANIEL)))
-                    .withOrderPrice(new OrderPrice("7.00")).withDeadline(new Deadline("15-12-2021 1510"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("7.00").withDeadline("15-12-2021 1510")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_ELLE =
-            new OrderBuilder().withClientName(ELLE.getName()).withClientPhone(ELLE.getPhone())
-                    .withClientAddress(ELLE.getAddress()).withRecipeName(new GenericString("Hokkien prawn mee"))
+            new OrderBuilder().withClientName(ELLE.getName().toString()).withClientPhone(ELLE.getPhone().toString())
+                    .withClientAddress(ELLE.getAddress().toString()).withRecipeName("Hokkien prawn mee")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(ELLE)))
-                    .withOrderPrice(new OrderPrice("8.50")).withDeadline(new Deadline("16-12-2021 1900"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("yes"))
+                    .withOrderPrice("8.50").withDeadline("16-12-2021 1900")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                     .build();
     public static final Order ORDER_FOR_FIONA =
-            new OrderBuilder().withClientName(FIONA.getName()).withClientPhone(FIONA.getPhone())
-                    .withClientAddress(FIONA.getAddress()).withRecipeName(new GenericString("Kaya toast"))
+            new OrderBuilder().withClientName(FIONA.getName().toString()).withClientPhone(FIONA.getPhone().toString())
+                    .withClientAddress(FIONA.getAddress().toString()).withRecipeName("Kaya toast")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(FIONA)))
-                    .withOrderPrice(new OrderPrice("9.57")).withDeadline(new Deadline("17-12-2021 2100"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("9.57").withDeadline("17-12-2021 2100")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_GEORGE =
-            new OrderBuilder().withClientName(GEORGE.getName()).withClientPhone(GEORGE.getPhone())
-                    .withClientAddress(GEORGE.getAddress()).withRecipeName(new GenericString("Satay"))
+            new OrderBuilder().withClientName(GEORGE.getName().toString()).withClientPhone(GEORGE.getPhone().toString())
+                    .withClientAddress(GEORGE.getAddress().toString()).withRecipeName("Satay")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(GEORGE)))
-                    .withOrderPrice(new OrderPrice("10")).withDeadline(new Deadline("18-12-2021 2359"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("yes"))
+                    .withOrderPrice("10").withDeadline("18-12-2021 2359")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                     .build();
     public static final Order ORDER_FOR_HARRY =
-            new OrderBuilder().withClientName(HARRY.getName()).withClientPhone(HARRY.getPhone())
-                    .withClientAddress(HARRY.getAddress()).withRecipeName(new GenericString("Cheese cake"))
+            new OrderBuilder().withClientName(HARRY.getName().toString()).withClientPhone(HARRY.getPhone().toString())
+                    .withClientAddress(HARRY.getAddress().toString()).withRecipeName("Cheese cake")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(HARRY)))
-                    .withOrderPrice(new OrderPrice("7")).withDeadline(new Deadline("18-12-2021 2200"))
-                    .withQuantity(new Quantity("2")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("7").withDeadline("18-12-2021 2200")
+                    .withQuantity("2").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_IRIS =
-            new OrderBuilder().withClientName(IRIS.getName()).withClientPhone(IRIS.getPhone())
-                    .withClientAddress(IRIS.getAddress()).withRecipeName(new GenericString("Porridge"))
+            new OrderBuilder().withClientName(IRIS.getName().toString()).withClientPhone(IRIS.getPhone().toString())
+                    .withClientAddress(IRIS.getAddress().toString()).withRecipeName("Porridge")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(IRIS)))
-                    .withOrderPrice(new OrderPrice("10")).withDeadline(new Deadline("18-11-2021 2359"))
-                    .withQuantity(new Quantity("3")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("10").withDeadline("18-11-2021 2359")
+                    .withQuantity("3").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_JANE =
-            new OrderBuilder().withClientName(JANE.getName()).withClientPhone(JANE.getPhone())
-                    .withClientAddress(JANE.getAddress()).withRecipeName(new GenericString("Prawn Noodles"))
+            new OrderBuilder().withClientName(JANE.getName().toString()).withClientPhone(JANE.getPhone().toString())
+                    .withClientAddress(JANE.getAddress().toString()).withRecipeName("Prawn Noodles")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(JANE)))
-                    .withOrderPrice(new OrderPrice("10")).withDeadline(new Deadline("18-12-2021 2359"))
-                    .withQuantity(new Quantity("7")).withCompletionStatus(new CompletionStatus("no"))
+                    .withOrderPrice("10").withDeadline("18-12-2021 2359")
+                    .withQuantity("7").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_KELLY =
-            new OrderBuilder().withClientName(KELLY.getName()).withClientPhone(KELLY.getPhone())
-                    .withClientAddress(KELLY.getAddress()).withRecipeName(new GenericString("Fish Soup with Milk"))
+            new OrderBuilder().withClientName(KELLY.getName().toString()).withClientPhone(KELLY.getPhone().toString())
+                    .withClientAddress(KELLY.getAddress().toString()).withRecipeName("Fish Soup with Milk")
                     .withRecipeIngredients(new RecipeIngredientList(getRecipeIngredientListForClient(KELLY)))
-                    .withOrderPrice(new OrderPrice("10")).withDeadline(new Deadline("18-12-2021 2359"))
-                    .withQuantity(new Quantity("6")).withCompletionStatus(new CompletionStatus("yes"))
+                    .withOrderPrice("10").withDeadline("18-12-2021 2359")
+                    .withQuantity("6").withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                     .build();
 
     // Manually added - Order's details found in {@code TypicalClients} and {@code CommandTestUtil}
     public static final Order ORDER_FOR_AMY =
-            new OrderBuilder().withClientName(AMY.getName()).withClientPhone(AMY.getPhone())
-                    .withClientAddress(AMY.getAddress())
-                    .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
-                    .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_1))
-                    .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
-                    .withQuantity(new Quantity(VALID_ORDER_QUANTITY_1))
-                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
+            new OrderBuilder().withClientName(AMY.getName().toString()).withClientPhone(AMY.getPhone().toString())
+                    .withClientAddress(AMY.getAddress().toString())
+                    .withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
+                    .withOrderPrice(VALID_ORDER_PRICE_1)
+                    .withDeadline(VALID_DEADLINE_DECEMBER)
+                    .withQuantity(VALID_ORDER_QUANTITY_1)
+                    .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_BOB =
-            new OrderBuilder().withClientName(BOB.getName()).withClientPhone(BOB.getPhone())
-                    .withClientAddress(BOB.getAddress()).withRecipeName(new GenericString(VALID_RECIPE_NAME_LAKSA))
+            new OrderBuilder().withClientName(BOB.getName().toString()).withClientPhone(BOB.getPhone().toString())
+                    .withClientAddress(BOB.getAddress().toString()).withRecipeName(VALID_RECIPE_NAME_LAKSA)
                     .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                             new GenericString(VALID_INGREDIENT_NAME_BEEF), new Quantity(VALID_QUANTITY_BEEF),
                             new GenericString(VALID_UNIT_BEEF)))))
-                    .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_2))
-                    .withDeadline(new Deadline(VALID_DEADLINE_MARCH))
-                    .withQuantity(new Quantity(VALID_ORDER_QUANTITY_2))
-                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
+                    .withOrderPrice(VALID_ORDER_PRICE_2)
+                    .withDeadline(VALID_DEADLINE_MARCH)
+                    .withQuantity(VALID_ORDER_QUANTITY_2)
+                    .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_IMRAN =
-            new OrderBuilder().withClientName(IMRAN.getName()).withClientPhone(IMRAN.getPhone())
-                    .withClientAddress(IMRAN.getAddress())
-                    .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
+            new OrderBuilder().withClientName(IMRAN.getName().toString()).withClientPhone(IMRAN.getPhone().toString())
+                    .withClientAddress(IMRAN.getAddress().toString())
+                    .withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
                     .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                             new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
                             new GenericString(VALID_UNIT_APPLE)))))
-                    .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_1))
-                    .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
-                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
+                    .withOrderPrice(VALID_ORDER_PRICE_1)
+                    .withDeadline(VALID_DEADLINE_DECEMBER)
+                    .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_HOON =
-            new OrderBuilder().withClientName(HOON.getName()).withClientPhone(HOON.getPhone())
-                    .withClientAddress(HOON.getAddress())
-                    .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
+            new OrderBuilder().withClientName(HOON.getName().toString()).withClientPhone(HOON.getPhone().toString())
+                    .withClientAddress(HOON.getAddress().toString())
+                    .withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
                     .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                             new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
                             new GenericString(VALID_UNIT_APPLE)))))
-                    .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_1))
-                    .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
-                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
+                    .withOrderPrice(VALID_ORDER_PRICE_1)
+                    .withDeadline(VALID_DEADLINE_DECEMBER)
+                    .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
     public static final Order ORDER_FOR_IDA =
-            new OrderBuilder().withClientName(IDA.getName()).withClientPhone(IDA.getPhone())
-                    .withClientAddress(IDA.getAddress())
-                    .withRecipeName(new GenericString(VALID_RECIPE_NAME_CHICKEN_RICE))
+            new OrderBuilder().withClientName(IDA.getName().toString()).withClientPhone(IDA.getPhone().toString())
+                    .withClientAddress(IDA.getAddress().toString())
+                    .withRecipeName(VALID_RECIPE_NAME_CHICKEN_RICE)
                     .withRecipeIngredients(new RecipeIngredientList(List.of(new Ingredient(
                             new GenericString(VALID_INGREDIENT_NAME_APPLE), new Quantity(VALID_QUANTITY_APPLE),
                             new GenericString(VALID_UNIT_APPLE)))))
-                    .withOrderPrice(new OrderPrice(VALID_ORDER_PRICE_1))
-                    .withDeadline(new Deadline(VALID_DEADLINE_DECEMBER))
-                    .withCompletionStatus(new CompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO))
+                    .withOrderPrice(VALID_ORDER_PRICE_1)
+                    .withDeadline(VALID_DEADLINE_DECEMBER)
+                    .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
                     .build();
 
     /**

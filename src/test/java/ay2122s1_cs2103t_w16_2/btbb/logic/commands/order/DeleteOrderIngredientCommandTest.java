@@ -26,7 +26,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.IngredientBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
@@ -52,7 +51,7 @@ public class DeleteOrderIngredientCommandTest {
         Index editedOrderIndex = INDEX_FIRST;
         RecipeIngredientList recipeIngredientList = new RecipeIngredientList(List.of(new IngredientBuilder().build()));
         Order orderToEdit = new OrderBuilder()
-                .withRecipeName(new GenericString("Random"))
+                .withRecipeName("Random")
                 .withRecipeIngredients(recipeIngredientList).build();
         model.addOrder(orderToEdit);
         Ingredient ingredientToDelete = new IngredientBuilder().build();
@@ -96,7 +95,7 @@ public class DeleteOrderIngredientCommandTest {
         Index targetOrderIndex = Index.fromZeroBased(model.getFilteredOrderList().size());
         RecipeIngredientList recipeIngredientList = new RecipeIngredientList(List.of(new IngredientBuilder().build()));
         Order orderToEdit = new OrderBuilder()
-                .withRecipeName(new GenericString("Random"))
+                .withRecipeName("Random")
                 .withRecipeIngredients(recipeIngredientList).build();
         model.addOrder(orderToEdit);
         Index outOfBoundIndex = Index.fromOneBased(recipeIngredientList.getIngredients().size() + 1);
