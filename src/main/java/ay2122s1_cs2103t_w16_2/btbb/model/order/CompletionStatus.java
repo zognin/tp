@@ -19,7 +19,7 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
     public CompletionStatus(String isFinished) {
         requireNonNull(isFinished);
         checkArgument(isValidCompletionStatus(isFinished), MESSAGE_CONSTRAINTS);
-        this.isFinished = isFinished.equals("yes") ? true : false;
+        this.isFinished = isFinished.equals("yes");
     }
 
     /**
@@ -29,7 +29,6 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
      * @param isFinished Order is finished (true) or not (false).
      */
     public CompletionStatus(boolean isFinished) {
-        requireNonNull(isFinished);
         this.isFinished = isFinished;
     }
 
@@ -40,7 +39,7 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
      * @return boolean of whether completionStatus is valid.
      */
     public static boolean isValidCompletionStatus(String test) {
-        return test.toLowerCase().equals("yes") || test.toLowerCase().equals("no");
+        return test.equalsIgnoreCase("yes") || test.equalsIgnoreCase("no");
     }
 
     /**
@@ -50,10 +49,7 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
      */
     @Override
     public String toString() {
-        if (isFinished) {
-            return "yes";
-        }
-        return "no";
+        return isFinished ? "yes" : "no";
     }
 
     @Override
@@ -62,10 +58,7 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
     }
 
     public String getDisplayMessage() {
-        if (isFinished) {
-            return "Finished";
-        }
-        return "Not Finished";
+        return isFinished ? "Finished" : "Not Finished";
     }
 
     public boolean getIsFinished() {
