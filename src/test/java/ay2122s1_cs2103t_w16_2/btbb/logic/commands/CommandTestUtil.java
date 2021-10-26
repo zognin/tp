@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.index.Index;
@@ -40,7 +39,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.Model;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
 import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
-import ay2122s1_cs2103t_w16_2.btbb.model.predicate.StringContainsKeywordsPredicate;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.Recipe;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
@@ -303,11 +301,8 @@ public class CommandTestUtil {
     public static void showClientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
 
-        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
-        final String[] splitName = client.getName().toString().split("\\s+");
-        model.updateFilteredClientList(
-                new StringContainsKeywordsPredicate<>(Client::getName, Arrays.asList(splitName[0]))
-        );
+        Client clientToShow = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        model.updateFilteredClientList(client -> client.equals(clientToShow));
 
         assertEquals(1, model.getFilteredClientList().size());
     }

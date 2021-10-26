@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientDescriptorBuilder;
 
-public class EditClientDescriptorTest {
+public class ClientDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
