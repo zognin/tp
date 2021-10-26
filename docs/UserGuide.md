@@ -712,7 +712,7 @@ Format: `list-r`
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 <p style="color: gray; text-align: center">
-Fig 6: Revenue bar chart
+Fig 7: Revenue bar chart
 </p>
 
 #### 4.7.2 Viewing top 10 clients
@@ -723,7 +723,7 @@ Fig 6: Revenue bar chart
 
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 <p style="color: gray; text-align: center">
-Fig 7: Client pie chart
+Fig 8: Client pie chart
 </p>
 
 #### 4.7.3 Viewing top 10 recipes
@@ -734,7 +734,7 @@ Fig 7: Client pie chart
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 <p style="color: gray; text-align: center">
-Fig 8: Top 10 recipes
+Fig 9: Top 10 recipes
 </p>
 
 ### 4.8 Exiting the program: `exit`
