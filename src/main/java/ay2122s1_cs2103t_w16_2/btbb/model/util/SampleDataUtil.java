@@ -103,37 +103,119 @@ public class SampleDataUtil {
     }
 
     public static Order[] getSampleOrders() {
-        List<Order> orders = new ArrayList<>();
-
-        Client[] people = getSampleClients();
+        Client[] clients = getSampleClients();
         Recipe[] recipes = getSampleRecipes();
-        Random randomNumberGenerator = new Random();
 
-        int loopCount = Math.min(people.length, recipes.length);
-
-        for (int month = 0; month < 12; month++) {
-            for (int i = 0; i < loopCount; i++) {
-                int randomIndex = randomNumberGenerator.nextInt(people.length);
-                float randomPrice = randomNumberGenerator.nextFloat() * 10;
-                int randomQuantity = randomNumberGenerator.nextInt(10) + 1;
-
-                LocalDateTime orderDeadline = getSampleDateTime(month + 1, i + 1);
-                boolean completionStatus = (i % 2 == 0) && orderDeadline.isBefore(LocalDateTime.now());
-
-                Order order = new Order(
-                        people[randomIndex].getName(), people[randomIndex].getPhone(), people[randomIndex].getAddress(),
-                        recipes[i].getName(), recipes[i].getRecipeIngredients(),
-                        new OrderPrice(String.format("%.2f", randomPrice)),
-                        new Deadline(orderDeadline.format(Deadline.INPUT_DATETIME_FORMATTER)),
-                        new Quantity(Integer.toString(randomQuantity)),
-                        new CompletionStatus(completionStatus ? "yes" : "no")
-                );
-
-                orders.add(order);
-            }
-        }
-
-        return orders.toArray(Order[]::new);
+        return new Order[] {
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[7].getName(), recipes[7].getRecipeIngredients(), new OrderPrice("15"),
+                    new Deadline("01-11-2020 1200"), new Quantity("3"), new CompletionStatus(true)),
+            new Order(clients[1].getName(), clients[1].getPhone(), clients[1].getAddress(),
+                    recipes[6].getName(), recipes[6].getRecipeIngredients(), new OrderPrice("10"),
+                    new Deadline("16-11-2020 1600"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[5].getName(), recipes[5].getRecipeIngredients(), new OrderPrice("20"),
+                    new Deadline("13-11-2020 1200"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[4].getName(), recipes[4].getRecipeIngredients(), new OrderPrice("30"),
+                    new Deadline("04-12-2020 1030"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[3].getName(), recipes[3].getRecipeIngredients(), new OrderPrice("70"),
+                    new Deadline("13-12-2020 1430"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("16"),
+                    new Deadline("20-12-2020 1030"), new Quantity("2"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[7].getName(), recipes[7].getRecipeIngredients(), new OrderPrice("15"),
+                    new Deadline("01-01-2021 1200"), new Quantity("3"), new CompletionStatus(true)),
+            new Order(clients[1].getName(), clients[1].getPhone(), clients[1].getAddress(),
+                    recipes[6].getName(), recipes[6].getRecipeIngredients(), new OrderPrice("10"),
+                    new Deadline("16-01-2021 1600"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[2].getName(), clients[2].getPhone(), clients[2].getAddress(),
+                    recipes[5].getName(), recipes[5].getRecipeIngredients(), new OrderPrice("20"),
+                    new Deadline("13-01-2021 1200"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[4].getName(), recipes[4].getRecipeIngredients(), new OrderPrice("30"),
+                    new Deadline("04-02-2021 1030"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[3].getName(), recipes[3].getRecipeIngredients(), new OrderPrice("70"),
+                    new Deadline("13-02-2021 1430"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("16"),
+                    new Deadline("20-02-2021 1030"), new Quantity("2"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[1].getName(), recipes[1].getRecipeIngredients(), new OrderPrice("16"),
+                    new Deadline("04-03-2021 1200"), new Quantity("2"), new CompletionStatus(true)),
+            new Order(clients[1].getName(), clients[1].getPhone(), clients[1].getAddress(),
+                    recipes[0].getName(), recipes[0].getRecipeIngredients(), new OrderPrice("40"),
+                    new Deadline("14-03-2021 1430"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[2].getName(), clients[2].getPhone(), clients[2].getAddress(),
+                    recipes[7].getName(), recipes[7].getRecipeIngredients(), new OrderPrice("21"),
+                    new Deadline("20-03-2021 1430"), new Quantity("3"), new CompletionStatus(true)),
+            new Order(clients[2].getName(), clients[2].getPhone(), clients[2].getAddress(),
+                    recipes[6].getName(), recipes[6].getRecipeIngredients(), new OrderPrice("9"),
+                    new Deadline("06-04-2021 1200"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[5].getName(), clients[5].getPhone(), clients[5].getAddress(),
+                    recipes[5].getName(), recipes[5].getRecipeIngredients(), new OrderPrice("40"),
+                    new Deadline("13-04-2021 1030"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[5].getName(), clients[5].getPhone(), clients[5].getAddress(),
+                    recipes[4].getName(), recipes[4].getRecipeIngredients(), new OrderPrice("30"),
+                    new Deadline("24-04-2021 1230"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[3].getName(), recipes[3].getRecipeIngredients(), new OrderPrice("70"),
+                    new Deadline("03-05-2021 1230"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("16"),
+                    new Deadline("20-05-2021 1030"), new Quantity("2"), new CompletionStatus(true)),
+            new Order(clients[2].getName(), clients[2].getPhone(), clients[2].getAddress(),
+                    recipes[1].getName(), recipes[1].getRecipeIngredients(), new OrderPrice("16"),
+                    new Deadline("24-05-2021 1230"), new Quantity("2"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[0].getName(), recipes[0].getRecipeIngredients(), new OrderPrice("40"),
+                    new Deadline("01-06-2021 1230"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[7].getName(), recipes[7].getRecipeIngredients(), new OrderPrice("9"),
+                    new Deadline("20-06-2021 1200"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[5].getName(), clients[5].getPhone(), clients[5].getAddress(),
+                    recipes[6].getName(), recipes[6].getRecipeIngredients(), new OrderPrice("10"),
+                    new Deadline("22-06-2021 1600"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[5].getName(), recipes[5].getRecipeIngredients(), new OrderPrice("20"),
+                    new Deadline("12-07-2021 1200"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[1].getName(), clients[1].getPhone(), clients[1].getAddress(),
+                    recipes[4].getName(), recipes[4].getRecipeIngredients(), new OrderPrice("18"),
+                    new Deadline("17-07-2021 1030"), new Quantity("3"), new CompletionStatus(true)),
+            new Order(clients[3].getName(), clients[3].getPhone(), clients[3].getAddress(),
+                    recipes[3].getName(), recipes[3].getRecipeIngredients(), new OrderPrice("70"),
+                    new Deadline("20-07-2021 1430"), new Quantity("6"), new CompletionStatus(true)),
+            new Order(clients[3].getName(), clients[3].getPhone(), clients[3].getAddress(),
+                    recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("80"),
+                    new Deadline("20-08-2021 1030"), new Quantity("7"), new CompletionStatus(true)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[1].getName(), recipes[1].getRecipeIngredients(), new OrderPrice("40"),
+                    new Deadline("24-08-2021 1200"), new Quantity("4"), new CompletionStatus(true)),
+            new Order(clients[5].getName(), clients[5].getPhone(), clients[5].getAddress(),
+                    recipes[0].getName(), recipes[0].getRecipeIngredients(), new OrderPrice("20"),
+                    new Deadline("30-08-2021 1430"), new Quantity("1"), new CompletionStatus(true)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[7].getName(), recipes[7].getRecipeIngredients(), new OrderPrice("9"),
+                    new Deadline("10-09-2021 1200"), new Quantity("1"), new CompletionStatus(false)),
+            new Order(clients[1].getName(), clients[1].getPhone(), clients[1].getAddress(),
+                    recipes[6].getName(), recipes[6].getRecipeIngredients(), new OrderPrice("40"),
+                    new Deadline("22-09-2021 1600"), new Quantity("4"), new CompletionStatus(false)),
+            new Order(clients[3].getName(), clients[3].getPhone(), clients[3].getAddress(),
+                    recipes[5].getName(), recipes[5].getRecipeIngredients(), new OrderPrice("24"),
+                    new Deadline("29-09-2021 1200"), new Quantity("3"), new CompletionStatus(false)),
+            new Order(clients[0].getName(), clients[0].getPhone(), clients[0].getAddress(),
+                    recipes[4].getName(), recipes[4].getRecipeIngredients(), new OrderPrice("18"),
+                    new Deadline("17-10-2021 1030"), new Quantity("2"), new CompletionStatus(false)),
+            new Order(clients[4].getName(), clients[4].getPhone(), clients[4].getAddress(),
+                    recipes[3].getName(), recipes[3].getRecipeIngredients(), new OrderPrice("25"),
+                    new Deadline("18-10-2021 1430"), new Quantity("5"), new CompletionStatus(false)),
+            new Order(clients[5].getName(), clients[5].getPhone(), clients[5].getAddress(),
+                    recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("80"),
+                    new Deadline("25-10-2021 1030"), new Quantity("7"), new CompletionStatus(false))
+        };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -143,12 +225,12 @@ public class SampleDataUtil {
             sampleAb.addClient(sampleClient);
         }
 
-        for (Order sampleOrder : getSampleOrders()) {
-            sampleAb.addOrder(sampleOrder);
-        }
-
         for (Ingredient sampleIngredient : getSampleIngredients()) {
             sampleAb.addIngredient(sampleIngredient);
+        }
+
+        for (Order sampleOrder : getSampleOrders()) {
+            sampleAb.addOrder(sampleOrder);
         }
 
         for (Recipe sampleRecipe : getSampleRecipes()) {
@@ -156,11 +238,5 @@ public class SampleDataUtil {
         }
 
         return sampleAb;
-    }
-
-    private static LocalDateTime getSampleDateTime(int month, int day) {
-        LocalTime time = LocalTime.now();
-        LocalDate date = LocalDate.of(LocalDate.now().getYear(), month, day);
-        return LocalDateTime.of(date, time);
     }
 }
