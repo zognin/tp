@@ -19,12 +19,6 @@ public class ModelStubAcceptingClientAndRecipeAdded extends ModelStub {
     private final ArrayList<Recipe> recipesAdded = new ArrayList<>();
 
     @Override
-    public boolean hasClient(Client client) {
-        requireNonNull(client);
-        return clientsAdded.stream().anyMatch(client::isSameClient);
-    }
-
-    @Override
     public void addClient(Client client) {
         requireNonNull(client);
         clientsAdded.add(client);
@@ -34,6 +28,12 @@ public class ModelStubAcceptingClientAndRecipeAdded extends ModelStub {
     public void addRecipe(Recipe recipe) {
         requireNonNull(recipe);
         recipesAdded.add(recipe);
+    }
+
+    @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clientsAdded.stream().anyMatch(client::isSameClient);
     }
 
     @Override

@@ -29,12 +29,12 @@ public class IngredientDescriptorTest {
 
         // Quantity field is null
         IngredientDescriptor nullQuantityDescriptor = new IngredientDescriptorBuilder().build();
-        nullNameDescriptor.setQuantity(null);
+        nullQuantityDescriptor.setQuantity(null);
         assertThrows(NullPointerException.class, nullQuantityDescriptor::toModelType);
 
         // Unit field is null
         IngredientDescriptor nullUnitDescriptor = new IngredientDescriptorBuilder().build();
-        nullNameDescriptor.setUnit(null);
+        nullUnitDescriptor.setUnit(null);
         assertThrows(NullPointerException.class, nullUnitDescriptor::toModelType);
     }
 

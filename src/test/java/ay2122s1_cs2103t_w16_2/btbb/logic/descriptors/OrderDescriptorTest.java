@@ -36,7 +36,7 @@ import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.ModelStubAcceptingClientAndRec
 
 class OrderDescriptorTest {
     @Test
-    public void toModelType_nullFields_throwsNullPointerException() {
+    public void toModelType_nullFields_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         // All fields are null
@@ -58,7 +58,7 @@ class OrderDescriptorTest {
 
         // All compulsory order fields are null
         OrderDescriptor nullOrderFieldsDescriptor = new OrderDescriptorBuilder().build();
-        nullOrderFieldsDescriptor.setRecipeIndex(null);
+        nullOrderFieldsDescriptor.setRecipeIndex(null); // To ensure order price is null
         nullOrderFieldsDescriptor.setOrderPrice(null);
         nullOrderFieldsDescriptor.setDeadline(null);
         nullOrderFieldsDescriptor.setQuantity(null);
@@ -133,6 +133,7 @@ class OrderDescriptorTest {
         validOrderDescriptor.setOrderPrice(null);
         validOrderDescriptor.setDeadline(null);
         validOrderDescriptor.setQuantity(null);
+        validOrderDescriptor.setCompletionStatus(null);
         assertEquals(expectedModelOrder,
                 validOrderDescriptor.toModelTypeFrom(modelWithClientAndRecipe, expectedModelOrder));
     }

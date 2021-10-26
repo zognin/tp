@@ -40,7 +40,7 @@ public class ClientDescriptorTest {
 
         // Address field is null
         ClientDescriptor nullAddressDescriptor = new ClientDescriptorBuilder().build();
-        nullEmailDescriptor.setAddress(null);
+        nullAddressDescriptor.setAddress(null);
         assertThrows(NullPointerException.class, nullAddressDescriptor::toModelType);
     }
 
