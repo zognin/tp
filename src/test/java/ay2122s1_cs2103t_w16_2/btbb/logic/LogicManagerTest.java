@@ -6,12 +6,20 @@ import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.ADDRESS
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline.INPUT_DATETIME_FORMATTER;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalClients.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.AbstractMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,10 +36,18 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ModelManager;
 import ay2122s1_cs2103t_w16_2.btbb.model.ReadOnlyAddressBook;
 import ay2122s1_cs2103t_w16_2.btbb.model.UserPrefs;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Client;
+import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.Order;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderClient;
+import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.storage.JsonAddressBookStorage;
 import ay2122s1_cs2103t_w16_2.btbb.storage.JsonUserPrefsStorage;
 import ay2122s1_cs2103t_w16_2.btbb.storage.StorageManager;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.ClientBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
+import ay2122s1_cs2103t_w16_2.btbb.testutil.stubs.ModelStubWithOrder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -95,8 +111,64 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredIngredientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredIngredientList().remove(0));
+    }
+
+    @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredRecipeList().remove(0));
+    }
+
+    @Test
+    public void getRevenueForPastTwelveMonths() {
+        LocalDateTime deadline = LocalDateTime.now();
+        String stringDeadline = INPUT_DATETIME_FORMATTER.format(deadline);
+
+        Order order = new OrderBuilder()
+                .withOrderPrice(new OrderPrice("2"))
+                .withDeadline(new Deadline(stringDeadline)).build();
+        Model modelWithOrder = new ModelStubWithOrder(order);
+        Logic logic = setUpLogicForStatistics(modelWithOrder);
+
+        List<Map.Entry<YearMonth, Double>> expectedList =
+                List.of(new AbstractMap.SimpleEntry<>(YearMonth.from(deadline), 2.0));
+        assertEquals(expectedList, logic.getRevenueForPastTwelveMonths());
+    }
+
+    @Test
+    public void getTopTenOrderClients() {
+        OrderClient orderClient = new OrderClient(new GenericString("Tom"), new Phone("1234"));
+        Order order = new OrderBuilder()
+                .withClientName(orderClient.getName())
+                .withClientPhone(orderClient.getPhone())
+                .build();
+        Model modelWithOrder = new ModelStubWithOrder(order);
+        Logic logic = setUpLogicForStatistics(modelWithOrder);
+
+        List<Entry<OrderClient, Long>> expectedList = List.of(new AbstractMap.SimpleEntry<>(orderClient, 1L));
+        assertEquals(expectedList, logic.getTopTenOrderClients());
+    }
+
+    @Test
+    public void getTopTenOrderRecipes() {
+        GenericString recipeName = new GenericString("Egg toast");
+        Order order = new OrderBuilder().withRecipeName(recipeName).build();
+        Model modelWithOrder = new ModelStubWithOrder(order);
+        Logic logic = setUpLogicForStatistics(modelWithOrder);
+
+        List<Entry<GenericString, Long>> expectedList = List.of(new AbstractMap.SimpleEntry<>(recipeName, 1L));
+        assertEquals(expectedList, logic.getTopTenOrderRecipes());
+    }
+
+    @Test
+    public void getAddressBookFilePath() {
+        assertEquals(Paths.get("data", "btbb.json"), logic.getAddressBookFilePath());
     }
 
     /**
@@ -155,6 +227,14 @@ public class LogicManagerTest {
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
+    }
+
+    private Logic setUpLogicForStatistics(Model model) {
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        return new LogicManager(model, storage);
     }
 
     /**

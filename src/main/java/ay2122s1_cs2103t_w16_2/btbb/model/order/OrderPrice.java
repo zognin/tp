@@ -36,7 +36,7 @@ public class OrderPrice implements Comparable<OrderPrice> {
         return test != null && test.matches(VALIDATION_REGEX);
     }
 
-    public Double doubleValue() {
+    public Double getDoubleValue() {
         return orderPrice.doubleValue();
     }
 
