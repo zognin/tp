@@ -160,6 +160,11 @@ Example:
 
 ### 4.3 Client
 
+![AddOrderCommandFull](images/labelled-cards/ClientCardLabelled.png)
+<p style="color: gray; text-align: center">
+Fig 3: Parts of a client card
+</p>
+
 #### 4.3.1 Adding a client: `add-c`
 
 Adds a client to the application.
@@ -254,6 +259,11 @@ Lists all clients in the application.
 Format: `list-c`
 
 ### 4.4 Ingredient
+
+![AddOrderCommandFull](images/labelled-cards/IngredientCardLabelled.png)
+<p style="color: gray; text-align: center">
+Fig 4: Parts of an ingredient card
+</p>
 
 #### 4.4.1 Adding an ingredient: `add-i`
 
@@ -350,6 +360,11 @@ Format: `list-i`
 
 ### 4.5 Order
 
+![AddOrderCommandFull](images/labelled-cards/OrderCardLabelled.png)
+<p style="color: gray; text-align: center">
+Fig 5: Parts of an order card
+</p>
+
 #### 4.5.1 Adding an order: `add-o`
 
 Adds an order to the application.
@@ -394,28 +409,28 @@ Secondary processes that happen when you add an order:
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
 <p style="color: gray; text-align: center">
-Fig 3: Adding an order without client index and recipe index
+Fig 6: Adding an order without client index and recipe index
 </p>
 
 * `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
 <p style="color: gray; text-align: center">
-Fig 4: Adding an order using a client index
+Fig 7: Adding an order using a client index
 </p>
 
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
 <p style="color: gray; text-align: center">
-Fig 5: Adding an order using a recipe index
+Fig 8: Adding an order using a recipe index
 </p>
 
 * `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
 <p style="color: gray; text-align: center">
-Fig 6: Adding an order using both client and recipe indexes
+Fig 9: Adding an order using both client and recipe indexes
 </p>
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
@@ -566,6 +581,11 @@ Format: `undone-o INDEX`
 
 ### 4.6 Recipe
 
+![AddOrderCommandFull](images/labelled-cards/RecipeCardLabelled.png)
+<p style="color: gray; text-align: center">
+Fig 10: Parts of a recipe card
+</p>
+
 #### 4.6.1 Adding a recipe: `add-r`
 
 Adds a recipe to the application.
@@ -712,7 +732,7 @@ Format: `list-r`
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 <p style="color: gray; text-align: center">
-Fig 7: Revenue bar chart
+Fig 11: Revenue bar chart
 </p>
 
 #### 4.7.2 Viewing top 10 clients
@@ -723,7 +743,7 @@ Fig 7: Revenue bar chart
 
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
 <p style="color: gray; text-align: center">
-Fig 8: Client pie chart
+Fig 12: Client pie chart
 </p>
 
 #### 4.7.3 Viewing top 10 recipes
@@ -734,7 +754,7 @@ Fig 8: Client pie chart
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
 <p style="color: gray; text-align: center">
-Fig 9: Recipe pie chart
+Fig 13: Recipe pie chart
 </p>
 
 ### 4.8 Exiting the program: `exit`
