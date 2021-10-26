@@ -362,7 +362,7 @@ Format: `list-i`
 
 ![AddOrderCommandFull](images/labelled-cards/OrderCardLabelled.png)
 
-Fig 5: Parts of an order
+Fig 5. Parts of an order
 {:.caption}
 
 #### 4.5.1 Adding an order: `add-o`
