@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_CLIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -103,7 +104,7 @@ public class EditClientCommandTest {
         ClientDescriptor descriptor = new ClientDescriptorBuilder(firstClient).build();
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, model, MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -115,7 +116,7 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST,
                 new ClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, model, MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test

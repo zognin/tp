@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_APPLE_PIE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BEEF_STEW;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APPLE_PIE;
@@ -107,7 +108,7 @@ public class EditRecipeCommandTest {
         RecipeDescriptor descriptor = new RecipeDescriptorBuilder(firstRecipe).build();
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editRecipeCommand, model, EditRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
+        assertCommandFailure(editRecipeCommand, model, MESSAGE_DUPLICATE_RECIPE);
     }
 
     @Test
@@ -118,7 +119,7 @@ public class EditRecipeCommandTest {
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST,
                 new RecipeDescriptorBuilder(recipeInList).build());
 
-        assertCommandFailure(editRecipeCommand, model, EditRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
+        assertCommandFailure(editRecipeCommand, model, MESSAGE_DUPLICATE_RECIPE);
     }
 
     @Test

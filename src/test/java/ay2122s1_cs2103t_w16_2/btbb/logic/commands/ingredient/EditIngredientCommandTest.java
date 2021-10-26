@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BEEF;
@@ -107,7 +108,7 @@ public class EditIngredientCommandTest {
         IngredientDescriptor descriptor = new IngredientDescriptorBuilder(firstIngredient).build();
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+        assertCommandFailure(editIngredientCommand, model, MESSAGE_DUPLICATE_INGREDIENT);
     }
 
     @Test
@@ -119,7 +120,7 @@ public class EditIngredientCommandTest {
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST,
                 new IngredientDescriptorBuilder(ingredientInList).build());
 
-        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+        assertCommandFailure(editIngredientCommand, model, MESSAGE_DUPLICATE_INGREDIENT);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_ORDER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_ORDER_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_ORDER_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -181,7 +182,7 @@ class EditOrderCommandTest {
         OrderDescriptor descriptor = new OrderDescriptorBuilder(firstOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editOrderCommand, model, EditOrderCommand.MESSAGE_DUPLICATE_ORDER);
+        assertCommandFailure(editOrderCommand, model, MESSAGE_DUPLICATE_ORDER);
     }
 
     @Test
@@ -193,7 +194,7 @@ class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST,
                 new OrderDescriptorBuilder(orderInList).build());
 
-        assertCommandFailure(editOrderCommand, model, EditOrderCommand.MESSAGE_DUPLICATE_ORDER);
+        assertCommandFailure(editOrderCommand, model, MESSAGE_DUPLICATE_ORDER);
     }
 
     @Test

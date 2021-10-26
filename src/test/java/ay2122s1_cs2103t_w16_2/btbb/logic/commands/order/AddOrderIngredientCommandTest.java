@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_ORDER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -94,7 +95,7 @@ public class AddOrderIngredientCommandTest {
 
         AddOrderIngredientCommand command =
                 new AddOrderIngredientCommand(indexOfOrderToEdit, secondIngredientDescriptor);
-        assertCommandFailure(command, model, AddOrderCommand.MESSAGE_DUPLICATE_ORDER);
+        assertCommandFailure(command, model, MESSAGE_DUPLICATE_ORDER);
     }
 
     @Test

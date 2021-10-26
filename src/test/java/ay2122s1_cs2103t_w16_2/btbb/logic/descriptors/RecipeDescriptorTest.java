@@ -59,8 +59,9 @@ public class RecipeDescriptorTest {
     public void toModelTypeFrom() {
         // All fields in descriptor are non null
         Recipe expectedModelRecipe = new RecipeBuilder().build();
+        Recipe anotherModelRecipe = new RecipeBuilder().withName("Imposter").build();
         RecipeDescriptor validRecipeDescriptor = new RecipeDescriptorBuilder(expectedModelRecipe).build();
-        assertEquals(expectedModelRecipe, validRecipeDescriptor.toModelTypeFrom(expectedModelRecipe));
+        assertEquals(expectedModelRecipe, validRecipeDescriptor.toModelTypeFrom(anotherModelRecipe));
 
         // Name field in descriptor is null
         expectedModelRecipe = new RecipeBuilder().build();

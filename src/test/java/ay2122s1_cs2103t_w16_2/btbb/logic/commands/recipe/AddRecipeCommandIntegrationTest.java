@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.getTypicalAddressBook;
@@ -43,7 +44,6 @@ public class AddRecipeCommandIntegrationTest {
     public void execute_duplicateRecipe_throwsCommandException() {
         Recipe recipeInList = model.getAddressBook().getRecipeList().get(0);
         RecipeDescriptor recipeInListDescriptor = new RecipeDescriptorBuilder(recipeInList).build();
-        assertCommandFailure(new AddRecipeCommand(recipeInListDescriptor), model,
-                AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
+        assertCommandFailure(new AddRecipeCommand(recipeInListDescriptor), model, MESSAGE_DUPLICATE_RECIPE);
     }
 }

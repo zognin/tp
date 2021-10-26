@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_APPLE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.DESC_BEEF;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -94,7 +95,7 @@ public class AddRecipeIngredientCommandParserTest {
 
         AddRecipeIngredientCommand command =
                 new AddRecipeIngredientCommand(indexOfRecipeToEdit, secondIngredientDescriptor);
-        assertCommandFailure(command, model, AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
+        assertCommandFailure(command, model, MESSAGE_DUPLICATE_RECIPE);
     }
 
     @Test

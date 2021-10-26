@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_ORDER;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -56,8 +57,7 @@ public class AddOrderCommandTest {
         AddOrderCommand addOrderCommand = new AddOrderCommand(validOrderDescriptor);
         ModelStub modelStub = new ModelStubWithOrder(validOrder);
 
-        Assert.assertThrows(CommandException.class,
-                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand.execute(modelStub));
+        Assert.assertThrows(CommandException.class, MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand.execute(modelStub));
 
         validOrder = new OrderBuilder().withOrderPrice(new OrderPrice("10")).build();
         Order withSamePriceValue = new OrderBuilder().withOrderPrice(new OrderPrice("10.00")).build();
@@ -66,7 +66,7 @@ public class AddOrderCommandTest {
         ModelStub modelStub2 = new ModelStubWithOrder(validOrder);
 
         Assert.assertThrows(CommandException.class,
-                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand2.execute(modelStub2));
+                MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand2.execute(modelStub2));
     }
 
     @Test
