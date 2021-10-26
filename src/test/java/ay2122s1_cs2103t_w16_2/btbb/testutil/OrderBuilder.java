@@ -77,8 +77,8 @@ public class OrderBuilder {
      * @param clientName The client's name associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withClientName(GenericString clientName) {
-        this.clientName = clientName;
+    public OrderBuilder withClientName(String clientName) {
+        this.clientName = new GenericString(clientName);
         return this;
     }
 
@@ -88,8 +88,8 @@ public class OrderBuilder {
      * @param clientPhone The client's phone associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withClientPhone(Phone clientPhone) {
-        this.clientPhone = clientPhone;
+    public OrderBuilder withClientPhone(String clientPhone) {
+        this.clientPhone = new Phone(clientPhone);
         return this;
     }
 
@@ -99,8 +99,8 @@ public class OrderBuilder {
      * @param clientAddress The client's address associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withClientAddress(Address clientAddress) {
-        this.clientAddress = clientAddress;
+    public OrderBuilder withClientAddress(String clientAddress) {
+        this.clientAddress = new Address(clientAddress);
         return this;
     }
 
@@ -110,8 +110,8 @@ public class OrderBuilder {
      * @param recipeName The order's recipe name associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withRecipeName(GenericString recipeName) {
-        this.recipeName = recipeName;
+    public OrderBuilder withRecipeName(String recipeName) {
+        this.recipeName = new GenericString(recipeName);
         return this;
     }
 
@@ -132,8 +132,8 @@ public class OrderBuilder {
      * @param orderPrice The order orderPrice associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withOrderPrice(OrderPrice orderPrice) {
-        this.orderPrice = orderPrice;
+    public OrderBuilder withOrderPrice(String orderPrice) {
+        this.orderPrice = new OrderPrice(orderPrice);
         return this;
     }
 
@@ -143,8 +143,8 @@ public class OrderBuilder {
      * @param deadline The order deadline associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withDeadline(Deadline deadline) {
-        this.deadline = deadline;
+    public OrderBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
         return this;
     }
 
@@ -154,8 +154,8 @@ public class OrderBuilder {
      * @param quantity The order quantity associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withQuantity(Quantity quantity) {
-        this.quantity = quantity;
+    public OrderBuilder withQuantity(String quantity) {
+        this.quantity = new Quantity(quantity);
         return this;
     }
 
@@ -165,8 +165,8 @@ public class OrderBuilder {
      * @param completionStatus The order quantity associated with the order we are building.
      * @return The {@code OrderBuilder} object.
      */
-    public OrderBuilder withCompletionStatus(CompletionStatus completionStatus) {
-        this.completionStatus = completionStatus;
+    public OrderBuilder withCompletionStatus(String completionStatus) {
+        this.completionStatus = new CompletionStatus(completionStatus);
         return this;
     }
 

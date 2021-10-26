@@ -1,5 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.model.order;
 
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_NO;
+import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.VALID_ORDER_COMPLETION_STATUS_YES;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIndexes.INDEX_SECOND;
@@ -35,7 +37,6 @@ import org.junit.jupiter.api.Test;
 
 import ay2122s1_cs2103t_w16_2.btbb.exception.NotFoundException;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
-import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderBuilder;
 import javafx.collections.ObservableList;
 
@@ -50,16 +51,16 @@ class UniqueOrderListTest {
     @Test
     public void add_validOrdersSameDeadlineDifferentCompletionStatus_listSortedByCompletionStatus() {
         Order orderForAlice = new OrderBuilder(ORDER_FOR_ALICE)
-                .withCompletionStatus(new CompletionStatus(true))
-                .withDeadline(new Deadline("12-11-2019 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .withDeadline("12-11-2019 1830")
                 .build();
         Order orderForBenson = new OrderBuilder(ORDER_FOR_BENSON)
-                .withCompletionStatus(new CompletionStatus(false))
-                .withDeadline(new Deadline("12-11-2020 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO)
+                .withDeadline("12-11-2020 1830")
                 .build();
         Order orderForCarl = new OrderBuilder(ORDER_FOR_CARL)
-                .withCompletionStatus(new CompletionStatus(true))
-                .withDeadline(new Deadline("12-11-2022 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .withDeadline("12-11-2022 1830")
                 .build();
         uniqueOrderList.add(orderForAlice);
         uniqueOrderList.add(orderForBenson);
@@ -73,16 +74,16 @@ class UniqueOrderListTest {
     @Test
     public void add_validOrdersSameCompletionStatusDifferentDeadline_listSortedByDeadline() {
         Order orderForAlice = new OrderBuilder(ORDER_FOR_ALICE)
-                .withCompletionStatus(new CompletionStatus(true))
-                .withDeadline(new Deadline("12-11-2019 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .withDeadline("12-11-2019 1830")
                 .build();
         Order orderForBenson = new OrderBuilder(ORDER_FOR_BENSON)
-                .withCompletionStatus(new CompletionStatus(true))
-                .withDeadline(new Deadline("12-11-2020 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .withDeadline("12-11-2020 1830")
                 .build();
         Order orderForCarl = new OrderBuilder(ORDER_FOR_CARL)
-                .withCompletionStatus(new CompletionStatus(true))
-                .withDeadline(new Deadline("12-11-2022 1830"))
+                .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
+                .withDeadline("12-11-2022 1830")
                 .build();
         uniqueOrderList.add(orderForAlice);
         uniqueOrderList.add(orderForBenson);
@@ -130,14 +131,13 @@ class UniqueOrderListTest {
 
             for (Order order : orderList) {
                 Order o = new OrderBuilder(order)
-                        .withOrderPrice(new OrderPrice(String.valueOf(i + 1)))
-                        .withDeadline(new Deadline(
-                                String.format("%s-%s-%s 1900", i + 10,
+                        .withOrderPrice(String.valueOf(i + 1))
+                        .withDeadline(String.format("%s-%s-%s 1900", i + 10,
                                         month.getValue() < 10
                                                 ? "0" + month.getValue()
                                                 : month.getValue(),
-                                        year)))
-                        .withCompletionStatus(new CompletionStatus(true))
+                                        year))
+                        .withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_YES)
                         .build();
 
                 uniqueOrderList.add(o);
@@ -161,7 +161,7 @@ class UniqueOrderListTest {
         for (int i = 0; i < orderList.size(); i++) {
             for (int j = 0; j < i + 1; j++) {
                 uniqueOrderList.add(
-                        new OrderBuilder(orderList.get(i)).withOrderPrice(new OrderPrice(Integer.toString(i))).build()
+                        new OrderBuilder(orderList.get(i)).withOrderPrice(Integer.toString(i)).build()
                 );
             }
         }
@@ -187,7 +187,7 @@ class UniqueOrderListTest {
         UniqueOrderList uniqueOrderList = new UniqueOrderList();
         for (int i = 0; i < orderList.size(); i++) {
             String qty = Integer.toString(i + 1);
-            Order orderToAdd = new OrderBuilder(orderList.get(i)).withQuantity(new Quantity(qty)).build();
+            Order orderToAdd = new OrderBuilder(orderList.get(i)).withQuantity(qty).build();
             orderList.set(i, orderToAdd);
             uniqueOrderList.add(orderToAdd);
         }
@@ -282,7 +282,7 @@ class UniqueOrderListTest {
 
         // Change Carl's order to not completed, carl's order should appear second in the list
         Order orderForCarlNotCompleted =
-                new OrderBuilder(ORDER_FOR_CARL).withCompletionStatus(new CompletionStatus(false)).build();
+                new OrderBuilder(ORDER_FOR_CARL).withCompletionStatus(VALID_ORDER_COMPLETION_STATUS_NO).build();
         uniqueOrderList.setOrder(ORDER_FOR_CARL, orderForCarlNotCompleted);
         ObservableList<Order> orderList = uniqueOrderList.asUnmodifiableObservableList();
 
