@@ -52,11 +52,17 @@ The user interface of BobTheBistroBoss is divided into 2 tabs.
 Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
+<p style="color: gray; text-align: center">
+Fig 1: Home tab
+</p>
 
 #### 2.2.2 Inventory & Statistics Tab
 Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+<p style="color: gray; text-align: center">
+Fig 2: Inventory & Statistics tab
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -387,18 +393,30 @@ Secondary processes that happen when you add an order:
   1800 oq/2`. Adding an order without client index and recipe index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
+<p style="color: gray; text-align: center">
+Fig 3: Adding an order without client index and recipe index
+</p>
 
 * `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
+<p style="color: gray; text-align: center">
+Fig 4: Adding an order using a client index
+</p>
 
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
+<p style="color: gray; text-align: center">
+Fig 5: Adding an order using a recipe index
+</p>
 
 * `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
+<p style="color: gray; text-align: center">
+Fig 6: Adding an order using both client and recipe indexes
+</p>
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
 
@@ -693,6 +711,9 @@ Format: `list-r`
 * Values will be displayed when you hover your cursor over each bar.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+<p style="color: gray; text-align: center">
+Fig 6: Revenue bar chart
+</p>
 
 #### 4.7.2 Viewing top 10 clients
 * Displays a pie chart showing the top 10 clients who made the highest number of orders.
@@ -701,6 +722,9 @@ Format: `list-r`
 * Values will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+<p style="color: gray; text-align: center">
+Fig 7: Client pie chart
+</p>
 
 #### 4.7.3 Viewing top 10 recipes
 * Displays a pie chart showing the top 10 recipes that appear in the highest number of orders.
@@ -709,6 +733,9 @@ Format: `list-r`
 * Values will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
+<p style="color: gray; text-align: center">
+Fig 8: Top 10 recipes
+</p>
 
 ### 4.8 Exiting the program: `exit`
 
