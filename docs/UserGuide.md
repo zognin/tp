@@ -52,6 +52,7 @@ The user interface of BobTheBistroBoss is divided into 2 tabs.
 Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
+
 Fig 1. Home tab
 {:.caption}
 
@@ -59,6 +60,7 @@ Fig 1. Home tab
 Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+
 Fig 2. Inventory & Statistics tab
 {:.caption}
 
@@ -159,6 +161,7 @@ Example:
 ### 4.3 Client
 
 ![AddOrderCommandFull](images/labelled-cards/ClientCardLabelled.png)
+
 Fig 3. Parts of a client
 {:.caption}
 
@@ -258,6 +261,7 @@ Format: `list-c`
 ### 4.4 Ingredient
 
 ![AddOrderCommandFull](images/labelled-cards/IngredientCardLabelled.png)
+
 Fig 4. Parts of an ingredient
 {:.caption}
 
@@ -357,6 +361,7 @@ Format: `list-i`
 ### 4.5 Order
 
 ![AddOrderCommandFull](images/labelled-cards/OrderCardLabelled.png)
+
 Fig 5: Parts of an order
 {:.caption}
 
@@ -403,24 +408,28 @@ Secondary processes that happen when you add an order:
   1800 oq/2`. Adding an order without client index and recipe index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandFullFocused.png)
+
 Fig 6. Adding an order without client index and recipe index
 {:.caption}
 
 * `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2`. Adding an order using a client index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
+
 Fig 7. Adding an order using a client index
 {:.caption}
 
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2`. Adding an order using a recipe index.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
+
 Fig 8. Adding an order using a recipe index
 {:.caption}
 
 * `add-o c/1 r/3 od/12-12-2021 1800 oq/2`. Adding an order using both client and recipe indexes.
 
 ![AddOrderCommandFull](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
+
 Fig 9. Adding an order using both client and recipe indexes
 {:.caption}
 
@@ -573,6 +582,7 @@ Format: `undone-o INDEX`
 ### 4.6 Recipe
 
 ![AddOrderCommandFull](images/labelled-cards/RecipeCardLabelled.png)
+
 Fig 10. Parts of a recipe
 {:.caption}
 
@@ -721,6 +731,7 @@ Format: `list-r`
 * Values will be displayed when you hover your cursor over each bar.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
+
 Fig 11. Revenue bar chart
 {:.caption}
 
@@ -741,6 +752,7 @@ Fig 12. Client pie chart
 * Values will be displayed when you hover your cursor over each wedge.
 
 ![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
+
 Fig 13. Recipe pie chart
 {:.caption}
 
