@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,7 +47,7 @@ public class AddIngredientCommandTest {
         ModelStub modelStub = new ModelStubWithIngredient(validIngredient);
 
         assertThrows(CommandException.class,
-                AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT, () -> addIngredientCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_INGREDIENT, () -> addIngredientCommand.execute(modelStub));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.CommandTestUtil.assertCommandSuccessWithTabChange;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalIngredients.getTypicalAddressBook;
@@ -41,7 +42,6 @@ public class AddIngredientCommandIntegrationTest {
     public void execute_duplicateIngredient_throwsCommandException() {
         Ingredient ingredientInList = model.getAddressBook().getIngredientList().get(0);
         IngredientDescriptor ingredientInListDescriptor = new IngredientDescriptorBuilder(ingredientInList).build();
-        assertCommandFailure(new AddIngredientCommand(ingredientInListDescriptor), model,
-                AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+        assertCommandFailure(new AddIngredientCommand(ingredientInListDescriptor), model, MESSAGE_DUPLICATE_INGREDIENT);
     }
 }

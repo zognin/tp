@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.TypicalRecipes.RECIPE_EGG_PRATA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -47,7 +48,7 @@ public class AddRecipeCommandTest {
         ModelStub modelStub = new ModelStubWithRecipe(validRecipe);
 
         Assert.assertThrows(CommandException.class,
-                AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
     }
 
     @Test

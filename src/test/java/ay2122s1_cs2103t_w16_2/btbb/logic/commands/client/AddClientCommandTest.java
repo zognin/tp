@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.client;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_CLIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -44,8 +45,7 @@ public class AddClientCommandTest {
         AddClientCommand addClientCommand = new AddClientCommand(validClientDescriptor);
         ModelStub modelStub = new ModelStubWithClient(validClient);
 
-        assertThrows(CommandException.class,
-            AddClientCommand.MESSAGE_DUPLICATE_CLIENT, () -> addClientCommand.execute(modelStub));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_CLIENT, () -> addClientCommand.execute(modelStub));
     }
 
     @Test

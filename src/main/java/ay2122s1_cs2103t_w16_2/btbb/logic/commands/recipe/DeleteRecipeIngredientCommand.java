@@ -1,7 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
-import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe.AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.commands.util.CommandUtil.makeRecipeWithEditedIngredients;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_INDEX;
 import static java.util.Objects.requireNonNull;

@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.ingredient;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.commons.util.CollectionUtil.requireAllNonNull;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_INGREDIENT_QUANTITY;
@@ -38,7 +39,6 @@ public class EditIngredientCommand extends Command {
             + PREFIX_INGREDIENT_QUANTITY + "10 ";
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in your inventory.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 

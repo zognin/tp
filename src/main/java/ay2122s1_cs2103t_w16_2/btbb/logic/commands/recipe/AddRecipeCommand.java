@@ -1,5 +1,6 @@
 package ay2122s1_cs2103t_w16_2.btbb.logic.commands.recipe;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_DUPLICATE_RECIPE;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_INGREDIENT;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_NAME;
 import static ay2122s1_cs2103t_w16_2.btbb.logic.parser.util.CliSyntax.PREFIX_RECIPE_PRICE;
@@ -34,7 +35,6 @@ public class AddRecipeCommand extends Command {
             + PREFIX_RECIPE_PRICE + "2.00";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in your recipe bookmarks.";
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
