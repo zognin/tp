@@ -365,6 +365,14 @@ Format: `list-i`
 Fig 5. Parts of an order
 {:.caption}
 
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* If an order is not completed, the tick for completion status will not be shown.
+
+</div>
+
 #### 4.5.1 Adding an order: `add-o`
 
 Adds an order to the application.
