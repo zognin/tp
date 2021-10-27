@@ -72,19 +72,19 @@ Fig 2. Inventory & Statistics tab
 
 * Client bookmarks are client information that can be copied to an order's client details when adding an order.
 * Client bookmarks are considered duplicates when they have the same phone number.
-* 'Client Bookmarks' may also be referred to as 'Clients' for simplicity.
+* Client Bookmarks may also be referred to as Clients for simplicity.
 * Client bookmarks are sorted in ascending alphabetical order of client name.
   Uppercase letters appear before lowercase letters.
 
 ### 3.2 Inventory
 
-* The inventory displays a list of ingredients whose quantities can be tracked.
+* Inventory displays a list of ingredients whose quantities can be tracked.
 * Ingredients are considered duplicates when they have the same name and unit.
 * The matching of names and units are case insensitive.
 * Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name.
   Uppercase letters appear before lowercase letters.
 
-### 3.3 Order
+### 3.3 Orders
 
 * Orders contain client details, recipe details, deadline, quantity, price and a completion status.
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
@@ -97,7 +97,7 @@ Fig 2. Inventory & Statistics tab
 * Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe details when adding an order.
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
 * The matching of details are case insensitive where applicable.
-* `Recipe Bookmarks` may also be referred to as `Recipes` for simplicity.
+* Recipe Bookmarks may also be referred to as Recipes for simplicity.
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
@@ -152,10 +152,9 @@ Format: `tab INDEX`
 
 * Switches to the tab corresponding to the specified INDEX. INDEX must be either 1 or 2.
   * Index 1 corresponds to the Home tab.
-  * Index 2 corresponds to the Inventory tab.
+  * Index 2 corresponds to the Inventory & Statistics tab.
 
-Example:
-
+**Examples:**
 * `tab 1` switches to the Home tab.
 
 ### 4.3 Client
@@ -184,8 +183,8 @@ Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 * `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the following attributes:
   * Name: Alex Yeoh
   * Phone number: 89653101
-  * Email: 'alexyeoh@gmail.com'
-  * Address: 'Choa Chu Kang St 62 Blk 123 #12-34'
+  * Email: alexyeoh@gmail.com
+  * Address: Choa Chu Kang St 62 Blk 123 #12-34
 
 #### 4.3.2 Deleting a client: `delete-c`
 
@@ -196,7 +195,7 @@ Format: `delete-c INDEX`
 **Examples:**
 * `delete-c 1` Deletes the client at index 1 in the client list currently shown.
 
-#### 4.3.3 Editing clients: `edit-c`
+#### 4.3.3 Editing a client: `edit-c`
 
 Edits an existing client in the application.
 
@@ -295,7 +294,7 @@ Format: `delete-i INDEX`
 **Examples:**
 * `delete-i 1` Deletes the ingredient at index 1 in the ingredient list currently shown.
 
-#### 4.4.3 Editing ingredients: `edit-i`
+#### 4.4.3 Editing an ingredient: `edit-i`
 
 Edits an existing ingredient in the application.
 
@@ -307,7 +306,7 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 * `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed ingredient list.
 
-* `[in/NAME] [iq/QUANTITY] [iu/UNIT]` allows you to specify the ingredient information to update. None of
+* `[in/NAME], [iq/QUANTITY], [iu/UNIT]` allows you to specify the ingredient information to update. None of
   them are mandatory, but at least one must be specified.
 
 </div>
@@ -543,7 +542,7 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
 * It will find orders that match at least one keyword, for each prefix.
-* `od/ORDER_DATE` represents the order date and time. They must follow the format specified [above](#4-features).
+* `od/ORDER_DATE` represents the order date. They must follow the format specified [above](#4-features).
 * `of/YES_OR_NO` represents whether the order is completed.
 
 * Please refer to the examples below. <br>
@@ -679,7 +678,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 * `INDEX` allows you to choose which recipe to edit by specifying its position in the currently displayed recipe list.
 
-* `[rn/RECIPE_NAME] [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
+* `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
 * To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri) and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
@@ -706,7 +705,7 @@ Format: `find-r rn/RECIPE_NAME`
 * `rn/RECIPE_NAME` search field must be present.
 
 * Multiple search keywords can be specified for each field. <br>
-  e.g. <code>find-r cr/Chicken rice</code>
+  e.g. <code>find-r rn/Chicken rice</code>
 
 * Partial search will be allowed.
   e.g. <code>find-r rn/Ch</code> can show recipes with names like Chicken rice and Cheesecake.
@@ -732,7 +731,7 @@ Format: `list-r`
 
 #### 4.7.1 Viewing revenue per month for the past 12 months
 * Displays a bar chart showing the revenue earned per month for the past 12 months. Revenue is calculated only
-  from completed orders
+  from completed orders.
 * Values will be displayed when you hover your cursor over each bar.
 
 ![Revenue bar chart](images/product-screenshots/general/BarChart.png)
