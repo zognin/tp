@@ -140,14 +140,15 @@ Fig 2. Inventory & Statistics tab
 * The format of all deadline fields is `dd-MM-yyyy HHmm`.<br>
   e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 
+* A Phone number parameter allows up to 20 digits.
+
 * The following parameters allow up to 50 characters (including whitespace):
   * Client Name
   * Ingredient Name
   * Order Name
   * Recipe Name
   * Ingredient Unit
-
-* A Phone number parameter allows up to 20 digits.
+  
 </div>
 
 ### 4.1 Viewing help : `help`
@@ -351,15 +352,15 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 * Partial search will be allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
 
+* It will find ingredients that match at least one keyword, for each prefix.
+
 * Ingredient `QUANTITY`:
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of
     `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must
     satisfy all 3 conditions.
-
-* It will find ingredients that match at least one keyword, for each prefix.
-
+    
 </div>
 
 **Examples:**
