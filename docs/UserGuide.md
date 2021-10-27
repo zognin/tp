@@ -730,7 +730,7 @@ Format: `list-r`
   from completed orders
 * Values will be displayed when you hover your cursor over each bar.
 
-![Revenue Bar Chart](images/product-screenshots/general/BarChart.png)
+![Revenue bar chart](images/product-screenshots/general/BarChart.png)
 
 Fig 11. Revenue bar chart
 {:.caption}
@@ -741,7 +741,7 @@ Fig 11. Revenue bar chart
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
 
-![Inventory & Statistics tab](images/product-screenshots/general/ClientPieChart.png)
+![Client pie chart](images/product-screenshots/general/ClientPieChart.png)
 
 Fig 12. Client pie chart
 {:.caption}
@@ -752,7 +752,7 @@ Fig 12. Client pie chart
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
 
-![Inventory & Statistics tab](images/product-screenshots/general/RecipePieChart.png)
+![Recipe pie chart](images/product-screenshots/general/RecipePieChart.png)
 
 Fig 13. Recipe pie chart
 {:.caption}
