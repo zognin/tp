@@ -355,7 +355,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of
     `QUANTITY_FROM` and `QUANTITY_TO`.
-  * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must 
+  * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must
     satisfy all 3 conditions.
 
 * It will find ingredients that match at least one keyword, for each prefix.
