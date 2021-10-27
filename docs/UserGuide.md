@@ -132,10 +132,11 @@ Fig 2. Inventory & Statistics tab
 * Extraneous parameters for commands that do not take in parameters (such as `help`, and `list-c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* The format of all date fields is `dd-MM-yyyy`.
+* The format of all date fields is `dd-MM-yyyy`.<br>
   e.g. 21-10-1998 is 21 October 1998.
 
-* The format of all deadline fields is `dd-MM-yyyy HHmm`. e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
+* The format of all deadline fields is `dd-MM-yyyy HHmm`.<br>
+  e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 
 * The following parameters allow up to 50 characters (including whitespace):
   * Client Name
@@ -184,7 +185,6 @@ Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 **:bookmark: Note:**<br>
 
 * <code>cp/PHONE</code> refers to a client's phone number and is unique to a client. Each phone number in the system must belong to exactly one client.
-* Please refer to the examples below.
 
 </div>
 
@@ -246,8 +246,6 @@ Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 * It will find clients that match at least one keyword, for each prefix.
 
-* Please refer to the examples below. <br>
-
 </div>
 
 **Examples:**
@@ -284,10 +282,12 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 **:bookmark: Note:**<br>
 
 * The application does not allow duplicate ingredients to be added.
+  
 * An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the application.
+  
 * The matching of `NAME` and `UNIT` are case insensitive.
+  
 * `QUANTITY` must be positive, and the largest possible input is 40000.
-* Please refer to the examples below.
 
 </div>
 
@@ -335,19 +335,21 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
+  
 * There must be 1 or more search arguments.
+  
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-i in/Kiwi Chocolate</code>
+  
 * Partial search will be allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
+  
 * Ingredient `QUANTITY`:
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must satisfy all 3 conditions.
 
 * It will find ingredients that match at least one keyword, for each prefix.
-
-* Please refer to the examples below. <br>
 
 </div>
 
@@ -415,8 +417,6 @@ Secondary processes that happen when you add an order:
   If the ingredient in the order does not exist in the inventory, there is no effect.
 * All orders have an uncompleted status upon addition.
 
-* Please refer to the examples below.
-
 </div>
 
 **Examples:**
@@ -460,7 +460,9 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed order list.
+  
 * Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command first before performing this command again.
+  
 * If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted from the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
@@ -479,6 +481,7 @@ Format: `delete-o INDEX`
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
+  
 * When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
   order is already marked as done, the ingredient quantities will not be added back.
 
@@ -498,7 +501,9 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **:bookmark: Note:**<br>
 
 * `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently displayed order list.
+  
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the currently displayed order ingredient sub-list.
+  
 * When an ingredient is deleted from an order, the ingredient will be added back to the inventory.
   The quantity added to the inventory will be equivalent to the deleted ingredient's quantity
   in the order multiplied by the order quantity.
@@ -521,9 +526,11 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
+  
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
+  
 * To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi) and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
 </div>
@@ -545,16 +552,20 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
+  
 * There must be 1 or more search arguments.
+  
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
+  
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
+  
 * It will find orders that match at least one keyword, for each prefix.
+  
 * `od/ORDER_DATE` represents the order date. They must follow the format specified [above](#4-features).
+  
 * `of/YES_OR_NO` represents whether the order is completed.
-
-* Please refer to the examples below. <br>
 
 </div>
 
@@ -610,9 +621,10 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_
 **:bookmark: Note:**<br>
 
 * The application does not allow duplicate recipes to be added.
+  
 * A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an existing recipe in the application.
+  
 * The matching of fields are case insensitive.
-* Please refer to the examples below.
 
 </div>
 
@@ -630,8 +642,10 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed recipe list.
+  
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
+  
 * Refer to [3.2 Inventory](#32-inventory) for the definition of a duplicate ingredient.
 
 </div>
@@ -667,6 +681,7 @@ Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 **:bookmark: Note:**<br>
 
 * `RECIPE_INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the currently displayed recipe list.
+  
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the recipe by specifying its position in the currently displayed recipe ingredient sub-list.
 
 </div>
@@ -716,11 +731,9 @@ Format: `find-r rn/RECIPE_NAME`
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-r rn/Chicken rice</code>
 
-* Partial search will be allowed.
+* Partial search will be allowed. <br>
   e.g. <code>find-r rn/Ch</code> can show recipes with names like Chicken rice and Cheesecake.
-
-* Please refer to the examples below. <br>
-
+  
 </div>
 
 **Examples:**
