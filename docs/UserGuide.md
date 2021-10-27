@@ -148,7 +148,7 @@ Fig 2. Inventory & Statistics tab
   * Order Name
   * Recipe Name
   * Ingredient Unit
-  
+
 </div>
 
 ### 4.1 Viewing help : `help`
@@ -360,7 +360,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
     `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must
     satisfy all 3 conditions.
-    
+
 </div>
 
 **Examples:**
