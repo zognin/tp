@@ -136,6 +136,15 @@ Fig 2. Inventory & Statistics tab
   e.g. 21-10-1998 is 21 October 1998.
 
 * The format of all deadline fields is `dd-MM-yyyy HHmm`. e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
+
+* The following parameters allow up to 50 characters (including whitespace):
+  * Client Name
+  * Ingredient Name
+  * Order Name
+  * Recipe Name
+  * Ingredient Unit
+  
+* A Phone number parameter allows up to 20 digits.
 </div>
 
 ### 4.1 Viewing help : `help`
@@ -769,14 +778,14 @@ Format: `exit`
 
 ### 4.9 Saving the data
 
-BTBB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+BTBB will save to the hard disk automatically after execution of any command that changes the data. There is no need to save manually.
 
 ### 4.10 Editing the data file
 
-BTBB data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
+BTBB saves its data as a JSON file. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, BTBB will discard all data and start with an empty data file at the next run.
+If your changes to the data file results in the format being invalid, BTBB will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -798,15 +807,18 @@ If your changes to the data file makes its format invalid, BTBB will discard all
 ### 6.2 Format
 * For deadlines, 29-12-2021 2400 is considered valid, and it will be
   represented as 30-12-2021 0000 in the application.
-* Prices can be an integer value or a floating point value with
-  **exactly** 2 decimal places.
 
 ### 6.3 Index
 * When index is negative, the application displays the `INVALID COMMAND FORMAT` error
   rather than the `index provided is invalid` error as the command format requires users
   to key in a positive number.
+  
+### 6.4 Price
+* Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
+* Largest possible recipe price is $2499.99.
+* Largest possible order price is $9 999 999.99.
 
-### 6.4 Quantities
+### 6.5 Quantities
 * If any quantity field in orders is changed in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
@@ -820,6 +832,16 @@ If your changes to the data file makes its format invalid, BTBB will discard all
   the quantity further by deleting an existing order that uses the
   ingredient, the system will allow the deletion but inventory no
   longer tracks the ingredient properly.)
+  
+### 6.6 Restrictions
+* The following parameters allow up to 50 characters (including whitespace):
+  * Client Name
+  * Ingredient Name
+  * Order Name
+  * Recipe Name
+  * Ingredient Unit
+  
+* A Phone number allows up to 20 digits.
 
 --------------------------------------------------------------------------------------------------------------------
 
