@@ -68,7 +68,7 @@ public class OrderDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(clientIndex, clientName, clientPhone, clientAddress, recipeName,
+        return CollectionUtil.isAnyNonNull(clientIndex, clientName, clientPhone, clientAddress, recipeIndex, recipeName,
                 recipeIngredients, orderPrice, deadline, quantity);
     }
 
