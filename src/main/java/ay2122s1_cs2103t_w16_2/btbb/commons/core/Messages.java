@@ -4,6 +4,9 @@ package ay2122s1_cs2103t_w16_2.btbb.commons.core;
  * Container for user visible messages.
  */
 public class Messages {
+    public static final String MESSAGE_WELCOME = "Welcome to BobTheBistroBoss!\n"
+            + "Get started by clicking the help tab above or typing in help in the command window below!";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";

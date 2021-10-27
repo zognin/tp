@@ -1,5 +1,7 @@
 package ay2122s1_cs2103t_w16_2.btbb.ui;
 
+import static ay2122s1_cs2103t_w16_2.btbb.commons.core.Messages.MESSAGE_WELCOME;
+
 import java.util.logging.Logger;
 
 import ay2122s1_cs2103t_w16_2.btbb.commons.core.GuiSettings;
@@ -115,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay.setFeedbackToUser(MESSAGE_WELCOME);
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
