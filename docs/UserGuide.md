@@ -94,7 +94,7 @@ Fig 2. Inventory & Statistics tab
 
 ### 3.4 Recipe (Bookmarks)
 
-* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe 
+* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe
   details when adding an order.
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
 * The matching of details are case insensitive where applicable.
@@ -127,7 +127,7 @@ Fig 2. Inventory & Statistics tab
 * Parameters can be in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken.<br>
   e.g. if you specify `cp/12341234 cp/56785678`, only `cp/56785678` will be taken.
 
@@ -146,7 +146,7 @@ Fig 2. Inventory & Statistics tab
   * Order Name
   * Recipe Name
   * Ingredient Unit
-  
+
 * A Phone number parameter allows up to 20 digits.
 </div>
 
@@ -186,13 +186,13 @@ Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 
 **:bookmark: Note:**<br>
 
-* <code>cp/PHONE</code> refers to a client's phone number and is unique to a client. Each phone number in the system 
+* <code>cp/PHONE</code> refers to a client's phone number and is unique to a client. Each phone number in the system
   must belong to exactly one client.
 
 </div>
 
 **Examples:**
-* `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the 
+* `add-c cn/Alex Yeoh cp/89653101 ce/alexyeoh@gmail.com ca/Choa Chu Kang St 62 Blk 123 #12-34` Adds a client with the
   following attributes:
   * Name: Alex Yeoh
   * Phone number: 89653101
@@ -226,7 +226,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 </div>
 
 **Examples:**
-*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in the currently shown client list by changing the 
+*  `edit-c 3 cn/Amy ce/Amy1234@gmail.com` Edits the third client in the currently shown client list by changing the
    name to 'Amy' and the email to 'Amy1234@gmail.com'.
 
 #### 4.3.4 Finding clients by keywords: `find-c`
@@ -287,12 +287,12 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 **:bookmark: Note:**<br>
 
 * The application does not allow duplicate ingredients to be added.
-  
-* An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the 
+
+* An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the
   application.
-  
+
 * The matching of `NAME` and `UNIT` are case insensitive.
-  
+
 * `QUANTITY` must be positive, and the largest possible input is 40000.
 
 </div>
@@ -319,7 +319,7 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed 
+* `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed
   ingredient list.
 
 * `[in/NAME], [iq/QUANTITY], [iu/UNIT]` allows you to specify the ingredient information to update. None of
@@ -342,18 +342,18 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
-  
+
 * There must be 1 or more search arguments.
-  
+
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-i in/Kiwi Chocolate</code>
-  
+
 * Partial search will be allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
-  
+
 * Ingredient `QUANTITY`:
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
-  * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of 
+  * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of
     `QUANTITY_FROM` and `QUANTITY_TO`.
   * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must 
     satisfy all 3 conditions.
@@ -365,7 +365,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 **Examples:**
 * `find-i in/co` Find ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
 * `find-i iq/20 33` Find ingredients with quantities equal to 20 or 33.
-* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for 
+* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for
   each prefix, and quantity in the specified range.
   These ingredients with the following details will be matched:
   * **Co**rn **7** **g**rams
@@ -469,13 +469,13 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed 
+* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
   order list.
-  
-* Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command 
+
+* Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command
   first before performing this command again.
-  
-* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted from 
+
+* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted from
   the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
@@ -494,7 +494,7 @@ Format: `delete-o INDEX`
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
-  
+
 * When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
   order is already marked as done, the ingredient quantities will not be added back.
 
@@ -513,12 +513,12 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 **:bookmark: Note:**<br>
 
-* `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently 
+* `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently
   displayed order list.
-  
-* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the 
+
+* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the
   currently displayed order ingredient sub-list.
-  
+
 * When an ingredient is deleted from an order, the ingredient will be added back to the inventory.
   The quantity added to the inventory will be equivalent to the deleted ingredient's quantity
   in the order multiplied by the order quantity.
@@ -540,12 +540,12 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
 **:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
-  
+
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
-  
-* To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi) 
+
+* To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
   and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
 </div>
@@ -567,26 +567,26 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 **:bookmark: Note:**<br>
 
 * The search is case-insensitive.
-  
+
 * There must be 1 or more search arguments.
-  
+
 * Multiple search keywords can be specified for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
-  
+
 * Partial search will be allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
-  
+
 * It will find orders that match at least one keyword, for each prefix.
-  
+
 * `od/ORDER_DATE` represents the order date. They must follow the format specified [above](#4-features).
-  
+
 * `of/YES_OR_NO` represents whether the order is completed.
 
 </div>
 
 **Examples:**
 * `find-o cn/al` Find orders for clients with names containing 'al'. E.g. **Al**ex, K**al**yn.
-* `find-o cp/91234567` Find orders for clients with phone numbers that contain 91234567. E.g. **91234567**, 
+* `find-o cp/91234567` Find orders for clients with phone numbers that contain 91234567. E.g. **91234567**,
   87**91234567**3421
 * `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone contains at least 1 of the
   keywords for each prefix. Any orders with the following client details will be matched:
@@ -637,16 +637,16 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_
 **:bookmark: Note:**<br>
 
 * The application does not allow duplicate recipes to be added.
-  
-* A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an 
+
+* A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an
   existing recipe in the application.
-  
+
 * The matching of fields are case insensitive.
 
 </div>
 
 **Examples:**
-* `add-r rn/Soup ri/Carrot-2-Stick, Egg-1-Whole rp/2.00` Adds a recipe named Soup, with 2 ingredients and a price of 
+* `add-r rn/Soup ri/Carrot-2-Stick, Egg-1-Whole rp/2.00` Adds a recipe named Soup, with 2 ingredients and a price of
   $2.00.
 
 #### 4.6.2 Adding a recipe ingredient: `add-ri`
@@ -659,12 +659,12 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed 
+* `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed
   recipe list.
-  
+
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
-  
+
 * Refer to [3.2 Inventory](#32-inventory) for the definition of a duplicate ingredient.
 
 </div>
@@ -699,10 +699,10 @@ Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 
 **:bookmark: Note:**<br>
 
-* `RECIPE_INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the 
+* `RECIPE_INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the
   currently displayed recipe list.
-  
-* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the recipe by specifying its position in the 
+
+* `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the recipe by specifying its position in the
   currently displayed recipe ingredient sub-list.
 
 </div>
@@ -725,7 +725,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
-* To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri) 
+* To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
   and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
 
 </div>
@@ -754,7 +754,7 @@ Format: `find-r rn/RECIPE_NAME`
 
 * Partial search will be allowed. <br>
   e.g. <code>find-r rn/Ch</code> can show recipes with names like Chicken rice and Cheesecake.
-  
+
 </div>
 
 **Examples:**
@@ -812,7 +812,7 @@ Format: `exit`
 
 ### 4.9 Saving the data
 
-BTBB will save to the hard disk automatically after execution of any command that changes the data. There is no need 
+BTBB will save to the hard disk automatically after execution of any command that changes the data. There is no need
 to save manually.
 
 ### 4.10 Editing the data file
@@ -820,7 +820,7 @@ to save manually.
 BTBB saves its data as a JSON file. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file results in the format being invalid, BTBB will discard all data and start with an 
+If your changes to the data file results in the format being invalid, BTBB will discard all data and start with an
 empty data file at the next run.
 </div>
 
@@ -829,7 +829,7 @@ empty data file at the next run.
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that 
+**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that
 contains the data of your previous BTBB home folder.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -849,7 +849,7 @@ contains the data of your previous BTBB home folder.
 * When index is negative, the application displays the `INVALID COMMAND FORMAT` error
   rather than the `index provided is invalid` error as the command format requires users
   to key in a positive number.
-  
+
 ### 6.4 Price
 * Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
@@ -869,7 +869,7 @@ contains the data of your previous BTBB home folder.
   the quantity further by deleting an existing order that uses the
   ingredient, the system will allow the deletion but inventory no
   longer tracks the ingredient properly.)
-  
+
 ### 6.6 Restrictions
 * The following parameters allow up to 50 characters (including whitespace):
   * Client Name
@@ -877,7 +877,7 @@ contains the data of your previous BTBB home folder.
   * Order Name
   * Recipe Name
   * Ingredient Unit
-  
+
 * A Phone number allows up to 20 digits.
 
 --------------------------------------------------------------------------------------------------------------------
