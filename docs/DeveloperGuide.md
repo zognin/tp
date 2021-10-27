@@ -401,6 +401,47 @@ Example of a successful outcome using the List command:
 1. The `CommandResult` created would then be passed to the Ui components, to display the updated order list and result message to the user.
 1. The app shows all orders in the order list.
 
+### Statistics feature
+
+#### Overview
+
+Statistics will always be displayed to the user.
+The following order operations can be executed to update the statistics:
+* add-o
+* delete-o
+* edit-o (with changes made to recipe price and/or client phone number and client name)
+
+#### Mechanism
+
+This is how the statistics mechanism works in general:
+
+1. User enters any order command that updates statistics.
+1. A relevant `XOrderCommandParser`, where `X` is one of the operations, parses the command to generate a `XOrderCommand`.
+1. The `XOrderCommand` is executed.
+1. `Model` updates the `UniqueOrderList` and `Storage` saves the changes.
+1. Feedback about the status of the operation is shown to the user.
+1. The relevant data is retrieved from `Model` via `Logic` and passed into a new `StatTabContent` object.
+1. `StatTab` which contains the statistic charts, is updated with the contents of the `StatTabContent`.
+
+The following sequence diagram shows how the statistics work:
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when statistics are updated through an order command:
+
+![StatsActivityDiagram](images/StatsActivityDiagram.png)
+
+Example of a successful update to statistics, by adding an order:
+
+1. The user wishes to add an order.
+1. The user executes an appropriate add order command to add an order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app adds the order and the order is shown in the list.
+1. Since the command will update the statistic charts, the new chart data is retrieved from Model.
+1. All charts are updated with the new chart data.
+
 ### Tab feature
 
 #### Overview

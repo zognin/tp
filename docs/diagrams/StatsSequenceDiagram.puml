@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant "s:StatTabContent" as StatTabContent UI_COLOR
+participant "statTab:Tab" as StatTab UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+end box
+
+[-> MainWindow : updateStatistics()
+activate MainWindow
+
+MainWindow -> Logic : getFilteredIngredientList()
+activate Logic
+
+Logic --> MainWindow
+deactivate Logic
+
+MainWindow -> Logic : getRevenueForPastTwelveMonths()
+activate Logic
+
+Logic --> MainWindow
+deactivate Logic
+
+MainWindow -> Logic : getTopTenOrderClients()
+activate Logic
+
+Logic --> MainWindow
+deactivate Logic
+
+MainWindow -> Logic : getTopTenOrderRecipes()
+activate Logic
+
+Logic --> MainWindow
+deactivate Logic
+|||
+create StatTabContent
+MainWindow -> StatTabContent
+activate StatTabContent
+
+StatTabContent -> StatTabContent : setRevenueBarChart()
+activate StatTabContent
+
+StatTabContent --> StatTabContent
+deactivate StatTabContent
+|||
+StatTabContent -> StatTabContent : setTopTenOrderClientsPieChart()
+activate StatTabContent
+
+StatTabContent --> StatTabContent
+deactivate StatTabContent
+|||
+StatTabContent -> StatTabContent : setTopTenOrderRecipesPieChart()
+activate StatTabContent
+
+StatTabContent --> StatTabContent
+deactivate StatTabContent
+
+StatTabContent --> MainWindow : s
+deactivate StatTabContent
+|||
+MainWindow -> StatTab : setContent(s.getRoot())
+activate StatTab
+
+StatTab --> MainWindow
+deactivate StatTab
+
+[<-- MainWindow
+deactivate MainWindow
+@enduml

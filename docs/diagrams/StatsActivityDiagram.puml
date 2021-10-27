@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes an order command;
+:BTBB updates storage and model;
+if () then ([is Add/Delete/Edit Order])
+  :BTBB retrieves statistics data;
+  :BTBB updates relevant charts with new data;
+
+else ([else])
+endif
+
+stop
+
+@enduml
