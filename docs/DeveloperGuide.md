@@ -267,6 +267,44 @@ Example of a successful deletion using the delete order command:
    `MainWindow#executeCommand()` and the above mechanism occurs.
 1. The app deletes the order and the order is no longer shown in the list.
 
+### Edit feature
+
+#### Overview
+
+Edit operations can be executed for the following entities: clients, orders, ingredients and recipes.
+
+#### Mechanism
+
+This is how the edit mechanism works in general:
+
+1. User enters an edit command.
+1. A relevant `EditXCommandParser`, where `X` is one of the entities, parses the command to generate a `EditXCommand`.
+1. The `EditXCommandParser` generates a relevant `XDescriptor` that contains the details of the entity `X` to be edited.
+1. The `EditXCommand` is executed. During execution, the `XDescriptor` is converted to its respective `X` entity.
+1. `Model` updates the entity.
+1. `Storage` saves the changes.
+1. Feedback about the status of the edit is shown to the user.
+
+The following sequence diagram shows how the edit order operation works. The sequence diagram for other
+entities (client, ingredient and recipe) in the model is similar. However, for edit order,
+there is an additional optional step of adding/subtracting the ingredient quantities for each matching ingredient in
+the inventory when there is a change in order quantity.
+
+![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
+
+#### Usage scenarios
+
+The following activity diagram summarizes what happens when a user executes an edit order command:
+
+![EditOrderActivityDiagram](images/EditOrderActivityDiagram.png)
+
+Example of a successful edit using the edit order command:
+
+1. The user wishes to edit an order.
+1. The user executes an appropriate edit order command to edit an order. The `commandText` is received by
+   `MainWindow#executeCommand()` and the above mechanism occurs.
+1. The app edits the order and the order is shown in the list.
+
 ### Edit ingredients in order/ recipe feature
 
 #### Overview
