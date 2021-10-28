@@ -897,7 +897,7 @@ contains the data of your previous BTBB home folder.
 ### 6.3 Index
 * When an `INDEX` directly after a command word is invalid, the application displays the `INVALID COMMAND FORMAT` error. <br>
   (e.g. edit-o -3)
-  
+
 * When an `INDEX` directly after a prefix is invalid, the application displays the `Index is not a non-zero unsigned integer` error.<br>
   (e.g. add-o c/-2 r/0 od/12-12-2022 1200)
 
