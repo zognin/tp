@@ -489,7 +489,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed 
+* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
   order list.
 
 * An ingredient already exists in an order if it has the same `NAME` and `UNIT` as an existing ingredient in the order's ingredient list.
@@ -895,7 +895,7 @@ contains the data of your previous BTBB home folder.
 * Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
 * The largest possible order price is $9,999,999.99.
-* Changes made to an existing order's quantity will not update the order price. 
+* Changes made to an existing order's quantity will not update the order price.
   (e.g. For an existing order of 1 Apple Pie, priced at $5,
   if the order has been edited to 2 Apple Pies, the price of the order remains at $5.)
 
