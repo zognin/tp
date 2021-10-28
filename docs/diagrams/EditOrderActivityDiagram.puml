@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes edit order command;
+
+if () then ([edited order quantity less than original order quantity])
+    :Adds respective ingredient quantities to ingredient list;
+else ([edited order quantity more than original order quantity])
+    :Subtracts respective ingredient quantities from ingredient list;
+endif
+
+:Model updates order in order list;
+
+:Storage saves order list after editing;
+stop
+@enduml

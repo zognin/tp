@@ -1,0 +1,107 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditOrderCommandParser" as EditOrderCommandParser LOGIC_COLOR
+participant "e:EditOrderCommand" as EditOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "od:OrderDescriptor" as OrderDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Logic : executeCommand()
+activate Logic
+
+Logic -> AddressBookParser : parseCommand()
+activate AddressBookParser
+
+create EditOrderCommandParser
+AddressBookParser -> EditOrderCommandParser
+activate EditOrderCommandParser
+
+EditOrderCommandParser --> AddressBookParser
+deactivate EditOrderCommandParser
+
+AddressBookParser -> EditOrderCommandParser : parse(args)
+activate EditOrderCommandParser
+
+create OrderDescriptor
+EditOrderCommandParser -> OrderDescriptor
+activate OrderDescriptor
+
+OrderDescriptor --> EditOrderCommandParser : od
+deactivate OrderDescriptor
+
+create EditOrderCommand
+EditOrderCommandParser -> EditOrderCommand : EditOrderCommand(od)
+activate EditOrderCommand
+
+EditOrderCommand --> EditOrderCommandParser :  e
+deactivate EditOrderCommand
+
+EditOrderCommandParser --> AddressBookParser :  e
+deactivate EditOrderCommandParser
+
+AddressBookParser --> Logic :  e
+deactivate AddressBookParser
+
+Logic -> EditOrderCommand : execute()
+activate EditOrderCommand
+
+alt edited order quantity less than original order quantity
+    loop for each ingredient
+        opt ingredient in inventory
+            EditOrderCommand -> Model : addIngredientQuantity()
+            activate Model
+
+            Model --> EditOrderCommand
+            deactivate Model
+        end
+    end
+else edited order quantity more than original order quantity
+    loop for each ingredient
+        opt ingredient in inventory
+            EditOrderCommand -> Model : minusIngredientQuantity()
+            activate Model
+
+            Model --> EditOrderCommand
+            deactivate Model
+        end
+    end
+end
+
+EditOrderCommand -> Model : setOrder()
+activate Model
+
+Model --> EditOrderCommand
+deactivate Model
+
+create CommandResult
+EditOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditOrderCommand: result
+deactivate CommandResult
+
+Logic <-- EditOrderCommand : result
+deactivate EditOrderCommand
+
+Logic -> Storage : saveAddressBook()
+activate Storage
+
+Storage --> Logic
+deactivate Storage
+
+[<-- Logic : result
+deactivate Logic
+
+@enduml
