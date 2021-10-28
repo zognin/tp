@@ -7,10 +7,10 @@
 <?import javafx.scene.control.Label?>
 
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ListView?>
 <GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
@@ -28,22 +28,19 @@
             </padding>
 
             <Label text="Statistics" styleClass="list-header"/>
+            <ListView styleClass="statistics-list-view" VBox.vgrow="ALWAYS">
+                <BarChart minWidth="450" minHeight="450" fx:id="revenueBarChart">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
 
-            <ScrollPane styleClass="statistics-scroll-pane" fitToWidth="true" fitToHeight="true">
-                <VBox spacing="25">
-                    <BarChart minWidth="450" minHeight="450" fx:id="revenueBarChart">
-                        <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis side="LEFT" />
-                        </yAxis>
-                    </BarChart>
-
-                    <PieChart minWidth="450" minHeight="450" fx:id="clientPieChart"/>
-                    <PieChart minWidth="450" minHeight="450" fx:id="recipePieChart"/>
-                </VBox>
-            </ScrollPane>
+                <PieChart minWidth="450" minHeight="450" fx:id="clientPieChart"/>
+                <PieChart minWidth="450" minHeight="450" fx:id="recipePieChart"/>
+            </ListView>
         </VBox>
     </children>
 

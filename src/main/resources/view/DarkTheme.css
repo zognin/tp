@@ -281,8 +281,25 @@
     -fx-padding: 8 1 8 1;
 }
 
+.bar-chart {
+    -fx-alternative-row-visible: false;
+    -fx-alternative-column-visible: false;
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-vertical-grid-lines-visible:false;
+    -fx-horizontal-zero-line-visible: false;
+    -fx-vertical-zero-line-visible: false;
+}
+
 .chart {
     -fx-legend-visible: false;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-pie {
+    -fx-border-color: white;
 }
 
 .chart-pie-label-line {
@@ -308,8 +325,21 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.statistics-scroll-pane{
-    -fx-background-color: transparent;
+.statistics-list-view .list-cell:filled {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 50 30 50 0;
+    -fx-border-insets: 10 10 10 0;
+    -fx-background-insets: 10 10 10 0;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-background-color: #222222;
+}
+
+.statistics-list-view .list-cell:filled:selected {
+    -fx-border-color: #9870AB;
+    -fx-border-radius: 20;
 }
 
 .default-color0.chart-bar {
@@ -318,6 +348,19 @@
 
 .axis {
     -fx-tick-label-font-family: "Open Sans Regular", "Arial";
+    -fx-minor-tick-visible: false;
+    -fx-tick-label-fill: white;
+}
+
+.axis-tick-mark {
+    -fx-stroke: white;
+}
+
+.axis:left {
+    -fx-border-color: transparent white transparent transparent;
+}
+.axis:bottom{
+    -fx-border-color: white transparent transparent;
 }
 
 .axis-label {
