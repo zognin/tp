@@ -553,8 +553,8 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 Edits an order in the application.
 
-Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
-[rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/ORDER_QUANTITY]`
+Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
+[rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -931,7 +931,7 @@ Action                      | Format
 **Edit client**             | `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 **Find client**             | `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 **List client**             | `list-c`
-**Add ingredient**          | `add-i in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
+**Add ingredient**          | `add-i in/NAME iq/QUANTITY iu/UNIT`
 **Delete ingredient**       | `delete-i INDEX`
 **Edit ingredient**         | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 **Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
