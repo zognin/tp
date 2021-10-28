@@ -895,15 +895,17 @@ contains the data of your previous BTBB home folder.
   represented as 30-12-2021 0000 in the application.
 
 ### 6.3 Index
-* When index is negative, the application displays the `INVALID COMMAND FORMAT` error
-  rather than the `index provided is invalid` error as the command format requires users
-  to key in a positive number.
+* When an `INDEX` directly after a command word is invalid, the application displays the `INVALID COMMAND FORMAT` error. <br>
+  (e.g. edit-o -3)
+  
+* When an `INDEX` directly after a prefix is invalid, the application displays the `Index is not a non-zero unsigned integer` error.<br>
+  (e.g. add-o c/-2 r/0 od/12-12-2022 1200)
 
 ### 6.4 Price
 * Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
-* The largest possible order price is $9,999,999.99.
-* Changes made to an existing order's quantity will not update the order price.
+* The largest possible order price is $99,999,999.99.
+* Changes made to an existing order's quantity will not update the order price. <br>
   (e.g. For an existing order of 1 Apple Pie, priced at $5,
   if the order has been edited to 2 Apple Pies, the price of the order remains at $5.)
 
@@ -912,7 +914,7 @@ contains the data of your previous BTBB home folder.
   application will not automatically reflect the corresponding changes
   in the inventory.
 * Ingredient quantity cannot change beyond the lower boundary of 0
-  and the upper boundary of 40000.
+  and the upper boundary of 40000. <br>
   (e.g. If the user reaches the upper boundary and tries to increase
   the quantity further by deleting an existing order that uses the
   ingredient, the system will allow the deletion but inventory no
