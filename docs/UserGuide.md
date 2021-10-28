@@ -72,7 +72,7 @@ Fig 2. Inventory & Statistics tab
 
 * Client bookmarks are client information that can be copied to an order's client details when adding an order.
 * Client bookmarks are considered duplicates when they have the same phone number.
-* Client Bookmarks may also be referred to as Clients for simplicity.
+* Client bookmarks may also be referred to as Clients for simplicity.
 * Client bookmarks are sorted in ascending alphabetical order of client name.
   Uppercase letters appear before lowercase letters.
 
@@ -98,7 +98,7 @@ Fig 2. Inventory & Statistics tab
   details when adding an order.
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
 * The matching of details are case insensitive where applicable.
-* Recipe Bookmarks may also be referred to as Recipes for simplicity.
+* Recipe bookmarks may also be referred to as Recipes for simplicity.
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
@@ -208,6 +208,12 @@ Deletes a client from the application.
 
 Format: `delete-c INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+* `INDEX` allows you to choose which client to delete by specifying its position in the currently displayed client list.
+
+</div>
+
 **Examples:**
 * `delete-c 1` Deletes the client at index 1 in the client list currently shown.
 
@@ -226,8 +232,8 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 * `[cn/NAME], [cp/PHONE], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
   them are mandatory, but at least one must be specified.
 
-* The updated client must not be a duplicate of an existing client in the client bookmarks. <br>
-  i.e. Updated client and existing client must not have the same `PHONE`.
+* The updated client must not be a duplicate of another existing client in the client bookmarks. <br>
+  i.e. Updated client and the other existing client must not have the same `PHONE`.
 
 </div>
 
@@ -260,10 +266,10 @@ Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 </div>
 
 **Examples:**
-* `find-c cn/al` Find clients with names containing 'al'. E.g. **Al**ex, Abig**al**e.
-* `find-c cp/22312` Find clients with phone numbers containing 22312. E.g. 9**22312**11.
-* `find-c cn/Al Ice cp/9123 923111` Find clients whose name and phone contains at least 1 of the
-  keywords for each prefix. Any clients with the following details will be matched:
+* `find-c cn/al` Finds clients with names containing 'al'. E.g. **Al**ex, Abig**al**e.
+* `find-c cp/22312` Finds clients with phone numbers containing 22312. E.g. 9**22312**11.
+* `find-c cn/Al Ice cp/9123 923111` Finds clients whose name and phone contains at least 1 of the
+  keywords for each prefix. Any client with the following details will be matched:
   * **Al**ex **9123**1100
   * Bern**ice** 98**9123**45
   * **Al**ex **923111**97
@@ -312,6 +318,12 @@ Deletes an ingredient from the application.
 
 Format: `delete-i INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+* `INDEX` allows you to choose which ingredient to delete by specifying its position in the currently displayed inventory.
+
+</div>
+
 **Examples:**
 * `delete-i 1` Deletes the ingredient at index 1 in the ingredient list currently shown.
 
@@ -325,14 +337,13 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed
-  ingredient list.
+* `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed inventory.
 
 * `[in/NAME], [iq/QUANTITY], [iu/UNIT]` allows you to specify the ingredient information to update. None of
   them are mandatory, but at least one must be specified.
 
-* The updated ingredient must not be a duplicate of an existing ingredient in the inventory. <br>
-  i.e. Updated ingredient and existing ingredient must not have the same `NAME` and `UNIT`.
+* The updated ingredient must not be a duplicate of another existing ingredient in the inventory. <br>
+  i.e. Updated ingredient and the other existing ingredient must not have the same `NAME` and `UNIT`.
 
 </div>
 
@@ -372,9 +383,9 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 </div>
 
 **Examples:**
-* `find-i in/co` Find ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
-* `find-i iq/20 33` Find ingredients with quantities equal to 20 or 33.
-* `find-i in/co eg iqf/7 iqt/19 iu/g` Find ingredients with name and unit containing at least 1 of the keywords for
+* `find-i in/co` Finds ingredients with names containing 'co'. E.g. **Co**rn, Ba**co**n.
+* `find-i iq/20 33` Finds ingredients with quantities equal to 20 or 33.
+* `find-i in/co eg iqf/7 iqt/19 iu/g` Finds ingredients with name and unit containing at least 1 of the keywords for
   each prefix, and quantity in the specified range.
   These ingredients with the following details will be matched:
   * **Co**rn **7** **g**rams
@@ -468,7 +479,7 @@ Fig 8. Adding an order using a recipe index
 Fig 9. Adding an order using both client and recipe indexes
 {:.caption}
 
-#### 4.5.2 Adding an order ingredient: `add-oi`
+### 4.5.2 Adding an order ingredient: `add-oi`
 
 Adds an ingredient to an order in the application.
 
@@ -478,15 +489,15 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
+* `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed 
   order list.
 
-* An ingredient already exists in the inventory if it has the same `NAME` and `UNIT` as an existing ingredient in the inventory.
+* An ingredient already exists in an order if it has the same `NAME` and `UNIT` as an existing ingredient in the order's ingredient list.
 
 * Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command
-  first before performing this command again.
+  before performing this command again.
 
-* If the ingredient to be added already exists in the inventory, the quantity deducted from
+* If the added ingredient [exists in the inventory](#32-inventory), the quantity deducted from
   the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
@@ -506,8 +517,8 @@ Format: `delete-o INDEX`
 
 * `INDEX` allows you to choose which order to delete by specifying its position in the currently displayed order list.
 
-* When an order is deleted from the list, the ingredient quantities are added back to the inventory. However, if the
-  order is already marked as done, the ingredient quantities will not be added back.
+* When an order is deleted from the list, its ingredient quantities are added back to matching ingredients in the inventory. However, if the
+  order is already marked as done, its ingredient quantities will not be added back.
 
 </div>
 
@@ -530,9 +541,8 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the
   currently displayed order ingredient sub-list.
 
-* When an ingredient is deleted from an order, the ingredient will be added back to the inventory.
-  The quantity added to the inventory will be equivalent to the deleted ingredient's quantity
-  in the order multiplied by the order quantity.
+* If the deleted ingredient [exists in the inventory](#32 Inventory), the quantity added back to the inventory will
+  be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
 
@@ -556,8 +566,8 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
 
-* The updated order must not be a duplicate of an existing order in the orders list. <br>
-  i.e. Updated order and existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
+* The updated order must not be a duplicate of another existing order in the orders list. <br>
+  i.e. Updated order and the other existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
 
 * To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
   and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
@@ -599,10 +609,10 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 </div>
 
 **Examples:**
-* `find-o cn/al` Find orders for clients with names containing 'al'. E.g. **Al**ex, K**al**yn.
-* `find-o cp/91234567` Find orders for clients with phone numbers that contain 91234567. E.g. **91234567**,
+* `find-o cn/al` Finds orders for clients with names containing 'al'. E.g. **Al**ex, K**al**yn.
+* `find-o cp/91234567` Finds orders for clients with phone numbers that contain 91234567. E.g. **91234567**,
   87**91234567**3421
-* `find-o cn/Alex David cp/9123 9231` Find orders for clients whose name and phone contains at least 1 of the
+* `find-o cn/Alex David cp/9123 9231` Finds orders for clients whose name and phone contains at least 1 of the
   keywords for each prefix. Any orders with the following client details will be matched:
   * **Alex** **9123**1100
   * **David** 8912**9123**
@@ -615,20 +625,32 @@ Lists all orders in the application.
 
 Format: `list-o`
 
-#### 4.5.8 Mark an order as done: `done-o`
+#### 4.5.8 Marking an order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
 Format: `done-o INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+* `INDEX` allows you to choose which order to mark as done by specifying its position in the currently displayed order list.
+
+</div>
+
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 4.5.9 Mark an order as undone: `undone-o`
+#### 4.5.9 Marking an order as undone: `undone-o`
 
 Mark order as undone.
 
 Format: `undone-o INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+* `INDEX` allows you to choose which order to mark as undone by specifying its position in the currently displayed order list.
+
+</div>
 
 **Examples:**
 * `undone-o 1` Marks the order at index 1 in the order list currently shown as undone.
@@ -741,8 +763,8 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
-* The updated recipe must not be a duplicate of an existing recipe in the recipe bookmarks. <br>
-  i.e. Updated recipe and existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
+* The updated recipe must not be a duplicate of another existing recipe in the recipe bookmarks. <br>
+  i.e. Updated recipe and the other existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
 
 * To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
   and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
@@ -777,7 +799,7 @@ Format: `find-r rn/RECIPE_NAME`
 </div>
 
 **Examples:**
-* `find-r rn/Chicken rice` Find recipes with a name that contains at least 1 of the
+* `find-r rn/Chicken rice` Finds recipes with a name that contains at least 1 of the
   keywords for each prefix. Any recipes with the following names will be matched:
   * Teriyaki **Chicken**
   * **Chicken** **Rice**
@@ -873,6 +895,9 @@ contains the data of your previous BTBB home folder.
 * Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
 * The largest possible order price is $9,999,999.99.
+* Changes made to an existing order's quantity will not update the order price. 
+  (e.g. For an existing order of 1 Apple Pie, priced at $5,
+  if the order has been edited to 2 Apple Pies, the price of the order remains at $5.)
 
 ### 6.5 Quantities
 * If any quantity field in orders is changed in the JSON file, the
@@ -915,7 +940,7 @@ Action                      | Format
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
-**Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
+**Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
 **Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
