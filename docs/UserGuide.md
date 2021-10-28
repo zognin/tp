@@ -187,6 +187,8 @@ Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 
 **:bookmark: Note:**<br>
 
+* Client bookmarks are considered duplicates when they have the same `PHONE`.
+
 * <code>cp/PHONE</code> refers to a client's phone number and is unique to a client. Each phone number in the system
   must belong to exactly one client.
 
@@ -223,6 +225,9 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 * `[cn/NAME], [cp/PHONE], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
   them are mandatory, but at least one must be specified.
+
+* The updated client must not be a duplicate of an existing client in the client bookmarks. <br>
+  i.e. Updated client and existing client must not have the same `PHONE`.
 
 </div>
 
@@ -325,6 +330,9 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 * `[in/NAME], [iq/QUANTITY], [iu/UNIT]` allows you to specify the ingredient information to update. None of
   them are mandatory, but at least one must be specified.
+
+* The updated ingredient must not be a duplicate of an existing ingredient in the inventory. <br>
+  i.e. Updated ingredient and existing ingredient must not have the same `NAME` and `UNIT`.
 
 </div>
 
@@ -473,10 +481,12 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
   order list.
 
+* An ingredient already exists in the inventory if it has the same `NAME` and `UNIT` as an existing ingredient in the inventory.
+
 * Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command
   first before performing this command again.
 
-* If the ingredient to be added already exists in the inventory (see [here](#32-inventory)), the quantity deducted from
+* If the ingredient to be added already exists in the inventory, the quantity deducted from
   the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
@@ -545,6 +555,9 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but at least one must be specified.
+
+* The updated order must not be a duplicate of an existing order in the orders list. <br>
+  i.e. Updated order and existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
 
 * To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
   and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
@@ -663,6 +676,8 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed
   recipe list.
 
+* An ingredient already exists in the inventory if it has the same `NAME` and `UNIT` as an existing ingredient in the inventory.
+
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
 
@@ -725,6 +740,9 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 * `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
+
+* The updated recipe must not be a duplicate of an existing recipe in the recipe bookmarks. <br>
+  i.e. Updated recipe and existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
 
 * To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
   and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
