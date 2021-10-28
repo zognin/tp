@@ -479,7 +479,7 @@ Fig 8. Adding an order using a recipe index
 Fig 9. Adding an order using both client and recipe indexes
 {:.caption}
 
-### 4.5.2 Adding an order ingredient: `add-oi`
+#### 4.5.2 Adding an order ingredient: `add-oi`
 
 Adds an ingredient to an order in the application.
 
@@ -492,7 +492,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
   order list.
 
-* An ingredient already exists in an order if it has the same `NAME` and `UNIT` as an existing ingredient in the order's ingredient list.
+* An ingredient already exists in an order if it has the same `NAME` and `UNIT` as an existing ingredient in the order's ingredient sub-list.
 
 * Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command
   before performing this command again.
