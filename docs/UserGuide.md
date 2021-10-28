@@ -210,6 +210,8 @@ Format: `delete-c INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
+**:bookmark: Note:**<br>
+
 * `INDEX` allows you to choose which client to delete by specifying its position in the currently displayed client list.
 
 </div>
@@ -319,6 +321,8 @@ Deletes an ingredient from the application.
 Format: `delete-i INDEX`
 
 <div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which ingredient to delete by specifying its position in the currently displayed inventory.
 
@@ -633,6 +637,8 @@ Format: `done-o INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
+**:bookmark: Note:**<br>
+
 * `INDEX` allows you to choose which order to mark as done by specifying its position in the currently displayed order list.
 
 </div>
@@ -647,6 +653,8 @@ Marks order as undone.
 Format: `undone-o INDEX`
 
 <div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
 
 * `INDEX` allows you to choose which order to mark as undone by specifying its position in the currently displayed order list.
 
