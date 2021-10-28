@@ -541,7 +541,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the
   currently displayed order ingredient sub-list.
 
-* If the deleted ingredient [exists in the inventory](#32 Inventory), the quantity added back to the inventory will
+* If the deleted ingredient [exists in the inventory](#32-inventory), the quantity added back to the inventory will
   be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
 </div>
@@ -582,7 +582,7 @@ Format: `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CL
 
 #### 4.5.6 Finding orders by keywords: `find-o`
 
-Find order(s) with attribute(s) that contains the keyword(s).
+Finds order(s) with attribute(s) that contains the keyword(s).
 
 Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 
@@ -627,7 +627,7 @@ Format: `list-o`
 
 #### 4.5.8 Marking an order as done: `done-o`
 
-Mark order as done once it has been delivered to the client.
+Marks order as done once it has been delivered to the client.
 
 Format: `done-o INDEX`
 
@@ -642,7 +642,7 @@ Format: `done-o INDEX`
 
 #### 4.5.9 Marking an order as undone: `undone-o`
 
-Mark order as undone.
+Marks order as undone.
 
 Format: `undone-o INDEX`
 
@@ -777,7 +777,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 #### 4.6.6 Finding recipe by keywords: `find-r`
 
-Find recipe(s) with attribute(s) that contains the keyword(s). <br>
+Finds recipe(s) with attribute(s) that contains the keyword(s). <br>
 Recipes can only be found using recipe name.
 
 Format: `find-r rn/RECIPE_NAME`
