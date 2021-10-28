@@ -43,13 +43,13 @@ manoeuvre through client and order details. If you are looking for an easy solut
    * **`help`** : Opens the help window
    * **`list-c`** : Lists all clients.
 
-6. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [4 Features](#4-features) below for details of each command.
 
 ### 2.2 Layout
 The user interface of BobTheBistroBoss is divided into 2 tabs.
 
 #### 2.2.1 Home Tab
-Displays [orders](#33-order), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
+Displays [3.3 orders](#33-orders), [3.1 client bookmarks](#31-client-bookmarks) and [3.4 recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
@@ -57,7 +57,7 @@ Fig 1. Home tab
 {:.caption}
 
 #### 2.2.2 Inventory & Statistics Tab
-Displays [inventory](#32-inventory) and [statistics](#35-statistics).
+Displays [3.2 inventory](#32-inventory) and [3.5 statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
@@ -140,9 +140,9 @@ Fig 2. Inventory & Statistics tab
 * The format of all deadline fields is `dd-MM-yyyy HHmm`.<br>
   e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 
-* A Phone number parameter allows up to 20 digits.
+* The format of all phone parameters is a series of up to 20 digits with no spacing between digits.
 
-* The following parameters allow up to 50 characters (including whitespace):
+* The following parameters allow up to 50 characters (including spaces):
   * Client Name
   * Ingredient Name
   * Order Name
@@ -153,7 +153,7 @@ Fig 2. Inventory & Statistics tab
 
 ### 4.1 Viewing help : `help`
 
-Displays all commands and their format.
+Displays a help window with the url to BTBB's User Guide.
 
 Format: `help`
 
@@ -358,7 +358,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
   * keywords for `QUANTITY_FROM `and `QUANTITY_TO` finds ingredients with a quantity in the range, inclusive of
     `QUANTITY_FROM` and `QUANTITY_TO`.
-  * If keywords are given for both `QUANTITY` and both `QUANTITY_FROM` and `QUANTITY_TO`, then found ingredients must
+  * If keywords are given for `QUANTITY`, `QUANTITY_FROM` and `QUANTITY_TO`, then the matching ingredients found will
     satisfy all 3 conditions.
 
 </div>
@@ -602,7 +602,7 @@ Lists all orders in the application.
 
 Format: `list-o`
 
-#### 4.5.8 Marking an order as done: `done-o`
+#### 4.5.8 Mark an order as done: `done-o`
 
 Mark order as done once it has been delivered to the client.
 
@@ -611,7 +611,7 @@ Format: `done-o INDEX`
 **Examples:**
 * `done-o 1` Marks the order at index 1 in the order list currently shown as done.
 
-#### 4.5.9 Marking an order as undone: `undone-o`
+#### 4.5.9 Mark an order as undone: `undone-o`
 
 Mark order as undone.
 
@@ -854,32 +854,28 @@ contains the data of your previous BTBB home folder.
 ### 6.4 Price
 * Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
-* The largest possible order price is $9 999 999.99.
+* The largest possible order price is $9,999,999.99.
 
 ### 6.5 Quantities
 * If any quantity field in orders is changed in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
-* If the quantity attribute has been changed in a command such that
-  it exceeds the lower bound 0 or the upper bound 40000, they will be
-  capped off to the respective bounds. For example, if the quantity has
-  been changed to -30, it will be capped off to 0. Likewise, if the
-  quantity has been changed to 50000, it will be capped off to 40000.
-* Ingredient quantity cannot change beyond the min and max cap.
+* Ingredient quantity cannot change beyond the lower boundary of 0
+  and the upper boundary of 40000.
   (e.g. If the user reaches the upper boundary and tries to increase
   the quantity further by deleting an existing order that uses the
   ingredient, the system will allow the deletion but inventory no
   longer tracks the ingredient properly.)
 
 ### 6.6 Restrictions
+* A Phone number allows up to 20 digits.
+
 * The following parameters allow up to 50 characters (including whitespace):
   * Client Name
   * Ingredient Name
   * Order Name
   * Recipe Name
   * Ingredient Unit
-
-* A Phone number allows up to 20 digits.
 
 --------------------------------------------------------------------------------------------------------------------
 
