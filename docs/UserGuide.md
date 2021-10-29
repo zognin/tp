@@ -24,6 +24,30 @@ information from inventory to order records for delivery can be a hassle if you 
 application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
 manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
 
+### 1.2 Navigating the user guide
+
+This user guide aims to equip you with the necessary knowledge so that you can fully utilize BTBB.
+
+If you have yet to install the application head to [Section 2. "Quick start"](#2-quick-start) to get started!
+
+[Section 3. "Overview of Features"](#3-overview-of-features) will help you to get a high level overview of what
+features are available in BTBB. For more in depth information on the available features, head to
+[Section 4. "Features"](#4-features).
+
+If you have any questions regarding BTBB, check out [Section 5. "FAQ"](#5-faq) for answers to frequently asked questions.
+
+[Section 6. "Disclaimers"](#6-disclaimers) contains general disclaimers for our app such as restrictions on inputs and
+additional details regarding the command format.
+
+Lastly, if you are an experienced user that is looking for a refresher on the available commands, do check out
+[Section 7. "Command Summary"](#7-command-summary) for a summary of all the commands that BTBB currently supports.
+
+<div markdown="block" class="alert alert-info">
+
+`Words or phrases in code blocks like this are for user inputs or input parameters.`
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
