@@ -601,7 +601,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Edit client details</td>
+    <td>Edit clients</td>
     <td>I can update their contact information</td>
   </tr>
   <tr>
@@ -656,6 +656,11 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
+    <td>Detect duplicate orders</td>
+    <td>I do not clutter the application with duplicate orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
     <td>Mark an order as done</td>
     <td>I can set the status of an order</td>
   </tr>
@@ -701,18 +706,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my least popular recipes</td>
-    <td>I can spend less time refining my skills for those recipes</td>
-  </tr>
-  <tr>
-    <td>HIGH</td>
     <td>View my monthly revenue</td>
     <td>I can tell if my business is growing</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my most popular clients</td>
-    <td>I can reinforce business relationships with my popular clients</td>
+    <td>View my most frequent clients</td>
+    <td>I can reinforce business relationships with my frequent clients</td>
   </tr>
 </table>
 
@@ -864,7 +864,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
     * 2a1. BTBB informs Home Chef that order already exist.
 
       Use case ends.
-    
+
 * 2b. BTBB detects an error in the entered data.
     * 2b1. BTBB informs Home Chef why deletion of ingredient failed.
 
@@ -952,7 +952,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
     * 2a1. BTBB informs Home Chef why deletion of order failed.
 
       Use case ends.
-    
+
 **Use case: UC14 View all orders**
 
 **MSS**
@@ -962,7 +962,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 3.  BTBB displays all orders.
 
     Use case ends.
-    
+
 **Use case: UC15 Edit order**
 
 **MSS**
@@ -984,7 +984,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
     * 2b1. BTBB informs Home Chef why editing of order failed.
 
       Use case ends.
-    
+
 **Use case: UC16 Mark order as done**
 
 **MSS**
@@ -1031,7 +1031,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 * 2a. Recipe entered already exists in the system.
     * 2a1. BTBB informs Home Chef that recipe already exist.
-	 
+
       Use Case ends.
 
 * 2b. BTBB detects an error in the entered data.
