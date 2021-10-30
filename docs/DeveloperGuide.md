@@ -749,7 +749,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Home Chef chooses to find a client by a field.
 2.  Home Chef enters search terms in required format.
-3.  BTBB displays all clients that match the terms.
+3.  BTBB displays all client(s) that match the terms.
 
     Use case ends.
 
@@ -837,7 +837,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Home Chef chooses to find an ingredient by a field.
 2.  Home Chef enters search terms in required format.
-3.  BTBB displays all ingredient(s)) that match the terms.
+3.  BTBB displays all ingredient(s) that match the terms.
 
     Use case ends.
 
@@ -925,7 +925,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1. Home Chef chooses to find an order by a field.
 2. Home Chef enters search terms in required format.
-3. BTBB displays all orders that match the terms.
+3. BTBB displays all order(s) that match the terms.
 
    Use case ends.
 
@@ -1045,7 +1045,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1. Home Chef chooses to find a recipe by a field.
 2. Home Chef enters search terms in required format.
-3. BTBB displays all recipes that match the terms.
+3. BTBB displays all recipe(s) that match the terms.
 
    Use case ends.
 
