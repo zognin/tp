@@ -37,7 +37,8 @@ features are available in BTBB. For more in depth information on the available f
 If you have any questions regarding BTBB, check out [FAQ](#5-faq) for answers to frequently asked questions.
 
 [Disclaimers](#6-disclaimers) contains general disclaimers for our app such as restrictions on inputs and
-additional details regarding the command format.
+additional details regarding the command format. **It is important to read this section before reading the rest of the
+user guide so that you are aware about these restrictions and additional details.**
 
 Lastly, if you are an experienced user that is looking for a refresher on the available commands, do check out
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
@@ -52,7 +53,7 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 
 1. Ensure you have Java version 11 or above installed in your Computer. You may install the latest version of Java [here](https://www.oracle.com/java/technologies/downloads/).
 
-2. Download the jar file of the application.
+2. Download the latest jar file from our [releases page](https://github.com/AY2122S1-CS2103T-W16-2/tp/releases).
 
 3. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
 
