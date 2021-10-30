@@ -734,7 +734,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that client already exists.
+    * 2a1. BTBB informs Home Chef that client already exist.
 
       Use case ends.
 
@@ -800,7 +800,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs user that client already exists.
+    * 2a1. BTBB informs user that client already exist.
 
       Use case ends.
 
@@ -822,7 +822,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exists.
+    * 2a1. BTBB informs user that ingredient already exist.
 
       Use case ends.
 
@@ -888,7 +888,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exists.
+    * 2a1. BTBB informs user that ingredient already exist.
 
       Use case ends.
 
