@@ -138,9 +138,9 @@ The `Model` component,
   * a `UniqueIngredientList` containing `Ingredient`s.
   * a `UniqueOrderList` containing `Order`s.
   * a `UniqueOrderList` containing `Recipe`s.
-* displays an unmodifiable `ObservableList<Client>`, `ObservableList<Ingredient>`, `ObservableList<Order>` and
-  `ObservableList<Recipe>` which can be observed. This allows the UI to automatically update the displayed list when
-  the data in the list is modified.
+* exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Ingredient>`, `ObservableList<Order>` and
+  `ObservableList<Recipe>` which can be observed by the UI. This allows the UI to automatically update the displayed
+  list when the data in the list is modified.
 * does not depend on any of the other three components (`Ui`, `Logic`, `Storage`).
 
 ### Storage component
