@@ -1028,7 +1028,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 | oq/    | ORDER_QUANTITY           | Order           |
 | r/     | RECIPE_INDEX             | Recipe          |
 | ri/    | RECIPE_INGREDIENT        | Recipe          |
-| rn/    | RECIPE_PRICE             | Recipe          |
+| rp/    | RECIPE_PRICE             | Recipe          |
 | rn/    | RECIPE_NAME              | Recipe          |
 
 --------------------------------------------------------------------------------------------------------------------
