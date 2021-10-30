@@ -985,21 +985,27 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1. Usability Requirements:
     * Should work on systems with Java 11 and above.
     * Should work on Windows, Linux and macOS.
+    * Should work fully offline without access to the internet.
+    * Cannot be used on mobile phones.
+    * Should work smoothly in English, there is no guarantees for other languages
 
 2. Business/Domain Requirements:
     * All quantities in the application are from 0 to 40000.
 
 3. Data Requirements:
     * Data of clients, orders and ingredients should persist after the app closes.
+    * Should work for 20000 orders.
+    * Data should be transferable from 1 computer to another.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux and macOS
-* **BTBB**: BobTheBistroBoss
-* **Client**: Client information that can be copied to orders
-* **Ingredient**: Ingredient information that is stored in inventory and orders
-* **Inventory**: Keeps track of ingredients and their quantities
-* **Order**: Meal order sold to a client
+* **Mainstream OS**: Windows, Linux and macOS.
+* **BTBB**: BobTheBistroBoss.
+* **Client**: Client information that can be copied to orders.
+* **Ingredient**: Ingredient information that is stored in inventory and orders.
+* **Inventory**: Keeps track of ingredients and their quantities.
+* **Order**: Meal order sold to a client.
+* **Recipe**: Recipe information that can be copied to orders.
 
 #### Prefix Glossary
 
@@ -1020,7 +1026,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 | of/    | ORDER_FINISHED           | Order           |
 | op/    | ORDER_PRICE              | Order           |
 | oq/    | ORDER_QUANTITY           | Order           |
+| r/     | RECIPE_INDEX             | Recipe          |
 | ri/    | RECIPE_INGREDIENT        | Recipe          |
+| rn/    | RECIPE_PRICE             | Recipe          |
 | rn/    | RECIPE_NAME              | Recipe          |
 
 --------------------------------------------------------------------------------------------------------------------
