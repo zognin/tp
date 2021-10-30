@@ -57,6 +57,8 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 
 3. Copy the jar file to an empty folder. This will be the _home folder_ for BTBB.
 
+4. Launch BobTheBistroBoss by double clicking on the jar file.
+
 ### 2.2 Layout
 
 The user interface of BobTheBistroBoss is divided into 2 tabs.
@@ -82,8 +84,7 @@ Fig 2. Inventory & Statistics tab
 ### 2.3 Creating your first order
 
 This is a step-by-step guide to creating your first order. If you have not installed BobTheBistroBoss, you
-may do so by following the instructions [here](#21-installation). Start the application by double-clicking on the
-jar file that you have installed.
+may do so by following the instructions [here](#21-installation).
 
 For this guide, we will simulate the following scenario:
 
