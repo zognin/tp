@@ -985,16 +985,16 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 1. Usability Requirements:
     * Should work on systems with Java 11 and above.
     * Should work on Windows, Linux and macOS.
-    * Should work fully offline without access to the internet.
+    * Should function fully offline without access to the internet.
     * Cannot be used on mobile phones.
-    * Should work smoothly in English, there is no guarantees for other languages
+    * Should function smoothly in English, there is no guarantees for other languages
 
 2. Business/Domain Requirements:
     * All quantities in the application are from 0 to 40000.
 
 3. Data Requirements:
     * Data of clients, orders and ingredients should persist after the app closes.
-    * Should work for 20000 orders.
+    * Should be able to handle up to 20000 orders.
     * Data should be transferable from 1 computer to another.
 
 ### Glossary
