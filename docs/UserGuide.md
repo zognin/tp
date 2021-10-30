@@ -163,6 +163,9 @@ Fig 2. Inventory & Statistics tab
 
 * The format of all phone parameters is a series of up to 20 digits with no spacing between digits.
 
+* Address fields allow non-empty inputs(inputs that contain non-whitespace characters) with unlimited length and 
+  no restriction on the type of characters.
+
 * The following parameters allow up to 50 characters (including spaces):
   * Client Name
   * Ingredient Name
