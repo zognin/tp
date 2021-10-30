@@ -24,6 +24,27 @@ information from inventory to order records for delivery can be a hassle if you 
 application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
 manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
 
+### 1.2 Navigating the user guide
+
+This user guide aims to equip you with the necessary knowledge so that you can fully utilize BTBB.
+
+If you have yet to install the application, head to [Quick start](#2-quick-start) to get started!
+
+[Overview of Features](#3-overview-of-features) will help you to get a high level overview of what
+features are available in BTBB. For more in depth information on the available features, head to
+[Features](#4-features).
+
+If you have any questions regarding BTBB, check out [FAQ](#5-faq) for answers to frequently asked questions.
+
+[Disclaimers](#6-disclaimers) contains general disclaimers for our app such as restrictions on inputs and
+additional details regarding the command format. **It is important to read this section before reading the rest of the
+user guide so that you are aware about these restrictions and additional details.**
+
+Lastly, if you are an experienced user that is looking for a refresher on the available commands, do check out
+[Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
+
+`Words or phrases in code blocks like this are for user inputs or input parameters.`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
@@ -32,7 +53,7 @@ manoeuvre through client and order details. If you are looking for an easy solut
 
 1. Ensure you have Java version 11 or above installed in your Computer. You may install the latest version of Java [here](https://www.oracle.com/java/technologies/downloads/).
 
-2. Download the jar file of the application.
+2. Download the latest jar file from our [releases page](https://github.com/AY2122S1-CS2103T-W16-2/tp/releases).
 
 3. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
 
@@ -43,13 +64,13 @@ manoeuvre through client and order details. If you are looking for an easy solut
    * **`help`** : Opens the help window
    * **`list-c`** : Lists all clients.
 
-6. Refer to the [4 Features](#4-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
 
 ### 2.2 Layout
 The user interface of BobTheBistroBoss is divided into 2 tabs.
 
 #### 2.2.1 Home Tab
-Displays [3.3 orders](#33-orders), [3.1 client bookmarks](#31-client-bookmarks) and [3.4 recipe bookmarks](#34-recipe-bookmarks).
+Displays [orders](#33-orders), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
 
@@ -57,7 +78,7 @@ Fig 1. Home tab
 {:.caption}
 
 #### 2.2.2 Inventory & Statistics Tab
-Displays [3.2 inventory](#32-inventory) and [3.5 statistics](#35-statistics).
+Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
@@ -573,8 +594,8 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * The updated order must not be a duplicate of another existing order in the orders list. <br>
   i.e. Updated order and the other existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
 
-* To edit an order's ingredient list, refer to [4.5.2 Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
-  and [4.5.4 Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
+* To edit an order's ingredient list, refer to [Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
+  and [Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
 </div>
 
@@ -711,7 +732,7 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
 
-* Refer to [3.2 Inventory](#32-inventory) for the definition of a duplicate ingredient.
+* Refer to [Inventory](#32-inventory) for the definition of a duplicate ingredient.
 
 </div>
 
@@ -774,8 +795,8 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * The updated recipe must not be a duplicate of another existing recipe in the recipe bookmarks. <br>
   i.e. Updated recipe and the other existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
 
-* To edit a recipe's ingredient list, refer to [4.6.2 Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
-  and [4.6.4 Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
+* To edit a recipe's ingredient list, refer to [Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
+  and [Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
 
 </div>
 
