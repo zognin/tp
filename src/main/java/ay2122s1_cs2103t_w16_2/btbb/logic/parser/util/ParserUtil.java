@@ -29,7 +29,7 @@ import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index. Index should be a positive whole number.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
     public static final String MESSAGE_INVALID_DATE = "Date should be a valid date in dd-mm-yyyy format";
 
