@@ -734,7 +734,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that client already exist.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
@@ -800,7 +800,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that client already exist.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
@@ -822,7 +822,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
@@ -861,7 +861,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Order entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that order already exist.
+    * 2a1. BTBB informs Home Chef that order already exists.
 
       Use case ends.
 
@@ -893,7 +893,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
@@ -976,7 +976,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Order entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that order already exist.
+    * 2a1. BTBB informs Home Chef that order already exists.
 
       Use case ends.
 
@@ -1030,7 +1030,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Recipe entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that recipe already exist.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
 
       Use Case ends.
 
@@ -1096,7 +1096,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Recipe entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that recipe already exist.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
 
       Use case ends.
 
