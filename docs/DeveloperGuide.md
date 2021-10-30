@@ -145,7 +145,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
