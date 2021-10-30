@@ -55,21 +55,14 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 
 2. Download the latest jar file from our [releases page](https://github.com/AY2122S1-CS2103T-W16-2/tp/releases).
 
-3. Copy the file to an empty folder. This will be the _home folder_ for BTBB.
-
-4. Double-click the file to start the application.
-
-5. Type any command in the command box and press the Enter key to execute it.<br>
-   Some example commands you can try:
-   * **`help`** : Opens the help window
-   * **`list-c`** : Lists all clients.
-
-6. Refer to the [Features](#4-features) below for details of each command.
+3. Copy the jar file to an empty folder. This will be the _home folder_ for BTBB.
 
 ### 2.2 Layout
+
 The user interface of BobTheBistroBoss is divided into 2 tabs.
 
 #### 2.2.1 Home Tab
+
 Displays [orders](#33-orders), [client bookmarks](#31-client-bookmarks) and [recipe bookmarks](#34-recipe-bookmarks).
 
 ![Home tab](images/product-screenshots/general/HomeTab.png)
@@ -78,12 +71,97 @@ Fig 1. Home tab
 {:.caption}
 
 #### 2.2.2 Inventory & Statistics Tab
+
 Displays [inventory](#32-inventory) and [statistics](#35-statistics).
 
 ![Inventory & Statistics tab](images/product-screenshots/general/BarChart.png)
 
 Fig 2. Inventory & Statistics tab
 {:.caption}
+
+### 2.3 Creating your first order
+
+This is a step-by-step guide to creating your first order. If you have not installed BobTheBistroBoss, you
+may do so by following the instructions [here](#21-installation). Start the application by double-clicking on the
+jar file that you have installed.
+
+For this guide, we will simulate the following scenario:
+
+John Doe wishes to place two orders, one on 10 October 2021 and the other on 11 October 2021. Both of these orders are
+to be delivered at 12pm. For both of these orders, he will require 3 tuna sandwiches. Each tuna sandwich will be priced
+at $2.
+
+Here are the details of John Doe:
+* Name: John Doe
+* Phone Number: 92345678
+* Email: johndoe@gmail.com
+* Address: Blk 422, Bedok North Road, #15-25
+
+Here are the ingredients that will be used for the tuna sandwich:
+
+* 2 slices of bread
+* 1 slice of cheese
+* 1 can of tuna
+
+Here are the quantities of the respective ingredients in our inventory:
+
+* 100 slices of bread
+* 100 slices of cheese
+* 100 cans of tuna
+
+#### 2.3.1 Approach 1
+
+We can proceed to add the first order on 10 October 2021 by entering the following
+command in the command box at the bottom of the app:
+
+`add-o cn/John Doe cp/92345678 ca/Blk 422, Bedok North Road, #15-25 rn/Tuna Sandwich ri/Bread-2-slices,Cheese-1-slices,Tuna-1-cans op/6 oq/3 od/10-10-2021 1200`
+
+You will notice that the order has been added at the 4th index in the Orders list. However, this is not the
+recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does not
+allow you to track ingredients in your inventory. We will now add the second order using our recommended approach.
+
+#### 2.3.2 Approach 2 (Recommended)
+
+Firstly, switch over to the Inventory & Statistics tab by entering the following command:
+
+`tab 2`
+
+Now, we will proceed to add our 3 ingredients to the inventory by entering the following commands:
+
+`add-i in/Bread iq/100 iu/slices`
+
+`add-i in/Cheese iq/100 iu/slices`
+
+`add-i in/Tuna iq/100 iu/cans`
+
+You will notice that the ingredients, bread, cheese and tuna has been added at the 3rd, 4th, and 11th indexes
+in the Inventory list respectively.
+
+Next, we will switch back to the Home tab by entering the following command:
+
+`tab 1`
+
+Let's start by adding our recipe to the Recipe Bookmarks list by entering the following command:
+
+`add-r rn/Tuna Sandwich ri/Bread-2-slices,Cheese-1-slices,Tuna-1-cans rp/2`
+
+You will notice that the recipe has been added at the 9th index in the Recipe Bookmarks list.
+
+Now, we will also add our client to the Client Bookmarks list by entering the following command:
+
+`add-c cn/John Doe cp/92345678 ce/johndoe@gmail.com ca/Blk 422, Bedok North Road, #15-25`
+
+You will notice that the client has been added at the 6th index in the Client Bookmarks list.
+
+Finally, we will add our order by entering the following command:
+
+`add-o c/6 rn/Tuna Sandwich r/9 oq/3 od/11-10-2021 1200`
+
+You will notice that the order has been added at the 5th index in the Orders list. This approach is more efficient as
+the client and recipe details are copied from their respective bookmarks into the order. If you switch
+to the Inventory & Statistics tab, you will also notice how the quantities for the ingredients, tuna, sandwich and
+cheese have been deducted allowing you to track your inventory. To learn more about the available commands, you may
+head onto our [Features](#4-features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 
