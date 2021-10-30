@@ -712,7 +712,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   <tr>
     <td>HIGH</td>
     <td>View my most frequent clients</td>
-    <td>I can reinforce business relationships with my frequent clients</td>
+    <td>I can reinforce business relationships with my most frequent clients</td>
   </tr>
 </table>
 
@@ -727,13 +727,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 1.  Home Chef chooses to add a client.
 2.  Home Chef enters details in required format.
-3.  BTBB displays a new client.
+3.  BTBB displays the new client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
+* 2a. Client entered already exists in the system.
     * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
@@ -765,7 +765,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **MSS**
 
 1.  Home Chef chooses to delete a client.
-2.  Home Chef enter details to delete a client.
+2.  Home Chef enters details to delete a client.
 3.  BTBB informs Home Chef that client has been deleted.
 
     Use case ends.
@@ -791,15 +791,15 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to edit a client’s details.
-2.  Home chef enters details in required format.
+1.  Home Chef chooses to edit a client’s details.
+2.  Home Chef enters details in required format.
 3.  BTBB displays the edited client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
+* 2a. Client entered already exists in the system.
     * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
@@ -813,9 +813,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to add ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays new ingredient.
+1.  Home Chef chooses to add an ingredient.
+2.  Home Chef enters details in required format.
+3.  BTBB displays the new ingredient.
 
     Use case ends.
 
@@ -835,9 +835,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to find an ingredient by a field.
-2.  Home chef enters search terms in required format.
-3.  BTBB displays all ingredient that match the terms.
+1.  Home Chef chooses to find an ingredient by a field.
+2.  Home Chef enters search terms in required format.
+3.  BTBB displays all ingredient(s)) that match the terms.
 
     Use case ends.
 
@@ -852,21 +852,16 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to delete an ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays deleted ingredient.
+1.  Home Chef chooses to delete an ingredient.
+2.  Home Chef enters details to delete an ingredient.
+3.  BTBB informs Home Chef that ingredient has been deleted.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Order entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that order already exists.
-
-      Use case ends.
-
-* 2b. BTBB detects an error in the entered data.
-    * 2b1. BTBB informs Home Chef why deletion of ingredient failed.
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Home Chef why deletion of ingredient failed.
 
       Use case ends.
 
@@ -874,8 +869,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to view all ingredients.
-2.  Home chef enters command to see all ingredients.
+1.  Home Chef chooses to view all ingredients.
+2.  Home Chef enters command to see all ingredients.
 3.  BTBB displays all ingredients.
 
     Use case ends.
@@ -884,8 +879,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to edit an ingredient.
-2. Home chef enters details in required format.
+1. Home Chef chooses to edit an ingredient.
+2. Home Chef enters details in required format.
 3. BTBB displays the edited ingredient.
 
     Use case ends.
@@ -906,16 +901,21 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to add order.
-2. Home chef enters details in required format.
-3. BTBB displays new order.
+1. Home Chef chooses to add an order.
+2. Home Chef enters details in required format.
+3. BTBB displays the new order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Home Chef why addition of order failed.
+* 2a. Order entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that order already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why addition of order failed.
 
     Use case ends.
 
@@ -923,8 +923,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to find an order by a field.
-2. Home chef enters search terms in required format.
+1. Home Chef chooses to find an order by a field.
+2. Home Chef enters search terms in required format.
 3. BTBB displays all orders that match the terms.
 
    Use case ends.
@@ -940,9 +940,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to delete an order.
-2. Home chef enters details in required format.
-3. BTBB displays deleted order.
+1. Home Chef chooses to delete an order.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that order has been deleted.
 
    Use case ends.
 
@@ -957,8 +957,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to view all orders.
-2.  Home chef enters command to see all orders.
+1.  Home Chef chooses to view all orders.
+2.  Home Chef enters command to see all orders.
 3.  BTBB displays all orders.
 
     Use case ends.
@@ -967,8 +967,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to edit an order.
-2. Home chef enters details in required format.
+1. Home Chef chooses to edit an order.
+2. Home Chef enters details in required format.
 3. BTBB displays the edited order.
 
    Use case ends.
@@ -989,7 +989,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to mark an order as done.
+1. Home Chef chooses to mark an order as done.
 2. BTBB displays order as done.
 
    Use case ends.
@@ -1005,7 +1005,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to mark an order as undone.
+1. Home Chef chooses to mark an order as undone.
 2. BTBB displays order as undone.
 
    Use case ends.
@@ -1021,9 +1021,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to add a recipe.
-2. Home chef enters details in required format.
-2. BTBB displays new recipe.
+1. Home Chef chooses to add a recipe.
+2. Home Chef enters details in required format.
+2. BTBB displays the new recipe.
 
    Use case ends.
 
@@ -1035,7 +1035,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use Case ends.
 
 * 2b. BTBB detects an error in the entered data.
- 	* 2b1. BTBB informs Home Chef why addition of recipe did not happen.
+ 	* 2b1. BTBB informs Home Chef why addition of recipe failed.
 
       Use case ends.
 
@@ -1043,8 +1043,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to find a recipe by a field.
-2. Home chef enters search terms in required format.
+1. Home Chef chooses to find a recipe by a field.
+2. Home Chef enters search terms in required format.
 3. BTBB displays all recipes that match the terms.
 
    Use case ends.
@@ -1060,16 +1060,16 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to delete a recipe.
-2. Home chef enters details in required format.
-3. BTBB deletes recipe.
+1. Home Chef chooses to delete a recipe.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that recipe has been deleted.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs Home Chef why deletion did not happen.
+    * 2a1. BTBB informs Home Chef why deletion of recipe failed.
 
       Use Case ends.
 
@@ -1077,8 +1077,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to view all recipes.
-2. Home chef enters command to see all recipes.
+1. Home Chef chooses to view all recipes.
+2. Home Chef enters command to see all recipes.
 3. BTBB displays all recipes.
 
    Use case ends.
@@ -1087,8 +1087,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to edit a recipe.
-2. Home chef enters details in required format.
+1. Home Chef chooses to edit a recipe.
+2. Home Chef enters details in required format.
 3. BTBB displays the edited recipe.
 
    Use case ends.
@@ -1109,9 +1109,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef wants to view revenue earned for each month for past 12 months.
-2. Home chef switches to statistics tab.
-3. BTBB displays revenue for each month for the past 12 months.
+1. Home Chef wants to view revenue earned each month for past 12 months.
+2. Home Chef switches to statistics tab.
+3. BTBB displays revenue earned each month for the past 12 months in a bar chart.
 
    Use case ends.
 
@@ -1119,9 +1119,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to view top 10 most frequent clients.
-2. Home chef switches to statistics tab.
-3. BTBB displays top 10 most frequent clients.
+1. Home Chef chooses to view top 10 most frequent clients.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most frequent clients in a pie chart.
 
    Use case ends.
 
@@ -1129,9 +1129,9 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to view top 10 most popular recipes.
-2. Home chef switches to statistics tab.
-3. BTBB displays top 10 most popular recipes.
+1. Home Chef chooses to view top 10 most popular recipes.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most popular recipes in a pie chart.
 
    Use case ends.
 
