@@ -117,8 +117,8 @@ command in the command box at the bottom of the app:
 
 `add-o cn/John Doe cp/92345678 ca/Blk 422, Bedok North Road, #15-25 rn/Tuna Sandwich ri/Bread-2-slices, Cheese-1-slices, Tuna-1-cans op/6 oq/3 od/10-10-2021 1200`
 
-You will notice that the order has been added to the Orders list (orders are sorted by deadline). However, this is not 
-the recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does 
+You will notice that the order has been added to the Orders list (orders are sorted by deadline). However, this is not
+the recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does
 not allow you to track ingredients in your inventory. We will now add the second order using our recommended approach.
 
 #### 2.3.2 Approach 2 (Recommended)
