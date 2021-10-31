@@ -172,45 +172,111 @@ head onto our [Features](#4-features) section.
 ## 3. Overview of Features
 
 ### 3.1 Client (Bookmarks)
+If you often sell meals to repeat clients, the client bookmarks feature will be useful.
+Client bookmarks contain information like name, phone, email and address.
+Some of these details can be copied to an order so you do not have to type their information over and over again.
 
-* Client bookmarks are client information that can be copied to an order's client details when adding an order.
+Do note that the **details are copied to the order, this means that editing a client bookmark will not edit
+an order** that previously copied client details from it. This gives you flexibility to change details within an order
+and client bookmark without affecting other orders and client bookmarks.
+For example, if your usual client happens to have a different delivery address just for one order,
+or if your client changes his phone number in the future, it will not affect records of past orders.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
 * Client bookmarks are considered duplicates when they have the same phone number.
+
+* You cannot have duplicate client bookmarks in the application.
+
 * Client bookmarks may also be referred to as Clients for simplicity.
+
 * Client bookmarks are sorted in ascending alphabetical order of client name.
   Uppercase letters appear before lowercase letters.
 
-### 3.2 Inventory
+</div>
 
-* Inventory displays a list of ingredients whose quantities can be tracked.
-* Ingredients are considered duplicates when they have the same name and unit.
-* The matching of names and units are case insensitive.
+### 3.2 Inventory
+As you probably need to handle many ingredients, the inventory helps you keep track of your stock.
+It displays a list of ingredients whose quantities can be tracked.
+When you create, edit or delete an order with ingredients,
+the quantities of matching ingredients in your inventory will be adjusted accordingly.
+
+Do note that the application currently allows you to track quantities from 0 to 40000
+as stated in our [disclaimers](#65-quantities).
+We believe that the range provided is sufficient for you to track your ingredients.
+For example, once the quantity reaches 0, additional tracking may not be helpful
+as you have to restock and will probably buy ingredients in bulk.
+However, feel free to give us feedback for future iterations.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
+* Ingredients are considered duplicates or matches when they have the same name and unit.
+  The matching of name and unit is case insensitive.
+
+* You cannot have duplicate ingredients in the inventory.
+
 * Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name.
   Uppercase letters appear before lowercase letters.
 
-### 3.3 Orders
+</div>
 
-* Orders contain client details, recipe details, deadline, quantity, price and a completion status.
+### 3.3 Orders
+The orders feature helps you manage your orders.
+You can track client details, recipe details, order price, quantity, deadline and status with this feature.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
-* The matching of details are case insensitive where applicable.
+  The matching of details are case insensitive where applicable.
+
+* You cannot have duplicate orders in the application.
+
 * Orders are sorted by completion status, then deadline. Uncompleted orders appear before completed orders.
   Within each group of uncompleted and completed orders, orders with earlier deadlines are higher in the list.
 
-### 3.4 Recipe (Bookmarks)
+</div>
 
-* Recipe bookmarks contain details like recipe name, ingredients and price that can be copied to an order's recipe
-  details when adding an order.
+### 3.4 Recipe (Bookmarks)
+If you frequently receive orders for your signature dishes, the recipe bookmarks feature will be useful.
+Recipe bookmarks contain information like name, ingredients and price.
+These details can be copied over to an order so you do not have to type these details over and over again.
+
+Do note that the details are copied to the order,
+this means that **editing a recipe bookmark will not edit an order** that previously copied recipe details from it.
+This gives you flexibility to change details within an order without affecting other orders and recipe bookmarks.
+For example if your client for an order has an allergy to peanuts, you can copy your usual recipe to the order and remove peanuts,
+without affecting other orders that copied from the recipe before.
+You can also change your recipe bookmarks, for example to increase its price, without affecting the integrity of past order records.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bookmark: Note:**<br>
+
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
-* The matching of details are case insensitive where applicable.
+  The matching of details are case insensitive where applicable.
+
+* You cannot have duplicate recipe bookmarks in the application.
+
 * Recipe bookmarks may also be referred to as Recipes for simplicity.
+
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
-### 3.5 Statistics
+</div>
 
-* 3 types of statistics are shown:
-  * Revenue per month for the past 12 months.
-  * Top 10 clients who made the highest number of orders.
-  * Top 10 recipes that appear in the highest number of orders.
+### 3.5 Statistics
+You may find it handy to track your business performance.
+BTBB offers 3 types of statistics to help you with that!
+They are:
+* Revenue per month for the past 12 months.
+* Top 10 clients who made the highest number of orders.
+* Top 10 recipes that appear most frequently in all orders.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,6 +310,8 @@ head onto our [Features](#4-features) section.
   e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 
 * The format of all phone parameters is a series of up to 20 digits with no spacing between digits.
+
+* Address parameters have no restrictions on their format. But they should contain at least one non-space character.
 
 * The following parameters allow up to 50 characters (including spaces):
   * Client Name
@@ -339,6 +407,9 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 * The updated client must not be a duplicate of another existing client in the client bookmarks. <br>
   i.e. Updated client and the other existing client must not have the same `PHONE`.
+
+* **Editing a client will not edit an order** that previously copied details from the client.
+  Refer to [this explanation](#31-client-bookmarks) for a better understanding.
 
 </div>
 
@@ -790,6 +861,8 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_
 
 * The matching of fields are case insensitive.
 
+* `RECIPE_PRICE` should be positive and less than $2500.00.
+
 </div>
 
 **Examples:**
@@ -874,11 +947,16 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
+* `RECIPE_PRICE` should be positive and less than $2500.00.
+
 * The updated recipe must not be a duplicate of another existing recipe in the recipe bookmarks. <br>
   i.e. Updated recipe and the other existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
 
 * To edit a recipe's ingredient list, refer to [Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
   and [Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
+
+* **Editing a recipe will not edit an order** that previously copied details from the recipe.
+  Refer to [this explanation](#34-recipe-bookmarks) for a better understanding.
 
 </div>
 
@@ -998,10 +1076,10 @@ contains the data of your previous BTBB home folder.
   represented as 30-12-2021 0000 in the application.
 
 ### 6.3 Index
-* When an `INDEX` directly after a command word is invalid, the application displays the `INVALID COMMAND FORMAT` error. <br>
+* When an `INDEX` directly after a command word has an incorrect format, the application displays the `Invalid Command Format!` error. <br>
   (e.g. edit-o -3)
 
-* When an `INDEX` directly after a prefix is invalid, the application displays the `Index is not a non-zero unsigned integer` error.<br>
+* When an `INDEX` directly after a prefix is invalid, the application displays the `Invalid index. Index should be a positive whole number.` error. <br>
   (e.g. add-o c/-2 r/0 od/12-12-2022 1200)
 
 ### 6.4 Price

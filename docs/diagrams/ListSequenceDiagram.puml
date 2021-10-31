@@ -1,13 +1,6 @@
 @startuml
 !include style.puml
 
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
-participant ":ResultDisplay" as ResultDisplay UI_COLOR
-end box
-[-> MainWindow : executeCommand(commandText)
-activate MainWindow
-
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -19,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-MainWindow -> LogicManager : execute(commandText)
+[-> LogicManager : executeCommand("list-o")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(commandText)
+LogicManager -> AddressBookParser : parseCommand("list-o")
 activate AddressBookParser
 
 create ListOrderCommand
@@ -60,15 +53,6 @@ deactivate CommandResult
 ListOrderCommand --> LogicManager : result
 deactivate ListOrderCommand
 
-LogicManager --> MainWindow : result
-deactivate
-|||
-MainWindow -> ResultDisplay : setFeedbackToUser()
-activate ResultDisplay
-
-ResultDisplay --> MainWindow
-deactivate ResultDisplay
-
-[<--MainWindow
-deactivate MainWindow
+[<--LogicManager
+deactivate LogicManager
 @enduml

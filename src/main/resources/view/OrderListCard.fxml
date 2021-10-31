@@ -42,15 +42,15 @@
                         </Label>
                     </HBox>
 
-                    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
-                        <Label fx:id="orderDeadline" wrapText="true" styleClass="cell_small_label" text="\$deadline"/>
+                    <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
+                        <Label fx:id="orderDeadline" wrapText="true" styleClass="order-deadline" text="\$deadline"/>
                         <SVGPath fx:id="orderIsFinished" styleClass="order-tick-mark" scaleX="0.5" scaleY="0.5" />
                     </HBox>
                 </children>
 
                 <columnConstraints>
-                    <ColumnConstraints hgrow="ALWAYS" percentWidth="70.0"/>
-                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="65.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0"/>
                 </columnConstraints>
             </GridPane>
 
