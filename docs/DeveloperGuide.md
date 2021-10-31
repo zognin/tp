@@ -601,7 +601,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Edit client details</td>
+    <td>Edit clients</td>
     <td>I can update their contact information</td>
   </tr>
   <tr>
@@ -656,6 +656,11 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
+    <td>Detect duplicate orders</td>
+    <td>I do not clutter the application with duplicate orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
     <td>Mark an order as done</td>
     <td>I can set the status of an order</td>
   </tr>
@@ -701,18 +706,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my least popular recipes</td>
-    <td>I can spend less time refining my skills for those recipes</td>
-  </tr>
-  <tr>
-    <td>HIGH</td>
     <td>View my monthly revenue</td>
     <td>I can tell if my business is growing</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my most popular clients</td>
-    <td>I can reinforce business relationships with my popular clients</td>
+    <td>View my most frequent clients</td>
+    <td>I can reinforce business relationships with my most frequent clients</td>
   </tr>
 </table>
 
@@ -721,20 +721,20 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 (For all use cases below, the **System** is the `BobTheBistroBoss (BTBB)` and the **Actor** is the `Home Chef`, unless specified otherwise)
 
-**Use case: UC01 Add a client**
+**Use case: UC01 Add client**
 
 **MSS**
 
 1.  Home Chef chooses to add a client.
 2.  Home Chef enters details in required format.
-3.  BTBB displays new client.
+3.  BTBB displays the new client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that client already exist.
+* 2a. Client entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
@@ -743,13 +743,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC02 Find a client**
+**Use case: UC02 Find client**
 
 **MSS**
 
-1.  Home Chef wants to find a client by a field.
+1.  Home Chef chooses to find a client by a field.
 2.  Home Chef enters search terms in required format.
-3.  BTBB displays all clients that match the terms.
+3.  BTBB displays all client(s) that match the terms.
 
     Use case ends.
 
@@ -760,12 +760,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC03 Delete a client**
+**Use case: UC03 Delete client**
 
 **MSS**
 
 1.  Home Chef chooses to delete a client.
-2.  Home Chef enter details to delete a client.
+2.  Home Chef enters details to delete a client.
 3.  BTBB informs Home Chef that client has been deleted.
 
     Use case ends.
@@ -787,25 +787,25 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
     Use case ends.
 
-**Use case: UC05 Edit clients**
+**Use case: UC05 Edit client**
 
 **MSS**
 
-1.  Home chef chooses to edit a client’s details.
-2.  Home chef enters details in required format.
+1.  Home Chef chooses to edit a client’s details.
+2.  Home Chef enters details in required format.
 3.  BTBB displays the edited client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs user that client already exist.
+* 2a. Client entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why editing of client failed.
+    * 2a1. BTBB informs Home Chef why editing of client failed.
 
       Use case ends.
 
@@ -813,21 +813,21 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to add ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays new ingredient.
+1.  Home Chef chooses to add an ingredient.
+2.  Home Chef enters details in required format.
+3.  BTBB displays the new ingredient.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why addition of ingredient failed.
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why addition of ingredient failed.
 
       Use case ends.
 
@@ -835,33 +835,33 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef wants to find an ingredient by a field.
-2.  Home chef enters search terms in required format.
-3.  BTBB displays all ingredient that match the format.
+1.  Home Chef chooses to find an ingredient by a field.
+2.  Home Chef enters search terms in required format.
+3.  BTBB displays all ingredient(s) that match the terms.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why finding an ingredient failed.
+    * 2a1. BTBB informs Home Chef why finding an ingredient failed.
 
     Use case ends.
 
-**Use case: UC08 Delete an Ingredient**
+**Use case: UC08 Delete Ingredient**
 
 **MSS**
 
-1.  Home chef chooses to delete a ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays deleted ingredient.
+1.  Home Chef chooses to delete an ingredient.
+2.  Home Chef enters details to delete an ingredient.
+3.  BTBB informs Home Chef that ingredient has been deleted.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deletion of ingredient failed.
+    * 2a1. BTBB informs Home Chef why deletion of ingredient failed.
 
       Use case ends.
 
@@ -869,8 +869,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to view all ingredients.
-2.  Home chef enters command to see all ingredients.
+1.  Home Chef chooses to view all ingredients.
+2.  Home Chef enters command to see all ingredients.
 3.  BTBB displays all ingredients.
 
     Use case ends.
@@ -879,8 +879,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to edit an ingredient.
-2. Home chef enters details in required format.
+1. Home Chef chooses to edit an ingredient.
+2. Home Chef enters details in required format.
 3. BTBB displays the edited ingredient.
 
     Use case ends.
@@ -888,12 +888,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why editing of ingredient failed.
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of ingredient failed.
 
       Use case ends.
 
@@ -901,58 +901,95 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to add order.
-2. Home chef enters details in required format.
-3. BTBB displays new order.
+1. Home Chef chooses to add an order.
+2. Home Chef enters details in required format.
+3. BTBB displays the new order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why addition of order failed.
+* 2a. Order entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that order already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why addition of order failed.
 
     Use case ends.
 
-**Use case: UC12 Delete Order**
+**Use case: UC12 Find order**
 
 **MSS**
 
-1. Home chef chooses to delete an order.
-2. Home chef enters details in required format.
-3. BTBB displays deleted order.
+1. Home Chef chooses to find an order by a field.
+2. Home Chef enters search terms in required format.
+3. BTBB displays all order(s) that match the terms.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deletion of order failed.
+    * 2a1. BTBB informs Home Chef why finding an order failed.
 
       Use case ends.
 
-**Use case: UC13 Find order**
+**Use case: UC13 Delete Order**
 
 **MSS**
 
-1. Home chef chooses to find an order.
-2. Home chef enters details in required format.
-3. BTBB displays all orders that match the format.
+1. Home Chef chooses to delete an order.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that order has been deleted.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why finding an order failed.
+    * 2a1. BTBB informs Home Chef why deletion of order failed.
 
       Use case ends.
 
-**Use case: UC14 Mark order as done**
+**Use case: UC14 View all orders**
 
 **MSS**
 
-1. Home chef chooses to mark an order as done.
+1.  Home Chef chooses to view all orders.
+2.  Home Chef enters command to see all orders.
+3.  BTBB displays all orders.
+
+    Use case ends.
+
+**Use case: UC15 Edit order**
+
+**MSS**
+
+1. Home Chef chooses to edit an order.
+2. Home Chef enters details in required format.
+3. BTBB displays the edited order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Order entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that order already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of order failed.
+
+      Use case ends.
+
+**Use case: UC16 Mark order as done**
+
+**MSS**
+
+1. Home Chef chooses to mark an order as done.
 2. BTBB displays order as done.
 
    Use case ends.
@@ -960,15 +997,15 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why marking an order as done failed.
+    * 2a1. BTBB informs Home Chef why marking an order as done failed.
 
       Use case ends.
 
-**Use case: UC15 Mark order as undone**
+**Use case: UC17 Mark order as undone**
 
 **MSS**
 
-1. Home chef chooses to mark an order as undone.
+1. Home Chef chooses to mark an order as undone.
 2. BTBB displays order as undone.
 
    Use case ends.
@@ -976,9 +1013,127 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why marking an order as undone failed.
+    * 2a1. BTBB informs Home Chef why marking an order as undone failed.
 
       Use case ends.
+
+**Use case: UC18 Add recipe**
+
+**MSS**
+
+1. Home Chef chooses to add a recipe.
+2. Home Chef enters details in required format.
+2. BTBB displays the new recipe.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recipe entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
+
+      Use Case ends.
+
+* 2b. BTBB detects an error in the entered data.
+ 	* 2b1. BTBB informs Home Chef why addition of recipe failed.
+
+      Use case ends.
+
+**Use case: UC19 Find recipe**
+
+**MSS**
+
+1. Home Chef chooses to find a recipe by a field.
+2. Home Chef enters search terms in required format.
+3. BTBB displays all recipe(s) that match the terms.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Home Chef why finding a recipe failed.
+
+      Use Case ends.
+
+**Use case: UC20 Delete recipe**
+
+**MSS**
+
+1. Home Chef chooses to delete a recipe.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that recipe has been deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Home Chef why deletion of recipe failed.
+
+      Use Case ends.
+
+**Use case: UC21 View all recipes**
+
+**MSS**
+
+1. Home Chef chooses to view all recipes.
+2. Home Chef enters command to see all recipes.
+3. BTBB displays all recipes.
+
+   Use case ends.
+
+**Use case: UC22 Edit recipe**
+
+**MSS**
+
+1. Home Chef chooses to edit a recipe.
+2. Home Chef enters details in required format.
+3. BTBB displays the edited recipe.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recipe entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of recipe failed.
+
+      Use case ends.
+
+**Use case: UC23 View revenue for each month for past 12 months**
+
+**MSS**
+
+1. Home Chef wants to view revenue earned each month for past 12 months.
+2. Home Chef switches to statistics tab.
+3. BTBB displays revenue earned each month for the past 12 months in a bar chart.
+
+   Use case ends.
+
+**Use case: UC24 View top 10 most frequent clients**
+
+**MSS**
+
+1. Home Chef chooses to view top 10 most frequent clients.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most frequent clients in a pie chart.
+
+   Use case ends.
+
+**Use case: UC25 View top 10 most popular recipes**
+
+**MSS**
+
+1. Home Chef chooses to view top 10 most popular recipes.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most popular recipes in a pie chart.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
