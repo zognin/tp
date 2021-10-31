@@ -1042,7 +1042,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use Case ends.
 
 * 2b. BTBB detects an error in the entered data.
- 	* 2b1. BTBB informs Home Chef why addition of recipe failed.
+    * 2b1. BTBB informs Home Chef why addition of recipe failed.
 
       Use case ends.
 
