@@ -21,12 +21,12 @@ Class OrderListPanel
 Class OrderCard
 Class RecipeListPanel
 Class RecipeCard
-Class RevenueBarChart
-Class ClientPieChart
-Class RecipePieChart
+Class BarChart
+Class PieChart
 Class CommandBox
-Class HomeTab
-Class StatTab
+Class Tab
+Class HomeTabContent
+Class StatTabContent
 Class UiTab <<enumeration>>
 }
 
@@ -45,20 +45,21 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" HomeTab
-MainWindow *-down-> "1" StatTab
+MainWindow *-down-> "2" Tab
 MainWindow --> "0..1" HelpWindow
 MainWindow ..> UiTab
 
+Tab *-down-> "1" HomeTabContent
+Tab *-down-> "1" StatTabContent
 
-HomeTab *-down-> "1" ClientListPanel
-HomeTab *-down-> "1" OrderListPanel
-HomeTab *-down-> "1" RecipeListPanel
+HomeTabContent *-down-> "1" ClientListPanel
+HomeTabContent *-down-> "1" OrderListPanel
+HomeTabContent *-down-> "1" RecipeListPanel
 
-StatTab *-down-> "1" IngredientListPanel
-StatTab *-down-> "1" RevenueBarChart
-StatTab *-down-> "1" ClientPieChart
-StatTab *-down-> "1" RecipePieChart
+StatTabContent *-down-> "1" IngredientListPanel
+StatTabContent *-down-> "revenueBarChart" BarChart
+StatTabContent *-down-> "clientPieChart" PieChart
+StatTabContent *-down-> "recipePieChart" PieChart
 
 ClientListPanel -down-> "*" ClientCard
 IngredientListPanel -down-> "*" IngredientCard
@@ -78,6 +79,8 @@ OrderCard --|> UiPart
 RecipeListPanel --|> UiPart
 RecipeCard --|> UiPart
 HelpWindow --|> UiPart
+HomeTabContent --|> UiPart
+StatTabContent --|> UiPart
 
 ClientCard ..> Model
 IngredientCard ..> Model
