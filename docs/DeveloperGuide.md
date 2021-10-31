@@ -9,13 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+* Libraries used: [git-hooks-gradle-plugin](https://github.com/jakemarsden/git-hooks-gradle-plugin),
+  [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [Jekyll](https://jekyllrb.com/),
+  [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/)
 
 --------------------------------------------------------------------------------------------------------------------
 
