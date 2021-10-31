@@ -90,7 +90,7 @@ Fig 2. Inventory & Statistics tab
 ## 3. Overview of Features
 
 ### 3.1 Client (Bookmarks)
-If you often sell meals to repeated clients, the client bookmarks feature will be useful.
+If you often sell meals to repeat clients, the client bookmarks feature will be useful.
 Client bookmarks contain information like name, phone, email and address.
 Some of these details can be copied to an order so you do not have to type their information over and over again.
 
@@ -111,13 +111,14 @@ or if your client changes his phone number in the future, it will not affect rec
 * Client bookmarks may also be referred to as Clients for simplicity.
 
 * Client bookmarks are sorted in ascending alphabetical order of client name.
+  Uppercase letters appear before lowercase letters.
 
 </div>
 
 ### 3.2 Inventory
-As you probably need to handle many ingredients, the inventory helps you track your stock.
+As you probably need to handle many ingredients, the inventory helps you keep track of your stock.
 It displays a list of ingredients whose quantities can be tracked.
-When you create an order with ingredients,
+When you create, edit or delete an order with ingredients,
 the quantities of matching ingredients in your inventory will be adjusted accordingly.
 
 Do note that the application currently allows you to track quantities from 0 to 40000
@@ -160,7 +161,7 @@ You can track client details, recipe details, order price, quantity, deadline an
 </div>
 
 ### 3.4 Recipe (Bookmarks)
-If you frequently get orders for your signature dishes, the recipe bookmarks feature will be useful.
+If you frequently receive orders for your signature dishes, the recipe bookmarks feature will be useful.
 Recipe bookmarks contain information like name, ingredients and price.
 These details can be copied over to an order so you do not have to type these details over and over again.
 
@@ -193,7 +194,7 @@ BTBB offers 3 types of statistics to help you with that!
 They are:
 * Revenue per month for the past 12 months.
 * Top 10 clients who made the highest number of orders.
-* Top 10 recipes that appear in the highest number of orders.
+* Top 10 recipes that appear most frequently in all orders.
 
 --------------------------------------------------------------------------------------------------------------------
 
