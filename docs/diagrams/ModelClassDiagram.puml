@@ -23,6 +23,7 @@ Class ReadOnlyUserPrefs
 
 Class UniqueClientList
 class Client {
+    address: Address
     name: GenericString
     phone: Phone
     email: Email
@@ -43,6 +44,7 @@ class Order {
     recipeName: GenericString
     recipeIngredients: RecipeIngredientList
     orderPrice: OrderPrice
+    deadline: Deadline
     quantity: Quantity
     completionStatus: CompletionStatus
 }
