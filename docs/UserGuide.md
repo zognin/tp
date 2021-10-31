@@ -88,9 +88,9 @@ may do so by following the instructions [here](#21-installation).
 
 For this guide, we will simulate the following scenario:
 
-John Doe wishes to place two orders, one on 10 October 2021 and the other on 11 October 2021. Both of these orders are
-to be delivered at 12pm. For both of these orders, he will require 3 tuna sandwiches. Each tuna sandwich will be priced
-at $2.
+Your regular customer John Doe wishes to place two orders, one on 10 October 2021 and the other on 11 October 2021.
+Both of these orders are to be delivered at 12pm. For both of these orders, he will require 3 tuna sandwiches. Each
+tuna sandwich will be priced at $2.
 
 Here are the details of John Doe:
 * Name: John Doe
@@ -104,7 +104,7 @@ Here are the ingredients that will be used for the tuna sandwich:
 * 1 slice of cheese
 * 1 can of tuna
 
-Here are the quantities of the respective ingredients in our inventory:
+Suppose you currently have these items in your inventory:
 
 * 100 slices of bread
 * 100 slices of cheese
@@ -115,11 +115,11 @@ Here are the quantities of the respective ingredients in our inventory:
 We can proceed to add the first order on 10 October 2021 by entering the following
 command in the command box at the bottom of the app:
 
-`add-o cn/John Doe cp/92345678 ca/Blk 422, Bedok North Road, #15-25 rn/Tuna Sandwich ri/Bread-2-slices,Cheese-1-slices,Tuna-1-cans op/6 oq/3 od/10-10-2021 1200`
+`add-o cn/John Doe cp/92345678 ca/Blk 422, Bedok North Road, #15-25 rn/Tuna Sandwich ri/Bread-2-slices, Cheese-1-slices, Tuna-1-cans op/6 oq/3 od/10-10-2021 1200`
 
-You will notice that the order has been added at the 4th index in the Orders list. However, this is not the
-recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does not
-allow you to track ingredients in your inventory. We will now add the second order using our recommended approach.
+You will notice that the order has been added to the Orders list (orders are sorted by deadline). However, this is not 
+the recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does 
+not allow you to track ingredients in your inventory. We will now add the second order using our recommended approach.
 
 #### 2.3.2 Approach 2 (Recommended)
 
@@ -135,8 +135,8 @@ Now, we will proceed to add our 3 ingredients to the inventory by entering the f
 
 `add-i in/Tuna iq/100 iu/cans`
 
-You will notice that the ingredients, bread, cheese and tuna has been added at the 3rd, 4th, and 11th indexes
-in the Inventory list respectively.
+You will notice that the ingredients, bread, cheese and tuna have been added to the Inventory list
+(ingredients are sorted alphabetically).
 
 Next, we will switch back to the Home tab by entering the following command:
 
@@ -144,21 +144,24 @@ Next, we will switch back to the Home tab by entering the following command:
 
 Let's start by adding our recipe to the Recipe Bookmarks list by entering the following command:
 
-`add-r rn/Tuna Sandwich ri/Bread-2-slices,Cheese-1-slices,Tuna-1-cans rp/2`
+`add-r rn/Tuna Sandwich ri/Bread-2-slices, Cheese-1-slices, Tuna-1-cans rp/2`
 
-You will notice that the recipe has been added at the 9th index in the Recipe Bookmarks list.
+You will notice that the recipe has been added to the Recipe Bookmarks list (recipes are sorted alphabetically). Take
+note of the index of the recipe bookmark.
 
 Now, we will also add our client to the Client Bookmarks list by entering the following command:
 
 `add-c cn/John Doe cp/92345678 ce/johndoe@gmail.com ca/Blk 422, Bedok North Road, #15-25`
 
-You will notice that the client has been added at the 6th index in the Client Bookmarks list.
+You will notice that the client has been to the Client Bookmarks list (clients are sorted alphabetically). Take
+note of the index of the client bookmark.
 
 Finally, we will add our order by entering the following command:
 
-`add-o c/6 rn/Tuna Sandwich r/9 oq/3 od/11-10-2021 1200`
+`add-o c/CLIENT_BOOKMARK_INDEX r/RECIPE_BOOKMARK_INDEX oq/3 od/11-10-2021 1200`
 
-You will notice that the order has been added at the 5th index in the Orders list. This approach is more efficient as
+Replace `CLIENT_BOOKMARK_INDEX` and `RECIPE_BOOKMARK_INDEX` with the respective indexes you took note of in the
+previous steps. You will notice that the order has been to the Orders list. This approach is more efficient as
 the client and recipe details are copied from their respective bookmarks into the order. If you switch
 to the Inventory & Statistics tab, you will also notice how the quantities for the ingredients, tuna, sandwich and
 cheese have been deducted allowing you to track your inventory. To learn more about the available commands, you may
