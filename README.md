@@ -21,5 +21,5 @@ optimized for use via a command line interface (CLI)**.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used: [git-hooks-gradle-plugin](https://github.com/jakemarsden/git-hooks-gradle-plugin),
-  [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
-  [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/), [Jekyll](https://jekyllrb.com/)
+  [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [Jekyll](https://jekyllrb.com/),
+  [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/)
