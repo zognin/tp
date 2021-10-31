@@ -90,8 +90,13 @@ public class PredicateCollection<T> implements Predicate<T> {
         String minQuantity = optionalMinValue.orElse(defaultMin);
         String maxQuantity = optionalMaxValue.orElse(defaultMax);
 
-        addPredicate(new ValueWithinRangePredicate<>(getter,
-                parser.apply(minQuantity), parser.apply(maxQuantity)));
+        S min = parser.apply(minQuantity);
+        S max = parser.apply(maxQuantity);
+        if (min.compareTo(max) >= 0) {
+            throw new ParseException(ValueWithinRangePredicate.MESSAGE_CONSTRAINTS);
+        }
+
+        addPredicate(new ValueWithinRangePredicate<>(getter, min, max));
     }
 
     /**

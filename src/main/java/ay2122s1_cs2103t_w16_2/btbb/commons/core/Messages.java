@@ -21,8 +21,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
     public static final String MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX = "The recipe index provided is invalid";
 
-    public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
-    public static final String MESSAGE_INGREDIENTS_LISTED_OVERVIEW = "%1$d ingredients listed!";
-    public static final String MESSAGE_ORDERS_LISTED_OVERVIEW = "%1$d orders listed!";
-    public static final String MESSAGE_RECIPES_LISTED_OVERVIEW = "%1$d recipes listed!";
+    public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d client(s) listed!";
+    public static final String MESSAGE_INGREDIENTS_LISTED_OVERVIEW = "%1$d ingredient(s) listed!";
+    public static final String MESSAGE_ORDERS_LISTED_OVERVIEW = "%1$d order(s) listed!";
+    public static final String MESSAGE_RECIPES_LISTED_OVERVIEW = "%1$d recipe(s) listed!";
 }

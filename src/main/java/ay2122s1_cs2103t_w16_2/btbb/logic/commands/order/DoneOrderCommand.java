@@ -27,7 +27,7 @@ public class DoneOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the order identified by the index number as used in the displayed order list as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DONE_ORDER_SUCCESS = "Order marked as done.\nOrder details: %1$s";
 

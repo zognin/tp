@@ -147,6 +147,13 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.order-deadline {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 13px;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 5 0 0 0;
+}
+
 .order-tick-mark {
     -fx-fill: #03DAC5;
 }
