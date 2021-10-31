@@ -1259,7 +1259,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `delete-c abc`
        <br>Expected: No client is deleted. Error details shown in the result display box.
     1. Test case: `delete-c`
-       <br>Expected: Expected: No client is deleted. Error details shown in the result display box.
+       <br>Expected: No client is deleted. Error details shown in the result display box.
 
 1. Editing a client
     1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
