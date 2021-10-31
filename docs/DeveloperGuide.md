@@ -134,11 +134,11 @@ The `Model` component,
 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` objects.
-* stores the application in the following components:
+* stores the application data in the following components:
   * a `UniqueClientList` containing `Client` objects.
   * a `UniqueIngredientList` containing `Ingredient` objects.
   * a `UniqueOrderList` containing `Order` objects.
-  * a `UniqueOrderList` containing `Recipe` objects.
+  * a `UniqueRecipeList` containing `Recipe` objects.
 * exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Ingredient>`, `ObservableList<Order>` and
   `ObservableList<Recipe>` which can be observed by the UI. This allows the UI to automatically update the displayed
   list when the data in the list is modified.
