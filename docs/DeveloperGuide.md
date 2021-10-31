@@ -53,7 +53,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user
+issues the command `delete-c 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -133,11 +134,11 @@ The `Model` component,
 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` objects.
-* stores the address book data in the following components:
-  * a `UniqueClientList` containing `Client`s.
-  * a `UniqueIngredientList` containing `Ingredient`s.
-  * a `UniqueOrderList` containing `Order`s.
-  * a `UniqueOrderList` containing `Recipe`s.
+* stores the application in the following components:
+  * a `UniqueClientList` containing `Client` objects.
+  * a `UniqueIngredientList` containing `Ingredient` objects.
+  * a `UniqueOrderList` containing `Order` objects.
+  * a `UniqueOrderList` containing `Recipe` objects.
 * exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Ingredient>`, `ObservableList<Order>` and
   `ObservableList<Recipe>` which can be observed by the UI. This allows the UI to automatically update the displayed
   list when the data in the list is modified.
@@ -150,7 +151,7 @@ The `Model` component,
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both application data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
