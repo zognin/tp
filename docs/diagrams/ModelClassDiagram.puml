@@ -74,8 +74,8 @@ AddressBook *--> "1" UniqueIngredientList
 AddressBook *--> "1" UniqueOrderList
 AddressBook *--> "1" UniqueRecipeList
 
-UniqueClientList --> "~* all" Client
-UniqueIngredientList --> "~* all" Ingredient
-UniqueOrderList --> "~* all" Order
-UniqueRecipeList --> "~* all" Recipe
+UniqueClientList --> "~*" Client
+UniqueIngredientList --> "~*" Ingredient
+UniqueOrderList --> "~*" Order
+UniqueRecipeList --> "~*" Recipe
 @enduml
