@@ -1039,44 +1039,74 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Recipe
 
-1. Initial launch
+1. Deleting a recipe ingredient
+    1. Prerequisites: Recipe at index 1 has at least 1 ingredient and at most 3 ingredients.
+    1. Test case: `delete-ri 1 i/1`
+       <br>Expected: First ingredient is deleted from the ingredients in the first recipe of the displayed recipe bookmarks list.
+       Details of the deleted ingredient and edited recipe is shown in the result display box.
+    1. Test case: `delete-ri 1 i/10`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `delete-ri abc i/1`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `delete-ri 1 i/abc`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `delete-ri 1`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `delete-ri i/1`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `delete-ri`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+1. Editing a recipe ingredient
+    1. Prerequisites: Recipe bookmarks list shows at least 1 recipe and at most 3 recipes.
+    1. Test case: `edit-r 1 rn/Truffle fries rp/8.00`
+       <br>Expected: First recipe in the recipe bookmarks list is edited to have recipe name 'Truffle fries' and recipe price of '$8.00'.
+       Its position in the recipe bookmarks list may change. Details of the edited recipe shown in the result display box.
+    1. Test case: `edit-r 1 rn/Apple pie`
+       <br>Expected: First recipe in the recipe bookmarks list is edited to have recipe name 'Apple pie'.
+       Its position in the recipe bookmarks list may change. Details of the edited recipe shown in the result display box.
+    1. Test case: `edit-r rn/Apple pie`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `edit-r`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `edit-r 1`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `edit-r abc`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+    1. Test case: `edit-r 1 rp/-2`
+       <br>Expected: No recipe is edited. Error details shown in the result display box.
+1. Finding recipe by keywords
+    1. Prerequisites: There are exactly 2 recipes in the recipe bookmarks list.
+       One has the recipe name "Apple Pie", the other has the recipe name "Banana split".
+    1. Test case: `find-r rn/apple`
+       <br>Expected: Recipe bookmarks list only shows the recipe with the recipe name "Apple Pie".
+    1. Test case: `find-r rn/chocolate`
+       <br>Expected: Recipe bookmarks list shows 0 recipes.
+    1. Test case: `find-r rn/`
+       <br>Expected: No change in the recipe bookmarks list display. Error details shown in the result display box.
+    1. Test case: `find-r`
+       <br>Expected: No change in the recipe bookmarks list display. Error details shown in the result display box.
+1. Listing all recipes
+    1. Prerequisites: Recipe bookmarks list has at least 1 recipe.
+    1. Test case: `list-r`
+       <br>Expected: Recipe bookmarks list displays all recipes.
+    1. Test case: `list-r abc`
+       <br>Expected: Recipe bookmarks list displays all recipes.
 
-   1. Download the jar file and copy into an empty folder
+### Saving data and Editing the data file
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Dealing with missing data files
+   1. Move your copy of `btbb.jar` to an empty directory.
+   1. If that directory has a directory named `data`, delete the `data` directory.
+   1. Double-click `btbb.jar` to launch the application.
+      If that does not work, use your terminal to navigate to the directory containing `btbb.jar`
+      and execute `java -jar btbb.jar`.
+      <br>Expected: The application GUI shows sample data.
 
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Dealing with corrupted data files
+    1. Replace all of the content in `data/btbb.json` with `Corrupted file`.
+    1. Double-click `btbb.jar` to launch the application.
+       If that does not work, use your terminal to navigate to the directory containing `btbb.jar`
+       and execute `java -jar btbb.jar`.
+       <br>Expected: The application GUI does not show any data.
