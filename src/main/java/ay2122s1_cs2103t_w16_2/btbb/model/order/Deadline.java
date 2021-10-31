@@ -15,7 +15,7 @@ import java.time.format.ResolverStyle;
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be a valid date and time in dd-mm-yyyy hhmm format";
+            "Deadline should consist of a valid date and time in dd-mm-yyyy hhmm format";
     private static final String INPUT_FORMAT = "dd-MM-uuuu HHmm";
     public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
