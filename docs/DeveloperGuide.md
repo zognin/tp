@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Libraries used: [git-hooks-gradle-plugin](https://github.com/jakemarsden/git-hooks-gradle-plugin), [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [git-hooks-gradle-plugin](https://github.com/jakemarsden/git-hooks-gradle-plugin),
+  [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/), [Jekyll](https://jekyllrb.com/)
 
 --------------------------------------------------------------------------------------------------------------------
 
