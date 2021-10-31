@@ -40,6 +40,7 @@ public class Email {
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        System.out.println(VALIDATION_REGEX);
         this.email = email;
     }
 

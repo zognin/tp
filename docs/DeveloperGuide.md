@@ -1201,44 +1201,119 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Help and switching tabs
 
-1. Initial launch
+1. View help
+    1. Test case: `help`
+       Expected: A pop up window is displayed with a link to BTBB's user guide.
+    1. Test case: `help 123`
+       Expected: A pop up window is displayed with a link to BTBB's user guide.
 
-   1. Download the jar file and copy into an empty folder
+1. Switching tabs
+    1. Test case: `tab 1`
+       Expected: UI switches to the Home tab.
+    1. Test case: `tab 2`
+       Expected: UI switches to the Inventory & Statistics tab.
+    1. Test case: `tab -1`
+       Expected: UI does not switch tabs. Error details shown in the result display box.
+    1. Test case: `tab abc`
+       Expected: UI does not switch tabs. Error details shown in the result display box.
+    1. Test case: `tab 5`
+       Expected: UI does not switch tabs. Error details shown in the result display box.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Client
 
-1. Saving window preferences
+1. Adding a client
+    1. Prerequisite: Client bookmarks list does not contain a client with `99887766` as his/her phone number.
+    1. Test case: `add-c cn/Richard Roe cp/99887766 ce/richardr@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: A new client is added to client bookmarks list with the given details. Details of the added client is
+       shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/johnd@example.com`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cp/98765432 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/johndexample.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/+johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/987654321098765432100 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c 1 cn/John Doe cp/987654321098762100 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c`
+       Expected: No client is added. Error details shown in the result display box.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Deleting a client
+    1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
+    1. Test case: `delete-c 1`
+       Expected: First client is deleted from the displayed client bookmarks list. Details of the deleted client is
+       shown in the result display box.
+    1. Test case: `delete-c -1`
+       Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c 4`
+       Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c abc`
+       Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c`
+       Expected: Expected: No client is deleted. Error details shown in the result display box.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Editing a client
+    1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
+    1. Test case: `edit-c 1 cn/Marcus Goh ce/marcusg@gmail.com`
+       Expected: First client in the client bookmarks list is edited to have the name 'Marcus Goh' and email
+       'marcusg@gmail.com'. Its position in the client bookmarks list may change. Details of the edited client is
+       shown in the result display box.
+    1. Test case: `edit-c 1 ca/333, Serangoon North Ave 1`
+       Expected: First client in the client bookmarks list is edited to have the address '333, Serangoon North Ave 1'.
+    1. Test case: `edit-c cn/Ryan Lim`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c abc cn/Ryan Lim`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 1`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c -1 cn/Ryan Lim`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 5 cn/Ryan Lim`
+       Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 1 cp/98`
+       Expected: No client is edited. Error details shown in the result display box.
 
-1. _{ more test cases …​ }_
+1. Finding client by keywords
+    1. Prerequisites: There are exactly 2 clients in the client bookmarks list. The client details are as follows:
+       1. Name: John Doe, Phone: 98765432, Address: 311, Clementi Ave 2, #02-25, Email: johnd@gmail.com
+       1. Name: Gary Lim, Phone: 99887766, Address: 333, Buona Vista Ave 2, #03-37, Email: garyl@gmail.com
+    1. Test case: `find-c cn/john`
+       Expected: Client bookmarks list only shows the client with the name 'John Doe'.
+    1. Test case: `find-c cn/gary`
+       Expected: Client bookmarks list only shows the client with the name 'Gary Lim'.
+    1. Test case: `find-c ca/311`
+       Expected: Client bookmarks list only shows the client with the address '311, Clementi Ave 2, #02-25'.
+    1. Test case: `find-c ca/333`
+       Expected: Client bookmarks list only shows the client with the address '333, Buona Vista Ave 2, #03-37'.
+    1. Test case: `find-c cp/9876`
+       Expected: Client bookmarks list only shows the client with the phone '98765432'.
+    1. Test case: `find-c cp/9988`
+       Expected: Client bookmarks list only shows the client with the phone '99887766'.
+    1. Test case: `find-c ce/john`
+       Expected: Client bookmarks list only shows the client with the email 'johnd@gmail.com'.
+    1. Test case: `find-c ce/gary`
+       Expected: Client bookmarks list only shows the client with the email 'garyl@gmail.com'.
+    1. Test case: `find-c cn/`
+       Expected: No change in the client bookmarks list display. Error details shown in the result display box.
+    1. Test case: `find-c`
+       Expected: No change in the client bookmarks list display. Error details shown in the result display box.
+    1. Test case: `find-c 1 cn/john`
+       Expected: No change in the client bookmarks list display. Error details shown in the result display box.
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Listing all client
+    1. Prerequisite: Client bookmark list has at least 1 client.
+    1. Test case: `list-c`
+       Expected: Client bookmarks list displays all clients.
+    1. Test case: `list-c 123`
+       Expected: Client bookmarks list displays all clients.
