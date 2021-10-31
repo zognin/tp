@@ -104,7 +104,7 @@ Here are the ingredients that will be used for the tuna sandwich:
 * 1 slice of cheese
 * 1 can of tuna
 
-Suppose you currently have these ingredients with you but have not been added in the inventory:
+Suppose you currently have these ingredients with you:
 
 * 100 slices of bread
 * 100 slices of cheese
@@ -127,13 +127,14 @@ Firstly, switch over to the Inventory & Statistics tab by entering the following
 
 `tab 2`
 
-Now, we will proceed to add our 3 ingredients to the inventory by entering the following commands:
+Remember the ingredients you had? After your first order, you will be left with 94 slices of bread, 97 slices of
+cheese and 97 cans of tuna. We will proceed to add them to the inventory by entering the following commands:
 
-`add-i in/Bread iq/100 iu/slices`
+`add-i in/Bread iq/94 iu/slices`
 
-`add-i in/Cheese iq/100 iu/slices`
+`add-i in/Cheese iq/97 iu/slices`
 
-`add-i in/Tuna iq/100 iu/cans`
+`add-i in/Tuna iq/97 iu/cans`
 
 You will notice that the ingredients, bread, cheese and tuna have been added to the Inventory list
 (ingredients are sorted alphabetically).
