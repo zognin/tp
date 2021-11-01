@@ -24,7 +24,7 @@ Thought about hiring someone to manage the growth of your home business? <br>
 
 If any of these concerns apply to you, then you're in luck –– **BobTheBistroBoss** can do all these and MORE! <br>
 Not only that, BobTheBistroBoss (BTBB) makes this process **hassle-free**! <br>
-Allow BTBB to handle the business, you just focus on being the next Gordon Ramsay!
+Allow BTBB to handle the business, while you focus on being the next Gordon Ramsay!
 
 BTBB supports Home Chefs who seek to **venture into the home-based F&B business**, but are deterred by the complexity of business management.
 
