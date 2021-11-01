@@ -1220,6 +1220,7 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No recipe is edited. Error details shown in the result display box.
     1. Test case: `delete-ri`
        <br>Expected: No recipe is edited. Error details shown in the result display box.
+
 1. Editing a recipe
     1. Prerequisites: Recipe bookmarks list only has these 3 recipes:
         * name: Banana split, price: $10
@@ -1241,6 +1242,7 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No recipe is edited. Error details shown in the result display box.
     1. Test case: `edit-r 1 rp/-2`
        <br>Expected: No recipe is edited. Error details shown in the result display box.
+
 1. Finding recipes by keywords
     1. Prerequisites: There are exactly 2 recipes in the recipe bookmarks list.
        One has the recipe name 'Apple Pie', the other has the recipe name 'Banana split'.
@@ -1252,6 +1254,7 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No change in the recipe bookmarks list display. Error details shown in the result display box.
     1. Test case: `find-r`
        <br>Expected: No change in the recipe bookmarks list display. Error details shown in the result display box.
+
 1. Listing all recipes
     1. Prerequisites: Recipe bookmarks list has at least 1 recipe.
     1. Test case: `list-r`
@@ -1268,6 +1271,7 @@ testers are expected to do more *exploratory* testing.
       If that does not work, use your terminal to navigate to the directory containing `btbb.jar`
       and execute `java -jar btbb.jar`.
       <br>Expected: The application GUI shows sample data.
+
 1. Dealing with corrupted data files
     1. Replace all of the content in `data/btbb.json` with `Corrupted file`.
     1. Double-click `btbb.jar` to launch the application.
