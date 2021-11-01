@@ -3,20 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<!--
-@@author {sivayogasubramanian}-reused
-Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
--->
-<div class="toc-no-bullet-points">
-  * Table of Contents
-  {:toc}
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-
-## 1. Introduction
-
-### 1.1 About BobTheBistroBoss
+### Introducing BobTheBistroBoss
 
 Do you face difficulties managing many different orders? <br>
 Ever wanted to stop worrying about your next inventory restock? <br>
@@ -32,7 +19,7 @@ With BTBB, you can track **logistics** and receive valuable **data visualization
 BTBB consolidates all the data in one place, and even comes with a Graphical User Interface (GUI) to easily view
 and manoeuvre through client, ingredient, order and recipe details.
 
-### 1.2 Navigating the user guide
+### Navigating the user guide
 
 This user guide aims to equip you with the necessary knowledge so that you can fully utilize BTBB.
 
@@ -52,6 +39,20 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
 
 `Words or phrases in code blocks like this are for user inputs or input parameters.`
+
+--------------------------------------------------------------------------------------------------------------------
+
+<!--
+@@author {sivayogasubramanian}-reused
+Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+-->
+
+## 1. Table of Contents
+
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
