@@ -1467,7 +1467,7 @@ testers are expected to do more *exploratory* testing.
 ### Exiting the program
 
 1. Exit the application
-    1. Prerequisite: Application is running. 
+    1. Prerequisite: Application is running.
     1. Test case: `exit`
        <br>Expected: Application window immediately closes. Data is saved to the json file.
 
