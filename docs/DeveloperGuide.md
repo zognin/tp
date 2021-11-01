@@ -1464,6 +1464,13 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `list-r abc`
        <br>Expected: Recipe bookmarks list displays all recipes.
 
+### Exiting the program
+
+1. Exit the application
+    1. Prerequisite: Application is running. 
+    1. Test case: `exit`
+       <br>Expected: Application window immediately closes. Data is saved to the json file.
+
 ### Saving data and Editing the data file
 
 1. Dealing with missing data files
