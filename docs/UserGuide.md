@@ -18,11 +18,21 @@ Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461
 
 ### 1.1 About BobTheBistroBoss
 
-BobTheBistroBoss (BTBB) is a **desktop application that aims to help home-based F&B businesses, by keeping track of logistics as well as
-providing valuable data visualizations, via a user-friendly command-line interface (CLI).** Keeping track of
-information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
+Can you prepare the most heavenly dishes? Why not share the love (and earn a little extra cash on the side :stuck_out_tongue_closed_eyes:) with **BobTheBistroBoss**! <br>
+BobTheBistroBoss (BTBB) supports Home Chefs who want to venture into the home-based F&B business, but are deterred by the complexity of business management. <br>
+BTBB makes this process **hassle-free**! Allow us to handle the business, you just focus on being the best chef you can be!
+
+Too many orders? No problem. <br>
+Ingredients always running out? That's OK! <br>
+Can't even tell if you're making a profit? Don't worry. <br>
+Have agile fingers and want to show it off? Weird flex but ok! <br>
+
+BTBB will do all these and MORE, just for you!
+
+BTBB is a desktop application that aims to help home-based F&B businesses, by keeping track of logistics as well as
+providing valuable data visualizations, via a user-friendly command-line interface (CLI). Our
 application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
-manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
+manoeuvre through client and order details.
 
 ### 1.2 Navigating the user guide
 
