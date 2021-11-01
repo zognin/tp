@@ -1203,6 +1203,24 @@ testers are expected to do more *exploratory* testing.
 
 ### Recipe
 
+1. Adding an ingredient
+    1. Prerequisites: Inventory has no ingredients.
+    1. Test case: `add-i in/Chocolate Syrup iq/3 iu/bottles`
+       <br>Expected: A new ingredient is added to inventory with the given details.
+       If initially on the Home tab, will switch to Inventory & Statistics tab. Details of added ingredient will be shown in the result display box.
+    1. Test case: `add-i in/Chocolate iq/4`
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i iq/4 iu/bars`
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i in/Chocolate iu/bars`
+      <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i in/Chocolate iq/0 iu/bars`
+      <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i in/Chocolate iq/4 iu/bars`
+      <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i`
+      <br>Expected: No ingredient is added. Error details shown in the result display box.
+
 1. Deleting a recipe ingredient
     1. Prerequisites: Recipe at index 1 has at least 1 ingredient and at most 3 ingredients.
     1. Test case: `delete-ri 1 i/1`
