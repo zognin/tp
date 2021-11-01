@@ -1206,7 +1206,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a recipe ingredient
     1. Prerequisites: Recipe at index 1 has at least 1 ingredient and at most 3 ingredients.
     1. Test case: `delete-ri 1 i/1`
-       <br>Expected: First ingredient is deleted from the ingredient list in the first recipe of the displayed recipe bookmarks list.
+       <br>Expected: First ingredient is deleted from the ingredient list in the first recipe of the recipe bookmarks list.
        Details of the deleted ingredient and edited recipe are shown in the result display box.
     1. Test case: `delete-ri 1 i/10`
        <br>Expected: No recipe is edited. Error details shown in the result display box.
