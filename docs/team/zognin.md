@@ -17,8 +17,8 @@ optimized for use via a command line interface (CLI).
   * Justification: Each order has a list of ingredients.
     Users may want to change one ingredient in the list without affecting other ingredients.
     These commands allow the user to control which ingredient they want to change.
-  * Highlights: Used a different implementation from how AB3 edits lists within an entity.
-    Previously, editing a list within an entity (e.g. editing a list of tags in a contact rewrites the entire list).
+  * Highlights: Used a different implementation from how AB3 edits a list within an entity.
+    Previously, editing a list within an entity (e.g. editing a list of tags in a contact) rewrites the entire list.
     Now, users can edit individual items in the list without the hassle of rewriting everything.
 
 * **New Feature**: Added the ability to find items that are an exact match or lie within a range. (Pull request [#85](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/85)).
@@ -32,7 +32,7 @@ optimized for use via a command line interface (CLI).
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=zognin&tabRepo=AY2122S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Team tasks**:
-  * Managed release `v1.2` and `v1.3` on GitHub.
+  * Made the release of `v1.2` and `v1.3` on GitHub.
   * Set up the codebase so that the team can implement new features in a consistent manner and in parallel.
     (Pull requests [#34](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/34), [#56](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/56)).
   * Maintain the issue tracker by creating issues, adding labels and closing issues.
@@ -49,14 +49,14 @@ optimized for use via a command line interface (CLI).
 
 * **Documentation**:
   * User Guide:
-    * Added some recipe features.
-    * Updated feature overview.
+    * Added some recipe features. (Pull Request [#156](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/156)).
+    * Updated feature overview. (Pull Request [#233](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/233)).
   * Developer Guide:
-    * Added user stories.
-    * Added implementation details for the switching of tabs and editing of ingredients in orders/ recipes.
-    * Added some manual testing instructions.
+    * Added user stories. (Pull Request [#78](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/78)).
+    * Added implementation details for the switching of tabs and editing of ingredients in orders/ recipes. (Pull Request [#158](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/158)).
+    * Added some manual testing instructions. (Pull Request [#239](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/239)).
 
 * **Community**:
   * Forum responses: [#148](https://github.com/nus-cs2103-AY2122S1/forum/issues/148),
     [#238](https://github.com/nus-cs2103-AY2122S1/forum/issues/238),
-    [#251](https://github.com/nus-cs2103-AY2122S1/forum/issues/251),
+    [#251](https://github.com/nus-cs2103-AY2122S1/forum/issues/251).
