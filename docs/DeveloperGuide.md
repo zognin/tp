@@ -1284,7 +1284,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `edit-c 1 cp/98`
        <br>Expected: No client is edited. Error details shown in the result display box.
 
-1. Finding client by keywords
+1. Finding clients by keywords
     1. Prerequisites: There are exactly 2 clients in the client bookmarks list. The client details are as follows:
        1. Name: John Doe, Phone: 98765432, Address: 311, Clementi Ave 2, #02-25, Email: johnd@gmail.com
        1. Name: Gary Lim, Phone: 99887766, Address: 333, Buona Vista Ave 2, #03-37, Email: garyl@gmail.com
@@ -1311,7 +1311,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find-c 1 cn/john`
        <br>Expected: No change in the client bookmarks list display. Error details shown in the result display box.
 
-1. Listing all client
+1. Listing all clients
     1. Prerequisite: Client bookmark list has at least 1 client.
     1. Test case: `list-c`
        <br>Expected: Client bookmarks list displays all clients.
