@@ -1042,7 +1042,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
       Use Case ends.
 
 * 2b. BTBB detects an error in the entered data.
- 	* 2b1. BTBB informs Home Chef why addition of recipe failed.
+    * 2b1. BTBB informs Home Chef why addition of recipe failed.
 
       Use case ends.
 
@@ -1200,6 +1200,123 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+### Viewing help and Switching tabs
+
+1. Viewing help
+    1. Test case: `help`
+       <br>Expected: A pop up window is displayed with a link to BTBB's user guide.
+    1. Test case: `help 123`
+       <br>Expected: A pop up window is displayed with a link to BTBB's user guide.
+
+1. Switching tabs
+    1. Test case: `tab 1`
+       <br>Expected: UI switches to the Home tab.
+    1. Test case: `tab 2`
+       <br>Expected: UI switches to the Inventory & Statistics tab.
+    1. Test case: `tab -1`
+       <br>Expected: UI does not switch tabs. Error details shown in the result display box.
+    1. Test case: `tab abc`
+       <br>Expected: UI does not switch tabs. Error details shown in the result display box.
+    1. Test case: `tab 5`
+       <br>Expected: UI does not switch tabs. Error details shown in the result display box.
+
+### Client
+
+1. Adding a client
+    1. Prerequisite: Client bookmarks list does not contain a client with `99887766` as his/her phone number.
+    1. Test case: `add-c cn/Richard Roe cp/99887766 ce/richardr@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: A new client is added to client bookmarks list with the given details. Details of the added
+       client are shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/johnd@example.com`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cp/98765432 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/johndexample.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/98765432 ce/+johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c cn/John Doe cp/987654321098765432100 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c 1 cn/John Doe cp/987654321098762100 ce/johnd@example.com ca/311, Clementi Ave 2, #02-25`
+       <br>Expected: No client is added. Error details shown in the result display box.
+    1. Test case: `add-c`
+       <br>Expected: No client is added. Error details shown in the result display box.
+
+1. Deleting a client
+    1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
+    1. Test case: `delete-c 1`
+       <br>Expected: First client is deleted from the client bookmarks list. Details of the deleted client are
+       shown in the result display box.
+    1. Test case: `delete-c -1`
+       <br>Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c 4`
+       <br>Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c abc`
+       <br>Expected: No client is deleted. Error details shown in the result display box.
+    1. Test case: `delete-c`
+       <br>Expected: No client is deleted. Error details shown in the result display box.
+
+1. Editing a client
+    1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
+    1. Test case: `edit-c 1 cn/Marcus Goh ce/marcusg@gmail.com`
+       <br>Expected: First client in the client bookmarks list is edited to have the name 'Marcus Goh' and email
+       'marcusg@gmail.com'. Its position in the client bookmarks list may change. Details of the edited client are
+       shown in the result display box.
+    1. Test case: `edit-c 1 ca/333, Serangoon North Ave 1`
+       <br>Expected: First client in the client bookmarks list is edited to have the address '333, Serangoon North Ave 1'.
+    1. Test case: `edit-c cn/Ryan Lim`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c abc cn/Ryan Lim`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 1`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c -1 cn/Ryan Lim`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 5 cn/Ryan Lim`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+    1. Test case: `edit-c 1 cp/98`
+       <br>Expected: No client is edited. Error details shown in the result display box.
+
+1. Finding clients by keywords
+    1. Prerequisites: There are exactly 2 clients in the client bookmarks list. The client details are as follows:
+       1. Name: John Doe, Phone: 98765432, Address: 311, Clementi Ave 2, #02-25, Email: johnd@gmail.com
+       1. Name: Gary Lim, Phone: 99887766, Address: 333, Buona Vista Ave 2, #03-37, Email: garyl@gmail.com
+    1. Test case: `find-c cn/john`
+       <br>Expected: Client bookmarks list only shows the client with the name 'John Doe'.
+    1. Test case: `find-c cn/gary`
+       <br>Expected: Client bookmarks list only shows the client with the name 'Gary Lim'.
+    1. Test case: `find-c ca/311`
+       <br>Expected: Client bookmarks list only shows the client with the address '311, Clementi Ave 2, #02-25'.
+    1. Test case: `find-c ca/333`
+       <br>Expected: Client bookmarks list only shows the client with the address '333, Buona Vista Ave 2, #03-37'.
+    1. Test case: `find-c cp/9876`
+       <br>Expected: Client bookmarks list only shows the client with the phone '98765432'.
+    1. Test case: `find-c cp/9988`
+       <br>Expected: Client bookmarks list only shows the client with the phone '99887766'.
+    1. Test case: `find-c ce/john`
+       <br>Expected: Client bookmarks list only shows the client with the email 'johnd@gmail.com'.
+    1. Test case: `find-c ce/gary`
+       <br>Expected: Client bookmarks list only shows the client with the email 'garyl@gmail.com'.
+    1. Test case: `find-c cn/`
+       <br>Expected: No change in the client bookmarks list display. Error details shown in the result display box.
+    1. Test case: `find-c`
+       <br>Expected: No change in the client bookmarks list display. Error details shown in the result display box.
+    1. Test case: `find-c 1 cn/john`
+       <br>Expected: No change in the client bookmarks list display. Error details shown in the result display box.
+
+1. Listing all clients
+    1. Prerequisite: Client bookmark list has at least 1 client.
+    1. Test case: `list-c`
+       <br>Expected: Client bookmarks list displays all clients.
+    1. Test case: `list-c 123`
+       <br>Expected: Client bookmarks list displays all clients.
 
 ### Recipe
 
