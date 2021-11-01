@@ -1201,7 +1201,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Viewing help and switching tabs
+### Viewing help and Switching tabs
 
 1. Viewing help
     1. Test case: `help`
