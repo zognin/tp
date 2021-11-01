@@ -3,28 +3,23 @@ layout: page
 title: User Guide
 ---
 
-<!--
-@@author {sivayogasubramanian}-reused
-Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
--->
-<div class="toc-no-bullet-points">
-  * Table of Contents
-  {:toc}
-</div>
+### Introducing BobTheBistroBoss
 
---------------------------------------------------------------------------------------------------------------------
+Do you face difficulties managing many different orders? <br>
+Ever wanted to stop worrying about your next inventory restock? <br>
+Thought about hiring someone to manage the growth of your home business? <br>
 
-## 1. Introduction
+If any of these concerns apply to you, then you're in luck –– **BobTheBistroBoss** can do all these and MORE! <br>
+Not only that, BobTheBistroBoss (BTBB) makes this process **hassle-free**! <br>
+Allow BTBB to handle the business, while you focus on being the next Gordon Ramsay!
 
-### 1.1 About BobTheBistroBoss
+BTBB supports Home Chefs who seek to **venture into the home-based F&B business**, but are deterred by the complexity of business management.
 
-BobTheBistroBoss (BTBB) is a **desktop application that aims to help home-based F&B businesses, by keeping track of logistics as well as
-providing valuable data visualizations, via a user-friendly command-line interface (CLI).** Keeping track of
-information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
-application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
-manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
+With BTBB, you can **track logistics** and receive valuable **data visualizations** via a **user-friendly** command line interface (CLI).
+BTBB consolidates all the data in one place, and even comes with a Graphical User Interface (GUI) to easily view
+and manoeuvre through client, ingredient, order and recipe details.
 
-### 1.2 Navigating the user guide
+### Navigating the user guide
 
 This user guide aims to equip you with the necessary knowledge so that you can fully utilize BTBB.
 
@@ -44,6 +39,20 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
 
 `Words or phrases in code blocks like this are for user inputs or input parameters.`
+
+--------------------------------------------------------------------------------------------------------------------
+
+<!--
+@@author {sivayogasubramanian}-reused
+Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+-->
+
+## 1. Table of Contents
+
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
