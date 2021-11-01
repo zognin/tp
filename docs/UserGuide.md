@@ -15,7 +15,7 @@ Allow BTBB to handle the business, while you focus on being the next Gordon Rams
 
 BTBB supports Home Chefs who seek to **venture into the home-based F&B business**, but are deterred by the complexity of business management.
 
-With BTBB, you can track **logistics** and receive valuable **data visualizations**, via a **user-friendly** command line interface (CLI).
+With BTBB, you can **track logistics** and receive valuable **data visualizations** via a **user-friendly** command line interface (CLI).
 BTBB consolidates all the data in one place, and even comes with a Graphical User Interface (GUI) to easily view
 and manoeuvre through client, ingredient, order and recipe details.
 
