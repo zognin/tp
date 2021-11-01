@@ -76,11 +76,11 @@ public class AddOrderCommand extends Command {
             + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to your order list.\n"
-            + "Possible combinations of Parameters: \n"
-            + "1. " + NO_INDEX
-            + "2. " + CLIENT_INDEX
-            + "3. " + RECIPE_INDEX
-            + "4. " + CLIENT_AND_RECIPE_INDEX
+            + "Possible formats: \n"
+            + "1. " + COMMAND_WORD + " " + NO_INDEX
+            + "2. " + COMMAND_WORD + " " + CLIENT_INDEX
+            + "3. " + COMMAND_WORD + " " + RECIPE_INDEX
+            + "4. " + COMMAND_WORD + " " + CLIENT_AND_RECIPE_INDEX
             + "Additional info: If ORDER_QUANTITY is not present, it will be set to 1 by default.";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
