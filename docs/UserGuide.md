@@ -113,7 +113,7 @@ or if your client changes his phone number in the future, it will not affect rec
 * Client bookmarks are sorted in ascending alphabetical order of client name.
   Uppercase letters appear before lowercase letters.
 
-* All Client commands are able to function properly when entered from any tab.
+* You can use all client commands from any tab.
 
 </div>
 
@@ -142,7 +142,7 @@ However, feel free to give us feedback for future iterations.
 * Ingredients in the inventory are sorted by ascending alphabetical order of ingredient name.
   Uppercase letters appear before lowercase letters.
 
-* All Ingredient commands are able to function properly when entered from any tab.
+* You can use all ingredient commands from any tab.
 
 </div>
 
@@ -162,7 +162,7 @@ You can track client details, recipe details, order price, quantity, deadline an
 * Orders are sorted by completion status, then deadline. Uncompleted orders appear before completed orders.
   Within each group of uncompleted and completed orders, orders with earlier deadlines are higher in the list.
 
-* All Order commands are able to function properly when entered from any tab.
+* You can use all order commands from any tab.
 
 </div>
 
@@ -192,7 +192,7 @@ You can also change your recipe bookmarks, for example to increase its price, wi
 * Recipe bookmarks are sorted by ascending alphabetical order of recipe name.
   Uppercase letters appear before lowercase letters.
 
-* All Recipe commands are able to function properly when entered from any tab.
+* You can use all recipe commands from any tab.
 
 </div>
 
