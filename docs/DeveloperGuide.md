@@ -1227,7 +1227,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: Client bookmarks list does not contain a client with `99887766` as his/her phone number.
     1. Test case: `add-c cn/Richard Roe cp/99887766 ce/richardr@example.com ca/311, Clementi Ave 2, #02-25`
        <br>Expected: A new client is added to client bookmarks list with the given details. Details of the added
-       client is shown in the result display box.
+       client are shown in the result display box.
     1. Test case: `add-c cn/John Doe cp/98765432 ce/johnd@example.com`
        <br>Expected: No client is added. Error details shown in the result display box.
     1. Test case: `add-c cn/John Doe cp/98765432 ca/311, Clementi Ave 2, #02-25`
@@ -1250,7 +1250,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a client
     1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
     1. Test case: `delete-c 1`
-       <br>Expected: First client is deleted from the displayed client bookmarks list. Details of the deleted client is
+       <br>Expected: First client is deleted from the displayed client bookmarks list. Details of the deleted client are
        shown in the result display box.
     1. Test case: `delete-c -1`
        <br>Expected: No client is deleted. Error details shown in the result display box.
@@ -1265,7 +1265,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
     1. Test case: `edit-c 1 cn/Marcus Goh ce/marcusg@gmail.com`
        <br>Expected: First client in the client bookmarks list is edited to have the name 'Marcus Goh' and email
-       'marcusg@gmail.com'. Its position in the client bookmarks list may change. Details of the edited client is
+       'marcusg@gmail.com'. Its position in the client bookmarks list may change. Details of the edited client are
        shown in the result display box.
     1. Test case: `edit-c 1 ca/333, Serangoon North Ave 1`
        <br>Expected: First client in the client bookmarks list is edited to have the address '333, Serangoon North Ave 1'.
