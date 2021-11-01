@@ -33,8 +33,8 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=Imranr2&tabRepo=AY2122S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Team tasks**:
-  * Closed milestone v1.1.
-  * Maintain issue tracker by closing completed issues.
+  * Closed milestone `v1.1`.
+  * Maintain issue tracker by creating and closing issues.
   * Ensure team is on track to complete tasks by given deadline.
 
 * **Review/mentoring contributions**
@@ -42,10 +42,13 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
   * Helped team members with styling issues for JavaFX charts.
 
 * **Documentation**:
-  * User Guide (Pull requests [#82](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/82), [#159](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/159)):
-    * Added section for commands related to orders.
-    * Added section explaining what statistics BTBB supports.
+  * User Guide
+    * Added section for commands related to orders. [#82](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/82)
+    * Added section explaining what statistics BTBB supports. [#159](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/159))
 
-  * Developer Guide (Pull requests [#130](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/130), [#165](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/165)):
-    * Added implementation details for copying of client and recipe bookmarks to orders.
-    * Added implementation details for delete command.
+  * Developer Guide
+    * Added implementation details for delete command. [#130](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/130)
+    * Added implementation details for copying of client and recipe bookmarks to orders. [#165](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/165)
+    * Updated user story and use cases. [#225](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/225)
+    * Updated all architecture and class diagrams to match BTBB's implementation. [#231](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/231)
+    * Added some manual testing instructions. [#241](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/241)
