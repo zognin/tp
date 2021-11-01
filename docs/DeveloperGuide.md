@@ -1201,9 +1201,9 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Help and switching tabs
+### Viewing help and switching tabs
 
-1. View help
+1. Viewing help
     1. Test case: `help`
        <br>Expected: A pop up window is displayed with a link to BTBB's user guide.
     1. Test case: `help 123`
@@ -1250,7 +1250,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a client
     1. Prerequisites: Client bookmarks list shows at least 1 client and at most 3 clients.
     1. Test case: `delete-c 1`
-       <br>Expected: First client is deleted from the displayed client bookmarks list. Details of the deleted client are
+       <br>Expected: First client is deleted from the client bookmarks list. Details of the deleted client are
        shown in the result display box.
     1. Test case: `delete-c -1`
        <br>Expected: No client is deleted. Error details shown in the result display box.
