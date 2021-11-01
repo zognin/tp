@@ -1241,7 +1241,7 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No recipe is edited. Error details shown in the result display box.
     1. Test case: `edit-r 1 rp/-2`
        <br>Expected: No recipe is edited. Error details shown in the result display box.
-1. Finding recipe by keywords
+1. Finding recipes by keywords
     1. Prerequisites: There are exactly 2 recipes in the recipe bookmarks list.
        One has the recipe name 'Apple Pie', the other has the recipe name 'Banana split'.
     1. Test case: `find-r rn/apple`

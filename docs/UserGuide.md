@@ -882,7 +882,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 *  `edit-r 2 rn/Burger rp/8` Edits the second recipe in the currently shown recipe list by changing the
    recipe name to 'Burger' and the recipe price to $8.00.
 
-#### 4.6.6 Finding recipe by keywords: `find-r`
+#### 4.6.6 Finding recipes by keywords: `find-r`
 
 Finds recipe(s) with attribute(s) that contains the keyword(s). <br>
 Recipes can only be found using recipe name.
