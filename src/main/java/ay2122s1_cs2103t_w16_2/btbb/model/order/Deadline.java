@@ -14,7 +14,8 @@ import java.time.format.ResolverStyle;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Deadline implements Comparable<Deadline> {
-    public static final String MESSAGE_CONSTRAINTS = "Deadline should be in dd-mm-yyyy hhmm format";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadline should consist of a valid date and time in dd-mm-yyyy hhmm format";
     private static final String INPUT_FORMAT = "dd-MM-uuuu HHmm";
     public static final DateTimeFormatter INPUT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INPUT_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);

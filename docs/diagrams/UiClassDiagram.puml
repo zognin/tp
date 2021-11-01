@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+left to right direction
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
@@ -11,10 +12,22 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class ClientListPanel
+Class ClientCard
+Class IngredientListPanel
+Class IngredientCard
+Class RecipeCard
+Class OrderListPanel
+Class OrderCard
+Class RecipeListPanel
+Class RecipeCard
+Class BarChart
+Class PieChart
 Class CommandBox
+Class Tab
+Class HomeTabContent
+Class StatTabContent
+Class UiTab <<enumeration>>
 }
 
 package Model <<Rectangle>> {
@@ -32,29 +45,53 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "2" Tab
 MainWindow --> "0..1" HelpWindow
+MainWindow ..> UiTab
 
-PersonListPanel -down-> "*" PersonCard
+Tab *-down-> "1" HomeTabContent
+Tab *-down-> "1" StatTabContent
+
+HomeTabContent *-down-> "1" ClientListPanel
+HomeTabContent *-down-> "1" OrderListPanel
+HomeTabContent *-down-> "1" RecipeListPanel
+
+StatTabContent *-down-> "1" IngredientListPanel
+StatTabContent *-down-> "revenueBarChart" BarChart
+StatTabContent *-down-> "clientPieChart" PieChart
+StatTabContent *-down-> "recipePieChart" PieChart
+
+ClientListPanel -down-> "*" ClientCard
+IngredientListPanel -down-> "*" IngredientCard
+OrderListPanel -down-> "*" OrderCard
+RecipeListPanel -down-> "*" RecipeCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+ClientListPanel --|> UiPart
+ClientCard --|> UiPart
+IngredientListPanel --|> UiPart
+IngredientCard --|> UiPart
+OrderListPanel --|> UiPart
+OrderCard --|> UiPart
+RecipeListPanel --|> UiPart
+RecipeCard --|> UiPart
 HelpWindow --|> UiPart
+HomeTabContent --|> UiPart
+StatTabContent --|> UiPart
 
-PersonCard ..> Model
+ClientCard ..> Model
+IngredientCard ..> Model
+OrderCard ..> Model
+RecipeCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ClientListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

@@ -9,13 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+* Libraries used: [git-hooks-gradle-plugin](https://github.com/jakemarsden/git-hooks-gradle-plugin),
+  [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [Jekyll](https://jekyllrb.com/),
+  [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +19,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +32,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/MainApp.java).
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,7 +49,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user
+issues the command `delete-c 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,24 +67,30 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `HomeTab`,
+`StatTab` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the
+commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+There are 2 main tab panes contained in `MainWindow`:
+* `HomeTab`: Displays all the orders, client bookmarks and recipe bookmarks.
+* `StatTab`: Displays all the ingredients and also business statistics such as revenue for each month, top 10 most
+  frequent clients and top 10 most popular recipes
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that  are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,53 +98,56 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteClientCommand`)
+   which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. Lastly the `LogicManager` communicates with `Storage` to save the changes.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-c 1")`
+API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteClientSequenceDiagram.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to
+  parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `AddressBookParser`
+  returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the
+  `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
+  `ReadOnlyUserPref` objects.
+* stores the application data in the following components:
+  * a `UniqueClientList` containing `Client` objects.
+  * a `UniqueIngredientList` containing `Ingredient` objects.
+  * a `UniqueOrderList` containing `Order` objects.
+  * a `UniqueRecipeList` containing `Recipe` objects.
+* exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Ingredient>`, `ObservableList<Order>` and
+  `ObservableList<Recipe>` which can be observed by the UI. This allows the UI to automatically update the displayed
+  list when the data in the list is modified.
+* does not depend on any of the other three components (`Ui`, `Logic`, `Storage`).
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W16-2/tp/blob/master/src/main/java/ay2122s1_cs2103t_w16_2/btbb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both application data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -601,7 +608,7 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>Edit client details</td>
+    <td>Edit clients</td>
     <td>I can update their contact information</td>
   </tr>
   <tr>
@@ -656,6 +663,11 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
+    <td>Detect duplicate orders</td>
+    <td>I do not clutter the application with duplicate orders</td>
+  </tr>
+  <tr>
+    <td>HIGH</td>
     <td>Mark an order as done</td>
     <td>I can set the status of an order</td>
   </tr>
@@ -701,18 +713,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my least popular recipes</td>
-    <td>I can spend less time refining my skills for those recipes</td>
-  </tr>
-  <tr>
-    <td>HIGH</td>
     <td>View my monthly revenue</td>
     <td>I can tell if my business is growing</td>
   </tr>
   <tr>
     <td>HIGH</td>
-    <td>View my most popular clients</td>
-    <td>I can reinforce business relationships with my popular clients</td>
+    <td>View my most frequent clients</td>
+    <td>I can reinforce business relationships with my most frequent clients</td>
   </tr>
 </table>
 
@@ -721,20 +728,20 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 (For all use cases below, the **System** is the `BobTheBistroBoss (BTBB)` and the **Actor** is the `Home Chef`, unless specified otherwise)
 
-**Use case: UC01 Add a client**
+**Use case: UC01 Add client**
 
 **MSS**
 
 1.  Home Chef chooses to add a client.
 2.  Home Chef enters details in required format.
-3.  BTBB displays new client.
+3.  BTBB displays the new client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs Home Chef that client already exist.
+* 2a. Client entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
@@ -743,13 +750,13 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC02 Find a client**
+**Use case: UC02 Find client**
 
 **MSS**
 
-1.  Home Chef wants to find a client by a field.
+1.  Home Chef chooses to find a client by a field.
 2.  Home Chef enters search terms in required format.
-3.  BTBB displays all clients that match the terms.
+3.  BTBB displays all client(s) that match the terms.
 
     Use case ends.
 
@@ -760,12 +767,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
       Use case ends.
 
-**Use case: UC03 Delete a client**
+**Use case: UC03 Delete client**
 
 **MSS**
 
 1.  Home Chef chooses to delete a client.
-2.  Home Chef enter details to delete a client.
+2.  Home Chef enters details to delete a client.
 3.  BTBB informs Home Chef that client has been deleted.
 
     Use case ends.
@@ -787,25 +794,25 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
     Use case ends.
 
-**Use case: UC05 Edit clients**
+**Use case: UC05 Edit client**
 
 **MSS**
 
-1.  Home chef chooses to edit a client’s details.
-2.  Home chef enters details in required format.
+1.  Home Chef chooses to edit a client’s details.
+2.  Home Chef enters details in required format.
 3.  BTBB displays the edited client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Phone number entered already exists in the system.
-    * 2a1. BTBB informs user that client already exist.
+* 2a. Client entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that client already exists.
 
       Use case ends.
 
 * 2b. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why editing of client failed.
+    * 2a1. BTBB informs Home Chef why editing of client failed.
 
       Use case ends.
 
@@ -813,21 +820,21 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to add ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays new ingredient.
+1.  Home Chef chooses to add an ingredient.
+2.  Home Chef enters details in required format.
+3.  BTBB displays the new ingredient.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why addition of ingredient failed.
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why addition of ingredient failed.
 
       Use case ends.
 
@@ -835,33 +842,33 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef wants to find an ingredient by a field.
-2.  Home chef enters search terms in required format.
-3.  BTBB displays all ingredient that match the format.
+1.  Home Chef chooses to find an ingredient by a field.
+2.  Home Chef enters search terms in required format.
+3.  BTBB displays all ingredient(s) that match the terms.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why finding an ingredient failed.
+    * 2a1. BTBB informs Home Chef why finding an ingredient failed.
 
     Use case ends.
 
-**Use case: UC08 Delete an Ingredient**
+**Use case: UC08 Delete Ingredient**
 
 **MSS**
 
-1.  Home chef chooses to delete a ingredient.
-2.  Home chef enters details in required format.
-3.  BTBB displays deleted ingredient.
+1.  Home Chef chooses to delete an ingredient.
+2.  Home Chef enters details to delete an ingredient.
+3.  BTBB informs Home Chef that ingredient has been deleted.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deletion of ingredient failed.
+    * 2a1. BTBB informs Home Chef why deletion of ingredient failed.
 
       Use case ends.
 
@@ -869,8 +876,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1.  Home chef chooses to view all ingredients.
-2.  Home chef enters command to see all ingredients.
+1.  Home Chef chooses to view all ingredients.
+2.  Home Chef enters command to see all ingredients.
 3.  BTBB displays all ingredients.
 
     Use case ends.
@@ -879,8 +886,8 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to edit an ingredient.
-2. Home chef enters details in required format.
+1. Home Chef chooses to edit an ingredient.
+2. Home Chef enters details in required format.
 3. BTBB displays the edited ingredient.
 
     Use case ends.
@@ -888,12 +895,12 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. Ingredient entered already exists in the system.
-    * 2a1. BTBB informs user that ingredient already exist.
+    * 2a1. BTBB informs Home Chef that ingredient already exists.
 
       Use case ends.
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why editing of ingredient failed.
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of ingredient failed.
 
       Use case ends.
 
@@ -901,58 +908,95 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 
 **MSS**
 
-1. Home chef chooses to add order.
-2. Home chef enters details in required format.
-3. BTBB displays new order.
+1. Home Chef chooses to add an order.
+2. Home Chef enters details in required format.
+3. BTBB displays the new order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why addition of order failed.
+* 2a. Order entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that order already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why addition of order failed.
 
     Use case ends.
 
-**Use case: UC12 Delete Order**
+**Use case: UC12 Find order**
 
 **MSS**
 
-1. Home chef chooses to delete an order.
-2. Home chef enters details in required format.
-3. BTBB displays deleted order.
+1. Home Chef chooses to find an order by a field.
+2. Home Chef enters search terms in required format.
+3. BTBB displays all order(s) that match the terms.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why deletion of order failed.
+    * 2a1. BTBB informs Home Chef why finding an order failed.
 
       Use case ends.
 
-**Use case: UC13 Find order**
+**Use case: UC13 Delete Order**
 
 **MSS**
 
-1. Home chef chooses to find an order.
-2. Home chef enters details in required format.
-3. BTBB displays all orders that match the format.
+1. Home Chef chooses to delete an order.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that order has been deleted.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why finding an order failed.
+    * 2a1. BTBB informs Home Chef why deletion of order failed.
 
       Use case ends.
 
-**Use case: UC14 Mark order as done**
+**Use case: UC14 View all orders**
 
 **MSS**
 
-1. Home chef chooses to mark an order as done.
+1.  Home Chef chooses to view all orders.
+2.  Home Chef enters command to see all orders.
+3.  BTBB displays all orders.
+
+    Use case ends.
+
+**Use case: UC15 Edit order**
+
+**MSS**
+
+1. Home Chef chooses to edit an order.
+2. Home Chef enters details in required format.
+3. BTBB displays the edited order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Order entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that order already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of order failed.
+
+      Use case ends.
+
+**Use case: UC16 Mark order as done**
+
+**MSS**
+
+1. Home Chef chooses to mark an order as done.
 2. BTBB displays order as done.
 
    Use case ends.
@@ -960,15 +1004,15 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why marking an order as done failed.
+    * 2a1. BTBB informs Home Chef why marking an order as done failed.
 
       Use case ends.
 
-**Use case: UC15 Mark order as undone**
+**Use case: UC17 Mark order as undone**
 
 **MSS**
 
-1. Home chef chooses to mark an order as undone.
+1. Home Chef chooses to mark an order as undone.
 2. BTBB displays order as undone.
 
    Use case ends.
@@ -976,9 +1020,127 @@ Priorities: High - (must have), Medium - (nice to have), Low -  (unlikely to hav
 **Extensions**
 
 * 2a. BTBB detects an error in the entered data.
-    * 2a1. BTBB informs user why marking an order as undone failed.
+    * 2a1. BTBB informs Home Chef why marking an order as undone failed.
 
       Use case ends.
+
+**Use case: UC18 Add recipe**
+
+**MSS**
+
+1. Home Chef chooses to add a recipe.
+2. Home Chef enters details in required format.
+2. BTBB displays the new recipe.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recipe entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
+
+      Use Case ends.
+
+* 2b. BTBB detects an error in the entered data.
+ 	* 2b1. BTBB informs Home Chef why addition of recipe failed.
+
+      Use case ends.
+
+**Use case: UC19 Find recipe**
+
+**MSS**
+
+1. Home Chef chooses to find a recipe by a field.
+2. Home Chef enters search terms in required format.
+3. BTBB displays all recipe(s) that match the terms.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Home Chef why finding a recipe failed.
+
+      Use Case ends.
+
+**Use case: UC20 Delete recipe**
+
+**MSS**
+
+1. Home Chef chooses to delete a recipe.
+2. Home Chef enters details in required format.
+3. BTBB informs Home Chef that recipe has been deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. BTBB detects an error in the entered data.
+    * 2a1. BTBB informs Home Chef why deletion of recipe failed.
+
+      Use Case ends.
+
+**Use case: UC21 View all recipes**
+
+**MSS**
+
+1. Home Chef chooses to view all recipes.
+2. Home Chef enters command to see all recipes.
+3. BTBB displays all recipes.
+
+   Use case ends.
+
+**Use case: UC22 Edit recipe**
+
+**MSS**
+
+1. Home Chef chooses to edit a recipe.
+2. Home Chef enters details in required format.
+3. BTBB displays the edited recipe.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recipe entered already exists in the system.
+    * 2a1. BTBB informs Home Chef that recipe already exists.
+
+      Use case ends.
+
+* 2b. BTBB detects an error in the entered data.
+    * 2b1. BTBB informs Home Chef why editing of recipe failed.
+
+      Use case ends.
+
+**Use case: UC23 View revenue for each month for past 12 months**
+
+**MSS**
+
+1. Home Chef wants to view revenue earned each month for past 12 months.
+2. Home Chef switches to statistics tab.
+3. BTBB displays revenue earned each month for the past 12 months in a bar chart.
+
+   Use case ends.
+
+**Use case: UC24 View top 10 most frequent clients**
+
+**MSS**
+
+1. Home Chef chooses to view top 10 most frequent clients.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most frequent clients in a pie chart.
+
+   Use case ends.
+
+**Use case: UC25 View top 10 most popular recipes**
+
+**MSS**
+
+1. Home Chef chooses to view top 10 most popular recipes.
+2. Home Chef switches to statistics tab.
+3. BTBB displays top 10 most popular recipes in a pie chart.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 

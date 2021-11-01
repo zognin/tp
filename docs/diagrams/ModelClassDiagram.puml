@@ -3,8 +3,14 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeFontColor white
 
 Package Model <<Rectangle>>{
+show Client fields
+show Ingredient fields
+show Order fields
+show Recipe fields
+
 Interface ReadOnlyAddressBook <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
@@ -15,15 +21,40 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
+Class UniqueClientList
+class Client {
+    address: Address
+    name: GenericString
+    phone: Phone
+    email: Email
+}
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueIngredientList
+class Ingredient {
+    name: GenericString
+    quantity: Quantity
+    unit: GenericString
+}
 
+Class UniqueOrderList
+class Order {
+    clientAddress: Address
+    clientName: GenericString
+    clientPhone: Phone
+    recipeName: GenericString
+    recipeIngredients: RecipeIngredientList
+    orderPrice: OrderPrice
+    deadline: Deadline
+    quantity: Quantity
+    completionStatus: CompletionStatus
+}
+
+Class UniqueRecipeList
+class Recipe {
+    name: GenericString
+    recipeIngredients: RecipeIngredientList
+    recipePrice: RecipePrice
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -38,17 +69,13 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueClientList
+AddressBook *--> "1" UniqueIngredientList
+AddressBook *--> "1" UniqueOrderList
+AddressBook *--> "1" UniqueRecipeList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+UniqueClientList --> "~*" Client
+UniqueIngredientList --> "~*" Ingredient
+UniqueOrderList --> "~*" Order
+UniqueRecipeList --> "~*" Recipe
 @enduml
