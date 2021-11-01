@@ -1225,7 +1225,7 @@ testers are expected to do more *exploratory* testing.
         * name: Banana split, price: $10
         * name: Orange cake, price: $12
         * name: Pecan pie, price: $10
-     1. Test case: `edit-r 1 rn/Truffle fries rp/8.00`
+    1. Test case: `edit-r 1 rn/Truffle fries rp/8.00`
        <br>Expected: First recipe in the recipe bookmarks list is edited to have recipe name 'Truffle fries' and recipe price of '$8.00'.
        Its position in the recipe bookmarks list may change. Details of the edited recipe are shown in the result display box.
     1. Test case: `edit-r 1 rn/Apple pie`
@@ -1262,13 +1262,12 @@ testers are expected to do more *exploratory* testing.
 ### Saving data and Editing the data file
 
 1. Dealing with missing data files
-   1. Move your copy of `btbb.jar` to an empty directory.
-   1. If that directory has a directory named `data`, delete the `data` directory.
-   1. Double-click `btbb.jar` to launch the application.
+    1. Move your copy of `btbb.jar` to an empty directory.
+    1. If that directory has a directory named `data`, delete the `data` directory.
+    1. Double-click `btbb.jar` to launch the application.
       If that does not work, use your terminal to navigate to the directory containing `btbb.jar`
       and execute `java -jar btbb.jar`.
       <br>Expected: The application GUI shows sample data.
-
 1. Dealing with corrupted data files
     1. Replace all of the content in `data/btbb.json` with `Corrupted file`.
     1. Double-click `btbb.jar` to launch the application.
