@@ -3,28 +3,23 @@ layout: page
 title: User Guide
 ---
 
-<!--
-@@author {sivayogasubramanian}-reused
-Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
--->
-<div class="toc-no-bullet-points">
-  * Table of Contents
-  {:toc}
-</div>
+### Introducing BobTheBistroBoss
 
---------------------------------------------------------------------------------------------------------------------
+Do you face difficulties managing many different orders? <br>
+Ever wanted to stop worrying about your next inventory restock? <br>
+Thought about hiring someone to manage the growth of your home business? <br>
 
-## 1. Introduction
+If any of these concerns apply to you, then you're in luck –– **BobTheBistroBoss** can do all these and MORE! <br>
+Not only that, BobTheBistroBoss (BTBB) makes this process **hassle-free**! <br>
+Allow BTBB to handle the business, while you focus on being the next Gordon Ramsay!
 
-### 1.1 About BobTheBistroBoss
+BTBB supports Home Chefs who seek to **venture into the home-based F&B business**, but are deterred by the complexity of business management.
 
-BobTheBistroBoss (BTBB) is a **desktop application that aims to help home-based F&B businesses, by keeping track of logistics as well as
-providing valuable data visualizations, via a user-friendly command-line interface (CLI).** Keeping track of
-information from inventory to order records for delivery can be a hassle if you are a one-man show. That's why, our
-application centralizes all data in one place, and even comes with a Graphical User Interface (GUI) to easily view and
-manoeuvre through client and order details. If you are looking for an easy solution to manage your business, give BTBB a try!
+With BTBB, you can **track logistics** and receive valuable **data visualizations** via a **user-friendly** command line interface (CLI).
+BTBB consolidates all the data in one place, and even comes with a Graphical User Interface (GUI) to easily view
+and manoeuvre through client, ingredient, order and recipe details.
 
-### 1.2 Navigating the user guide
+### Navigating the user guide
 
 This user guide aims to equip you with the necessary knowledge so that you can fully utilize BTBB.
 
@@ -44,6 +39,20 @@ Lastly, if you are an experienced user that is looking for a refresher on the av
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
 
 `Words or phrases in code blocks like this are for user inputs or input parameters.`
+
+--------------------------------------------------------------------------------------------------------------------
+
+<!--
+@@author {sivayogasubramanian}-reused
+Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+-->
+
+## 1. Table of Contents
+
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -596,8 +605,22 @@ Fig 5. Parts of an order
 
 Adds an order to the application.
 
-Format: `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME]
-[ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+All possible formats:
+1. All client and recipe details specified: <br>
+  `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS
+  rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+
+1. Only client index used (must provide recipe details): <br>
+  `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS]
+  rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+
+1. Only recipe index used (must provide client details): <br>
+  `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX [rn/RECIPE_NAME]
+  [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+
+1. Both client and recipe indexes used: <br>
+  `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] r/RECIPE_INDEX
+  [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -605,19 +628,23 @@ Format: `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 
 * `od/ORDER_DEADLINE` includes date and time, it must follow the format specified [above](#4-features).
 
-Client details include client name, phone and address, they must be provided in one of these ways:
-* If `c/CLIENT_INDEX` is present, client details are copied from the client bookmark at the given index to the order.
-* If `cn/`, `cp/` or `ca/` are provided with `c/`, client details are taken from `cn/`, `cp/` or `ca/` instead.
-* If `c/` is not present, `cn/`, `cp/` and `ca/` must be provided.
+**Client details** include client name, phone and address, they must be provided in one of these ways:
+* If `c/CLIENT_INDEX` is provided (Format 2 and 4),
+  * client details are copied from the client bookmark at the given index to the order.
+  * If `cn/`, `cp/` or `ca/` are provided with `c/`, the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
+* If `c/CLIENT_INDEX` is not provided (Format 1 and 3),
+  * `cn/`, `cp/` and `ca/` must be provided.
 
-Recipe details include recipe name, ingredients and price. Recipe name and order price must be provided in one of these ways:
-* If `r/RECIPE_INDEX` is present, recipe details are copied from the recipe bookmark at the given index to the order.
-  `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
-* If `rn/`, `ri/` or `op/` is provided with `r/`, details are taken from `rn/`, `ri/` or `op/` instead.
-* If `r/` is not present, `rn/` and `op/` must be provided.
+**Recipe details** include recipe name, ingredients and price. Recipe name and order price must be provided in one of these ways:
+* If `r/RECIPE_INDEX` is provided (Format 3 and 4),
+  * recipe details are copied from the recipe bookmark at the given index to the order.
+  * `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
+  * If `rn/`, `ri/` or `op/` is provided with `r/`, the respective recipe detail is taken from `rn/`, `ri/` or `op/` instead.
+* If `r/` is not provided (Format 1 and 2),
+  * `rn/` and `op/` must be provided.
 
 These details are fully optional:
-* `oq/ORDER_QUANTITY` is set to 1 by default if not specified.
+* `oq/ORDER_QUANTITY` is set to 1 by default, if not specified.
 * `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` does not need to be specified.
 
 Secondary processes that happen when you add an order:
@@ -630,32 +657,32 @@ Secondary processes that happen when you add an order:
 
 **Examples:**
 * `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021
-  1800 oq/2` Adds an order, without using client index and recipe index.
+  1800 oq/2` Adds an order, without using client index and recipe index. (Format 1)
 
 ![Full add order command](images/product-screenshots/order/AddOrderCommandFullFocused.png)
 
-Fig 6. Adding an order without client index and recipe index
+Fig 6. Format 1: Adding an order without client index and recipe index
 {:.caption}
 
-* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2` Adds an order using a client index.
+* `add-o c/1 rn/Chicken Rice ri/Rice-2-cups, Chicken-1-half op/5.00 od/12-12-2021 1800 oq/2` Adds an order using a client index. (Format 2)
 
 ![Add order command with client index only](images/product-screenshots/order/AddOrderCommandWithClientIndexOnlyFocused.png)
 
-Fig 7. Adding an order using a client index
+Fig 7. Format 2: Adding an order using a client index
 {:.caption}
 
-* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2` Adds an order using a recipe index.
+* `add-o cn/Amy Tang cp/98796844 ca/188 Gul Circle r/3 od/12-12-2021 1800 oq/2` Adds an order using a recipe index. (Format 3)
 
 ![Add order command with recipe index only](images/product-screenshots/order/AddOrderCommandWithRecipeIndexOnlyFocused.png)
 
-Fig 8. Adding an order using a recipe index
+Fig 8. Format 3: Adding an order using a recipe index
 {:.caption}
 
-* `add-o c/1 r/3 od/12-12-2021 1800 oq/2` Adds an order using both client and recipe indexes.
+* `add-o c/1 r/3 od/12-12-2021 1800 oq/2` Adds an order using both client and recipe indexes. (Format 4)
 
 ![Add order command with client and recipe index](images/product-screenshots/order/AddOrderCommandWithClientAndRecipeIndexFocused.png)
 
-Fig 9. Adding an order using both client and recipe indexes
+Fig 9. Format 4: Adding an order using both client and recipe indexes
 {:.caption}
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
@@ -1128,7 +1155,7 @@ Action                      | Format
 **Edit ingredient**         | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 **Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 **List ingredient**         | `list-i`
-**Add order**               | `add-o [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
+**Add order**               | 1. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 2. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 3. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 4. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
