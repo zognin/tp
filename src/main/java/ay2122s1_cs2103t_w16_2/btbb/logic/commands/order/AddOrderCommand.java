@@ -31,22 +31,57 @@ import ay2122s1_cs2103t_w16_2.btbb.ui.UiTab;
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add-o";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to your order list.\n"
-            + "Parameters: "
-            + "[" + PREFIX_CLIENT_INDEX + "CLIENT_INDEX (must be a positive integer)] "
+    // Provide both client and recipe details
+    public static final String NO_INDEX = PREFIX_CLIENT_NAME + "CLIENT_NAME "
+            + PREFIX_CLIENT_PHONE + "CLIENT_PHONE "
+            + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS "
+            + PREFIX_RECIPE_NAME + "RECIPE_NAME "
+            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
+            + PREFIX_ORDER_PRICE + "ORDER_PRICE "
+            + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE "
+            + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n";
+
+    // Only client index provided
+    public static final String CLIENT_INDEX = PREFIX_CLIENT_INDEX + "CLIENT_INDEX "
             + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
-            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS]\n\t\t" + "      "
-            + "[" + PREFIX_RECIPE_INDEX + "RECIPE_INDEX (must be a positive integer)] "
+            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS] "
+            + PREFIX_RECIPE_NAME + "RECIPE_NAME "
+            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
+            + PREFIX_ORDER_PRICE + "ORDER_PRICE "
+            + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE "
+            + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n";
+
+    // Only recipe index provided
+    public static final String RECIPE_INDEX = PREFIX_CLIENT_NAME + "CLIENT_NAME "
+            + PREFIX_CLIENT_PHONE + "CLIENT_PHONE "
+            + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS "
+            + PREFIX_RECIPE_INDEX + "RECIPE_INDEX "
             + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
-            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...]\n\t\t" + "      "
+            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
             + "[" + PREFIX_ORDER_PRICE + "ORDER_PRICE] "
             + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE "
-            + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n"
-            + "Additional Info: If CLIENT_INDEX is not present, CLIENT_NAME, CLIENT_PHONE and CLIENT_ADDRESS must be"
-            + " present." + "\n\t\t\t" + "   "
-            + "If RECIPE_INDEX is not present, RECIPE_NAME and ORDER_PRICE must be present." + "\n\t\t\t" + "   "
-            + "If ORDER_QUANTITY is not present, it will be set to 1 by default.";
+            + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n";
+
+    // Both client and recipe indexes provided
+    public static final String CLIENT_AND_RECIPE_INDEX = PREFIX_CLIENT_INDEX + "CLIENT_INDEX "
+            + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
+            + "[" + PREFIX_CLIENT_PHONE + "CLIENT_PHONE] "
+            + "[" + PREFIX_CLIENT_ADDRESS + "CLIENT_ADDRESS] "
+            + PREFIX_RECIPE_INDEX + "RECIPE_INDEX "
+            + "[" + PREFIX_RECIPE_NAME + "RECIPE_NAME] "
+            + "[" + PREFIX_RECIPE_INGREDIENT + "INGREDIENT_NAME-QUANTITY-UNIT, ...] "
+            + "[" + PREFIX_ORDER_PRICE + "ORDER_PRICE] "
+            + PREFIX_ORDER_DEADLINE + "ORDER_DEADLINE "
+            + "[" + PREFIX_ORDER_QUANTITY + "ORDER_QUANTITY]\n";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to your order list.\n"
+            + "Possible combinations of Parameters: \n"
+            + "1. " + NO_INDEX
+            + "2. " + CLIENT_INDEX
+            + "3. " + RECIPE_INDEX
+            + "4. " + CLIENT_AND_RECIPE_INDEX
+            + "Additional info: If ORDER_QUANTITY is not present, it will be set to 1 by default.";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
 
