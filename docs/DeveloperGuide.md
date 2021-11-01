@@ -1201,7 +1201,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Recipe
+### Ingredient
 
 1. Adding an ingredient
     1. Prerequisites: Inventory has no ingredients.
@@ -1213,13 +1213,80 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add-i iq/4 iu/bars`
        <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i in/Chocolate iu/bars`
-      <br>Expected: No ingredient is added. Error details shown in the result display box.
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i in/Chocolate iq/0 iu/bars`
-      <br>Expected: No ingredient is added. Error details shown in the result display box.
-    1. Test case: `add-i in/Chocolate iq/4 iu/bars`
-      <br>Expected: No ingredient is added. Error details shown in the result display box.
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i`
-      <br>Expected: No ingredient is added. Error details shown in the result display box.
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
+
+1. Deleting an ingredient
+    1. Prerequisites: Inventory has at least 1 ingredient and at most 3 ingredients.
+    1. Test case: `delete-i 1`
+       <br>Expected: First ingredient in inventory is deleted.
+       If initially on Home tab, switch to Inventory & Statistics tab. Details of deleted ingredient will be shown in the result display box.
+    1. Test case: `delete-i 0`
+       <br>Expected: No ingredient is deleted. Error details shown in the result display box.
+    1. Test case: `delete-i abc`
+       <br>Expected: No ingredient is deleted. Error details shown in the result display box.
+    1. Test case: `delete-i`
+       <br>Expected: No ingredient is deleted. Error details shown in the result display box.
+
+1. Editing an ingredient
+    1. Prerequisites: Inventory only has these 3 ingredients:
+        * name: Apple, unit: whole
+        * name: Banana, unit: whole
+        * name: Carrot, unit: pack
+    1. Test case: `edit-i 1 in/Rice iq/4 iu/bags`
+       <br>Expected: First ingredient in the inventory is edited to have ingredient name 'Rice', quantity '4' and unit 'bags'.
+       If initially on Home tab, switch to Inventory & Statistics tab.
+       Its position in the inventory may change. Details of the edited ingredient are shown in the result display box.
+    1. Test case: `edit-i 3 in/Apricot`
+       <br>Expected: Third ingredient in the inventory is edited to have ingredient name 'Apricot'.
+       If initially on Home tab, switch to Inventory & Statistics tab.
+       Its position in the inventory may change. Details of the edited ingredient are shown in the result display box.
+    1. Test case: `edit-i 0 in/Apple`
+       <br> Expected: No ingredient is edited. Error details shown in the result display box.
+    1. Test case: `edit-i in/Apple`
+       <br> Expected: No ingredient is edited. Error details shown in the result display box.
+    1. Test case: `edit-i 1`
+       <br> Expected: No ingredient is edited. Error details shown in the result display box.
+
+1. Finding ingredients by keywords
+    1. Prerequisites: There are exactly 2 ingredients in the inventory.
+        * name: Green Apple, quantity: 10, unit: whole
+        * name: Banana, quantity: 13, unit: whole
+        * name: Carrot, quantity: 20, unit: pack
+    1. Test case: `find-i in/apple iq/10`
+       <br>Expected: Inventory only shows the ingredient with the ingredient name 'Green Apple'.
+    1. Test case: `find-i in/apple iq/11`
+       <br>Expected: Inventory shows 0 ingredients.
+    1. Test case: `find-i iq/13`
+       <br>Expected: Inventory only shows the ingredient with the ingredient name 'Banana'.
+    1. Test case: `find-i iqf/13`
+       <br>Expected: Inventory shows 2 ingredients: 'Banana' and 'Carrot'.
+    1. Test case: `find-i iqf/10 iqt/13`
+       <br>Expected: Inventory shows 2 ingredients: 'Green Apple' and 'Banana'.
+    1. Test case: `find-i iq/10 13`
+       <br>Expected: Inventory shows 2 ingredients: 'Green Apple' and 'Banana'.
+    1. Test case: `find-i iq/13 iqf/10 iqt/20`
+       <br>Expected: Inventory only shows the ingredient with the ingredient name 'Banana'.
+    1. Test case: `find-i in/`
+       <br>Expected: No change in the inventory. Error details shown in the result display box.
+    1. Test case: `find-i iqf/20 iqt/10`
+       <br>Expected: No change in the inventory. Error details shown in the result display box.
+    1. Test case: `find-i iqf/10 iqt/10`
+       <br>Expected: No change in the inventory. Error details shown in the result display box.
+    1. Test case: `find-i`
+       <br>Expected: No change in the inventory. Error details shown in the result display box.
+
+1. Listing all ingredients
+    1. Prerequisite: Inventory has at least 1 ingredient.
+    1. Test case: `list-i`
+       <br>Expected: Inventory displays all ingredients.
+    1. Test case: `list-i abc`
+       <br>Expected: Inventory displays all ingredients.
+
+### Recipe
 
 1. Deleting a recipe ingredient
     1. Prerequisites: Recipe at index 1 has at least 1 ingredient and at most 3 ingredients.
