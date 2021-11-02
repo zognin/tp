@@ -312,7 +312,7 @@ They are:
   e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
   `cn/John Doe`.
 
-* You can type the parameters in any order.<br>
+* You can provide the parameters in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -568,7 +568,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 * You should note that partial search is allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
 
-* You should note that this command will find clients that match at least one keyword, for each prefix.
+* You should note that this command will find ingredients that match at least one keyword, for each prefix.
 
 * Ingredient `QUANTITY`:
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
@@ -837,7 +837,7 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 * You should note that partial search is allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* You should note that this command will find clients that match at least one keyword, for each prefix.
+* You should note that this command will find orders that match at least one keyword, for each prefix.
 
 * `od/ORDER_DATE` represents the order date. They must follow the format specified [above](#4-features).
 
@@ -864,7 +864,7 @@ Format: `list-o`
 
 #### 4.5.8 Marking an order as done: `done-o`
 
-You can mark order as done once it has been delivered to the client using this command.
+You can mark an order as done once it has been delivered to the client using this command.
 
 Format: `done-o INDEX`
 
@@ -881,7 +881,7 @@ Format: `done-o INDEX`
 
 #### 4.5.9 Marking an order as undone: `undone-o`
 
-You can mark order as undone using this command.
+You can mark an order as undone using this command.
 
 Format: `undone-o INDEX`
 
