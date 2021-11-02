@@ -104,13 +104,13 @@ public class StatTabContent extends UiPart<Region> {
                             OrderClient orderClient = entry.getKey();
                             return new PieChart.Data(orderClient.getName().toString()
                                     + " (" + orderClient.getPhone().toString()
-                                    + ")\n" + "Orders: " + entry.getValue(),
+                                    + ")\n" + "Orders made: " + entry.getValue(),
                                     entry.getValue());
                         })
                         .collect(Collectors.toList())
         );
 
-        clientPieChart.setTitle("Top 10 Clients (by no. of Orders)");
+        clientPieChart.setTitle("Top 10 Most Frequent Clients");
         clientPieChart.setData(pieChartData);
 
         // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
@@ -128,13 +128,13 @@ public class StatTabContent extends UiPart<Region> {
                         .map(entry -> {
                             GenericString recipeName = entry.getKey();
                             return new PieChart.Data(recipeName.toString()
-                                    + "\n" + "Orders: " + entry.getValue(),
+                                    + "\n" + "No. of times ordered: " + entry.getValue(),
                                     entry.getValue());
                         })
                         .collect(Collectors.toList())
         );
 
-        recipePieChart.setTitle("Top 10 Recipes (by no. of Orders)");
+        recipePieChart.setTitle("Top 10 Most Popular Recipes");
         recipePieChart.setData(pieChartData);
 
         // To show labels as tooltips on mouse hover for slices that are too small for the labels to appear
