@@ -313,8 +313,8 @@ They are:
   `cn/John Doe`.
 
 * You must provide at least one of the items in curly braces.<br>
-  e.g. in `{in/NAME | iq/QUANTITY | iu/UNIT}`, at least one of the parameters `in/NAME`, `in/QUANTITY` or `in/UNIT` 
-  must be provided.    
+  e.g. in `{in/NAME | iq/QUANTITY | iu/UNIT}`, at least one of the parameters `in/NAME`, `in/QUANTITY` or `in/UNIT`
+  must be provided.
 
 * You can provide the parameters in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
@@ -794,7 +794,7 @@ Please read our [disclaimers about ingredient quantities](#65-quantities) to lea
 
 You can edit an order in the application using this command.
 
-Format: `edit-o INDEX {c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX | 
+Format: `edit-o INDEX {c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX |
 rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
 
 <div markdown="block" class="alert alert-primary">
@@ -804,7 +804,7 @@ rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
 
 * `{c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX |
-  rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}` allows you to specify the order information to 
+  rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}` allows you to specify the order information to
   update. None of them are mandatory, but you must specify at least one.
 
 **Client details** include client name, phone and address, they must be provided in one of these ways:
