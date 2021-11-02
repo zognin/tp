@@ -41,7 +41,7 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
   * PRs reviewed: [#93](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/93),
     [#94](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/94),
     [#95](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/95),
-    [#96](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/96),
+    [#96](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/96),
     [#248](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/248)
   * Helped team members with styling issues for JavaFX charts.
 
