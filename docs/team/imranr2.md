@@ -38,7 +38,11 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
   * Ensure team is on track to complete tasks by given deadline.
 
 * **Review/mentoring contributions**
-  * PRs reviewed: [#93](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/93), [#94](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/94), [#95](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/95), [#96](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/96)
+  * PRs reviewed: [#93](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/93),
+    [#94](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/94),
+    [#95](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/95),
+    [#96](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/96),
+    [#248](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/248)
   * Helped team members with styling issues for JavaFX charts.
 
 * **Documentation**:
@@ -52,3 +56,6 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
     * Updated user story and use cases. [#225](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/225)
     * Updated all architecture and class diagrams to match BTBB's implementation. [#231](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/231)
     * Added some manual testing instructions. [#241](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/241)
+
+* **Community**:
+  * Reported bugs and suggestions for other teams in the class: [Reported 18 bugs during PE-D](https://github.com/Imranr2/ped/issues)
