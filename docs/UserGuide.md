@@ -32,8 +32,8 @@ features are available in BTBB. For more in depth information on the available f
 If you have any questions regarding BTBB, check out [FAQ](#5-faq) for answers to frequently asked questions.
 
 [Disclaimers](#6-disclaimers) contains general disclaimers for our app such as restrictions on inputs and
-additional details regarding the command format. **It is important for you to read this section before reading the rest of the
-user guide so that you are aware about these restrictions and additional details.**
+additional details regarding the command format. **It is important for you to read this section
+so that you are aware about these restrictions and additional details.**
 
 Lastly, if you are an experienced user that is looking for a refresher on the available commands, do check out
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
@@ -227,7 +227,7 @@ However, feel free to give us feedback for future iterations.
 **:bookmark: Note:**<br>
 
 * Ingredients are considered duplicates or matches when they have the same name and unit.
-  The matching of name and unit is case-insensitive.
+  The matching of name and unit are case-insensitive.
 
 * You cannot have duplicate ingredients in the inventory.
 
@@ -448,7 +448,7 @@ Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 * You should note that the search is case-insensitive.
 
-* You should supply 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
 * You can specify multiple search keywords for each field. <br>
   e.g. <code>find-c cn/Alex Brian</code>
@@ -560,7 +560,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 
 * You should note that the search is case-insensitive.
 
-* You should supply 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
 * You can specify multiple search keywords for each field. <br>
   e.g. <code>find-i in/Kiwi Chocolate</code>
@@ -829,7 +829,7 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 * You should note that the search is case-insensitive.
 
-* You should supply 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
 * You can specify multiple search keywords for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
