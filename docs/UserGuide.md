@@ -661,6 +661,11 @@ Secondary processes that happen when you add an order:
   If the ingredient in the order does not exist in the inventory, there is no effect.
 * All orders have an uncompleted status upon addition.
 
+**When an order is added with one or more ingredients that are tracked in the inventory, 
+the application will still allow the addition of an order even if the ingredient quantities are not enough to fulfil the order. 
+It is your responsibility to keep the inventory restocked so that our ingredient tracking works as intended. 
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
+
 </div>
 
 **Examples:**
@@ -714,6 +719,11 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * If the added ingredient [exists in the inventory](#32-inventory), the quantity deducted from
   the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
+**When an order ingredient is added to the order with an ingredient that is tracked in the inventory,
+the application will still allow the addition of the order ingredient even if the ingredient quantity is not enough to fulfil the order.
+It is your responsibility to keep the inventory restocked so that our tracking works as intended.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
+
 </div>
 
 **Examples:**
@@ -733,6 +743,12 @@ Format: `delete-o INDEX`
 
 * When an order is deleted from the list, its ingredient quantities are added back to matching ingredients in the inventory. However, if the
   order is already marked as done, its ingredient quantities will not be added back.
+
+**When an order with ingredients that are tracked in the inventory is deleted,
+the application will still allow the deletion of the order even if any of the ingredient quantities has reached the upper limit of 40000.
+We believe that the upper limit of the ingredient quantity is sufficient for normal use.
+If there is a need to change the quantity above the limit, consider changing the ingredient unit instead.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
 
 </div>
 
@@ -757,6 +773,12 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 * If the deleted ingredient [exists in the inventory](#32-inventory), the quantity added back to the inventory will
   be equivalent to the ingredient quantity in the order multiplied by the order quantity.
+
+**When an order ingredient that is tracked in the inventory is deleted from the order,
+the application will still allow the deletion of the order ingredient even if the ingredient quantity has reached the upper limit of 40000.
+We believe that the upper limit of the ingredient quantity is sufficient for normal use.
+If there is a need to change the quantity above the limit, consider changing the ingredient unit instead.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
 
 </div>
 
