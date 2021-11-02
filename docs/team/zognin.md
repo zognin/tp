@@ -13,19 +13,19 @@ optimized for use via a command line interface (CLI).
 ### Summary of Contributions
 
 * **New Feature**: Implemented commands to add and delete ingredients of an order. (Pull request [#92](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/92)).
-  * What it does: Allows the user to add and delete ingredients of an order.
-  * Justification: Each order has a list of ingredients.
-    Users may want to change one ingredient in the list without affecting other ingredients.
+  * **What it does**: Allows the user to add and delete ingredients of an order.
+  * **Justification**: Each order has a list of ingredients.
+    Users may want to change one ingredient in the list without having to key in all the other ingredients again.
     These commands allow the user to control which ingredient they want to change.
-  * Highlights: Used a different implementation from how AB3 edits a list within an entity.
+  * **Highlights**: Used a different implementation from how AB3 edits a list within an entity.
     Previously, editing a list within an entity (e.g. editing a list of tags in a contact) rewrites the entire list.
     Now, users can edit individual items in the list without the hassle of rewriting everything.
 
 * **New Feature**: Added the ability to find items that are an exact match or lie within a range. (Pull request [#85](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/85)).
-  * What it does: Allows the user to find relevant data with a command.
-  * Justification: Users will store a lot of data after using the app for some time.
+  * **What it does**: Allows the user to find relevant data with a command.
+  * **Justification**: Users will store a lot of data after using the app for some time.
     The find feature allows them to filter for data they need.
-  * Highlights: Implemented two generic classes to make the find feature more flexible.
+  * **Highlights**: Implemented two generic classes to make the find feature more flexible.
     This allows different objects to make use of the generic classes if they intend to achieve the same search behaviour,
     which reduces code duplication.
 
