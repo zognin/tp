@@ -1324,7 +1324,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Inventory has no ingredients.
     1. Test case: `add-i in/Chocolate Syrup iq/3 iu/bottles`
        <br>Expected: A new ingredient is added to inventory with the given details.
-       If initially on the Home tab, will switch to Inventory & Statistics tab. Details of added ingredient will be shown in the result display box.
+       Details of added ingredient will be shown in the result display box.
     1. Test case: `add-i in/Chocolate iq/4`
        <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i iq/4 iu/bars`
@@ -1333,6 +1333,8 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i in/Chocolate iq/0 iu/bars`
        <br>Expected: No ingredient is added. Error details shown in the result display box.
+    1. Test case: `add-i 2 in/Chocolate iq/3 iu/bars`
+       <br>Expected: No ingredient is added. Error details shown in the result display box.
     1. Test case: `add-i`
        <br>Expected: No ingredient is added. Error details shown in the result display box.
 
@@ -1340,8 +1342,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Inventory has at least 1 ingredient and at most 3 ingredients.
     1. Test case: `delete-i 1`
        <br>Expected: First ingredient in inventory is deleted.
-       If initially on Home tab, switch to Inventory & Statistics tab. Details of deleted ingredient will be shown in the result display box.
+       Details of deleted ingredient will be shown in the result display box.
     1. Test case: `delete-i 0`
+       <br>Expected: No ingredient is deleted. Error details shown in the result display box.
+    1. Test case: `delete-i -2`
        <br>Expected: No ingredient is deleted. Error details shown in the result display box.
     1. Test case: `delete-i abc`
        <br>Expected: No ingredient is deleted. Error details shown in the result display box.
@@ -1355,13 +1359,13 @@ testers are expected to do more *exploratory* testing.
         * name: Carrot, unit: pack
     1. Test case: `edit-i 1 in/Rice iq/4 iu/bags`
        <br>Expected: First ingredient in the inventory is edited to have ingredient name 'Rice', quantity '4' and unit 'bags'.
-       If initially on Home tab, switch to Inventory & Statistics tab.
        Its position in the inventory may change. Details of the edited ingredient are shown in the result display box.
     1. Test case: `edit-i 3 in/Apricot`
        <br>Expected: Third ingredient in the inventory is edited to have ingredient name 'Apricot'.
-       If initially on Home tab, switch to Inventory & Statistics tab.
        Its position in the inventory may change. Details of the edited ingredient are shown in the result display box.
     1. Test case: `edit-i 0 in/Apple`
+       <br> Expected: No ingredient is edited. Error details shown in the result display box.
+    1. Test case: `edit-i -2 in/Apple`
        <br> Expected: No ingredient is edited. Error details shown in the result display box.
     1. Test case: `edit-i in/Apple`
        <br> Expected: No ingredient is edited. Error details shown in the result display box.
@@ -1369,7 +1373,7 @@ testers are expected to do more *exploratory* testing.
        <br> Expected: No ingredient is edited. Error details shown in the result display box.
 
 1. Finding ingredients by keywords
-    1. Prerequisites: There are exactly 2 ingredients in the inventory.
+    1. Prerequisites: There are exactly 3 ingredients in the inventory.
         * name: Green Apple, quantity: 10, unit: whole
         * name: Banana, quantity: 13, unit: whole
         * name: Carrot, quantity: 20, unit: pack
@@ -1392,6 +1396,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find-i iqf/20 iqt/10`
        <br>Expected: No change in the inventory. Error details shown in the result display box.
     1. Test case: `find-i iqf/10 iqt/10`
+       <br>Expected: No change in the inventory. Error details shown in the result display box.
+    1. Test case: `find-i 2 iq/13`
        <br>Expected: No change in the inventory. Error details shown in the result display box.
     1. Test case: `find-i`
        <br>Expected: No change in the inventory. Error details shown in the result display box.
@@ -1469,7 +1475,7 @@ testers are expected to do more *exploratory* testing.
 1. Exit the application
     1. Prerequisite: Application is running.
     1. Test case: `exit`
-       <br>Expected: Application window immediately closes. Data is saved to the json file.
+       <br>Expected: Application window closes. Data is saved to the json file.
 
 ### Saving data and Editing the data file
 
