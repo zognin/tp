@@ -47,7 +47,7 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
 * **Documentation**:
   * User Guide
     * Added section for commands related to orders. [#82](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/82)
-    * Added section explaining what statistics BTBB supports. [#159](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/159))
+    * Added section explaining what statistics BTBB supports. [#159](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/159)
 
   * Developer Guide
     * Added implementation details for delete command. [#130](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/130)
