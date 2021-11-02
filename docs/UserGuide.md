@@ -444,7 +444,7 @@ Format: `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
 
 You can find client(s) whose attribute(s) match the keyword(s) using this command.
 
-Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
+Format: `find-c {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -556,7 +556,7 @@ Format: `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
 
 You can find ingredient(s) whose attribute(s) match the keyword(s) using this command.
 
-Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+Format: `find-i {in/NAME | iq/QUANTITY | iqf/QUANTITY_FROM | iqt/QUANTITY_TO | iu/UNIT}`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -840,7 +840,7 @@ rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
 
 You can find order(s) with attribute(s) that contains the keyword(s) using this command.
 
-Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
+Format: `find-o {cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | rn/RECIPE_NAME | od/ORDER_DATE | of/YES_OR_NO}`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -1197,20 +1197,20 @@ Action                      | Format
 ----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add client**              | `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 **Delete client**           | `delete-c INDEX`
-**Edit client**             | `edit-c INDEX {cn/NAME \| cp/PHONE \| ce/EMAIL \| ca/ADDRESS}`
-**Find client**             | `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
+**Edit client**             | `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
+**Find client**             | `find-c {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
 **List client**             | `list-c`
 **Add ingredient**          | `add-i in/NAME iq/QUANTITY iu/UNIT`
 **Delete ingredient**       | `delete-i INDEX`
-**Edit ingredient**         | `edit-i INDEX {in/NAME \| iq/QUANTITY \| iu/UNIT}`
-**Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
+**Edit ingredient**         | `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
+**Find ingredient**         | `find-i {in/NAME | iq/QUANTITY | iqf/QUANTITY_FROM | iqt/QUANTITY_TO | iu/UNIT}`
 **List ingredient**         | `list-i`
 **Add order**               | 1. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 2. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 3. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 4. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
-**Edit order**              | `edit-o INDEX {c/INDEX \| cn/CLIENT_NAME \| cp/CLIENT_PHONE \| ca/CLIENT_ADDRESS \| r/RECIPE_INDEX \| rn/RECIPE_NAME \| op/ORDER_PRICE \| od/ORDER_DEADLINE \| oq/QUANTITY}`
-**Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
+**Edit order**              | `edit-o INDEX {c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX | rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
+**Find order**              | `find-o {cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | rn/RECIPE_NAME | od/ORDER_DATE | of/YES_OR_NO}`
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
 **Mark order as undone**    | `undone-o INDEX`
@@ -1218,7 +1218,7 @@ Action                      | Format
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
 **Delete recipe ingredient**| `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
-**Edit recipe**             | `edit-r INDEX {rn/RECIPE_NAME \| rp/RECIPE_PRICE}`
+**Edit recipe**             | `edit-r INDEX {rn/RECIPE_NAME | rp/RECIPE_PRICE}`
 **Find recipe**             | `find-r rn/RECIPE_NAME`
 **List recipe**             | `list-r`
 **Help**                    | `help`
