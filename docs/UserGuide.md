@@ -5,7 +5,7 @@ title: User Guide
 
 ### Introducing BobTheBistroBoss
 
-Do you face difficulties managing many different orders? <br>
+Do you face difficulties managing many orders? <br>
 Ever wanted to stop worrying about your next inventory restock? <br>
 Thought about hiring someone to manage the growth of your home business? <br>
 
@@ -32,8 +32,8 @@ features are available in BTBB. For more in depth information on the available f
 If you have any questions regarding BTBB, check out [FAQ](#5-faq) for answers to frequently asked questions.
 
 [Disclaimers](#6-disclaimers) contains general disclaimers for our app such as restrictions on inputs and
-additional details regarding the command format. **It is important to read this section before reading the rest of the
-user guide so that you are aware about these restrictions and additional details.**
+additional details regarding the command format. **It is important for you to read this section
+so that you are aware about these restrictions and additional details.**
 
 Lastly, if you are an experienced user that is looking for a refresher on the available commands, do check out
 [Command Summary](#7-command-summary) for a summary of all the commands that BTBB currently supports.
@@ -62,11 +62,11 @@ Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461
 
 1. Ensure you have Java version 11 or above installed in your Computer. You may install the latest version of Java [here](https://www.oracle.com/java/technologies/downloads/).
 
-2. Download the latest jar file from our [releases page](https://github.com/AY2122S1-CS2103T-W16-2/tp/releases).
+2. You can download the latest jar file from our [releases page](https://github.com/AY2122S1-CS2103T-W16-2/tp/releases).
 
-3. Copy the jar file to an empty folder. This will be the _home folder_ for BTBB.
+3. Copy the jar file to an empty folder. This will be your _home folder_ for BTBB.
 
-4. Launch BobTheBistroBoss by double clicking on the jar file.
+4. You can launch BobTheBistroBoss by double-clicking on the jar file.
 
 ### 2.2 Layout
 
@@ -92,8 +92,8 @@ Fig 2. Inventory & Statistics tab
 
 ### 2.3 Creating your first order
 
-This is a step-by-step guide to creating your first order. If you have not installed BobTheBistroBoss, you
-may do so by following the instructions [here](#21-installation).
+This is a step-by-step guide to help you get started in creating your first order.
+If you have not installed BobTheBistroBoss, you may do so by following the instructions [here](#21-installation).
 
 For this guide, we will simulate the following scenario:
 
@@ -126,8 +126,8 @@ command in the command box at the bottom of the app:
 
 `add-o cn/John Doe cp/92345678 ca/Blk 422, Bedok North Road, #15-25 rn/Tuna Sandwich ri/Bread-2-slices, Cheese-1-slices, Tuna-1-cans op/6 oq/3 od/10-12-2021 1200`
 
-You will notice that the order has been added to the Orders list (orders are sorted by deadline). However, this is not
-the recommended approach, especially for repeated orders, as it can be very inefficient. Moreover, this approach does
+You will notice that the order has been added to the Orders list (orders are sorted by deadline and are grouped by their completion status).
+However, this is not the recommended approach, especially for repeated orders, as it can be very inefficient. Furthermore, this approach does
 not allow you to track ingredients in your inventory. We will now add the second order using our recommended approach.
 
 #### 2.3.2 Approach 2 (Recommended)
@@ -184,7 +184,7 @@ head onto our [Features](#4-features) section.
 ### 3.1 Client (Bookmarks)
 If you often sell meals to repeat clients, the client bookmarks feature will be useful.
 Client bookmarks contain information like name, phone, email and address.
-Some of these details can be copied to an order so you do not have to type their information over and over again.
+Some of these details can be copied to an order so that you do not have to type their information over and over again.
 
 Do note that the **details are copied to the order, this means that editing a client bookmark will not edit
 an order** that previously copied client details from it. This gives you flexibility to change details within an order
@@ -227,7 +227,7 @@ However, feel free to give us feedback for future iterations.
 **:bookmark: Note:**<br>
 
 * Ingredients are considered duplicates or matches when they have the same name and unit.
-  The matching of name and unit is case insensitive.
+  The matching of name and unit are case-insensitive.
 
 * You cannot have duplicate ingredients in the inventory.
 
@@ -247,7 +247,7 @@ You can track client details, recipe details, order price, quantity, deadline an
 **:bookmark: Note:**<br>
 
 * Orders are considered duplicates when they have the same client details, recipe details, deadline and price.
-  The matching of details are case insensitive where applicable.
+  The matching of details are case-insensitive where applicable.
 
 * You cannot have duplicate orders in the application.
 
@@ -261,7 +261,7 @@ You can track client details, recipe details, order price, quantity, deadline an
 ### 3.4 Recipe (Bookmarks)
 If you frequently receive orders for your signature dishes, the recipe bookmarks feature will be useful.
 Recipe bookmarks contain information like name, ingredients and price.
-These details can be copied over to an order so you do not have to type these details over and over again.
+These details can be copied over to an order so that you do not have to type these details over and over again.
 
 Do note that the details are copied to the order,
 this means that **editing a recipe bookmark will not edit an order** that previously copied recipe details from it.
@@ -275,7 +275,7 @@ You can also change your recipe bookmarks, for example to increase its price, wi
 **:bookmark: Note:**<br>
 
 * Recipe bookmarks are considered duplicates when they have the same name, ingredients and price.
-  The matching of details are case insensitive where applicable.
+  The matching of details are case-insensitive where applicable.
 
 * You cannot have duplicate recipe bookmarks in the application.
 
@@ -291,6 +291,7 @@ You can also change your recipe bookmarks, for example to increase its price, wi
 ### 3.5 Statistics
 You may find it handy to track your business performance.
 BTBB offers 3 types of statistics to help you with that!
+
 They are:
 * Revenue per month for the past 12 months.
 * Top 10 clients who made the highest number of orders.
@@ -304,34 +305,34 @@ They are:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters that are to be supplied by you.<br>
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
-* Items in square brackets are optional.<br>
+* You may omit items in square brackets as they are optional.<br>
   e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
   `cn/John Doe`.
 
-* Parameters can be in any order.<br>
+* You can provide the parameters in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken.<br>
   e.g. if you specify `cp/12341234 cp/56785678`, only `cp/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, and `list-c`) will be ignored.<br>
+* Any extraneous parameters supplied by you for commands that do not take in parameters (such as `help`, and `list-c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* The format of all date fields is `dd-MM-yyyy`.<br>
+* You should note that the format of all date fields is `dd-MM-yyyy`.<br>
   e.g. 21-10-1998 is 21 October 1998.
 
-* The format of all deadline fields is `dd-MM-yyyy HHmm`.<br>
+* You should note that the format of all deadline fields is `dd-MM-yyyy HHmm`.<br>
   e.g. 21-10-1998 1830 is 21 October 1998 6.30pm.
 
-* The format of all phone parameters is a series of up to 20 digits with no spacing between digits.
+* You should note that the format of all phone parameters is a series of up to 20 digits with no spacing between digits.
 
-* Address parameters have no restrictions on their format. But they should contain at least one non-space character.
+* You should note that address parameters have no restrictions on their format. But they should contain at least one non-space character.
 
-* The following parameters allow up to 50 characters (including spaces):
+* You should note that the following parameters allow up to 50 characters (including spaces):
   * Client Name
   * Ingredient Name
   * Order Name
@@ -342,13 +343,13 @@ They are:
 
 ### 4.1 Viewing help : `help`
 
-Displays a help window with the url to BTBB's User Guide.
+Don't know how to start using the application? This command displays a help window with the URL to BTBB's User Guide.
 
 Format: `help`
 
 ### 4.2 Switching Tabs: `tab`
 
-Switches to the specified tab.
+You can easily switch to the specified tab using this command.
 
 Format: `tab INDEX`
 
@@ -368,7 +369,7 @@ Fig 3. Parts of a client
 
 #### 4.3.1 Adding a client: `add-c`
 
-Adds a client to the application.
+You can add a client to the application using this command.
 
 Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 
@@ -393,7 +394,7 @@ Format: `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 
 #### 4.3.2 Deleting a client: `delete-c`
 
-Deletes a client from the application.
+You can delete a client from the application using this command.
 
 Format: `delete-c INDEX`
 
@@ -410,7 +411,7 @@ Format: `delete-c INDEX`
 
 #### 4.3.3 Editing a client: `edit-c`
 
-Edits an existing client in the application.
+You can edit an existing client in the application using this command.
 
 Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
@@ -437,7 +438,7 @@ Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 #### 4.3.4 Finding clients by keywords: `find-c`
 
-Finds client(s) whose attribute(s) match the keyword(s).
+You can find client(s) whose attribute(s) match the keyword(s) using this command.
 
 Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
@@ -445,17 +446,17 @@ Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 **:bookmark: Note:**<br>
 
-* The search is case-insensitive.
+* You should note that the search is case-insensitive.
 
-* There must be 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
-* Multiple search keywords can be specified for each field. <br>
+* You can specify multiple search keywords for each field. <br>
   e.g. <code>find-c cn/Alex Brian</code>
 
-* Partial search will be allowed. <br>
+* You should note that partial search is allowed. <br>
   e.g. <code>find-c cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* It will find clients that match at least one keyword, for each prefix.
+* You should note that this command will find clients that match at least one keyword, for each prefix.
 
 </div>
 
@@ -471,7 +472,7 @@ Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 #### 4.3.5 Listing all clients: `list-c`
 
-Lists all clients in the application.
+You can list all clients in the application using this command.
 
 Format: `list-c`
 
@@ -484,7 +485,7 @@ Fig 4. Parts of an ingredient
 
 #### 4.4.1 Adding an ingredient: `add-i`
 
-Adds an ingredient to the application.
+You can add an ingredient to the application using this command.
 
 Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
@@ -492,14 +493,14 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
 **:bookmark: Note:**<br>
 
-* The application does not allow duplicate ingredients to be added.
+* You should note that the application does not allow duplicate ingredients to be added.
 
 * An ingredient is considered a duplicate if it has the same `NAME` and `UNIT` as an existing ingredient in the
   application.
 
-* The matching of `NAME` and `UNIT` are case insensitive.
+* The matching of `NAME` and `UNIT` are case-insensitive.
 
-* `QUANTITY` must be positive, and the largest possible input is 40000.
+* The `QUANTITY` supplied by you must be positive, and the largest possible input is 40000.
 
 </div>
 
@@ -508,7 +509,7 @@ Format: `add-i in/NAME iq/QUANTITY iu/UNIT`
 
 #### 4.4.2 Deleting an ingredient: `delete-i`
 
-Deletes an ingredient from the application.
+You can delete an ingredient from the application using this command.
 
 Format: `delete-i INDEX`
 
@@ -525,7 +526,7 @@ Format: `delete-i INDEX`
 
 #### 4.4.3 Editing an ingredient: `edit-i`
 
-Edits an existing ingredient in the application.
+You can edit an existing ingredient in the application using this command.
 
 Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
@@ -549,7 +550,7 @@ Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 #### 4.4.4 Finding ingredients by keywords: `find-i`
 
-Finds ingredient(s) whose attribute(s) match the keyword(s).
+You can find ingredient(s) whose attribute(s) match the keyword(s) using this command.
 
 Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 
@@ -557,17 +558,17 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 
 **:bookmark: Note:**<br>
 
-* The search is case-insensitive.
+* You should note that the search is case-insensitive.
 
-* There must be 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
-* Multiple search keywords can be specified for each field. <br>
+* You can specify multiple search keywords for each field. <br>
   e.g. <code>find-i in/Kiwi Chocolate</code>
 
-* Partial search will be allowed. <br>
+* You should note that partial search is allowed. <br>
   e.g. <code>find-i in/Ap</code> can show ingredients with names like Apple and Apricot.
 
-* It will find ingredients that match at least one keyword, for each prefix.
+* You should note that this command will find ingredients that match at least one keyword, for each prefix.
 
 * Ingredient `QUANTITY`:
   * keywords for `QUANTITY` finds ingredients with a quantity that is equal to any of the given keywords.
@@ -590,7 +591,7 @@ Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [i
 
 #### 4.4.5 Listing all ingredients: `list-i`
 
-Lists all ingredients in the application.
+You can list all ingredients in the application using this command.
 
 Format: `list-i`
 
@@ -611,9 +612,9 @@ Fig 5. Parts of an order
 
 #### 4.5.1 Adding an order: `add-o`
 
-Adds an order to the application.
+You can add an order to the application using this command.
 
-All possible formats:
+You can use any of the following command formats to add an order:
 1. All client and recipe details specified: <br>
   `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS
   rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
@@ -661,6 +662,11 @@ Secondary processes that happen when you add an order:
   If the ingredient in the order does not exist in the inventory, there is no effect.
 * All orders have an uncompleted status upon addition.
 
+**When an order is added with one or more ingredients that are tracked in the inventory,
+the application will still allow the addition of an order even if the ingredient quantities are not enough to fulfil the order.
+It is your responsibility to keep the inventory restocked so that our ingredient tracking works as intended.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
+
 </div>
 
 **Examples:**
@@ -695,7 +701,7 @@ Fig 9. Format 4: Adding an order using both client and recipe indexes
 
 #### 4.5.2 Adding an order ingredient: `add-oi`
 
-Adds an ingredient to an order in the application.
+You can add an ingredient to an order in the application using this command.
 
 Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
@@ -708,11 +714,16 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 * An ingredient already exists in an order if it has the same `NAME` and `UNIT` as an existing ingredient in the order's ingredient sub-list.
 
-* Ingredients that already exist in the order cannot be added again. Instead, perform delete order ingredient command
+* Ingredients that already exist in the order cannot be added again. Instead, you should perform delete order ingredient command
   before performing this command again.
 
 * If the added ingredient [exists in the inventory](#32-inventory), the quantity deducted from
   the inventory will be equivalent to the ingredient quantity in the order multiplied by the order quantity.
+
+**When an order ingredient is added to the order with an ingredient that is tracked in the inventory,
+the application will still allow the addition of the order ingredient even if the ingredient quantity is not enough to fulfil the order.
+It is your responsibility to keep the inventory restocked so that our tracking works as intended.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
 
 </div>
 
@@ -721,7 +732,7 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 #### 4.5.3 Deleting an order: `delete-o`
 
-Deletes an order from the application.
+You can delete an order from the application using this command.
 
 Format: `delete-o INDEX`
 
@@ -734,6 +745,12 @@ Format: `delete-o INDEX`
 * When an order is deleted from the list, its ingredient quantities are added back to matching ingredients in the inventory. However, if the
   order is already marked as done, its ingredient quantities will not be added back.
 
+**When an order with ingredients that are tracked in the inventory is deleted,
+the application will still allow the deletion of the order even if any of the ingredient quantities has reached the upper limit of 40000.
+We believe that the upper limit of the ingredient quantity is sufficient for normal use.
+If there is a need to change the quantity above the limit, consider changing the ingredient unit instead.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
+
 </div>
 
 **Examples:**
@@ -741,7 +758,7 @@ Format: `delete-o INDEX`
 
 #### 4.5.4 Deleting an order ingredient: `delete-oi`
 
-Deletes an ingredient from an order in the application.
+You can delete an ingredient from an order in the application using this command.
 
 Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
@@ -758,6 +775,12 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 * If the deleted ingredient [exists in the inventory](#32-inventory), the quantity added back to the inventory will
   be equivalent to the ingredient quantity in the order multiplied by the order quantity.
 
+**When an order ingredient that is tracked in the inventory is deleted from the order,
+the application will still allow the deletion of the order ingredient even if the ingredient quantity has reached the upper limit of 40000.
+We believe that the upper limit of the ingredient quantity is sufficient for normal use.
+If there is a need to change the quantity above the limit, consider changing the ingredient unit instead.
+Please read our [disclaimers about ingredient quantities](#65-quantities) to learn more.**
+
 </div>
 
 **Examples:**
@@ -765,7 +788,7 @@ Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 #### 4.5.5 Editing an order: `edit-o`
 
-Edits an order in the application.
+You can edit an order in the application using this command.
 
 Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
 [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
@@ -778,7 +801,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
-  them are mandatory, but at least one must be specified.
+  them are mandatory, but you must specify at least one.
 
 * The updated order must not be a duplicate of another existing order in the orders list. <br>
   i.e. Updated order and the other existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
@@ -796,7 +819,7 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 
 #### 4.5.6 Finding orders by keywords: `find-o`
 
-Finds order(s) with attribute(s) that contains the keyword(s).
+You can find order(s) with attribute(s) that contains the keyword(s) using this command.
 
 Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 
@@ -804,17 +827,17 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 **:bookmark: Note:**<br>
 
-* The search is case-insensitive.
+* You should note that the search is case-insensitive.
 
-* There must be 1 or more search arguments.
+* You must supply 1 or more search arguments.
 
-* Multiple search keywords can be specified for each field. <br>
+* You can specify multiple search keywords for each field. <br>
   e.g. <code>find-o cn/Alex Brian</code>
 
-* Partial search will be allowed. <br>
+* You should note that partial search is allowed. <br>
   e.g. <code>find-o cn/Al</code> can show orders for clients with names like Alice and Alex.
 
-* It will find orders that match at least one keyword, for each prefix.
+* You should note that this command will find orders that match at least one keyword, for each prefix.
 
 * `od/ORDER_DATE` represents the order date. They must follow the format specified [above](#4-features).
 
@@ -835,13 +858,13 @@ Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIP
 
 #### 4.5.7 Listing all orders: `list-o`
 
-Lists all orders in the application.
+You can list all orders in the application using this command.
 
 Format: `list-o`
 
 #### 4.5.8 Marking an order as done: `done-o`
 
-Marks order as done once it has been delivered to the client.
+You can mark an order as done once it has been delivered to the client using this command.
 
 Format: `done-o INDEX`
 
@@ -858,7 +881,7 @@ Format: `done-o INDEX`
 
 #### 4.5.9 Marking an order as undone: `undone-o`
 
-Marks order as undone.
+You can mark an order as undone using this command.
 
 Format: `undone-o INDEX`
 
@@ -882,7 +905,7 @@ Fig 10. Parts of a recipe
 
 #### 4.6.1 Adding a recipe: `add-r`
 
-Adds a recipe to the application.
+You can add a recipe to the application using this command.
 
 Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_PRICE`
 
@@ -895,7 +918,7 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_
 * A recipe is considered a duplicate if it has the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE` as an
   existing recipe in the application.
 
-* The matching of fields are case insensitive.
+* The matching of fields are case-insensitive.
 
 * `RECIPE_PRICE` should be positive and less than $2500.00.
 
@@ -907,7 +930,7 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY_UNIT, ...] rp/RECIPE_
 
 #### 4.6.2 Adding a recipe ingredient: `add-ri`
 
-Adds an ingredient to a recipe in the application.
+You can add an ingredient to a recipe in the application using this command.
 
 Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 
@@ -932,7 +955,7 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 #### 4.6.3 Deleting a recipe: `delete-r`
 
-Deletes a recipe from the application.
+You can delete a recipe from the application using this command.
 
 Format: `delete-r INDEX`
 
@@ -949,7 +972,7 @@ Format: `delete-r INDEX`
 
 #### 4.6.4 Deleting a recipe ingredient: `delete-ri`
 
-Deletes an ingredient from a recipe in the application.
+You can delete an ingredient from a recipe in the application using this command.
 
 Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 
@@ -970,7 +993,7 @@ Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 
 #### 4.6.5 Editing a recipe: `edit-r`
 
-Edits an existing recipe in the application.
+You can edit an existing recipe in the application using this command.
 
 Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
@@ -1002,7 +1025,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 #### 4.6.6 Finding recipes by keywords: `find-r`
 
-Finds recipe(s) with attribute(s) that contains the keyword(s). <br>
+You can find recipe(s) with attribute(s) that contains the keyword(s) using this command. <br>
 Recipes can only be found using recipe name.
 
 Format: `find-r rn/RECIPE_NAME`
@@ -1011,14 +1034,14 @@ Format: `find-r rn/RECIPE_NAME`
 
 **:bookmark: Note:**<br>
 
-* The search is case-insensitive.
+* You should note that the search is case-insensitive.
 
 * `rn/RECIPE_NAME` search field must be present.
 
-* Multiple search keywords can be specified for each field. <br>
+* You can specify multiple search keywords for each field. <br>
   e.g. <code>find-r rn/Chicken rice</code>
 
-* Partial search will be allowed. <br>
+* You should note that partial search is allowed. <br>
   e.g. <code>find-r rn/Ch</code> can show recipes with names like Chicken rice and Cheesecake.
 
 </div>
@@ -1032,14 +1055,14 @@ Format: `find-r rn/RECIPE_NAME`
 
 #### 4.6.7 Listing all recipes: `list-r`
 
-Lists all recipes in the application.
+You can list all recipes in the application using this command.
 
 Format: `list-r`
 
 ### 4.7 Statistics
 
 #### 4.7.1 Viewing revenue per month for the past 12 months
-* Displays a bar chart showing the revenue earned per month for the past 12 months. Revenue is calculated only
+* Your revenue earned per month for the past 12 months will be shown in a bar chart. Revenue is calculated only
   from completed orders.
 * Values will be displayed when you hover your cursor over each bar.
 
@@ -1049,7 +1072,7 @@ Fig 11. Revenue bar chart
 {:.caption}
 
 #### 4.7.2 Viewing top 10 clients
-* Displays a pie chart showing the top 10 clients who made the highest number of orders.
+* Your top 10 clients who made the highest number of orders will be shown in a pie chart.
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
@@ -1060,7 +1083,7 @@ Fig 12. Client pie chart
 {:.caption}
 
 #### 4.7.3 Viewing top 10 recipes
-* Displays a pie chart showing the top 10 recipes that appear in the highest number of orders.
+* Your top 10 recipes that appear in the highest number of orders will be down in a pie chart.
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
@@ -1072,14 +1095,14 @@ Fig 13. Recipe pie chart
 
 ### 4.8 Exiting the program: `exit`
 
-Exits the program.
+You can exit the program using this command.
 
 Format: `exit`
 
 ### 4.9 Saving the data
 
 BTBB will save to the hard disk automatically after execution of any command that changes the data. There is no need
-to save manually.
+for you to save manually.
 
 ### 4.10 Editing the data file
 
@@ -1104,7 +1127,7 @@ contains the data of your previous BTBB home folder.
 
 ### 6.1 Data
 * App starts with seed data if there is no initial data file.
-* If a user edits the JSON file with invalid data, the application
+* If you edit the JSON file with invalid data, the application
   will not show any data on startup.
 
 ### 6.2 Format
@@ -1119,7 +1142,7 @@ contains the data of your previous BTBB home folder.
   (e.g. add-o c/-2 r/0 od/12-12-2022 1200)
 
 ### 6.4 Price
-* Prices can be an integer value or a floating point value with **exactly** 2 decimal places.
+* Prices can be a whole number or a decimal value with **exactly** 2 decimal places.
 * The largest possible recipe price is $2499.99.
 * The largest possible order price is $99,999,999.99.
 * Changes made to an existing order's quantity will not update the order price. <br>
@@ -1127,7 +1150,7 @@ contains the data of your previous BTBB home folder.
   if the order has been edited to 2 Apple Pies, the price of the order remains at $5.)
 
 ### 6.5 Quantities
-* If any quantity field in orders is changed in the JSON file, the
+* If you change any quantity field in orders in the JSON file, the
   application will not automatically reflect the corresponding changes
   in the inventory.
 * Ingredient quantity cannot change beyond the lower boundary of 0
