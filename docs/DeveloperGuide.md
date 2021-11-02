@@ -1425,7 +1425,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an order
     1. Prerequisites (should be satisfied for each individual test case):
-       1. Order list contains at least one order and suppose the first order in the list has the following details:
+       1. Order list contains at least one order and the first order in the list has the following details:
           * Client Name: Alex Yeoh
           * Client Phone: 87438807
           * Client Address: Blk 30 Geylang Street 29. #06-40
@@ -1435,12 +1435,12 @@ testers are expected to do more *exploratory* testing.
           * Order Deadline: 12 December 2021 at 12 pm
           * Order Quantity: 1
           * Completion status: Uncompleted
-       1. Client bookmark list contains at least one client and suppose the first client in the list has the following details:
+       1. Client bookmark list contains at least one client and the first client in the list has the following details:
           * Client Name: Richard Yeoh
           * Client Phone: 96847225
           * Client Address: Blk 2 Bedok Street 12. #06-41
           * Client Email: richard@gmail.com
-       1. Recipe bookmark list contains at least one recipe and suppose the first recipe in the list has the following details:
+       1. Recipe bookmark list contains at least one recipe and the first recipe in the list has the following details:
           * Recipe Name: Nasi Lemak
           * Recipe Ingredients: Rice x 200 g, Fish x 1 whole
           * Recipe Price: 3
