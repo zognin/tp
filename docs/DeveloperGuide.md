@@ -1436,13 +1436,13 @@ testers are expected to do more *exploratory* testing.
        <br> Expected: A new order is added to order list with the given details. Details of the added
        order are shown in the result display box.
     1. Test case (only client index used): `add-o c/1 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200 oq/1`
-       <br> Expected: A new order is added to order list with the given details. Details of the added
+       <br> Expected: A new order is added to order list with the given details (client details are copied from the first client). Details of the added
        order are shown in the result display box.
     1. Test case (only recipe index used): `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 r/1 op/4 od/12-12-2021 1200 oq/1`
-       <br> Expected: A new order is added to order list with the given details. Details of the added
+       <br> Expected: A new order is added to order list with the given details (recipe details are copied from the first recipe). Details of the added
        order are shown in the result display box.
     1. Test case (both client and recipe index used): `add-o c/1 r/1 op/4 od/12-12-2021 1200 oq/1`
-       <br> Expected: A new order is added to order list with the given details. Details of the added
+       <br> Expected: A new order is added to order list with the given details (client and recipe details are copied from the first client and recipe respectively). Details of the added
        order are shown in the result display box.
     1. Test case: `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200`
        <br> Expected: A new order is added to order list with the given details. Details of the added
@@ -1543,7 +1543,7 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: The details of the first client in the client bookmarks list is copied to the first order in the order list.
        Details of the edited order are shown in the result display box.
     1. Test case: `edit-o 1 r/1`
-       <br>Expected: First order in the order list is edited to have recipe details as the first recipe bookmark in the recipe bookmarks list.
+       <br>Expected: The details of the first recipe in the recipe bookmarks list is copied to the first order in the order list.
        Details of the edited order are shown in the result display box.
     1. Test case: `edit-o 1 op/1 od/12-12-2021 1900 oq/2`
        <br>Expected: First order in the order list is edited to have order price of '1', order deadline at '12 December 2021 7pm' and order quantity of '2'.
