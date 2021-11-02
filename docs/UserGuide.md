@@ -294,8 +294,8 @@ BTBB offers 3 types of statistics to help you with that!
 
 They are:
 * Revenue per month for the past 12 months.
-* Top 10 clients who made the highest number of orders.
-* Top 10 recipes that appear most frequently in all orders.
+* Top 10 most frequent clients, who made the most number of orders.
+* Top 10 most popular recipes, that appear most frequently in all orders.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1071,8 +1071,8 @@ Format: `list-r`
 Fig 11. Revenue bar chart
 {:.caption}
 
-#### 4.7.2 Viewing top 10 clients
-* Your top 10 clients who made the highest number of orders will be shown in a pie chart.
+#### 4.7.2 Viewing top 10 most frequent clients
+* Your top 10 most frequent clients, who made the highest number of orders will be shown in a pie chart.
 * Ties are broken arbitrarily i.e. If there are multiple clients with the same number of orders, 10 random clients
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
@@ -1082,8 +1082,8 @@ Fig 11. Revenue bar chart
 Fig 12. Client pie chart
 {:.caption}
 
-#### 4.7.3 Viewing top 10 recipes
-* Your top 10 recipes that appear in the highest number of orders will be down in a pie chart.
+#### 4.7.3 Viewing top 10 most popular recipes
+* Your top 10 most popular recipes, that appear most frequently in the all your orders will be shown in a pie chart.
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of orders, 10 random recipes
   will be displayed.
 * Values will be displayed when you hover your cursor over each wedge.
