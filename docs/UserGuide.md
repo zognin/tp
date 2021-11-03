@@ -1086,7 +1086,7 @@ Fig 12. Client pie chart
 {:.caption}
 
 #### 4.7.3 Viewing top 10 most popular recipes
-* Your top 10 most popular recipes, that appear most frequently in the all your orders will be shown in a pie chart. 
+* Your top 10 most popular recipes, that appear most frequently in the all your orders will be shown in a pie chart.
 * To rank the popularity of orders, compare the total order quantity of each recipe. <br>
   (e.g. Compare an order list with only these 3 orders: 'Chicken Rice x4', 'Fried Rice x2' and 'Fried Rice x1' <br>
   Chicken rice is more popular since its total quantity (sum of all `ORDER_QUANTITY`) is higher, i.e. 4 > 2+1.)
