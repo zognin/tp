@@ -1409,6 +1409,195 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `list-i abc`
        <br>Expected: Inventory displays all ingredients.
 
+### Order
+
+1. Adding an Order
+    1. Prerequisites (should be satisfied for each individual test case):
+       1. Order list does not contain an order with the following details:
+          * Client Name: Alex Yeoh
+          * Client Phone: 87438807
+          * Client Address: Blk 30 Geylang Street 29. #06-40
+          * Recipe Name: Chicken Rice
+          * Recipe Ingredients: Rice x 200 g, Chicken x 1 whole
+          * Order Price: $4.00
+          * Order Deadline: 12 December 2021 at 12 pm
+          * Order Quantity: 1
+          * Completion status: Uncompleted
+       1. Client bookmark list contains at least one client and the first client in the list has the following details:
+          * Client Name: Alex Yeoh
+          * Client Phone: 87438807
+          * Client Address: Blk 30 Geylang Street 29. #06-40
+          * Client Email: alexyeoh@gmail.com
+       1. Recipe bookmark list contains at least one recipe and the first recipe in the list has the following details:
+          * Recipe Name: Chicken Rice
+          * Recipe Ingredients: Rice x 200 g, Chicken x 1 whole
+          * Recipe Price: 4
+    1. Test case (all client and recipe details specified): `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: A new order is added to order list with the given details. Details of the added
+       order are shown in the result display box.
+    1. Test case (only client index used): `add-o c/1 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: A new order is added to order list with the given details (client details are copied from the first client). Details of the added
+       order are shown in the result display box.
+    1. Test case (only recipe index used): `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 r/1 op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: A new order is added to order list with the given details (recipe details are copied from the first recipe). Details of the added
+       order are shown in the result display box.
+    1. Test case (both client and recipe index used): `add-o c/1 r/1 op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: A new order is added to order list with the given details (client and recipe details are copied from the first client and recipe respectively). Details of the added
+       order are shown in the result display box.
+    1. Test case: `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200`
+       <br> Expected: A new order is added to order list with the given details. Details of the added
+       order are shown in the result display box.
+    1. Test case: `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 rn/Milo op/1.40 od/12-12-2021 1200`
+       <br> Expected: A new order is added to order list with the given details. Details of the added
+       order are shown in the result display box.
+    1. Test case: `add-o cn/Alex Yeoh cp/87438807 ca/Blk 30 Geylang Street 29. #06-40 rn/Nasi Lemak op/1.40`
+       <br> Expected: No order is added. Error details shown in the result display box.
+    1. Test case (all client and recipe details specified): `add-o cn/Alex Yeoh cp/847521698521145366247893451125 ca/Blk 30 Geylang Street 29. #06-40 rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: No order is added. Error details shown in the result display box.
+    1. Test case: `add-o c/0 r/1 op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: No order is added. Error details shown in the result display box.
+    1. Test case: `add-o op/4 od/12-12-2021 1200 oq/1`
+       <br> Expected: No order is added. Error details shown in the result display box.
+    1. Test case: `add-o`
+       <br> Expected: No order is added. Error details shown in the result display box.
+
+1. Adding an order ingredient
+    1. Prerequisites: Order list shows at least 1 order and at most 3 orders. The first order in the list does not have rice (in grams) as one of its ingredients.
+    1. Test case: `add-oi 1 in/Rice iq/400 iu/g`
+       <br> Expected: The new ingredient is added to the first order.
+       Details of the new ingredient and the edited order are shown in the result display box.
+    1. Test case: `add-oi 4 in/Rice iq/400 iu/g`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi 1 in/Chicken iq/0 iu/whole`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi 1 in/Chicken iq/500000 iu/whole`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi 1 in/Chi$ken iq/4 iu/whole`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi 1 in/Chicken iq/4 iu/who%le`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi 1 in/Rice iu/g`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi in/Rice iq/400 iu/g`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `add-oi`
+       <br> Expected: No order is edited. Error details shown in the result display box.
+
+1. Deleting an order
+    1. Prerequisites: Order list shows at least 1 order and at most 3 orders.
+    1. Test case: `delete-o 1`
+       <br>Expected: First order is deleted from the order list. Details of the deleted order are
+       shown in the result display box.
+    1. Test case: `delete-o -1`
+       <br>Expected: No order is deleted. Error details shown in the result display box.
+    1. Test case: `delete-o 4`
+       <br>Expected: No order is deleted. Error details shown in the result display box.
+    1. Test case: `delete-o abc`
+       <br>Expected: No order is deleted. Error details shown in the result display box.
+    1. Test case: `delete-o`
+       <br>Expected: No order is deleted. Error details shown in the result display box.
+
+1. Deleting an order ingredient
+    1. Prerequisites: Order at index 1 has at least 1 ingredient and at most 3 ingredients.
+    1. Test case: `delete-oi 1 i/1`
+       <br>Expected: First ingredient is deleted from the ingredient list in the first order of the order list.
+       Details of the deleted ingredient and edited order are shown in the result display box.
+    1. Test case: `delete-oi 1 i/10`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `delete-oi abc i/1`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `delete-oi 1 i/abc`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `delete-oi 1`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `delete-oi i/1`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `delete-oi`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+
+1. Editing an order
+    1. Prerequisites (should be satisfied for each individual test case):
+       1. Order list contains at least one order and the first order in the list has the following details:
+          * Client Name: Alex Yeoh
+          * Client Phone: 87438807
+          * Client Address: Blk 30 Geylang Street 29. #06-40
+          * Recipe Name: Chicken Rice
+          * Recipe Ingredients: Rice x 200 g, Chicken x 1 whole
+          * Order Price: $4.00
+          * Order Deadline: 12 December 2021 at 12 pm
+          * Order Quantity: 1
+          * Completion status: Uncompleted
+       1. Client bookmark list contains at least one client and the first client in the list has the following details:
+          * Client Name: Richard Yeoh
+          * Client Phone: 96847225
+          * Client Address: Blk 2 Bedok Street 12. #06-41
+          * Client Email: richard@gmail.com
+       1. Recipe bookmark list contains at least one recipe and the first recipe in the list has the following details:
+          * Recipe Name: Nasi Lemak
+          * Recipe Ingredients: Rice x 200 g, Fish x 1 whole
+          * Recipe Price: 3
+    1. Test case: `edit-o 1 cn/Alexa White cp/91542652`
+       <br>Expected: The client name and phone in the first order is edited to 'Alexa White' and '91542652' respectively.
+       Details of the edited order are shown in the result display box.
+    1. Test case: `edit-o 1 c/1`
+       <br>Expected: The details of the first client in the client bookmarks list is copied to the first order in the order list.
+       Details of the edited order are shown in the result display box.
+    1. Test case: `edit-o 1 r/1`
+       <br>Expected: The details of the first recipe in the recipe bookmarks list is copied to the first order in the order list.
+       Details of the edited order are shown in the result display box.
+    1. Test case: `edit-o 1 op/1 od/12-12-2021 1900 oq/2`
+       <br>Expected: First order in the order list is edited to have order price of '1', order deadline at '12 December 2021 7pm' and order quantity of '2'.
+       Its position in the order list may change. Details of the edited order are shown in the result display box.
+    1. Test case: `edit-o rn/Chocolate Cupcake op/20`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `edit-o`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `edit-o 1`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `edit-o abc`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+    1. Test case: `edit-o 1 op/-2`
+       <br>Expected: No order is edited. Error details shown in the result display box.
+
+1. Finding orders by keywords
+    1. Prerequisites: There are exactly 2 orders in the order list.
+       1. First order has the following details:
+          * Client Name: Bernice Yu
+          * Client Phone: 98762159
+          * Client Address: Blk 12 Holland Village Street 1. #01-40
+          * Recipe Name: Nasi Lemak
+          * Recipe Ingredients: Rice x 200 g, Fish x 1 whole
+          * Order Price: $3.00
+          * Order Deadline: 15 December 2021 at 1 pm
+          * Order Quantity: 2
+          * Completion status: Uncompleted
+       1. Second order has the following details:
+          * Client Name: Alex Yeoh
+          * Client Phone: 87438807
+          * Client Address: Blk 30 Geylang Street 29. #06-40
+          * Recipe Name: Chicken Rice
+          * Recipe Ingredients: Rice x 200 g, Chicken x 1 whole
+          * Order Price: $4.00
+          * Order Deadline: 12 October 2021 at 12 pm
+          * Order Quantity: 1
+          * Completion status: Completed
+    1. Test case: `find-o cn/alex`
+       <br>Expected: Order list only shows the second order.
+    1. Test case: `find-o of/yes`
+       <br>Expected: Order list only shows the second order.
+    1. Test case: `find-o of/no`
+      <br>Expected: Order list only shows the first order.
+    1. Test case: `find-o rn/Nasi Lemak`
+      <br>Expected: Order list only shows the first order.
+    1. Test case: `find-o rn/Chicken Rice`
+      <br>Expected: Order list only shows the second order.
+    1. Test case: `find-o cn/charlie`
+       <br>Expected: Order list shows 0 orders.
+    1. Test case: `find-o cn/`
+       <br>Expected: No change in the order list display. Error details shown in the result display box.
+    1. Test case: `find-o`
+       <br>Expected: No change in the order list display. Error details shown in the result display box.
+
 ### Recipe
 
 1. Deleting a recipe ingredient
