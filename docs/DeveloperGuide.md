@@ -1684,7 +1684,7 @@ testers are expected to do more *exploratory* testing.
        <br> Expected: No recipe is added. Error details shown in the result display box.
     1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-Whole rp/$4`
         <br> Expected: No recipe is added. Error details shown in the result display box.
-    
+
 1. Adding a recipe ingredient
     1. Prerequisites: Recipe list shows at least 1 recipe and at most 3 recipes. The first recipe in the list does not have rice (in grams) as one of its ingredients.
     1. Test case: `add-ri 1 in/Rice iq/400 iu/g`
