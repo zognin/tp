@@ -308,7 +308,8 @@ They are:
 * Words in `UPPER_CASE` are the parameters that are to be supplied by you.<br>
   e.g. in `add-o cn/CLIENT_NAME`, `CLIENT_NAME` is a parameter which can be used as `add-o cn/John Doe`.
 
-* You may omit items in square brackets as they are optional.<br>
+* You may omit items in square brackets as they are optional. However, there may be exceptions to this rule
+  please refer to the **Note** section under each command for more details.<br>
   e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
   `cn/John Doe`.
 
@@ -802,6 +803,21 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
   [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
   them are mandatory, but you must specify at least one.
+
+**Client details** include client name, phone and address, they must be provided in one of these ways:
+* If `c/CLIENT_INDEX` is provided,
+  * client details are copied from the client bookmark at the given index to the order.
+  * If `cn/`, `cp/` or `ca/` are provided with `c/`, the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
+* If `c/CLIENT_INDEX` is not provided but `cn/`, `cp/` or `ca/` is provided,
+  * the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
+
+**Recipe details** include recipe name and price. Recipe name and order price must be provided in one of these ways:
+* If `r/RECIPE_INDEX` is provided,
+  * recipe details are copied from the recipe bookmark at the given index to the order.
+  * `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
+  * If `rn/` or `op/` is provided with `r/`, the respective recipe detail is taken from `rn/` or `op/` instead.
+* If `r/` is not provided but `rn/` or `op/` is provided,
+  * the respective recipe detail is taken from `rn/` or `op/` instead.
 
 * The updated order must not be a duplicate of another existing order in the orders list. <br>
   i.e. Updated order and the other existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
