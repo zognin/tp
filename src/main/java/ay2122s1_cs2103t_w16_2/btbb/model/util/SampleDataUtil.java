@@ -57,12 +57,12 @@ public class SampleDataUtil {
     public static List<List<Ingredient>> getRecipeIngredientList() {
         return List.of(
                 List.of(new Ingredient(new GenericString("Chicken"), new Quantity("1"), new GenericString("whole")),
-                        new Ingredient(new GenericString("Rice"), new Quantity("3"), new GenericString("cup"))
+                        new Ingredient(new GenericString("Rice"), new Quantity("3"), new GenericString("cups"))
                 ),
                 List.of(new Ingredient(new GenericString("Egg"), new Quantity("1"), new GenericString("whole")),
-                        new Ingredient(new GenericString("Rice"), new Quantity("2"), new GenericString("cup"))),
-                List.of(new Ingredient(new GenericString("Flour"), new Quantity("600"), new GenericString("gram")),
-                        new Ingredient(new GenericString("Milk"), new Quantity("1"), new GenericString("cup")))
+                        new Ingredient(new GenericString("Rice"), new Quantity("2"), new GenericString("cups"))),
+                List.of(new Ingredient(new GenericString("Flour"), new Quantity("600"), new GenericString("grams")),
+                        new Ingredient(new GenericString("Milk"), new Quantity("2"), new GenericString("cups")))
         );
     }
 
