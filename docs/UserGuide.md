@@ -312,10 +312,6 @@ They are:
   e.g. `cn/CLIENT_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...]` can be used as `cn/John Doe ri/Garlic-1-whole` or as
   `cn/John Doe`.
 
-* You must provide at least one of the items in curly braces.<br>
-  e.g. in `{in/NAME | iq/QUANTITY | iu/UNIT}`, at least one of the parameters `in/NAME`, `in/QUANTITY` or `in/UNIT`
-  must be provided.
-
 * You can provide the parameters in any order.<br>
   e.g. if the command specifies `cn/CLIENT_NAME cp/CLIENT_PHONE`, `cp/CLIENT_PHONE cn/CLIENT_NAME` is also acceptable.
 
@@ -417,7 +413,7 @@ Format: `delete-c INDEX`
 
 You can edit an existing client in the application using this command.
 
-Format: `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
+Format: `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -425,7 +421,7 @@ Format: `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
 
 * `INDEX` allows you to choose which client to edit by specifying its position in the currently displayed client list.
 
-* `{cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}` allows you to specify the client information to update. None of
+* `[cn/NAME], [cp/PHONE], [ce/EMAIL], [ca/ADDRESS]` allows you to specify the client information to update. None of
   them are mandatory, but at least one must be specified.
 
 * The updated client must not be a duplicate of another existing client in the client bookmarks. <br>
@@ -444,7 +440,7 @@ Format: `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
 
 You can find client(s) whose attribute(s) match the keyword(s) using this command.
 
-Format: `find-c {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
+Format: `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -532,7 +528,7 @@ Format: `delete-i INDEX`
 
 You can edit an existing ingredient in the application using this command.
 
-Format: `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
+Format: `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -540,7 +536,7 @@ Format: `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
 
 * `INDEX` allows you to choose which ingredient to edit by specifying its position in the currently displayed inventory.
 
-* `{in/NAME | iq/QUANTITY | iu/UNIT}` allows you to specify the ingredient information to update. None of
+* `[in/NAME], [iq/QUANTITY], [iu/UNIT]` allows you to specify the ingredient information to update. None of
   them are mandatory, but at least one must be specified.
 
 * The updated ingredient must not be a duplicate of another existing ingredient in the inventory. <br>
@@ -556,7 +552,7 @@ Format: `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
 
 You can find ingredient(s) whose attribute(s) match the keyword(s) using this command.
 
-Format: `find-i {in/NAME | iq/QUANTITY | iqf/QUANTITY_FROM | iqt/QUANTITY_TO | iu/UNIT}`
+Format: `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -794,8 +790,8 @@ Please read our [disclaimers about ingredient quantities](#65-quantities) to lea
 
 You can edit an order in the application using this command.
 
-Format: `edit-o INDEX {c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX |
-rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
+Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX]
+[rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -803,24 +799,9 @@ rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
 
 * `INDEX` allows you to choose which order to edit by specifying its position in the currently displayed order list.
 
-* `{c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX |
-  rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}` allows you to specify the order information to
-  update. None of them are mandatory, but you must specify at least one.
-
-**Client details** include client name, phone and address, they must be provided in one of these ways:
-* If `c/CLIENT_INDEX` is provided,
-  * client details are copied from the client bookmark at the given index to the order.
-  * If `cn/`, `cp/` or `ca/` are provided with `c/`, the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
-* If `c/CLIENT_INDEX` is not provided but `cn/`, `cp/` or `ca/` is provided,
-  * the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
-
-**Recipe details** include recipe name and price. Recipe name and order price must be provided in one of these ways:
-* If `r/RECIPE_INDEX` is provided,
-  * recipe details are copied from the recipe bookmark at the given index to the order.
-  * `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
-  * If `rn/` or `op/` is provided with `r/`, the respective recipe detail is taken from `rn/` or `op/` instead.
-* If `r/` is not provided but `rn/` or `op/` is provided,
-  * the respective recipe detail is taken from `rn/` or `op/` instead.
+* `[c/CLIENT_INDEX], [cn/CLIENT_NAME], [cp/CLIENT_PHONE], [ca/CLIENT_ADDRESS], [r/RECIPE_INDEX], [rn/RECIPE_NAME],
+  [op/ORDER_PRICE], [od/DEADLINE], [oq/QUANTITY]` allows you to specify the order information to update. None of
+  them are mandatory, but you must specify at least one.
 
 * The updated order must not be a duplicate of another existing order in the orders list. <br>
   i.e. Updated order and the other existing order must not have the same client details, recipe details, `DEADLINE` and `PRICE`.
@@ -840,7 +821,7 @@ rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
 
 You can find order(s) with attribute(s) that contains the keyword(s) using this command.
 
-Format: `find-o {cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | rn/RECIPE_NAME | od/ORDER_DATE | of/YES_OR_NO}`
+Format: `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -1014,7 +995,7 @@ Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 
 You can edit an existing recipe in the application using this command.
 
-Format: `edit-r INDEX {rn/RECIPE_NAME | rp/RECIPE_PRICE}`
+Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -1022,7 +1003,7 @@ Format: `edit-r INDEX {rn/RECIPE_NAME | rp/RECIPE_PRICE}`
 
 * `INDEX` allows you to choose which recipe to edit by specifying its position in the currently displayed recipe list.
 
-* `{rn/RECIPE_NAME | rp/RECIPE_PRICE}` allows you to specify the recipe information to update. None of
+* `[rn/RECIPE_NAME], [rp/RECIPE_PRICE]` allows you to specify the recipe information to update. None of
   them are mandatory, but at least one must be specified.
 
 * `RECIPE_PRICE` should be positive and less than $2500.00.
@@ -1197,20 +1178,20 @@ Action                      | Format
 ----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add client**              | `add-c cn/NAME cp/PHONE ce/EMAIL ca/ADDRESS`
 **Delete client**           | `delete-c INDEX`
-**Edit client**             | `edit-c INDEX {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
-**Find client**             | `find-c {cn/NAME | cp/PHONE | ce/EMAIL | ca/ADDRESS}`
+**Edit client**             | `edit-c INDEX [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
+**Find client**             | `find-c [cn/NAME] [cp/PHONE] [ce/EMAIL] [ca/ADDRESS]`
 **List client**             | `list-c`
 **Add ingredient**          | `add-i in/NAME iq/QUANTITY iu/UNIT`
 **Delete ingredient**       | `delete-i INDEX`
-**Edit ingredient**         | `edit-i INDEX {in/NAME | iq/QUANTITY | iu/UNIT}`
-**Find ingredient**         | `find-i {in/NAME | iq/QUANTITY | iqf/QUANTITY_FROM | iqt/QUANTITY_TO | iu/UNIT}`
+**Edit ingredient**         | `edit-i INDEX [in/NAME] [iq/QUANTITY] [iu/UNIT]`
+**Find ingredient**         | `find-i [in/NAME] [iq/QUANTITY] [iqf/QUANTITY_FROM] [iqt/QUANTITY_TO] [iu/UNIT]`
 **List ingredient**         | `list-i`
 **Add order**               | 1. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 2. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 3. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 4. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
 **Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
-**Edit order**              | `edit-o INDEX {c/INDEX | cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | r/RECIPE_INDEX | rn/RECIPE_NAME | op/ORDER_PRICE | od/ORDER_DEADLINE | oq/QUANTITY}`
-**Find order**              | `find-o {cn/CLIENT_NAME | cp/CLIENT_PHONE | ca/CLIENT_ADDRESS | rn/RECIPE_NAME | od/ORDER_DATE | of/YES_OR_NO}`
+**Edit order**              | `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
+**Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**              | `list-o`
 **Mark order as done**      | `done-o INDEX`
 **Mark order as undone**    | `undone-o INDEX`
@@ -1218,7 +1199,7 @@ Action                      | Format
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
 **Delete recipe ingredient**| `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
-**Edit recipe**             | `edit-r INDEX {rn/RECIPE_NAME | rp/RECIPE_PRICE}`
+**Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Find recipe**             | `find-r rn/RECIPE_NAME`
 **List recipe**             | `list-r`
 **Help**                    | `help`
