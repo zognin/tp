@@ -56,14 +56,13 @@ public class SampleDataUtil {
 
     public static List<List<Ingredient>> getRecipeIngredientList() {
         return List.of(
-                List.of(new Ingredient(new GenericString("Almond"), new Quantity("1"), new GenericString("bags")),
-                        new Ingredient(new GenericString("Corn"), new Quantity("2"), new GenericString("whole"))
+                List.of(new Ingredient(new GenericString("Chicken"), new Quantity("1"), new GenericString("whole")),
+                        new Ingredient(new GenericString("Rice"), new Quantity("3"), new GenericString("cup"))
                 ),
-                List.of(new Ingredient(
-                        new GenericString("Chicken Eggs"), new Quantity("2"), new GenericString("whole"))),
-                List.of(new Ingredient(new GenericString("Garlic"), new Quantity("1"), new GenericString("whole")),
-                        new Ingredient(new GenericString("Ham"), new Quantity("1"), new GenericString("packs")),
-                        new Ingredient(new GenericString("Fig"), new Quantity("5"), new GenericString("whole")))
+                List.of(new Ingredient(new GenericString("Egg"), new Quantity("1"), new GenericString("whole")),
+                        new Ingredient(new GenericString("Rice"), new Quantity("2"), new GenericString("cup"))),
+                List.of(new Ingredient(new GenericString("Flour"), new Quantity("600"), new GenericString("gram")),
+                        new Ingredient(new GenericString("Milk"), new Quantity("1"), new GenericString("cup")))
         );
     }
 
@@ -80,7 +79,7 @@ public class SampleDataUtil {
                     new Deadline("16-09-2021 1600"), new Quantity("1"), new CompletionStatus(true)),
             new Order(clients[2].getName(), clients[2].getPhone(), clients[2].getAddress(),
                     recipes[2].getName(), recipes[2].getRecipeIngredients(), new OrderPrice("20"),
-                    new Deadline("13-10-2021 1200"), new Quantity("4"), new CompletionStatus(true))
+                    new Deadline("13-10-2021 1200"), new Quantity("4"), new CompletionStatus(false))
         };
     }
 
