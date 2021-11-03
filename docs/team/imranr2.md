@@ -13,10 +13,9 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
 * **New feature**: Added functionality for users to find orders using various parameters. (Pull requests [#79](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/79), [#98](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/98))
   * **What it does**: Allows the user to find orders using one or more of the following parameters: client name, phone
     number, address, recipe name, order deadline and completion status.
-  * **Justification**: This feature increases the users ease of finding orders they have added into BTBB.
-  * **Highlights**: This feature necessitated the implementation of a generic list to store the different types of
-    predicates which is used to filter the order list. Different types of predicates for each of the parameters
-    were also created to facilitate the find order command.
+  * **Justification**: This feature increases the user's ease of finding orders in BTBB.
+  * **Highlights**: This feature necessitated the implementation of a generic list to store different types of
+    predicates used to filter the order list. These predicates were created to facilitate the find order command.
 
 * **New feature**: Added functionality to copy client and recipe bookmark details to orders. (Pull requests [#67](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/67), [#137](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/137))
   * **What it does**: Allows users to quickly add orders by using the client and recipe indexes shown in the list
@@ -25,8 +24,7 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
     popular recipe when adding an order.
     This feature enables users to add the details of a frequent client or popular recipe first and reuse those details when adding an order.
     This hastens the process of adding an order.
-  * **Highlights**: This feature significantly reduced the amount of characters a user has to type in order to add a
-    command.
+  * **Highlights**: This feature significantly reduces the amount of characters a user has to type to add an order.
 
 * **New feature**: Added a pie chart to display a user's top 10 most frequent clients (Pull request [#120](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/120))
   * **What it does**: BTBB automatically counts the amount of orders for each client and displays the top 10 clients
