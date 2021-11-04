@@ -52,8 +52,8 @@ optimized for use via a command line interface (CLI).
 * **Documentation**:
     * User Guide:
       * Added section for orders related to clients and ingredients. (Pull Request [#91](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/91))
-      * Update 'About BTBB' section of User Guide, to make it more user-centric. (Pull Request [#242](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/242))
       * Add find recipe feature. (Pull Request [#170](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/170))
+      * Update 'About BTBB' section of User Guide, to make it more user-centric. (Pull Request [#242](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/242))
     * Developer Guide:
       * Added implementation details for list commands. (Pull Request [#132](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/132))
       * Added implementation details for statistics. (Pull Request [#173](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/173))
