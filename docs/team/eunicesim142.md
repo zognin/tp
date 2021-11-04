@@ -46,7 +46,7 @@ optimized for use via a command line interface (CLI).
 
 * **Enhancements to existing features**:
   * Refactor codebase by replacing 'Person' with 'Client'. (Pull Request [#44](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/44))
-  * Abstract out all String classes that use the same regex, into one GenericString class, to reduce code duplication. 
+  * Abstract out all String classes that use the same regex, into one GenericString class, to reduce code duplication.
     These include all name fields and Ingredient Unit. (Pull Request [#69](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/69))
 
 * **Documentation**:
