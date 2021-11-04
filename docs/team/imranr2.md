@@ -26,7 +26,7 @@ BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their 
     This hastens the process of adding an order.
   * **Highlights**: This feature significantly reduces the amount of characters a user has to type to add an order.
 
-* **New feature**: Added a pie chart to display a user's top 10 most frequent clients (Pull request [#120](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/120))
+* **New feature**: Added a pie chart to display a user's top 10 most frequent clients. (Pull request [#120](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/120))
   * **What it does**: BTBB automatically counts the amount of orders for each client and displays the top 10 clients
     with the most number of orders in a pie chart.
   * **Justification**: This feature allows users to reinforce business relations with their most frequent clients. It
