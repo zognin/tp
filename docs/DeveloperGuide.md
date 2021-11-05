@@ -1635,7 +1635,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `done-o 3`
        <br>Expected: No change in the order list display. Error details shown in the result display box.
     1. Test case: `done-o -1`
-       <br>Expected: No change in the order list display. Error details shown in the result display box. 
+       <br>Expected: No change in the order list display. Error details shown in the result display box.
 
 1. Marking an order as undone
     1. Prerequisites: There are exactly 2 orders in the order list.
@@ -1667,7 +1667,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `undone-o 3`
       <br>Expected: No change in the order list display. Error details shown in the result display box.
     1. Test case: `undone-o -1`
-      <br>Expected: No change in the order list display. Error details shown in the result display box. 
+      <br>Expected: No change in the order list display. Error details shown in the result display box.
 
 ### Recipe
 
