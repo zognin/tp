@@ -5,9 +5,8 @@ title: Ajay's Project Portfolio Page
 
 ### Project: BobTheBodyBuilder
 
-BobTheBodyBuilder (BTBB) is a **desktop application for private gym managers to manage clients and orders, optimized for use via a command line interface (CLI).**
-It has a GUI (Graphical User Interface) created with JavaFX. It is written in Java, and has about ?? kLoC.
-
+BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their orders and inventory,
+optimized for use via a command line interface (CLI).
 
 Given below are my contributions to the project.
 
@@ -40,9 +39,16 @@ Given below are my contributions to the project.
       [#69](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/69),
       [#155](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/155),
       [#74](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/74)
-    * Helped team members with finding entities implementation 
+    * Helped team members with finding entities implementation. Helped team members to code reusable
+      generic classes to help find any entity by their fields.
 
 * **Documentation**:
     * User Guide:
+      * Added a sample tutorial under the quick start section to enable users to learn how to use our application
+        faster. (Pull Request [#232](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/232))
+      * Add labelled images with captioning to the user guide for users to understand our application better.
+        (Pull Request [#177](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/177))
+      * Add delete recipe ingredient feature to user guide. (Pull Request [#174](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/174))
+      * Add list recipe feature to user guide. (Pull Request [#172](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/172))
     * Developer Guide:
     
