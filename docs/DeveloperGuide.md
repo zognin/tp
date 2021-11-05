@@ -1629,9 +1629,13 @@ testers are expected to do more *exploratory* testing.
             * Completion status: Completed
     1. Test case: `done-o 1`
        <br>Expected: The first order is marked as completed. It's position in the Order list may change. Details of
-           marked order is shown in the result display.
+           marked order are shown in the result display.
     1. Test case: `done-o 2`
-       <br>Expected: The second order is still marked as completed. Details of marked order is shown in the result display.
+       <br>Expected: The second order is still marked as completed. Details of marked order are shown in the result display.
+    1. Test case: `done-o 3`
+       <br>Expected: No change in the order list display. Error details shown in the result display box.
+    1. Test case: `done-o -1`
+       <br>Expected: No change in the order list display. Error details shown in the result display box. 
 
 1. Marking an order as undone
     1. Prerequisites: There are exactly 2 orders in the order list.
@@ -1657,9 +1661,13 @@ testers are expected to do more *exploratory* testing.
             * Completion status: Completed
     1. Test case: `undone-o 2`
        <br> The second order is marked as uncompleted. It's position in the Order list may change. Details of
-       marked order is shown in the result display.
+       marked order are shown in the result display.
     1. Test case: `undone-o 1`
-       <br>Expected: The first order is still marked as completed. Details of marked order is shown in the result display.
+       <br>Expected: The first order is still marked as uncompleted. Details of marked order are shown in the result display.
+    1. Test case: `undone-o 3`
+      <br>Expected: No change in the order list display. Error details shown in the result display box.
+    1. Test case: `undone-o -1`
+      <br>Expected: No change in the order list display. Error details shown in the result display box. 
 
 ### Recipe
 
@@ -1669,20 +1677,18 @@ testers are expected to do more *exploratory* testing.
             * Recipe Name: Chicken Rice
             * Recipe Ingredients: Rice x 200 g, Chicken x 1 whole
             * Recipe Price: $4.00
-    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-Whole rp/4`
+    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole rp/4`
         <br> Expected: A new recipe is added to the recipe list with the given details. Details of the added
         recipe are shown in the result display box.
-    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-Whole`
+    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole`
        <br> Expected: No recipe is added. Error details shown in the result display box.
-    1. Test case: `add-r rn/Chicken Rice rp/4`
+    1. Test case: `add-r ri/Rice-200-g, Chicken-1-whole rp/4`
        <br> Expected: No recipe is added. Error details shown in the result display box.
-    1. Test case: `add-r ri/Rice-200-g, Chicken-1-Whole rp/4`
+    1. Test case: `add-r rn/Chicken Rice$$ ri/Rice-200-g, Chicken-1-whole rp/4`
        <br> Expected: No recipe is added. Error details shown in the result display box.
-    1. Test case: `add-r rn/Chicken Rice$$ ri/Rice-200-g, Chicken-1-Whole rp/4`
+    1. Test case: `add-r rn/Chicken Rice ri/Rice, Chicken-1-whole rp/4`
        <br> Expected: No recipe is added. Error details shown in the result display box.
-    1. Test case: `add-r rn/Chicken Rice ri/Rice, Chicken-1-Whole rp/4`
-       <br> Expected: No recipe is added. Error details shown in the result display box.
-    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-Whole rp/$4`
+    1. Test case: `add-r rn/Chicken Rice ri/Rice-200-g, Chicken-1-whole rp/$4`
         <br> Expected: No recipe is added. Error details shown in the result display box.
 
 1. Adding a recipe ingredient
