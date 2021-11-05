@@ -3,7 +3,7 @@ layout: page
 title: Ajay's Project Portfolio Page
 ---
 
-### Project: BobTheBodyBuilder
+### Project: BobTheBistroBoss
 
 BobTheBistroBoss (BTBB) is a desktop application for home chefs to manage their orders and inventory,
 optimized for use via a command line interface (CLI).
