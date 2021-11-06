@@ -1395,8 +1395,6 @@ testers are expected to do more *exploratory* testing.
        <br>Expected: No change in the inventory. Error details shown in the result display box.
     1. Test case: `find-i iqf/20 iqt/10`
        <br>Expected: No change in the inventory. Error details shown in the result display box.
-    1. Test case: `find-i iqf/10 iqt/10`
-       <br>Expected: No change in the inventory. Error details shown in the result display box.
     1. Test case: `find-i 2 iq/13`
        <br>Expected: No change in the inventory. Error details shown in the result display box.
     1. Test case: `find-i`
