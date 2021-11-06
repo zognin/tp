@@ -11,7 +11,8 @@ import java.util.function.Predicate;
  * @param <S> Type of the values to be tested.
  */
 public class ValueWithinRangePredicate<T, S extends Comparable<S>> implements Predicate<T> {
-    public static final String MESSAGE_CONSTRAINTS = "Please provide a valid range where FROM is smaller than TO.";
+    public static final String MESSAGE_CONSTRAINTS = "Please provide a valid range where FROM is smaller than"
+            + " or equal to TO.";
 
     private final Function<T, S> getter;
     private final S minValue;
