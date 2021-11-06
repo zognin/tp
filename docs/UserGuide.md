@@ -810,14 +810,14 @@ Format: `edit-o INDEX [c/INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_AD
 * To edit an order's ingredient list, refer to [Adding an order ingredient](#452-adding-an-order-ingredient-add-oi)
   and [Deleting an order ingredient](#454-deleting-an-order-ingredient-delete-oi).
 
-**Client details** include client name, phone and address, they must be provided in one of these ways:
+**Client details** include client name, phone and address, they can be provided in one of these ways:
 * If `c/CLIENT_INDEX` is provided,
   * client details are copied from the client bookmark at the given index to the order.
   * If `cn/`, `cp/` or `ca/` are provided with `c/`, the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
 * If `c/CLIENT_INDEX` is not provided but `cn/`, `cp/` or `ca/` is provided,
   * the respective client detail is taken from `cn/`, `cp/` or `ca/` instead.
 
-**Recipe details** include recipe name and price. Recipe name and order price must be provided in one of these ways:
+**Recipe details** include recipe name and price. Recipe name and order price can be provided in one of these ways:
 * If `r/RECIPE_INDEX` is provided,
   * recipe details are copied from the recipe bookmark at the given index to the order.
   * `ORDER_PRICE` is calculated by multiplying the copied `RECIPE_PRICE` with `QUANTITY` of the order.
@@ -957,7 +957,7 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 * `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed
   recipe list.
 
-* An ingredient already exists in the inventory if it has the same `NAME` and `UNIT` as an existing ingredient in the inventory.
+* An ingredient already exists in the recipe if it has the same `NAME` and `UNIT` as an existing ingredient in the recipe's ingredient sub-list.
 
 * Ingredients that already exist in the recipe cannot be added again. Instead,
   perform delete recipe ingredient command first before performing this command again.
@@ -1025,7 +1025,7 @@ Format: `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 * `RECIPE_PRICE` should be positive and less than $2500.00.
 
 * The updated recipe must not be a duplicate of another existing recipe in the recipe bookmarks. <br>
-  i.e. Updated recipe and the other existing recipe must not have the same `NAME`, list of ingredients and `PRICE`.
+  i.e. Updated recipe and the other existing recipe must not have the same `RECIPE_NAME`, list of ingredients and `RECIPE_PRICE`.
 
 * To edit a recipe's ingredient list, refer to [Adding a recipe ingredient](#462-adding-a-recipe-ingredient-add-ri)
   and [Deleting a recipe ingredient](#464-deleting-a-recipe-ingredient-delete-ri).
@@ -1103,7 +1103,7 @@ Fig 12. Client pie chart
 
 #### 4.7.3 Viewing top 10 most popular recipes
 * Your top 10 most popular recipes, that appear most frequently in the all your orders will be shown in a pie chart.
-* We rank the popularity of orders by compare the total order quantity of each recipe. <br>
+* We rank the popularity of orders by comparing the total order quantity of each recipe. <br>
   (e.g. Compare an order list with only these 3 orders: 'Chicken Rice x 4', 'Fried Rice x 2' and 'Fried Rice x 1'.<br>
   Chicken rice is more popular since its total quantity (sum of all its `ORDER_QUANTITY`) is higher, i.e. 4 > 2 + 1.)
 * Ties are broken arbitrarily i.e. If there are multiple recipes with the same number of order quantities, 10 random recipes
