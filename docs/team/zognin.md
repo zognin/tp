@@ -29,6 +29,14 @@ optimized for use via a command line interface (CLI).
     This allows different objects to make use of the generic classes if they intend to achieve the same search behaviour,
     which reduces code duplication.
 
+* **New Feature**: Added the ability to switch between tabs programmatically. (Pull requests [#66](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/66), [#74](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/74)).
+  * **What it does**: Allows the user to switch tabs with a command and allows the app to automatically switch to the relevant tab after execution of a command.
+  * **Justification**: As the app is a command line interface, users spend a significant portion of time typing commands.
+    A tab command increases convenience as users do not have to shift their hands away from the keyboard just to switch tabs.
+    Additionally, users may execute a command that affects the view of a different tab.
+    Switching tabs automatically allows users to view their changes easily.
+  * **Highlights**: Extended `CommandResult` to store tab information and added methods in the `Ui` layer to switch tabs if necessary.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=zognin&tabRepo=AY2122S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Team tasks**:
