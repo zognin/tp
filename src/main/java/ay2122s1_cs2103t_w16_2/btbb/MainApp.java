@@ -35,7 +35,7 @@ import javafx.stage.Stage;
  * Runs the application.
  */
 public class MainApp extends Application {
-    private static final Version VERSION = new Version(0, 2, 0, true);
+    private static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
