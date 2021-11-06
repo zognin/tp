@@ -30,8 +30,8 @@ optimized for use via a command line interface (CLI).
     which reduces code duplication.
 
 * **New Feature**: Added the ability to switch between tabs programmatically. (Pull requests [#66](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/66), [#74](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/74)).
-  * **What it does**: Allows the user to switch tabs with a command and allows the app to automatically switch to the relevant tab after execution of a command.
-  * **Justification**: As the app is a command line interface, users spend a significant portion of time typing commands.
+  * **What it does**: Allows the user to switch tabs with a command and allows the application to automatically switch to the relevant tab after execution of a command.
+  * **Justification**: As the application is a command line interface, users spend a significant portion of time typing commands.
     A tab command increases convenience as users do not have to shift their hands away from the keyboard just to switch tabs.
     Additionally, users may execute a command that affects the view of a different tab.
     Switching tabs automatically allows users to view their changes easily.
