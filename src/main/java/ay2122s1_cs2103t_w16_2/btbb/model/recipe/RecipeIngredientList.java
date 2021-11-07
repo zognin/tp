@@ -78,7 +78,7 @@ public class RecipeIngredientList {
     @Override
     public String toString() {
         if (ingredients.size() == 0) {
-            return "The ingredient list is currently empty.";
+            return "This order's ingredient list is empty.";
         }
         return ingredients.stream().map(Ingredient::toString).collect(Collectors.joining(", "));
     }
