@@ -173,7 +173,7 @@ Finally, we will add our order by entering the following command:
 Replace `CLIENT_INDEX` and `RECIPE_INDEX` with the respective indexes you took note of in the
 previous steps. You will notice that the order has been added to the Orders list. This approach is more efficient as
 the client and recipe details are copied from their respective bookmarks into the order. If you switch
-to the Inventory & Statistics tab, you will also notice how the quantities for the ingredients, tuna, sandwich and
+to the Inventory & Statistics tab, you will also notice how the quantities for the ingredients, tuna, bread and
 cheese have been deducted allowing you to track your inventory. To learn more about the available commands, you may
 head onto our [Features](#4-features) section.
 

@@ -49,13 +49,15 @@ deactivate AddressBookParser
 Logic -> DeleteOrderCommand : execute()
 activate DeleteOrderCommand
 
-loop for each ingredient
-    opt order not finished
-        DeleteOrderCommand -> Model : addIngredientQuantity()
-        activate Model
+opt order not finished
+    loop for each ingredient
+        opt ingredient in inventory
+            DeleteOrderCommand -> Model : addIngredientQuantity()
+            activate Model
 
-        Model --> DeleteOrderCommand
-        deactivate Model
+            Model --> DeleteOrderCommand
+            deactivate Model
+        end
     end
 end
 
