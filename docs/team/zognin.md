@@ -33,7 +33,7 @@ optimized for use via a command line interface (CLI).
   * **What it does**: Allows the user to switch tabs with a command and allows the application to automatically switch to the relevant tab after execution of a command.
   * **Justification**: As the application is a command line interface, users spend a significant portion of time typing commands.
     A tab command increases convenience as users do not have to shift their hands away from the keyboard just to switch tabs.
-    Additionally, users may execute a command that affects the view of a different tab.
+    Additionally, users may execute a command that updates the view of a different tab.
     Switching tabs automatically allows users to view their changes easily.
   * **Highlights**: Extended `CommandResult` to store tab information and added methods in the `Ui` layer to switch tabs if necessary.
 
