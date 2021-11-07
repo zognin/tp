@@ -768,13 +768,13 @@ Please read our [disclaimers about ingredient quantities](#65-quantities) to lea
 
 You can delete an ingredient from an order in the application using this command.
 
-Format: `delete-oi INDEX i/INGREDIENT_INDEX`
+Format: `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently
+* `ORDER_INDEX` allows you to choose which order to delete ingredients from by specifying its position in the currently
   displayed order list.
 
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the order by specifying its position in the
@@ -1000,13 +1000,13 @@ Format: `delete-r INDEX`
 
 You can delete an ingredient from a recipe in the application using this command.
 
-Format: `delete-ri INDEX i/INGREDIENT_INDEX`
+Format: `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bookmark: Note:**<br>
 
-* `INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the
+* `RECIPE_INDEX` allows you to choose which recipe to delete ingredients from by specifying its position in the
   currently displayed recipe list.
 
 * `INGREDIENT_INDEX` allows you to choose which ingredient to delete from the recipe by specifying its position in the
@@ -1222,7 +1222,7 @@ Action                      | Format
 **Add order**               | 1. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 2. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] op/ORDER_PRICE od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 3. `add-o cn/CLIENT_NAME cp/CLIENT_PHONE ca/CLIENT_ADDRESS r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]` <br> 4. `add-o c/CLIENT_INDEX [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] r/RECIPE_INDEX [rn/RECIPE_NAME] [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] [op/ORDER_PRICE] od/ORDER_DEADLINE [oq/ORDER_QUANTITY]`
 **Add order ingredient**    | `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete order**            | `delete-o INDEX`
-**Delete order ingredient** | `delete-oi INDEX i/INGREDIENT_INDEX`
+**Delete order ingredient** | `delete-oi ORDER_INDEX i/INGREDIENT_INDEX`
 **Edit order**              | `edit-o INDEX [c/CLIENT_INDEX] [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [r/RECIPE_INDEX] [rn/RECIPE_NAME] [op/ORDER_PRICE] [od/ORDER_DEADLINE] [oq/QUANTITY]`
 **Find order**              | `find-o [cn/CLIENT_NAME] [cp/CLIENT_PHONE] [ca/CLIENT_ADDRESS] [rn/RECIPE_NAME] [od/ORDER_DATE] [of/YES_OR_NO]`
 **List order**              | `list-o`
@@ -1231,7 +1231,7 @@ Action                      | Format
 **Add recipe**              | `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] rp/RECIPE_PRICE`
 **Add recipe ingredient**   | `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UNIT`
 **Delete recipe**           | `delete-r INDEX`
-**Delete recipe ingredient**| `delete-ri INDEX i/INGREDIENT_INDEX`
+**Delete recipe ingredient**| `delete-ri RECIPE_INDEX i/INGREDIENT_INDEX`
 **Edit recipe**             | `edit-r INDEX [rn/RECIPE_NAME] [rp/RECIPE_PRICE]`
 **Find recipe**             | `find-r rn/RECIPE_NAME`
 **List recipe**             | `list-r`
