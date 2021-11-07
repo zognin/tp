@@ -27,8 +27,8 @@ Given below are my contributions to the project.
     * What it does: Allows the users to store and view information related to their recipes.
     * Justification: Allows the users to copy recipes so that they do not have to specify the full
       list of ingredients when adding orders, making the process more efficient.
-    * Highlights: The find client enables partial search for client names and phone numbers. For client names, the
-      search is case-insensitive.
+    * Highlights: The recipe model allows users to store the recipe name, ingredients and price, all of which can be
+      copied over when creating an order.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=Manoharan-Ajay-Anand&tabRepo=AY2122S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
