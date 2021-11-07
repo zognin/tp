@@ -32,8 +32,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Invalid index. Index should be a positive whole number.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
     public static final String MESSAGE_INVALID_DATE = "Date should be a valid date in dd-mm-yyyy format";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT =
-            "The recipe ingredient list provided contains duplicate ingredients.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "Duplicate ingredients are not allowed.";
 
     // Client-level parsers:
 
