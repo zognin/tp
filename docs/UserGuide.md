@@ -323,6 +323,9 @@ They are:
 * Any extraneous parameters supplied by you for commands that do not take in parameters (such as `help`, and `list-c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Only prefixes stated in the command are recognised as prefixes for the command.<br>
+  e.g. if a command does not recognise `rp/` as a prefix, it will be considered as part of your user input.
+
 * You should note that the format of all date fields is `dd-MM-yyyy`.<br>
   e.g. 21-10-1998 is 21 October 1998.
 
@@ -339,9 +342,6 @@ They are:
   * Order Name
   * Recipe Name
   * Ingredient Unit
-
-* Any extraneous prefixes supplied by you that is not part of the command will be considered as your input for the previous parameter.<br>
-  e.g. If a command takes in a `cn/` prefix but does not take a `an/` prefix, by supplying `cn/Alex Yeoh an/`, `Alex Yeoh an/` is considered to be your user input for the `cn/` prefix.
 
 </div>
 
