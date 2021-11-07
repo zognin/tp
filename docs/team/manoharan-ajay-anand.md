@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * Highlights: The find client command enables partial search for client names and phone numbers. For client names, the
       search is case-insensitive.
 
-* **New Feature**: Added the ability to edit/delete an ingredient. (Pull requests [#80](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/80), [#83](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/83))
+* **New Feature**: Added the ability to edit/delete an ingredient. (Pull requests [#83](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/83), [#80](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/80))
     * What it does: Allows the users to edit or delete ingredients in their inventory.
     * Justification: Allows the user to have a more direct control of the ingredients in the inventory if
       changes need to be made to the inventory such as during a restocking.
