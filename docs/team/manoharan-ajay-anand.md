@@ -54,7 +54,7 @@ Given below are my contributions to the project.
       * Added delete recipe ingredient feature to user guide. (Pull request [#174](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/174))
       * Added list recipe feature to user guide. (Pull request [#172](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/172))
     * Developer Guide:
-      * Added manual testing instructions for recipe to developer guide. (Pull request [#255](https://github.com/AY2122S1-CS2103T-W16-2/tp/pulls/Manoharan-Ajay-Anand))
+      * Added manual testing instructions for recipe to developer guide. (Pull request [#255](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/255))
       * Added edit feature implementation and corresponding UML diagrams to developer guide. (Pull request [#187](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/187))
       * Added find feature implementation and corresponding UML diagrams to developer guide. (Pull request [#121](https://github.com/AY2122S1-CS2103T-W16-2/tp/pull/121))
 
