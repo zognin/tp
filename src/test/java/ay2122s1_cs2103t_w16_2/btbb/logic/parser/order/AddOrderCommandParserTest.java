@@ -53,7 +53,6 @@ import ay2122s1_cs2103t_w16_2.btbb.model.client.Address;
 import ay2122s1_cs2103t_w16_2.btbb.model.client.Phone;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.Deadline;
 import ay2122s1_cs2103t_w16_2.btbb.model.order.OrderPrice;
-import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.OrderDescriptorBuilder;
@@ -262,7 +261,7 @@ class AddOrderCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB
                         + RECIPE_NAME_DESC_LAKSA + INVALID_RECIPE_INGREDIENT_LIST_DESC + ORDER_PRICE_DESC_2
                         + DEADLINE_DESC_MARCH + ORDER_QUANTITY_DESC_2,
-                RecipeIngredientList.MESSAGE_CONSTRAINTS);
+                Quantity.MESSAGE_CONSTRAINTS + "\nThe quantity 'grams' is invalid.");
 
         // invalid order price
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PHONE_DESC_BOB
