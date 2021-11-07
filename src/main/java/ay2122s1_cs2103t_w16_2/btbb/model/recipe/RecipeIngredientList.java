@@ -12,10 +12,11 @@ import ay2122s1_cs2103t_w16_2.btbb.model.ingredient.Ingredient;
 public class RecipeIngredientList {
     public static final String MESSAGE_CONSTRAINTS = "The ingredient list should contain at least one ingredient if "
             + PREFIX_RECIPE_INGREDIENT + " is provided.\n"
-            + "All ingredients should have the format NAME-QUANTITY-UNIT and should be comma separated.\n"
+            + "All ingredients should have the format INGREDIENT_NAME-QUANTITY-UNIT and should be comma separated.\n"
             + "Example: ri/Chicken Eggs-1-whole, Corn-1-whole";
     public static final String MESSAGE_INTERNAL_CONSTRAINTS = "All ingredients in the ingredient list "
-            + " should have the format NAME-QUANTITY-UNIT and should be comma separated. The internal ingredient list "
+            + "should have the format INGREDIENT_NAME-QUANTITY-UNIT "
+            + "and should be comma separated. The internal ingredient list "
             + "can be empty.";
     private final List<Ingredient> ingredients;
 
