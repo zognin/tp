@@ -661,8 +661,9 @@ You can use any of the following command formats to add an order:
   * `rn/` and `op/` must be provided.
 
 These details are fully optional:
-* `oq/ORDER_QUANTITY` is set to 1 by default, if not specified.
-* `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` does not need to be specified.
+* `oq/ORDER_QUANTITY` is set to 1 by default, if not specified. If specified, it must be positive, and the largest possible input is 40000.
+* `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` does not need to be specified. If specified, all `QUANTITY` supplied must be positive, and the largest possible input is 40000.
+
 
 Secondary processes that happen when you add an order:
 * For each ingredient in the order, the inventory will find [matching ingredients](#32-inventory) and decrease their quantity.
@@ -719,6 +720,8 @@ Format: `add-oi INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 * `INDEX` allows you to choose which order to add ingredients to by specifying its position in the currently displayed
   order list.
+
+* `INGREDIENT_QUANTITY` supplied by you must be positive, and the largest possible input is 40000.
 
 * An ingredient already exists in an order if it has the same `INGREDIENT_NAME` and `INGREDIENT_UNIT` as an existing ingredient in the order's ingredient sub-list.
 
@@ -948,6 +951,8 @@ Format: `add-r rn/RECIPE_NAME [ri/INGREDIENT_NAME-QUANTITY-UNIT, ...] rp/RECIPE_
 
 * `RECIPE_PRICE` should be positive and less than $2500.00.
 
+* If `ri/INGREDIENT_NAME-QUANTITY-UNIT, ...` is specified, all `QUANTITY` supplied must be positive, and the largest possible input is 40000.
+
 </div>
 
 **Examples:**
@@ -966,6 +971,8 @@ Format: `add-ri INDEX in/INGREDIENT_NAME iq/INGREDIENT_QUANTITY iu/INGREDIENT_UN
 
 * `INDEX` allows you to choose which recipe to add ingredients to by specifying its position in the currently displayed
   recipe list.
+
+* `INGREDIENT_QUANTITY` supplied by you must be positive, and the largest possible input is 40000.
 
 * An ingredient already exists in the recipe if it has the same `INGREDIENT_NAME` and `INGREDIENT_UNIT` as an existing ingredient in the recipe's ingredient sub-list.
 
