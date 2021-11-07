@@ -32,6 +32,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Invalid index. Index should be a positive whole number.";
     public static final String MESSAGE_INVALID_KEYWORD = "Keywords for all provided prefixes should not be empty.";
     public static final String MESSAGE_INVALID_DATE = "Date should be a valid date in dd-mm-yyyy format";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT =
+            "The recipe ingredient list provided contains duplicate ingredients.";
 
     // Client-level parsers:
 
@@ -215,6 +217,13 @@ public class ParserUtil {
         String[] ingredientListArray = ingredientList.split(",");
         for (String individualIngredient : ingredientListArray) {
             Ingredient ingredient = parseRecipeIngredient(individualIngredient.trim());
+
+            for (Ingredient i : listOfIngredients) {
+                if (i.isSameIngredient(ingredient)) {
+                    throw new ParseException(MESSAGE_DUPLICATE_INGREDIENT);
+                }
+            }
+
             listOfIngredients.add(ingredient);
         }
 
@@ -234,15 +243,33 @@ public class ParserUtil {
             throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
         }
 
-        String recipeName = individualIngredientArray[0];
-        String quantity = individualIngredientArray[1];
+        String name = individualIngredientArray[0];
+        String qty = individualIngredientArray[1];
         String unit = individualIngredientArray[2];
 
-        if (!Ingredient.isValidIngredient(recipeName, quantity, unit)) {
-            throw new ParseException(RecipeIngredientList.MESSAGE_CONSTRAINTS);
+        GenericString ingredientName;
+        Quantity quantity;
+        GenericString ingredientUnit;
+
+        try {
+            ingredientName = parseGenericString(name, "Ingredient name");
+        } catch (ParseException e) {
+            throw new ParseException(e.getMessage() + "\nThe ingredient name '" + name + "' is invalid.");
         }
 
-        return new Ingredient(new GenericString(recipeName), new Quantity(quantity), new GenericString(unit));
+        try {
+            quantity = parseQuantity(qty);
+        } catch (ParseException e) {
+            throw new ParseException(e.getMessage() + "\nThe quantity '" + qty + "' is invalid.");
+        }
+
+        try {
+            ingredientUnit = parseGenericString(unit, "Ingredient unit");
+        } catch (ParseException e) {
+            throw new ParseException(e.getMessage() + "\nThe unit '" + unit + "' is invalid.");
+        }
+
+        return new Ingredient(ingredientName, quantity, ingredientUnit);
     }
 
     /**

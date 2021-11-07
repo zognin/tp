@@ -26,6 +26,7 @@ import ay2122s1_cs2103t_w16_2.btbb.logic.descriptors.RecipeDescriptor;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipeIngredientList;
 import ay2122s1_cs2103t_w16_2.btbb.model.recipe.RecipePrice;
 import ay2122s1_cs2103t_w16_2.btbb.model.shared.GenericString;
+import ay2122s1_cs2103t_w16_2.btbb.model.shared.Quantity;
 import ay2122s1_cs2103t_w16_2.btbb.testutil.RecipeDescriptorBuilder;
 
 public class AddRecipeCommandParserTest {
@@ -80,7 +81,8 @@ public class AddRecipeCommandParserTest {
 
         // invalid recipe ingredients
         assertParseFailure(parser, RECIPE_NAME_DESC_LAKSA + INVALID_RECIPE_INGREDIENT_LIST_DESC
-                        + RECIPE_PRICE_DESC_LAKSA, RecipeIngredientList.MESSAGE_CONSTRAINTS);
+                        + RECIPE_PRICE_DESC_LAKSA,
+                Quantity.MESSAGE_CONSTRAINTS + "\nThe quantity 'grams' is invalid.");
 
         // invalid price
         assertParseFailure(parser, RECIPE_NAME_DESC_LAKSA + RECIPE_INGREDIENT_LIST_DESC_LAKSA
